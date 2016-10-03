@@ -1,0 +1,554 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		84BA54E11DA256940037198F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BA54E01DA256940037198F /* main.m */; };
+		84BA54E41DA256940037198F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BA54E31DA256940037198F /* AppDelegate.m */; };
+		84BA54E71DA256940037198F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BA54E61DA256940037198F /* ViewController.m */; };
+		84BA54EA1DA256940037198F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84BA54E81DA256940037198F /* Main.storyboard */; };
+		84BA54ED1DA256940037198F /* airmobile.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84BA54EB1DA256940037198F /* airmobile.xcdatamodeld */; };
+		84BA54EF1DA256940037198F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84BA54EE1DA256940037198F /* Assets.xcassets */; };
+		84BA54F21DA256940037198F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84BA54F01DA256940037198F /* LaunchScreen.storyboard */; };
+		84BA54FD1DA256940037198F /* airmobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BA54FC1DA256940037198F /* airmobileTests.m */; };
+		84BA55081DA256950037198F /* airmobileUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BA55071DA256950037198F /* airmobileUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		84BA54F91DA256940037198F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 84BA54D41DA256940037198F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 84BA54DB1DA256940037198F;
+			remoteInfo = airmobile;
+		};
+		84BA55041DA256950037198F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 84BA54D41DA256940037198F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 84BA54DB1DA256940037198F;
+			remoteInfo = airmobile;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		84BA54DC1DA256940037198F /* airmobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = airmobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		84BA54E01DA256940037198F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		84BA54E21DA256940037198F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		84BA54E31DA256940037198F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		84BA54E51DA256940037198F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		84BA54E61DA256940037198F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		84BA54E91DA256940037198F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		84BA54EC1DA256940037198F /* airmobile.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = airmobile.xcdatamodel; sourceTree = "<group>"; };
+		84BA54EE1DA256940037198F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		84BA54F11DA256940037198F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		84BA54F31DA256940037198F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84BA54F81DA256940037198F /* airmobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = airmobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		84BA54FC1DA256940037198F /* airmobileTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = airmobileTests.m; sourceTree = "<group>"; };
+		84BA54FE1DA256940037198F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84BA55031DA256950037198F /* airmobileUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = airmobileUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		84BA55071DA256950037198F /* airmobileUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = airmobileUITests.m; sourceTree = "<group>"; };
+		84BA55091DA256950037198F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		84BA54D91DA256940037198F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84BA54F51DA256940037198F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84BA55001DA256950037198F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		84BA54D31DA256940037198F = {
+			isa = PBXGroup;
+			children = (
+				84BA54DE1DA256940037198F /* airmobile */,
+				84BA54FB1DA256940037198F /* airmobileTests */,
+				84BA55061DA256950037198F /* airmobileUITests */,
+				84BA54DD1DA256940037198F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		84BA54DD1DA256940037198F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				84BA54DC1DA256940037198F /* airmobile.app */,
+				84BA54F81DA256940037198F /* airmobileTests.xctest */,
+				84BA55031DA256950037198F /* airmobileUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		84BA54DE1DA256940037198F /* airmobile */ = {
+			isa = PBXGroup;
+			children = (
+				84BA54E21DA256940037198F /* AppDelegate.h */,
+				84BA54E31DA256940037198F /* AppDelegate.m */,
+				84BA54E51DA256940037198F /* ViewController.h */,
+				84BA54E61DA256940037198F /* ViewController.m */,
+				84BA54E81DA256940037198F /* Main.storyboard */,
+				84BA54EE1DA256940037198F /* Assets.xcassets */,
+				84BA54F01DA256940037198F /* LaunchScreen.storyboard */,
+				84BA54F31DA256940037198F /* Info.plist */,
+				84BA54EB1DA256940037198F /* airmobile.xcdatamodeld */,
+				84BA54DF1DA256940037198F /* Supporting Files */,
+			);
+			path = airmobile;
+			sourceTree = "<group>";
+		};
+		84BA54DF1DA256940037198F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				84BA54E01DA256940037198F /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		84BA54FB1DA256940037198F /* airmobileTests */ = {
+			isa = PBXGroup;
+			children = (
+				84BA54FC1DA256940037198F /* airmobileTests.m */,
+				84BA54FE1DA256940037198F /* Info.plist */,
+			);
+			path = airmobileTests;
+			sourceTree = "<group>";
+		};
+		84BA55061DA256950037198F /* airmobileUITests */ = {
+			isa = PBXGroup;
+			children = (
+				84BA55071DA256950037198F /* airmobileUITests.m */,
+				84BA55091DA256950037198F /* Info.plist */,
+			);
+			path = airmobileUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		84BA54DB1DA256940037198F /* airmobile */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 84BA550C1DA256950037198F /* Build configuration list for PBXNativeTarget "airmobile" */;
+			buildPhases = (
+				84BA54D81DA256940037198F /* Sources */,
+				84BA54D91DA256940037198F /* Frameworks */,
+				84BA54DA1DA256940037198F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = airmobile;
+			productName = airmobile;
+			productReference = 84BA54DC1DA256940037198F /* airmobile.app */;
+			productType = "com.apple.product-type.application";
+		};
+		84BA54F71DA256940037198F /* airmobileTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 84BA550F1DA256950037198F /* Build configuration list for PBXNativeTarget "airmobileTests" */;
+			buildPhases = (
+				84BA54F41DA256940037198F /* Sources */,
+				84BA54F51DA256940037198F /* Frameworks */,
+				84BA54F61DA256940037198F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				84BA54FA1DA256940037198F /* PBXTargetDependency */,
+			);
+			name = airmobileTests;
+			productName = airmobileTests;
+			productReference = 84BA54F81DA256940037198F /* airmobileTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		84BA55021DA256950037198F /* airmobileUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 84BA55121DA256950037198F /* Build configuration list for PBXNativeTarget "airmobileUITests" */;
+			buildPhases = (
+				84BA54FF1DA256950037198F /* Sources */,
+				84BA55001DA256950037198F /* Frameworks */,
+				84BA55011DA256950037198F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				84BA55051DA256950037198F /* PBXTargetDependency */,
+			);
+			name = airmobileUITests;
+			productName = airmobileUITests;
+			productReference = 84BA55031DA256950037198F /* airmobileUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		84BA54D41DA256940037198F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "杨泉林";
+				TargetAttributes = {
+					84BA54DB1DA256940037198F = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 4B8FH7JQ2N;
+						ProvisioningStyle = Automatic;
+					};
+					84BA54F71DA256940037198F = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 4B8FH7JQ2N;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 84BA54DB1DA256940037198F;
+					};
+					84BA55021DA256950037198F = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 4B8FH7JQ2N;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 84BA54DB1DA256940037198F;
+					};
+				};
+			};
+			buildConfigurationList = 84BA54D71DA256940037198F /* Build configuration list for PBXProject "airmobile" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 84BA54D31DA256940037198F;
+			productRefGroup = 84BA54DD1DA256940037198F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				84BA54DB1DA256940037198F /* airmobile */,
+				84BA54F71DA256940037198F /* airmobileTests */,
+				84BA55021DA256950037198F /* airmobileUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		84BA54DA1DA256940037198F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84BA54F21DA256940037198F /* LaunchScreen.storyboard in Resources */,
+				84BA54EF1DA256940037198F /* Assets.xcassets in Resources */,
+				84BA54EA1DA256940037198F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84BA54F61DA256940037198F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84BA55011DA256950037198F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		84BA54D81DA256940037198F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84BA54E71DA256940037198F /* ViewController.m in Sources */,
+				84BA54E41DA256940037198F /* AppDelegate.m in Sources */,
+				84BA54ED1DA256940037198F /* airmobile.xcdatamodeld in Sources */,
+				84BA54E11DA256940037198F /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84BA54F41DA256940037198F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84BA54FD1DA256940037198F /* airmobileTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84BA54FF1DA256950037198F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84BA55081DA256950037198F /* airmobileUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		84BA54FA1DA256940037198F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 84BA54DB1DA256940037198F /* airmobile */;
+			targetProxy = 84BA54F91DA256940037198F /* PBXContainerItemProxy */;
+		};
+		84BA55051DA256950037198F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 84BA54DB1DA256940037198F /* airmobile */;
+			targetProxy = 84BA55041DA256950037198F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		84BA54E81DA256940037198F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84BA54E91DA256940037198F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		84BA54F01DA256940037198F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84BA54F11DA256940037198F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		84BA550A1DA256950037198F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		84BA550B1DA256950037198F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		84BA550D1DA256950037198F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 4B8FH7JQ2N;
+				INFOPLIST_FILE = airmobile/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.taocares.sia.airmobile;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		84BA550E1DA256950037198F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 4B8FH7JQ2N;
+				INFOPLIST_FILE = airmobile/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.taocares.sia.airmobile;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		84BA55101DA256950037198F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 4B8FH7JQ2N;
+				INFOPLIST_FILE = airmobileTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.taocares.sia.airmobileTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/airmobile.app/airmobile";
+			};
+			name = Debug;
+		};
+		84BA55111DA256950037198F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 4B8FH7JQ2N;
+				INFOPLIST_FILE = airmobileTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.taocares.sia.airmobileTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/airmobile.app/airmobile";
+			};
+			name = Release;
+		};
+		84BA55131DA256950037198F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 4B8FH7JQ2N;
+				INFOPLIST_FILE = airmobileUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.taocares.sia.airmobileUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = airmobile;
+			};
+			name = Debug;
+		};
+		84BA55141DA256950037198F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 4B8FH7JQ2N;
+				INFOPLIST_FILE = airmobileUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.taocares.sia.airmobileUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = airmobile;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		84BA54D71DA256940037198F /* Build configuration list for PBXProject "airmobile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84BA550A1DA256950037198F /* Debug */,
+				84BA550B1DA256950037198F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		84BA550C1DA256950037198F /* Build configuration list for PBXNativeTarget "airmobile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84BA550D1DA256950037198F /* Debug */,
+				84BA550E1DA256950037198F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		84BA550F1DA256950037198F /* Build configuration list for PBXNativeTarget "airmobileTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84BA55101DA256950037198F /* Debug */,
+				84BA55111DA256950037198F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		84BA55121DA256950037198F /* Build configuration list for PBXNativeTarget "airmobileUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84BA55131DA256950037198F /* Debug */,
+				84BA55141DA256950037198F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		84BA54EB1DA256940037198F /* airmobile.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				84BA54EC1DA256940037198F /* airmobile.xcdatamodel */,
+			);
+			currentVersion = 84BA54EC1DA256940037198F /* airmobile.xcdatamodel */;
+			path = airmobile.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 84BA54D41DA256940037198F /* Project object */;
+}
