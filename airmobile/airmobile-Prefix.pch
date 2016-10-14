@@ -1,0 +1,29 @@
+//
+//  airmobile-Prefix.pch
+//  airmobile
+//
+//  Created by 杨泉林研发部 on 16/10/8.
+//  Copyright © 2016年 杨泉林. All rights reserved.
+//
+
+#ifndef airmobile_Prefix_pch
+#define airmobile_Prefix_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#ifdef  __OBJC__
+#define kScreenWidth [UIScreen mainScreen].bounds.size.width
+#define kScreenHeight [UIScreen mainScreen].bounds.size.height
+#define localAirportIata @"SZX"
+#define baseUriTest @"https://192.168.163.126:443"
+#define baseUriPro  @"https://192.168.163.126:443"
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "DeviceInfoUtil.h"
+#import "CommonFunction.h"
+#import "SingletonUtil.h"
+#import "GlobalHelper.h"
+#import "DefaultHelper.h"
+#endif
+
+#endif /* airmobile_Prefix_pch */
