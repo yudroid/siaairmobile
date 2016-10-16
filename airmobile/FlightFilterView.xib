@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="FlightFilterView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="状态" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="53m-cR-E58">
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="性质" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t3k-2o-OPh">
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="区域" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K9R-Pu-fjL">
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LOC-BB-Ehr" customClass="FilghtFilterButton">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="CUO-qj-5Tu"/>
+                    </constraints>
+                    <state key="normal" title="国际">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e01-Fm-WP4" customClass="FilghtFilterButton">
+                    <state key="normal" title="正常">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q5r-Ta-knm" customClass="FilghtFilterButton">
+                    <state key="normal" title="正常">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L1k-Vv-QsP" customClass="FilghtFilterButton">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="PXR-vX-60Z"/>
+                        <constraint firstAttribute="height" constant="30" id="aiO-h5-DBt"/>
+                    </constraints>
+                    <state key="normal" title="国内">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O3n-WN-789" customClass="FilghtFilterButton">
+                    <state key="normal" title="预警">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Knd-gV-GsA" customClass="FilghtFilterButton">
+                    <state key="normal" title="预警">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FCW-HO-9l5" customClass="FilghtFilterButton">
+                    <state key="normal" title="预警">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zfk-wa-ZTH" customClass="FilghtFilterButton">
+                    <state key="normal" title="普通">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NsM-KH-VQl" customClass="FilghtFilterButton">
+                    <state key="normal" title="正常">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l1h-7u-5Vb" customClass="FilghtFilterButton">
+                    <state key="normal" title="特殊">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="05v-Bs-Vsh" customClass="FilghtFilterButton">
+                    <state key="normal" title="预警">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vxg-G2-DMt" customClass="FilghtFilterButton">
+                    <state key="normal" title="正常">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xn3-kM-Tui">
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gUb-M4-I5a">
+                            <state key="normal" title="取消">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="cancelButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="vlH-Kj-Wco"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7K7-Zj-JGd">
+                            <state key="normal" title="确认">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="sureButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="UCz-Xm-fPQ"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="7K7-Zj-JGd" secondAttribute="bottom" id="CPT-lQ-rnd"/>
+                        <constraint firstAttribute="bottom" secondItem="gUb-M4-I5a" secondAttribute="bottom" id="KIc-7U-VqS"/>
+                        <constraint firstItem="7K7-Zj-JGd" firstAttribute="top" secondItem="xn3-kM-Tui" secondAttribute="top" id="SoB-H9-RzE"/>
+                        <constraint firstAttribute="trailing" secondItem="7K7-Zj-JGd" secondAttribute="trailing" constant="16" id="XNY-U7-pXl"/>
+                        <constraint firstAttribute="height" constant="30" id="aC6-Q5-s3r"/>
+                        <constraint firstItem="gUb-M4-I5a" firstAttribute="leading" secondItem="xn3-kM-Tui" secondAttribute="leading" constant="16" id="dU0-dd-dJh"/>
+                        <constraint firstItem="gUb-M4-I5a" firstAttribute="top" secondItem="xn3-kM-Tui" secondAttribute="top" id="xfz-Vz-AJA"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Knd-gV-GsA" firstAttribute="height" secondItem="Q5r-Ta-knm" secondAttribute="height" id="0Nt-je-DgA"/>
+                <constraint firstItem="Q5r-Ta-knm" firstAttribute="top" secondItem="53m-cR-E58" secondAttribute="bottom" constant="8" id="1dh-kT-80T"/>
+                <constraint firstItem="NsM-KH-VQl" firstAttribute="width" secondItem="Q5r-Ta-knm" secondAttribute="width" id="1yv-0S-HH3"/>
+                <constraint firstItem="l1h-7u-5Vb" firstAttribute="leading" secondItem="Zfk-wa-ZTH" secondAttribute="trailing" constant="8" id="214-HI-RxJ"/>
+                <constraint firstItem="05v-Bs-Vsh" firstAttribute="height" secondItem="Q5r-Ta-knm" secondAttribute="height" id="3BP-g6-iVb"/>
+                <constraint firstItem="Vxg-G2-DMt" firstAttribute="width" secondItem="Q5r-Ta-knm" secondAttribute="width" id="4S9-wx-2a5"/>
+                <constraint firstItem="L1k-Vv-QsP" firstAttribute="top" secondItem="K9R-Pu-fjL" secondAttribute="bottom" constant="8" id="5Rh-sD-7Pv"/>
+                <constraint firstItem="FCW-HO-9l5" firstAttribute="width" secondItem="Q5r-Ta-knm" secondAttribute="width" id="7EI-Wg-ab0"/>
+                <constraint firstItem="NsM-KH-VQl" firstAttribute="top" secondItem="e01-Fm-WP4" secondAttribute="top" id="9TL-nD-x5o"/>
+                <constraint firstItem="NsM-KH-VQl" firstAttribute="leading" secondItem="FCW-HO-9l5" secondAttribute="trailing" constant="8" id="Apd-GF-iuX"/>
+                <constraint firstAttribute="bottom" secondItem="xn3-kM-Tui" secondAttribute="bottom" id="B45-i5-uLp"/>
+                <constraint firstItem="FCW-HO-9l5" firstAttribute="leading" secondItem="e01-Fm-WP4" secondAttribute="trailing" constant="8" id="BIS-z0-l3M"/>
+                <constraint firstItem="Zfk-wa-ZTH" firstAttribute="top" secondItem="t3k-2o-OPh" secondAttribute="bottom" constant="8" id="BW9-Ib-EwR"/>
+                <constraint firstItem="l1h-7u-5Vb" firstAttribute="width" secondItem="Zfk-wa-ZTH" secondAttribute="width" id="Dk1-bm-fkV"/>
+                <constraint firstItem="53m-cR-E58" firstAttribute="leading" secondItem="K9R-Pu-fjL" secondAttribute="leading" id="Dol-jh-Hea"/>
+                <constraint firstItem="NsM-KH-VQl" firstAttribute="height" secondItem="Q5r-Ta-knm" secondAttribute="height" id="Egb-BS-DBi"/>
+                <constraint firstItem="e01-Fm-WP4" firstAttribute="leading" secondItem="L1k-Vv-QsP" secondAttribute="leading" id="G8d-FR-KTK"/>
+                <constraint firstItem="O3n-WN-789" firstAttribute="top" secondItem="FCW-HO-9l5" secondAttribute="top" id="GEE-fZ-dy0"/>
+                <constraint firstItem="e01-Fm-WP4" firstAttribute="height" secondItem="L1k-Vv-QsP" secondAttribute="height" id="Gca-R9-oST"/>
+                <constraint firstItem="LOC-BB-Ehr" firstAttribute="leading" secondItem="L1k-Vv-QsP" secondAttribute="trailing" constant="16" id="J6O-Kb-ChU"/>
+                <constraint firstItem="t3k-2o-OPh" firstAttribute="top" secondItem="L1k-Vv-QsP" secondAttribute="bottom" constant="8" id="JFM-RL-Atc"/>
+                <constraint firstItem="LOC-BB-Ehr" firstAttribute="top" secondItem="L1k-Vv-QsP" secondAttribute="top" id="NaS-fB-Eay"/>
+                <constraint firstItem="FCW-HO-9l5" firstAttribute="top" secondItem="e01-Fm-WP4" secondAttribute="top" id="O2u-Iq-tMi"/>
+                <constraint firstAttribute="trailing" secondItem="xn3-kM-Tui" secondAttribute="trailing" id="O4b-U8-jOK"/>
+                <constraint firstItem="K9R-Pu-fjL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="OnF-A1-Iwx"/>
+                <constraint firstItem="l1h-7u-5Vb" firstAttribute="height" secondItem="Zfk-wa-ZTH" secondAttribute="height" id="Oo4-6H-gSA"/>
+                <constraint firstItem="Zfk-wa-ZTH" firstAttribute="height" secondItem="L1k-Vv-QsP" secondAttribute="height" id="Pd0-Ge-Lbo"/>
+                <constraint firstItem="O3n-WN-789" firstAttribute="top" secondItem="e01-Fm-WP4" secondAttribute="top" id="Pet-SK-o3m"/>
+                <constraint firstItem="Q5r-Ta-knm" firstAttribute="height" secondItem="L1k-Vv-QsP" secondAttribute="height" id="R0q-3O-7gV"/>
+                <constraint firstItem="O3n-WN-789" firstAttribute="width" secondItem="Q5r-Ta-knm" secondAttribute="width" id="R2E-nb-E7d"/>
+                <constraint firstItem="Zfk-wa-ZTH" firstAttribute="leading" secondItem="L1k-Vv-QsP" secondAttribute="leading" id="RKY-Vc-xUc"/>
+                <constraint firstItem="05v-Bs-Vsh" firstAttribute="leading" secondItem="Vxg-G2-DMt" secondAttribute="trailing" constant="8" id="Rve-du-QQr"/>
+                <constraint firstItem="Q5r-Ta-knm" firstAttribute="width" secondItem="L1k-Vv-QsP" secondAttribute="width" id="TLY-RE-KXC"/>
+                <constraint firstItem="Knd-gV-GsA" firstAttribute="top" secondItem="Q5r-Ta-knm" secondAttribute="top" id="UmQ-4p-dtI"/>
+                <constraint firstItem="Knd-gV-GsA" firstAttribute="width" secondItem="Q5r-Ta-knm" secondAttribute="width" id="Y1U-N8-BJv"/>
+                <constraint firstItem="LOC-BB-Ehr" firstAttribute="bottom" secondItem="L1k-Vv-QsP" secondAttribute="bottom" id="aje-Mt-73h"/>
+                <constraint firstItem="Vxg-G2-DMt" firstAttribute="leading" secondItem="Knd-gV-GsA" secondAttribute="trailing" constant="8" id="cP9-lU-uhZ"/>
+                <constraint firstItem="Q5r-Ta-knm" firstAttribute="leading" secondItem="L1k-Vv-QsP" secondAttribute="leading" id="cdQ-uT-aip"/>
+                <constraint firstItem="Knd-gV-GsA" firstAttribute="leading" secondItem="Q5r-Ta-knm" secondAttribute="trailing" constant="8" id="dE5-wT-NmC"/>
+                <constraint firstItem="NsM-KH-VQl" firstAttribute="top" secondItem="FCW-HO-9l5" secondAttribute="top" id="gIa-17-y5X"/>
+                <constraint firstItem="05v-Bs-Vsh" firstAttribute="width" secondItem="Q5r-Ta-knm" secondAttribute="width" id="hKT-rc-dsb"/>
+                <constraint firstItem="O3n-WN-789" firstAttribute="height" secondItem="Q5r-Ta-knm" secondAttribute="height" id="mQ3-Oz-siT"/>
+                <constraint firstItem="l1h-7u-5Vb" firstAttribute="top" secondItem="Zfk-wa-ZTH" secondAttribute="top" id="nRR-Z9-PrA"/>
+                <constraint firstItem="e01-Fm-WP4" firstAttribute="top" secondItem="Q5r-Ta-knm" secondAttribute="bottom" constant="8" id="nfG-fC-ET2"/>
+                <constraint firstItem="Zfk-wa-ZTH" firstAttribute="width" secondItem="L1k-Vv-QsP" secondAttribute="width" id="noN-He-udm"/>
+                <constraint firstItem="L1k-Vv-QsP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="32" id="pBa-IM-jWS"/>
+                <constraint firstItem="t3k-2o-OPh" firstAttribute="leading" secondItem="K9R-Pu-fjL" secondAttribute="leading" id="pIB-mJ-sKg"/>
+                <constraint firstItem="53m-cR-E58" firstAttribute="top" secondItem="Zfk-wa-ZTH" secondAttribute="bottom" constant="8" id="qwn-nd-B6o"/>
+                <constraint firstItem="xn3-kM-Tui" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="r7K-3X-vtV"/>
+                <constraint firstItem="FCW-HO-9l5" firstAttribute="height" secondItem="Q5r-Ta-knm" secondAttribute="height" id="t8J-oz-nhD"/>
+                <constraint firstItem="O3n-WN-789" firstAttribute="leading" secondItem="NsM-KH-VQl" secondAttribute="trailing" constant="8" id="tlo-0r-qhE"/>
+                <constraint firstItem="e01-Fm-WP4" firstAttribute="width" secondItem="L1k-Vv-QsP" secondAttribute="width" id="ttK-PE-sQ6"/>
+                <constraint firstItem="05v-Bs-Vsh" firstAttribute="top" secondItem="Q5r-Ta-knm" secondAttribute="top" id="u5K-rU-z0B"/>
+                <constraint firstItem="Vxg-G2-DMt" firstAttribute="top" secondItem="Q5r-Ta-knm" secondAttribute="top" id="ves-rn-XmF"/>
+                <constraint firstItem="K9R-Pu-fjL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="zIq-aL-9rO"/>
+                <constraint firstItem="Vxg-G2-DMt" firstAttribute="height" secondItem="Q5r-Ta-knm" secondAttribute="height" id="zg3-1Q-je1"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="26.5" y="52"/>
+        </view>
+    </objects>
+</document>
