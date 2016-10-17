@@ -41,7 +41,7 @@ static  NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_IDETIF
     [self.view insertSubview:self.tabBarView aboveSubview:self.view];
     
     
-    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, kScreenWidth, kScreenHeight-64)];
+    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, kScreenWidth, kScreenHeight-64-49)];
     tableView.delegate =self;
     tableView.dataSource =self;
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

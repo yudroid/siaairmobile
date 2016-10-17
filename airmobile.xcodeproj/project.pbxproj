@@ -117,6 +117,20 @@
 		84BA54FD1DA256940037198F /* airmobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BA54FC1DA256940037198F /* airmobileTests.m */; };
 		84BA55081DA256950037198F /* airmobileUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BA55071DA256950037198F /* airmobileUITests.m */; };
 		EF83C19148C2E7B85CE63B08 /* libPods-airmobileUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8CFFB110A86FE6AFFEBBEDD /* libPods-airmobileUITests.a */; };
+		F7EAE1961DB4776C0060626F /* AbnormalityReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EAE1941DB4776C0060626F /* AbnormalityReportViewController.m */; };
+		F7EAE1971DB4776C0060626F /* AbnormalityReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7EAE1951DB4776C0060626F /* AbnormalityReportViewController.xib */; };
+		F7EAE19D1DB4B0680060626F /* AbnormalityReportCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EAE19B1DB4B0680060626F /* AbnormalityReportCollectionViewCell.m */; };
+		F7EAE19E1DB4B0680060626F /* AbnormalityReportCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7EAE19C1DB4B0680060626F /* AbnormalityReportCollectionViewCell.xib */; };
+		F7EAE1A21DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EAE1A01DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.m */; };
+		F7EAE1A31DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7EAE1A11DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.xib */; };
+		F7EE87791DB3285B006473F5 /* FlightFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EE87781DB3285B006473F5 /* FlightFilterView.m */; };
+		F7EE87811DB3635F006473F5 /* FlightFilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7EE87801DB3635F006473F5 /* FlightFilterView.xib */; };
+		F7EE87861DB371CA006473F5 /* FlightFilterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EE87841DB371CA006473F5 /* FlightFilterTableViewCell.m */; };
+		F7EE87871DB371CA006473F5 /* FlightFilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7EE87851DB371CA006473F5 /* FlightFilterTableViewCell.xib */; };
+		F7EEEF1C1DB396E0004AF0AE /* FlightDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EEEF1A1DB396E0004AF0AE /* FlightDetailViewController.m */; };
+		F7EEEF1D1DB396E0004AF0AE /* FlightDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7EEEF1B1DB396E0004AF0AE /* FlightDetailViewController.xib */; };
+		F7EEEF211DB3A580004AF0AE /* FlightDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EEEF1F1DB3A580004AF0AE /* FlightDetailTableViewCell.m */; };
+		F7EEEF221DB3A580004AF0AE /* FlightDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7EEEF201DB3A580004AF0AE /* FlightDetailTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -282,6 +296,27 @@
 		B40A6E3BB15FEF8D72885961 /* libPods-airmobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-airmobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4CB8290AC5A124080793599 /* Pods-airmobileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-airmobileTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-airmobileTests/Pods-airmobileTests.release.xcconfig"; sourceTree = "<group>"; };
 		C8CF004928F1770818C25801 /* libPods-airmobileTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-airmobileTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7EAE1931DB4776C0060626F /* AbnormalityReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbnormalityReportViewController.h; sourceTree = "<group>"; };
+		F7EAE1941DB4776C0060626F /* AbnormalityReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbnormalityReportViewController.m; sourceTree = "<group>"; };
+		F7EAE1951DB4776C0060626F /* AbnormalityReportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AbnormalityReportViewController.xib; sourceTree = "<group>"; };
+		F7EAE19A1DB4B0680060626F /* AbnormalityReportCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbnormalityReportCollectionViewCell.h; sourceTree = "<group>"; };
+		F7EAE19B1DB4B0680060626F /* AbnormalityReportCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbnormalityReportCollectionViewCell.m; sourceTree = "<group>"; };
+		F7EAE19C1DB4B0680060626F /* AbnormalityReportCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AbnormalityReportCollectionViewCell.xib; sourceTree = "<group>"; };
+		F7EAE19F1DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightDetailSafeguardTableViewCell.h; sourceTree = "<group>"; };
+		F7EAE1A01DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightDetailSafeguardTableViewCell.m; sourceTree = "<group>"; };
+		F7EAE1A11DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightDetailSafeguardTableViewCell.xib; sourceTree = "<group>"; };
+		F7EE87771DB3285B006473F5 /* FlightFilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightFilterView.h; sourceTree = "<group>"; };
+		F7EE87781DB3285B006473F5 /* FlightFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightFilterView.m; sourceTree = "<group>"; };
+		F7EE87801DB3635F006473F5 /* FlightFilterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightFilterView.xib; sourceTree = "<group>"; };
+		F7EE87831DB371CA006473F5 /* FlightFilterTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightFilterTableViewCell.h; sourceTree = "<group>"; };
+		F7EE87841DB371CA006473F5 /* FlightFilterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightFilterTableViewCell.m; sourceTree = "<group>"; };
+		F7EE87851DB371CA006473F5 /* FlightFilterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightFilterTableViewCell.xib; sourceTree = "<group>"; };
+		F7EEEF191DB396E0004AF0AE /* FlightDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightDetailViewController.h; sourceTree = "<group>"; };
+		F7EEEF1A1DB396E0004AF0AE /* FlightDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightDetailViewController.m; sourceTree = "<group>"; };
+		F7EEEF1B1DB396E0004AF0AE /* FlightDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightDetailViewController.xib; sourceTree = "<group>"; };
+		F7EEEF1E1DB3A580004AF0AE /* FlightDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightDetailTableViewCell.h; sourceTree = "<group>"; };
+		F7EEEF1F1DB3A580004AF0AE /* FlightDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightDetailTableViewCell.m; sourceTree = "<group>"; };
+		F7EEEF201DB3A580004AF0AE /* FlightDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightDetailTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -474,6 +509,7 @@
 				8450557D1DADDDA000400EBF /* PassengerContentView.m */,
 				8450557F1DADDDC900400EBF /* ResourceContentView.h */,
 				845055801DADDDC900400EBF /* ResourceContentView.m */,
+				F7EE87821DB370C4006473F5 /* 航班列表 */,
 			);
 			name = uiview;
 			sourceTree = "<group>";
@@ -495,6 +531,12 @@
 				846F1DB61DAA23F300C8920B /* FunctionViewController.m */,
 				846F1DB81DAA244300C8920B /* UserInfoViewController.h */,
 				846F1DB91DAA244300C8920B /* UserInfoViewController.m */,
+				F7EEEF191DB396E0004AF0AE /* FlightDetailViewController.h */,
+				F7EEEF1A1DB396E0004AF0AE /* FlightDetailViewController.m */,
+				F7EEEF1B1DB396E0004AF0AE /* FlightDetailViewController.xib */,
+				F7EAE1931DB4776C0060626F /* AbnormalityReportViewController.h */,
+				F7EAE1941DB4776C0060626F /* AbnormalityReportViewController.m */,
+				F7EAE1951DB4776C0060626F /* AbnormalityReportViewController.xib */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -617,6 +659,28 @@
 			path = airmobileUITests;
 			sourceTree = "<group>";
 		};
+		F7EE87821DB370C4006473F5 /* 航班列表 */ = {
+			isa = PBXGroup;
+			children = (
+				F7EE87771DB3285B006473F5 /* FlightFilterView.h */,
+				F7EE87781DB3285B006473F5 /* FlightFilterView.m */,
+				F7EE87801DB3635F006473F5 /* FlightFilterView.xib */,
+				F7EE87831DB371CA006473F5 /* FlightFilterTableViewCell.h */,
+				F7EE87841DB371CA006473F5 /* FlightFilterTableViewCell.m */,
+				F7EE87851DB371CA006473F5 /* FlightFilterTableViewCell.xib */,
+				F7EEEF1E1DB3A580004AF0AE /* FlightDetailTableViewCell.h */,
+				F7EEEF1F1DB3A580004AF0AE /* FlightDetailTableViewCell.m */,
+				F7EEEF201DB3A580004AF0AE /* FlightDetailTableViewCell.xib */,
+				F7EAE19A1DB4B0680060626F /* AbnormalityReportCollectionViewCell.h */,
+				F7EAE19B1DB4B0680060626F /* AbnormalityReportCollectionViewCell.m */,
+				F7EAE19C1DB4B0680060626F /* AbnormalityReportCollectionViewCell.xib */,
+				F7EAE19F1DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.h */,
+				F7EAE1A01DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.m */,
+				F7EAE1A11DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.xib */,
+			);
+			name = "航班列表";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -734,8 +798,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7EEEF1D1DB396E0004AF0AE /* FlightDetailViewController.xib in Resources */,
 				8450556A1DACF65200400EBF /* logo_flight@3x.png in Resources */,
 				845055601DACF65200400EBF /* login_icon_invisible@3x.png in Resources */,
+				F7EAE1971DB4776C0060626F /* AbnormalityReportViewController.xib in Resources */,
 				8450556D1DACF65200400EBF /* splash@3x.png in Resources */,
 				845055681DACF65200400EBF /* login_visible@3x.png in Resources */,
 				845055571DACF65200400EBF /* login_accounts@2x.png in Resources */,
@@ -765,12 +831,14 @@
 				845055C81DAE3F1A00400EBF /* icon_home_light@3x.png in Resources */,
 				845055DD1DAE3F1A00400EBF /* icon_userinfo_pre@2x.png in Resources */,
 				845055CB1DAE3F1A00400EBF /* icon_home_pre@2x.png in Resources */,
+				F7EEEF221DB3A580004AF0AE /* FlightDetailTableViewCell.xib in Resources */,
 				845055B31DAE3F1A00400EBF /* home_title_bg@2x.png in Resources */,
 				846F1DC31DAA2E3B00C8920B /* launchScreen@3x.png in Resources */,
 				845055C01DAE3F1A00400EBF /* icon_function_light@3x.png in Resources */,
 				845055DC1DAE3F1A00400EBF /* icon_userinfo_pass@3x.png in Resources */,
 				8450555F1DACF65200400EBF /* login_icon_invisible@2x.png in Resources */,
 				84BA54EF1DA256940037198F /* Assets.xcassets in Resources */,
+				F7EE87871DB371CA006473F5 /* FlightFilterTableViewCell.xib in Resources */,
 				84BA54EA1DA256940037198F /* Main.storyboard in Resources */,
 				845055D01DAE3F1A00400EBF /* icon_message_light@3x.png in Resources */,
 				845055BE1DAE3F1A00400EBF /* icon_function@3x.png in Resources */,
@@ -807,13 +875,16 @@
 				845055CA1DAE3F1A00400EBF /* icon_home_pass@3x.png in Resources */,
 				845055611DACF65200400EBF /* login_icon_lock@2x.png in Resources */,
 				845055B21DAE3F1A00400EBF /* home_footer_bg@3x.png in Resources */,
+				F7EAE19E1DB4B0680060626F /* AbnormalityReportCollectionViewCell.xib in Resources */,
 				845055C41DAE3F1A00400EBF /* icon_function_pre@3x.png in Resources */,
 				845055D11DAE3F1A00400EBF /* icon_message_pass@2x.png in Resources */,
 				845055D81DAE3F1A00400EBF /* icon_userinfo@3x.png in Resources */,
 				846F1DC11DAA2E3400C8920B /* launchScreen@2x.png in Resources */,
 				845055C91DAE3F1A00400EBF /* icon_home_pass@2x.png in Resources */,
 				8450555E1DACF65200400EBF /* login_btn_pre@3x.png in Resources */,
+				F7EAE1A31DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.xib in Resources */,
 				845055B61DAE3F1A00400EBF /* icon_flight@3x.png in Resources */,
+				F7EE87811DB3635F006473F5 /* FlightFilterView.xib in Resources */,
 				845055581DACF65200400EBF /* login_accounts@3x.png in Resources */,
 				845055B81DAE3F1A00400EBF /* icon_flight_light@3x.png in Resources */,
 			);
@@ -968,21 +1039,28 @@
 				846F1DB11DAA22E800C8920B /* GlobalHelper.m in Sources */,
 				846F1D951DA8F8F700C8920B /* DeviceInfoUtil.m in Sources */,
 				843F4CFB1DACCF2500D73D56 /* ThreadUtils.m in Sources */,
+				F7EAE1A21DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.m in Sources */,
 				845055781DADDD5C00400EBF /* OverViewContentView.m in Sources */,
 				846F1DA81DAA205700C8920B /* HomePageViewController.m in Sources */,
 				843F4CF51DACC70F00D73D56 /* HttpsUtils.m in Sources */,
 				846F1DAE1DAA229600C8920B /* DefaultHelper.m in Sources */,
+				F7EEEF1C1DB396E0004AF0AE /* FlightDetailViewController.m in Sources */,
 				846F1DBA1DAA244300C8920B /* UserInfoViewController.m in Sources */,
+				F7EAE1961DB4776C0060626F /* AbnormalityReportViewController.m in Sources */,
 				846F1DB71DAA23F300C8920B /* FunctionViewController.m in Sources */,
+				F7EEEF211DB3A580004AF0AE /* FlightDetailTableViewCell.m in Sources */,
 				846F1DA21DAA201A00C8920B /* RootViewController.m in Sources */,
+				F7EE87861DB371CA006473F5 /* FlightFilterTableViewCell.m in Sources */,
 				846F1DB41DAA233800C8920B /* MessageViewController.m in Sources */,
 				8450557E1DADDDA000400EBF /* PassengerContentView.m in Sources */,
 				846F1DAB1DAA222E00C8920B /* FlightViewController.m in Sources */,
+				F7EAE19D1DB4B0680060626F /* AbnormalityReportCollectionViewCell.m in Sources */,
 				84BA54E41DA256940037198F /* AppDelegate.m in Sources */,
 				845E643B1DAB8EC70072360D /* TabBarView.m in Sources */,
 				846F1DA51DAA203500C8920B /* LoginViewController.m in Sources */,
 				84BA54ED1DA256940037198F /* airmobile.xcdatamodeld in Sources */,
 				84BA54E11DA256940037198F /* main.m in Sources */,
+				F7EE87791DB3285B006473F5 /* FlightFilterView.m in Sources */,
 				845055811DADDDC900400EBF /* ResourceContentView.m in Sources */,
 				8450557B1DADDD8200400EBF /* FlightContentView.m in Sources */,
 				845E643E1DAB980C0072360D /* CommonFunction.m in Sources */,

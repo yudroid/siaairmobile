@@ -8,9 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol FlightDetailTableViewCellDelegate <NSObject>
+
+-(void)flightDetailTableViewCellUsualButtonClick;
+
+@end
+
 @interface FlightDetailTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *finishStatusLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *unusualButton;
+
+@property (weak, nonatomic) id<FlightDetailTableViewCellDelegate> delegate;
 
 @end

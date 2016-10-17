@@ -8,10 +8,18 @@
 
 #import "FlightDetailViewController.h"
 #import "FlightDetailTableViewCell.h"
+#import "AbnormalityReportViewController.h"
+#import "FlightDetailSafeguardTableViewCell.h"
 
-@interface FlightDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
+static const NSString *FLIGHTDETAIL_TABLECELL_IDENTIFIER = @"FLIGHTDETAIL_TABLECELL_IDENTIFIER";
+static const NSString *FLIGHTDETAIL_SAFEGUARDTABLECELL_IDENTIFIER = @"FLIGHTDETAIL_SAFEGUARDTABLECELL_IDENTIFIER";
+@interface FlightDetailViewController ()<UITableViewDataSource,UITableViewDelegate,FlightDetailTableViewCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeight;
+@property (weak, nonatomic) IBOutlet UITableView *safeguardTableView;
+@property (nonatomic, copy) NSArray *safeguardTableViewArray;
+
+
 
 @end
 
@@ -30,7 +38,11 @@
     _tableView.dataSource = self;
     _tableView.delegate = self;
     _tableViewHeight.constant = 1000;
-    // Do any additional setup after loading the view from its nib.
+    _tableView.allowsSelection = NO;
+    _safeguardTableView.dataSource = self;
+    _safeguardTableView.delegate = self;
+    _safeguardTableView.allowsSelection = NO;
+    
 }
 
 
@@ -39,28 +51,49 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (tableView == _safeguardTableView) {
+        return 2;
+    }
     return 10;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (tableView == _safeguardTableView) {
+        return 30;
+    }
     return 100;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *FLIGHTDETAIL_TABLECELL_IDENTIFIER = @"FLIGHTDETAIL_TABLECELL_IDENTIFIER";
-    FlightDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:FLIGHTDETAIL_TABLECELL_IDENTIFIER];
-    if (cell==nil) {
-        cell = [[NSBundle mainBundle] loadNibNamed:@"FlightDetailTableViewCell" owner:nil options:nil][0];
+    if (tableView == _safeguardTableView) {
+        FlightDetailSafeguardTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)FLIGHTDETAIL_SAFEGUARDTABLECELL_IDENTIFIER];
+        if (cell==nil) {
+            cell = [[NSBundle mainBundle] loadNibNamed:@"FlightDetailSafeguardTableViewCell" owner:nil options:nil][0];
+        }
+        return  cell;
+        
+    }else{
+        FlightDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)FLIGHTDETAIL_TABLECELL_IDENTIFIER];
+        if (cell==nil) {
+            cell = [[NSBundle mainBundle] loadNibNamed:@"FlightDetailTableViewCell" owner:nil options:nil][0];
+        }
+        cell.delegate = self;
+        return  cell;
     }
-    return  cell;
-    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
 }
+#pragma mark - FlightDetailTableViewCellDelegate
+-(void)flightDetailTableViewCellUsualButtonClick
+{
+    AbnormalityReportViewController *abnormalityReportVC=[[AbnormalityReportViewController alloc]initWithNibName:@"AbnormalityReportViewController" bundle:nil];
+    [self.navigationController pushViewController:abnormalityReportVC animated:YES];
+}
+
 
 /*
 #pragma mark - Navigation

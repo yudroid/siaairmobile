@@ -27,4 +27,11 @@
     // Configure the view for the selected state
 }
 
+
+- (IBAction)unusualButtonClikc:(id)sender {
+    if ([_delegate respondsToSelector:@selector(flightDetailTableViewCellUsualButtonClick)]) {
+        [_delegate flightDetailTableViewCellUsualButtonClick];
+    }
+}
+
 @end
