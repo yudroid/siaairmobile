@@ -15,6 +15,7 @@ PODS:
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
   - ATAppUpdater (1.7)
+  - Daysquare (0.1.0)
   - JTCalendar (2.1.9)
   - KSCrash (1.1.1):
     - KSCrash/Installations (= 1.1.1)
@@ -79,17 +80,28 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
   - ATAppUpdater (~> 1.7)
+  - Daysquare (from `https://github.com/unixzii/Daysquare.git`)
   - JTCalendar (~> 2.0)
   - KSCrash (~> 1.1.1)
   - Toast (~> 3.0)
 
+EXTERNAL SOURCES:
+  Daysquare:
+    :git: https://github.com/unixzii/Daysquare.git
+
+CHECKOUT OPTIONS:
+  Daysquare:
+    :commit: 1724936aaba321ad2d36240576b2c80bb3c875c8
+    :git: https://github.com/unixzii/Daysquare.git
+
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   ATAppUpdater: 4dea317a34210ad4f26c316d2d97afc4ff5077f3
+  Daysquare: 682586c9b2a96958633e2f967a43054a718d1a09
   JTCalendar: beb2f4c1b639bf6880f680b4858227acf83a049c
   KSCrash: 6ab08dc2113d00116a69e46d4c532d6ddd24932b
   Toast: 32c59229abfcf41850162b83bb9259dc84372473
 
-PODFILE CHECKSUM: a3029f4ddf4b7976cbd082931b21d1103cd21cbe
+PODFILE CHECKSUM: aa2c0a028c6c78c75c4c6636d0b5ef087e8d75fb
 
 COCOAPODS: 1.0.1
