@@ -7,7 +7,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FlightDetailViewController">
             <connections>
+                <outlet property="AirlineCollectionView" destination="B8a-Po-Z4X" id="U8e-0m-Wgv"/>
                 <outlet property="safeguardTableView" destination="QBr-5b-hfX" id="A6c-ph-Yyv"/>
+                <outlet property="safeguradViewHeight" destination="OQS-aO-xUh" id="LKP-r6-1kQ"/>
                 <outlet property="tableView" destination="jEj-kJ-Brb" id="zTz-5Q-EhX"/>
                 <outlet property="tableViewHeight" destination="fpP-bG-jAO" id="7QS-oj-q5r"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -37,12 +39,25 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="B8a-Po-Z4X">
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="J1w-oO-hZf">
+                                                        <size key="itemSize" width="50" height="50"/>
+                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    </collectionViewFlowLayout>
+                                                </collectionView>
                                             </subviews>
                                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                             <constraints>
+                                                <constraint firstItem="B8a-Po-Z4X" firstAttribute="top" secondItem="xS9-7Y-dkL" secondAttribute="top" id="Eag-38-KKd"/>
+                                                <constraint firstAttribute="trailing" secondItem="B8a-Po-Z4X" secondAttribute="trailing" constant="8" id="Jkf-oX-IBC"/>
+                                                <constraint firstItem="B8a-Po-Z4X" firstAttribute="leading" secondItem="mmV-u1-OB1" secondAttribute="trailing" constant="8" id="MFd-Av-BJh"/>
                                                 <constraint firstItem="mmV-u1-OB1" firstAttribute="leading" secondItem="xS9-7Y-dkL" secondAttribute="leading" constant="16" id="Ovi-CC-oNz"/>
                                                 <constraint firstItem="mmV-u1-OB1" firstAttribute="centerY" secondItem="xS9-7Y-dkL" secondAttribute="centerY" id="d14-q5-JiD"/>
                                                 <constraint firstAttribute="height" constant="50" id="ef8-e7-E58"/>
+                                                <constraint firstAttribute="bottom" secondItem="B8a-Po-Z4X" secondAttribute="bottom" id="oGi-pW-I25"/>
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qu1-s4-59a">
@@ -225,24 +240,28 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Rx6-Hv-LoG">
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="20" id="dgs-Ct-SP1"/>
-                                                <constraint firstAttribute="width" constant="20" id="n71-Xg-j8w"/>
-                                            </constraints>
-                                        </imageView>
                                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QBr-5b-hfX">
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </tableView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fjA-Z6-bvH">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="20" id="I6G-kO-2Pj"/>
+                                                <constraint firstAttribute="height" constant="20" id="oJh-tK-2Ak"/>
+                                            </constraints>
+                                            <state key="normal" image="icon_flight.png"/>
+                                            <connections>
+                                                <action selector="safeguradContractButtonClick:" destination="-1" eventType="touchUpInside" id="070-dA-hHS"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="fjA-Z6-bvH" secondAttribute="trailing" constant="8" id="8ha-rt-bzO"/>
                                         <constraint firstAttribute="trailing" secondItem="QBr-5b-hfX" secondAttribute="trailing" id="FRr-bw-Tz3"/>
                                         <constraint firstItem="QBr-5b-hfX" firstAttribute="leading" secondItem="2LY-8E-V0M" secondAttribute="leading" id="FSD-pf-bEm"/>
+                                        <constraint firstItem="fjA-Z6-bvH" firstAttribute="top" secondItem="2LY-8E-V0M" secondAttribute="top" constant="5" id="GmT-Dl-KeJ"/>
                                         <constraint firstItem="eTq-6t-c3T" firstAttribute="leading" secondItem="2LY-8E-V0M" secondAttribute="leading" constant="16" id="I9r-1d-Q1q"/>
                                         <constraint firstAttribute="height" constant="92" id="OQS-aO-xUh"/>
-                                        <constraint firstItem="Rx6-Hv-LoG" firstAttribute="top" secondItem="2LY-8E-V0M" secondAttribute="top" constant="5" id="PXS-WK-9D3"/>
-                                        <constraint firstAttribute="trailing" secondItem="Rx6-Hv-LoG" secondAttribute="trailing" constant="16" id="WnS-ak-vtQ"/>
                                         <constraint firstItem="eTq-6t-c3T" firstAttribute="top" secondItem="2LY-8E-V0M" secondAttribute="top" constant="5" id="XMt-0e-2li"/>
                                         <constraint firstAttribute="bottom" secondItem="QBr-5b-hfX" secondAttribute="bottom" id="kbi-pT-zgO"/>
                                         <constraint firstAttribute="trailing" secondItem="aOs-IC-15T" secondAttribute="trailing" id="maY-rT-GJI"/>
@@ -293,7 +312,10 @@
                 <constraint firstAttribute="bottom" secondItem="1Lj-W9-0sa" secondAttribute="bottom" id="QVH-kd-4C1"/>
                 <constraint firstAttribute="trailing" secondItem="1Lj-W9-0sa" secondAttribute="trailing" id="ptR-jG-YjT"/>
             </constraints>
-            <point key="canvasLocation" x="26" y="52"/>
+            <point key="canvasLocation" x="25.5" y="51.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="icon_flight.png" width="24" height="24"/>
+    </resources>
 </document>
