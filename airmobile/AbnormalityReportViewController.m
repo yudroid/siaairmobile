@@ -8,6 +8,8 @@
 
 #import "AbnormalityReportViewController.h"
 #import "AbnormalityReportCollectionViewCell.h"
+#import "UIViewController+Reminder.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 
 static const NSString *ABNORMALITYREPORT_TABLECELL_IDENTIFIER =@"ABNORMALITYREPORT_TABLECELL_IDENTIFIER";
 static const NSString *ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER = @"ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER";
@@ -65,9 +67,6 @@ static const NSString *ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER = @"ABNORMALI
             self.scrollView.contentOffset = CGPointMake(0, y);
         }];
     }
-    
-    
-    
 }
 - (void)keyboardWillHideNotification:(NSNotification *)info
 {
@@ -108,6 +107,13 @@ static const NSString *ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER = @"ABNORMALI
 }
 
 - (IBAction)phoneButttonClick:(id)sender {
+    
+    ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
+    if (author == ALAuthorizationStatusRestricted || author ==ALAuthorizationStatusDenied)
+    {
+        [self showAnimationTitle:@"相机访问被限制"];
+        return;
+    }
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
     picker.sourceType = UIImagePickerControllerSourceTypeCamera;
