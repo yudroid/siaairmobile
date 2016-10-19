@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="NightShiftRoomTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <frame key="frameInset" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yyk-lF-pI6">
+                        <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="10" id="Li4-3z-Dvn"/>
+                            <constraint firstAttribute="width" constant="10" id="til-aY-Ath"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="一号领导" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scN-Nc-kzr">
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="o69-Sc-wYu"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_userinfo.png" translatesAutoresizingMaskIntoConstraints="NO" id="8y9-ua-4UI">
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="FLW-jK-e49"/>
+                            <constraint firstAttribute="width" constant="30" id="GvM-I7-GtV"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="寇雪松" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5mk-wm-Pp9">
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="研发部员工" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S74-ZU-GfP">
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13210150408" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nRa-XH-Xaf">
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="8y9-ua-4UI" firstAttribute="leading" secondItem="scN-Nc-kzr" secondAttribute="trailing" constant="8" id="0sh-KU-71T"/>
+                    <constraint firstItem="nRa-XH-Xaf" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="6rL-B2-trh"/>
+                    <constraint firstItem="5mk-wm-Pp9" firstAttribute="leading" secondItem="8y9-ua-4UI" secondAttribute="trailing" constant="4" id="KrN-Jz-WYA"/>
+                    <constraint firstItem="S74-ZU-GfP" firstAttribute="leading" secondItem="8y9-ua-4UI" secondAttribute="trailing" constant="4" id="ST8-l2-Dnp"/>
+                    <constraint firstItem="Yyk-lF-pI6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="fS5-cc-btx"/>
+                    <constraint firstItem="Yyk-lF-pI6" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="fjK-Be-aub"/>
+                    <constraint firstItem="8y9-ua-4UI" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="gcY-ph-fE8"/>
+                    <constraint firstItem="scN-Nc-kzr" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="hfL-LY-Pzp"/>
+                    <constraint firstItem="5mk-wm-Pp9" firstAttribute="top" secondItem="8y9-ua-4UI" secondAttribute="top" id="ibM-TU-8vp"/>
+                    <constraint firstItem="scN-Nc-kzr" firstAttribute="leading" secondItem="Yyk-lF-pI6" secondAttribute="trailing" constant="4" id="ksM-QK-9KH"/>
+                    <constraint firstItem="S74-ZU-GfP" firstAttribute="bottom" secondItem="8y9-ua-4UI" secondAttribute="bottom" id="oec-8h-znl"/>
+                    <constraint firstItem="nRa-XH-Xaf" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="wRh-Nm-ax5"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="dptLabel" destination="S74-ZU-GfP" id="0j0-qu-C3w"/>
+                <outlet property="nameLabel" destination="5mk-wm-Pp9" id="ERI-57-0iN"/>
+                <outlet property="phoneLabel" destination="nRa-XH-Xaf" id="S6m-mA-0Rq"/>
+                <outlet property="tagLabel" destination="Yyk-lF-pI6" id="O13-UT-TRK"/>
+                <outlet property="titleLabel" destination="scN-Nc-kzr" id="S63-IT-61T"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="icon_userinfo.png" width="24" height="24"/>
+    </resources>
+</document>
