@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="403" height="95"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <frame key="frameInset" width="403" height="95"/>
+                <frame key="frameInset" width="403" height="94"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZdR-zi-Lt0">
@@ -124,6 +124,7 @@
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                 <constraints>
                     <constraint firstItem="ZdR-zi-Lt0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="9MD-vN-ISr"/>
                     <constraint firstItem="ZdR-zi-Lt0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="4" id="Bfa-Pb-7hd"/>
@@ -132,6 +133,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="carftModelLabel" destination="TyG-hl-pWH" id="ns1-zP-uKR"/>
                 <outlet property="insideView" destination="ZdR-zi-Lt0" id="Yca-Hg-Xvy"/>
             </connections>
             <point key="canvasLocation" x="-15.5" y="55.5"/>

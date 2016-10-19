@@ -7,6 +7,7 @@
 //
 
 #import "FlightFilterTableViewCell.h"
+#import "FlightProcessModel.h"
 
 @interface FlightFilterTableViewCell()
 
@@ -18,7 +19,6 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.backgroundColor = [UIColor grayColor];
     _insideView.layer.cornerRadius = 5.0;
     // Initialization code
 }
@@ -27,6 +27,12 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+-(void)setFlightProcessModlel:(FlightProcessModel *)flightProcessModlel
+{
+    _flightProcessModlel = flightProcessModlel;
+    
 }
 
 @end
