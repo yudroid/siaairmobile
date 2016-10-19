@@ -11,7 +11,7 @@ target 'airmobile' do
   pod 'JTCalendar', '~> 2.0'
   pod 'KSCrash', '~>1.1.1'
   pod 'ATAppUpdater', '~>1.7'
-
+  pod 'Daysquare', :git => 'https://github.com/unixzii/Daysquare.git'
   target 'airmobileTests' do
     inherit! :search_paths
     # Pods for testing
