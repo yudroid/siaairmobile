@@ -34,8 +34,6 @@ static  NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_IDETIF
     
     [self initTitleView];
 
-    
-    
     //TabBer自定义
     self.tabBarView = [[TabBarView alloc] initTabBarWithModel:TabBarBgModelHomePage selectedType:TabBarSelectedTypeHomePage delegate:self];
     [self.view insertSubview:self.tabBarView aboveSubview:self.view];
@@ -46,8 +44,8 @@ static  NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_IDETIF
     tableView.dataSource =self;
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:tableView];
-    //添加过滤条件View
     
+    //添加过滤条件View
     filterView = [[[NSBundle mainBundle] loadNibNamed:@"FlightFilterView" owner:nil options:nil] lastObject];
     filterView.frame = CGRectMake(0, 64, kScreenWidth, FLIGHTFILTERVIEW_HEIGHT);
     filterView.alpha = 0;
