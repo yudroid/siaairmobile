@@ -117,6 +117,37 @@
 		84BA54FD1DA256940037198F /* airmobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BA54FC1DA256940037198F /* airmobileTests.m */; };
 		84BA55081DA256950037198F /* airmobileUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BA55071DA256950037198F /* airmobileUITests.m */; };
 		EF83C19148C2E7B85CE63B08 /* libPods-airmobileUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8CFFB110A86FE6AFFEBBEDD /* libPods-airmobileUITests.a */; };
+		F79251371DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F79251351DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.m */; };
+		F79251381DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F79251361DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.xib */; };
+		F792513B1DB5CBE3006AA119 /* UIViewController+Reminder.m in Sources */ = {isa = PBXBuildFile; fileRef = F792513A1DB5CBE3006AA119 /* UIViewController+Reminder.m */; };
+		F792514A1DB608E6006AA119 /* ContactPersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F79251481DB608E6006AA119 /* ContactPersonViewController.m */; };
+		F792514B1DB608E6006AA119 /* ContactPersonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F79251491DB608E6006AA119 /* ContactPersonViewController.xib */; };
+		F792514F1DB60BD0006AA119 /* MessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F792514D1DB60BD0006AA119 /* MessageTableViewCell.m */; };
+		F79251501DB60BD0006AA119 /* MessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F792514E1DB60BD0006AA119 /* MessageTableViewCell.xib */; };
+		F79251541DB610D6006AA119 /* FixedMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F79251521DB610D6006AA119 /* FixedMessageTableViewCell.m */; };
+		F79251551DB610D6006AA119 /* FixedMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F79251531DB610D6006AA119 /* FixedMessageTableViewCell.xib */; };
+		F79251591DB61D9C006AA119 /* ContactPersonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F79251571DB61D9C006AA119 /* ContactPersonTableViewCell.m */; };
+		F792515A1DB61D9C006AA119 /* ContactPersonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F79251581DB61D9C006AA119 /* ContactPersonTableViewCell.xib */; };
+		F792515E1DB6352D006AA119 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F792515C1DB6352D006AA119 /* ChatViewController.m */; };
+		F792515F1DB6352D006AA119 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F792515D1DB6352D006AA119 /* ChatViewController.xib */; };
+		F79251631DB63A10006AA119 /* ChatLeftTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F79251611DB63A10006AA119 /* ChatLeftTableViewCell.m */; };
+		F79251641DB63A10006AA119 /* ChatLeftTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F79251621DB63A10006AA119 /* ChatLeftTableViewCell.xib */; };
+		F79251681DB63BB7006AA119 /* ChatRightTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F79251661DB63BB7006AA119 /* ChatRightTableViewCell.m */; };
+		F79251691DB63BB7006AA119 /* ChatRightTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F79251671DB63BB7006AA119 /* ChatRightTableViewCell.xib */; };
+		F792516D1DB63D62006AA119 /* ChatTimeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F792516B1DB63D62006AA119 /* ChatTimeTableViewCell.m */; };
+		F792516E1DB63D62006AA119 /* ChatTimeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F792516C1DB63D62006AA119 /* ChatTimeTableViewCell.xib */; };
+		F79251711DB70B60006AA119 /* chatRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F79251701DB70B60006AA119 /* chatRecordModel.m */; };
+		F79251761DB73E2C006AA119 /* UserInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F79251741DB73E2C006AA119 /* UserInfoTableViewCell.m */; };
+		F79251771DB73E2C006AA119 /* UserInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F79251751DB73E2C006AA119 /* UserInfoTableViewCell.xib */; };
+		F792517B1DB7431D006AA119 /* UserManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F79251791DB7431D006AA119 /* UserManagementViewController.m */; };
+		F792517C1DB7431D006AA119 /* UserManagementViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F792517A1DB7431D006AA119 /* UserManagementViewController.xib */; };
+		F79251801DB74576006AA119 /* UserManagermentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F792517E1DB74576006AA119 /* UserManagermentTableViewCell.m */; };
+		F79251811DB74576006AA119 /* UserManagermentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F792517F1DB74576006AA119 /* UserManagermentTableViewCell.xib */; };
+		F79251841DB7518E006AA119 /* FlightProcessModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F79251831DB7518E006AA119 /* FlightProcessModel.m */; };
+		F79251881DB781AB006AA119 /* NightShiftRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F79251861DB781AB006AA119 /* NightShiftRoomViewController.m */; };
+		F79251891DB781AB006AA119 /* NightShiftRoomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F79251871DB781AB006AA119 /* NightShiftRoomViewController.xib */; };
+		F792518D1DB7890E006AA119 /* NightShiftRoomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F792518B1DB7890E006AA119 /* NightShiftRoomTableViewCell.m */; };
+		F792518E1DB7890E006AA119 /* NightShiftRoomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F792518C1DB7890E006AA119 /* NightShiftRoomTableViewCell.xib */; };
 		F7EAE1961DB4776C0060626F /* AbnormalityReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EAE1941DB4776C0060626F /* AbnormalityReportViewController.m */; };
 		F7EAE1971DB4776C0060626F /* AbnormalityReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7EAE1951DB4776C0060626F /* AbnormalityReportViewController.xib */; };
 		F7EAE19D1DB4B0680060626F /* AbnormalityReportCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EAE19B1DB4B0680060626F /* AbnormalityReportCollectionViewCell.m */; };
@@ -296,6 +327,54 @@
 		B40A6E3BB15FEF8D72885961 /* libPods-airmobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-airmobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4CB8290AC5A124080793599 /* Pods-airmobileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-airmobileTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-airmobileTests/Pods-airmobileTests.release.xcconfig"; sourceTree = "<group>"; };
 		C8CF004928F1770818C25801 /* libPods-airmobileTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-airmobileTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F79251341DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightDetailAirLineCollectionViewCell.h; sourceTree = "<group>"; };
+		F79251351DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightDetailAirLineCollectionViewCell.m; sourceTree = "<group>"; };
+		F79251361DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightDetailAirLineCollectionViewCell.xib; sourceTree = "<group>"; };
+		F79251391DB5CBDA006AA119 /* UIViewController+Reminder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Reminder.h"; sourceTree = "<group>"; };
+		F792513A1DB5CBE3006AA119 /* UIViewController+Reminder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Reminder.m"; sourceTree = "<group>"; };
+		F79251471DB608E6006AA119 /* ContactPersonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactPersonViewController.h; sourceTree = "<group>"; };
+		F79251481DB608E6006AA119 /* ContactPersonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactPersonViewController.m; sourceTree = "<group>"; };
+		F79251491DB608E6006AA119 /* ContactPersonViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactPersonViewController.xib; sourceTree = "<group>"; };
+		F792514C1DB60BD0006AA119 /* MessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTableViewCell.h; sourceTree = "<group>"; };
+		F792514D1DB60BD0006AA119 /* MessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTableViewCell.m; sourceTree = "<group>"; };
+		F792514E1DB60BD0006AA119 /* MessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageTableViewCell.xib; sourceTree = "<group>"; };
+		F79251511DB610D6006AA119 /* FixedMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FixedMessageTableViewCell.h; sourceTree = "<group>"; };
+		F79251521DB610D6006AA119 /* FixedMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FixedMessageTableViewCell.m; sourceTree = "<group>"; };
+		F79251531DB610D6006AA119 /* FixedMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FixedMessageTableViewCell.xib; sourceTree = "<group>"; };
+		F79251561DB61D9C006AA119 /* ContactPersonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactPersonTableViewCell.h; sourceTree = "<group>"; };
+		F79251571DB61D9C006AA119 /* ContactPersonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactPersonTableViewCell.m; sourceTree = "<group>"; };
+		F79251581DB61D9C006AA119 /* ContactPersonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactPersonTableViewCell.xib; sourceTree = "<group>"; };
+		F792515B1DB6352D006AA119 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
+		F792515C1DB6352D006AA119 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
+		F792515D1DB6352D006AA119 /* ChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
+		F79251601DB63A10006AA119 /* ChatLeftTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatLeftTableViewCell.h; sourceTree = "<group>"; };
+		F79251611DB63A10006AA119 /* ChatLeftTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatLeftTableViewCell.m; sourceTree = "<group>"; };
+		F79251621DB63A10006AA119 /* ChatLeftTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatLeftTableViewCell.xib; sourceTree = "<group>"; };
+		F79251651DB63BB7006AA119 /* ChatRightTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatRightTableViewCell.h; sourceTree = "<group>"; };
+		F79251661DB63BB7006AA119 /* ChatRightTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatRightTableViewCell.m; sourceTree = "<group>"; };
+		F79251671DB63BB7006AA119 /* ChatRightTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatRightTableViewCell.xib; sourceTree = "<group>"; };
+		F792516A1DB63D62006AA119 /* ChatTimeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTimeTableViewCell.h; sourceTree = "<group>"; };
+		F792516B1DB63D62006AA119 /* ChatTimeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTimeTableViewCell.m; sourceTree = "<group>"; };
+		F792516C1DB63D62006AA119 /* ChatTimeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatTimeTableViewCell.xib; sourceTree = "<group>"; };
+		F792516F1DB70B60006AA119 /* chatRecordModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = chatRecordModel.h; sourceTree = "<group>"; };
+		F79251701DB70B60006AA119 /* chatRecordModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = chatRecordModel.m; sourceTree = "<group>"; };
+		F79251731DB73E2C006AA119 /* UserInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoTableViewCell.h; sourceTree = "<group>"; };
+		F79251741DB73E2C006AA119 /* UserInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoTableViewCell.m; sourceTree = "<group>"; };
+		F79251751DB73E2C006AA119 /* UserInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoTableViewCell.xib; sourceTree = "<group>"; };
+		F79251781DB7431D006AA119 /* UserManagementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManagementViewController.h; sourceTree = "<group>"; };
+		F79251791DB7431D006AA119 /* UserManagementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManagementViewController.m; sourceTree = "<group>"; };
+		F792517A1DB7431D006AA119 /* UserManagementViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserManagementViewController.xib; sourceTree = "<group>"; };
+		F792517D1DB74576006AA119 /* UserManagermentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManagermentTableViewCell.h; sourceTree = "<group>"; };
+		F792517E1DB74576006AA119 /* UserManagermentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManagermentTableViewCell.m; sourceTree = "<group>"; };
+		F792517F1DB74576006AA119 /* UserManagermentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserManagermentTableViewCell.xib; sourceTree = "<group>"; };
+		F79251821DB7518E006AA119 /* FlightProcessModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightProcessModel.h; sourceTree = "<group>"; };
+		F79251831DB7518E006AA119 /* FlightProcessModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightProcessModel.m; sourceTree = "<group>"; };
+		F79251851DB781AB006AA119 /* NightShiftRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NightShiftRoomViewController.h; sourceTree = "<group>"; };
+		F79251861DB781AB006AA119 /* NightShiftRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NightShiftRoomViewController.m; sourceTree = "<group>"; };
+		F79251871DB781AB006AA119 /* NightShiftRoomViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NightShiftRoomViewController.xib; sourceTree = "<group>"; };
+		F792518A1DB7890E006AA119 /* NightShiftRoomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NightShiftRoomTableViewCell.h; sourceTree = "<group>"; };
+		F792518B1DB7890E006AA119 /* NightShiftRoomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NightShiftRoomTableViewCell.m; sourceTree = "<group>"; };
+		F792518C1DB7890E006AA119 /* NightShiftRoomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NightShiftRoomTableViewCell.xib; sourceTree = "<group>"; };
 		F7EAE1931DB4776C0060626F /* AbnormalityReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbnormalityReportViewController.h; sourceTree = "<group>"; };
 		F7EAE1941DB4776C0060626F /* AbnormalityReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbnormalityReportViewController.m; sourceTree = "<group>"; };
 		F7EAE1951DB4776C0060626F /* AbnormalityReportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AbnormalityReportViewController.xib; sourceTree = "<group>"; };
@@ -510,6 +589,8 @@
 				8450557F1DADDDC900400EBF /* ResourceContentView.h */,
 				845055801DADDDC900400EBF /* ResourceContentView.m */,
 				F7EE87821DB370C4006473F5 /* 航班列表 */,
+				F792513C1DB5EE01006AA119 /* 消息 */,
+				F79251721DB73DD3006AA119 /* 我的 */,
 			);
 			name = uiview;
 			sourceTree = "<group>";
@@ -537,6 +618,18 @@
 				F7EAE1931DB4776C0060626F /* AbnormalityReportViewController.h */,
 				F7EAE1941DB4776C0060626F /* AbnormalityReportViewController.m */,
 				F7EAE1951DB4776C0060626F /* AbnormalityReportViewController.xib */,
+				F79251471DB608E6006AA119 /* ContactPersonViewController.h */,
+				F79251481DB608E6006AA119 /* ContactPersonViewController.m */,
+				F79251491DB608E6006AA119 /* ContactPersonViewController.xib */,
+				F792515B1DB6352D006AA119 /* ChatViewController.h */,
+				F792515C1DB6352D006AA119 /* ChatViewController.m */,
+				F792515D1DB6352D006AA119 /* ChatViewController.xib */,
+				F79251781DB7431D006AA119 /* UserManagementViewController.h */,
+				F79251791DB7431D006AA119 /* UserManagementViewController.m */,
+				F792517A1DB7431D006AA119 /* UserManagementViewController.xib */,
+				F79251851DB781AB006AA119 /* NightShiftRoomViewController.h */,
+				F79251861DB781AB006AA119 /* NightShiftRoomViewController.m */,
+				F79251871DB781AB006AA119 /* NightShiftRoomViewController.xib */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -544,6 +637,8 @@
 		846F1D8C1DA89E3500C8920B /* categories */ = {
 			isa = PBXGroup;
 			children = (
+				F79251391DB5CBDA006AA119 /* UIViewController+Reminder.h */,
+				F792513A1DB5CBE3006AA119 /* UIViewController+Reminder.m */,
 				843F4CF61DACCA6D00D73D56 /* HttpsUtils+Business.h */,
 				843F4CF71DACCA6D00D73D56 /* HttpsUtils+Business.m */,
 			);
@@ -564,6 +659,10 @@
 		846F1D8E1DA89E5200C8920B /* model */ = {
 			isa = PBXGroup;
 			children = (
+				F792516F1DB70B60006AA119 /* chatRecordModel.h */,
+				F79251701DB70B60006AA119 /* chatRecordModel.m */,
+				F79251821DB7518E006AA119 /* FlightProcessModel.h */,
+				F79251831DB7518E006AA119 /* FlightProcessModel.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -659,6 +758,47 @@
 			path = airmobileUITests;
 			sourceTree = "<group>";
 		};
+		F792513C1DB5EE01006AA119 /* 消息 */ = {
+			isa = PBXGroup;
+			children = (
+				F792514C1DB60BD0006AA119 /* MessageTableViewCell.h */,
+				F792514D1DB60BD0006AA119 /* MessageTableViewCell.m */,
+				F792514E1DB60BD0006AA119 /* MessageTableViewCell.xib */,
+				F79251511DB610D6006AA119 /* FixedMessageTableViewCell.h */,
+				F79251521DB610D6006AA119 /* FixedMessageTableViewCell.m */,
+				F79251531DB610D6006AA119 /* FixedMessageTableViewCell.xib */,
+				F79251561DB61D9C006AA119 /* ContactPersonTableViewCell.h */,
+				F79251571DB61D9C006AA119 /* ContactPersonTableViewCell.m */,
+				F79251581DB61D9C006AA119 /* ContactPersonTableViewCell.xib */,
+				F79251601DB63A10006AA119 /* ChatLeftTableViewCell.h */,
+				F79251611DB63A10006AA119 /* ChatLeftTableViewCell.m */,
+				F79251621DB63A10006AA119 /* ChatLeftTableViewCell.xib */,
+				F79251651DB63BB7006AA119 /* ChatRightTableViewCell.h */,
+				F79251661DB63BB7006AA119 /* ChatRightTableViewCell.m */,
+				F79251671DB63BB7006AA119 /* ChatRightTableViewCell.xib */,
+				F792516A1DB63D62006AA119 /* ChatTimeTableViewCell.h */,
+				F792516B1DB63D62006AA119 /* ChatTimeTableViewCell.m */,
+				F792516C1DB63D62006AA119 /* ChatTimeTableViewCell.xib */,
+			);
+			name = "消息";
+			sourceTree = "<group>";
+		};
+		F79251721DB73DD3006AA119 /* 我的 */ = {
+			isa = PBXGroup;
+			children = (
+				F79251731DB73E2C006AA119 /* UserInfoTableViewCell.h */,
+				F79251741DB73E2C006AA119 /* UserInfoTableViewCell.m */,
+				F79251751DB73E2C006AA119 /* UserInfoTableViewCell.xib */,
+				F792517D1DB74576006AA119 /* UserManagermentTableViewCell.h */,
+				F792517E1DB74576006AA119 /* UserManagermentTableViewCell.m */,
+				F792517F1DB74576006AA119 /* UserManagermentTableViewCell.xib */,
+				F792518A1DB7890E006AA119 /* NightShiftRoomTableViewCell.h */,
+				F792518B1DB7890E006AA119 /* NightShiftRoomTableViewCell.m */,
+				F792518C1DB7890E006AA119 /* NightShiftRoomTableViewCell.xib */,
+			);
+			name = "我的";
+			sourceTree = "<group>";
+		};
 		F7EE87821DB370C4006473F5 /* 航班列表 */ = {
 			isa = PBXGroup;
 			children = (
@@ -677,6 +817,9 @@
 				F7EAE19F1DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.h */,
 				F7EAE1A01DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.m */,
 				F7EAE1A11DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.xib */,
+				F79251341DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.h */,
+				F79251351DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.m */,
+				F79251361DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.xib */,
 			);
 			name = "航班列表";
 			sourceTree = "<group>";
@@ -825,15 +968,19 @@
 				8450556C1DACF65200400EBF /* splash@2x.png in Resources */,
 				845055BD1DAE3F1A00400EBF /* icon_function@2x.png in Resources */,
 				845055C71DAE3F1A00400EBF /* icon_home_light@2x.png in Resources */,
+				F792515A1DB61D9C006AA119 /* ContactPersonTableViewCell.xib in Resources */,
 				845055CF1DAE3F1A00400EBF /* icon_message_light@2x.png in Resources */,
 				845055BC1DAE3F1A00400EBF /* icon_flight_pre@3x.png in Resources */,
 				845055711DACF65200400EBF /* splash_2@3x.png in Resources */,
 				845055C81DAE3F1A00400EBF /* icon_home_light@3x.png in Resources */,
+				F792516E1DB63D62006AA119 /* ChatTimeTableViewCell.xib in Resources */,
 				845055DD1DAE3F1A00400EBF /* icon_userinfo_pre@2x.png in Resources */,
 				845055CB1DAE3F1A00400EBF /* icon_home_pre@2x.png in Resources */,
+				F792514B1DB608E6006AA119 /* ContactPersonViewController.xib in Resources */,
 				F7EEEF221DB3A580004AF0AE /* FlightDetailTableViewCell.xib in Resources */,
 				845055B31DAE3F1A00400EBF /* home_title_bg@2x.png in Resources */,
 				846F1DC31DAA2E3B00C8920B /* launchScreen@3x.png in Resources */,
+				F79251551DB610D6006AA119 /* FixedMessageTableViewCell.xib in Resources */,
 				845055C01DAE3F1A00400EBF /* icon_function_light@3x.png in Resources */,
 				845055DC1DAE3F1A00400EBF /* icon_userinfo_pass@3x.png in Resources */,
 				8450555F1DACF65200400EBF /* login_icon_invisible@2x.png in Resources */,
@@ -846,6 +993,8 @@
 				8450555D1DACF65200400EBF /* login_btn_pre@2x.png in Resources */,
 				845055591DACF65200400EBF /* login_bg@2x.png in Resources */,
 				845055CE1DAE3F1A00400EBF /* icon_message@3x.png in Resources */,
+				F792517C1DB7431D006AA119 /* UserManagementViewController.xib in Resources */,
+				F79251771DB73E2C006AA119 /* UserInfoTableViewCell.xib in Resources */,
 				845055D51DAE3F1A00400EBF /* icon_newMessage@2x.png in Resources */,
 				845055C21DAE3F1A00400EBF /* icon_function_pass@3x.png in Resources */,
 				845055641DACF65200400EBF /* login_input_field@3x.png in Resources */,
@@ -854,14 +1003,18 @@
 				845055691DACF65200400EBF /* logo_flight@2x.png in Resources */,
 				8450555B1DACF65200400EBF /* login_btn@2x.png in Resources */,
 				845055D61DAE3F1A00400EBF /* icon_newMessage@3x.png in Resources */,
+				F79251501DB60BD0006AA119 /* MessageTableViewCell.xib in Resources */,
 				845055C11DAE3F1A00400EBF /* icon_function_pass@2x.png in Resources */,
 				845055631DACF65200400EBF /* login_input_field@2x.png in Resources */,
 				845055661DACF65200400EBF /* login_logo@3x.png in Resources */,
 				845055BB1DAE3F1A00400EBF /* icon_flight_pre@2x.png in Resources */,
+				F792518E1DB7890E006AA119 /* NightShiftRoomTableViewCell.xib in Resources */,
+				F79251381DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.xib in Resources */,
 				845055D41DAE3F1A00400EBF /* icon_message_pre@3x.png in Resources */,
 				845055B41DAE3F1A00400EBF /* home_title_bg@3x.png in Resources */,
 				845055BF1DAE3F1A00400EBF /* icon_function_light@2x.png in Resources */,
 				845055621DACF65200400EBF /* login_icon_lock@3x.png in Resources */,
+				F79251891DB781AB006AA119 /* NightShiftRoomViewController.xib in Resources */,
 				845055D31DAE3F1A00400EBF /* icon_message_pre@2x.png in Resources */,
 				845055C31DAE3F1A00400EBF /* icon_function_pre@2x.png in Resources */,
 				845055DA1DAE3F1A00400EBF /* icon_userinfo_light@3x.png in Resources */,
@@ -876,10 +1029,14 @@
 				845055611DACF65200400EBF /* login_icon_lock@2x.png in Resources */,
 				845055B21DAE3F1A00400EBF /* home_footer_bg@3x.png in Resources */,
 				F7EAE19E1DB4B0680060626F /* AbnormalityReportCollectionViewCell.xib in Resources */,
+				F79251811DB74576006AA119 /* UserManagermentTableViewCell.xib in Resources */,
+				F792515F1DB6352D006AA119 /* ChatViewController.xib in Resources */,
 				845055C41DAE3F1A00400EBF /* icon_function_pre@3x.png in Resources */,
 				845055D11DAE3F1A00400EBF /* icon_message_pass@2x.png in Resources */,
 				845055D81DAE3F1A00400EBF /* icon_userinfo@3x.png in Resources */,
 				846F1DC11DAA2E3400C8920B /* launchScreen@2x.png in Resources */,
+				F79251691DB63BB7006AA119 /* ChatRightTableViewCell.xib in Resources */,
+				F79251641DB63A10006AA119 /* ChatLeftTableViewCell.xib in Resources */,
 				845055C91DAE3F1A00400EBF /* icon_home_pass@2x.png in Resources */,
 				8450555E1DACF65200400EBF /* login_btn_pre@3x.png in Resources */,
 				F7EAE1A31DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.xib in Resources */,
@@ -1034,15 +1191,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F79251631DB63A10006AA119 /* ChatLeftTableViewCell.m in Sources */,
 				843F4CF21DACC3FD00D73D56 /* StringUtils.m in Sources */,
 				843F4CF81DACCA6D00D73D56 /* HttpsUtils+Business.m in Sources */,
 				846F1DB11DAA22E800C8920B /* GlobalHelper.m in Sources */,
+				F792516D1DB63D62006AA119 /* ChatTimeTableViewCell.m in Sources */,
 				846F1D951DA8F8F700C8920B /* DeviceInfoUtil.m in Sources */,
 				843F4CFB1DACCF2500D73D56 /* ThreadUtils.m in Sources */,
+				F79251591DB61D9C006AA119 /* ContactPersonTableViewCell.m in Sources */,
+				F79251841DB7518E006AA119 /* FlightProcessModel.m in Sources */,
 				F7EAE1A21DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.m in Sources */,
+				F79251711DB70B60006AA119 /* chatRecordModel.m in Sources */,
 				845055781DADDD5C00400EBF /* OverViewContentView.m in Sources */,
 				846F1DA81DAA205700C8920B /* HomePageViewController.m in Sources */,
 				843F4CF51DACC70F00D73D56 /* HttpsUtils.m in Sources */,
+				F792514F1DB60BD0006AA119 /* MessageTableViewCell.m in Sources */,
 				846F1DAE1DAA229600C8920B /* DefaultHelper.m in Sources */,
 				F7EEEF1C1DB396E0004AF0AE /* FlightDetailViewController.m in Sources */,
 				846F1DBA1DAA244300C8920B /* UserInfoViewController.m in Sources */,
@@ -1051,15 +1214,26 @@
 				F7EEEF211DB3A580004AF0AE /* FlightDetailTableViewCell.m in Sources */,
 				846F1DA21DAA201A00C8920B /* RootViewController.m in Sources */,
 				F7EE87861DB371CA006473F5 /* FlightFilterTableViewCell.m in Sources */,
+				F79251801DB74576006AA119 /* UserManagermentTableViewCell.m in Sources */,
 				846F1DB41DAA233800C8920B /* MessageViewController.m in Sources */,
+				F792518D1DB7890E006AA119 /* NightShiftRoomTableViewCell.m in Sources */,
+				F792515E1DB6352D006AA119 /* ChatViewController.m in Sources */,
+				F79251371DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.m in Sources */,
 				8450557E1DADDDA000400EBF /* PassengerContentView.m in Sources */,
+				F79251761DB73E2C006AA119 /* UserInfoTableViewCell.m in Sources */,
+				F79251681DB63BB7006AA119 /* ChatRightTableViewCell.m in Sources */,
+				F792513B1DB5CBE3006AA119 /* UIViewController+Reminder.m in Sources */,
+				F79251881DB781AB006AA119 /* NightShiftRoomViewController.m in Sources */,
 				846F1DAB1DAA222E00C8920B /* FlightViewController.m in Sources */,
 				F7EAE19D1DB4B0680060626F /* AbnormalityReportCollectionViewCell.m in Sources */,
 				84BA54E41DA256940037198F /* AppDelegate.m in Sources */,
 				845E643B1DAB8EC70072360D /* TabBarView.m in Sources */,
 				846F1DA51DAA203500C8920B /* LoginViewController.m in Sources */,
 				84BA54ED1DA256940037198F /* airmobile.xcdatamodeld in Sources */,
+				F79251541DB610D6006AA119 /* FixedMessageTableViewCell.m in Sources */,
+				F792517B1DB7431D006AA119 /* UserManagementViewController.m in Sources */,
 				84BA54E11DA256940037198F /* main.m in Sources */,
+				F792514A1DB608E6006AA119 /* ContactPersonViewController.m in Sources */,
 				F7EE87791DB3285B006473F5 /* FlightFilterView.m in Sources */,
 				845055811DADDDC900400EBF /* ResourceContentView.m in Sources */,
 				8450557B1DADDD8200400EBF /* FlightContentView.m in Sources */,
