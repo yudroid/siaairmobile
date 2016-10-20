@@ -190,7 +190,7 @@
     }
     else
     {
-        overviewContentView = [[OverViewContentView alloc] initWithFrame:CGRectMake(0, 120, kScreenWidth, kScreenHeight-189)];
+        overviewContentView = [[OverViewContentView alloc] initWithFrame:CGRectMake(0, 100, kScreenWidth, kScreenHeight-189)];
         [self.view addSubview:overviewContentView];
     }
 }
@@ -206,7 +206,7 @@
     }
     else
     {
-        flightContentView = [[FlightContentView alloc] initWithFrame:CGRectMake(0, 120, kScreenWidth, kScreenHeight-189)];
+        flightContentView = [[FlightContentView alloc] initWithFrame:CGRectMake(0, 100, kScreenWidth, kScreenHeight-189)];
         [self.view addSubview:flightContentView];
     }
 }
@@ -222,7 +222,7 @@
     }
     else
     {
-        passengerContentView = [[PassengerContentView alloc] initWithFrame:CGRectMake(0, 120, kScreenWidth, kScreenHeight-189)];
+        passengerContentView = [[PassengerContentView alloc] initWithFrame:CGRectMake(0, 100, kScreenWidth, kScreenHeight-189)];
         [self.view addSubview:passengerContentView];
     }
 }
@@ -238,7 +238,7 @@
     }
     else
     {
-        resourceContentView = [[ResourceContentView alloc] initWithFrame:CGRectMake(0, 120, kScreenWidth, kScreenHeight-189)];
+        resourceContentView = [[ResourceContentView alloc] initWithFrame:CGRectMake(0, 80, kScreenWidth, kScreenHeight-135)];
         [self.view addSubview:resourceContentView];
     }
 }

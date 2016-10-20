@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PoP.h"
+#import "RoundProgressView.h"
+#import "LDProgressView.h"
 
 @protocol ResourceContentViewDelegate <NSObject>
 
@@ -20,5 +23,19 @@
 @end
 
 @interface ResourceContentView : UIView
-
+{
+    
+    UILabel *normalNumLabel;
+    UILabel *abnormalNumLabel;
+    UILabel *cancelNumLabel;
+    
+    float _totalNum;
+    float _normalNum;
+    float _abnormalNum;
+    float _cancleNum;
+    
+    CGFloat normalProportion;
+    CGFloat abnormalProportion;
+    CGFloat cancleProportion;
+}
 @end

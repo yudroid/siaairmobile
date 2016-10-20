@@ -1,0 +1,62 @@
+*.DS_Store
+xcuserdata
+Pods
+Podfile.lock
+*.xcuserstate
+
+
+*.lock
+
+*.lock
+
+Pods/Pods.xcodeproj/project.pbxproj
+
+Pods/Target Support Files/Toast/Toast.xcconfig
+
+Pods/Target Support Files/Pods-airmobileUITests/Pods-airmobileUITests.debug.xcconfig
+
+Pods/Target Support Files/Pods-airmobileUITests/Pods-airmobileUITests.debug.xcconfig
+
+Pods/Target Support Files/Pods-airmobile/Pods-airmobile.debug.xcconfig
+
+Pods/Pods.xcodeproj/xcuserdata/yangquanlinyanfabu.xcuserdatad/xcschemes/xcschememanagement.plist
+
+Pods/Pods.xcodeproj/xcuserdata/yangquanlinyanfabu.xcuserdatad/xcschemes/Toast.xcscheme
+
+Pods/Pods.xcodeproj/xcuserdata/yangquanlinyanfabu.xcuserdatad/xcschemes/xcschememanagement.plist
+
+Pods/Pods.xcodeproj/xcuserdata/yangquanlinyanfabu.xcuserdatad/xcschemes/xcschememanagement.plist
+
+Pods/Target Support Files/AFNetworking/AFNetworking.xcconfig
+
+Pods/Target Support Files/ATAppUpdater/ATAppUpdater.xcconfig
+
+Pods/Target Support Files/JTCalendar/JTCalendar.xcconfig
+
+Pods/Target Support Files/KSCrash/KSCrash.xcconfig
+
+Pods/Target Support Files/Pods-airmobile/Pods-airmobile-acknowledgements.markdown
+
+Pods/Target Support Files/Pods-airmobile/Pods-airmobile-acknowledgements.plist
+
+Pods/Target Support Files/Pods-airmobile/Pods-airmobile-resources.sh
+
+Pods/Target Support Files/Pods-airmobile/Pods-airmobile.release.xcconfig
+
+Pods/Target Support Files/Pods-airmobileTests/Pods-airmobileTests.release.xcconfig
+
+Pods/Target Support Files/Pods-airmobileUITests/Pods-airmobileUITests.release.xcconfig
+
+Pods/Target Support Files/Pods-airmobileTests/Pods-airmobileTests.debug.xcconfig
+
+Pods/Pods.xcodeproj/xcuserdata/yangquanlinyanfabu.xcuserdatad/xcschemes/Pods-airmobile.xcscheme
+
+Pods/Manifest.lock
+
+Podfile.lock
+
+Pods/Pods.xcodeproj/project.pbxproj
+
+airmobile.xcworkspace/xcuserdata/yangquanlinyanfabu.xcuserdatad/UserInterfaceState.xcuserstate
+
+.DS_Store

@@ -22,6 +22,7 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 
 @interface MessageViewController ()<TabBarViewDelegate,UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
 
+
 @property (nonatomic, strong) UIView *optionView;
 @property (nonatomic, strong) UISearchBar *searBar;
 @property (nonatomic, strong) UITableView *tableView;
@@ -29,7 +30,10 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 
 @end
 
-@implementation MessageViewController
+@implementation MessageViewController{
+    SRWebSocket *srWebSocket;
+    UITextField *textfield;
+}
 
 
 
@@ -49,6 +53,132 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
     
     
     // Do any additional setup after loading the view.
+    
+    //titleView订制
+    [self titleViewInitWithHight:64];
+    [self titleViewAddTitleText:@"消息"];
+    
+    textfield = [[UITextField alloc] initWithFrame:CGRectMake(10, 100, kScreenWidth-20, 200)];
+    textfield.text = @"com.apple.MobileAsset.TextInput.SpellChecker";
+    [self.view addSubview:textfield];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2-50, 250, 100, 30)];
+    label.text = @"发 送 消 息";
+    [self.view addSubview:label];
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth/2-50, 250, 100, 30)];
+    [button addTarget:self action:@selector(sendMessage:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
+    
+    //TabBer自定义
+    self.tabBarView = [[TabBarView alloc] initTabBarWithModel:TabBarBgModelNormal selectedType:TabBarSelectedTypeMessage delegate:self];
+    [self.view insertSubview:self.tabBarView aboveSubview:self.view];
+    
+    [self initSRWebSocket];
+}
+
+-(void) initSRWebSocket
+{
+    srWebSocket.delegate = nil;
+    [srWebSocket close];
+    srWebSocket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"ws://192.168.163.3:8090/msg/usermsg"]]];
+    srWebSocket.delegate = self;
+    
+    NSLog(@"Opening Connection...");
+    
+    [srWebSocket open];
+}
+
+#pragma mark - SRWebSocketDelegate实现
+
+- (void)webSocketDidOpen:(SRWebSocket *)webSocket
+{
+    
+    NSLog(@"Websocket Connected");
+    
+    NSError *error;
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:@{@"id":@"2",@"clientid":@"yangql_2016",@"to":@""} options:NSJSONWritingPrettyPrinted error:&error];
+    
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    
+    [webSocket send:jsonString];
+    
+}
+
+
+- (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error
+{
+    
+    NSLog(@":( Websocket Failed With Error %@", error);
+    
+    webSocket = nil;
+    
+}
+
+- (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message
+{
+    
+    NSLog(@"Received \"%@\"", message);
+    
+}
+
+- (void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean
+{
+    
+    NSLog(@"WebSocket closed");
+    
+    webSocket = nil;
+    
+}
+
+- (void)sendMessage:(id)sender {
+    
+    NSError *error;
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:@{@"id":@"2",@"clientid":@"yangql_2016",@"to":@"wangdeyan2016",@"msg":@{@"type":@"0",@"content":textfield.text}} options:NSJSONWritingPrettyPrinted error:&error];
+    
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    
+    [srWebSocket send:jsonString];
+}
+
+#pragma mark - 切换底部主功能页面
+-(void)selectWithType:(TabBarSelectedType)type
+{
+    switch (type) {
+        case TabBarSelectedTypeHomePage:
+        {
+            HomePageViewController *homepage = [[HomePageViewController alloc] init];
+            [self.navigationController pushViewController:homepage animated:NO];
+            break;
+        }
+        case TabBarSelectedTypeFlight:
+        {
+            FlightViewController *flightpage = [[FlightViewController alloc] init];
+            [self.navigationController pushViewController:flightpage animated:NO];
+            break;
+        }
+        case TabBarSelectedTypeMessage:
+        {
+            MessageViewController *messagepage = [[MessageViewController alloc] init];
+            [self.navigationController pushViewController:messagepage animated:NO];
+            break;
+        }
+        case TabBarSelectedTypeFunction:
+        {
+            FunctionViewController *function = [[FunctionViewController alloc] init];
+            [self.navigationController pushViewController:function animated:NO];
+            break;
+        }
+        case TabBarSelectedTypeUserInfo:
+        {
+            UserInfoViewController *userInfo = [[UserInfoViewController alloc] init];
+            [self.navigationController pushViewController:userInfo animated:NO];
+            break;
+        }
+        default:
+            break;
+    }
 }
 
 
@@ -84,6 +214,10 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
     
     [self.titleView addSubview:chatButton];
 }
+
+
+
+
 
 -(void)chatButtonClick:(UIButton *)sender
 {
@@ -123,6 +257,7 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 }
 
 
+<<<<<<< HEAD
 
 -(void)initSearchTableView
 {
@@ -137,12 +272,15 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 
 #pragma mark - EVENT
 
+=======
+>>>>>>> 50025e1a71edc14fbb4430fe6c9e3ff70b012b41
 -(void)optionChatButtonClick:(UIButton *)sender
 {
     ContactPersonViewController *contactPersonVC = [[ContactPersonViewController alloc]initWithNibName:@"ContactPersonViewController" bundle:nil];
     [self.navigationController  pushViewController:contactPersonVC animated:YES];
 }
 
+<<<<<<< HEAD
 -(void)searchViewClick:(UIView *)view
 {
     [UIView animateWithDuration:0.6 animations:^{
@@ -150,6 +288,8 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
     }];
     [self.view endEditing:YES];
 }
+=======
+>>>>>>> 50025e1a71edc14fbb4430fe6c9e3ff70b012b41
 
 #pragma mark - UITableViewDelegate UITableViewDataSource
 
@@ -173,7 +313,6 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
         return cell;
         
     }
-    
     return  nil;
 }
 
@@ -182,12 +321,8 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
     
 }
 
-#pragma mark - UIsearchDelegate
--(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
-{
-    NSLog(@"%@",searchText);
-}
 
+<<<<<<< HEAD
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
     _searchView.alpha = 1;
@@ -261,6 +396,10 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
         
     }
 }
+=======
+
+
+>>>>>>> 50025e1a71edc14fbb4430fe6c9e3ff70b012b41
 
 
 @end

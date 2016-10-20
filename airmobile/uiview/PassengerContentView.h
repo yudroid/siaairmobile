@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PsnSafetyContentView.h"
+#import "PsnGeneralContentView.h"
 
 @protocol PassengerContentViewDelegate <NSObject>
 
@@ -23,6 +25,6 @@
 
 @end
 
-@interface PassengerContentView : UIView
+@interface PassengerContentView : UIView<UIScrollViewDelegate>
 
 @end

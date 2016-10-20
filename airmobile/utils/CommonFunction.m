@@ -203,4 +203,14 @@
         
         return [imageData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
     }
+
++ (UILabel *)addLabelFrame:(CGRect)rect text:(NSString *)text font:(CGFloat)font textAlignment:(NSTextAlignment)textAlignment colorFromHex:(long)hexColor
+{
+    UILabel *label = [[UILabel alloc]initWithFrame:rect];
+    label.textAlignment = textAlignment;
+    label.text = text;
+    label.font = [UIFont systemFontOfSize:font];
+    label.textColor = [CommonFunction colorFromHex:hexColor];
+    return label;
+}
 @end
