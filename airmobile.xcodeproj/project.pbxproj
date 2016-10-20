@@ -126,7 +126,6 @@
 		F79251381DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F79251361DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.xib */; };
 		F792513B1DB5CBE3006AA119 /* UIViewController+Reminder.m in Sources */ = {isa = PBXBuildFile; fileRef = F792513A1DB5CBE3006AA119 /* UIViewController+Reminder.m */; };
 		F792514A1DB608E6006AA119 /* ContactPersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F79251481DB608E6006AA119 /* ContactPersonViewController.m */; };
-		F792514B1DB608E6006AA119 /* ContactPersonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F79251491DB608E6006AA119 /* ContactPersonViewController.xib */; };
 		F792514F1DB60BD0006AA119 /* MessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F792514D1DB60BD0006AA119 /* MessageTableViewCell.m */; };
 		F79251501DB60BD0006AA119 /* MessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F792514E1DB60BD0006AA119 /* MessageTableViewCell.xib */; };
 		F79251541DB610D6006AA119 /* FixedMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F79251521DB610D6006AA119 /* FixedMessageTableViewCell.m */; };
@@ -134,7 +133,6 @@
 		F79251591DB61D9C006AA119 /* ContactPersonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F79251571DB61D9C006AA119 /* ContactPersonTableViewCell.m */; };
 		F792515A1DB61D9C006AA119 /* ContactPersonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F79251581DB61D9C006AA119 /* ContactPersonTableViewCell.xib */; };
 		F792515E1DB6352D006AA119 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F792515C1DB6352D006AA119 /* ChatViewController.m */; };
-		F792515F1DB6352D006AA119 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F792515D1DB6352D006AA119 /* ChatViewController.xib */; };
 		F79251631DB63A10006AA119 /* ChatLeftTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F79251611DB63A10006AA119 /* ChatLeftTableViewCell.m */; };
 		F79251641DB63A10006AA119 /* ChatLeftTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F79251621DB63A10006AA119 /* ChatLeftTableViewCell.xib */; };
 		F79251681DB63BB7006AA119 /* ChatRightTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F79251661DB63BB7006AA119 /* ChatRightTableViewCell.m */; };
@@ -348,7 +346,6 @@
 		F792513A1DB5CBE3006AA119 /* UIViewController+Reminder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Reminder.m"; sourceTree = "<group>"; };
 		F79251471DB608E6006AA119 /* ContactPersonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactPersonViewController.h; sourceTree = "<group>"; };
 		F79251481DB608E6006AA119 /* ContactPersonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactPersonViewController.m; sourceTree = "<group>"; };
-		F79251491DB608E6006AA119 /* ContactPersonViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactPersonViewController.xib; sourceTree = "<group>"; };
 		F792514C1DB60BD0006AA119 /* MessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTableViewCell.h; sourceTree = "<group>"; };
 		F792514D1DB60BD0006AA119 /* MessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTableViewCell.m; sourceTree = "<group>"; };
 		F792514E1DB60BD0006AA119 /* MessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageTableViewCell.xib; sourceTree = "<group>"; };
@@ -360,7 +357,6 @@
 		F79251581DB61D9C006AA119 /* ContactPersonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactPersonTableViewCell.xib; sourceTree = "<group>"; };
 		F792515B1DB6352D006AA119 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
 		F792515C1DB6352D006AA119 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
-		F792515D1DB6352D006AA119 /* ChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
 		F79251601DB63A10006AA119 /* ChatLeftTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatLeftTableViewCell.h; sourceTree = "<group>"; };
 		F79251611DB63A10006AA119 /* ChatLeftTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatLeftTableViewCell.m; sourceTree = "<group>"; };
 		F79251621DB63A10006AA119 /* ChatLeftTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatLeftTableViewCell.xib; sourceTree = "<group>"; };
@@ -600,7 +596,6 @@
 				8450557D1DADDDA000400EBF /* PassengerContentView.m */,
 				8450557F1DADDDC900400EBF /* ResourceContentView.h */,
 				845055801DADDDC900400EBF /* ResourceContentView.m */,
-<<<<<<< HEAD
 				8473A5181DB36DC200A8DCE2 /* OverViewContentView.h */,
 				8473A5191DB36DC200A8DCE2 /* OverViewContentView.m */,
 				8473A51F1DB4ACA000A8DCE2 /* RoundProgressView.h */,
@@ -611,8 +606,6 @@
 				84AC5D281DB780F500EE1847 /* PsnSafetyContentView.m */,
 				843D02FE1DB8590D008241CB /* ProgreesBarView.h */,
 				843D02FF1DB8590D008241CB /* ProgreesBarView.m */,
-=======
->>>>>>> origin/master
 				F7EE87821DB370C4006473F5 /* 航班列表 */,
 				F792513C1DB5EE01006AA119 /* 消息 */,
 				F79251721DB73DD3006AA119 /* 我的 */,
@@ -645,10 +638,8 @@
 				F7EAE1951DB4776C0060626F /* AbnormalityReportViewController.xib */,
 				F79251471DB608E6006AA119 /* ContactPersonViewController.h */,
 				F79251481DB608E6006AA119 /* ContactPersonViewController.m */,
-				F79251491DB608E6006AA119 /* ContactPersonViewController.xib */,
 				F792515B1DB6352D006AA119 /* ChatViewController.h */,
 				F792515C1DB6352D006AA119 /* ChatViewController.m */,
-				F792515D1DB6352D006AA119 /* ChatViewController.xib */,
 				F79251781DB7431D006AA119 /* UserManagementViewController.h */,
 				F79251791DB7431D006AA119 /* UserManagementViewController.m */,
 				F792517A1DB7431D006AA119 /* UserManagementViewController.xib */,
@@ -1011,7 +1002,6 @@
 				F792516E1DB63D62006AA119 /* ChatTimeTableViewCell.xib in Resources */,
 				845055DD1DAE3F1A00400EBF /* icon_userinfo_pre@2x.png in Resources */,
 				845055CB1DAE3F1A00400EBF /* icon_home_pre@2x.png in Resources */,
-				F792514B1DB608E6006AA119 /* ContactPersonViewController.xib in Resources */,
 				F7EEEF221DB3A580004AF0AE /* FlightDetailTableViewCell.xib in Resources */,
 				845055B31DAE3F1A00400EBF /* home_title_bg@2x.png in Resources */,
 				846F1DC31DAA2E3B00C8920B /* launchScreen@3x.png in Resources */,
@@ -1020,10 +1010,7 @@
 				845055DC1DAE3F1A00400EBF /* icon_userinfo_pass@3x.png in Resources */,
 				8450555F1DACF65200400EBF /* login_icon_invisible@2x.png in Resources */,
 				84BA54EF1DA256940037198F /* Assets.xcassets in Resources */,
-<<<<<<< HEAD
 				8473A5241DB4DAE800A8DCE2 /* calendar.png in Resources */,
-=======
->>>>>>> origin/master
 				F7EE87871DB371CA006473F5 /* FlightFilterTableViewCell.xib in Resources */,
 				84BA54EA1DA256940037198F /* Main.storyboard in Resources */,
 				845055D01DAE3F1A00400EBF /* icon_message_light@3x.png in Resources */,
@@ -1069,7 +1056,6 @@
 				845055B21DAE3F1A00400EBF /* home_footer_bg@3x.png in Resources */,
 				F7EAE19E1DB4B0680060626F /* AbnormalityReportCollectionViewCell.xib in Resources */,
 				F79251811DB74576006AA119 /* UserManagermentTableViewCell.xib in Resources */,
-				F792515F1DB6352D006AA119 /* ChatViewController.xib in Resources */,
 				845055C41DAE3F1A00400EBF /* icon_function_pre@3x.png in Resources */,
 				845055D11DAE3F1A00400EBF /* icon_message_pass@2x.png in Resources */,
 				845055D81DAE3F1A00400EBF /* icon_userinfo@3x.png in Resources */,
@@ -1230,11 +1216,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
 				84AC5D261DB780D000EE1847 /* PsnGeneralContentView.m in Sources */,
 				843D03001DB8590D008241CB /* ProgreesBarView.m in Sources */,
-=======
->>>>>>> origin/master
 				F79251631DB63A10006AA119 /* ChatLeftTableViewCell.m in Sources */,
 				843F4CF21DACC3FD00D73D56 /* StringUtils.m in Sources */,
 				84AC5D291DB780F500EE1847 /* PsnSafetyContentView.m in Sources */,
@@ -1244,15 +1227,11 @@
 				F792516D1DB63D62006AA119 /* ChatTimeTableViewCell.m in Sources */,
 				846F1D951DA8F8F700C8920B /* DeviceInfoUtil.m in Sources */,
 				843F4CFB1DACCF2500D73D56 /* ThreadUtils.m in Sources */,
-<<<<<<< HEAD
 				8473A5211DB4ACA000A8DCE2 /* RoundProgressView.m in Sources */,
-=======
->>>>>>> origin/master
 				F79251591DB61D9C006AA119 /* ContactPersonTableViewCell.m in Sources */,
 				F79251841DB7518E006AA119 /* FlightProcessModel.m in Sources */,
 				F7EAE1A21DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.m in Sources */,
 				F79251711DB70B60006AA119 /* chatRecordModel.m in Sources */,
-				845055781DADDD5C00400EBF /* OverViewContentView.m in Sources */,
 				846F1DA81DAA205700C8920B /* HomePageViewController.m in Sources */,
 				843F4CF51DACC70F00D73D56 /* HttpsUtils.m in Sources */,
 				F792514F1DB60BD0006AA119 /* MessageTableViewCell.m in Sources */,
