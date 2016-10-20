@@ -23,5 +23,6 @@
 +(CGSize) labelSelfAdaptingWithSize:(CGSize)size font:(UIFont *)font labelText:(NSString *)text;
 +(BOOL) ImageHasAlpha:(UIImage *)image;
 +(NSString *) ImageToBase64String:(UIImage *) image;
++(UILabel *)addLabelFrame:(CGRect)rect text:(NSString *)text font:(CGFloat)font textAlignment:(NSTextAlignment)textAlignment colorFromHex:(long)hexColor;
     
 @end
