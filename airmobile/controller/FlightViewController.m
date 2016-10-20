@@ -69,12 +69,14 @@ static  NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_IDETIF
     self.titleView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"home_title_bg.png"]];
     [self titleViewAddTitleText:@"航班列表"];
     
-    UIButton *filterButton = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-16-20, 33, 20, 20)];
-   
-    [filterButton setBackgroundImage:[UIImage imageNamed:@"icon_flight"] forState:UIControlStateNormal];
+    UIButton *filterButton = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-36, 33, 18, 18)];
+    [filterButton setBackgroundImage:[UIImage imageNamed:@"ListIcon"] forState:UIControlStateNormal];
     [filterButton addTarget:self action:@selector(filterButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    
     [self.titleView addSubview:filterButton];
+    UIButton *searchButton = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-72, 33, 18, 18)];
+    [searchButton setBackgroundImage:[UIImage imageNamed:@"FlightSearchIconBig"] forState:UIControlStateNormal];
+    [searchButton addTarget:self action:@selector(filterButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.titleView addSubview:searchButton];
 }
 
 -(void)filterButtonClick:(UIButton *)button
@@ -95,7 +97,7 @@ static  NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_IDETIF
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100;
+    return 88;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

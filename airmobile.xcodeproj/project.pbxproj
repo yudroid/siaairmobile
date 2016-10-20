@@ -44,10 +44,6 @@
 		845055731DACF65200400EBF /* splash_3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 845055541DACF65200400EBF /* splash_3@3x.png */; };
 		845055741DACF65200400EBF /* splash_4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 845055551DACF65200400EBF /* splash_4@2x.png */; };
 		845055751DACF65200400EBF /* splash_4@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 845055561DACF65200400EBF /* splash_4@3x.png */; };
-		845055781DADDD5C00400EBF /* OverViewContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 845055771DADDD5C00400EBF /* OverViewContentView.m */; };
-		8450557B1DADDD8200400EBF /* FlightContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8450557A1DADDD8200400EBF /* FlightContentView.m */; };
-		8450557E1DADDDA000400EBF /* PassengerContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8450557D1DADDDA000400EBF /* PassengerContentView.m */; };
-		845055811DADDDC900400EBF /* ResourceContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 845055801DADDDC900400EBF /* ResourceContentView.m */; };
 		845055B11DAE3F1A00400EBF /* home_footer_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 845055831DAE3F1A00400EBF /* home_footer_bg@2x.png */; };
 		845055B21DAE3F1A00400EBF /* home_footer_bg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 845055841DAE3F1A00400EBF /* home_footer_bg@3x.png */; };
 		845055B31DAE3F1A00400EBF /* home_title_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 845055851DAE3F1A00400EBF /* home_title_bg@2x.png */; };
@@ -94,18 +90,10 @@
 		845055DC1DAE3F1A00400EBF /* icon_userinfo_pass@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 845055AE1DAE3F1A00400EBF /* icon_userinfo_pass@3x.png */; };
 		845055DD1DAE3F1A00400EBF /* icon_userinfo_pre@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 845055AF1DAE3F1A00400EBF /* icon_userinfo_pre@2x.png */; };
 		845055DE1DAE3F1A00400EBF /* icon_userinfo_pre@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 845055B01DAE3F1A00400EBF /* icon_userinfo_pre@3x.png */; };
-		845E643B1DAB8EC70072360D /* TabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 845E643A1DAB8EC70072360D /* TabBarView.m */; };
 		845E643E1DAB980C0072360D /* CommonFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 845E643D1DAB980C0072360D /* CommonFunction.m */; };
 		846F1D951DA8F8F700C8920B /* DeviceInfoUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 846F1D941DA8F8F700C8920B /* DeviceInfoUtil.m */; };
-		846F1DA21DAA201A00C8920B /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846F1DA11DAA201A00C8920B /* RootViewController.m */; };
-		846F1DA51DAA203500C8920B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846F1DA41DAA203500C8920B /* LoginViewController.m */; };
-		846F1DA81DAA205700C8920B /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846F1DA71DAA205700C8920B /* HomePageViewController.m */; };
-		846F1DAB1DAA222E00C8920B /* FlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846F1DAA1DAA222E00C8920B /* FlightViewController.m */; };
 		846F1DAE1DAA229600C8920B /* DefaultHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 846F1DAD1DAA229600C8920B /* DefaultHelper.m */; };
 		846F1DB11DAA22E800C8920B /* GlobalHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 846F1DB01DAA22E800C8920B /* GlobalHelper.m */; };
-		846F1DB41DAA233800C8920B /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846F1DB31DAA233800C8920B /* MessageViewController.m */; };
-		846F1DB71DAA23F300C8920B /* FunctionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846F1DB61DAA23F300C8920B /* FunctionViewController.m */; };
-		846F1DBA1DAA244300C8920B /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846F1DB91DAA244300C8920B /* UserInfoViewController.m */; };
 		846F1DC11DAA2E3400C8920B /* launchScreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 846F1DC01DAA2E3400C8920B /* launchScreen@2x.png */; };
 		846F1DC31DAA2E3B00C8920B /* launchScreen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 846F1DC21DAA2E3B00C8920B /* launchScreen@3x.png */; };
 		84BA54E11DA256940037198F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BA54E01DA256940037198F /* main.m */; };
@@ -154,6 +142,18 @@
 		F79251981DB85D78006AA119 /* AddressBookTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F79251961DB85D78006AA119 /* AddressBookTableViewCell.xib */; };
 		F792519C1DB85FA0006AA119 /* AddressBookGroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F792519A1DB85FA0006AA119 /* AddressBookGroupTableViewCell.m */; };
 		F792519D1DB85FA0006AA119 /* AddressBookGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F792519B1DB85FA0006AA119 /* AddressBookGroupTableViewCell.xib */; };
+		F7A2A0511DB8D0590023F228 /* FlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A0441DB8D0590023F228 /* FlightViewController.m */; };
+		F7A2A0521DB8D0590023F228 /* FunctionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A0461DB8D0590023F228 /* FunctionViewController.m */; };
+		F7A2A0531DB8D0590023F228 /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A0481DB8D0590023F228 /* HomePageViewController.m */; };
+		F7A2A0541DB8D0590023F228 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A04A1DB8D0590023F228 /* LoginViewController.m */; };
+		F7A2A0551DB8D0590023F228 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A04C1DB8D0590023F228 /* MessageViewController.m */; };
+		F7A2A0561DB8D0590023F228 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A04E1DB8D0590023F228 /* RootViewController.m */; };
+		F7A2A0571DB8D0590023F228 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A0501DB8D0590023F228 /* UserInfoViewController.m */; };
+		F7A2A0621DB8D0EE0023F228 /* FlightContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A0591DB8D0EE0023F228 /* FlightContentView.m */; };
+		F7A2A0631DB8D0EE0023F228 /* OverViewContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A05B1DB8D0EE0023F228 /* OverViewContentView.m */; };
+		F7A2A0641DB8D0EE0023F228 /* PassengerContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A05D1DB8D0EE0023F228 /* PassengerContentView.m */; };
+		F7A2A0651DB8D0EE0023F228 /* ResourceContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A05F1DB8D0EE0023F228 /* ResourceContentView.m */; };
+		F7A2A0661DB8D0EE0023F228 /* TabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A0611DB8D0EE0023F228 /* TabBarView.m */; };
 		F7EAE1961DB4776C0060626F /* AbnormalityReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EAE1941DB4776C0060626F /* AbnormalityReportViewController.m */; };
 		F7EAE1971DB4776C0060626F /* AbnormalityReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7EAE1951DB4776C0060626F /* AbnormalityReportViewController.xib */; };
 		F7EAE19D1DB4B0680060626F /* AbnormalityReportCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EAE19B1DB4B0680060626F /* AbnormalityReportCollectionViewCell.m */; };
@@ -230,14 +230,6 @@
 		845055541DACF65200400EBF /* splash_3@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_3@3x.png"; sourceTree = "<group>"; };
 		845055551DACF65200400EBF /* splash_4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_4@2x.png"; sourceTree = "<group>"; };
 		845055561DACF65200400EBF /* splash_4@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_4@3x.png"; sourceTree = "<group>"; };
-		845055761DADDD5C00400EBF /* OverViewContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OverViewContentView.h; path = uiview/OverViewContentView.h; sourceTree = "<group>"; };
-		845055771DADDD5C00400EBF /* OverViewContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OverViewContentView.m; path = uiview/OverViewContentView.m; sourceTree = "<group>"; };
-		845055791DADDD8200400EBF /* FlightContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlightContentView.h; path = uiview/FlightContentView.h; sourceTree = "<group>"; };
-		8450557A1DADDD8200400EBF /* FlightContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FlightContentView.m; path = uiview/FlightContentView.m; sourceTree = "<group>"; };
-		8450557C1DADDDA000400EBF /* PassengerContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PassengerContentView.h; path = uiview/PassengerContentView.h; sourceTree = "<group>"; };
-		8450557D1DADDDA000400EBF /* PassengerContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PassengerContentView.m; path = uiview/PassengerContentView.m; sourceTree = "<group>"; };
-		8450557F1DADDDC900400EBF /* ResourceContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResourceContentView.h; path = uiview/ResourceContentView.h; sourceTree = "<group>"; };
-		845055801DADDDC900400EBF /* ResourceContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResourceContentView.m; path = uiview/ResourceContentView.m; sourceTree = "<group>"; };
 		845055831DAE3F1A00400EBF /* home_footer_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_footer_bg@2x.png"; sourceTree = "<group>"; };
 		845055841DAE3F1A00400EBF /* home_footer_bg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_footer_bg@3x.png"; sourceTree = "<group>"; };
 		845055851DAE3F1A00400EBF /* home_title_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_title_bg@2x.png"; sourceTree = "<group>"; };
@@ -284,32 +276,16 @@
 		845055AE1DAE3F1A00400EBF /* icon_userinfo_pass@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_userinfo_pass@3x.png"; sourceTree = "<group>"; };
 		845055AF1DAE3F1A00400EBF /* icon_userinfo_pre@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_userinfo_pre@2x.png"; sourceTree = "<group>"; };
 		845055B01DAE3F1A00400EBF /* icon_userinfo_pre@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_userinfo_pre@3x.png"; sourceTree = "<group>"; };
-		845E64391DAB8EC70072360D /* TabBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TabBarView.h; path = uiview/TabBarView.h; sourceTree = "<group>"; };
-		845E643A1DAB8EC70072360D /* TabBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TabBarView.m; path = uiview/TabBarView.m; sourceTree = "<group>"; };
 		845E643C1DAB980C0072360D /* CommonFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonFunction.h; path = utils/CommonFunction.h; sourceTree = "<group>"; };
 		845E643D1DAB980C0072360D /* CommonFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonFunction.m; path = utils/CommonFunction.m; sourceTree = "<group>"; };
 		846F1D881DA8970300C8920B /* airmobile-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "airmobile-Prefix.pch"; sourceTree = "<group>"; };
 		846F1D931DA8F8F700C8920B /* DeviceInfoUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeviceInfoUtil.h; path = utils/DeviceInfoUtil.h; sourceTree = "<group>"; };
 		846F1D941DA8F8F700C8920B /* DeviceInfoUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeviceInfoUtil.m; path = utils/DeviceInfoUtil.m; sourceTree = "<group>"; };
 		846F1D991DAA1D3200C8920B /* SingletonUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SingletonUtil.h; path = utils/SingletonUtil.h; sourceTree = "<group>"; };
-		846F1DA01DAA201A00C8920B /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootViewController.h; path = controller/RootViewController.h; sourceTree = "<group>"; };
-		846F1DA11DAA201A00C8920B /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootViewController.m; path = controller/RootViewController.m; sourceTree = "<group>"; };
-		846F1DA31DAA203500C8920B /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = controller/LoginViewController.h; sourceTree = "<group>"; };
-		846F1DA41DAA203500C8920B /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = controller/LoginViewController.m; sourceTree = "<group>"; };
-		846F1DA61DAA205700C8920B /* HomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomePageViewController.h; path = controller/HomePageViewController.h; sourceTree = "<group>"; };
-		846F1DA71DAA205700C8920B /* HomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomePageViewController.m; path = controller/HomePageViewController.m; sourceTree = "<group>"; };
-		846F1DA91DAA222E00C8920B /* FlightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlightViewController.h; path = controller/FlightViewController.h; sourceTree = "<group>"; };
-		846F1DAA1DAA222E00C8920B /* FlightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FlightViewController.m; path = controller/FlightViewController.m; sourceTree = "<group>"; };
 		846F1DAC1DAA229600C8920B /* DefaultHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DefaultHelper.h; path = utils/DefaultHelper.h; sourceTree = "<group>"; };
 		846F1DAD1DAA229600C8920B /* DefaultHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DefaultHelper.m; path = utils/DefaultHelper.m; sourceTree = "<group>"; };
 		846F1DAF1DAA22E800C8920B /* GlobalHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GlobalHelper.h; path = utils/GlobalHelper.h; sourceTree = "<group>"; };
 		846F1DB01DAA22E800C8920B /* GlobalHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GlobalHelper.m; path = utils/GlobalHelper.m; sourceTree = "<group>"; };
-		846F1DB21DAA233800C8920B /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageViewController.h; path = controller/MessageViewController.h; sourceTree = "<group>"; };
-		846F1DB31DAA233800C8920B /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageViewController.m; path = controller/MessageViewController.m; sourceTree = "<group>"; };
-		846F1DB51DAA23F300C8920B /* FunctionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FunctionViewController.h; path = controller/FunctionViewController.h; sourceTree = "<group>"; };
-		846F1DB61DAA23F300C8920B /* FunctionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FunctionViewController.m; path = controller/FunctionViewController.m; sourceTree = "<group>"; };
-		846F1DB81DAA244300C8920B /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserInfoViewController.h; path = controller/UserInfoViewController.h; sourceTree = "<group>"; };
-		846F1DB91DAA244300C8920B /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserInfoViewController.m; path = controller/UserInfoViewController.m; sourceTree = "<group>"; };
 		846F1DC01DAA2E3400C8920B /* launchScreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "launchScreen@2x.png"; path = "resources/launchScreen@2x.png"; sourceTree = "<group>"; };
 		846F1DC21DAA2E3B00C8920B /* launchScreen@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "launchScreen@3x.png"; path = "resources/launchScreen@3x.png"; sourceTree = "<group>"; };
 		84BA54DC1DA256940037198F /* airmobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = airmobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -390,6 +366,30 @@
 		F79251991DB85FA0006AA119 /* AddressBookGroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookGroupTableViewCell.h; sourceTree = "<group>"; };
 		F792519A1DB85FA0006AA119 /* AddressBookGroupTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookGroupTableViewCell.m; sourceTree = "<group>"; };
 		F792519B1DB85FA0006AA119 /* AddressBookGroupTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressBookGroupTableViewCell.xib; sourceTree = "<group>"; };
+		F7A2A0431DB8D0590023F228 /* FlightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightViewController.h; sourceTree = "<group>"; };
+		F7A2A0441DB8D0590023F228 /* FlightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightViewController.m; sourceTree = "<group>"; };
+		F7A2A0451DB8D0590023F228 /* FunctionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FunctionViewController.h; sourceTree = "<group>"; };
+		F7A2A0461DB8D0590023F228 /* FunctionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FunctionViewController.m; sourceTree = "<group>"; };
+		F7A2A0471DB8D0590023F228 /* HomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageViewController.h; sourceTree = "<group>"; };
+		F7A2A0481DB8D0590023F228 /* HomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageViewController.m; sourceTree = "<group>"; };
+		F7A2A0491DB8D0590023F228 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		F7A2A04A1DB8D0590023F228 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		F7A2A04B1DB8D0590023F228 /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
+		F7A2A04C1DB8D0590023F228 /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
+		F7A2A04D1DB8D0590023F228 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		F7A2A04E1DB8D0590023F228 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		F7A2A04F1DB8D0590023F228 /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
+		F7A2A0501DB8D0590023F228 /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
+		F7A2A0581DB8D0EE0023F228 /* FlightContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightContentView.h; sourceTree = "<group>"; };
+		F7A2A0591DB8D0EE0023F228 /* FlightContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightContentView.m; sourceTree = "<group>"; };
+		F7A2A05A1DB8D0EE0023F228 /* OverViewContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverViewContentView.h; sourceTree = "<group>"; };
+		F7A2A05B1DB8D0EE0023F228 /* OverViewContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverViewContentView.m; sourceTree = "<group>"; };
+		F7A2A05C1DB8D0EE0023F228 /* PassengerContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PassengerContentView.h; sourceTree = "<group>"; };
+		F7A2A05D1DB8D0EE0023F228 /* PassengerContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PassengerContentView.m; sourceTree = "<group>"; };
+		F7A2A05E1DB8D0EE0023F228 /* ResourceContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceContentView.h; sourceTree = "<group>"; };
+		F7A2A05F1DB8D0EE0023F228 /* ResourceContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceContentView.m; sourceTree = "<group>"; };
+		F7A2A0601DB8D0EE0023F228 /* TabBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarView.h; sourceTree = "<group>"; };
+		F7A2A0611DB8D0EE0023F228 /* TabBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarView.m; sourceTree = "<group>"; };
 		F7EAE1931DB4776C0060626F /* AbnormalityReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbnormalityReportViewController.h; sourceTree = "<group>"; };
 		F7EAE1941DB4776C0060626F /* AbnormalityReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbnormalityReportViewController.m; sourceTree = "<group>"; };
 		F7EAE1951DB4776C0060626F /* AbnormalityReportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AbnormalityReportViewController.xib; sourceTree = "<group>"; };
@@ -593,40 +593,40 @@
 		846F1D8A1DA89E2600C8920B /* uiview */ = {
 			isa = PBXGroup;
 			children = (
-				845E64391DAB8EC70072360D /* TabBarView.h */,
-				845E643A1DAB8EC70072360D /* TabBarView.m */,
-				845055761DADDD5C00400EBF /* OverViewContentView.h */,
-				845055771DADDD5C00400EBF /* OverViewContentView.m */,
-				845055791DADDD8200400EBF /* FlightContentView.h */,
-				8450557A1DADDD8200400EBF /* FlightContentView.m */,
-				8450557C1DADDDA000400EBF /* PassengerContentView.h */,
-				8450557D1DADDDA000400EBF /* PassengerContentView.m */,
-				8450557F1DADDDC900400EBF /* ResourceContentView.h */,
-				845055801DADDDC900400EBF /* ResourceContentView.m */,
+				F7A2A0581DB8D0EE0023F228 /* FlightContentView.h */,
+				F7A2A0591DB8D0EE0023F228 /* FlightContentView.m */,
+				F7A2A05A1DB8D0EE0023F228 /* OverViewContentView.h */,
+				F7A2A05B1DB8D0EE0023F228 /* OverViewContentView.m */,
+				F7A2A05C1DB8D0EE0023F228 /* PassengerContentView.h */,
+				F7A2A05D1DB8D0EE0023F228 /* PassengerContentView.m */,
+				F7A2A05E1DB8D0EE0023F228 /* ResourceContentView.h */,
+				F7A2A05F1DB8D0EE0023F228 /* ResourceContentView.m */,
+				F7A2A0601DB8D0EE0023F228 /* TabBarView.h */,
+				F7A2A0611DB8D0EE0023F228 /* TabBarView.m */,
 				F7EE87821DB370C4006473F5 /* 航班列表 */,
 				F792513C1DB5EE01006AA119 /* 消息 */,
 				F79251721DB73DD3006AA119 /* 我的 */,
 			);
-			name = uiview;
+			path = uiview;
 			sourceTree = "<group>";
 		};
 		846F1D8B1DA89E2F00C8920B /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				846F1DA01DAA201A00C8920B /* RootViewController.h */,
-				846F1DA11DAA201A00C8920B /* RootViewController.m */,
-				846F1DA31DAA203500C8920B /* LoginViewController.h */,
-				846F1DA41DAA203500C8920B /* LoginViewController.m */,
-				846F1DA61DAA205700C8920B /* HomePageViewController.h */,
-				846F1DA71DAA205700C8920B /* HomePageViewController.m */,
-				846F1DA91DAA222E00C8920B /* FlightViewController.h */,
-				846F1DAA1DAA222E00C8920B /* FlightViewController.m */,
-				846F1DB21DAA233800C8920B /* MessageViewController.h */,
-				846F1DB31DAA233800C8920B /* MessageViewController.m */,
-				846F1DB51DAA23F300C8920B /* FunctionViewController.h */,
-				846F1DB61DAA23F300C8920B /* FunctionViewController.m */,
-				846F1DB81DAA244300C8920B /* UserInfoViewController.h */,
-				846F1DB91DAA244300C8920B /* UserInfoViewController.m */,
+				F7A2A0431DB8D0590023F228 /* FlightViewController.h */,
+				F7A2A0441DB8D0590023F228 /* FlightViewController.m */,
+				F7A2A0451DB8D0590023F228 /* FunctionViewController.h */,
+				F7A2A0461DB8D0590023F228 /* FunctionViewController.m */,
+				F7A2A0471DB8D0590023F228 /* HomePageViewController.h */,
+				F7A2A0481DB8D0590023F228 /* HomePageViewController.m */,
+				F7A2A0491DB8D0590023F228 /* LoginViewController.h */,
+				F7A2A04A1DB8D0590023F228 /* LoginViewController.m */,
+				F7A2A04B1DB8D0590023F228 /* MessageViewController.h */,
+				F7A2A04C1DB8D0590023F228 /* MessageViewController.m */,
+				F7A2A04D1DB8D0590023F228 /* RootViewController.h */,
+				F7A2A04E1DB8D0590023F228 /* RootViewController.m */,
+				F7A2A04F1DB8D0590023F228 /* UserInfoViewController.h */,
+				F7A2A0501DB8D0590023F228 /* UserInfoViewController.m */,
 				F7EEEF191DB396E0004AF0AE /* FlightDetailViewController.h */,
 				F7EEEF1A1DB396E0004AF0AE /* FlightDetailViewController.m */,
 				F7EEEF1B1DB396E0004AF0AE /* FlightDetailViewController.xib */,
@@ -649,7 +649,7 @@
 				F79251901DB858D9006AA119 /* AddressBookViewController.m */,
 				F79251911DB858D9006AA119 /* AddressBookViewController.xib */,
 			);
-			name = controller;
+			path = controller;
 			sourceTree = "<group>";
 		};
 		846F1D8C1DA89E3500C8920B /* categories */ = {
@@ -1219,6 +1219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F79251631DB63A10006AA119 /* ChatLeftTableViewCell.m in Sources */,
+				F7A2A0551DB8D0590023F228 /* MessageViewController.m in Sources */,
 				843F4CF21DACC3FD00D73D56 /* StringUtils.m in Sources */,
 				843F4CF81DACCA6D00D73D56 /* HttpsUtils+Business.m in Sources */,
 				846F1DB11DAA22E800C8920B /* GlobalHelper.m in Sources */,
@@ -1231,42 +1232,41 @@
 				F79251841DB7518E006AA119 /* FlightProcessModel.m in Sources */,
 				F7EAE1A21DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.m in Sources */,
 				F79251711DB70B60006AA119 /* chatRecordModel.m in Sources */,
-				845055781DADDD5C00400EBF /* OverViewContentView.m in Sources */,
-				846F1DA81DAA205700C8920B /* HomePageViewController.m in Sources */,
 				843F4CF51DACC70F00D73D56 /* HttpsUtils.m in Sources */,
 				F792514F1DB60BD0006AA119 /* MessageTableViewCell.m in Sources */,
 				846F1DAE1DAA229600C8920B /* DefaultHelper.m in Sources */,
+				F7A2A0531DB8D0590023F228 /* HomePageViewController.m in Sources */,
 				F7EEEF1C1DB396E0004AF0AE /* FlightDetailViewController.m in Sources */,
-				846F1DBA1DAA244300C8920B /* UserInfoViewController.m in Sources */,
 				F7EAE1961DB4776C0060626F /* AbnormalityReportViewController.m in Sources */,
-				846F1DB71DAA23F300C8920B /* FunctionViewController.m in Sources */,
 				F7EEEF211DB3A580004AF0AE /* FlightDetailTableViewCell.m in Sources */,
-				846F1DA21DAA201A00C8920B /* RootViewController.m in Sources */,
+				F7A2A0621DB8D0EE0023F228 /* FlightContentView.m in Sources */,
 				F7EE87861DB371CA006473F5 /* FlightFilterTableViewCell.m in Sources */,
 				F79251801DB74576006AA119 /* UserManagermentTableViewCell.m in Sources */,
-				846F1DB41DAA233800C8920B /* MessageViewController.m in Sources */,
+				F7A2A0571DB8D0590023F228 /* UserInfoViewController.m in Sources */,
 				F792518D1DB7890E006AA119 /* NightShiftRoomTableViewCell.m in Sources */,
 				F792515E1DB6352D006AA119 /* ChatViewController.m in Sources */,
 				F79251371DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.m in Sources */,
-				8450557E1DADDDA000400EBF /* PassengerContentView.m in Sources */,
+				F7A2A0631DB8D0EE0023F228 /* OverViewContentView.m in Sources */,
+				F7A2A0661DB8D0EE0023F228 /* TabBarView.m in Sources */,
+				F7A2A0541DB8D0590023F228 /* LoginViewController.m in Sources */,
 				F79251761DB73E2C006AA119 /* UserInfoTableViewCell.m in Sources */,
 				F79251681DB63BB7006AA119 /* ChatRightTableViewCell.m in Sources */,
 				F792513B1DB5CBE3006AA119 /* UIViewController+Reminder.m in Sources */,
 				F79251881DB781AB006AA119 /* NightShiftRoomViewController.m in Sources */,
-				846F1DAB1DAA222E00C8920B /* FlightViewController.m in Sources */,
 				F7EAE19D1DB4B0680060626F /* AbnormalityReportCollectionViewCell.m in Sources */,
 				84BA54E41DA256940037198F /* AppDelegate.m in Sources */,
-				845E643B1DAB8EC70072360D /* TabBarView.m in Sources */,
-				846F1DA51DAA203500C8920B /* LoginViewController.m in Sources */,
+				F7A2A0511DB8D0590023F228 /* FlightViewController.m in Sources */,
+				F7A2A0641DB8D0EE0023F228 /* PassengerContentView.m in Sources */,
 				F79251921DB858D9006AA119 /* AddressBookViewController.m in Sources */,
 				84BA54ED1DA256940037198F /* airmobile.xcdatamodeld in Sources */,
 				F79251541DB610D6006AA119 /* FixedMessageTableViewCell.m in Sources */,
+				F7A2A0521DB8D0590023F228 /* FunctionViewController.m in Sources */,
 				F792517B1DB7431D006AA119 /* UserManagementViewController.m in Sources */,
 				84BA54E11DA256940037198F /* main.m in Sources */,
+				F7A2A0561DB8D0590023F228 /* RootViewController.m in Sources */,
 				F792514A1DB608E6006AA119 /* ContactPersonViewController.m in Sources */,
 				F7EE87791DB3285B006473F5 /* FlightFilterView.m in Sources */,
-				845055811DADDDC900400EBF /* ResourceContentView.m in Sources */,
-				8450557B1DADDD8200400EBF /* FlightContentView.m in Sources */,
+				F7A2A0651DB8D0EE0023F228 /* ResourceContentView.m in Sources */,
 				845E643E1DAB980C0072360D /* CommonFunction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

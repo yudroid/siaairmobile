@@ -14,6 +14,7 @@
 #import "UserInfoTableViewCell.h"
 #import "UserManagementViewController.h"
 #import "NightShiftRoomViewController.h"
+#import "AddressBookViewController.h"
 
 static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDENTIFIER";
 
@@ -138,6 +139,9 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     }else if ([name isEqualToString:@"值班表"]){
         NightShiftRoomViewController *nightShiftRoomVC = [[NightShiftRoomViewController alloc]initWithNibName:@"NightShiftRoomViewController" bundle:nil];
         [self.navigationController pushViewController:nightShiftRoomVC animated:YES];
+    }else if ([name isEqualToString:@"通讯录"]){
+        AddressBookViewController *addressBookVC = [[AddressBookViewController alloc]initWithNibName:@"AddressBookViewController" bundle:nil];
+        [self.navigationController pushViewController:addressBookVC animated:YES];
     }
     
 }

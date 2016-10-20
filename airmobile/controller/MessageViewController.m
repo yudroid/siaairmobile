@@ -25,6 +25,7 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 @property (nonatomic, strong) UIView *optionView;
 @property (nonatomic, strong) UISearchBar *searBar;
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UIView *searchView;
 
 @end
 
@@ -38,6 +39,7 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
     [self initTitleView];
     [self initSearBar];
     [self initTable];
+    [self initSearchTableView];
     
     [self initOptionView];
     
@@ -120,10 +122,33 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
     _optionView.alpha = 0;
 }
 
+
+
+-(void)initSearchTableView
+{
+    _searchView = [[UIView alloc]initWithFrame:CGRectMake(0, 108, kScreenWidth, kScreenHeight-108)];
+    _searchView.backgroundColor = [UIColor grayColor];
+    _searchView.alpha = 0;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(searchViewClick:)];
+    [_searchView addGestureRecognizer:tap];
+    [self.view addSubview:_searchView];
+}
+
+
+#pragma mark - EVENT
+
 -(void)optionChatButtonClick:(UIButton *)sender
 {
     ContactPersonViewController *contactPersonVC = [[ContactPersonViewController alloc]initWithNibName:@"ContactPersonViewController" bundle:nil];
     [self.navigationController  pushViewController:contactPersonVC animated:YES];
+}
+
+-(void)searchViewClick:(UIView *)view
+{
+    [UIView animateWithDuration:0.6 animations:^{
+        _searchView.alpha = 0;
+    }];
+    [self.view endEditing:YES];
 }
 
 #pragma mark - UITableViewDelegate UITableViewDataSource
@@ -163,6 +188,10 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
     NSLog(@"%@",searchText);
 }
 
+-(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+{
+    _searchView.alpha = 1;
+}
 #pragma mark 切换底部主功能页面
 -(void)selectWithType:(TabBarSelectedType)type
 {

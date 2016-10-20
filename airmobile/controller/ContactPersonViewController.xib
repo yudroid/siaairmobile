@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ContactPersonViewController">
+            <connections>
+                <outlet property="searchBar" destination="NED-ag-F7N" id="GCI-eD-IMp"/>
+                <outlet property="tableView" destination="IW1-4q-KFj" id="Wc4-jj-IVa"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="NED-ag-F7N">
+                    <textInputTraits key="textInputTraits"/>
+                </searchBar>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IW1-4q-KFj">
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="IW1-4q-KFj" secondAttribute="trailing" id="Cdz-ot-zwr"/>
+                <constraint firstItem="IW1-4q-KFj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="VjG-33-wjj"/>
+                <constraint firstAttribute="bottom" secondItem="IW1-4q-KFj" secondAttribute="bottom" id="YWb-ev-ZJK"/>
+                <constraint firstItem="NED-ag-F7N" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="lnu-ga-Pdt"/>
+                <constraint firstItem="IW1-4q-KFj" firstAttribute="top" secondItem="NED-ag-F7N" secondAttribute="bottom" id="se9-zi-zde"/>
+                <constraint firstItem="NED-ag-F7N" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ujK-N4-PBG"/>
+                <constraint firstAttribute="trailing" secondItem="NED-ag-F7N" secondAttribute="trailing" id="uuT-so-KFV"/>
+            </constraints>
+            <point key="canvasLocation" x="32.5" y="90.5"/>
+        </view>
+    </objects>
+</document>
