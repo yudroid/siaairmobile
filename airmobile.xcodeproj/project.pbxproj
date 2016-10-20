@@ -600,7 +600,6 @@
 				8450557D1DADDDA000400EBF /* PassengerContentView.m */,
 				8450557F1DADDDC900400EBF /* ResourceContentView.h */,
 				845055801DADDDC900400EBF /* ResourceContentView.m */,
-<<<<<<< HEAD
 				8473A5181DB36DC200A8DCE2 /* OverViewContentView.h */,
 				8473A5191DB36DC200A8DCE2 /* OverViewContentView.m */,
 				8473A51F1DB4ACA000A8DCE2 /* RoundProgressView.h */,
@@ -611,8 +610,6 @@
 				84AC5D281DB780F500EE1847 /* PsnSafetyContentView.m */,
 				843D02FE1DB8590D008241CB /* ProgreesBarView.h */,
 				843D02FF1DB8590D008241CB /* ProgreesBarView.m */,
-=======
->>>>>>> origin/master
 				F7EE87821DB370C4006473F5 /* 航班列表 */,
 				F792513C1DB5EE01006AA119 /* 消息 */,
 				F79251721DB73DD3006AA119 /* 我的 */,
@@ -1020,10 +1017,7 @@
 				845055DC1DAE3F1A00400EBF /* icon_userinfo_pass@3x.png in Resources */,
 				8450555F1DACF65200400EBF /* login_icon_invisible@2x.png in Resources */,
 				84BA54EF1DA256940037198F /* Assets.xcassets in Resources */,
-<<<<<<< HEAD
 				8473A5241DB4DAE800A8DCE2 /* calendar.png in Resources */,
-=======
->>>>>>> origin/master
 				F7EE87871DB371CA006473F5 /* FlightFilterTableViewCell.xib in Resources */,
 				84BA54EA1DA256940037198F /* Main.storyboard in Resources */,
 				845055D01DAE3F1A00400EBF /* icon_message_light@3x.png in Resources */,
@@ -1230,11 +1224,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
 				84AC5D261DB780D000EE1847 /* PsnGeneralContentView.m in Sources */,
 				843D03001DB8590D008241CB /* ProgreesBarView.m in Sources */,
-=======
->>>>>>> origin/master
 				F79251631DB63A10006AA119 /* ChatLeftTableViewCell.m in Sources */,
 				843F4CF21DACC3FD00D73D56 /* StringUtils.m in Sources */,
 				84AC5D291DB780F500EE1847 /* PsnSafetyContentView.m in Sources */,
@@ -1244,10 +1235,7 @@
 				F792516D1DB63D62006AA119 /* ChatTimeTableViewCell.m in Sources */,
 				846F1D951DA8F8F700C8920B /* DeviceInfoUtil.m in Sources */,
 				843F4CFB1DACCF2500D73D56 /* ThreadUtils.m in Sources */,
-<<<<<<< HEAD
 				8473A5211DB4ACA000A8DCE2 /* RoundProgressView.m in Sources */,
-=======
->>>>>>> origin/master
 				F79251591DB61D9C006AA119 /* ContactPersonTableViewCell.m in Sources */,
 				F79251841DB7518E006AA119 /* FlightProcessModel.m in Sources */,
 				F7EAE1A21DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.m in Sources */,
