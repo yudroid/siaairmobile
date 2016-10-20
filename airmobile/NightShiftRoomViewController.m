@@ -23,6 +23,12 @@ static const NSString *NIGHTSHIFTROOM_TABLECELL_IDENTIFIER = @"NIGHTSHIFTROOM_TA
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //titleView订制
+    [self titleViewInitWithHight:64];
+    self.titleView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"home_title_bg.png"]];
+    [self titleViewAddTitleText:@"值班表"];
+    [self titleViewAddBackBtn];
+    
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.tableFooterView = [[UIView alloc]init];

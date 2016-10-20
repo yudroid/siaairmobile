@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RootViewController.h"
 
-@interface NightShiftRoomViewController : UIViewController
+@interface NightShiftRoomViewController :RootViewController
 
 @end

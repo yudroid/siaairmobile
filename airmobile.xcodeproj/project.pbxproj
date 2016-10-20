@@ -148,6 +148,12 @@
 		F79251891DB781AB006AA119 /* NightShiftRoomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F79251871DB781AB006AA119 /* NightShiftRoomViewController.xib */; };
 		F792518D1DB7890E006AA119 /* NightShiftRoomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F792518B1DB7890E006AA119 /* NightShiftRoomTableViewCell.m */; };
 		F792518E1DB7890E006AA119 /* NightShiftRoomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F792518C1DB7890E006AA119 /* NightShiftRoomTableViewCell.xib */; };
+		F79251921DB858D9006AA119 /* AddressBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F79251901DB858D9006AA119 /* AddressBookViewController.m */; };
+		F79251931DB858D9006AA119 /* AddressBookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F79251911DB858D9006AA119 /* AddressBookViewController.xib */; };
+		F79251971DB85D78006AA119 /* AddressBookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F79251951DB85D78006AA119 /* AddressBookTableViewCell.m */; };
+		F79251981DB85D78006AA119 /* AddressBookTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F79251961DB85D78006AA119 /* AddressBookTableViewCell.xib */; };
+		F792519C1DB85FA0006AA119 /* AddressBookGroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F792519A1DB85FA0006AA119 /* AddressBookGroupTableViewCell.m */; };
+		F792519D1DB85FA0006AA119 /* AddressBookGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F792519B1DB85FA0006AA119 /* AddressBookGroupTableViewCell.xib */; };
 		F7EAE1961DB4776C0060626F /* AbnormalityReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EAE1941DB4776C0060626F /* AbnormalityReportViewController.m */; };
 		F7EAE1971DB4776C0060626F /* AbnormalityReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7EAE1951DB4776C0060626F /* AbnormalityReportViewController.xib */; };
 		F7EAE19D1DB4B0680060626F /* AbnormalityReportCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EAE19B1DB4B0680060626F /* AbnormalityReportCollectionViewCell.m */; };
@@ -375,6 +381,15 @@
 		F792518A1DB7890E006AA119 /* NightShiftRoomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NightShiftRoomTableViewCell.h; sourceTree = "<group>"; };
 		F792518B1DB7890E006AA119 /* NightShiftRoomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NightShiftRoomTableViewCell.m; sourceTree = "<group>"; };
 		F792518C1DB7890E006AA119 /* NightShiftRoomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NightShiftRoomTableViewCell.xib; sourceTree = "<group>"; };
+		F792518F1DB858D9006AA119 /* AddressBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookViewController.h; sourceTree = "<group>"; };
+		F79251901DB858D9006AA119 /* AddressBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookViewController.m; sourceTree = "<group>"; };
+		F79251911DB858D9006AA119 /* AddressBookViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressBookViewController.xib; sourceTree = "<group>"; };
+		F79251941DB85D78006AA119 /* AddressBookTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookTableViewCell.h; sourceTree = "<group>"; };
+		F79251951DB85D78006AA119 /* AddressBookTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookTableViewCell.m; sourceTree = "<group>"; };
+		F79251961DB85D78006AA119 /* AddressBookTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressBookTableViewCell.xib; sourceTree = "<group>"; };
+		F79251991DB85FA0006AA119 /* AddressBookGroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookGroupTableViewCell.h; sourceTree = "<group>"; };
+		F792519A1DB85FA0006AA119 /* AddressBookGroupTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookGroupTableViewCell.m; sourceTree = "<group>"; };
+		F792519B1DB85FA0006AA119 /* AddressBookGroupTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressBookGroupTableViewCell.xib; sourceTree = "<group>"; };
 		F7EAE1931DB4776C0060626F /* AbnormalityReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbnormalityReportViewController.h; sourceTree = "<group>"; };
 		F7EAE1941DB4776C0060626F /* AbnormalityReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbnormalityReportViewController.m; sourceTree = "<group>"; };
 		F7EAE1951DB4776C0060626F /* AbnormalityReportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AbnormalityReportViewController.xib; sourceTree = "<group>"; };
@@ -630,6 +645,9 @@
 				F79251851DB781AB006AA119 /* NightShiftRoomViewController.h */,
 				F79251861DB781AB006AA119 /* NightShiftRoomViewController.m */,
 				F79251871DB781AB006AA119 /* NightShiftRoomViewController.xib */,
+				F792518F1DB858D9006AA119 /* AddressBookViewController.h */,
+				F79251901DB858D9006AA119 /* AddressBookViewController.m */,
+				F79251911DB858D9006AA119 /* AddressBookViewController.xib */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -795,6 +813,12 @@
 				F792518A1DB7890E006AA119 /* NightShiftRoomTableViewCell.h */,
 				F792518B1DB7890E006AA119 /* NightShiftRoomTableViewCell.m */,
 				F792518C1DB7890E006AA119 /* NightShiftRoomTableViewCell.xib */,
+				F79251941DB85D78006AA119 /* AddressBookTableViewCell.h */,
+				F79251951DB85D78006AA119 /* AddressBookTableViewCell.m */,
+				F79251961DB85D78006AA119 /* AddressBookTableViewCell.xib */,
+				F79251991DB85FA0006AA119 /* AddressBookGroupTableViewCell.h */,
+				F792519A1DB85FA0006AA119 /* AddressBookGroupTableViewCell.m */,
+				F792519B1DB85FA0006AA119 /* AddressBookGroupTableViewCell.xib */,
 			);
 			name = "我的";
 			sourceTree = "<group>";
@@ -966,6 +990,7 @@
 				845055D91DAE3F1A00400EBF /* icon_userinfo_light@2x.png in Resources */,
 				8450555C1DACF65200400EBF /* login_btn@3x.png in Resources */,
 				8450556C1DACF65200400EBF /* splash@2x.png in Resources */,
+				F792519D1DB85FA0006AA119 /* AddressBookGroupTableViewCell.xib in Resources */,
 				845055BD1DAE3F1A00400EBF /* icon_function@2x.png in Resources */,
 				845055C71DAE3F1A00400EBF /* icon_home_light@2x.png in Resources */,
 				F792515A1DB61D9C006AA119 /* ContactPersonTableViewCell.xib in Resources */,
@@ -986,6 +1011,7 @@
 				8450555F1DACF65200400EBF /* login_icon_invisible@2x.png in Resources */,
 				84BA54EF1DA256940037198F /* Assets.xcassets in Resources */,
 				F7EE87871DB371CA006473F5 /* FlightFilterTableViewCell.xib in Resources */,
+				F79251981DB85D78006AA119 /* AddressBookTableViewCell.xib in Resources */,
 				84BA54EA1DA256940037198F /* Main.storyboard in Resources */,
 				845055D01DAE3F1A00400EBF /* icon_message_light@3x.png in Resources */,
 				845055BE1DAE3F1A00400EBF /* icon_function@3x.png in Resources */,
@@ -1027,6 +1053,7 @@
 				845055671DACF65200400EBF /* login_visible@2x.png in Resources */,
 				845055CA1DAE3F1A00400EBF /* icon_home_pass@3x.png in Resources */,
 				845055611DACF65200400EBF /* login_icon_lock@2x.png in Resources */,
+				F79251931DB858D9006AA119 /* AddressBookViewController.xib in Resources */,
 				845055B21DAE3F1A00400EBF /* home_footer_bg@3x.png in Resources */,
 				F7EAE19E1DB4B0680060626F /* AbnormalityReportCollectionViewCell.xib in Resources */,
 				F79251811DB74576006AA119 /* UserManagermentTableViewCell.xib in Resources */,
@@ -1197,6 +1224,8 @@
 				846F1DB11DAA22E800C8920B /* GlobalHelper.m in Sources */,
 				F792516D1DB63D62006AA119 /* ChatTimeTableViewCell.m in Sources */,
 				846F1D951DA8F8F700C8920B /* DeviceInfoUtil.m in Sources */,
+				F79251971DB85D78006AA119 /* AddressBookTableViewCell.m in Sources */,
+				F792519C1DB85FA0006AA119 /* AddressBookGroupTableViewCell.m in Sources */,
 				843F4CFB1DACCF2500D73D56 /* ThreadUtils.m in Sources */,
 				F79251591DB61D9C006AA119 /* ContactPersonTableViewCell.m in Sources */,
 				F79251841DB7518E006AA119 /* FlightProcessModel.m in Sources */,
@@ -1229,6 +1258,7 @@
 				84BA54E41DA256940037198F /* AppDelegate.m in Sources */,
 				845E643B1DAB8EC70072360D /* TabBarView.m in Sources */,
 				846F1DA51DAA203500C8920B /* LoginViewController.m in Sources */,
+				F79251921DB858D9006AA119 /* AddressBookViewController.m in Sources */,
 				84BA54ED1DA256940037198F /* airmobile.xcdatamodeld in Sources */,
 				F79251541DB610D6006AA119 /* FixedMessageTableViewCell.m in Sources */,
 				F792517B1DB7431D006AA119 /* UserManagementViewController.m in Sources */,
