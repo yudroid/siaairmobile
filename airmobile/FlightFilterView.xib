@@ -30,68 +30,164 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="50" id="CUO-qj-5Tu"/>
                     </constraints>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <state key="normal" title="国际">
                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                     </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="国际"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="value" value=""/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="selectButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="xQo-Dl-ITf"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e01-Fm-WP4" customClass="FilghtFilterButton">
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <state key="normal" title="正常">
                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                     </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="正常"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="value" value=""/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="selectButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="GIj-gq-Myf"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q5r-Ta-knm" customClass="FilghtFilterButton">
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <state key="normal" title="正常">
                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                     </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="正常"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="value" value=""/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="selectButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="mZf-ID-0gO"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L1k-Vv-QsP" customClass="FilghtFilterButton">
                     <constraints>
                         <constraint firstAttribute="width" constant="50" id="PXR-vX-60Z"/>
                         <constraint firstAttribute="height" constant="30" id="aiO-h5-DBt"/>
                     </constraints>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <state key="normal" title="国内">
                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                     </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="国内"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="value" value=""/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="selectButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="Txt-0n-61D"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O3n-WN-789" customClass="FilghtFilterButton">
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <state key="normal" title="预警">
                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                     </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="预警"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="value" value=""/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="selectButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="hDF-cU-HEt"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Knd-gV-GsA" customClass="FilghtFilterButton">
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <state key="normal" title="预警">
                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                     </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="预警"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="value" value=""/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="selectButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="Iih-Lx-Hc1"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FCW-HO-9l5" customClass="FilghtFilterButton">
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <state key="normal" title="预警">
                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                     </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="预警"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="value" value=""/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="selectButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="Qe9-Z4-Htu"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zfk-wa-ZTH" customClass="FilghtFilterButton">
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <state key="normal" title="普通">
                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                     </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="普通"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="value" value=""/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="selectButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="MBq-7m-fi4"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NsM-KH-VQl" customClass="FilghtFilterButton">
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <state key="normal" title="正常">
                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                     </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="正常"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="value" value=""/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="selectButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="bE8-nH-ENj"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l1h-7u-5Vb" customClass="FilghtFilterButton">
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <state key="normal" title="特殊">
                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                     </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="特殊"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="value" value=""/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="selectButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="Jd3-36-fBX"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="05v-Bs-Vsh" customClass="FilghtFilterButton">
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <state key="normal" title="预警">
                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                     </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="预警"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="value" value=""/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="selectButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="HHH-0w-9AT"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vxg-G2-DMt" customClass="FilghtFilterButton">
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <state key="normal" title="正常">
                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                     </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="正常"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="value" value=""/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="selectButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="qiO-DQ-oCw"/>
+                    </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xn3-kM-Tui">
                     <subviews>

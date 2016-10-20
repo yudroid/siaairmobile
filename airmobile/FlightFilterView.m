@@ -18,47 +18,61 @@
     self.layer.borderColor = [CommonFunction colorFromHex:0XFFA7E6F8].CGColor;
     
 }
-
--(void)setHighlighted:(BOOL)highlighted
+-(void)setIsSelected:(Boolean)isSelected
 {
-    [super setHighlighted:highlighted];
-    if (highlighted) {
+    _isSelected = isSelected;
+    if (isSelected == YES) {
         self.backgroundColor = [CommonFunction colorFromHex:0XFFA7E6F8];
         self.titleLabel.textColor = [CommonFunction colorFromHex:0XFF28BEEA];
-        
     }else{
         self.backgroundColor = [UIColor whiteColor];
         self.titleLabel.textColor = [UIColor blackColor];
-        
     }
 }
+-(void)setTitle:(NSString *)title
+{
+    _title = title;
+    [self setTitle:title forState:UIControlStateNormal];
+}
+
+@end
+
+@interface FlightFilterView ()
+
+@property (nonatomic, strong) NSMutableArray *selectedArray;
 
 @end
 
 @implementation FlightFilterView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
-
 -(void)awakeFromNib
 {
     [super awakeFromNib];
+    _selectedArray = [NSMutableArray array];
     
 }
 - (IBAction)cancelButtonClick:(id)sender {
-    [UIView animateWithDuration:0.6 animations:^{
+    [UIView animateWithDuration:0.3 animations:^{
         self.alpha = 0;
     }];
 }
 - (IBAction)sureButtonClick:(id)sender {
-    [UIView animateWithDuration:0.6 animations:^{
+    [UIView animateWithDuration:0.3 animations:^{
         self.alpha = 0;
     }];
+}
+- (IBAction)selectButtonClick:(FilghtFilterButton *)sender {
+    if(sender.isSelected){
+        sender.isSelected = NO;
+        if ([_selectedArray containsObject:sender]) {
+            [_selectedArray removeObject:sender];
+        }
+    }else{
+        sender.isSelected = YES;
+        if (![_selectedArray containsObject:sender]) {
+            [_selectedArray addObject:sender];
+        }
+    }
 }
 
 @end

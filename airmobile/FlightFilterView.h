@@ -10,6 +10,10 @@
 
 @interface FilghtFilterButton:UIButton
 
+@property (nonatomic ,copy) NSString *title;
+@property (nonatomic, copy) NSString *value;
+@property (nonatomic, assign) Boolean isSelected;//是否被选中
+
 @end
 
 
