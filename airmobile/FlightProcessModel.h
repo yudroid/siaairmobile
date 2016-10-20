@@ -12,34 +12,34 @@
 
 @property(nonatomic,assign)  int index;
 @property(nonatomic,copy)  NSString * flag;
-@property(nonatomic,copy)  NSString * fltDate;
-@property(nonatomic,copy)  NSString * fltNo;
-@property(nonatomic,copy)  NSString * route;
-@property(nonatomic,copy)  NSString * airline;
-@property(nonatomic,copy)  NSString * airlineIata;
-@property(nonatomic,copy)  NSString * craftModel;
-@property(nonatomic,copy)  NSString * craftNo;
-@property(nonatomic,copy)  NSString * stand;
-@property(nonatomic,copy)  NSString * task;
-@property(nonatomic,copy)  NSString * gate;
-@property(nonatomic,strong)  NSDate * prePlanTakeoff;
-@property(nonatomic,strong)  NSDate * preAlterTakeoff;
-@property(nonatomic,strong)  NSDate * preRealTakeoff;
-@property(nonatomic,strong)  NSDate * planArr;
-@property(nonatomic,strong)  NSDate * alterArr;
-@property(nonatomic,strong)  NSDate * realArr;
-@property(nonatomic,strong)  NSDate * planTakeoff;
-@property(nonatomic,strong)  NSDate * alterTakeoff;
-@property(nonatomic,strong)  NSDate * realTakeoff;
-@property(nonatomic,strong)  NSDate * nextPlanArr;
-@property(nonatomic,strong)  NSDate * nextAlterArr;
-@property(nonatomic,strong)  NSDate * nextRealArr;
-@property(nonatomic,copy)  NSString * arrStatus;
-@property(nonatomic,copy)  NSString * depStatus;
-@property(nonatomic,copy)  NSString * arrAbn;
-@property(nonatomic,copy)  NSString * depAbn;
-@property(nonatomic,strong)  NSDate * cabinOpenTime;
-@property(nonatomic,strong)  NSDate * cabinCloseTime;
+@property(nonatomic,copy)  NSString * fltDate;          //航班日期
+@property(nonatomic,copy)  NSString * fltNo;            //航班号
+@property(nonatomic,copy)  NSString * route;            //航线 例如：北京-青岛-釜山
+@property(nonatomic,copy)  NSString * airline;          //航空公司
+@property(nonatomic,copy)  NSString * airlineIata;      //航空公司二字码 例如：MU
+@property(nonatomic,copy)  NSString * craftModel;       //机型
+@property(nonatomic,copy)  NSString * craftNo;          //机号
+@property(nonatomic,copy)  NSString * stand;            //机位
+@property(nonatomic,copy)  NSString * task;             //任务类型  例如：正班、补班
+@property(nonatomic,copy)  NSString * gate;             //登机口
+@property(nonatomic,strong)  NSDate * prePlanTakeoff;   //前站计划起飞时间
+@property(nonatomic,strong)  NSDate * preAlterTakeoff;  //前站变更起飞时间
+@property(nonatomic,strong)  NSDate * preRealTakeoff;   //前站真实起飞时间
+@property(nonatomic,strong)  NSDate * planArr;          //计划到达时间
+@property(nonatomic,strong)  NSDate * alterArr;         //变更到达时间
+@property(nonatomic,strong)  NSDate * realArr;          //实际到达时间
+@property(nonatomic,strong)  NSDate * planTakeoff;      //计划起飞时间
+@property(nonatomic,strong)  NSDate * alterTakeoff;     //变更起飞时间
+@property(nonatomic,strong)  NSDate * realTakeoff;      //实际起飞时间
+@property(nonatomic,strong)  NSDate * nextPlanArr;      //下站计划到达时间
+@property(nonatomic,strong)  NSDate * nextAlterArr;     //下站变更到达时间
+@property(nonatomic,strong)  NSDate * nextRealArr;      //下站实际到达时间
+@property(nonatomic,copy)  NSString * arrStatus;        //进港状态
+@property(nonatomic,copy)  NSString * depStatus;        //出港状态
+@property(nonatomic,copy)  NSString * arrAbn;           //进港异常状态
+@property(nonatomic,copy)  NSString * depAbn;           //出港异常状态
+@property(nonatomic,strong)  NSDate * cabinOpenTime;    //
+@property(nonatomic,strong)  NSDate * cabinCloseTime;   //
 //放轮挡时间
 @property(nonatomic,strong)  NSDate * blockOnTime;
 //撤轮挡时间
