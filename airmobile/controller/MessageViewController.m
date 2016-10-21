@@ -257,7 +257,6 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 }
 
 
-<<<<<<< HEAD
 
 -(void)initSearchTableView
 {
@@ -272,15 +271,14 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 
 #pragma mark - EVENT
 
-=======
->>>>>>> 50025e1a71edc14fbb4430fe6c9e3ff70b012b41
+
 -(void)optionChatButtonClick:(UIButton *)sender
 {
     ContactPersonViewController *contactPersonVC = [[ContactPersonViewController alloc]initWithNibName:@"ContactPersonViewController" bundle:nil];
     [self.navigationController  pushViewController:contactPersonVC animated:YES];
 }
 
-<<<<<<< HEAD
+
 -(void)searchViewClick:(UIView *)view
 {
     [UIView animateWithDuration:0.6 animations:^{
@@ -288,8 +286,7 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
     }];
     [self.view endEditing:YES];
 }
-=======
->>>>>>> 50025e1a71edc14fbb4430fe6c9e3ff70b012b41
+
 
 #pragma mark - UITableViewDelegate UITableViewDataSource
 
@@ -322,84 +319,14 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 }
 
 
-<<<<<<< HEAD
+
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
     _searchView.alpha = 1;
 }
-#pragma mark 切换底部主功能页面
--(void)selectWithType:(TabBarSelectedType)type
-{
-    NSArray *viewControllers=[self.navigationController viewControllers];
-    
-    if (type == TabBarSelectedTypeHomePage)
-    {
-        for (UIViewController * controller in viewControllers)
-        {
-            if ([controller isKindOfClass:[HomePageViewController class]])
-            {
-                [self.navigationController popToViewController:controller animated:NO];
-            }
-            else
-            {
-                HomePageViewController *homPage = [[HomePageViewController alloc] init];
-                [self.navigationController pushViewController:homPage animated:NO];
-            }
-        }
-    }
-    else if (type==TabBarSelectedTypeFlight)
-    {
-        for (UIViewController * controller in viewControllers)
-        {
-            if ([controller isKindOfClass:[FlightViewController class]])
-            {
-                [self.navigationController popToViewController:controller animated:NO];
-            }
-            else
-            {
-                FlightViewController *flight = [[FlightViewController alloc] init];
-                [self.navigationController pushViewController:flight animated:NO];
-            }
-        }
-        
-    }
-    else if (type==TabBarSelectedTypeUserInfo)
-    {
-        for (UIViewController * controller in viewControllers)
-        {
-            if ([controller isKindOfClass:[UserInfoViewController class]])
-            {
-                [self.navigationController popToViewController:controller animated:NO];
-            }
-            else
-            {
-                UserInfoViewController *userInfo = [[UserInfoViewController alloc] init];
-                [self.navigationController pushViewController:userInfo animated:NO];
-            }
-        }
-        
-    }
-    else if (type==TabBarSelectedTypeFunction)
-    {
-        for (UIViewController * controller in viewControllers)
-        {
-            if ([controller isKindOfClass:[FunctionViewController class]])
-            {
-                [self.navigationController popToViewController:controller animated:NO];
-            }
-            else
-            {
-                FunctionViewController *function = [[FunctionViewController alloc] init];
-                [self.navigationController pushViewController:function animated:NO];
-            }
-        }
-        
-    }
-}
-=======
 
 
->>>>>>> 50025e1a71edc14fbb4430fe6c9e3ff70b012b41
+
 
 
 @end
