@@ -10,6 +10,7 @@
 #import "AbnormalityReportCollectionViewCell.h"
 #import "UIViewController+Reminder.h"
 #import "AbnormalityReportTableViewCell.h"
+#import "UploadPhotoViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 
 static const NSString *ABNORMALITYREPORT_TABLECELL_IDENTIFIER =@"ABNORMALITYREPORT_TABLECELL_IDENTIFIER";
@@ -104,7 +105,10 @@ static const NSString *ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER = @"ABNORMALI
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (IBAction)phoneButttonClick:(id)sender {
+- (IBAction)phoneButttonClick:(id)sender
+{
+//    UploadPhotoViewController *uploadPhotoVC = [[UploadPhotoViewController alloc]initWithNibName:@"UploadPhotoViewController" bundle:nil];
+//    [self.navigationController pushViewController:uploadPhotoVC animated:YES];
     
     ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
     if (author == ALAuthorizationStatusRestricted || author ==ALAuthorizationStatusDenied)

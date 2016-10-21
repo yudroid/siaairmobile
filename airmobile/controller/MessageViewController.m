@@ -55,19 +55,19 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
     // Do any additional setup after loading the view.
     
     //titleView订制
-    [self titleViewInitWithHight:64];
-    [self titleViewAddTitleText:@"消息"];
-    
-    textfield = [[UITextField alloc] initWithFrame:CGRectMake(10, 100, kScreenWidth-20, 200)];
-    textfield.text = @"com.apple.MobileAsset.TextInput.SpellChecker";
-    [self.view addSubview:textfield];
-    
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2-50, 250, 100, 30)];
-    label.text = @"发 送 消 息";
-    [self.view addSubview:label];
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth/2-50, 250, 100, 30)];
-    [button addTarget:self action:@selector(sendMessage:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
+//    [self titleViewInitWithHight:64];
+//    [self titleViewAddTitleText:@"消息"];
+//
+//    textfield = [[UITextField alloc] initWithFrame:CGRectMake(10, 100, kScreenWidth-20, 200)];
+//    textfield.text = @"com.apple.MobileAsset.TextInput.SpellChecker";
+//    [self.view addSubview:textfield];
+//    
+//    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2-50, 250, 100, 30)];
+//    label.text = @"发 送 消 息";
+//    [self.view addSubview:label];
+//    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth/2-50, 250, 100, 30)];
+//    [button addTarget:self action:@selector(sendMessage:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:button];
     
     //TabBer自定义
     self.tabBarView = [[TabBarView alloc] initTabBarWithModel:TabBarBgModelNormal selectedType:TabBarSelectedTypeMessage delegate:self];
@@ -194,6 +194,7 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
     _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 108, kScreenWidth, kScreenHeight-108-48)];
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    _tableView.tableFooterView = [[UIView alloc]init];
     
     [_tableView registerNib:[UINib nibWithNibName:@"MessageTableViewCell" bundle:nil] forCellReuseIdentifier:(NSString *)MESSAGE_TABLECELL_IDENTIFIER];
     [_tableView registerNib:[UINib nibWithNibName:@"FixedMessageTableViewCell" bundle:nil] forCellReuseIdentifier:(NSString *)MESSAGE_FIXTABLECELL_IDENTIFIER];
@@ -214,8 +215,6 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
     
     [self.titleView addSubview:chatButton];
 }
-
-
 
 
 
@@ -270,7 +269,6 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 
 
 #pragma mark - EVENT
-
 
 -(void)optionChatButtonClick:(UIButton *)sender
 {

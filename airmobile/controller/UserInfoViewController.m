@@ -145,75 +145,39 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     }
     
 }
-#pragma mark 切换底部主功能页面
+#pragma mark - 切换底部主功能页面
 -(void)selectWithType:(TabBarSelectedType)type
-{
-    NSArray *viewControllers=[self.navigationController viewControllers];
-    
-    if (type == TabBarSelectedTypeHomePage)
     {
-        for (UIViewController * controller in viewControllers)
-        {
-            if ([controller isKindOfClass:[HomePageViewController class]])
+        switch (type) {
+            case TabBarSelectedTypeHomePage:
             {
-                [self.navigationController popToViewController:controller animated:NO];
+                HomePageViewController *homepage = [[HomePageViewController alloc] init];
+                [self.navigationController pushViewController:homepage animated:NO];
+                break;
             }
-            else
+            case TabBarSelectedTypeFlight:
             {
-                HomePageViewController *homPage = [[HomePageViewController alloc] init];
-                [self.navigationController pushViewController:homPage animated:NO];
+                FlightViewController *flightpage = [[FlightViewController alloc] init];
+                [self.navigationController pushViewController:flightpage animated:NO];
+                break;
             }
-        }
-    }
-    else if (type==TabBarSelectedTypeFlight)
-    {
-        for (UIViewController * controller in viewControllers)
-        {
-            if ([controller isKindOfClass:[FlightViewController class]])
+            case TabBarSelectedTypeMessage:
             {
-                [self.navigationController popToViewController:controller animated:NO];
+                MessageViewController *messagepage = [[MessageViewController alloc] init];
+                [self.navigationController pushViewController:messagepage animated:NO];
+                break;
             }
-            else
-            {
-                FlightViewController *flight = [[FlightViewController alloc] init];
-                [self.navigationController pushViewController:flight animated:NO];
-            }
-        }
-        
-    }
-    else if (type==TabBarSelectedTypeMessage)
-    {
-        for (UIViewController * controller in viewControllers)
-        {
-            if ([controller isKindOfClass:[MessageViewController class]])
-            {
-                [self.navigationController popToViewController:controller animated:NO];
-            }
-            else
-            {
-                MessageViewController *message = [[MessageViewController alloc] init];
-                [self.navigationController pushViewController:message animated:NO];
-            }
-        }
-        
-    }
-    else if (type==TabBarSelectedTypeFunction)
-    {
-        for (UIViewController * controller in viewControllers)
-        {
-            if ([controller isKindOfClass:[FunctionViewController class]])
-            {
-                [self.navigationController popToViewController:controller animated:NO];
-            }
-            else
+            case TabBarSelectedTypeFunction:
             {
                 FunctionViewController *function = [[FunctionViewController alloc] init];
                 [self.navigationController pushViewController:function animated:NO];
+                break;
             }
+            default:
+            break;
         }
-        
     }
-}
+
 
 /*
 #pragma mark - Navigation

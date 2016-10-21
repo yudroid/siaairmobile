@@ -117,76 +117,40 @@ static  NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_IDETIF
 }
 
 
-#pragma mark 切换底部主功能页面
+
+#pragma mark - 切换底部主功能页面
 -(void)selectWithType:(TabBarSelectedType)type
-{
-    NSArray *viewControllers=[self.navigationController viewControllers];
-    
-    if (type == TabBarSelectedTypeHomePage)
     {
-        for (UIViewController * controller in viewControllers)
-        {
-            if ([controller isKindOfClass:[HomePageViewController class]])
+        switch (type) {
+            case TabBarSelectedTypeHomePage:
             {
-                [self.navigationController popToViewController:controller animated:NO];
+                HomePageViewController *homepage = [[HomePageViewController alloc] init];
+                [self.navigationController pushViewController:homepage animated:NO];
+                break;
             }
-            else
+            case TabBarSelectedTypeMessage:
             {
-                HomePageViewController *homPage = [[HomePageViewController alloc] init];
-                [self.navigationController pushViewController:homPage animated:NO];
+                MessageViewController *messagepage = [[MessageViewController alloc] init];
+                [self.navigationController pushViewController:messagepage animated:NO];
+                break;
             }
-        }
-    }
-    else if (type==TabBarSelectedTypeMessage)
-    {
-        for (UIViewController * controller in viewControllers)
-        {
-            if ([controller isKindOfClass:[MessageViewController class]])
-            {
-                [self.navigationController popToViewController:controller animated:NO];
-            }
-            else
-            {
-                MessageViewController *function = [[MessageViewController alloc] init];
-                [self.navigationController pushViewController:function animated:NO];
-            }
-        }
-        
-    }
-    else if (type==TabBarSelectedTypeUserInfo)
-    {
-        for (UIViewController * controller in viewControllers)
-        {
-            if ([controller isKindOfClass:[UserInfoViewController class]])
-            {
-                [self.navigationController popToViewController:controller animated:NO];
-            }
-            else
-            {
-                UserInfoViewController *userInfo = [[UserInfoViewController alloc] init];
-                [self.navigationController pushViewController:userInfo animated:NO];
-            }
-        }
-        
-    }
-    else if (type==TabBarSelectedTypeFunction)
-    {
-        for (UIViewController * controller in viewControllers)
-        {
-            if ([controller isKindOfClass:[FunctionViewController class]])
-            {
-                [self.navigationController popToViewController:controller animated:NO];
-            }
-            else
+            case TabBarSelectedTypeFunction:
             {
                 FunctionViewController *function = [[FunctionViewController alloc] init];
                 [self.navigationController pushViewController:function animated:NO];
+                break;
             }
+            case TabBarSelectedTypeUserInfo:
+            {
+                UserInfoViewController *userInfo = [[UserInfoViewController alloc] init];
+                [self.navigationController pushViewController:userInfo animated:NO];
+                break;
+            }
+            default:
+            break;
         }
-        
     }
-   
-}
+
 /*
 #pragma mark - Navigation
 

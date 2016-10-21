@@ -147,6 +147,8 @@
 		F7A25D0B1DB9E71A00F36C32 /* RoundProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D0A1DB9E71A00F36C32 /* RoundProgressView.m */; };
 		F7A25D0F1DBA059800F36C32 /* AbnormalityReportTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D0D1DBA059800F36C32 /* AbnormalityReportTableViewCell.m */; };
 		F7A25D101DBA059800F36C32 /* AbnormalityReportTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7A25D0E1DBA059800F36C32 /* AbnormalityReportTableViewCell.xib */; };
+		F7A25D141DBA106300F36C32 /* UploadPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D121DBA106300F36C32 /* UploadPhotoViewController.m */; };
+		F7A25D151DBA106300F36C32 /* UploadPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7A25D131DBA106300F36C32 /* UploadPhotoViewController.xib */; };
 		F7A2A0511DB8D0590023F228 /* FlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A0441DB8D0590023F228 /* FlightViewController.m */; };
 		F7A2A0521DB8D0590023F228 /* FunctionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A0461DB8D0590023F228 /* FunctionViewController.m */; };
 		F7A2A0531DB8D0590023F228 /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A0481DB8D0590023F228 /* HomePageViewController.m */; };
@@ -381,6 +383,9 @@
 		F7A25D0C1DBA059800F36C32 /* AbnormalityReportTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbnormalityReportTableViewCell.h; sourceTree = "<group>"; };
 		F7A25D0D1DBA059800F36C32 /* AbnormalityReportTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbnormalityReportTableViewCell.m; sourceTree = "<group>"; };
 		F7A25D0E1DBA059800F36C32 /* AbnormalityReportTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AbnormalityReportTableViewCell.xib; sourceTree = "<group>"; };
+		F7A25D111DBA106300F36C32 /* UploadPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadPhotoViewController.h; sourceTree = "<group>"; };
+		F7A25D121DBA106300F36C32 /* UploadPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadPhotoViewController.m; sourceTree = "<group>"; };
+		F7A25D131DBA106300F36C32 /* UploadPhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadPhotoViewController.xib; sourceTree = "<group>"; };
 		F7A2A0431DB8D0590023F228 /* FlightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightViewController.h; sourceTree = "<group>"; };
 		F7A2A0441DB8D0590023F228 /* FlightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightViewController.m; sourceTree = "<group>"; };
 		F7A2A0451DB8D0590023F228 /* FunctionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FunctionViewController.h; sourceTree = "<group>"; };
@@ -653,6 +658,9 @@
 				F7EEEF191DB396E0004AF0AE /* FlightDetailViewController.h */,
 				F7EEEF1A1DB396E0004AF0AE /* FlightDetailViewController.m */,
 				F7EEEF1B1DB396E0004AF0AE /* FlightDetailViewController.xib */,
+				F7A25D111DBA106300F36C32 /* UploadPhotoViewController.h */,
+				F7A25D121DBA106300F36C32 /* UploadPhotoViewController.m */,
+				F7A25D131DBA106300F36C32 /* UploadPhotoViewController.xib */,
 				F7EAE1931DB4776C0060626F /* AbnormalityReportViewController.h */,
 				F7EAE1941DB4776C0060626F /* AbnormalityReportViewController.m */,
 				F7EAE1951DB4776C0060626F /* AbnormalityReportViewController.xib */,
@@ -1095,6 +1103,7 @@
 				845055D11DAE3F1A00400EBF /* icon_message_pass@2x.png in Resources */,
 				845055D81DAE3F1A00400EBF /* icon_userinfo@3x.png in Resources */,
 				846F1DC11DAA2E3400C8920B /* launchScreen@2x.png in Resources */,
+				F7A25D151DBA106300F36C32 /* UploadPhotoViewController.xib in Resources */,
 				F79251691DB63BB7006AA119 /* ChatRightTableViewCell.xib in Resources */,
 				F79251641DB63A10006AA119 /* ChatLeftTableViewCell.xib in Resources */,
 				845055C91DAE3F1A00400EBF /* icon_home_pass@2x.png in Resources */,
@@ -1280,6 +1289,7 @@
 				F7A2A0571DB8D0590023F228 /* UserInfoViewController.m in Sources */,
 				F792518D1DB7890E006AA119 /* NightShiftRoomTableViewCell.m in Sources */,
 				F792515E1DB6352D006AA119 /* ChatViewController.m in Sources */,
+				F7A25D141DBA106300F36C32 /* UploadPhotoViewController.m in Sources */,
 				F79251371DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.m in Sources */,
 				F7A25D051DB9E6C900F36C32 /* PsnSafetyContentView.m in Sources */,
 				F7A2A0631DB8D0EE0023F228 /* OverViewContentView.m in Sources */,
