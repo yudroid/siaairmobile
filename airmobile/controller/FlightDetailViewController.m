@@ -83,9 +83,9 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView == _safeguardTableView) {
-        return 30;
+        return 45;
     }
-    return 100;
+    return 103;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -150,15 +150,19 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 
 - (IBAction)safeguradContractButtonClick:(UIButton *)sender {
     if (sender.tag == 0) {
+        
         sender.tag = 1;
         [UIView animateWithDuration:0.3 animations:^{
-            _safeguradViewHeight.constant = 30;
+            sender.transform = CGAffineTransformMakeRotation(M_PI);
+            _safeguradViewHeight.constant = 36;
             [self.view layoutIfNeeded];
         }];
     }else{
+        
         sender.tag = 0;
         [UIView animateWithDuration:0.3 animations:^{
-            _safeguradViewHeight.constant = _safeguardTableViewArray.count *30+30;
+            sender.transform = CGAffineTransformMakeRotation(0);
+            _safeguradViewHeight.constant = _safeguardTableViewArray.count *45+36;
             [self.view layoutIfNeeded];
         }];
     }

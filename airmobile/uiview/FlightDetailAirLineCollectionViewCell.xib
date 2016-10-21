@@ -26,40 +26,41 @@
                             <constraint firstAttribute="height" constant="8" id="zIZ-Fj-u52"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qYA-hL-CDu">
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xuxian" translatesAutoresizingMaskIntoConstraints="NO" id="nal-UV-dmK">
                         <constraints>
-                            <constraint firstAttribute="height" constant="1" id="jWu-et-nEH"/>
+                            <constraint firstAttribute="height" constant="2" id="xc8-Fk-2qR"/>
                         </constraints>
-                    </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O8C-hA-Bmr">
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xuxian" translatesAutoresizingMaskIntoConstraints="NO" id="wbB-oT-JZZ">
                         <constraints>
-                            <constraint firstAttribute="height" constant="1" id="87B-aa-7xi"/>
+                            <constraint firstAttribute="height" constant="2" id="adb-pg-Htb"/>
                         </constraints>
-                    </view>
+                    </imageView>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="qYA-hL-CDu" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="-1" id="5Ka-Uh-OCx"/>
-                <constraint firstItem="O8C-hA-Bmr" firstAttribute="centerY" secondItem="S2b-YF-ebb" secondAttribute="centerY" id="Cxg-CW-92L"/>
-                <constraint firstAttribute="trailing" secondItem="O8C-hA-Bmr" secondAttribute="trailing" id="Kuz-3X-81o"/>
+                <constraint firstItem="S2b-YF-ebb" firstAttribute="centerY" secondItem="nal-UV-dmK" secondAttribute="centerY" id="FSJ-bp-m5n"/>
+                <constraint firstItem="nal-UV-dmK" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Nc9-f1-7G1"/>
+                <constraint firstItem="S2b-YF-ebb" firstAttribute="leading" secondItem="nal-UV-dmK" secondAttribute="trailing" id="Rye-S9-mcs"/>
                 <constraint firstItem="S2b-YF-ebb" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="SFM-bQ-Xj8"/>
                 <constraint firstItem="S2b-YF-ebb" firstAttribute="top" secondItem="nXC-zP-TmB" secondAttribute="bottom" constant="4" id="UbE-VU-HX3"/>
-                <constraint firstItem="O8C-hA-Bmr" firstAttribute="leading" secondItem="S2b-YF-ebb" secondAttribute="trailing" id="VGS-D0-TgT"/>
                 <constraint firstItem="nXC-zP-TmB" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" constant="-5" id="WTl-sa-4XT"/>
+                <constraint firstAttribute="trailing" secondItem="wbB-oT-JZZ" secondAttribute="trailing" id="fbR-3P-czL"/>
+                <constraint firstItem="wbB-oT-JZZ" firstAttribute="leading" secondItem="S2b-YF-ebb" secondAttribute="trailing" id="n13-8O-vgY"/>
                 <constraint firstItem="nXC-zP-TmB" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="pgH-e8-J1c"/>
-                <constraint firstItem="S2b-YF-ebb" firstAttribute="centerY" secondItem="qYA-hL-CDu" secondAttribute="centerY" id="r56-pQ-Ajg"/>
-                <constraint firstItem="S2b-YF-ebb" firstAttribute="leading" secondItem="qYA-hL-CDu" secondAttribute="trailing" id="tCo-KG-KSD"/>
+                <constraint firstItem="wbB-oT-JZZ" firstAttribute="centerY" secondItem="nal-UV-dmK" secondAttribute="centerY" id="tZR-WH-kY8"/>
             </constraints>
             <size key="customSize" width="66" height="68"/>
             <connections>
-                <outlet property="leftLineView" destination="qYA-hL-CDu" id="TvJ-dT-5s6"/>
-                <outlet property="rightLIneView" destination="O8C-hA-Bmr" id="njF-lr-cDF"/>
+                <outlet property="leftLineImageView" destination="nal-UV-dmK" id="3gf-1i-xqD"/>
+                <outlet property="rightLIneImageView" destination="wbB-oT-JZZ" id="aMZ-cV-Pym"/>
                 <outlet property="roundView" destination="S2b-YF-ebb" id="1Ud-XB-Sin"/>
                 <outlet property="titleNameLabel" destination="nXC-zP-TmB" id="jCP-j2-cY9"/>
             </connections>
             <point key="canvasLocation" x="40" y="114"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="xuxian" width="93" height="1"/>
+    </resources>
 </document>

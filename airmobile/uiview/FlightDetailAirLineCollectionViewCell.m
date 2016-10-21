@@ -10,8 +10,8 @@
 
 @interface FlightDetailAirLineCollectionViewCell ()
 @property (weak, nonatomic) IBOutlet UIView *roundView;
-@property (weak, nonatomic) IBOutlet UIView *leftLineView;
-@property (weak, nonatomic) IBOutlet UIView *rightLIneView;
+@property (weak, nonatomic) IBOutlet UIImageView *leftLineImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *rightLIneImageView;
 
 @end
 
@@ -31,10 +31,10 @@
 {
     switch (type) {
         case FlightDetailAirLineCollectionViewCellTypeLast:
-            _rightLIneView.hidden = YES;
+            _rightLIneImageView.hidden = YES;
             break;
         case FlightDetailAirLineCollectionViewCellTypeFirst:
-            _leftLineView.hidden = YES;
+            _leftLineImageView.hidden = YES;
             break;
         default:
             break;

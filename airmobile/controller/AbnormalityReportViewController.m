@@ -9,6 +9,7 @@
 #import "AbnormalityReportViewController.h"
 #import "AbnormalityReportCollectionViewCell.h"
 #import "UIViewController+Reminder.h"
+#import "AbnormalityReportTableViewCell.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 
 static const NSString *ABNORMALITYREPORT_TABLECELL_IDENTIFIER =@"ABNORMALITYREPORT_TABLECELL_IDENTIFIER";
@@ -38,6 +39,7 @@ static const NSString *ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER = @"ABNORMALI
     _tableView.delegate = self;
     _tableView.dataSource =self;
     _tableView.scrollEnabled = NO;
+    [_tableView registerNib:[UINib nibWithNibName:@"AbnormalityReportTableViewCell" bundle:nil] forCellReuseIdentifier:(NSString *)ABNORMALITYREPORT_TABLECELL_IDENTIFIER];
     _tableViewArray = @[@"类型",@"部门",@"事件",@"上报人",@"要求"];
     
     
@@ -87,17 +89,13 @@ static const NSString *ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER = @"ABNORMALI
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 40;
+    return 58;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString*)ABNORMALITYREPORT_TABLECELL_IDENTIFIER];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:(NSString *)ABNORMALITYREPORT_TABLECELL_IDENTIFIER];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
-    cell.textLabel.text = _tableViewArray[indexPath.row];
+    AbnormalityReportTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString*)ABNORMALITYREPORT_TABLECELL_IDENTIFIER];
+    cell.nameLabel.text =_tableViewArray[indexPath.row];
     return  cell;
 }
 

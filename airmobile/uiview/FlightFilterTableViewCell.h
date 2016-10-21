@@ -11,6 +11,8 @@
 
 @interface FlightFilterTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *carftModelLabel;//机型
+    @property (weak, nonatomic) IBOutlet UILabel *flightLabel;
+    @property (weak, nonatomic) IBOutlet UIImageView *FlightImageView;
 
 @property (nonatomic, strong) FlightProcessModel *flightProcessModlel;
 

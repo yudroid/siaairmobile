@@ -145,6 +145,8 @@
 		F7A25D051DB9E6C900F36C32 /* PsnSafetyContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D041DB9E6C900F36C32 /* PsnSafetyContentView.m */; };
 		F7A25D081DB9E6EE00F36C32 /* ProgreesBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D071DB9E6EE00F36C32 /* ProgreesBarView.m */; };
 		F7A25D0B1DB9E71A00F36C32 /* RoundProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D0A1DB9E71A00F36C32 /* RoundProgressView.m */; };
+		F7A25D0F1DBA059800F36C32 /* AbnormalityReportTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D0D1DBA059800F36C32 /* AbnormalityReportTableViewCell.m */; };
+		F7A25D101DBA059800F36C32 /* AbnormalityReportTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7A25D0E1DBA059800F36C32 /* AbnormalityReportTableViewCell.xib */; };
 		F7A2A0511DB8D0590023F228 /* FlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A0441DB8D0590023F228 /* FlightViewController.m */; };
 		F7A2A0521DB8D0590023F228 /* FunctionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A0461DB8D0590023F228 /* FunctionViewController.m */; };
 		F7A2A0531DB8D0590023F228 /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A0481DB8D0590023F228 /* HomePageViewController.m */; };
@@ -376,6 +378,9 @@
 		F7A25D071DB9E6EE00F36C32 /* ProgreesBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgreesBarView.m; sourceTree = "<group>"; };
 		F7A25D091DB9E71A00F36C32 /* RoundProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundProgressView.h; sourceTree = "<group>"; };
 		F7A25D0A1DB9E71A00F36C32 /* RoundProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundProgressView.m; sourceTree = "<group>"; };
+		F7A25D0C1DBA059800F36C32 /* AbnormalityReportTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbnormalityReportTableViewCell.h; sourceTree = "<group>"; };
+		F7A25D0D1DBA059800F36C32 /* AbnormalityReportTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbnormalityReportTableViewCell.m; sourceTree = "<group>"; };
+		F7A25D0E1DBA059800F36C32 /* AbnormalityReportTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AbnormalityReportTableViewCell.xib; sourceTree = "<group>"; };
 		F7A2A0431DB8D0590023F228 /* FlightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightViewController.h; sourceTree = "<group>"; };
 		F7A2A0441DB8D0590023F228 /* FlightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightViewController.m; sourceTree = "<group>"; };
 		F7A2A0451DB8D0590023F228 /* FunctionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FunctionViewController.h; sourceTree = "<group>"; };
@@ -699,7 +704,7 @@
 				F79251821DB7518E006AA119 /* FlightProcessModel.h */,
 				F79251831DB7518E006AA119 /* FlightProcessModel.m */,
 			);
-			name = model;
+			path = model;
 			sourceTree = "<group>";
 		};
 		846F1D8F1DA89E5900C8920B /* network */ = {
@@ -861,6 +866,9 @@
 				F7EEEF1E1DB3A580004AF0AE /* FlightDetailTableViewCell.h */,
 				F7EEEF1F1DB3A580004AF0AE /* FlightDetailTableViewCell.m */,
 				F7EEEF201DB3A580004AF0AE /* FlightDetailTableViewCell.xib */,
+				F7A25D0C1DBA059800F36C32 /* AbnormalityReportTableViewCell.h */,
+				F7A25D0D1DBA059800F36C32 /* AbnormalityReportTableViewCell.m */,
+				F7A25D0E1DBA059800F36C32 /* AbnormalityReportTableViewCell.xib */,
 				F7EAE19A1DB4B0680060626F /* AbnormalityReportCollectionViewCell.h */,
 				F7EAE19B1DB4B0680060626F /* AbnormalityReportCollectionViewCell.m */,
 				F7EAE19C1DB4B0680060626F /* AbnormalityReportCollectionViewCell.xib */,
@@ -1093,6 +1101,7 @@
 				8450555E1DACF65200400EBF /* login_btn_pre@3x.png in Resources */,
 				F7EAE1A31DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.xib in Resources */,
 				845055B61DAE3F1A00400EBF /* icon_flight@3x.png in Resources */,
+				F7A25D101DBA059800F36C32 /* AbnormalityReportTableViewCell.xib in Resources */,
 				F7EE87811DB3635F006473F5 /* FlightFilterView.xib in Resources */,
 				845055581DACF65200400EBF /* login_accounts@3x.png in Resources */,
 				845055B81DAE3F1A00400EBF /* icon_flight_light@3x.png in Resources */,
@@ -1295,6 +1304,7 @@
 				F792514A1DB608E6006AA119 /* ContactPersonViewController.m in Sources */,
 				F7A25D081DB9E6EE00F36C32 /* ProgreesBarView.m in Sources */,
 				F7EE87791DB3285B006473F5 /* FlightFilterView.m in Sources */,
+				F7A25D0F1DBA059800F36C32 /* AbnormalityReportTableViewCell.m in Sources */,
 				F7A2A0651DB8D0EE0023F228 /* ResourceContentView.m in Sources */,
 				845E643E1DAB980C0072360D /* CommonFunction.m in Sources */,
 			);

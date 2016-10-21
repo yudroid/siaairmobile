@@ -13,20 +13,17 @@
 
 -(void) awakeFromNib{
     [super awakeFromNib];
-    self.layer.cornerRadius = 5.0;
-    self.layer.borderWidth = 1.0;
-    self.layer.borderColor = [CommonFunction colorFromHex:0XFFA7E6F8].CGColor;
     
 }
 -(void)setIsSelected:(Boolean)isSelected
 {
     _isSelected = isSelected;
     if (isSelected == YES) {
-        self.backgroundColor = [CommonFunction colorFromHex:0XFFA7E6F8];
-        self.titleLabel.textColor = [CommonFunction colorFromHex:0XFF28BEEA];
+        [self setBackgroundImage:[UIImage imageNamed:@"FlightFilterbuttonSelected"] forState:UIControlStateNormal];
+        self.titleLabel.textColor = [CommonFunction colorFromHex:0XFF17B9E8];
     }else{
-        self.backgroundColor = [UIColor whiteColor];
-        self.titleLabel.textColor = [UIColor blackColor];
+        [self setBackgroundImage:[UIImage imageNamed:@"FlightFilterbuttonNoSelected"] forState:UIControlStateNormal];
+        self.titleLabel.textColor = [CommonFunction colorFromHex:0XFF2A2D32];
     }
 }
 -(void)setTitle:(NSString *)title

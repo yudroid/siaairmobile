@@ -12,11 +12,6 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    _finishStatusLabel.layer.cornerRadius = 20;
-    _finishStatusLabel.layer.masksToBounds = YES;
-    _unusualButton.layer.cornerRadius = 5.0;
-    _unusualButton.layer.borderColor = [UIColor redColor].CGColor;
-    _unusualButton.layer.borderWidth = 1.0;
     
     // Initialization code
 }

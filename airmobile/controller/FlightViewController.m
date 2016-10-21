@@ -15,7 +15,7 @@
 #import "FlightFilterTableViewCell.h"
 #import "FlightDetailViewController.h"
 
-static const CGFloat FLIGHTFILTERVIEW_HEIGHT = 300;
+static const CGFloat FLIGHTFILTERVIEW_HEIGHT = 365;
 static  NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_IDETIFIER";
 
 @interface FlightViewController ()<TabBarViewDelegate,UITableViewDelegate,UITableViewDataSource>
@@ -97,7 +97,7 @@ static  NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_IDETIF
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 88;
+    return 85;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
