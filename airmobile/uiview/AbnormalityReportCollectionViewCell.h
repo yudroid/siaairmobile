@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface AbnormalityReportCollectionViewCell : UICollectionViewCell
+    
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (nonatomic ,assign) BOOL isSelected;
 
 @end

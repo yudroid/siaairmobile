@@ -7,25 +7,48 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="AbnormalityReportCollectionViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="UPLOADPHOTO_COLLECTIONCELL_IDENTIFIER" id="gTV-IL-0wX" customClass="AbnormalityReportCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LMG-q6-Zj7"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UploadImageSelected1" translatesAutoresizingMaskIntoConstraints="NO" id="9HJ-Fx-pZy">
+                        <constraints>
+                            <constraint firstAttribute="width" constant="25" id="2Mf-t3-NQq"/>
+                            <constraint firstAttribute="height" constant="25" id="FpE-qv-spS"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UploadImageSelected2" translatesAutoresizingMaskIntoConstraints="NO" id="Rpe-uE-YVO">
+                        <constraints>
+                            <constraint firstAttribute="width" constant="13" id="BWT-98-NaZ"/>
+                            <constraint firstAttribute="height" constant="8" id="EUC-3U-aHU"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
             </view>
             <constraints>
+                <constraint firstItem="Rpe-uE-YVO" firstAttribute="centerY" secondItem="9HJ-Fx-pZy" secondAttribute="centerY" id="6f5-ub-gkr"/>
                 <constraint firstAttribute="bottom" secondItem="LMG-q6-Zj7" secondAttribute="bottom" id="8Qg-vN-y6E"/>
+                <constraint firstItem="Rpe-uE-YVO" firstAttribute="centerX" secondItem="9HJ-Fx-pZy" secondAttribute="centerX" id="M3S-Pe-NbA"/>
                 <constraint firstAttribute="trailing" secondItem="LMG-q6-Zj7" secondAttribute="trailing" id="RdX-v1-pTP"/>
+                <constraint firstAttribute="trailing" secondItem="9HJ-Fx-pZy" secondAttribute="trailing" constant="6" id="c7t-Bb-65g"/>
+                <constraint firstItem="9HJ-Fx-pZy" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="6" id="fpu-Ea-uZH"/>
                 <constraint firstItem="LMG-q6-Zj7" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="kxU-Va-VIJ"/>
                 <constraint firstItem="LMG-q6-Zj7" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="lNS-Yd-8Xs"/>
             </constraints>
+            <size key="customSize" width="70" height="70"/>
             <connections>
                 <outlet property="imageView" destination="LMG-q6-Zj7" id="5aU-Tj-QoD"/>
+                <outlet property="selectedBackgroundImageView" destination="9HJ-Fx-pZy" id="rdp-8j-mFG"/>
             </connections>
+            <point key="canvasLocation" x="70" y="62"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="UploadImageSelected1" width="24" height="24"/>
+        <image name="UploadImageSelected2" width="12" height="8"/>
+    </resources>
 </document>

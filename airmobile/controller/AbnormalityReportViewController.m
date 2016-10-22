@@ -107,19 +107,19 @@ static const NSString *ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER = @"ABNORMALI
 
 - (IBAction)phoneButttonClick:(id)sender
 {
-//    UploadPhotoViewController *uploadPhotoVC = [[UploadPhotoViewController alloc]initWithNibName:@"UploadPhotoViewController" bundle:nil];
-//    [self.navigationController pushViewController:uploadPhotoVC animated:YES];
+    UploadPhotoViewController *uploadPhotoVC = [[UploadPhotoViewController alloc]initWithNibName:@"UploadPhotoViewController" bundle:nil];
+    [self.navigationController pushViewController:uploadPhotoVC animated:YES];
     
-    ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
-    if (author == ALAuthorizationStatusRestricted || author ==ALAuthorizationStatusDenied)
-    {
-        [self showAnimationTitle:@"相机访问被限制"];
-        return;
-    }
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
-    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-    [self presentViewController:picker animated:YES completion:nil];
+//    ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
+//    if (author == ALAuthorizationStatusRestricted || author ==ALAuthorizationStatusDenied)
+//    {
+//        [self showAnimationTitle:@"相机访问被限制"];
+//        return;
+//    }
+//    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+//    picker.delegate = self;
+//    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+//    [self presentViewController:picker animated:YES completion:nil];
 }
 
 
