@@ -7,6 +7,10 @@
 //
 
 #import "FunctionViewController.h"
+#import "FlightViewController.h"
+#import "HomePageViewController.h"
+#import "MessageViewController.h"
+#import "UserInfoViewController.h"
 
 @interface FunctionViewController ()
 
@@ -16,7 +20,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    //TabBer自定义
+    self.tabBarView = [[TabBarView alloc] initTabBarWithModel:TabBarBgModelHomePage selectedType:TabBarSelectedTypeFunction delegate:self];
+    [self.view insertSubview:self.tabBarView aboveSubview:self.view];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +31,37 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - 切换底部主功能页面
+-(void)selectWithType:(TabBarSelectedType)type
+{
+    switch (type) {
+        case TabBarSelectedTypeHomePage:
+        {
+            HomePageViewController *homepage = [[HomePageViewController alloc] init];
+            [self.navigationController pushViewController:homepage animated:NO];
+            break;
+        }
+        case TabBarSelectedTypeMessage:
+        {
+            MessageViewController *messagepage = [[MessageViewController alloc] init];
+            [self.navigationController pushViewController:messagepage animated:NO];
+            break;
+        }
+        case TabBarSelectedTypeFunction:
+        {
+            FunctionViewController *function = [[FunctionViewController alloc] init];
+            [self.navigationController pushViewController:function animated:NO];
+            break;
+        }
+        case TabBarSelectedTypeUserInfo:
+        {
+            UserInfoViewController *userInfo = [[UserInfoViewController alloc] init];
+            [self.navigationController pushViewController:userInfo animated:NO];
+            break;
+        }
+        default:
+            break;
+    }
 }
-*/
 
 @end
