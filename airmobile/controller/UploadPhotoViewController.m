@@ -30,6 +30,7 @@ static const NSString *UPLOADPHOTO_COLLECTIONCELL_IDENTIFIER = @"UPLOADPHOTO_COL
     [self titleViewAddTitleText:@"航班详情"];
     self.titleView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"home_title_bg.png"]];
     [self titleViewAddBackBtn];
+
     
     // Do any additional setup after loading the view from its nib.
 

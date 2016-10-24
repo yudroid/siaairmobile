@@ -11,12 +11,14 @@
 #import "UIViewController+Reminder.h"
 #import "AbnormalityReportTableViewCell.h"
 #import "UploadPhotoViewController.h"
-#import <AssetsLibrary/AssetsLibrary.h>
+#import "TimePickerView.h"
+#import "SJPhotoPicker.h"
+
 
 static const NSString *ABNORMALITYREPORT_TABLECELL_IDENTIFIER =@"ABNORMALITYREPORT_TABLECELL_IDENTIFIER";
 static const NSString *ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER = @"ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER";
 
-@interface AbnormalityReportViewController ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UITextViewDelegate>
+@interface AbnormalityReportViewController ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UITextViewDelegate,TimePickerViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -24,6 +26,8 @@ static const NSString *ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER = @"ABNORMALI
 @property (weak, nonatomic) IBOutlet UITextView *remarksTextView;
 @property (weak, nonatomic) IBOutlet UICollectionView *photoCollectionView;
 @property (nonatomic ,strong) NSMutableArray *collectionArray;
+@property (weak, nonatomic) IBOutlet UITableView *abnormalityTableView;
+@property (nonatomic, strong) TimePickerView * timePickerView;
 @end
 
 @implementation AbnormalityReportViewController
@@ -41,9 +45,14 @@ static const NSString *ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER = @"ABNORMALI
     _tableView.dataSource =self;
     _tableView.scrollEnabled = NO;
     [_tableView registerNib:[UINib nibWithNibName:@"AbnormalityReportTableViewCell" bundle:nil] forCellReuseIdentifier:(NSString *)ABNORMALITYREPORT_TABLECELL_IDENTIFIER];
-    _tableViewArray = @[@"类型",@"部门",@"事件",@"上报人",@"要求"];
+    _tableViewArray = @[@"类型",@"事件"];
+
+    _abnormalityTableView.delegate = self;
+    _abnormalityTableView.dataSource = self;
+    [_abnormalityTableView registerNib:[UINib nibWithNibName:@"AbnormalityReportTableViewCell" bundle:nil] forCellReuseIdentifier:(NSString *)ABNORMALITYREPORT_TABLECELL_IDENTIFIER];
+    _tableViewArray = @[@"类型",@"事件"];
     
-    
+
     _photoCollectionView.delegate =self;
     _photoCollectionView.dataSource = self;
     [_photoCollectionView registerNib:[UINib nibWithNibName:@"AbnormalityReportCollectionViewCell"  bundle:nil]forCellWithReuseIdentifier:(NSString *)ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER];
@@ -78,8 +87,43 @@ static const NSString *ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER = @"ABNORMALI
 
 
 
-#pragma mark - TableViewDelegate TableViewDataSource
+#pragma mark - EVENT
 
+- (IBAction)startReportDatClick:(id)sender {
+    [self setupDateView];
+}
+- (IBAction)endReportDate:(id)sender {
+    [self setupDateView];
+}
+
+- (IBAction)phoneButttonClick:(id)sender
+{
+//    UploadPhotoViewController *uploadPhotoVC = [[UploadPhotoViewController alloc]initWithNibName:@"UploadPhotoViewController" bundle:nil];
+//    [self.navigationController pushViewController:uploadPhotoVC animated:YES];
+
+    [[SJPhotoPicker shareSJPhotoPicker] showPhotoPickerToController:self pickedAssets:^(NSArray<PHAsset *> *assets) {
+        _collectionArray = [NSMutableArray arrayWithArray:assets];
+        [_photoCollectionView reloadData];
+    }];
+
+
+}
+
+- (void)setupDateView
+{
+    if (_timePickerView == nil) {
+        [UIView animateWithDuration:0.3 animations:^{
+            _timePickerView = [[NSBundle mainBundle] loadNibNamed:@"TimePickerView" owner:nil options:nil][0];
+            _timePickerView.frame = CGRectMake(0, 64, kScreenWidth, kScreenHeight-64);
+            _timePickerView.delegate = self;
+            [self.view addSubview:_timePickerView];
+        }];
+    }else{
+        [UIView animateWithDuration:0.3 animations:^{
+            _timePickerView.alpha = 1;
+        }];
+    }
+}
 
 #pragma mark - UITableViewDelegate UITableViewDataSource
 
@@ -105,33 +149,10 @@ static const NSString *ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER = @"ABNORMALI
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (IBAction)phoneButttonClick:(id)sender
-{
-    UploadPhotoViewController *uploadPhotoVC = [[UploadPhotoViewController alloc]initWithNibName:@"UploadPhotoViewController" bundle:nil];
-    [self.navigationController pushViewController:uploadPhotoVC animated:YES];
-    
-//    ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
-//    if (author == ALAuthorizationStatusRestricted || author ==ALAuthorizationStatusDenied)
-//    {
-//        [self showAnimationTitle:@"相机访问被限制"];
-//        return;
-//    }
-//    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-//    picker.delegate = self;
-//    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-//    [self presentViewController:picker animated:YES completion:nil];
-}
 
 
 
-#pragma mark - ImagePickerController
--(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
-{
-    [picker dismissViewControllerAnimated:YES completion:^{
-        [_collectionArray addObject:[info objectForKey:UIImagePickerControllerOriginalImage]];
-        [_photoCollectionView reloadData];
-    }];
-}
+
 
 #pragma mark - collection delegate datasource
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -159,6 +180,12 @@ static const NSString *ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER = @"ABNORMALI
         return NO;
     }
     return YES;
+}
+
+#pragma mark - TimePickerViewDelegate
+-(void)timePickerViewDidEnsure:(NSDate *)date
+{
+    NSLog(@"选中时间%@",date);
 }
 
 /*
