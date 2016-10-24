@@ -132,4 +132,21 @@
     [self animationWithStrokeEnd:_abnormalProportion withProgressType:ProgreesTypeAbnormal];
 }
 
+-(id)initWithCenter:(CGPoint)center radius:(CGFloat)radius bigRadius:(CGFloat)bigRadius shapeArray:(NSArray *)shapeArray clockwise:(BOOL)clockwise
+{
+    self = [super initWithFrame:CGRectMake(0, 0, radius*2, radius*2)];
+    
+    if (self)
+    {
+        
+        UIImageView *bgImage = [CommonFunction imageView:@"white_circle.png" frame:CGRectMake(0, 0, radius*2, radius*2)];
+        bgImage.center = self.center;
+        [self addSubview:bgImage];
+        
+        self.center = center;
+    }
+    
+    return self;
+}
+
 @end

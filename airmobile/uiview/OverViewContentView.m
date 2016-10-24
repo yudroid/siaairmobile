@@ -39,8 +39,8 @@
         [self addSubview:progressRound];
         
         normalProportion = 0.6;
-        abnormalProportion = 0.2;
-        cancleProportion = 0.05;
+        abnormalProportion = 0.62;
+        cancleProportion = 0.65;
         
         //对数据进行动画
         [progressRound animationWithStrokeEnd:normalProportion withProgressType:ProgreesTypeNormal];

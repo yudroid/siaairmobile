@@ -29,6 +29,8 @@ typedef enum
 
 -(void)animationWithStrokeEnd:(CGFloat)strokeEnd withProgressType :(ProgreesType)type;
 
+-(id)initWithCenter:(CGPoint)center radius:(CGFloat)radius bigRadius:(CGFloat)bigRadius shapeArray:(NSArray *)shapeArray clockwise:(BOOL)clockwise;
+
 @property(nonatomic,strong)CAShapeLayer * abnormalLaber;
 @property(nonatomic,strong)CAShapeLayer * normalLaber;
 @property(nonatomic,strong)CAShapeLayer * cancelLaber;
