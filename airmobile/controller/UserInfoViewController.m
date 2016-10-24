@@ -39,8 +39,9 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     [self initUserInfoView];
     [self initTable];
     //TabBer自定义
-    self.tabBarView = [[TabBarView alloc] initTabBarWithModel:TabBarBgModelHomePage selectedType:TabBarSelectedTypeHomePage delegate:self];
+    self.tabBarView = [[TabBarView alloc] initTabBarWithModel:TabBarBgModelHomePage selectedType:TabBarSelectedTypeUserInfo delegate:self];
     [self.view insertSubview:self.tabBarView aboveSubview:self.view];
+    
     
     self.view.backgroundColor =  [CommonFunction colorFromHex:0XFFEBEBF1];
     // Do any additional setup after loading the view.

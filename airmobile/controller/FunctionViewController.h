@@ -8,6 +8,6 @@
 
 #import "RootViewController.h"
 
-@interface FunctionViewController : RootViewController
+@interface FunctionViewController : RootViewController<TabBarViewDelegate>
 
 @end
