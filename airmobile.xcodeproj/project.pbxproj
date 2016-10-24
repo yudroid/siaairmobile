@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		06E9E80EB42E98A0933793F5 /* libPods-airmobileTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C8CF004928F1770818C25801 /* libPods-airmobileTests.a */; };
 		6D859A9CB7F46A46E3C321A4 /* libPods-airmobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B40A6E3BB15FEF8D72885961 /* libPods-airmobile.a */; };
+		841839EF1DBCB87600D7DD86 /* PNGenericChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 841839EA1DBCB87600D7DD86 /* PNGenericChart.m */; };
+		841839F01DBCB87600D7DD86 /* PNPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 841839EC1DBCB87600D7DD86 /* PNPieChart.m */; };
+		841839F11DBCB87600D7DD86 /* PNPieChartDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 841839EE1DBCB87600D7DD86 /* PNPieChartDataItem.m */; };
+		841839F81DBCC10200D7DD86 /* PNLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 841839F31DBCC10200D7DD86 /* PNLineChart.m */; };
+		841839F91DBCC10200D7DD86 /* PNLineChartData.m in Sources */ = {isa = PBXBuildFile; fileRef = 841839F51DBCC10200D7DD86 /* PNLineChartData.m */; };
+		841839FA1DBCC10200D7DD86 /* PNLineChartDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 841839F71DBCC10200D7DD86 /* PNLineChartDataItem.m */; };
+		841839FD1DBCC12E00D7DD86 /* PNColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 841839FC1DBCC12E00D7DD86 /* PNColor.m */; };
+		84183A001DBCC17A00D7DD86 /* PNChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 841839FF1DBCC17A00D7DD86 /* PNChartLabel.m */; };
 		843F4CF21DACC3FD00D73D56 /* StringUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 843F4CF11DACC3FD00D73D56 /* StringUtils.m */; };
 		843F4CF51DACC70F00D73D56 /* HttpsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 843F4CF41DACC70F00D73D56 /* HttpsUtils.m */; };
 		843F4CF81DACCA6D00D73D56 /* HttpsUtils+Business.m in Sources */ = {isa = PBXBuildFile; fileRef = 843F4CF71DACCA6D00D73D56 /* HttpsUtils+Business.m */; };
@@ -198,6 +206,23 @@
 		08436D948989B250E6E82404 /* Pods-airmobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-airmobileTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-airmobileTests/Pods-airmobileTests.debug.xcconfig"; sourceTree = "<group>"; };
 		156304CC87D9023ADDF48874 /* Pods-airmobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-airmobile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-airmobile/Pods-airmobile.debug.xcconfig"; sourceTree = "<group>"; };
 		74FA8B73EA500FA5476239D4 /* Pods-airmobileUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-airmobileUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-airmobileUITests/Pods-airmobileUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		841839E81DBCB87600D7DD86 /* PNChartDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNChartDelegate.h; sourceTree = "<group>"; };
+		841839E91DBCB87600D7DD86 /* PNGenericChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNGenericChart.h; sourceTree = "<group>"; };
+		841839EA1DBCB87600D7DD86 /* PNGenericChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNGenericChart.m; sourceTree = "<group>"; };
+		841839EB1DBCB87600D7DD86 /* PNPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNPieChart.h; sourceTree = "<group>"; };
+		841839EC1DBCB87600D7DD86 /* PNPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNPieChart.m; sourceTree = "<group>"; };
+		841839ED1DBCB87600D7DD86 /* PNPieChartDataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNPieChartDataItem.h; sourceTree = "<group>"; };
+		841839EE1DBCB87600D7DD86 /* PNPieChartDataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNPieChartDataItem.m; sourceTree = "<group>"; };
+		841839F21DBCC10200D7DD86 /* PNLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNLineChart.h; sourceTree = "<group>"; };
+		841839F31DBCC10200D7DD86 /* PNLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNLineChart.m; sourceTree = "<group>"; };
+		841839F41DBCC10200D7DD86 /* PNLineChartData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNLineChartData.h; sourceTree = "<group>"; };
+		841839F51DBCC10200D7DD86 /* PNLineChartData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNLineChartData.m; sourceTree = "<group>"; };
+		841839F61DBCC10200D7DD86 /* PNLineChartDataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNLineChartDataItem.h; sourceTree = "<group>"; };
+		841839F71DBCC10200D7DD86 /* PNLineChartDataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNLineChartDataItem.m; sourceTree = "<group>"; };
+		841839FB1DBCC12E00D7DD86 /* PNColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNColor.h; sourceTree = "<group>"; };
+		841839FC1DBCC12E00D7DD86 /* PNColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNColor.m; sourceTree = "<group>"; };
+		841839FE1DBCC17A00D7DD86 /* PNChartLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNChartLabel.h; sourceTree = "<group>"; };
+		841839FF1DBCC17A00D7DD86 /* PNChartLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNChartLabel.m; sourceTree = "<group>"; };
 		843F4CF01DACC3FD00D73D56 /* StringUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StringUtils.h; path = utils/StringUtils.h; sourceTree = "<group>"; };
 		843F4CF11DACC3FD00D73D56 /* StringUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StringUtils.m; path = utils/StringUtils.m; sourceTree = "<group>"; };
 		843F4CF31DACC70F00D73D56 /* HttpsUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpsUtils.h; path = network/HttpsUtils.h; sourceTree = "<group>"; };
@@ -484,6 +509,53 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		841839E61DBC87DD00D7DD86 /* overview */ = {
+			isa = PBXGroup;
+			children = (
+				F7A25D031DB9E6C900F36C32 /* PsnSafetyContentView.h */,
+				F7A25D041DB9E6C900F36C32 /* PsnSafetyContentView.m */,
+				F7A25D001DB9E6C000F36C32 /* PsnGeneralContentView.h */,
+				F7A25D011DB9E6C000F36C32 /* PsnGeneralContentView.m */,
+				F7A2A0581DB8D0EE0023F228 /* FlightContentView.h */,
+				F7A2A0591DB8D0EE0023F228 /* FlightContentView.m */,
+				F7A2A05A1DB8D0EE0023F228 /* OverViewContentView.h */,
+				F7A2A05B1DB8D0EE0023F228 /* OverViewContentView.m */,
+				F7A2A05C1DB8D0EE0023F228 /* PassengerContentView.h */,
+				F7A2A05D1DB8D0EE0023F228 /* PassengerContentView.m */,
+				F7A25D091DB9E71A00F36C32 /* RoundProgressView.h */,
+				F7A25D0A1DB9E71A00F36C32 /* RoundProgressView.m */,
+				F7A25D061DB9E6EE00F36C32 /* ProgreesBarView.h */,
+				F7A25D071DB9E6EE00F36C32 /* ProgreesBarView.m */,
+				F7A2A05E1DB8D0EE0023F228 /* ResourceContentView.h */,
+				F7A2A05F1DB8D0EE0023F228 /* ResourceContentView.m */,
+			);
+			name = overview;
+			sourceTree = "<group>";
+		};
+		841839E71DBCB87600D7DD86 /* pnchart */ = {
+			isa = PBXGroup;
+			children = (
+				841839FB1DBCC12E00D7DD86 /* PNColor.h */,
+				841839FC1DBCC12E00D7DD86 /* PNColor.m */,
+				841839FE1DBCC17A00D7DD86 /* PNChartLabel.h */,
+				841839FF1DBCC17A00D7DD86 /* PNChartLabel.m */,
+				841839E81DBCB87600D7DD86 /* PNChartDelegate.h */,
+				841839E91DBCB87600D7DD86 /* PNGenericChart.h */,
+				841839EA1DBCB87600D7DD86 /* PNGenericChart.m */,
+				841839EB1DBCB87600D7DD86 /* PNPieChart.h */,
+				841839EC1DBCB87600D7DD86 /* PNPieChart.m */,
+				841839ED1DBCB87600D7DD86 /* PNPieChartDataItem.h */,
+				841839EE1DBCB87600D7DD86 /* PNPieChartDataItem.m */,
+				841839F21DBCC10200D7DD86 /* PNLineChart.h */,
+				841839F31DBCC10200D7DD86 /* PNLineChart.m */,
+				841839F41DBCC10200D7DD86 /* PNLineChartData.h */,
+				841839F51DBCC10200D7DD86 /* PNLineChartData.m */,
+				841839F61DBCC10200D7DD86 /* PNLineChartDataItem.h */,
+				841839F71DBCC10200D7DD86 /* PNLineChartDataItem.m */,
+			);
+			path = pnchart;
+			sourceTree = "<group>";
+		};
 		845055371DACF65200400EBF /* login */ = {
 			isa = PBXGroup;
 			children = (
@@ -613,24 +685,10 @@
 		846F1D8A1DA89E2600C8920B /* uiview */ = {
 			isa = PBXGroup;
 			children = (
-				F7A25D031DB9E6C900F36C32 /* PsnSafetyContentView.h */,
-				F7A25D041DB9E6C900F36C32 /* PsnSafetyContentView.m */,
-				F7A25D001DB9E6C000F36C32 /* PsnGeneralContentView.h */,
-				F7A25D011DB9E6C000F36C32 /* PsnGeneralContentView.m */,
-				F7A2A0581DB8D0EE0023F228 /* FlightContentView.h */,
-				F7A2A0591DB8D0EE0023F228 /* FlightContentView.m */,
-				F7A2A05A1DB8D0EE0023F228 /* OverViewContentView.h */,
-				F7A2A05B1DB8D0EE0023F228 /* OverViewContentView.m */,
-				F7A2A05C1DB8D0EE0023F228 /* PassengerContentView.h */,
-				F7A2A05D1DB8D0EE0023F228 /* PassengerContentView.m */,
-				F7A25D091DB9E71A00F36C32 /* RoundProgressView.h */,
-				F7A25D0A1DB9E71A00F36C32 /* RoundProgressView.m */,
-				F7A25D061DB9E6EE00F36C32 /* ProgreesBarView.h */,
-				F7A25D071DB9E6EE00F36C32 /* ProgreesBarView.m */,
-				F7A2A05E1DB8D0EE0023F228 /* ResourceContentView.h */,
-				F7A2A05F1DB8D0EE0023F228 /* ResourceContentView.m */,
+				841839E71DBCB87600D7DD86 /* pnchart */,
 				F7A2A0601DB8D0EE0023F228 /* TabBarView.h */,
 				F7A2A0611DB8D0EE0023F228 /* TabBarView.m */,
+				841839E61DBC87DD00D7DD86 /* overview */,
 				F7EE87821DB370C4006473F5 /* 航班列表 */,
 				F792513C1DB5EE01006AA119 /* 消息 */,
 				F79251721DB73DD3006AA119 /* 我的 */,
@@ -1262,6 +1320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F79251631DB63A10006AA119 /* ChatLeftTableViewCell.m in Sources */,
+				841839FA1DBCC10200D7DD86 /* PNLineChartDataItem.m in Sources */,
 				F7A2A0551DB8D0590023F228 /* MessageViewController.m in Sources */,
 				843F4CF21DACC3FD00D73D56 /* StringUtils.m in Sources */,
 				843F4CF81DACCA6D00D73D56 /* HttpsUtils+Business.m in Sources */,
@@ -1278,14 +1337,18 @@
 				843F4CF51DACC70F00D73D56 /* HttpsUtils.m in Sources */,
 				F792514F1DB60BD0006AA119 /* MessageTableViewCell.m in Sources */,
 				846F1DAE1DAA229600C8920B /* DefaultHelper.m in Sources */,
+				841839EF1DBCB87600D7DD86 /* PNGenericChart.m in Sources */,
 				F7A2A0531DB8D0590023F228 /* HomePageViewController.m in Sources */,
 				F7A25D0B1DB9E71A00F36C32 /* RoundProgressView.m in Sources */,
+				841839F81DBCC10200D7DD86 /* PNLineChart.m in Sources */,
 				F7EEEF1C1DB396E0004AF0AE /* FlightDetailViewController.m in Sources */,
 				F7EAE1961DB4776C0060626F /* AbnormalityReportViewController.m in Sources */,
 				F7EEEF211DB3A580004AF0AE /* FlightDetailTableViewCell.m in Sources */,
+				84183A001DBCC17A00D7DD86 /* PNChartLabel.m in Sources */,
 				F7A2A0621DB8D0EE0023F228 /* FlightContentView.m in Sources */,
 				F7EE87861DB371CA006473F5 /* FlightFilterTableViewCell.m in Sources */,
 				F79251801DB74576006AA119 /* UserManagermentTableViewCell.m in Sources */,
+				841839FD1DBCC12E00D7DD86 /* PNColor.m in Sources */,
 				F7A2A0571DB8D0590023F228 /* UserInfoViewController.m in Sources */,
 				F792518D1DB7890E006AA119 /* NightShiftRoomTableViewCell.m in Sources */,
 				F792515E1DB6352D006AA119 /* ChatViewController.m in Sources */,
@@ -1299,8 +1362,10 @@
 				F79251681DB63BB7006AA119 /* ChatRightTableViewCell.m in Sources */,
 				F792513B1DB5CBE3006AA119 /* UIViewController+Reminder.m in Sources */,
 				F79251881DB781AB006AA119 /* NightShiftRoomViewController.m in Sources */,
+				841839F11DBCB87600D7DD86 /* PNPieChartDataItem.m in Sources */,
 				F7EAE19D1DB4B0680060626F /* AbnormalityReportCollectionViewCell.m in Sources */,
 				84BA54E41DA256940037198F /* AppDelegate.m in Sources */,
+				841839F01DBCB87600D7DD86 /* PNPieChart.m in Sources */,
 				F7A2A0511DB8D0590023F228 /* FlightViewController.m in Sources */,
 				F7A2A0641DB8D0EE0023F228 /* PassengerContentView.m in Sources */,
 				F79251921DB858D9006AA119 /* AddressBookViewController.m in Sources */,
@@ -1316,6 +1381,7 @@
 				F7EE87791DB3285B006473F5 /* FlightFilterView.m in Sources */,
 				F7A25D0F1DBA059800F36C32 /* AbnormalityReportTableViewCell.m in Sources */,
 				F7A2A0651DB8D0EE0023F228 /* ResourceContentView.m in Sources */,
+				841839F91DBCC10200D7DD86 /* PNLineChartData.m in Sources */,
 				845E643E1DAB980C0072360D /* CommonFunction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

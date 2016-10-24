@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RoundProgressView.h"
+#import "PNPieChart.h"
 
 @protocol FlightContentViewDelegate <NSObject>
 
@@ -25,6 +27,11 @@
 
 @end
 
-@interface FlightContentView : UIView
+@interface FlightContentView : UIView<UIScrollViewDelegate>
+{
+    UIPageControl *pageControl;
+    NSMutableArray *arrShapeArray;
+    NSMutableArray *depShapeArray;
+}
 
 @end
