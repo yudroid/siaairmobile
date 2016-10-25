@@ -8,11 +8,18 @@
 
 #import "FlightDetailTableViewCell.h"
 
+@interface FlightDetailTableViewCell ()
+@property (weak, nonatomic) IBOutlet UIView *topLineView;
+@property (weak, nonatomic) IBOutlet UIView *bottomLineView;
+
+
+@end
+
 @implementation FlightDetailTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
+
     // Initialization code
 }
 
@@ -20,6 +27,21 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+
+-(void)setType:(FlightDetailTableViewCellType)type
+{
+    switch (type) {
+    case FlightDetailTableViewCellTypeTypeLast:
+    _bottomLineView.hidden = YES;
+    break;
+    case FlightDetailTableViewCellTypeTypeFirst:
+    _topLineView.hidden = YES;
+    break;
+    default:
+    break;
+}
 }
 
 

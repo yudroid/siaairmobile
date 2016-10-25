@@ -114,10 +114,12 @@
                     <constraint firstItem="6wK-Aq-fSg" firstAttribute="leading" secondItem="tQp-oK-jOg" secondAttribute="trailing" constant="8" id="z0w-fb-Ow1"/>
                 </constraints>
             </tableViewCellContentView>
-            <inset key="separatorInset" minX="19" minY="0.0" maxX="0.0" maxY="0.0"/>
+            <inset key="separatorInset" minX="50" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
+                <outlet property="bottomLineView" destination="zov-88-MCN" id="41Y-io-B0l"/>
                 <outlet property="finishStatusLabel" destination="ybW-db-YHu" id="nSF-cg-6pM"/>
                 <outlet property="nameLabel" destination="5Py-pW-6n5" id="9cy-Nt-UQb"/>
+                <outlet property="topLineView" destination="RMS-SO-0JS" id="e89-nW-hGN"/>
                 <outlet property="unusualButton" destination="6wK-Aq-fSg" id="RHq-jd-AG5"/>
             </connections>
             <point key="canvasLocation" x="58.5" y="88.5"/>

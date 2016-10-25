@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSUInteger, FlightDetailTableViewCellType) {
+    FlightDetailTableViewCellTypeTypeDefault,
+    FlightDetailTableViewCellTypeTypeFirst,
+    FlightDetailTableViewCellTypeTypeLast,
+};
+
 @protocol FlightDetailTableViewCellDelegate <NSObject>
 
 -(void)flightDetailTableViewCellUsualButtonClick;
@@ -18,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *finishStatusLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *unusualButton;
+@property (nonatomic ,assign) FlightDetailTableViewCellType type;
 
 @property (weak, nonatomic) id<FlightDetailTableViewCellDelegate> delegate;
 
