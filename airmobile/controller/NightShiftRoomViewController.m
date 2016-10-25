@@ -7,13 +7,13 @@
 //
 
 #import "NightShiftRoomViewController.h"
-#import <JTCalendarDayView.h>
+#import <DAYCalendarView.h>
 #import "NightShiftRoomTableViewCell.h"
 
 static const NSString *NIGHTSHIFTROOM_TABLECELL_IDENTIFIER = @"NIGHTSHIFTROOM_TABLECELL_IDENTIFIER";
 
 @interface NightShiftRoomViewController ()<UITableViewDelegate,UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet JTCalendarDayView *calendarView;
+@property (weak, nonatomic) IBOutlet DAYCalendarView *calendarView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
@@ -34,10 +34,25 @@ static const NSString *NIGHTSHIFTROOM_TABLECELL_IDENTIFIER = @"NIGHTSHIFTROOM_TA
     _tableView.tableFooterView = [[UIView alloc]init];
     
     [_tableView registerNib:[UINib nibWithNibName:@"NightShiftRoomTableViewCell" bundle:nil] forCellReuseIdentifier:(NSString *)NIGHTSHIFTROOM_TABLECELL_IDENTIFIER];
+
+    UISwipeGestureRecognizer *leftSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(leftSwipeGestureRecognizerEvent)];
+    leftSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+    UISwipeGestureRecognizer *rightSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(rightSwipeGestureRecognizerEvent)];
+    rightSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
     
 }
 
+#pragma mark - EVENT
+-(void)leftSwipeGestureRecognizerEvent
+{
 
+
+}
+-(void)rightSwipeGestureRecognizerEvent
+{
+    
+    
+}
 #pragma mark - UITableViewDelegate UITableViewDataSource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
