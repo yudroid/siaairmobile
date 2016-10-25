@@ -13,7 +13,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *carftModelLabel;//机型
     @property (weak, nonatomic) IBOutlet UILabel *flightLabel;
     @property (weak, nonatomic) IBOutlet UIImageView *FlightImageView;
+@property (weak, nonatomic) IBOutlet UIView *middleView;
 
 @property (nonatomic, strong) FlightProcessModel *flightProcessModlel;
+
 
 @end
