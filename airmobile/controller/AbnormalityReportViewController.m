@@ -13,6 +13,10 @@
 #import "UploadPhotoViewController.h"
 #import "TimePickerView.h"
 #import "SJPhotoPicker.h"
+#import "SJPickPhotoController.h"
+#import "SJAlbumModel.h"
+#import "SJPhotoPickerManager.h"
+#import "OptionsViewController.h"
 
 
 static const NSString *ABNORMALITYREPORT_TABLECELL_IDENTIFIER =@"ABNORMALITYREPORT_TABLECELL_IDENTIFIER";
@@ -98,15 +102,19 @@ static const NSString *ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER = @"ABNORMALI
 
 - (IBAction)phoneButttonClick:(id)sender
 {
-//    UploadPhotoViewController *uploadPhotoVC = [[UploadPhotoViewController alloc]initWithNibName:@"UploadPhotoViewController" bundle:nil];
-//    [self.navigationController pushViewController:uploadPhotoVC animated:YES];
+    UploadPhotoViewController *uploadPhotoVC = [[UploadPhotoViewController alloc]initWithNibName:@"UploadPhotoViewController" bundle:nil];
+    [self.navigationController pushViewController:uploadPhotoVC animated:YES];
 
-    [[SJPhotoPicker shareSJPhotoPicker] showPhotoPickerToController:self pickedAssets:^(NSArray<PHAsset *> *assets) {
-        _collectionArray = [NSMutableArray arrayWithArray:assets];
-        [_photoCollectionView reloadData];
-    }];
-
-
+//    [[SJPhotoPickerManager shareSJPhotoPickerManager] requestAlbumsWithType:PHAssetCollectionTypeSmartAlbum  albumResult:^(NSArray *albumArray) {
+//        SJPickPhotoController *vc = [[SJPickPhotoController alloc] init];
+//        SJAlbumModel *model = [[SJAlbumModel alloc] init];
+//        NSArray *groupArray = [albumArray mutableCopy];
+//        if (groupArray&&groupArray.count>0) {
+//            model = groupArray[0];
+//        }
+//        vc.assetResult = model.assetResult;
+//        [self.navigationController pushViewController:vc animated:NO];
+//    }];
 }
 
 - (void)setupDateView
@@ -147,6 +155,8 @@ static const NSString *ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER = @"ABNORMALI
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    OptionsViewController *optionsVC = [[OptionsViewController alloc]init];
+    [self.navigationController pushViewController:optionsVC animated:YES];
 }
 
 
