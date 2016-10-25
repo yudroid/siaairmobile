@@ -20,7 +20,7 @@ static  NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_IDETIF
 
 @interface FlightViewController ()<TabBarViewDelegate,UITableViewDelegate,UITableViewDataSource>
 
-
+@property (nonatomic, strong) UIView *searBar;
 
 @end
 
@@ -75,17 +75,59 @@ static  NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_IDETIF
     [self.titleView addSubview:filterButton];
     UIButton *searchButton = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-72, 33, 18, 18)];
     [searchButton setBackgroundImage:[UIImage imageNamed:@"FlightSearchIconBig"] forState:UIControlStateNormal];
-    [searchButton addTarget:self action:@selector(filterButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [searchButton addTarget:self action:@selector(searchButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.titleView addSubview:searchButton];
+
+    _searBar = [[UIView alloc] initWithFrame:CGRectMake(kScreenWidth, 0, kScreenWidth, 64)];
+    _searBar.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"home_title_bg.png"]];
+//    _searBar.backgroundColor = [UIColor yellowColor];
+    [self.titleView addSubview:_searBar];
+
+    UIButton *searchBackButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 20, 51, 44)];
+    searchBackButton.backgroundColor = [UIColor clearColor];
+    //    [backBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
+    [searchBackButton setImage:[UIImage imageNamed:@"icon_newMessage"] forState:(UIControlStateNormal)];
+    [searchBackButton setImage:[UIImage imageNamed:@"icon_newMessage"] forState:(UIControlStateSelected)];
+    [_searBar addSubview:searchBackButton];
+    [searchBackButton addTarget:self action:@selector(searchBackButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
+    UITextField *searContentTextField = [[UITextField alloc] initWithFrame:CGRectMake(51, 20, kScreenWidth-100, 44)];
+    searContentTextField.textAlignment = NSTextAlignmentCenter;
+    searContentTextField.placeholder = @"请输入查询内容";
+    [_searBar addSubview:searContentTextField];
+
+
+    UIButton *searchBarSearchButton = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-51, 20, 51, 44)];
+    [searchBarSearchButton setTitle:@"搜索" forState:UIControlStateNormal];
+    [searchBarSearchButton addTarget:self action:@selector(searchBarSearchButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_searBar addSubview:searchBarSearchButton];
+
 }
 
 -(void)filterButtonClick:(UIButton *)button
 {
-        [UIView animateWithDuration:0.3 animations:^{
-            filterView.alpha = 1;
-        }];
+    [UIView animateWithDuration:0.3 animations:^{
+        filterView.alpha = 1;
+    }];
 }
+-(void)searchButtonClick:(UIButton *)sender
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        _searBar.frame = CGRectMake(0, 0, kScreenWidth, 64);
+    }];
 
+}
+-(void)searchBackButtonClick:(UIButton *)sender
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        _searBar.frame = CGRectMake(kScreenWidth, 0, kScreenWidth, 64);
+    }];
+
+}
+-(void)searchBarSearchButtonClick:(UIButton *)sender
+{
+
+
+}
 
 
 #pragma mark - UITableViewDelegate UITableViewDataSource
@@ -97,7 +139,7 @@ static  NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_IDETIF
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 85;
+    return 90;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -105,6 +147,9 @@ static  NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_IDETIF
     FlightFilterTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TABLEVIEWCELL_IDETIFIER ];
     if (cell==nil) {
         cell= [[NSBundle mainBundle] loadNibNamed:@"FlightFilterTableViewCell" owner:nil options:nil][0];
+    }
+    if (indexPath.row%2) {
+        cell.middleView.hidden = YES;
     }
     return cell;
 }
