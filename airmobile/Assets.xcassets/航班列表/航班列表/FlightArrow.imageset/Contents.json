@@ -5,6 +5,17 @@
       "scale" : "1x"
     },
     {
+      "resizing" : {
+        "mode" : "3-part-horizontal",
+        "center" : {
+          "mode" : "tile",
+          "width" : 62
+        },
+        "cap-insets" : {
+          "right" : 28,
+          "left" : 5
+        }
+      },
       "idiom" : "universal",
       "filename" : "箭头.png",
       "scale" : "2x"
