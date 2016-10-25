@@ -166,26 +166,18 @@ static const NSString *ADDRESSBOOK_TABLECELL_IDENTIFIER = @"ADDRESSBOOK_TABLECEL
             [tableView deleteRowsAtIndexPaths:PathArray withRowAnimation:UITableViewRowAnimationBottom];
         }
     }else{
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:[NSString stringWithFormat:@"是否呼叫",[dictionary objectForKey:@"name"]] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"呼叫", nil];
-        void (^block)(NSInteger) = ^(NSInteger buttonIndex){
-            if (1 == buttonIndex) {
-                NSString *phoneNumber = [NSString stringWithFormat:@"telprompt://%@",[dictionary objectForKey:@"phone"]];
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneNumber]];
-            }
-        };
-        objc_setAssociatedObject(alertView,ALERTVIEW_BLOCK , block, OBJC_ASSOCIATION_COPY);
-        
-        [alertView show];
+        NSString *phoneNumber = [NSString stringWithFormat:@"telprompt://%@",[dictionary objectForKey:@"phone"]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneNumber]];
     }
-    
+
 }
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    NSLog(@"%ld",(long)buttonIndex);
-    void (^block)(NSInteger) = objc_getAssociatedObject(alertView, ALERTVIEW_BLOCK);
-    block(buttonIndex);
-}
+//-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+//{
+//    NSLog(@"%ld",(long)buttonIndex);
+//    void (^block)(NSInteger) = objc_getAssociatedObject(alertView, ALERTVIEW_BLOCK);
+//    block(buttonIndex);
+//}
 
 /*
 #pragma mark - Navigation
