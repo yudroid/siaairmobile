@@ -178,6 +178,8 @@
 		F7A25D8C1DBE277500F36C32 /* SJPhotoPickerToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D791DBE277500F36C32 /* SJPhotoPickerToolBar.m */; };
 		F7A25D8D1DBE277500F36C32 /* SJPickPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D7B1DBE277500F36C32 /* SJPickPhotoCell.m */; };
 		F7A25D8E1DBE277500F36C32 /* SJPreviewPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D7D1DBE277500F36C32 /* SJPreviewPhotoCell.m */; };
+		F7A25D921DBEF34800F36C32 /* OptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D901DBEF34800F36C32 /* OptionsViewController.m */; };
+		F7A25D931DBEF34800F36C32 /* OptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7A25D911DBEF34800F36C32 /* OptionsViewController.xib */; };
 		F7A2A0511DB8D0590023F228 /* FlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A0441DB8D0590023F228 /* FlightViewController.m */; };
 		F7A2A0521DB8D0590023F228 /* FunctionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A0461DB8D0590023F228 /* FunctionViewController.m */; };
 		F7A2A0531DB8D0590023F228 /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A0481DB8D0590023F228 /* HomePageViewController.m */; };
@@ -469,6 +471,9 @@
 		F7A25D7B1DBE277500F36C32 /* SJPickPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = SJPickPhotoCell.m; sourceTree = "<group>"; };
 		F7A25D7C1DBE277500F36C32 /* SJPreviewPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJPreviewPhotoCell.h; sourceTree = "<group>"; };
 		F7A25D7D1DBE277500F36C32 /* SJPreviewPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJPreviewPhotoCell.m; sourceTree = "<group>"; };
+		F7A25D8F1DBEF34800F36C32 /* OptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsViewController.h; sourceTree = "<group>"; };
+		F7A25D901DBEF34800F36C32 /* OptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsViewController.m; sourceTree = "<group>"; usesTabs = 1; };
+		F7A25D911DBEF34800F36C32 /* OptionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OptionsViewController.xib; sourceTree = "<group>"; };
 		F7A2A0431DB8D0590023F228 /* FlightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightViewController.h; sourceTree = "<group>"; };
 		F7A2A0441DB8D0590023F228 /* FlightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightViewController.m; sourceTree = "<group>"; };
 		F7A2A0451DB8D0590023F228 /* FunctionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FunctionViewController.h; sourceTree = "<group>"; };
@@ -783,6 +788,9 @@
 				F7EAE1931DB4776C0060626F /* AbnormalityReportViewController.h */,
 				F7EAE1941DB4776C0060626F /* AbnormalityReportViewController.m */,
 				F7EAE1951DB4776C0060626F /* AbnormalityReportViewController.xib */,
+				F7A25D8F1DBEF34800F36C32 /* OptionsViewController.h */,
+				F7A25D901DBEF34800F36C32 /* OptionsViewController.m */,
+				F7A25D911DBEF34800F36C32 /* OptionsViewController.xib */,
 				F79251471DB608E6006AA119 /* ContactPersonViewController.h */,
 				F79251481DB608E6006AA119 /* ContactPersonViewController.m */,
 				F7A25D181DBDA67A00F36C32 /* ContactPersonViewController.xib */,
@@ -1275,6 +1283,7 @@
 				84BA54EA1DA256940037198F /* Main.storyboard in Resources */,
 				845055D01DAE3F1A00400EBF /* icon_message_light@3x.png in Resources */,
 				845055BE1DAE3F1A00400EBF /* icon_function@3x.png in Resources */,
+				F7A25D931DBEF34800F36C32 /* OptionsViewController.xib in Resources */,
 				845055731DACF65200400EBF /* splash_3@3x.png in Resources */,
 				8450555D1DACF65200400EBF /* login_btn_pre@2x.png in Resources */,
 				845055591DACF65200400EBF /* login_bg@2x.png in Resources */,
@@ -1485,12 +1494,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F79251631DB63A10006AA119 /* ChatLeftTableViewCell.m in Sources */,
-<<<<<<< HEAD
 				F7A25D841DBE277500F36C32 /* SJPhotoModel.m in Sources */,
 				F7A25D8A1DBE277500F36C32 /* SJPhotoPickerNavBar.m in Sources */,
-=======
 				841839FA1DBCC10200D7DD86 /* PNLineChartDataItem.m in Sources */,
->>>>>>> d109888b4d0df8a358a452abdc272dca4bbd5b14
 				F7A2A0551DB8D0590023F228 /* MessageViewController.m in Sources */,
 				843F4CF21DACC3FD00D73D56 /* StringUtils.m in Sources */,
 				843F4CF81DACCA6D00D73D56 /* HttpsUtils+Business.m in Sources */,
@@ -1564,6 +1570,7 @@
 				F7EE87791DB3285B006473F5 /* FlightFilterView.m in Sources */,
 				F7A25D0F1DBA059800F36C32 /* AbnormalityReportTableViewCell.m in Sources */,
 				F7A2A0651DB8D0EE0023F228 /* ResourceContentView.m in Sources */,
+				F7A25D921DBEF34800F36C32 /* OptionsViewController.m in Sources */,
 				841839F91DBCC10200D7DD86 /* PNLineChartData.m in Sources */,
 				845E643E1DAB980C0072360D /* CommonFunction.m in Sources */,
 			);

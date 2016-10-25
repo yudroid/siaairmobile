@@ -39,9 +39,7 @@ static NSString *ID_SJPickPhotoCell = @"sJPickPhotoCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     [self initTitle];
-
     [self setupDatas];
     [self setupViews];
 }
@@ -64,7 +62,7 @@ static NSString *ID_SJPickPhotoCell = @"sJPickPhotoCell";
 
 -(void)sureButtonClick:(UIButton *)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-3] animated:YES];;
 }
 
 
