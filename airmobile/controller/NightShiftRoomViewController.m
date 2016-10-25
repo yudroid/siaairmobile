@@ -37,20 +37,22 @@ static const NSString *NIGHTSHIFTROOM_TABLECELL_IDENTIFIER = @"NIGHTSHIFTROOM_TA
 
     UISwipeGestureRecognizer *leftSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(leftSwipeGestureRecognizerEvent)];
     leftSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+    [_calendarView addGestureRecognizer:leftSwipeGestureRecognizer];
     UISwipeGestureRecognizer *rightSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(rightSwipeGestureRecognizerEvent)];
     rightSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+    [_calendarView addGestureRecognizer:rightSwipeGestureRecognizer];
     
 }
 
 #pragma mark - EVENT
 -(void)leftSwipeGestureRecognizerEvent
 {
-
+    [_calendarView jumpToNextMonth];
 
 }
 -(void)rightSwipeGestureRecognizerEvent
 {
-    
+    [_calendarView jumpToPreviousMonth];
     
 }
 #pragma mark - UITableViewDelegate UITableViewDataSource

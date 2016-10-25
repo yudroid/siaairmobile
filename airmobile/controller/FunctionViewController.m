@@ -108,8 +108,8 @@ static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDEN
         }
         case TabBarSelectedTypeFunction:
         {
-            FunctionViewController *function = [[FunctionViewController alloc] init];
-            [self.navigationController pushViewController:function animated:NO];
+            FlightViewController *flight = [[FlightViewController alloc] init];
+            [self.navigationController pushViewController:flight animated:NO];
             break;
         }
         case TabBarSelectedTypeUserInfo:

@@ -31,7 +31,9 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 
 @property (nonatomic, copy) NSArray     *safeguardTableViewArray;
 @property (nonatomic, copy) NSArray     *airLineCollectionArray;
+@property (nonatomic, copy) NSArray     *tableArray;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *safeguradViewHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *safeguardTableViewHeight;
 
 @end
 
@@ -61,8 +63,9 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
     
     _airLineCollectionArray     = @[@"上海虹桥",@"深圳宝安",@"北京首都"];
     _safeguardTableViewArray    = @[@"1",@""];
-    
-    
+    _safeguardTableViewHeight.constant = 45 * _safeguardTableViewArray.count;
+    _tableArray = @[@"",@"",@"",@"",@""];
+    _tableViewHeight.constant = 103*_tableArray.count;
     [_AirlineCollectionView registerNib:[UINib nibWithNibName:@"FlightDetailAirLineCollectionViewCell" bundle:nil]
              forCellWithReuseIdentifier:(NSString *)FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER];
     
@@ -75,9 +78,9 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView == _safeguardTableView) {
-        return 2;
+        return _safeguardTableViewArray.count;
     }
-    return 10;
+    return _tableArray.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -101,6 +104,12 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
         if (cell==nil) {
             cell = [[NSBundle mainBundle] loadNibNamed:@"FlightDetailTableViewCell" owner:nil options:nil][0];
         }
+    if (indexPath.row == 0) {
+        cell.type = FlightDetailTableViewCellTypeTypeFirst;
+    }
+    if (indexPath.row ==_tableArray.count-1 ) {
+        cell.type = FlightDetailTableViewCellTypeTypeLast;
+    }
         cell.delegate = self;
         return  cell;
     }

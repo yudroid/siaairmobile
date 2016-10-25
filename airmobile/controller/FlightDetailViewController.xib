@@ -9,9 +9,10 @@
             <connections>
                 <outlet property="AirlineCollectionView" destination="B8a-Po-Z4X" id="U8e-0m-Wgv"/>
                 <outlet property="safeguardTableView" destination="QBr-5b-hfX" id="A6c-ph-Yyv"/>
+                <outlet property="safeguardTableViewHeight" destination="OQS-aO-xUh" id="Jie-0N-9en"/>
                 <outlet property="safeguradViewHeight" destination="OQS-aO-xUh" id="LKP-r6-1kQ"/>
                 <outlet property="tableView" destination="jEj-kJ-Brb" id="zTz-5Q-EhX"/>
-                <outlet property="tableViewHeight" destination="fpP-bG-jAO" id="7QS-oj-q5r"/>
+                <outlet property="tableViewHeight" destination="fpP-bG-jAO" id="XDe-U7-kyo"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
