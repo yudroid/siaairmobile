@@ -60,6 +60,7 @@ typedef NS_ENUM(NSInteger, JTCalendarPageMode) {
     self.showsVerticalScrollIndicator = NO;
     self.pagingEnabled = YES;
     self.clipsToBounds = YES;
+    
 }
 
 - (void)layoutSubviews
@@ -81,6 +82,7 @@ typedef NS_ENUM(NSInteger, JTCalendarPageMode) {
         
         _leftView.frame = CGRectMake(_leftView.frame.origin.x, 0, size.width, size.height);
         _centerView.frame = CGRectMake(_centerView.frame.origin.x, 0, size.width, size.height);
+
         _rightView.frame = CGRectMake(_rightView.frame.origin.x, 0, size.width, size.height);
         
         self.contentSize = CGSizeMake(self.contentSize.width, size.height);
@@ -185,6 +187,7 @@ typedef NS_ENUM(NSInteger, JTCalendarPageMode) {
         case JTCalendarPageModeFull:
             
             _leftView.frame = CGRectMake(0, 0, size.width, size.height);
+
             _centerView.frame = CGRectMake(size.width, 0, size.width, size.height);
             _rightView.frame = CGRectMake(size.width * 2, 0, size.width, size.height);
             
