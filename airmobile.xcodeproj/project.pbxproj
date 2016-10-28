@@ -189,6 +189,27 @@
 		F7A25D101DBA059800F36C32 /* AbnormalityReportTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7A25D0E1DBA059800F36C32 /* AbnormalityReportTableViewCell.xib */; };
 		F7A25D141DBA106300F36C32 /* UploadPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D121DBA106300F36C32 /* UploadPhotoViewController.m */; };
 		F7A25D151DBA106300F36C32 /* UploadPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7A25D131DBA106300F36C32 /* UploadPhotoViewController.xib */; };
+		F7A25D191DBDA67A00F36C32 /* ContactPersonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7A25D181DBDA67A00F36C32 /* ContactPersonViewController.xib */; };
+		F7A25D1B1DBDA6B400F36C32 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7A25D1A1DBDA6B400F36C32 /* ChatViewController.xib */; };
+		F7A25D1E1DBDB5C000F36C32 /* TimePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D1D1DBDB5C000F36C32 /* TimePickerView.m */; };
+		F7A25D201DBDB5D000F36C32 /* TimePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7A25D1F1DBDB5D000F36C32 /* TimePickerView.xib */; };
+		F7A25D7E1DBE277500F36C32 /* SJPhotoAlbumsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D5A1DBE277500F36C32 /* SJPhotoAlbumsController.m */; };
+		F7A25D7F1DBE277500F36C32 /* SJPhotoPickerNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D5C1DBE277500F36C32 /* SJPhotoPickerNavController.m */; };
+		F7A25D801DBE277500F36C32 /* SJPickPhotoController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D5E1DBE277500F36C32 /* SJPickPhotoController.m */; };
+		F7A25D811DBE277500F36C32 /* SJPreviewPhotoController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D601DBE277500F36C32 /* SJPreviewPhotoController.m */; };
+		F7A25D821DBE277500F36C32 /* SJPhotoPickerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D651DBE277500F36C32 /* SJPhotoPickerManager.m */; };
+		F7A25D831DBE277500F36C32 /* SJAlbumModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D681DBE277500F36C32 /* SJAlbumModel.m */; };
+		F7A25D841DBE277500F36C32 /* SJPhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D6A1DBE277500F36C32 /* SJPhotoModel.m */; };
+		F7A25D851DBE277500F36C32 /* SJPhotoPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D6C1DBE277500F36C32 /* SJPhotoPicker.m */; };
+		F7A25D861DBE277500F36C32 /* photopicker_back.png in Resources */ = {isa = PBXBuildFile; fileRef = F7A25D6E1DBE277500F36C32 /* photopicker_back.png */; };
+		F7A25D871DBE277500F36C32 /* photopicker_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7A25D6F1DBE277500F36C32 /* photopicker_back@2x.png */; };
+		F7A25D881DBE277500F36C32 /* photopicker_back@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7A25D701DBE277500F36C32 /* photopicker_back@3x.png */; };
+		F7A25D891DBE277500F36C32 /* SJPhotoAlbumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D731DBE277500F36C32 /* SJPhotoAlbumCell.m */; };
+		F7A25D8A1DBE277500F36C32 /* SJPhotoPickerNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D751DBE277500F36C32 /* SJPhotoPickerNavBar.m */; };
+		F7A25D8B1DBE277500F36C32 /* SJPhotoPickerRaidoButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D771DBE277500F36C32 /* SJPhotoPickerRaidoButton.m */; };
+		F7A25D8C1DBE277500F36C32 /* SJPhotoPickerToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D791DBE277500F36C32 /* SJPhotoPickerToolBar.m */; };
+		F7A25D8D1DBE277500F36C32 /* SJPickPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D7B1DBE277500F36C32 /* SJPickPhotoCell.m */; };
+		F7A25D8E1DBE277500F36C32 /* SJPreviewPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D7D1DBE277500F36C32 /* SJPreviewPhotoCell.m */; };
 		F7A2A0511DB8D0590023F228 /* FlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A0441DB8D0590023F228 /* FlightViewController.m */; };
 		F7A2A0521DB8D0590023F228 /* FunctionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A0461DB8D0590023F228 /* FunctionViewController.m */; };
 		F7A2A0531DB8D0590023F228 /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A0481DB8D0590023F228 /* HomePageViewController.m */; };
@@ -443,7 +464,7 @@
 		F79251391DB5CBDA006AA119 /* UIViewController+Reminder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Reminder.h"; sourceTree = "<group>"; };
 		F792513A1DB5CBE3006AA119 /* UIViewController+Reminder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Reminder.m"; sourceTree = "<group>"; };
 		F79251471DB608E6006AA119 /* ContactPersonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactPersonViewController.h; sourceTree = "<group>"; };
-		F79251481DB608E6006AA119 /* ContactPersonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactPersonViewController.m; sourceTree = "<group>"; };
+		F79251481DB608E6006AA119 /* ContactPersonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = ContactPersonViewController.m; sourceTree = "<group>"; };
 		F792514C1DB60BD0006AA119 /* MessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTableViewCell.h; sourceTree = "<group>"; };
 		F792514D1DB60BD0006AA119 /* MessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTableViewCell.m; sourceTree = "<group>"; };
 		F792514E1DB60BD0006AA119 /* MessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageTableViewCell.xib; sourceTree = "<group>"; };
@@ -504,8 +525,45 @@
 		F7A25D0D1DBA059800F36C32 /* AbnormalityReportTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbnormalityReportTableViewCell.m; sourceTree = "<group>"; };
 		F7A25D0E1DBA059800F36C32 /* AbnormalityReportTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AbnormalityReportTableViewCell.xib; sourceTree = "<group>"; };
 		F7A25D111DBA106300F36C32 /* UploadPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadPhotoViewController.h; sourceTree = "<group>"; };
-		F7A25D121DBA106300F36C32 /* UploadPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadPhotoViewController.m; sourceTree = "<group>"; };
+		F7A25D121DBA106300F36C32 /* UploadPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UploadPhotoViewController.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 0; };
 		F7A25D131DBA106300F36C32 /* UploadPhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadPhotoViewController.xib; sourceTree = "<group>"; };
+		F7A25D181DBDA67A00F36C32 /* ContactPersonViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactPersonViewController.xib; sourceTree = "<group>"; };
+		F7A25D1A1DBDA6B400F36C32 /* ChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
+		F7A25D1C1DBDB5C000F36C32 /* TimePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePickerView.h; sourceTree = "<group>"; };
+		F7A25D1D1DBDB5C000F36C32 /* TimePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = TimePickerView.m; sourceTree = "<group>"; };
+		F7A25D1F1DBDB5D000F36C32 /* TimePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimePickerView.xib; sourceTree = "<group>"; };
+		F7A25D591DBE277500F36C32 /* SJPhotoAlbumsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJPhotoAlbumsController.h; sourceTree = "<group>"; };
+		F7A25D5A1DBE277500F36C32 /* SJPhotoAlbumsController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = SJPhotoAlbumsController.m; sourceTree = "<group>"; };
+		F7A25D5B1DBE277500F36C32 /* SJPhotoPickerNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJPhotoPickerNavController.h; sourceTree = "<group>"; };
+		F7A25D5C1DBE277500F36C32 /* SJPhotoPickerNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJPhotoPickerNavController.m; sourceTree = "<group>"; };
+		F7A25D5D1DBE277500F36C32 /* SJPickPhotoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJPickPhotoController.h; sourceTree = "<group>"; };
+		F7A25D5E1DBE277500F36C32 /* SJPickPhotoController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = SJPickPhotoController.m; sourceTree = "<group>"; };
+		F7A25D5F1DBE277500F36C32 /* SJPreviewPhotoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJPreviewPhotoController.h; sourceTree = "<group>"; };
+		F7A25D601DBE277500F36C32 /* SJPreviewPhotoController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = SJPreviewPhotoController.m; sourceTree = "<group>"; };
+		F7A25D621DBE277500F36C32 /* SJPhotoPickerMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJPhotoPickerMacro.h; sourceTree = "<group>"; };
+		F7A25D641DBE277500F36C32 /* SJPhotoPickerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJPhotoPickerManager.h; sourceTree = "<group>"; };
+		F7A25D651DBE277500F36C32 /* SJPhotoPickerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJPhotoPickerManager.m; sourceTree = "<group>"; };
+		F7A25D671DBE277500F36C32 /* SJAlbumModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJAlbumModel.h; sourceTree = "<group>"; };
+		F7A25D681DBE277500F36C32 /* SJAlbumModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJAlbumModel.m; sourceTree = "<group>"; };
+		F7A25D691DBE277500F36C32 /* SJPhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJPhotoModel.h; sourceTree = "<group>"; };
+		F7A25D6A1DBE277500F36C32 /* SJPhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJPhotoModel.m; sourceTree = "<group>"; };
+		F7A25D6B1DBE277500F36C32 /* SJPhotoPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJPhotoPicker.h; sourceTree = "<group>"; };
+		F7A25D6C1DBE277500F36C32 /* SJPhotoPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = SJPhotoPicker.m; sourceTree = "<group>"; };
+		F7A25D6E1DBE277500F36C32 /* photopicker_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photopicker_back.png; sourceTree = "<group>"; };
+		F7A25D6F1DBE277500F36C32 /* photopicker_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photopicker_back@2x.png"; sourceTree = "<group>"; };
+		F7A25D701DBE277500F36C32 /* photopicker_back@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photopicker_back@3x.png"; sourceTree = "<group>"; };
+		F7A25D721DBE277500F36C32 /* SJPhotoAlbumCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJPhotoAlbumCell.h; sourceTree = "<group>"; };
+		F7A25D731DBE277500F36C32 /* SJPhotoAlbumCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJPhotoAlbumCell.m; sourceTree = "<group>"; };
+		F7A25D741DBE277500F36C32 /* SJPhotoPickerNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJPhotoPickerNavBar.h; sourceTree = "<group>"; };
+		F7A25D751DBE277500F36C32 /* SJPhotoPickerNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJPhotoPickerNavBar.m; sourceTree = "<group>"; };
+		F7A25D761DBE277500F36C32 /* SJPhotoPickerRaidoButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJPhotoPickerRaidoButton.h; sourceTree = "<group>"; };
+		F7A25D771DBE277500F36C32 /* SJPhotoPickerRaidoButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJPhotoPickerRaidoButton.m; sourceTree = "<group>"; };
+		F7A25D781DBE277500F36C32 /* SJPhotoPickerToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJPhotoPickerToolBar.h; sourceTree = "<group>"; };
+		F7A25D791DBE277500F36C32 /* SJPhotoPickerToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJPhotoPickerToolBar.m; sourceTree = "<group>"; };
+		F7A25D7A1DBE277500F36C32 /* SJPickPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJPickPhotoCell.h; sourceTree = "<group>"; };
+		F7A25D7B1DBE277500F36C32 /* SJPickPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = SJPickPhotoCell.m; sourceTree = "<group>"; };
+		F7A25D7C1DBE277500F36C32 /* SJPreviewPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJPreviewPhotoCell.h; sourceTree = "<group>"; };
+		F7A25D7D1DBE277500F36C32 /* SJPreviewPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJPreviewPhotoCell.m; sourceTree = "<group>"; };
 		F7A2A0431DB8D0590023F228 /* FlightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightViewController.h; sourceTree = "<group>"; };
 		F7A2A0441DB8D0590023F228 /* FlightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightViewController.m; sourceTree = "<group>"; };
 		F7A2A0451DB8D0590023F228 /* FunctionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FunctionViewController.h; sourceTree = "<group>"; };
@@ -531,10 +589,10 @@
 		F7A2A0601DB8D0EE0023F228 /* TabBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarView.h; sourceTree = "<group>"; };
 		F7A2A0611DB8D0EE0023F228 /* TabBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarView.m; sourceTree = "<group>"; };
 		F7EAE1931DB4776C0060626F /* AbnormalityReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbnormalityReportViewController.h; sourceTree = "<group>"; };
-		F7EAE1941DB4776C0060626F /* AbnormalityReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbnormalityReportViewController.m; sourceTree = "<group>"; };
+		F7EAE1941DB4776C0060626F /* AbnormalityReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = AbnormalityReportViewController.m; sourceTree = "<group>"; };
 		F7EAE1951DB4776C0060626F /* AbnormalityReportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AbnormalityReportViewController.xib; sourceTree = "<group>"; };
-		F7EAE19A1DB4B0680060626F /* AbnormalityReportCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbnormalityReportCollectionViewCell.h; sourceTree = "<group>"; };
-		F7EAE19B1DB4B0680060626F /* AbnormalityReportCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbnormalityReportCollectionViewCell.m; sourceTree = "<group>"; };
+		F7EAE19A1DB4B0680060626F /* AbnormalityReportCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 0; lastKnownFileType = sourcecode.c.h; path = AbnormalityReportCollectionViewCell.h; sourceTree = "<group>"; };
+		F7EAE19B1DB4B0680060626F /* AbnormalityReportCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = AbnormalityReportCollectionViewCell.m; sourceTree = "<group>"; tabWidth = 4; wrapsLines = 0; };
 		F7EAE19C1DB4B0680060626F /* AbnormalityReportCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AbnormalityReportCollectionViewCell.xib; sourceTree = "<group>"; };
 		F7EAE19F1DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightDetailSafeguardTableViewCell.h; sourceTree = "<group>"; };
 		F7EAE1A01DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightDetailSafeguardTableViewCell.m; sourceTree = "<group>"; };
@@ -842,6 +900,9 @@
 				F7EE87821DB370C4006473F5 /* 航班列表 */,
 				F792513C1DB5EE01006AA119 /* 消息 */,
 				F79251721DB73DD3006AA119 /* 我的 */,
+				F7A25D1C1DBDB5C000F36C32 /* TimePickerView.h */,
+				F7A25D1D1DBDB5C000F36C32 /* TimePickerView.m */,
+				F7A25D1F1DBDB5D000F36C32 /* TimePickerView.xib */,
 			);
 			path = uiview;
 			sourceTree = "<group>";
@@ -873,8 +934,10 @@
 				F7EAE1951DB4776C0060626F /* AbnormalityReportViewController.xib */,
 				F79251471DB608E6006AA119 /* ContactPersonViewController.h */,
 				F79251481DB608E6006AA119 /* ContactPersonViewController.m */,
+				F7A25D181DBDA67A00F36C32 /* ContactPersonViewController.xib */,
 				F792515B1DB6352D006AA119 /* ChatViewController.h */,
 				F792515C1DB6352D006AA119 /* ChatViewController.m */,
+				F7A25D1A1DBDA6B400F36C32 /* ChatViewController.xib */,
 				F79251781DB7431D006AA119 /* UserManagementViewController.h */,
 				F79251791DB7431D006AA119 /* UserManagementViewController.m */,
 				F792517A1DB7431D006AA119 /* UserManagementViewController.xib */,
@@ -1007,6 +1070,7 @@
 				846F1D8A1DA89E2600C8920B /* uiview */,
 				846F1D891DA89E1500C8920B /* utils */,
 				84BA54DF1DA256940037198F /* Supporting Files */,
+				F7A25D561DBE274D00F36C32 /* lib */,
 			);
 			path = airmobile;
 			sourceTree = "<group>";
@@ -1084,6 +1148,101 @@
 				F792519B1DB85FA0006AA119 /* AddressBookGroupTableViewCell.xib */,
 			);
 			name = "我的";
+			sourceTree = "<group>";
+		};
+		F7A25D561DBE274D00F36C32 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				F7A25D571DBE277500F36C32 /* SJPhotoPicker */,
+			);
+			name = lib;
+			sourceTree = "<group>";
+		};
+		F7A25D571DBE277500F36C32 /* SJPhotoPicker */ = {
+			isa = PBXGroup;
+			children = (
+				F7A25D581DBE277500F36C32 /* Controller */,
+				F7A25D611DBE277500F36C32 /* Macro */,
+				F7A25D631DBE277500F36C32 /* Manager */,
+				F7A25D661DBE277500F36C32 /* Models */,
+				F7A25D6B1DBE277500F36C32 /* SJPhotoPicker.h */,
+				F7A25D6C1DBE277500F36C32 /* SJPhotoPicker.m */,
+				F7A25D6D1DBE277500F36C32 /* Sources */,
+				F7A25D711DBE277500F36C32 /* Views */,
+			);
+			path = SJPhotoPicker;
+			sourceTree = "<group>";
+		};
+		F7A25D581DBE277500F36C32 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F7A25D591DBE277500F36C32 /* SJPhotoAlbumsController.h */,
+				F7A25D5A1DBE277500F36C32 /* SJPhotoAlbumsController.m */,
+				F7A25D5B1DBE277500F36C32 /* SJPhotoPickerNavController.h */,
+				F7A25D5C1DBE277500F36C32 /* SJPhotoPickerNavController.m */,
+				F7A25D5D1DBE277500F36C32 /* SJPickPhotoController.h */,
+				F7A25D5E1DBE277500F36C32 /* SJPickPhotoController.m */,
+				F7A25D5F1DBE277500F36C32 /* SJPreviewPhotoController.h */,
+				F7A25D601DBE277500F36C32 /* SJPreviewPhotoController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		F7A25D611DBE277500F36C32 /* Macro */ = {
+			isa = PBXGroup;
+			children = (
+				F7A25D621DBE277500F36C32 /* SJPhotoPickerMacro.h */,
+			);
+			path = Macro;
+			sourceTree = "<group>";
+		};
+		F7A25D631DBE277500F36C32 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				F7A25D641DBE277500F36C32 /* SJPhotoPickerManager.h */,
+				F7A25D651DBE277500F36C32 /* SJPhotoPickerManager.m */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		F7A25D661DBE277500F36C32 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F7A25D671DBE277500F36C32 /* SJAlbumModel.h */,
+				F7A25D681DBE277500F36C32 /* SJAlbumModel.m */,
+				F7A25D691DBE277500F36C32 /* SJPhotoModel.h */,
+				F7A25D6A1DBE277500F36C32 /* SJPhotoModel.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F7A25D6D1DBE277500F36C32 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				F7A25D6E1DBE277500F36C32 /* photopicker_back.png */,
+				F7A25D6F1DBE277500F36C32 /* photopicker_back@2x.png */,
+				F7A25D701DBE277500F36C32 /* photopicker_back@3x.png */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		F7A25D711DBE277500F36C32 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F7A25D721DBE277500F36C32 /* SJPhotoAlbumCell.h */,
+				F7A25D731DBE277500F36C32 /* SJPhotoAlbumCell.m */,
+				F7A25D741DBE277500F36C32 /* SJPhotoPickerNavBar.h */,
+				F7A25D751DBE277500F36C32 /* SJPhotoPickerNavBar.m */,
+				F7A25D761DBE277500F36C32 /* SJPhotoPickerRaidoButton.h */,
+				F7A25D771DBE277500F36C32 /* SJPhotoPickerRaidoButton.m */,
+				F7A25D781DBE277500F36C32 /* SJPhotoPickerToolBar.h */,
+				F7A25D791DBE277500F36C32 /* SJPhotoPickerToolBar.m */,
+				F7A25D7A1DBE277500F36C32 /* SJPickPhotoCell.h */,
+				F7A25D7B1DBE277500F36C32 /* SJPickPhotoCell.m */,
+				F7A25D7C1DBE277500F36C32 /* SJPreviewPhotoCell.h */,
+				F7A25D7D1DBE277500F36C32 /* SJPreviewPhotoCell.m */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		F7EE87821DB370C4006473F5 /* 航班列表 */ = {
@@ -1232,6 +1391,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7EEEF1D1DB396E0004AF0AE /* FlightDetailViewController.xib in Resources */,
+				F7A25D881DBE277500F36C32 /* photopicker_back@3x.png in Resources */,
 				8450556A1DACF65200400EBF /* logo_flight@3x.png in Resources */,
 				845055601DACF65200400EBF /* login_icon_invisible@3x.png in Resources */,
 				F7EAE1971DB4776C0060626F /* AbnormalityReportViewController.xib in Resources */,
@@ -1303,6 +1463,7 @@
 				845055661DACF65200400EBF /* login_logo@3x.png in Resources */,
 				845055BB1DAE3F1A00400EBF /* icon_flight_pre@2x.png in Resources */,
 				F792518E1DB7890E006AA119 /* NightShiftRoomTableViewCell.xib in Resources */,
+				F7A25D1B1DBDA6B400F36C32 /* ChatViewController.xib in Resources */,
 				F79251381DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.xib in Resources */,
 				845055D41DAE3F1A00400EBF /* icon_message_pre@3x.png in Resources */,
 				845055B41DAE3F1A00400EBF /* home_title_bg@3x.png in Resources */,
@@ -1311,6 +1472,7 @@
 				F79251891DB781AB006AA119 /* NightShiftRoomViewController.xib in Resources */,
 				845055D31DAE3F1A00400EBF /* icon_message_pre@2x.png in Resources */,
 				845055C31DAE3F1A00400EBF /* icon_function_pre@2x.png in Resources */,
+				F7A25D861DBE277500F36C32 /* photopicker_back.png in Resources */,
 				845055DA1DAE3F1A00400EBF /* icon_userinfo_light@3x.png in Resources */,
 				8450556B1DACF65200400EBF /* logout.png in Resources */,
 				845055701DACF65200400EBF /* splash_2@2x.png in Resources */,
@@ -1319,11 +1481,13 @@
 				8450556E1DACF65200400EBF /* splash_1@2x.png in Resources */,
 				845055C51DAE3F1A00400EBF /* icon_home@2x.png in Resources */,
 				845055671DACF65200400EBF /* login_visible@2x.png in Resources */,
+				F7A25D191DBDA67A00F36C32 /* ContactPersonViewController.xib in Resources */,
 				845055CA1DAE3F1A00400EBF /* icon_home_pass@3x.png in Resources */,
 				845055611DACF65200400EBF /* login_icon_lock@2x.png in Resources */,
 				F79251931DB858D9006AA119 /* AddressBookViewController.xib in Resources */,
 				845055B21DAE3F1A00400EBF /* home_footer_bg@3x.png in Resources */,
 				F7EAE19E1DB4B0680060626F /* AbnormalityReportCollectionViewCell.xib in Resources */,
+				F7A25D201DBDB5D000F36C32 /* TimePickerView.xib in Resources */,
 				F79251811DB74576006AA119 /* UserManagermentTableViewCell.xib in Resources */,
 				845055C41DAE3F1A00400EBF /* icon_function_pre@3x.png in Resources */,
 				845055D11DAE3F1A00400EBF /* icon_message_pass@2x.png in Resources */,
@@ -1337,6 +1501,7 @@
 				F7EAE1A31DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.xib in Resources */,
 				845055B61DAE3F1A00400EBF /* icon_flight@3x.png in Resources */,
 				F7A25D101DBA059800F36C32 /* AbnormalityReportTableViewCell.xib in Resources */,
+				F7A25D871DBE277500F36C32 /* photopicker_back@2x.png in Resources */,
 				F7EE87811DB3635F006473F5 /* FlightFilterView.xib in Resources */,
 				845055581DACF65200400EBF /* login_accounts@3x.png in Resources */,
 				845055B81DAE3F1A00400EBF /* icon_flight_light@3x.png in Resources */,
@@ -1488,6 +1653,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F79251631DB63A10006AA119 /* ChatLeftTableViewCell.m in Sources */,
+				F7A25D841DBE277500F36C32 /* SJPhotoModel.m in Sources */,
+				F7A25D8A1DBE277500F36C32 /* SJPhotoPickerNavBar.m in Sources */,
 				841839FA1DBCC10200D7DD86 /* PNLineChartDataItem.m in Sources */,
 				840D15F01DC30983005FA910 /* PassengerTopModel.m in Sources */,
 				840D15DA1DC19B3B005FA910 /* DelayTimeTableViewCell.m in Sources */,
@@ -1496,6 +1663,7 @@
 				843F4CF21DACC3FD00D73D56 /* StringUtils.m in Sources */,
 				843F4CF81DACCA6D00D73D56 /* HttpsUtils+Business.m in Sources */,
 				846F1DB11DAA22E800C8920B /* GlobalHelper.m in Sources */,
+				F7A25D831DBE277500F36C32 /* SJAlbumModel.m in Sources */,
 				F792516D1DB63D62006AA119 /* ChatTimeTableViewCell.m in Sources */,
 				846F1D951DA8F8F700C8920B /* DeviceInfoUtil.m in Sources */,
 				F79251971DB85D78006AA119 /* AddressBookTableViewCell.m in Sources */,
@@ -1505,9 +1673,12 @@
 				F79251591DB61D9C006AA119 /* ContactPersonTableViewCell.m in Sources */,
 				840D15E31DC20C4F005FA910 /* PsnSafetyAreaView.m in Sources */,
 				840D15E61DC2E99A005FA910 /* PassengerAreaModel.m in Sources */,
+				F7A25D811DBE277500F36C32 /* SJPreviewPhotoController.m in Sources */,
 				F79251841DB7518E006AA119 /* FlightProcessModel.m in Sources */,
+				F7A25D891DBE277500F36C32 /* SJPhotoAlbumCell.m in Sources */,
 				F7EAE1A21DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.m in Sources */,
 				840D15D11DC0C18F005FA910 /* AbnReasonTableViewCell.m in Sources */,
+				F7A25D7E1DBE277500F36C32 /* SJPhotoAlbumsController.m in Sources */,
 				F79251711DB70B60006AA119 /* chatRecordModel.m in Sources */,
 				84183A051DBDB6DF00D7DD86 /* PNBar.m in Sources */,
 				84183A281DBE150E00D7DD86 /* EightMonthRatioView.m in Sources */,
@@ -1517,6 +1688,8 @@
 				843F4CF51DACC70F00D73D56 /* HttpsUtils.m in Sources */,
 				840D15D71DC0C478005FA910 /* RegionDlyTimeModel.m in Sources */,
 				84183A181DBDDDDE00D7DD86 /* FlightAbnViewController.m in Sources */,
+				F7A25D851DBE277500F36C32 /* SJPhotoPicker.m in Sources */,
+				F7A25D8E1DBE277500F36C32 /* SJPreviewPhotoCell.m in Sources */,
 				F792514F1DB60BD0006AA119 /* MessageTableViewCell.m in Sources */,
 				846F1DAE1DAA229600C8920B /* DefaultHelper.m in Sources */,
 				841839EF1DBCB87600D7DD86 /* PNGenericChart.m in Sources */,
@@ -1525,6 +1698,9 @@
 				F7A2A0531DB8D0590023F228 /* HomePageViewController.m in Sources */,
 				84183A1F1DBDDEA300D7DD86 /* SecurityPsnViewController.m in Sources */,
 				84183A121DBDDD3B00D7DD86 /* ReleasedRatioViewController.m in Sources */,
+				F7A25D7F1DBE277500F36C32 /* SJPhotoPickerNavController.m in Sources */,
+				F7A25D1E1DBDB5C000F36C32 /* TimePickerView.m in Sources */,
+				F7A25D8C1DBE277500F36C32 /* SJPhotoPickerToolBar.m in Sources */,
 				F7A25D0B1DB9E71A00F36C32 /* RoundProgressView.m in Sources */,
 				841839F81DBCC10200D7DD86 /* PNLineChart.m in Sources */,
 				F7EEEF1C1DB396E0004AF0AE /* FlightDetailViewController.m in Sources */,
@@ -1548,7 +1724,9 @@
 				F7A25D051DB9E6C900F36C32 /* PsnSafetyContentView.m in Sources */,
 				F7A2A0631DB8D0EE0023F228 /* OverViewContentView.m in Sources */,
 				84183A2E1DBF65D400D7DD86 /* RatioTableViewCell.m in Sources */,
+				F7A25D8B1DBE277500F36C32 /* SJPhotoPickerRaidoButton.m in Sources */,
 				F7A2A0661DB8D0EE0023F228 /* TabBarView.m in Sources */,
+				F7A25D801DBE277500F36C32 /* SJPickPhotoController.m in Sources */,
 				F7A2A0541DB8D0590023F228 /* LoginViewController.m in Sources */,
 				84183A061DBDB6DF00D7DD86 /* PNBarChart.m in Sources */,
 				F79251761DB73E2C006AA119 /* UserInfoTableViewCell.m in Sources */,
@@ -1564,12 +1742,14 @@
 				F7A2A0511DB8D0590023F228 /* FlightViewController.m in Sources */,
 				F7A2A0641DB8D0EE0023F228 /* PassengerContentView.m in Sources */,
 				840D15CB1DC0B6DB005FA910 /* AbnormalReasonView.m in Sources */,
+				F7A25D8D1DBE277500F36C32 /* SJPickPhotoCell.m in Sources */,
 				F79251921DB858D9006AA119 /* AddressBookViewController.m in Sources */,
 				84BA54ED1DA256940037198F /* airmobile.xcdatamodeld in Sources */,
 				F7A25D021DB9E6C000F36C32 /* PsnGeneralContentView.m in Sources */,
 				F79251541DB610D6006AA119 /* FixedMessageTableViewCell.m in Sources */,
 				F7A2A0521DB8D0590023F228 /* FunctionViewController.m in Sources */,
 				F792517B1DB7431D006AA119 /* UserManagementViewController.m in Sources */,
+				F7A25D821DBE277500F36C32 /* SJPhotoPickerManager.m in Sources */,
 				84BA54E11DA256940037198F /* main.m in Sources */,
 				F7A2A0561DB8D0590023F228 /* RootViewController.m in Sources */,
 				F792514A1DB608E6006AA119 /* ContactPersonViewController.m in Sources */,

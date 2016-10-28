@@ -41,6 +41,8 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
     [self titleViewInitWithHight:64];
     self.titleView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"home_title_bg.png"]];
     [self titleViewAddTitleText:@"选择联系人"];
+    [self titleViewAddBackBtn];
+
     
     UIButton *sureButton = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-16-40, 30, 40, 25)];
     sureButton.titleLabel.font = [UIFont systemFontOfSize:15];
