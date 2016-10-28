@@ -379,10 +379,10 @@
 		F79251521DB610D6006AA119 /* FixedMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FixedMessageTableViewCell.m; sourceTree = "<group>"; };
 		F79251531DB610D6006AA119 /* FixedMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FixedMessageTableViewCell.xib; sourceTree = "<group>"; };
 		F79251561DB61D9C006AA119 /* ContactPersonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactPersonTableViewCell.h; sourceTree = "<group>"; };
-		F79251571DB61D9C006AA119 /* ContactPersonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactPersonTableViewCell.m; sourceTree = "<group>"; };
+		F79251571DB61D9C006AA119 /* ContactPersonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = ContactPersonTableViewCell.m; sourceTree = "<group>"; };
 		F79251581DB61D9C006AA119 /* ContactPersonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactPersonTableViewCell.xib; sourceTree = "<group>"; };
 		F792515B1DB6352D006AA119 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
-		F792515C1DB6352D006AA119 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
+		F792515C1DB6352D006AA119 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		F79251601DB63A10006AA119 /* ChatLeftTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatLeftTableViewCell.h; sourceTree = "<group>"; };
 		F79251611DB63A10006AA119 /* ChatLeftTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatLeftTableViewCell.m; sourceTree = "<group>"; };
 		F79251621DB63A10006AA119 /* ChatLeftTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatLeftTableViewCell.xib; sourceTree = "<group>"; };
@@ -398,7 +398,7 @@
 		F79251741DB73E2C006AA119 /* UserInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoTableViewCell.m; sourceTree = "<group>"; };
 		F79251751DB73E2C006AA119 /* UserInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoTableViewCell.xib; sourceTree = "<group>"; };
 		F79251781DB7431D006AA119 /* UserManagementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManagementViewController.h; sourceTree = "<group>"; };
-		F79251791DB7431D006AA119 /* UserManagementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManagementViewController.m; sourceTree = "<group>"; };
+		F79251791DB7431D006AA119 /* UserManagementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = UserManagementViewController.m; sourceTree = "<group>"; };
 		F792517A1DB7431D006AA119 /* UserManagementViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserManagementViewController.xib; sourceTree = "<group>"; };
 		F792517D1DB74576006AA119 /* UserManagermentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManagermentTableViewCell.h; sourceTree = "<group>"; };
 		F792517E1DB74576006AA119 /* UserManagermentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManagermentTableViewCell.m; sourceTree = "<group>"; };
@@ -487,7 +487,7 @@
 		F7A2A04D1DB8D0590023F228 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		F7A2A04E1DB8D0590023F228 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		F7A2A04F1DB8D0590023F228 /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
-		F7A2A0501DB8D0590023F228 /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
+		F7A2A0501DB8D0590023F228 /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
 		F7A2A0581DB8D0EE0023F228 /* FlightContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightContentView.h; sourceTree = "<group>"; };
 		F7A2A0591DB8D0EE0023F228 /* FlightContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightContentView.m; sourceTree = "<group>"; };
 		F7A2A05A1DB8D0EE0023F228 /* OverViewContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverViewContentView.h; sourceTree = "<group>"; };
@@ -514,10 +514,10 @@
 		F7EE87841DB371CA006473F5 /* FlightFilterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightFilterTableViewCell.m; sourceTree = "<group>"; };
 		F7EE87851DB371CA006473F5 /* FlightFilterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightFilterTableViewCell.xib; sourceTree = "<group>"; };
 		F7EEEF191DB396E0004AF0AE /* FlightDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightDetailViewController.h; sourceTree = "<group>"; };
-		F7EEEF1A1DB396E0004AF0AE /* FlightDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightDetailViewController.m; sourceTree = "<group>"; };
+		F7EEEF1A1DB396E0004AF0AE /* FlightDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = FlightDetailViewController.m; sourceTree = "<group>"; };
 		F7EEEF1B1DB396E0004AF0AE /* FlightDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightDetailViewController.xib; sourceTree = "<group>"; };
-		F7EEEF1E1DB3A580004AF0AE /* FlightDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightDetailTableViewCell.h; sourceTree = "<group>"; };
-		F7EEEF1F1DB3A580004AF0AE /* FlightDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightDetailTableViewCell.m; sourceTree = "<group>"; };
+		F7EEEF1E1DB3A580004AF0AE /* FlightDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = FlightDetailTableViewCell.h; sourceTree = "<group>"; };
+		F7EEEF1F1DB3A580004AF0AE /* FlightDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = FlightDetailTableViewCell.m; sourceTree = "<group>"; };
 		F7EEEF201DB3A580004AF0AE /* FlightDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightDetailTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 

@@ -8,12 +8,20 @@
 
 #import "ContactPersonTableViewCell.h"
 
+@interface ContactPersonTableViewCell ()
+@property (weak, nonatomic) IBOutlet UIButton *selectedButton;
+
+
+@end
+
 @implementation ContactPersonTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     _headImageView.layer.cornerRadius  = 20;
     _headImageView.layer.masksToBounds = YES;
+
+
     // Initialization code
 }
 
@@ -25,4 +33,15 @@
 - (IBAction)selectButtonClick:(id)sender {
 }
 
+
+-(void)setIsSelected:(Boolean)isSelected
+{
+    _isSelected= isSelected;
+    if (isSelected) {
+        [_selectedButton setBackgroundImage:[UIImage imageNamed:@"Selected"] forState:UIControlStateNormal];
+    }else{
+        [_selectedButton setBackgroundImage:[UIImage imageNamed:@"Unselected"] forState:UIControlStateNormal];
+    }
+
+}
 @end

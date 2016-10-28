@@ -7,7 +7,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ContactPersonViewController">
             <connections>
-                <outlet property="searchBar" destination="NED-ag-F7N" id="GCI-eD-IMp"/>
                 <outlet property="tableView" destination="IW1-4q-KFj" id="Wc4-jj-IVa"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -17,24 +16,49 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="NED-ag-F7N">
-                    <textInputTraits key="textInputTraits"/>
-                </searchBar>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IW1-4q-KFj">
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pur-K0-52E">
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SearchIconBig" translatesAutoresizingMaskIntoConstraints="NO" id="0vQ-I9-BZg">
+                            <constraints>
+                                <constraint firstAttribute="width" constant="16" id="Fu4-Gf-J5h"/>
+                                <constraint firstAttribute="height" constant="16" id="JsA-TX-Qqz"/>
+                            </constraints>
+                        </imageView>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="搜索" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pkS-kc-eLP">
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="pkS-kc-eLP" firstAttribute="leading" secondItem="0vQ-I9-BZg" secondAttribute="trailing" constant="16" id="9wb-51-PJV"/>
+                        <constraint firstAttribute="bottom" secondItem="pkS-kc-eLP" secondAttribute="bottom" id="BZf-en-XmT"/>
+                        <constraint firstAttribute="trailing" secondItem="pkS-kc-eLP" secondAttribute="trailing" constant="16" id="Wya-IX-tt2"/>
+                        <constraint firstItem="0vQ-I9-BZg" firstAttribute="centerY" secondItem="Pur-K0-52E" secondAttribute="centerY" id="Xns-5I-H3i"/>
+                        <constraint firstItem="pkS-kc-eLP" firstAttribute="top" secondItem="Pur-K0-52E" secondAttribute="top" id="Xtz-mq-vBa"/>
+                        <constraint firstItem="0vQ-I9-BZg" firstAttribute="leading" secondItem="Pur-K0-52E" secondAttribute="leading" constant="15" id="mBl-qd-6CL"/>
+                        <constraint firstAttribute="height" constant="44" id="z4w-Hg-QUt"/>
+                    </constraints>
+                </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="IW1-4q-KFj" secondAttribute="trailing" id="Cdz-ot-zwr"/>
+                <constraint firstItem="Pur-K0-52E" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="DYJ-Jo-dAH"/>
                 <constraint firstItem="IW1-4q-KFj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="VjG-33-wjj"/>
                 <constraint firstAttribute="bottom" secondItem="IW1-4q-KFj" secondAttribute="bottom" id="YWb-ev-ZJK"/>
-                <constraint firstItem="NED-ag-F7N" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="lnu-ga-Pdt"/>
-                <constraint firstItem="IW1-4q-KFj" firstAttribute="top" secondItem="NED-ag-F7N" secondAttribute="bottom" id="se9-zi-zde"/>
-                <constraint firstItem="NED-ag-F7N" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ujK-N4-PBG"/>
-                <constraint firstAttribute="trailing" secondItem="NED-ag-F7N" secondAttribute="trailing" id="uuT-so-KFV"/>
+                <constraint firstItem="Pur-K0-52E" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="cn8-cB-XhE"/>
+                <constraint firstItem="IW1-4q-KFj" firstAttribute="top" secondItem="Pur-K0-52E" secondAttribute="bottom" constant="-20" id="k5d-UA-b1y"/>
+                <constraint firstAttribute="trailing" secondItem="Pur-K0-52E" secondAttribute="trailing" id="ois-XV-LnF"/>
             </constraints>
             <point key="canvasLocation" x="32.5" y="90.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="SearchIconBig" width="15" height="15"/>
+    </resources>
 </document>

@@ -8,6 +8,7 @@
 
 #import "UserManagementViewController.h"
 #import "UIViewController+Reminder.h"
+#import "UserManagermentTableViewCell.h"
 
 static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TABLECELL_IDENTIFIER";
 
@@ -35,7 +36,7 @@ static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TA
     _tableView.dataSource = self;
     
     _tableviewArray = @[@"原密码",@"新密码",@"确认密码"];
-    [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:(NSString *)USERMANAGEMENT_TABLECELL_IDENTIFIER];
+    [_tableView registerNib:[UINib nibWithNibName:@"UserManagermentTableViewCell" bundle:nil] forCellReuseIdentifier:(NSString *)USERMANAGEMENT_TABLECELL_IDENTIFIER];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -56,18 +57,18 @@ static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TA
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 50;
+    return 78;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)USERMANAGEMENT_TABLECELL_IDENTIFIER];
-    cell.textLabel.text= _tableviewArray[indexPath.row];
+    UserManagermentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)USERMANAGEMENT_TABLECELL_IDENTIFIER];
+    cell.nameLabel.text= _tableviewArray[indexPath.row];
     return  cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - UIActionSheet

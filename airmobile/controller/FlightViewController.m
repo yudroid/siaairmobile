@@ -118,6 +118,7 @@ static  NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_IDETIF
 }
 -(void)searchBackButtonClick:(UIButton *)sender
 {
+    [self.view endEditing:YES];
     [UIView animateWithDuration:0.3 animations:^{
         _searBar.frame = CGRectMake(kScreenWidth, 0, kScreenWidth, 64);
     }];
@@ -125,7 +126,7 @@ static  NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_IDETIF
 }
 -(void)searchBarSearchButtonClick:(UIButton *)sender
 {
-
+    [self.view endEditing:YES];
 
 }
 

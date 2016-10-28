@@ -52,8 +52,8 @@
     UIButton *backBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 20, 51, 44)];
     backBtn.backgroundColor = [UIColor clearColor];
     //    [backBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
-    [backBtn setImage:[UIImage imageNamed:@"icon_newMessage"] forState:(UIControlStateNormal)];
-    [backBtn setImage:[UIImage imageNamed:@"icon_newMessage"] forState:(UIControlStateSelected)];
+    [backBtn setImage:[UIImage imageNamed:@"back"] forState:(UIControlStateNormal)];
+    [backBtn setImage:[UIImage imageNamed:@"back"] forState:(UIControlStateSelected)];
     [self.titleView addSubview:backBtn];
     [backBtn addTarget:self action:@selector(backButtonClick) forControlEvents:(UIControlEventTouchUpInside)];
     return backBtn;

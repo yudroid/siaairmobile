@@ -31,6 +31,8 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
     
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    _tableView.tableFooterView = [[UIView alloc]init];
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     _chatArray = @[@"你好",@"好你妹"];
     // Do any additional setup after loading the view from its nib.
@@ -70,7 +72,16 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100;
+    if (indexPath.row == 0) {
+        return 20;
+
+    }else if (indexPath.row == 1){
+
+        return 50;
+    }else{
+
+        return 50;
+    }
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

@@ -52,7 +52,8 @@ static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDEN
     _tableView.backgroundColor = [UIColor clearColor];
     [_tableView registerNib:[UINib nibWithNibName:@"UserInfoTableViewCell" bundle:nil] forCellReuseIdentifier:(NSString *)FUNCTION_TABLECELL_IDENTIFIER];
     _tableView.tableFooterView = [[UIView alloc]init];
-    _tableArray= @[@"通讯录",@"值班表"];
+    _tableArray= @[@{@"name":@"通讯录",@"image":@"AddressBook"},
+                   @{@"name":@"值班表",@"image":@"WatchBill"}];
 
     [self.view addSubview:_tableView];
 }
@@ -67,20 +68,25 @@ static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDEN
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100;
+    return 60;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UserInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)FUNCTION_TABLECELL_IDENTIFIER];
-    cell.nameLabel.text = _tableArray[indexPath.row];
+    NSDictionary *rowDic = _tableArray[indexPath.row];
+    NSString *name = [rowDic objectForKey:@"name"];
+    NSString *imageString = [rowDic objectForKey:@"image"];
+    cell.nameLabel.text = name;
+    cell.iconImageView.image = [UIImage imageNamed:imageString];
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSDictionary *rowDic = _tableArray[indexPath.row];
+    NSString *name = [rowDic objectForKey:@"name"];
 
-    NSString *name = _tableArray[indexPath.row];
     if ([name isEqualToString:@"值班表"]){
         NightShiftRoomViewController *nightShiftRoomVC = [[NightShiftRoomViewController alloc]initWithNibName:@"NightShiftRoomViewController" bundle:nil];
         [self.navigationController pushViewController:nightShiftRoomVC animated:YES];

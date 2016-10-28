@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface UserManagermentTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
 @end

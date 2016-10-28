@@ -16,6 +16,7 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
 @interface ContactPersonViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray *selectTableArray;
 
 @end
 
@@ -25,11 +26,12 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
     [super viewDidLoad];
     
     [self initTitleView];
-    
+
+    _selectTableArray = [NSMutableArray array];
     _searchBar.delegate = self;
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    
+    _tableView.tableFooterView = [[UIView alloc]init];
     [_tableView registerNib:[UINib nibWithNibName:@"ContactPersonTableViewCell" bundle:nil] forCellReuseIdentifier:(NSString *)CONTACTPERSON_TABLECELL_IDENTIFIER];
     [_tableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:(NSString *)CONTACTPERSON_TABLECELLHRADER_IDENTIFIER];
     // Do any additional setup after loading the view from its nib.
@@ -44,11 +46,11 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
     [self titleViewAddBackBtn];
 
     
-    UIButton *sureButton = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-16-40, 30, 40, 25)];
-    sureButton.titleLabel.font = [UIFont systemFontOfSize:15];
+    UIButton *sureButton = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-16-40, 33, 40, 18)];
+    sureButton.titleLabel.font = [UIFont fontWithName:@"PingFang SC" size:10];
     [sureButton setTitle:@"确定" forState:UIControlStateNormal];
     [sureButton addTarget:self action:@selector(sureButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    sureButton.backgroundColor = [UIColor orangeColor];
+    [sureButton setBackgroundImage:[UIImage imageNamed:@"PersonSure"] forState:UIControlStateNormal];
     sureButton.layer.cornerRadius = 5.0;
     [self.titleView addSubview:sureButton];
 }
@@ -84,6 +86,14 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    ContactPersonTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if ([_selectTableArray containsObject:cell]) {
+        [_selectTableArray removeObject:cell];
+        cell.isSelected = NO;
+    }else{
+        [_selectTableArray addObject:cell];
+        cell.isSelected = YES;
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

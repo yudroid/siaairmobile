@@ -20,10 +20,7 @@
                             <constraint firstAttribute="width" constant="20" id="L4G-kn-ajn"/>
                             <constraint firstAttribute="height" constant="20" id="h9w-Aa-QeE"/>
                         </constraints>
-                        <state key="normal" image="splash_4.png"/>
-                        <connections>
-                            <action selector="selectButtonClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="jg8-Ll-Jf1"/>
-                        </connections>
+                        <state key="normal" backgroundImage="Unselected"/>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logout.png" translatesAutoresizingMaskIntoConstraints="NO" id="rCC-jl-Crq">
                         <constraints>
@@ -32,30 +29,36 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="刘月阳" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cVg-2X-suw">
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <nil key="textColor"/>
+                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="16"/>
+                        <color key="textColor" red="0.10588235294117647" green="0.10588235294117647" blue="0.10588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Pigeon" translatesAutoresizingMaskIntoConstraints="NO" id="OKy-cN-Whi"/>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Lom-EM-UVu" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="3Yf-20-1hm"/>
-                    <constraint firstItem="cVg-2X-suw" firstAttribute="leading" secondItem="rCC-jl-Crq" secondAttribute="trailing" constant="8" id="9IV-bz-ayO"/>
+                    <constraint firstItem="cVg-2X-suw" firstAttribute="leading" secondItem="rCC-jl-Crq" secondAttribute="trailing" constant="10" id="9IV-bz-ayO"/>
                     <constraint firstItem="cVg-2X-suw" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="9TX-Cq-9oe"/>
-                    <constraint firstItem="Lom-EM-UVu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="Rdx-Fx-1kg"/>
+                    <constraint firstItem="Lom-EM-UVu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Rdx-Fx-1kg"/>
                     <constraint firstItem="rCC-jl-Crq" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ShR-g4-TAf"/>
-                    <constraint firstItem="rCC-jl-Crq" firstAttribute="leading" secondItem="Lom-EM-UVu" secondAttribute="trailing" constant="16" id="uXs-fV-rsd"/>
+                    <constraint firstItem="OKy-cN-Whi" firstAttribute="centerX" secondItem="Lom-EM-UVu" secondAttribute="centerX" id="qPT-oA-oHS"/>
+                    <constraint firstItem="OKy-cN-Whi" firstAttribute="centerY" secondItem="Lom-EM-UVu" secondAttribute="centerY" id="uSc-Oy-5q6"/>
+                    <constraint firstItem="rCC-jl-Crq" firstAttribute="leading" secondItem="Lom-EM-UVu" secondAttribute="trailing" constant="25" id="uXs-fV-rsd"/>
                     <constraint firstAttribute="trailingMargin" secondItem="cVg-2X-suw" secondAttribute="trailing" id="yPI-wF-DNb"/>
                 </constraints>
             </tableViewCellContentView>
+            <inset key="separatorInset" minX="55" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
                 <outlet property="headImageView" destination="rCC-jl-Crq" id="Lgw-af-3P9"/>
                 <outlet property="nameLabel" destination="cVg-2X-suw" id="crQ-Jv-fPb"/>
+                <outlet property="selectedButton" destination="Lom-EM-UVu" id="cSB-nC-umx"/>
             </connections>
             <point key="canvasLocation" x="25" y="57"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="Pigeon" width="10" height="6"/>
+        <image name="Unselected" width="19" height="20"/>
         <image name="logout.png" width="610" height="72"/>
-        <image name="splash_4.png" width="540" height="960"/>
     </resources>
 </document>
