@@ -22,7 +22,7 @@
 
 @end
 
-@interface ResourceContentView : UIView
+@interface ResourceContentView : UIView<UITableViewDelegate,UITableViewDataSource>
 {
     
     UILabel *normalNumLabel;
@@ -37,5 +37,9 @@
     CGFloat normalProportion;
     CGFloat abnormalProportion;
     CGFloat cancleProportion;
+    
+    id<ResourceContentViewDelegate> _delegate;
 }
+
+-(id)initWithFrame:(CGRect)frame delegate:(id<ResourceContentViewDelegate>)delegate;
 @end

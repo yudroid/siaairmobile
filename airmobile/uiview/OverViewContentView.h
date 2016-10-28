@@ -42,6 +42,10 @@
     CGFloat normalProportion;
     CGFloat abnormalProportion;
     CGFloat cancleProportion;
+    
+    id<OverviewContentViewDelegate> _delegate;
 }
+
+-(id)initWithFrame:(CGRect)frame delegate:(id<OverviewContentViewDelegate>)delegate;
 
 @end

@@ -65,7 +65,7 @@
     _descriptionTextFont  = [UIFont fontWithName:@"Avenir-Medium" size:18.0];
     _descriptionTextShadowColor  = [[UIColor blackColor] colorWithAlphaComponent:0.4];
     _descriptionTextShadowOffset =  CGSizeMake(0, 1);
-    _duration = 1.0;
+    _duration = 2.0;
     _shouldHighlightSectorOnTouch = YES;
     _enableMultipleSelection = NO;
     _hideValues = NO;
@@ -100,8 +100,9 @@
 
 /** Override this to change how inner attributes are computed. **/
 - (void)recompute {
-    self.outerCircleRadius = CGRectGetWidth(self.bounds) / 2;
-    self.innerCircleRadius = CGRectGetWidth(self.bounds) / 2-20;
+    // yangql 注销
+//    self.outerCircleRadius = CGRectGetWidth(self.bounds) / 2;
+//    self.innerCircleRadius = CGRectGetWidth(self.bounds) / 2-20;
 }
 
 #pragma mark -
@@ -411,6 +412,11 @@
     NSUInteger rowMaxHeight = 0;
     
     for (PNPieChartDataItem *pdata in self.items) {
+        
+        // yangql 增加
+        if(pdata.textDescription ==nil || [pdata.textDescription isEqualToString:@""])
+            continue;
+        
         /* Expected label size*/
         CGSize labelsize = [PNLineChart sizeOfString:pdata.textDescription
                                            withWidth:maxLabelWidth

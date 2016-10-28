@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RoundProgressView.h"
 #import "PNPieChart.h"
+#import "FlightHourView.h"
 
 @protocol FlightContentViewDelegate <NSObject>
 
@@ -17,7 +18,7 @@
 /**
  展示航班进出港小时分布视、即将出港的航班列表
  */
--(void) showFlightHourView;
+-(void) showFlightHourView:(FlightHourType) type;
 
 
 /**
@@ -32,6 +33,11 @@
     UIPageControl *pageControl;
     NSMutableArray *arrShapeArray;
     NSMutableArray *depShapeArray;
+    
+    id<FlightContentViewDelegate> _delegate;
 }
+
+
+-(instancetype) initWithFrame:(CGRect)frame delegate:(id<FlightContentViewDelegate>)delegate;
 
 @end

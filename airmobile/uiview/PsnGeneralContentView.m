@@ -94,7 +94,7 @@
         arrLabel.attributedText = attrStr;
         [self addSubview:arrLabel];
         
-        [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, 200+30, kScreenWidth/2-20, 30) text:@"1520" font:25 textAlignment:NSTextAlignmentRight colorFromHex:0xFF000000]];
+        [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, 200+30, kScreenWidth/2-20, 30) text:@"1520/1519" font:25 textAlignment:NSTextAlignmentRight colorFromHex:0xFF000000]];
         
         UILabel *depLabel = [CommonFunction addLabelFrame:CGRectMake(20, 200+30+30+30, kScreenWidth/2-20, 20) text:@"出港(计划/实际)" font:25 textAlignment:NSTextAlignmentLeft colorFromHex:0xFF000000];
         NSMutableAttributedString* attrStrD = [[NSMutableAttributedString alloc] initWithString:@"出港(计划/实际)"];
@@ -103,24 +103,16 @@
         depLabel.attributedText = attrStrD;
         [self addSubview:depLabel];
         
-        [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, 200+30+30+30, kScreenWidth/2-20, 20) text:@"1568" font:25 textAlignment:NSTextAlignmentRight colorFromHex:0xFF000000]];
+        [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, 200+30+30+30, kScreenWidth/2-20, 20) text:@"1568/1562" font:25 textAlignment:NSTextAlignmentRight colorFromHex:0xFF000000]];
         
         [self addSubview:[CommonFunction addLabelFrame:CGRectMake(20, 200+30+30+30+90, kScreenWidth/2-20, 20) text:@"隔离区" font:25 textAlignment:NSTextAlignmentRight colorFromHex:0xFF000000]];
         
-        
         [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, 200+30+30+30+90, kScreenWidth/2-20, 20) text:@"1568人" font:25 textAlignment:NSTextAlignmentLeft colorFromHex:0xFF000000]];
-        UIButton *showBtn = [[UIButton alloc] initWithFrame:CGRectMake(20, 200+30+30+30+90, kScreenWidth-40, 20)];
-        [showBtn addTarget:self action:@selector(showSafetyPassenger:) forControlEvents:UIControlEventTouchDragInside];
-        [self addSubview:showBtn];
+
         
     }
     
     return self;
-}
-
--(void) showSafetyPassenger:(id)sender
-{
-    
 }
 
 @end

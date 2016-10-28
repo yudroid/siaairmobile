@@ -11,6 +11,15 @@
 #import "MessageViewController.h"
 #import "FunctionViewController.h"
 #import "UserInfoViewController.h"
+#import "ReleasedRatioViewController.h"
+#import "FlightHourViewController.h"
+#import "AlertIndicateViewController.h"
+#import "ArrDepFlightHourViewController.h"
+#import "FlightAbnViewController.h"
+#import "PassengerHourViewController.h"
+#import "SecurityPsnViewController.h"
+#import "PassengerTopViewController.h"
+#import "SeatUsedViewController.h"
 
 @interface HomePageViewController ()
 
@@ -190,7 +199,7 @@
     }
     else
     {
-        overviewContentView = [[OverViewContentView alloc] initWithFrame:CGRectMake(0, 100, kScreenWidth, kScreenHeight-189)];
+        overviewContentView = [[OverViewContentView alloc] initWithFrame:CGRectMake(0, 100, kScreenWidth, kScreenHeight-189) delegate:self];
         [self.view addSubview:overviewContentView];
     }
 }
@@ -206,7 +215,7 @@
     }
     else
     {
-        flightContentView = [[FlightContentView alloc] initWithFrame:CGRectMake(0, 100, kScreenWidth, kScreenHeight-189)];
+        flightContentView = [[FlightContentView alloc] initWithFrame:CGRectMake(0, 100, kScreenWidth, kScreenHeight-189) delegate:self];
         [self.view addSubview:flightContentView];
     }
 }
@@ -222,7 +231,7 @@
     }
     else
     {
-        passengerContentView = [[PassengerContentView alloc] initWithFrame:CGRectMake(0, 100, kScreenWidth, kScreenHeight-189)];
+        passengerContentView = [[PassengerContentView alloc] initWithFrame:CGRectMake(0, 100, kScreenWidth, kScreenHeight-189) delegate:self];
         [self.view addSubview:passengerContentView];
     }
 }
@@ -238,7 +247,7 @@
     }
     else
     {
-        resourceContentView = [[ResourceContentView alloc] initWithFrame:CGRectMake(0, 80, kScreenWidth, kScreenHeight-135)];
+        resourceContentView = [[ResourceContentView alloc] initWithFrame:CGRectMake(0, 80, kScreenWidth, kScreenHeight-135) delegate:self];
         [self.view addSubview:resourceContentView];
     }
 }
@@ -305,14 +314,84 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - 整体汇总页跳转方法
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+/**
+ 展示放行正常率视图
+ */
+-(void) showReleasedRatioView
+{
+    ReleasedRatioViewController *ratio = [[ReleasedRatioViewController alloc] init];
+    [self.navigationController pushViewController:ratio animated:YES];
 }
-*/
+
+/**
+ 展示航班小时分布视图
+ */
+-(void) showFlightHourView{
+    FlightHourViewController *flightHour = [[FlightHourViewController alloc] init];
+    [self.navigationController pushViewController:flightHour animated:YES];
+}
+
+/**
+ 展示航延4个指标视图
+ */
+-(void) showWorningIndicatorView{
+    AlertIndicateViewController *alert = [[AlertIndicateViewController alloc] init];
+    [self.navigationController pushViewController:alert animated:YES];
+}
+#pragma mark - 航班汇总页跳转方法
+
+/**
+ 展示航班进出港小时分布视、即将出港的航班列表
+ */
+-(void) showFlightHourView:(FlightHourType) type
+{
+    ArrDepFlightHourViewController *arrDepController = [[ArrDepFlightHourViewController alloc]init];
+    arrDepController.hourType = type;
+    [self.navigationController pushViewController:arrDepController animated:YES];
+}
+
+/**
+ 展示航班异常原因分类、各地区平均延误时间图
+ */
+-(void) showFlightAbnnormalView{
+    FlightAbnViewController *abn = [[FlightAbnViewController alloc] init];
+    [self.navigationController pushViewController:abn animated:YES];
+}
+
+#pragma mark - 旅客汇总页跳转方法
+
+/**
+ 展示旅客小时分布
+ */
+-(void) showPassengerHourView{
+    PassengerHourViewController *psnHour = [[PassengerHourViewController alloc] init];
+    [self.navigationController pushViewController:psnHour animated:YES];
+}
+
+/**
+ 展示隔离区内旅客小时分布、当前隔离区内各区域旅客分布
+ */
+-(void) showSecurityPassengerView{
+    SecurityPsnViewController *security = [[SecurityPsnViewController alloc] init];
+    [self.navigationController pushViewController:security animated:YES];
+}
+
+-(void)showTop5DaysView{
+    PassengerTopViewController *security = [[PassengerTopViewController alloc] init];
+    [self.navigationController pushViewController:security animated:YES];
+}
+
+
+#pragma mark - 资源汇总页跳转方法
+
+/**
+ 展示机位的使用详细信息
+ */
+-(void) showSeatUsedDetailView{
+    SeatUsedViewController *seatUsed = [[SeatUsedViewController alloc] init];
+    [self.navigationController pushViewController:seatUsed animated:YES];
+}
 
 @end

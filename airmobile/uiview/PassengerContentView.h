@@ -23,8 +23,12 @@
  */
 -(void) showSecurityPassengerView;
 
+-(void) showTop5DaysView;
+
 @end
 
 @interface PassengerContentView : UIView<UIScrollViewDelegate>
+
+-(instancetype)initWithFrame:(CGRect)frame delegate: (id<PassengerContentViewDelegate>)delegate;
 
 @end

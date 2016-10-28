@@ -13,15 +13,17 @@
     UIPageControl *pageControl;
     PsnGeneralContentView *psnGeneral;
     PsnSafetyContentView *psnSafety;
+    id<PassengerContentViewDelegate> _delegate;
 }
 
 
--(instancetype)initWithFrame:(CGRect)frame
+-(instancetype)initWithFrame:(CGRect)frame delegate: (id<PassengerContentViewDelegate>)delegate
 {
     self = [super initWithFrame:frame];
     
     if(self){
 //        self.backgroundColor = [UIColor lightGrayColor];
+        _delegate = delegate;
         CGFloat width =  frame.size.width;
         CGFloat height = frame.size.height;
         UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
@@ -36,8 +38,20 @@
         psnGeneral = [[PsnGeneralContentView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
         [scrollView addSubview:psnGeneral];
         
+        UIButton *psnHourBtn = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth/2, 200+30, kScreenWidth/2-20, 90)];
+        [psnHourBtn addTarget:self action:@selector(showPassengerHourView:) forControlEvents:(UIControlEventTouchUpInside)];
+        [scrollView addSubview:psnHourBtn];
+        
+        UIButton *showSafeBtn = [[UIButton alloc] initWithFrame:CGRectMake(20, 200+30+30+30+90, kScreenWidth-40, 30)];
+        [showSafeBtn addTarget:self action:@selector(showSafetyPassenger:) forControlEvents:UIControlEventTouchUpInside];
+        [scrollView addSubview:showSafeBtn];
+        
         psnSafety = [[PsnSafetyContentView alloc] initWithFrame:CGRectMake(width, 0, width, height)];
         [scrollView addSubview:psnSafety];
+        
+        UIButton *showTopBtn = [[UIButton alloc] initWithFrame:CGRectMake(width+20, 200+30+30+10+30+10+90, kScreenWidth-40, 30)];
+        [showTopBtn addTarget:self action:@selector(showTop5DaysView:) forControlEvents:UIControlEventTouchUpInside];
+        [scrollView addSubview:showTopBtn];
         
         pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, 0, width, 30)];
         pageControl.center = CGPointMake(width/2, height);
@@ -50,6 +64,21 @@
     }
     
     return self;
+}
+
+-(void) showPassengerHourView:(UIButton *)sender
+{
+    [_delegate showPassengerHourView];
+}
+
+-(void) showSafetyPassenger:(UIButton *)sender
+{
+    [_delegate showSecurityPassengerView];
+}
+
+-(void) showTop5DaysView:(UIButton *)sender
+{
+    [_delegate showTop5DaysView];
 }
 
 /**

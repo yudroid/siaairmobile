@@ -10,11 +10,14 @@
 
 @implementation FlightContentView
 
--(instancetype)initWithFrame:(CGRect)frame
+-(instancetype)initWithFrame:(CGRect)frame delegate:(id<FlightContentViewDelegate>)delegate
 {
     self = [super initWithFrame:frame];
 
     if(self){
+        
+        _delegate = delegate;
+        
         arrShapeArray = [[NSMutableArray alloc] init];
         depShapeArray = [[NSMutableArray alloc] init];
         
@@ -53,7 +56,7 @@
         [self updateShapeArray:depShapeArray];
         
         PNPieChart *arrRoundProgress = [[PNPieChart alloc] initWithFrame:CGRectMake(0, 0, 180, 180) items:arrShapeArray];
-        arrRoundProgress.center = CGPointMake(frame.size.width/2, 30+64+25);
+        arrRoundProgress.center = CGPointMake(frame.size.width/2, 250/2);
         arrRoundProgress.descriptionTextColor = [UIColor whiteColor];
         arrRoundProgress.descriptionTextFont  = [UIFont systemFontOfSize:11];
         arrRoundProgress.descriptionTextShadowColor = [UIColor clearColor];
@@ -63,14 +66,25 @@
         arrRoundProgress.legendStyle = PNLegendItemStyleStacked;
         arrRoundProgress.legendFont = [UIFont systemFontOfSize:10];
         [scrollView addSubview:arrRoundProgress];
+        
         UIView *legend = [arrRoundProgress getLegendWithMaxWidth:200];
-        [legend setFrame:CGRectMake(frame.size.width-legend.frame.size.width-20, 30+64+25+250-legend.frame.size.height, legend.frame.size.width, legend.frame.size.height)];
+        [legend setFrame:CGRectMake(frame.size.width-legend.frame.size.width-20, 250/2+250-legend.frame.size.height, legend.frame.size.width, legend.frame.size.height)];
         [self addSubview:legend];
         
+        UILabel *arrInNum = [CommonFunction addLabelFrame:CGRectMake(0, 0, 80, 35) text:@"427" font:30 textAlignment:(NSTextAlignmentCenter) colorFromHex:0xFF1B1B1B];
+        arrInNum.center = CGPointMake(180/2, 180/2-10);
+        [arrRoundProgress addSubview:arrInNum];
+        UILabel *arrInLabel = [CommonFunction addLabelFrame:CGRectMake(0, 0, 80, 20) text:@"进港航班" font:17 textAlignment:(NSTextAlignmentCenter) colorFromHex:0xFF1B1B1B];
+        arrInLabel.center = CGPointMake(180/2, 180/2-10+30);
+        [arrRoundProgress addSubview:arrInLabel];
         
+        UIButton *arrButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 80, 35+20)];
+        [arrButton addTarget:self action:@selector(showArrFlightHourView:) forControlEvents:(UIControlEventTouchUpInside)];
+        arrButton.center = CGPointMake(frame.size.width/2, 250/2);
+        [scrollView addSubview:arrButton];
         
         PNPieChart *depRoundProgress = [[PNPieChart alloc] initWithFrame:CGRectMake(0, 0, 180, 180) items:depShapeArray];
-        depRoundProgress.center = CGPointMake(frame.size.width+frame.size.width/2, 30+64+25);
+        depRoundProgress.center = CGPointMake(frame.size.width+frame.size.width/2, 250/2);
         depRoundProgress.descriptionTextColor = [UIColor whiteColor];
         depRoundProgress.descriptionTextFont  = [UIFont systemFontOfSize:11];
         depRoundProgress.descriptionTextShadowColor = [UIColor clearColor];
@@ -80,9 +94,19 @@
         depRoundProgress.legendStyle = PNLegendItemStyleStacked;
         depRoundProgress.legendFont = [UIFont systemFontOfSize:10];
         [scrollView addSubview:depRoundProgress];
-        UIView *depLegend = [depRoundProgress getLegendWithMaxWidth:200];
-        [depLegend setFrame:CGRectMake(frame.size.width-depLegend.frame.size.width-20, 30+64+25+250-depLegend.frame.size.height, depLegend.frame.size.width, depLegend.frame.size.height)];
-        [scrollView addSubview:depRoundProgress];
+        
+        UILabel *depOutNum = [CommonFunction addLabelFrame:CGRectMake(0, 0, 80, 35) text:@"425" font:30 textAlignment:(NSTextAlignmentCenter) colorFromHex:0xFF1B1B1B];
+        depOutNum.center = CGPointMake(180/2, 180/2-10);
+        [depRoundProgress addSubview:depOutNum];
+        UILabel *depOutLabel = [CommonFunction addLabelFrame:CGRectMake(0, 0, 80, 20) text:@"出港航班" font:17 textAlignment:(NSTextAlignmentCenter) colorFromHex:0xFF1B1B1B];
+        depOutLabel.center = CGPointMake(180/2, 180/2-10+30);
+        [depRoundProgress addSubview:depOutLabel];
+
+        UIButton *depButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 80, 35+20)];
+        [depButton addTarget:self action:@selector(showDepFlightHourView:) forControlEvents:(UIControlEventTouchUpInside)];
+        depButton.center = CGPointMake(frame.size.width+frame.size.width/2, 250/2);
+        [scrollView addSubview:depButton];
+        
         
         pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 30)];
         pageControl.center = CGPointMake(frame.size.width/2, 30+64+25+250+30/2);
@@ -112,21 +136,40 @@
         [cancelAttributeString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:23] range:NSMakeRange(3, 2)];
         cancel.attributedText = cancelAttributeString;
         [self addSubview:cancel];
+        
+        UIButton *abnButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 30+64+25+250+30+30, frame.size.width, 30)];
+        [abnButton addTarget:self action:@selector(showAbnRsnAndDlyTime:) forControlEvents:(UIControlEventTouchUpInside)];
+        [self addSubview:abnButton];
     }
     return self;
+}
+
+-(void) showArrFlightHourView:(UIButton *)sender
+{
+    [_delegate showFlightHourView:(ArrFlightHour)];
+}
+
+-(void) showDepFlightHourView:(UIButton *)sender
+{
+    [_delegate showFlightHourView:(DepFlightHour)];
+}
+
+-(void) showAbnRsnAndDlyTime:(UIButton *)sender
+{
+    [_delegate showFlightAbnnormalView];
 }
 
 -(void) updateShapeArray:(NSMutableArray *)array
 {
     [array removeAllObjects];
     [array addObject: [PNPieChartDataItem dataItemWithValue:2 color:[UIColor clearColor]]];
-    [array addObject: [PNPieChartDataItem dataItemWithValue:12 color:[CommonFunction colorFromHex:0xFFFFCD21] description:@"已执行延误"]];
-    [array addObject: [PNPieChartDataItem dataItemWithValue:32 color:[CommonFunction colorFromHex:0xFF00B0D8] description:@"已执行正常"]];
+    [array addObject: [PNPieChartDataItem dataItemWithValue:12 color:[CommonFunction colorFromHex:0xFFFFCD21] description:@"延误"]];
+    [array addObject: [PNPieChartDataItem dataItemWithValue:32 color:[CommonFunction colorFromHex:0xFF00B0D8] description:@"已执行"]];
     [array addObject: [PNPieChartDataItem dataItemWithValue:2 color:[UIColor clearColor]]];
     [array addObject: [PNPieChartDataItem dataItemWithValue:8 color:[CommonFunction colorFromHex:0xFFFF4D62] description:@"取消"]];
     [array addObject: [PNPieChartDataItem dataItemWithValue:2 color:[UIColor clearColor]]];
-    [array addObject: [PNPieChartDataItem dataItemWithValue:32 color:[CommonFunction colorFromHex:0xFFC8C8C8] description:@"未执行正常"]];
-    [array addObject: [PNPieChartDataItem dataItemWithValue:10 color:[CommonFunction colorFromHex:0xFFFFCD21] description:@"未执行延误"]];
+    [array addObject: [PNPieChartDataItem dataItemWithValue:32 color:[CommonFunction colorFromHex:0xFFC8C8C8] description:@"未执行"]];
+    [array addObject: [PNPieChartDataItem dataItemWithValue:10 color:[CommonFunction colorFromHex:0xFFFFCD21]]];
 }
 
 /**

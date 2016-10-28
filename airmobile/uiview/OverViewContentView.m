@@ -11,12 +11,12 @@
 @implementation OverViewContentView
 
 
--(id)initWithFrame:(CGRect)frame
+-(id)initWithFrame:(CGRect)frame delegate:(id<OverviewContentViewDelegate>)delegate
 {
     self = [super initWithFrame:frame];
     
     if(self){
-        
+        _delegate = delegate;
 //        self.backgroundColor = [UIColor lightGrayColor];
         
         UIView *caleandarView = [[UIView alloc] initWithFrame:CGRectMake(kScreenWidth/2-190/2, 25, 190, 25)];
@@ -54,6 +54,10 @@
         totalNumLabel.font = [UIFont systemFontOfSize:35];
         [self addSubview:totalNumLabel];
         
+        UIButton *totalButton = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth/2-50, 25+25+11+20+30+86-40/2, 100, 35)];
+        [totalButton addTarget:self action:@selector(showFlightHourView:) forControlEvents:(UIControlEventTouchUpInside)];
+        [self addSubview:totalButton];
+        
         UILabel *totalLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2-50, 25+25+11+20+30+86-17/2+30, 100, 13)];
         totalLabel.text = @"计划总数";
         totalLabel.textAlignment = NSTextAlignmentCenter;
@@ -90,13 +94,24 @@
         ratio.font = [UIFont systemFontOfSize:20];
         [self addSubview:ratio];
         
+        UIButton *ratioButton = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth/2+50, 25+25+11+20+30+86*2+30, 100, 40)];
+        [ratioButton addTarget:self action:@selector(showRatioView:) forControlEvents:(UIControlEventTouchUpInside)];
+        [self addSubview:ratioButton];
+        
         UILabel *ratioLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2+50, 25+25+11+20+30+86*2+30+20+5, 100, 13)];
         ratioLabel.text = @"放行正常率";
         ratioLabel.textAlignment = NSTextAlignmentCenter;
         ratioLabel.font = [UIFont systemFontOfSize:12];
         [self addSubview:ratioLabel];
         
-        UITextView *noticeTextView = [[UITextView alloc] initWithFrame:CGRectMake(50, 25+25+11+20+30+86*2+30+20+5+13+10, kScreenWidth-100, 50)];
+        UILabel *currentStatus = [CommonFunction addLabelFrame:CGRectMake(50, 25+25+11+20+30+86*2+30+20+5+13+10+20, kScreenWidth-100, 40) text:@"小面积延误" font:25 textAlignment:(NSTextAlignmentCenter) colorFromHex:0xFFFF0000];
+        [self addSubview:currentStatus];
+        
+        UIButton *indicateButton = [[UIButton alloc] initWithFrame:CGRectMake(50, 25+25+11+20+30+86*2+30+20+5+13+10+20, kScreenWidth-100, 40)];
+        [indicateButton addTarget:self action:@selector(showAlterIndicateView:) forControlEvents:(UIControlEventTouchUpInside)];
+        [self addSubview:indicateButton];
+        
+        UITextView *noticeTextView = [[UITextView alloc] initWithFrame:CGRectMake(50, 25+25+11+20+30+86*2+30+20+5+13+10+20+40, kScreenWidth-100, 50)];
         noticeTextView.text = @"12:30   今日航班执行总体情况正常，因华东地区天气原因流量控制，前往该地区的航班放行正常率低于75%预计2小时候恢复正常";
         noticeTextView.textAlignment = NSTextAlignmentLeft;
         noticeTextView.font = [UIFont systemFontOfSize:12];
@@ -106,4 +121,19 @@
     return self;
 }
 
+
+-(void) showFlightHourView:(UIButton *)sender
+{
+    [_delegate showFlightHourView];
+}
+
+-(void) showAlterIndicateView:(UIButton *)sender
+{
+    [_delegate showWorningIndicatorView];
+}
+
+-(void) showRatioView:(UIButton *)sender
+{
+    [_delegate showReleasedRatioView];
+}
 @end
