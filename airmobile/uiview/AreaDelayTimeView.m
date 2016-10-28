@@ -8,6 +8,11 @@
 
 #import "AreaDelayTimeView.h"
 #import "RegionDlyTimeModel.h"
+#import "DelayTimeTableViewCell.h"
+#import "PNBarChart.h"
+#import "PNLineChart.h"
+#import "PNLineChartData.h"
+#import "PNLineChartDataItem.h"
 
 @implementation AreaDelayTimeView
 

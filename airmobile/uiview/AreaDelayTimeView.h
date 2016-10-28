@@ -7,11 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PNBarChart.h"
-#import "PNLineChart.h"
-#import "PNLineChartData.h"
-#import "PNLineChartDataItem.h"
-#import "DelayTimeTableViewCell.h"
+
+
 
 @interface AreaDelayTimeView : UIView<UITableViewDataSource,UITableViewDelegate>
 

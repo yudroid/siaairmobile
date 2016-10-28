@@ -16,7 +16,6 @@
 		840D15D11DC0C18F005FA910 /* AbnReasonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 840D15D01DC0C18F005FA910 /* AbnReasonTableViewCell.m */; };
 		840D15D41DC0C3E8005FA910 /* AbnReasonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 840D15D31DC0C3E8005FA910 /* AbnReasonModel.m */; };
 		840D15D71DC0C478005FA910 /* RegionDlyTimeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 840D15D61DC0C478005FA910 /* RegionDlyTimeModel.m */; };
-		840D15DA1DC19B3B005FA910 /* DelayTimeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 840D15D91DC19B3B005FA910 /* DelayTimeTableViewCell.m */; };
 		840D15DD1DC1D6E0005FA910 /* PsnHourTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 840D15DC1DC1D6E0005FA910 /* PsnHourTableViewCell.m */; };
 		840D15E01DC20C2D005FA910 /* PsnSafetyHourView.m in Sources */ = {isa = PBXBuildFile; fileRef = 840D15DF1DC20C2D005FA910 /* PsnSafetyHourView.m */; };
 		840D15E31DC20C4F005FA910 /* PsnSafetyAreaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 840D15E21DC20C4F005FA910 /* PsnSafetyAreaView.m */; };
@@ -24,7 +23,6 @@
 		840D15E91DC2FBCE005FA910 /* overview_toppsn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 840D15E71DC2FBCE005FA910 /* overview_toppsn@2x.png */; };
 		840D15EA1DC2FBCE005FA910 /* overview_toppsn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 840D15E81DC2FBCE005FA910 /* overview_toppsn@3x.png */; };
 		840D15ED1DC2FC67005FA910 /* PassengerTopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840D15EC1DC2FC67005FA910 /* PassengerTopViewController.m */; };
-		840D15F01DC30983005FA910 /* PassengerTopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 840D15EF1DC30983005FA910 /* PassengerTopModel.m */; };
 		840D15F31DC31F9E005FA910 /* SeatUsedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 840D15F21DC31F9E005FA910 /* SeatUsedModel.m */; };
 		841839EF1DBCB87600D7DD86 /* PNGenericChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 841839EA1DBCB87600D7DD86 /* PNGenericChart.m */; };
 		841839F01DBCB87600D7DD86 /* PNPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 841839EC1DBCB87600D7DD86 /* PNPieChart.m */; };
@@ -38,7 +36,6 @@
 		84183A061DBDB6DF00D7DD86 /* PNBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 84183A041DBDB6DF00D7DD86 /* PNBarChart.m */; };
 		84183A091DBDDBD600D7DD86 /* FlightHourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84183A081DBDDBD600D7DD86 /* FlightHourViewController.m */; };
 		84183A121DBDDD3B00D7DD86 /* ReleasedRatioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84183A111DBDDD3B00D7DD86 /* ReleasedRatioViewController.m */; };
-		84183A151DBDDDBE00D7DD86 /* AlertIndicateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84183A141DBDDDBE00D7DD86 /* AlertIndicateViewController.m */; };
 		84183A181DBDDDDE00D7DD86 /* FlightAbnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84183A171DBDDDDE00D7DD86 /* FlightAbnViewController.m */; };
 		84183A1C1DBDDE4F00D7DD86 /* PassengerHourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84183A1B1DBDDE4F00D7DD86 /* PassengerHourViewController.m */; };
 		84183A1F1DBDDEA300D7DD86 /* SecurityPsnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84183A1E1DBDDEA300D7DD86 /* SecurityPsnViewController.m */; };
@@ -146,6 +143,10 @@
 		84BA54FD1DA256940037198F /* airmobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BA54FC1DA256940037198F /* airmobileTests.m */; };
 		84BA55081DA256950037198F /* airmobileUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BA55071DA256950037198F /* airmobileUITests.m */; };
 		EF83C19148C2E7B85CE63B08 /* libPods-airmobileUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8CFFB110A86FE6AFFEBBEDD /* libPods-airmobileUITests.a */; };
+		F758C9911DC360BD00556120 /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F758C9901DC360BD00556120 /* HomePageViewController.m */; };
+		F758C9921DC362E700556120 /* PassengerTopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 840D15EF1DC30983005FA910 /* PassengerTopModel.m */; };
+		F758C9931DC3632800556120 /* DelayTimeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 840D15D91DC19B3B005FA910 /* DelayTimeTableViewCell.m */; };
+		F758C9941DC3634D00556120 /* AlertIndicateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84183A141DBDDDBE00D7DD86 /* AlertIndicateViewController.m */; };
 		F79251371DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F79251351DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.m */; };
 		F79251381DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F79251361DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.xib */; };
 		F792513B1DB5CBE3006AA119 /* UIViewController+Reminder.m in Sources */ = {isa = PBXBuildFile; fileRef = F792513A1DB5CBE3006AA119 /* UIViewController+Reminder.m */; };
@@ -214,7 +215,6 @@
 		F7A25D931DBEF34800F36C32 /* OptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7A25D911DBEF34800F36C32 /* OptionsViewController.xib */; };
 		F7A2A0511DB8D0590023F228 /* FlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A0441DB8D0590023F228 /* FlightViewController.m */; };
 		F7A2A0521DB8D0590023F228 /* FunctionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A0461DB8D0590023F228 /* FunctionViewController.m */; };
-		F7A2A0531DB8D0590023F228 /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A0481DB8D0590023F228 /* HomePageViewController.m */; };
 		F7A2A0541DB8D0590023F228 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A04A1DB8D0590023F228 /* LoginViewController.m */; };
 		F7A2A0551DB8D0590023F228 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A04C1DB8D0590023F228 /* MessageViewController.m */; };
 		F7A2A0561DB8D0590023F228 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A04E1DB8D0590023F228 /* RootViewController.m */; };
@@ -460,6 +460,8 @@
 		B40A6E3BB15FEF8D72885961 /* libPods-airmobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-airmobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4CB8290AC5A124080793599 /* Pods-airmobileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-airmobileTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-airmobileTests/Pods-airmobileTests.release.xcconfig"; sourceTree = "<group>"; };
 		C8CF004928F1770818C25801 /* libPods-airmobileTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-airmobileTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F758C98F1DC360BD00556120 /* HomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageViewController.h; sourceTree = "<group>"; };
+		F758C9901DC360BD00556120 /* HomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageViewController.m; sourceTree = "<group>"; };
 		F79251341DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightDetailAirLineCollectionViewCell.h; sourceTree = "<group>"; };
 		F79251351DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightDetailAirLineCollectionViewCell.m; sourceTree = "<group>"; };
 		F79251361DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightDetailAirLineCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -573,8 +575,6 @@
 		F7A2A0441DB8D0590023F228 /* FlightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = FlightViewController.m; sourceTree = "<group>"; };
 		F7A2A0451DB8D0590023F228 /* FunctionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FunctionViewController.h; sourceTree = "<group>"; };
 		F7A2A0461DB8D0590023F228 /* FunctionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = FunctionViewController.m; sourceTree = "<group>"; };
-		F7A2A0471DB8D0590023F228 /* HomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageViewController.h; sourceTree = "<group>"; };
-		F7A2A0481DB8D0590023F228 /* HomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageViewController.m; sourceTree = "<group>"; };
 		F7A2A0491DB8D0590023F228 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		F7A2A04A1DB8D0590023F228 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		F7A2A04B1DB8D0590023F228 /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
@@ -745,8 +745,8 @@
 		84183A191DBDDE0000D7DD86 /* overview */ = {
 			isa = PBXGroup;
 			children = (
-				F7A2A0471DB8D0590023F228 /* HomePageViewController.h */,
-				F7A2A0481DB8D0590023F228 /* HomePageViewController.m */,
+				F758C98F1DC360BD00556120 /* HomePageViewController.h */,
+				F758C9901DC360BD00556120 /* HomePageViewController.m */,
 				84183A071DBDDBD600D7DD86 /* FlightHourViewController.h */,
 				84183A081DBDDBD600D7DD86 /* FlightHourViewController.m */,
 				84183A101DBDDD3B00D7DD86 /* ReleasedRatioViewController.h */,
@@ -1675,6 +1675,7 @@
 				F79251971DB85D78006AA119 /* AddressBookTableViewCell.m in Sources */,
 				840D15DD1DC1D6E0005FA910 /* PsnHourTableViewCell.m in Sources */,
 				F792519C1DB85FA0006AA119 /* AddressBookGroupTableViewCell.m in Sources */,
+				F758C9921DC362E700556120 /* PassengerTopModel.m in Sources */,
 				843F4CFB1DACCF2500D73D56 /* ThreadUtils.m in Sources */,
 				F79251591DB61D9C006AA119 /* ContactPersonTableViewCell.m in Sources */,
 				840D15E31DC20C4F005FA910 /* PsnSafetyAreaView.m in Sources */,
@@ -1686,6 +1687,7 @@
 				840D15D11DC0C18F005FA910 /* AbnReasonTableViewCell.m in Sources */,
 				F7A25D7E1DBE277500F36C32 /* SJPhotoAlbumsController.m in Sources */,
 				F79251711DB70B60006AA119 /* chatRecordModel.m in Sources */,
+				F758C9911DC360BD00556120 /* HomePageViewController.m in Sources */,
 				84183A051DBDB6DF00D7DD86 /* PNBar.m in Sources */,
 				84183A281DBE150E00D7DD86 /* EightMonthRatioView.m in Sources */,
 				840D15C71DC0557F005FA910 /* FlightHourView.m in Sources */,
@@ -1701,7 +1703,6 @@
 				841839EF1DBCB87600D7DD86 /* PNGenericChart.m in Sources */,
 				840D15C11DC044DA005FA910 /* ArrDepFlightHourViewController.m in Sources */,
 				84183A251DBE14A800D7DD86 /* TenDayRatioView.m in Sources */,
-				F7A2A0531DB8D0590023F228 /* HomePageViewController.m in Sources */,
 				84183A1F1DBDDEA300D7DD86 /* SecurityPsnViewController.m in Sources */,
 				84183A121DBDDD3B00D7DD86 /* ReleasedRatioViewController.m in Sources */,
 				F7A25D7F1DBE277500F36C32 /* SJPhotoPickerNavController.m in Sources */,
@@ -1736,6 +1737,7 @@
 				F7A2A0541DB8D0590023F228 /* LoginViewController.m in Sources */,
 				84183A061DBDB6DF00D7DD86 /* PNBarChart.m in Sources */,
 				F79251761DB73E2C006AA119 /* UserInfoTableViewCell.m in Sources */,
+				F758C9941DC3634D00556120 /* AlertIndicateViewController.m in Sources */,
 				84183A221DBDDEBC00D7DD86 /* SeatUsedViewController.m in Sources */,
 				F79251681DB63BB7006AA119 /* ChatRightTableViewCell.m in Sources */,
 				F792513B1DB5CBE3006AA119 /* UIViewController+Reminder.m in Sources */,
@@ -1765,6 +1767,7 @@
 				84183A341DBF8F2B00D7DD86 /* FlightHourTableViewCell.m in Sources */,
 				F7A2A0651DB8D0EE0023F228 /* ResourceContentView.m in Sources */,
 				F7A25D921DBEF34800F36C32 /* OptionsViewController.m in Sources */,
+				F758C9931DC3632800556120 /* DelayTimeTableViewCell.m in Sources */,
 				841839F91DBCC10200D7DD86 /* PNLineChartData.m in Sources */,
 				84183A2B1DBF5DE900D7DD86 /* ReleasedRatioModel.m in Sources */,
 				845E643E1DAB980C0072360D /* CommonFunction.m in Sources */,
