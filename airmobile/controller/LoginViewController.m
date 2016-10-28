@@ -155,6 +155,9 @@
     _passwordTF.text= [DefaultHelper getStringForKey:pwdKey];
     [_bgView addSubview:_passwordTF];
     
+    _accountTF.text=@"admin";
+    _passwordTF.text=@"123";
+    
     y = 339+45+25+45+60;
     
     if([DeviceInfoUtil IphoneVersions] == 5){

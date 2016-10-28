@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ProgreesBarView.h"
+#import "PassengerContentView.h"
 
 @interface PsnGeneralContentView : UIView
 

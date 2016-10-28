@@ -76,22 +76,15 @@
         
         [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, 200+30+30+10+30+10, kScreenWidth/2-20, 30) text:@"430" font:25 textAlignment:NSTextAlignmentRight colorFromHex:0xFF000000]];
         
-        [self addSubview:[CommonFunction addLabelFrame:CGRectMake(20, 200+30+30+10+30+10+90, kScreenWidth/2-20, 20) text:@"隔离区" font:25 textAlignment:NSTextAlignmentRight colorFromHex:0xFF000000]];
+        [self addSubview:[CommonFunction addLabelFrame:CGRectMake(20, 200+30+30+10+30+10+90, kScreenWidth-40, 20) text:@"高峰旅客日排名" font:25 textAlignment:NSTextAlignmentCenter colorFromHex:0xFF000000]];
         
         
-        [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, 200+30+30+10+30+10+90, kScreenWidth/2-20, 20) text:@"1568人" font:25 textAlignment:NSTextAlignmentLeft colorFromHex:0xFF000000]];
-        UIButton *showBtn = [[UIButton alloc] initWithFrame:CGRectMake(20, 200+30+30+10+30+10+90, kScreenWidth-40, 20)];
-        [showBtn addTarget:self action:@selector(showSafetyPassenger:) forControlEvents:UIControlEventTouchDragInside];
-        [self addSubview:showBtn];
+        //[self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, 200+30+30+10+30+10+90, kScreenWidth/2-20, 20) text:@"" font:25 textAlignment:NSTextAlignmentLeft colorFromHex:0xFF000000]];
         
     }
     
     return self;
 }
 
--(void) showSafetyPassenger:(id)sender
-{
-   
-}
 
 @end

@@ -17,6 +17,7 @@
 +(UIImage *) imageWithName:(NSString *)imageName leftCap:(NSInteger)leftCap topCap:(NSInteger)topCap;
 +(NSString*) getCNWeekString:(NSInteger)index;
 +(NSString*) getCNMonthString:(NSInteger)index;
++(NSString *)dateFormat:(NSDate *)date format:(NSString *)format;
 +(NSString*) nowDate;
 +(float) RandomScaleFrom:(NSInteger)start To:(NSInteger)end Size:(NSInteger)size;
 +(NSString*) MD5:(NSString*)str;

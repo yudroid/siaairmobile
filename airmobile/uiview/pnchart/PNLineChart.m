@@ -170,7 +170,7 @@
     if (_showLabel) {
         xLabelWidth = _chartCavanWidth / [xLabels count];
     } else {
-        xLabelWidth = (self.frame.size.width - _chartMarginLeft - _chartMarginRight) / [xLabels count];
+        xLabelWidth = (self.frame.size.width) / [xLabels count];
     }
 
     return [self setXLabels:xLabels withWidth:xLabelWidth];
@@ -193,15 +193,17 @@
         for (int index = 0; index < xLabels.count; index++) {
             labelText = xLabels[index];
 
-            NSInteger x = (index * _xLabelWidth + _chartMarginLeft + _xLabelWidth / 2.0);
-            NSInteger y = _chartMarginBottom + _chartCavanHeight;
-
-            PNChartLabel *label = [[PNChartLabel alloc] initWithFrame:CGRectMake(x, y, (NSInteger) _xLabelWidth, (NSInteger) _chartMarginBottom)];
-            [label setTextAlignment:NSTextAlignmentCenter];
-            label.text = labelText;
-            [self setCustomStyleForXLabel:label];
-            [self addSubview:label];
-            [_xChartLabels addObject:label];
+            NSInteger x = (index * _xLabelWidth  + _xLabelWidth / 2.0);
+            NSInteger y = _chartMarginTop + _chartCavanHeight+ _xLabelMarginTop;
+            
+            if(index%(_skipXPoints+1)==0){
+                PNChartLabel *label = [[PNChartLabel alloc] initWithFrame:CGRectMake(x, y, (NSInteger) _xLabelWidth*(_skipXPoints+1), (NSInteger) _chartMarginBottom)];
+                [label setTextAlignment:NSTextAlignmentCenter];
+                label.text = labelText;
+                [self setCustomStyleForXLabel:label];
+                [self addSubview:label];
+                [_xChartLabels addObject:label];
+            }
         }
     }
 }
@@ -354,14 +356,22 @@
 }
 
 
+/**
+ <#Description#>
+
+ @param chartPath    线轨迹
+ @param pointsPath   点轨迹
+ @param pathPoints   线轨迹经过的点
+ @param pointsOfPath 点轨迹经过的点
+ */
 - (void)calculateChartPath:(NSMutableArray *)chartPath andPointsPath:(NSMutableArray *)pointsPath andPathKeyPoints:(NSMutableArray *)pathPoints andPathStartEndPoints:(NSMutableArray *)pointsOfPath {
 
     // Draw each line
     for (NSUInteger lineIndex = 0; lineIndex < self.chartData.count; lineIndex++) {
         PNLineChartData *chartData = self.chartData[lineIndex];
 
-        CGFloat yValue;
-        CGFloat innerGrade;
+        CGFloat yValue;// y值
+        CGFloat innerGrade;// 对应的梯度线位置
 
         UIBezierPath *progressline = [UIBezierPath bezierPath];
 
@@ -375,13 +385,15 @@
         NSMutableArray *gradePathArray = [NSMutableArray array];
         [self.gradeStringPaths addObject:gradePathArray];
 
-        NSMutableArray *linePointsArray = [[NSMutableArray alloc] init];
+        NSMutableArray *linePointsArray = [[NSMutableArray alloc] init];// 线上的点信息point list
+
         NSMutableArray *lineStartEndPointsArray = [[NSMutableArray alloc] init];
         int last_x = 0;
         int last_y = 0;
-        NSMutableArray<NSDictionary<NSString *, NSValue *> *> *progrssLinePaths = [NSMutableArray new];
+        NSMutableArray<NSDictionary<NSString *, NSValue *> *> *progrssLinePaths = [NSMutableArray new];// 路径上的点过程数组from point to point
         CGFloat inflexionWidth = chartData.inflexionPointWidth;
 
+        // 折线图上所有的点
         for (NSUInteger i = 0; i < chartData.itemCount; i++) {
 
             yValue = chartData.getData(i).y;
@@ -394,7 +406,9 @@
 
             int x = i * _xLabelWidth + _chartMarginLeft + _xLabelWidth / 2.0;
 
-            int y = _chartCavanHeight - (innerGrade * _chartCavanHeight) + (_yLabelHeight / 2) + _chartMarginTop - _chartMarginBottom;
+//            int y = _chartCavanHeight - (innerGrade * _chartCavanHeight) + (_yLabelHeight / 2) + _chartMarginTop - _chartMarginBottom;
+            
+            int y = _chartCavanHeight - (innerGrade * _chartCavanHeight) + (_yLabelHeight / 2) + _chartMarginTop;
 
             // Circular point
             if (chartData.inflexionPointStyle == PNLineChartPointStyleCircle) {
@@ -494,7 +508,7 @@
             last_x = x;
             last_y = y;
         }
-
+        // 平滑曲线必须4个点以上
         if (self.showSmoothLines && chartData.itemCount >= 4) {
             [progressline moveToPoint:[progrssLinePaths[0][@"from"] CGPointValue]];
             for (NSDictionary<NSString *, NSValue *> *item in progrssLinePaths) {
@@ -771,14 +785,15 @@
 
 //    _chartMargin = 40;
 
-    _chartMarginLeft = 25.0;
-    _chartMarginRight = 25.0;
-    _chartMarginTop = 25.0;
+    _chartMarginLeft = 10.0f;
+    _chartMarginRight = 10.0f;
+    _chartMarginTop = 25.0f;
     _chartMarginBottom = 25.0;
 
     _yLabelFormat = @"%1.f";
 
     _chartCavanWidth = self.frame.size.width - _chartMarginLeft - _chartMarginRight;
+    // 此处处理与其他不一样，少了XLABELHEIGHT
     _chartCavanHeight = self.frame.size.height - _chartMarginBottom - _chartMarginTop;
 
     // Coordinate Axis Default Values

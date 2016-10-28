@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
-                        <segue destination="bNF-bL-RxD" kind="relationship" relationship="rootViewController" id="iYa-5m-ooY"/>
+                        <segue destination="IP2-Io-OXA" kind="relationship" relationship="rootViewController" id="Ode-dD-sAy"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f1T-tv-IdJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -42,7 +42,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NnF-Io-qHH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="513" y="457"/>
+            <point key="canvasLocation" x="556" y="45"/>
         </scene>
         <!--首页-->
         <scene sceneID="dob-jX-mol">
