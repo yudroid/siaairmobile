@@ -17,19 +17,26 @@
 #import "SJAlbumModel.h"
 #import "SJPhotoPickerManager.h"
 #import "OptionsViewController.h"
+#import "AbnormalityReportHistoryTableViewCell.h"
 
 
 static const NSString *ABNORMALITYREPORT_TABLECELL_IDENTIFIER =@"ABNORMALITYREPORT_TABLECELL_IDENTIFIER";
 static const NSString *ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER = @"ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER";
+static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER";
 
 @interface AbnormalityReportViewController ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UITextViewDelegate,TimePickerViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, copy) NSArray *tableViewArray;
+
 @property (weak, nonatomic) IBOutlet UITextView *remarksTextView;
+
 @property (weak, nonatomic) IBOutlet UICollectionView *photoCollectionView;
 @property (nonatomic ,strong) NSMutableArray *collectionArray;
+
+@property (nonatomic, copy) NSArray *abnormalityHistoryArray;
 @property (weak, nonatomic) IBOutlet UITableView *abnormalityTableView;
 @property (nonatomic, strong) TimePickerView * timePickerView;
 @end
@@ -53,8 +60,8 @@ static const NSString *ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER = @"ABNORMALI
 
     _abnormalityTableView.delegate = self;
     _abnormalityTableView.dataSource = self;
-    [_abnormalityTableView registerNib:[UINib nibWithNibName:@"AbnormalityReportTableViewCell" bundle:nil] forCellReuseIdentifier:(NSString *)ABNORMALITYREPORT_TABLECELL_IDENTIFIER];
-    _tableViewArray = @[@"类型",@"事件"];
+    [_abnormalityTableView registerNib:[UINib nibWithNibName:@"AbnormalityReportHistoryTableViewCell" bundle:nil] forCellReuseIdentifier:(NSString *)ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER];
+    _abnormalityHistoryArray = @[@"类型",@"事件"];
     
 
     _photoCollectionView.delegate =self;
@@ -137,7 +144,12 @@ static const NSString *ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER = @"ABNORMALI
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _tableViewArray.count;
+    if (tableView == _tableView) {
+        return _tableViewArray.count;
+    }else{
+        return _abnormalityHistoryArray.count;
+    }
+
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -146,10 +158,17 @@ static const NSString *ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER = @"ABNORMALI
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    AbnormalityReportTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString*)ABNORMALITYREPORT_TABLECELL_IDENTIFIER];
-    cell.nameLabel.text =_tableViewArray[indexPath.row];
-    return  cell;
+    if (tableView == _tableView) {
+        AbnormalityReportTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString*)ABNORMALITYREPORT_TABLECELL_IDENTIFIER];
+        cell.nameLabel.text =_tableViewArray[indexPath.row];
+        return  cell;
+    }else
+    {
+        AbnormalityReportHistoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString*)ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER];
+//        cell.nameLabel.text =_tableViewArray[indexPath.row];
+        return  cell;
+    }
+
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

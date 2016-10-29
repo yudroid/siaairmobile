@@ -109,16 +109,6 @@
                                 <constraint firstItem="sVZ-ss-A7d" firstAttribute="top" secondItem="oJ1-pk-edl" secondAttribute="bottom" constant="2" id="x6h-Jg-pNX"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H9M-Ft-3Lf">
-                            <constraints>
-                                <constraint firstAttribute="width" constant="368" id="CP4-nw-Rfv"/>
-                                <constraint firstAttribute="height" constant="39" id="RWn-7g-Bw8"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
-                            <state key="normal" title="上报" backgroundImage="AbnormalityRequestButton">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                        </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d6R-W1-KxZ">
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uCc-8G-CBf">
@@ -168,24 +158,22 @@
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="E1X-yk-hCh" secondAttribute="trailing" id="2jW-f2-aLl"/>
                         <constraint firstItem="E1X-yk-hCh" firstAttribute="top" secondItem="47o-Hi-RaX" secondAttribute="top" id="3nD-Kz-W8p"/>
-                        <constraint firstItem="H9M-Ft-3Lf" firstAttribute="top" secondItem="BtW-FN-hgd" secondAttribute="bottom" constant="8" id="7qT-4v-mNQ"/>
                         <constraint firstItem="BtW-FN-hgd" firstAttribute="top" secondItem="d6R-W1-KxZ" secondAttribute="bottom" constant="8" id="IQn-RQ-pu2"/>
                         <constraint firstAttribute="trailing" secondItem="d6R-W1-KxZ" secondAttribute="trailing" id="KPR-RU-4gj"/>
                         <constraint firstItem="d6R-W1-KxZ" firstAttribute="leading" secondItem="47o-Hi-RaX" secondAttribute="leading" id="MU3-fR-DbU"/>
                         <constraint firstAttribute="trailing" secondItem="BtW-FN-hgd" secondAttribute="trailing" id="Mw6-Xy-Ekg"/>
                         <constraint firstItem="E1X-yk-hCh" firstAttribute="leading" secondItem="47o-Hi-RaX" secondAttribute="leading" id="SX5-N8-dfP"/>
-                        <constraint firstAttribute="bottom" secondItem="H9M-Ft-3Lf" secondAttribute="bottom" constant="8" id="YsC-tZ-dqa"/>
                         <constraint firstItem="y1d-3W-Ong" firstAttribute="leading" secondItem="47o-Hi-RaX" secondAttribute="leading" id="ZO4-6V-lcA"/>
                         <constraint firstItem="iH2-Kw-bVF" firstAttribute="top" secondItem="y1d-3W-Ong" secondAttribute="bottom" constant="8" id="ahB-xf-tgm"/>
                         <constraint firstAttribute="trailing" secondItem="y1d-3W-Ong" secondAttribute="trailing" id="dZc-Th-aFk"/>
                         <constraint firstAttribute="trailing" secondItem="iH2-Kw-bVF" secondAttribute="trailing" id="fBw-xv-lw3"/>
                         <constraint firstItem="y1d-3W-Ong" firstAttribute="top" secondItem="E1X-yk-hCh" secondAttribute="bottom" constant="8" id="hpG-Tc-ZhW"/>
-                        <constraint firstItem="H9M-Ft-3Lf" firstAttribute="centerX" secondItem="47o-Hi-RaX" secondAttribute="centerX" id="ht4-Fi-jLS"/>
                         <constraint firstItem="BtW-FN-hgd" firstAttribute="leading" secondItem="47o-Hi-RaX" secondAttribute="leading" id="l0E-Zo-8e9"/>
                         <constraint firstItem="iH2-Kw-bVF" firstAttribute="leading" secondItem="47o-Hi-RaX" secondAttribute="leading" id="rqn-A4-y4J"/>
                         <constraint firstItem="E1X-yk-hCh" firstAttribute="centerX" secondItem="47o-Hi-RaX" secondAttribute="centerX" id="uf7-gY-Whi"/>
                         <constraint firstAttribute="trailing" secondItem="y1d-3W-Ong" secondAttribute="trailing" id="wVQ-fm-ce8"/>
                         <constraint firstItem="d6R-W1-KxZ" firstAttribute="top" secondItem="iH2-Kw-bVF" secondAttribute="bottom" constant="8" id="wdm-iN-4TB"/>
+                        <constraint firstAttribute="bottom" secondItem="BtW-FN-hgd" secondAttribute="bottom" constant="8" id="wgs-QG-m2c"/>
                     </constraints>
                 </scrollView>
             </subviews>
