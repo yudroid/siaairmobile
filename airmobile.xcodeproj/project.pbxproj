@@ -147,6 +147,8 @@
 		F758C9921DC362E700556120 /* PassengerTopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 840D15EF1DC30983005FA910 /* PassengerTopModel.m */; };
 		F758C9931DC3632800556120 /* DelayTimeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 840D15D91DC19B3B005FA910 /* DelayTimeTableViewCell.m */; };
 		F758C9941DC3634D00556120 /* AlertIndicateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84183A141DBDDDBE00D7DD86 /* AlertIndicateViewController.m */; };
+		F758C9C01DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F758C9BE1DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.m */; };
+		F758C9C11DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F758C9BF1DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.xib */; };
 		F79251371DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F79251351DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.m */; };
 		F79251381DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F79251361DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.xib */; };
 		F792513B1DB5CBE3006AA119 /* UIViewController+Reminder.m in Sources */ = {isa = PBXBuildFile; fileRef = F792513A1DB5CBE3006AA119 /* UIViewController+Reminder.m */; };
@@ -462,6 +464,9 @@
 		C8CF004928F1770818C25801 /* libPods-airmobileTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-airmobileTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F758C98F1DC360BD00556120 /* HomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageViewController.h; sourceTree = "<group>"; };
 		F758C9901DC360BD00556120 /* HomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageViewController.m; sourceTree = "<group>"; };
+		F758C9BD1DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbnormalityReportHistoryTableViewCell.h; sourceTree = "<group>"; };
+		F758C9BE1DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbnormalityReportHistoryTableViewCell.m; sourceTree = "<group>"; };
+		F758C9BF1DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AbnormalityReportHistoryTableViewCell.xib; sourceTree = "<group>"; };
 		F79251341DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightDetailAirLineCollectionViewCell.h; sourceTree = "<group>"; };
 		F79251351DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightDetailAirLineCollectionViewCell.m; sourceTree = "<group>"; };
 		F79251361DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightDetailAirLineCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -916,45 +921,16 @@
 			isa = PBXGroup;
 			children = (
 				84183A191DBDDE0000D7DD86 /* overview */,
-				F7A2A0431DB8D0590023F228 /* FlightViewController.h */,
-				F7A2A0441DB8D0590023F228 /* FlightViewController.m */,
-				F7A2A0451DB8D0590023F228 /* FunctionViewController.h */,
-				F7A2A0461DB8D0590023F228 /* FunctionViewController.m */,
-				F7A2A0491DB8D0590023F228 /* LoginViewController.h */,
-				F7A2A04A1DB8D0590023F228 /* LoginViewController.m */,
-				F7A2A04B1DB8D0590023F228 /* MessageViewController.h */,
-				F7A2A04C1DB8D0590023F228 /* MessageViewController.m */,
+				F758C9BC1DC4375100556120 /* Login */,
+				F758C9BB1DC4374F00556120 /* Flight */,
+				F758C9BA1DC4374B00556120 /* Message */,
+				F758C9B91DC4374800556120 /* Function */,
+				F758C9B51DC4373F00556120 /* UserInfo */,
 				F7A2A04D1DB8D0590023F228 /* RootViewController.h */,
 				F7A2A04E1DB8D0590023F228 /* RootViewController.m */,
-				F7A2A04F1DB8D0590023F228 /* UserInfoViewController.h */,
-				F7A2A0501DB8D0590023F228 /* UserInfoViewController.m */,
-				F7EEEF191DB396E0004AF0AE /* FlightDetailViewController.h */,
-				F7EEEF1A1DB396E0004AF0AE /* FlightDetailViewController.m */,
-				F7EEEF1B1DB396E0004AF0AE /* FlightDetailViewController.xib */,
-				F7A25D111DBA106300F36C32 /* UploadPhotoViewController.h */,
-				F7A25D121DBA106300F36C32 /* UploadPhotoViewController.m */,
-				F7A25D131DBA106300F36C32 /* UploadPhotoViewController.xib */,
-				F7EAE1931DB4776C0060626F /* AbnormalityReportViewController.h */,
-				F7EAE1941DB4776C0060626F /* AbnormalityReportViewController.m */,
-				F7EAE1951DB4776C0060626F /* AbnormalityReportViewController.xib */,
 				F7A25D8F1DBEF34800F36C32 /* OptionsViewController.h */,
 				F7A25D901DBEF34800F36C32 /* OptionsViewController.m */,
 				F7A25D911DBEF34800F36C32 /* OptionsViewController.xib */,
-				F79251471DB608E6006AA119 /* ContactPersonViewController.h */,
-				F79251481DB608E6006AA119 /* ContactPersonViewController.m */,
-				F7A25D181DBDA67A00F36C32 /* ContactPersonViewController.xib */,
-				F792515B1DB6352D006AA119 /* ChatViewController.h */,
-				F792515C1DB6352D006AA119 /* ChatViewController.m */,
-				F7A25D1A1DBDA6B400F36C32 /* ChatViewController.xib */,
-				F79251781DB7431D006AA119 /* UserManagementViewController.h */,
-				F79251791DB7431D006AA119 /* UserManagementViewController.m */,
-				F792517A1DB7431D006AA119 /* UserManagementViewController.xib */,
-				F79251851DB781AB006AA119 /* NightShiftRoomViewController.h */,
-				F79251861DB781AB006AA119 /* NightShiftRoomViewController.m */,
-				F79251871DB781AB006AA119 /* NightShiftRoomViewController.xib */,
-				F792518F1DB858D9006AA119 /* AddressBookViewController.h */,
-				F79251901DB858D9006AA119 /* AddressBookViewController.m */,
-				F79251911DB858D9006AA119 /* AddressBookViewController.xib */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -1109,6 +1085,75 @@
 				84BA55091DA256950037198F /* Info.plist */,
 			);
 			path = airmobileUITests;
+			sourceTree = "<group>";
+		};
+		F758C9B51DC4373F00556120 /* UserInfo */ = {
+			isa = PBXGroup;
+			children = (
+				F7A2A04F1DB8D0590023F228 /* UserInfoViewController.h */,
+				F7A2A0501DB8D0590023F228 /* UserInfoViewController.m */,
+				F79251781DB7431D006AA119 /* UserManagementViewController.h */,
+				F79251791DB7431D006AA119 /* UserManagementViewController.m */,
+				F792517A1DB7431D006AA119 /* UserManagementViewController.xib */,
+			);
+			name = UserInfo;
+			sourceTree = "<group>";
+		};
+		F758C9B91DC4374800556120 /* Function */ = {
+			isa = PBXGroup;
+			children = (
+				F7A2A0451DB8D0590023F228 /* FunctionViewController.h */,
+				F7A2A0461DB8D0590023F228 /* FunctionViewController.m */,
+				F79251851DB781AB006AA119 /* NightShiftRoomViewController.h */,
+				F79251861DB781AB006AA119 /* NightShiftRoomViewController.m */,
+				F79251871DB781AB006AA119 /* NightShiftRoomViewController.xib */,
+				F792518F1DB858D9006AA119 /* AddressBookViewController.h */,
+				F79251901DB858D9006AA119 /* AddressBookViewController.m */,
+				F79251911DB858D9006AA119 /* AddressBookViewController.xib */,
+			);
+			name = Function;
+			sourceTree = "<group>";
+		};
+		F758C9BA1DC4374B00556120 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				F7A2A04B1DB8D0590023F228 /* MessageViewController.h */,
+				F7A2A04C1DB8D0590023F228 /* MessageViewController.m */,
+				F79251471DB608E6006AA119 /* ContactPersonViewController.h */,
+				F79251481DB608E6006AA119 /* ContactPersonViewController.m */,
+				F7A25D181DBDA67A00F36C32 /* ContactPersonViewController.xib */,
+				F792515B1DB6352D006AA119 /* ChatViewController.h */,
+				F792515C1DB6352D006AA119 /* ChatViewController.m */,
+				F7A25D1A1DBDA6B400F36C32 /* ChatViewController.xib */,
+			);
+			name = Message;
+			sourceTree = "<group>";
+		};
+		F758C9BB1DC4374F00556120 /* Flight */ = {
+			isa = PBXGroup;
+			children = (
+				F7A2A0431DB8D0590023F228 /* FlightViewController.h */,
+				F7A2A0441DB8D0590023F228 /* FlightViewController.m */,
+				F7EEEF191DB396E0004AF0AE /* FlightDetailViewController.h */,
+				F7EEEF1A1DB396E0004AF0AE /* FlightDetailViewController.m */,
+				F7EEEF1B1DB396E0004AF0AE /* FlightDetailViewController.xib */,
+				F7A25D111DBA106300F36C32 /* UploadPhotoViewController.h */,
+				F7A25D121DBA106300F36C32 /* UploadPhotoViewController.m */,
+				F7A25D131DBA106300F36C32 /* UploadPhotoViewController.xib */,
+				F7EAE1931DB4776C0060626F /* AbnormalityReportViewController.h */,
+				F7EAE1941DB4776C0060626F /* AbnormalityReportViewController.m */,
+				F7EAE1951DB4776C0060626F /* AbnormalityReportViewController.xib */,
+			);
+			name = Flight;
+			sourceTree = "<group>";
+		};
+		F758C9BC1DC4375100556120 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				F7A2A0491DB8D0590023F228 /* LoginViewController.h */,
+				F7A2A04A1DB8D0590023F228 /* LoginViewController.m */,
+			);
+			name = Login;
 			sourceTree = "<group>";
 		};
 		F792513C1DB5EE01006AA119 /* 消息 */ = {
@@ -1277,6 +1322,9 @@
 				F79251341DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.h */,
 				F79251351DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.m */,
 				F79251361DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.xib */,
+				F758C9BD1DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.h */,
+				F758C9BE1DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.m */,
+				F758C9BF1DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.xib */,
 			);
 			name = "航班列表";
 			sourceTree = "<group>";
@@ -1440,6 +1488,7 @@
 				F7EEEF221DB3A580004AF0AE /* FlightDetailTableViewCell.xib in Resources */,
 				845055B31DAE3F1A00400EBF /* home_title_bg@2x.png in Resources */,
 				846F1DC31DAA2E3B00C8920B /* launchScreen@3x.png in Resources */,
+				F758C9C11DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.xib in Resources */,
 				F79251551DB610D6006AA119 /* FixedMessageTableViewCell.xib in Resources */,
 				845055C01DAE3F1A00400EBF /* icon_function_light@3x.png in Resources */,
 				845055DC1DAE3F1A00400EBF /* icon_userinfo_pass@3x.png in Resources */,
@@ -1735,6 +1784,7 @@
 				F7A2A0661DB8D0EE0023F228 /* TabBarView.m in Sources */,
 				F7A25D801DBE277500F36C32 /* SJPickPhotoController.m in Sources */,
 				F7A2A0541DB8D0590023F228 /* LoginViewController.m in Sources */,
+				F758C9C01DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.m in Sources */,
 				84183A061DBDB6DF00D7DD86 /* PNBarChart.m in Sources */,
 				F79251761DB73E2C006AA119 /* UserInfoTableViewCell.m in Sources */,
 				F758C9941DC3634D00556120 /* AlertIndicateViewController.m in Sources */,
