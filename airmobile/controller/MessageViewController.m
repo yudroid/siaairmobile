@@ -48,7 +48,7 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
     [self initOptionView];
     
     //TabBer自定义
-    self.tabBarView = [[TabBarView alloc] initTabBarWithModel:TabBarBgModelHomePage selectedType:TabBarSelectedTypeHomePage delegate:self];
+    self.tabBarView = [[TabBarView alloc] initTabBarWithModel:TabBarBgModelHomePage selectedType:TabBarSelectedTypeMessage delegate:self];
     [self.view insertSubview:self.tabBarView aboveSubview:self.view];
     
     
