@@ -91,11 +91,11 @@
             BOOL hasNewMessage = NO;
             
             TabBarIteam *message = [[TabBarIteam alloc] initWithCenter:CGPointMake(kScreenWidth*5/10, 49/2)];
-            message.image = [UIImage imageNamed:@"icon_message.png"];
+            message.image = [UIImage imageNamed:@"icon_message"];
             message.text  = @"消息";
             [self addSubview:message];
             
-            newMessage = [CommonFunction imageView:@"icon_newMessage.png" frame:CGRectMake(0, 0, 8, 8)];
+            newMessage = [CommonFunction imageView:@"icon_Message" frame:CGRectMake(0, 0, 8, 8)];
             newMessage.center = CGPointMake(kScreenWidth*5/10+12, 49/2-15);
             newMessage.hidden = !hasNewMessage;
             [self addSubview:newMessage];
@@ -141,27 +141,27 @@
                 {
                     case TabBarSelectedTypeHomePage:
                     homePage.textColor = [CommonFunction colorFromHex:0XFF7599c8];
-                    homePage.image = [UIImage imageNamed:@"icon_home_pass.png"];
+                    homePage.image = [UIImage imageNamed:@"icon_home_pass"];
                     break;
                         
                     case TabBarSelectedTypeFlight:
                     flightPage.textColor = [CommonFunction colorFromHex:0XFF7599c8];
-                    flightPage.image = [UIImage imageNamed:@"icon_flight_pass.png"];
+                    flightPage.image = [UIImage imageNamed:@"icon_flight_pass"];
                     break;
                         
                     case TabBarSelectedTypeMessage:
                     message.textColor = [CommonFunction colorFromHex:0XFF7599c8];
-                    message.image = [UIImage imageNamed:@"icon_message_pass.png"];
+                    message.image = [UIImage imageNamed:@"icon_message_pass"];
                     break;
                     
                     case TabBarSelectedTypeFunction:
                     function.textColor = [CommonFunction colorFromHex:0XFF7599c8];
-                    function.image = [UIImage imageNamed:@"icon_function_pass.png"];
+                    function.image = [UIImage imageNamed:@"icon_function_pass"];
                     break;
                     
                     case TabBarSelectedTypeUserInfo:
                     userInfo.textColor = [CommonFunction colorFromHex:0XFF7599c8];
-                    userInfo.image = [UIImage imageNamed:@"icon_userinfo_pass.png"];
+                    userInfo.image = [UIImage imageNamed:@"icon_userinfo_pass"];
                     break;
                     
                     default:
