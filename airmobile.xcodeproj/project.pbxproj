@@ -99,6 +99,8 @@
 		84BA54FD1DA256940037198F /* airmobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BA54FC1DA256940037198F /* airmobileTests.m */; };
 		84BA55081DA256950037198F /* airmobileUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BA55071DA256950037198F /* airmobileUITests.m */; };
 		EF83C19148C2E7B85CE63B08 /* libPods-airmobileUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8CFFB110A86FE6AFFEBBEDD /* libPods-airmobileUITests.a */; };
+		F74902621DC71202005B193D /* DayOnDutyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902601DC71202005B193D /* DayOnDutyViewController.m */; };
+		F74902631DC71202005B193D /* DayOnDutyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F74902611DC71202005B193D /* DayOnDutyViewController.xib */; };
 		F758C9911DC360BD00556120 /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F758C9901DC360BD00556120 /* HomePageViewController.m */; };
 		F758C9921DC362E700556120 /* PassengerTopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 840D15EF1DC30983005FA910 /* PassengerTopModel.m */; };
 		F758C9931DC3632800556120 /* DelayTimeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 840D15D91DC19B3B005FA910 /* DelayTimeTableViewCell.m */; };
@@ -374,6 +376,9 @@
 		B40A6E3BB15FEF8D72885961 /* libPods-airmobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-airmobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4CB8290AC5A124080793599 /* Pods-airmobileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-airmobileTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-airmobileTests/Pods-airmobileTests.release.xcconfig"; sourceTree = "<group>"; };
 		C8CF004928F1770818C25801 /* libPods-airmobileTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-airmobileTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F749025F1DC71202005B193D /* DayOnDutyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayOnDutyViewController.h; sourceTree = "<group>"; };
+		F74902601DC71202005B193D /* DayOnDutyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = DayOnDutyViewController.m; sourceTree = "<group>"; };
+		F74902611DC71202005B193D /* DayOnDutyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayOnDutyViewController.xib; sourceTree = "<group>"; };
 		F758C98F1DC360BD00556120 /* HomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageViewController.h; sourceTree = "<group>"; };
 		F758C9901DC360BD00556120 /* HomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageViewController.m; sourceTree = "<group>"; };
 		F758C9BD1DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbnormalityReportHistoryTableViewCell.h; sourceTree = "<group>"; };
@@ -383,7 +388,7 @@
 		F79251351DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightDetailAirLineCollectionViewCell.m; sourceTree = "<group>"; };
 		F79251361DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightDetailAirLineCollectionViewCell.xib; sourceTree = "<group>"; };
 		F79251391DB5CBDA006AA119 /* UIViewController+Reminder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Reminder.h"; sourceTree = "<group>"; };
-		F792513A1DB5CBE3006AA119 /* UIViewController+Reminder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Reminder.m"; sourceTree = "<group>"; };
+		F792513A1DB5CBE3006AA119 /* UIViewController+Reminder.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Reminder.m"; sourceTree = "<group>"; };
 		F79251471DB608E6006AA119 /* ContactPersonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactPersonViewController.h; sourceTree = "<group>"; };
 		F79251481DB608E6006AA119 /* ContactPersonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = ContactPersonViewController.m; sourceTree = "<group>"; };
 		F792514C1DB60BD0006AA119 /* MessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTableViewCell.h; sourceTree = "<group>"; };
@@ -503,7 +508,7 @@
 		F7A2A0581DB8D0EE0023F228 /* FlightContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightContentView.h; sourceTree = "<group>"; };
 		F7A2A0591DB8D0EE0023F228 /* FlightContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightContentView.m; sourceTree = "<group>"; };
 		F7A2A05A1DB8D0EE0023F228 /* OverViewContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverViewContentView.h; sourceTree = "<group>"; };
-		F7A2A05B1DB8D0EE0023F228 /* OverViewContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverViewContentView.m; sourceTree = "<group>"; };
+		F7A2A05B1DB8D0EE0023F228 /* OverViewContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = OverViewContentView.m; sourceTree = "<group>"; };
 		F7A2A05C1DB8D0EE0023F228 /* PassengerContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PassengerContentView.h; sourceTree = "<group>"; };
 		F7A2A05D1DB8D0EE0023F228 /* PassengerContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PassengerContentView.m; sourceTree = "<group>"; };
 		F7A2A05E1DB8D0EE0023F228 /* ResourceContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceContentView.h; sourceTree = "<group>"; };
@@ -517,7 +522,7 @@
 		F7EAE19B1DB4B0680060626F /* AbnormalityReportCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = AbnormalityReportCollectionViewCell.m; sourceTree = "<group>"; tabWidth = 4; wrapsLines = 0; };
 		F7EAE19C1DB4B0680060626F /* AbnormalityReportCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AbnormalityReportCollectionViewCell.xib; sourceTree = "<group>"; };
 		F7EAE19F1DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightDetailSafeguardTableViewCell.h; sourceTree = "<group>"; };
-		F7EAE1A01DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightDetailSafeguardTableViewCell.m; sourceTree = "<group>"; };
+		F7EAE1A01DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = FlightDetailSafeguardTableViewCell.m; sourceTree = "<group>"; };
 		F7EAE1A11DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightDetailSafeguardTableViewCell.xib; sourceTree = "<group>"; };
 		F7EE87771DB3285B006473F5 /* FlightFilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightFilterView.h; sourceTree = "<group>"; };
 		F7EE87781DB3285B006473F5 /* FlightFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightFilterView.m; sourceTree = "<group>"; };
@@ -682,6 +687,9 @@
 				840D15C01DC044DA005FA910 /* ArrDepFlightHourViewController.m */,
 				840D15EB1DC2FC67005FA910 /* PassengerTopViewController.h */,
 				840D15EC1DC2FC67005FA910 /* PassengerTopViewController.m */,
+				F749025F1DC71202005B193D /* DayOnDutyViewController.h */,
+				F74902601DC71202005B193D /* DayOnDutyViewController.m */,
+				F74902611DC71202005B193D /* DayOnDutyViewController.xib */,
 			);
 			name = overview;
 			sourceTree = "<group>";
@@ -1316,6 +1324,7 @@
 			files = (
 				F7EEEF1D1DB396E0004AF0AE /* FlightDetailViewController.xib in Resources */,
 				F7A25D881DBE277500F36C32 /* photopicker_back@3x.png in Resources */,
+				F74902631DC71202005B193D /* DayOnDutyViewController.xib in Resources */,
 				8450556A1DACF65200400EBF /* logo_flight@3x.png in Resources */,
 				845055601DACF65200400EBF /* login_icon_invisible@3x.png in Resources */,
 				F7EAE1971DB4776C0060626F /* AbnormalityReportViewController.xib in Resources */,
@@ -1554,6 +1563,7 @@
 				840D15E31DC20C4F005FA910 /* PsnSafetyAreaView.m in Sources */,
 				840D15E61DC2E99A005FA910 /* PassengerAreaModel.m in Sources */,
 				F7A25D811DBE277500F36C32 /* SJPreviewPhotoController.m in Sources */,
+				F74902621DC71202005B193D /* DayOnDutyViewController.m in Sources */,
 				F79251841DB7518E006AA119 /* FlightProcessModel.m in Sources */,
 				F7A25D891DBE277500F36C32 /* SJPhotoAlbumCell.m in Sources */,
 				F7EAE1A21DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.m in Sources */,
