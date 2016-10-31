@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol  FlightDetailSafeguardTableViewCellDelegate <NSObject>
+
+-(void)flightDetailSafeguardTableViewCellNormalButtonClick:(UIButton *)sender;
+-(void)flightDetailSafeguardTableViewCellAbnormalButtonClick:(UIButton *)sender;
+
+@end
+
 @interface FlightDetailSafeguardTableViewCell : UITableViewCell
+
+@property (nonatomic,weak) id<FlightDetailSafeguardTableViewCellDelegate> delegate;
 
 @end

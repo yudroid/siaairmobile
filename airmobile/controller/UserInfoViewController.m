@@ -110,7 +110,7 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     [_tableView registerNib:[UINib nibWithNibName:@"UserInfoTableViewCell" bundle:nil] forCellReuseIdentifier:(NSString *)USERINFO_TABLECELL_IDENTIFIER];
     _tableView.tableFooterView = [[UIView alloc]init];
     _tableArray= @[@{@"name":@"用户管理",@"image":@"UserManager"},
-                   @{@"name":@"权限控制",@"image":@"AccessControl"},
+                   @{@"name":@"消息过滤",@"image":@"AccessControl"},
                    @{@"name":@"版本检测",@"image":@"VersionCheck"}];
     
     [self.view addSubview:_tableView];

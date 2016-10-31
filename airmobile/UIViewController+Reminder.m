@@ -14,14 +14,25 @@ static const NSInteger  noFindViewTag = 1000;
 
 -(void)showAnimationTitle:(NSString *)title
 {
-    __block UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:title?:@"出了点小问题" delegate:self cancelButtonTitle:nil otherButtonTitles: nil];
-    [alert show];
-    double  delayTime = 2.0;
+    double  delayTime = 1.0;
     dispatch_time_t popTime =  dispatch_time(DISPATCH_TIME_NOW, delayTime*NSEC_PER_SEC);
+#if __IPHONE_OS_VERSION_MAX_ALLOWEDD == __IPHONE_8_3
+    __block UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:title?:@"提示" delegate:self cancelButtonTitle:nil otherButtonTitles: nil];
+    [alert show];
     dispatch_after(popTime, dispatch_get_main_queue(), ^{
         [alert dismissWithClickedButtonIndex:0 animated:YES];
         alert = nil;
     });
+#else 
+    __block UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:title?:@"提示" preferredStyle:UIAlertControllerStyleAlert];
+    [self presentViewController:alert animated:YES completion:nil];
+    dispatch_after(popTime, dispatch_get_main_queue(), ^{
+        [alert dismissViewControllerAnimated:YES completion:nil];
+        alert = nil;
+    });
+
+#endif
+
 }
 
 

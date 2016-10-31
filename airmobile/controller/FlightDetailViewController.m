@@ -11,6 +11,7 @@
 #import "AbnormalityReportViewController.h"
 #import "FlightDetailSafeguardTableViewCell.h"
 #import "FlightDetailAirLineCollectionViewCell.h"
+#import "UIViewController+Reminder.h"
 
 static const NSString *FLIGHTDETAIL_TABLECELL_IDENTIFIER = @"FLIGHTDETAIL_TABLECELL_IDENTIFIER";
 static const NSString *FLIGHTDETAIL_SAFEGUARDTABLECELL_IDENTIFIER = @"FLIGHTDETAIL_SAFEGUARDTABLECELL_IDENTIFIER";
@@ -22,7 +23,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
                                         FlightDetailTableViewCellDelegate,
                                         UICollectionViewDelegate,
                                         UICollectionViewDataSource,
-                                        UICollectionViewDelegateFlowLayout>
+                                        UICollectionViewDelegateFlowLayout,FlightDetailSafeguardTableViewCellDelegate>
 
 @property (weak, nonatomic) IBOutlet    UITableView         *tableView;
 @property (weak, nonatomic) IBOutlet    NSLayoutConstraint  *tableViewHeight;
@@ -63,11 +64,15 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
     
     _airLineCollectionArray     = @[@"上海虹桥",@"深圳宝安",@"北京首都"];
     _safeguardTableViewArray    = @[@"1",@""];
-    _safeguardTableViewHeight.constant = 45 * _safeguardTableViewArray.count;
+    _safeguradViewHeight.constant = _safeguardTableViewArray.count *45+36;
+
     _tableArray = @[@"",@"",@"",@"",@""];
-    _tableViewHeight.constant = 103*_tableArray.count;
+
     [_AirlineCollectionView registerNib:[UINib nibWithNibName:@"FlightDetailAirLineCollectionViewCell" bundle:nil]
              forCellWithReuseIdentifier:(NSString *)FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER];
+
+    _tableViewHeight.constant = 103*_tableArray.count;
+    _safeguardTableViewHeight.constant = 45 * _safeguardTableViewArray.count +36;
     
 }
 
@@ -96,7 +101,9 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
         FlightDetailSafeguardTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)FLIGHTDETAIL_SAFEGUARDTABLECELL_IDENTIFIER];
         if (cell==nil) {
             cell = [[NSBundle mainBundle] loadNibNamed:@"FlightDetailSafeguardTableViewCell" owner:nil options:nil][0];
+
         }
+        cell.delegate = self;
         return  cell;
         
     }else{
@@ -175,6 +182,19 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
             [self.view layoutIfNeeded];
         }];
     }
+}
+
+#pragma mark - FlightDetailSafeguardTableViewCellDelegate
+-(void)flightDetailSafeguardTableViewCellAbnormalButtonClick:(UIButton *)sender
+{
+    AbnormalityReportViewController *abnormalityReportVC=[[AbnormalityReportViewController alloc]initWithNibName:@"AbnormalityReportViewController" bundle:nil];
+    [self.navigationController pushViewController:abnormalityReportVC animated:YES];
+}
+-(void)flightDetailSafeguardTableViewCellNormalButtonClick:(UIButton *)sender
+{
+    [self showAnimationTitle:@"已上报"];
+    sender.enabled = NO;
+    sender.backgroundColor = [UIColor grayColor];
 }
 
 /*

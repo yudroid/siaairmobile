@@ -7,6 +7,7 @@
 //
 
 #import "OverViewContentView.h"
+#import "DayOnDutyViewController.h"
 
 @implementation OverViewContentView
 
@@ -29,10 +30,19 @@
         calendarLabel.textAlignment = NSTextAlignmentCenter;
         [caleandarView addSubview:calendarLabel];
         
-        UILabel *chiefLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2-154/2, 25+25+11, 154, 20)];
-        chiefLabel.text = @"运行总监 杨总监";
-        chiefLabel.textAlignment = NSTextAlignmentCenter;
-        [self addSubview:chiefLabel];
+//        UILabel *chiefLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2-154/2, 25+25+11, 154, 20)];
+//        chiefLabel.text = @"运行总监 杨总监";
+//        chiefLabel.textAlignment = NSTextAlignmentCenter;
+//        [self addSubview:chiefLabel];
+        UIButton *chiefButton = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth/2-154/2, 25+25+11, 154, 20)];
+        [chiefButton setTitle:@"当日值班表" forState:UIControlStateNormal];
+        chiefButton.titleLabel.font = [UIFont fontWithName:@"PingFang SC" size:17];
+        chiefButton.titleLabel.textColor = [UIColor blackColor];
+        [chiefButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [chiefButton addTarget:self action:@selector(chiefButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:chiefButton];
+
+    
         
         //圆圈
         RoundProgressView *progressRound = [[RoundProgressView alloc] initWithCenter:CGPointMake(kScreenWidth/2, 25+25+11+20+30+86) radius:86 aboveColos:@[(__bridge id)[CommonFunction colorFromHex:0XFF00C7E4].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFF00F383].CGColor ] belowColos:@[(__bridge id)[CommonFunction colorFromHex:0XFFFF9F38].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFFFFCD21].CGColor ] start:270 end:271 clockwise:NO];
@@ -136,4 +146,26 @@
 {
     [_delegate showReleasedRatioView];
 }
+
+#pragma mark - EVENT
+-(void)chiefButtonClick:(UIButton *)sender
+{
+    DayOnDutyViewController *dayOnDutyVC = [[DayOnDutyViewController alloc]initWithNibName:@"DayOnDutyViewController" bundle:nil];
+
+   [[self rootViewController].navigationController pushViewController:dayOnDutyVC animated:YES];
+}
+
+#pragma mark - coustom function
+// 获取视图所在的 viewcontroller
+-(UIViewController *)rootViewController
+{
+    for (UIView *nextView = self.superview; nextView; nextView = nextView.superview) {
+        UIResponder *responder = [nextView nextResponder];
+        if ([responder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)responder;
+        }
+    }
+    return nil;
+}
+
 @end

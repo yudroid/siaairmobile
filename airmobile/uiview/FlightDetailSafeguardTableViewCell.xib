@@ -21,18 +21,24 @@
                             <constraint firstAttribute="height" constant="23" id="oHy-Rj-63h"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <state key="normal" title="稍后上报" backgroundImage="FlightDetailSafeguardSpecialButton">
+                        <state key="normal" title="上报异常" backgroundImage="FlightDetailSafeguardSpecialButton">
                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <connections>
+                            <action selector="abnormalButtonClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="xXM-qX-V8H"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hpa-cG-iQE">
                         <constraints>
                             <constraint firstAttribute="width" constant="94" id="Wgj-gC-P4v"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
-                        <state key="normal" title="开始上报" backgroundImage="FlightDetailSafeguardNormalButton">
+                        <state key="normal" title="上报正常" backgroundImage="FlightDetailSafeguardNormalButton">
                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <connections>
+                            <action selector="normalButtonClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Z1u-d7-5Kp"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="廊桥正常率" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gza-es-1O0">
                         <constraints>

@@ -270,7 +270,7 @@
                                         <constraint firstAttribute="trailing" secondItem="Ofg-mG-pv2" secondAttribute="trailing" id="FBy-el-XYa"/>
                                         <constraint firstAttribute="trailing" secondItem="QBr-5b-hfX" secondAttribute="trailing" id="FRr-bw-Tz3"/>
                                         <constraint firstItem="QBr-5b-hfX" firstAttribute="leading" secondItem="2LY-8E-V0M" secondAttribute="leading" id="FSD-pf-bEm"/>
-                                        <constraint firstAttribute="height" constant="126" id="OQS-aO-xUh"/>
+                                        <constraint firstAttribute="height" constant="37" id="OQS-aO-xUh"/>
                                         <constraint firstItem="Ofg-mG-pv2" firstAttribute="leading" secondItem="2LY-8E-V0M" secondAttribute="leading" id="WtA-ML-pvS"/>
                                         <constraint firstItem="QBr-5b-hfX" firstAttribute="top" secondItem="Ofg-mG-pv2" secondAttribute="bottom" id="gK9-IC-sLy"/>
                                         <constraint firstAttribute="bottom" secondItem="QBr-5b-hfX" secondAttribute="bottom" id="kbi-pT-zgO"/>
