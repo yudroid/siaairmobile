@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <frame key="frameInset" width="320" height="82"/>
+                <frame key="frameInset" width="320" height="81"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="类型" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yOM-Ja-2yA">
@@ -25,16 +25,25 @@
                             <constraint firstAttribute="width" constant="7" id="s4g-hN-nxl"/>
                         </constraints>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pcr-yL-diZ">
+                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
+                        <color key="textColor" red="0.58039215690000001" green="0.58039215690000001" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="pcr-yL-diZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="100" id="Cto-jL-bR9"/>
                     <constraint firstItem="yOM-Ja-2yA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="25" id="YJC-uj-nde"/>
                     <constraint firstItem="yOM-Ja-2yA" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="bcp-rA-yRt"/>
                     <constraint firstAttribute="trailing" secondItem="Ebx-mJ-w3R" secondAttribute="trailing" constant="18" id="eCx-ve-IdV"/>
                     <constraint firstItem="Ebx-mJ-w3R" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="hHr-eh-04b"/>
+                    <constraint firstItem="Ebx-mJ-w3R" firstAttribute="leading" secondItem="pcr-yL-diZ" secondAttribute="trailing" constant="8" id="kjt-rB-cnv"/>
+                    <constraint firstItem="pcr-yL-diZ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="wx7-B7-JkR"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="nameLabel" destination="yOM-Ja-2yA" id="13L-WD-K1E"/>
+                <outlet property="valueLabel" destination="pcr-yL-diZ" id="Qvm-wV-3Gn"/>
             </connections>
             <point key="canvasLocation" x="25" y="71"/>
         </tableViewCell>

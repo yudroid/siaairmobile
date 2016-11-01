@@ -8,9 +8,12 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AbnormalityReportViewController">
             <connections>
                 <outlet property="abnormalityTableView" destination="BtW-FN-hgd" id="5zv-Sd-1BL"/>
+                <outlet property="endReportButton" destination="kvT-lQ-nt4" id="abk-2j-KBz"/>
+                <outlet property="iphoneButton" destination="nlD-wH-gZy" id="T8Z-O3-XaI"/>
                 <outlet property="photoCollectionView" destination="sVZ-ss-A7d" id="8TN-wX-Cm0"/>
                 <outlet property="remarksTextView" destination="4IS-ZR-JEA" id="an1-Q5-6fy"/>
                 <outlet property="scrollView" destination="47o-Hi-RaX" id="bLP-24-XKQ"/>
+                <outlet property="startReportButton" destination="uCc-8G-CBf" id="PqM-Gn-U6D"/>
                 <outlet property="tableView" destination="E1X-yk-hCh" id="PL2-E7-SYl"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -112,6 +115,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d6R-W1-KxZ">
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uCc-8G-CBf">
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="39" id="aoA-1K-V1g"/>
                                     </constraints>
@@ -124,6 +128,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kvT-lQ-nt4">
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="39" id="t9J-gF-y4S"/>
                                     </constraints>

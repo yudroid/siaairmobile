@@ -8,7 +8,8 @@
 
 #import "FlightDetailViewController.h"
 #import "FlightDetailTableViewCell.h"
-#import "AbnormalityReportViewController.h"
+#import "CommonAbnormalityReportViewController.h"
+#import "SpecialAbnormalityReportViewController.h"
 #import "FlightDetailSafeguardTableViewCell.h"
 #import "FlightDetailAirLineCollectionViewCell.h"
 #import "UIViewController+Reminder.h"
@@ -129,7 +130,10 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 #pragma mark - FlightDetailTableViewCellDelegate
 -(void)flightDetailTableViewCellUsualButtonClick
 {
-    AbnormalityReportViewController *abnormalityReportVC=[[AbnormalityReportViewController alloc]initWithNibName:@"AbnormalityReportViewController" bundle:nil];
+    CommonAbnormalityReportViewController *abnormalityReportVC=[[CommonAbnormalityReportViewController alloc]initWithNibName:@"AbnormalityReportViewController" bundle:nil];
+    abnormalityReportVC.flightID = @"";
+    abnormalityReportVC.SafeguardID = @"";
+    abnormalityReportVC.isKeyFlight = YES;
     [self.navigationController pushViewController:abnormalityReportVC animated:YES];
 }
 
@@ -174,7 +178,6 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
             [self.view layoutIfNeeded];
         }];
     }else{
-        
         sender.tag = 0;
         [UIView animateWithDuration:0.3 animations:^{
             sender.transform = CGAffineTransformMakeRotation(0);
@@ -187,7 +190,9 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 #pragma mark - FlightDetailSafeguardTableViewCellDelegate
 -(void)flightDetailSafeguardTableViewCellAbnormalButtonClick:(UIButton *)sender
 {
-    AbnormalityReportViewController *abnormalityReportVC=[[AbnormalityReportViewController alloc]initWithNibName:@"AbnormalityReportViewController" bundle:nil];
+    SpecialAbnormalityReportViewController *abnormalityReportVC=[[SpecialAbnormalityReportViewController alloc]initWithNibName:@"AbnormalityReportViewController" bundle:nil];
+    abnormalityReportVC.flightID = @"";
+    abnormalityReportVC.SafeguardID = @"";
     [self.navigationController pushViewController:abnormalityReportVC animated:YES];
 }
 -(void)flightDetailSafeguardTableViewCellNormalButtonClick:(UIButton *)sender

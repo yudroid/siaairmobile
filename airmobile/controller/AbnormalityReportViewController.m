@@ -28,10 +28,8 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, copy) NSArray *tableViewArray;
 
-@property (weak, nonatomic) IBOutlet UITextView *remarksTextView;
+@property (nonatomic, copy) NSArray *tableViewArray;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *photoCollectionView;
 @property (nonatomic ,strong) NSMutableArray *collectionArray;
@@ -45,7 +43,6 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     //titleView订制
     [self titleViewInitWithHight:64];
     self.titleView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"home_title_bg.png"]];
@@ -73,11 +70,33 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
     _remarksTextView.delegate = self;
     
     //注册键盘事件
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowNotification:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHideNotification:) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShowNotification:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHideNotification:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+
+    //KVO
+    [self.startReportButton addObserver:self
+                             forKeyPath:@"enabled"
+                                options:NSKeyValueObservingOptionNew
+                                context:nil];
+    [self.endReportButton addObserver:self
+                           forKeyPath:@"enabled"
+                              options:NSKeyValueObservingOptionNew
+                              context:nil];
 }
 
 
+
+-(void)dealloc
+{
+    [self.startReportButton removeObserver:self forKeyPath:@"enabled"];
+    [self.endReportButton removeObserver: self forKeyPath:@"enabled"];
+}
 
 // 键盘通知
 - (void)keyboardWillShowNotification:(NSNotification *)info
@@ -128,7 +147,9 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 {
     if (_timePickerView == nil) {
         [UIView animateWithDuration:0.3 animations:^{
-            _timePickerView = [[NSBundle mainBundle] loadNibNamed:@"TimePickerView" owner:nil options:nil][0];
+            _timePickerView = [[NSBundle mainBundle] loadNibNamed:@"TimePickerView"
+                                                            owner:nil
+                                                          options:nil][0];
             _timePickerView.frame = CGRectMake(0, 64, kScreenWidth, kScreenHeight-64);
             _timePickerView.delegate = self;
             [self.view addSubview:_timePickerView];
@@ -174,13 +195,14 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    if(tableView == _abnormalityTableView){
+        return;
+    }
+
     OptionsViewController *optionsVC = [[OptionsViewController alloc]init];
     [self.navigationController pushViewController:optionsVC animated:YES];
 }
-
-
-
-
 
 
 #pragma mark - collection delegate datasource
@@ -217,6 +239,24 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
     NSLog(@"选中时间%@",date);
 }
 
+
+#pragma mark - KVO
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
+{
+    if ([[change objectForKey:@"new"]isKindOfClass:[NSNumber class]]) {
+        Boolean new = ((NSNumber *)[change objectForKey:@"new"]).boolValue;
+        if ([object isKindOfClass:[UIButton class]]) {
+            UIButton *button = object;
+            if (new) {
+                [button setBackgroundColor:[UIColor whiteColor]];
+            }else{
+//                [button setBackgroundColor:[UIColor grayColor]];
+            }
+        }
+
+    }
+
+}
 /*
 #pragma mark - Navigation
 
