@@ -145,4 +145,10 @@ static NSString* __password = @"";
 }
 
 
++(void)flightListSuccess:(void(^)(id))success failure:(void (^)(NSError *))failue
+{
+    success(nil);
+}
+
+
 @end

@@ -46,4 +46,14 @@
  */
 +(void) setPassword:(NSString*) password;
 
+
+/**
+ *  航班列表
+ *
+ *  @parm <#parm#> <#description#>
+ *
+ */
++(void)flightListSuccess:(void(^)(id))success failure:(void (^)(NSError *))failue;
+
+
 @end
