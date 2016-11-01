@@ -10,7 +10,6 @@
 
 @implementation FlightProcessModel
 
-
 //防止崩溃
 - (id)valueForUndefinedKey:(NSString *)key{
     return nil;
