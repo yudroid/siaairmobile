@@ -199,7 +199,10 @@
     }
     else
     {
-        overviewContentView = [[OverViewContentView alloc] initWithFrame:CGRectMake(0, 100, kScreenWidth, kScreenHeight-189) delegate:self];
+        overviewContentView = [[OverViewContentView alloc]
+                               initWithFrame:
+                               CGRectMake(0, self.titleView.frame.size.height, kScreenWidth, kScreenHeight-self.titleView.frame.size.height-self.tabBarView.frame.size.height)
+                               delegate:self];
         [self.view addSubview:overviewContentView];
     }
 }

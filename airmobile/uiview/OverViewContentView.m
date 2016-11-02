@@ -18,34 +18,37 @@
     
     if(self){
         _delegate = delegate;
-//        self.backgroundColor = [UIColor lightGrayColor];
         
-        UIView *caleandarView = [[UIView alloc] initWithFrame:CGRectMake(kScreenWidth/2-190/2, 25, 190, 25)];
+        UIView *caleandarView = [[UIView alloc]
+                                 initWithFrame:CGRectMake(kScreenWidth/2-190/2, 32, 190, 25)];
+        caleandarView.backgroundColor = [UIColor grayColor];
         [self addSubview:caleandarView];
         
-        UIImageView *calendarImage = [CommonFunction imageView:@"calendar" frame:CGRectMake(0, 0, 25, 25)];
+        UIImageView *calendarImage = [CommonFunction imageView:@"HomeCalendar"
+                                                         frame:CGRectMake(0, 0, 24, 25)];
         [caleandarView addSubview:calendarImage];
         UILabel *calendarLabel = [[UILabel alloc] initWithFrame:CGRectMake(25, 0, 145, 25)];
         calendarLabel.text = @"2016-10-17";
+        calendarLabel.font = [UIFont fontWithName:@"PingFang SC" size:17];
+        calendarLabel.textColor = [CommonFunction colorFromHex:0XFF3E3737];
         calendarLabel.textAlignment = NSTextAlignmentCenter;
         [caleandarView addSubview:calendarLabel];
-        
-//        UILabel *chiefLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2-154/2, 25+25+11, 154, 20)];
-//        chiefLabel.text = @"运行总监 杨总监";
-//        chiefLabel.textAlignment = NSTextAlignmentCenter;
-//        [self addSubview:chiefLabel];
-        UIButton *chiefButton = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth/2-154/2, 25+25+11, 154, 20)];
+
+        UIButton *chiefButton = [[UIButton alloc]
+                                 initWithFrame:CGRectMake(kScreenWidth/2-154/2, 25+25+11, 154, 20)];
         [chiefButton setTitle:@"当日值班表" forState:UIControlStateNormal];
-        chiefButton.titleLabel.font = [UIFont fontWithName:@"PingFang SC" size:17];
+        chiefButton.titleLabel.font = [UIFont fontWithName:@"PingFang SC" size:14];
         chiefButton.titleLabel.textColor = [UIColor blackColor];
         [chiefButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [chiefButton addTarget:self action:@selector(chiefButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+        [chiefButton addTarget:self
+                        action:@selector(chiefButtonClick:)
+              forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:chiefButton];
-
-    
         
         //圆圈
-        RoundProgressView *progressRound = [[RoundProgressView alloc] initWithCenter:CGPointMake(kScreenWidth/2, 25+25+11+20+30+86) radius:86 aboveColos:@[(__bridge id)[CommonFunction colorFromHex:0XFF00C7E4].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFF00F383].CGColor ] belowColos:@[(__bridge id)[CommonFunction colorFromHex:0XFFFF9F38].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFFFFCD21].CGColor ] start:270 end:271 clockwise:NO];
+        RoundProgressView *progressRound = [[RoundProgressView alloc]
+                                            initWithCenter:CGPointMake(kScreenWidth/2, 25+25+11+20+30+86)
+                                            radius:86 aboveColos:@[(__bridge id)[CommonFunction colorFromHex:0XFF2ED5C7].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFFCA29ED].CGColor ] belowColos:@[(__bridge id)[CommonFunction colorFromHex:0XFFFF9F38].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFFFFCD21].CGColor ] start:270 end:271 clockwise:NO];
         [self addSubview:progressRound];
         
         normalProportion = 0.6;
@@ -61,7 +64,7 @@
         UILabel *totalNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2-50, 25+25+11+20+30+86-40/2, 100, 35)];
         totalNumLabel.text = @"800";
         totalNumLabel.textAlignment = NSTextAlignmentCenter;
-        totalNumLabel.font = [UIFont systemFontOfSize:35];
+        totalNumLabel.font =  [UIFont fontWithName:@"PingFang SC" size:35];
         [self addSubview:totalNumLabel];
         
         UIButton *totalButton = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth/2-50, 25+25+11+20+30+86-40/2, 100, 35)];
@@ -71,47 +74,47 @@
         UILabel *totalLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2-50, 25+25+11+20+30+86-17/2+30, 100, 13)];
         totalLabel.text = @"计划总数";
         totalLabel.textAlignment = NSTextAlignmentCenter;
-        totalLabel.font = [UIFont systemFontOfSize:12];
+        totalLabel.font =  [UIFont fontWithName:@"PingFang SC" size:12];
         [self addSubview:totalLabel];
         
-        UILabel *finished = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2-150, 25+25+11+20+30+86*2+30, 100, 20)];
+        UILabel *finished = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2-150, 25+25+11+20+30+86*2+30, 100, 30)];
         finished.text = @"489";
         finished.textAlignment = NSTextAlignmentCenter;
-        finished.font = [UIFont systemFontOfSize:20];
+        finished.font =  [UIFont fontWithName:@"PingFang SC" size:35];
         [self addSubview:finished];
         
-        UILabel *finishedLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2-150, 25+25+11+20+30+86*2+30+20+5, 100, 13)];
+        UILabel *finishedLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2-150, 25+25+11+20+30+86*2+30+20+15, 100, 13)];
         finishedLabel.text = @"已执行";
         finishedLabel.textAlignment = NSTextAlignmentCenter;
-        finishedLabel.font = [UIFont systemFontOfSize:12];
+        finishedLabel.font =  [UIFont fontWithName:@"PingFang SC" size:12];
         [self addSubview:finishedLabel];
         
-        UILabel *planNum = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2-50, 25+25+11+20+30+86*2+30, 100, 20)];
+        UILabel *planNum = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2-50, 25+25+11+20+30+86*2+30, 100, 30)];
         planNum.text = @"311";
         planNum.textAlignment = NSTextAlignmentCenter;
-        planNum.font = [UIFont systemFontOfSize:20];
+        planNum.font =  [UIFont fontWithName:@"PingFang SC" size:35];
         [self addSubview:planNum];
         
-        UILabel *planLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2-50, 25+25+11+20+30+86*2+30+20+5, 100, 13)];
+        UILabel *planLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2-50, 25+25+11+20+30+86*2+30+20+15, 100, 13)];
         planLabel.text = @"未执行";
         planLabel.textAlignment = NSTextAlignmentCenter;
-        planLabel.font = [UIFont systemFontOfSize:12];
+        planLabel.font =  [UIFont fontWithName:@"PingFang SC" size:12];
         [self addSubview:planLabel];
         
-        UILabel *ratio = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2+50, 25+25+11+20+30+86*2+30, 100, 20)];
+        UILabel *ratio = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2+50, 25+25+11+20+30+86*2+30, 100, 30)];
         ratio.text = @"80%";
         ratio.textAlignment = NSTextAlignmentCenter;
-        ratio.font = [UIFont systemFontOfSize:20];
+        ratio.font =  [UIFont fontWithName:@"PingFang SC" size:35];
         [self addSubview:ratio];
         
         UIButton *ratioButton = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth/2+50, 25+25+11+20+30+86*2+30, 100, 40)];
         [ratioButton addTarget:self action:@selector(showRatioView:) forControlEvents:(UIControlEventTouchUpInside)];
         [self addSubview:ratioButton];
         
-        UILabel *ratioLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2+50, 25+25+11+20+30+86*2+30+20+5, 100, 13)];
+        UILabel *ratioLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2+50, 25+25+11+20+30+86*2+30+20+15, 100, 13)];
         ratioLabel.text = @"放行正常率";
         ratioLabel.textAlignment = NSTextAlignmentCenter;
-        ratioLabel.font = [UIFont systemFontOfSize:12];
+        ratioLabel.font =  [UIFont fontWithName:@"PingFang SC" size:12];
         [self addSubview:ratioLabel];
         
         UILabel *currentStatus = [CommonFunction addLabelFrame:CGRectMake(50, 25+25+11+20+30+86*2+30+20+5+13+10+20, kScreenWidth-100, 40) text:@"小面积延误" font:25 textAlignment:(NSTextAlignmentCenter) colorFromHex:0xFFFF0000];

@@ -33,7 +33,7 @@
     
     // 增加键盘显示隐藏事件
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(KeyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(KeyboardWillHide:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(KeyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
     [self createLogoView];
     [self createInputView];
@@ -43,37 +43,21 @@
 // 创建logo的view
 -(void) createLogoView
 {
-    _bgView = [[UIImageView alloc]initWithFrame:self.view.frame];
-    _bgView.image = [UIImage imageNamed:@"login_bg"];
+    _bgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+    _bgView.image = [UIImage imageNamed:@"LoginBackground"];
     _bgView.userInteractionEnabled = YES;
     [self.view addSubview:_bgView];
     
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapClick)];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                          action:@selector(tapClick)];
     [_bgView addGestureRecognizer:tap];
-    int width = 214;
-    int height = 101;
-    int x = (kScreenWidth - 214)/2;
-    if([DeviceInfoUtil IphoneVersions] == 5){
-        NSLog(@"------------iphone5-----------------");
-        width *= [DeviceInfoUtil ip6Facto5];
-        height *= [DeviceInfoUtil ip6Facto5];
-        x += 15;
-    }
-    UIImageView *logoImgV = [[UIImageView alloc]initWithFrame:CGRectMake(x, 95, width , height)];
-    //logoImgV.image = [UIImage imageNamed:@"login_logo"];
+    int width = [DeviceInfoUtil lengthFitIp6andIp5WithLength:374/2];
+    int height = [DeviceInfoUtil lengthFitIp6andIp5WithLength:303/2];
+    UIImageView *logoImgV = [[UIImageView alloc]
+                             initWithFrame:CGRectMake((kScreenWidth-width)/2, 105, width , height)];
+    logoImgV.image = [UIImage imageNamed:@"LoginLogo"];
+
     [_bgView addSubview:logoImgV];
-    int y = 95+101;
-    
-    if ([DeviceInfoUtil IphoneVersions] == 5) {
-        y -= 10;
-    }
-    
-    UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, y, kScreenWidth, 60)];
-    nameLabel.text = @"";
-    nameLabel.textColor = [UIColor whiteColor];
-    nameLabel.font = [UIFont systemFontOfSize:20];
-    nameLabel.textAlignment = NSTextAlignmentCenter;
-    [_bgView addSubview:nameLabel];
 
 }
 
@@ -101,25 +85,49 @@
     
     NSString* userKey = @"taocares_userName";
     NSString* pwdKey = @"taocares_pwd";
-    
-    
-    _accountTF = [[UITextField alloc]initWithFrame:CGRectMake((kScreenWidth - 291)/2, y, 291, 45)];
-    _accountTF.delegate = self;
+
+    //用户名view
+    UIView *AccountView = [[UIView alloc] initWithFrame:CGRectMake((kScreenWidth - 257.5)/2, y, 257.5, 40)];
+     [_bgView addSubview:AccountView];
+    ///背景图片
+    UIImageView *AccountViewBackgroundImageView = [[UIImageView alloc]
+                                                   initWithFrame:CGRectMake(0, 0, 257.5, 40)];
+    AccountViewBackgroundImageView.image = [UIImage imageNamed:@"LoginInputField"];
+    [AccountView addSubview:AccountViewBackgroundImageView];
+    //前部小图片
+    UIImageView *accountFrontImageView = [[UIImageView alloc]initWithFrame:CGRectMake(15, 12, 18, 16)];
+    accountFrontImageView.image = [UIImage imageNamed:@"LoginAccounts"];
+    [AccountView addSubview: accountFrontImageView];
+    //文本输入框
+    _accountTF = [[UITextField alloc]initWithFrame:CGRectMake(44, 0, 200, 40)];
+
     _accountTF.placeholder = @"请输入账号";
     _accountTF.textColor = [CommonFunction colorFromHex:0XFFFFFFFF];
-    _accountTF.font = [UIFont systemFontOfSize:17];
+    _accountTF.font = [UIFont systemFontOfSize:15];
     [_accountTF setValue:[CommonFunction colorFromHex:0X7FFFFFFF] forKeyPath:@"_placeholderLabel.textColor"];
     [_accountTF setValue:[UIFont boldSystemFontOfSize:17] forKeyPath:@"_placeholderLabel.font"];
-    _accountTF.background = [UIImage imageNamed:@"login_input_field"];
-    _accountTF.leftViewMode = UITextFieldViewModeAlways;
-    UIButton *placeBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 50)];
-    [placeBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
-    [placeBtn setImage:[UIImage imageNamed:@"login_accounts"] forState:(UIControlStateNormal)];
-    [_accountTF setLeftView:placeBtn];
-    _accountTF.text = [DefaultHelper getStringForKey:userKey];
-    [_bgView addSubview:_accountTF];
-    
-    y = 339 +45 +25;
+    [AccountView addSubview:_accountTF];
+
+
+
+//    _accountTF = [[UITextField alloc]initWithFrame:CGRectMake((kScreenWidth - 291)/2, y, 291, 45)];
+//    _accountTF.delegate = self;
+//    _accountTF.placeholder = @"请输入账号";
+//    _accountTF.textColor = [CommonFunction colorFromHex:0XFFFFFFFF];
+//    _accountTF.font = [UIFont systemFontOfSize:17];
+
+//    _accountTF.background = [UIImage imageNamed:@"LoginInputField"];
+//    _accountTF.leftViewMode = UITextFieldViewModeAlways;
+//
+
+////    UIButton *placeBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 50)];
+//    [placeBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
+//    [placeBtn setImage:[UIImage imageNamed:@"LoginAccounts"] forState:(UIControlStateNormal)];
+//    [_accountTF setLeftView:placeBtn];
+//    _accountTF.text = [DefaultHelper getStringForKey:userKey];
+//    [_bgView addSubview:_accountTF];
+
+    y = 339 +40 +21;
     
     if([DeviceInfoUtil IphoneVersions] == 5){
         y -= 70;
@@ -129,36 +137,44 @@
     if([DeviceInfoUtil IphoneVersions] == 4){
         y -= 85;
     }
-    
-    _passwordTF = [[UITextField alloc]initWithFrame:CGRectMake((kScreenWidth - 291)/2, y, 291, 45)];
+
+    //密码view
+    UIView *passwordView = [[UIView alloc] initWithFrame:CGRectMake((kScreenWidth - 257.5)/2, y, 257.5, 40)];
+    [_bgView addSubview:passwordView];
+    ///背景图片
+    UIImageView *passwordViewBackgroundImageView = [[UIImageView alloc]
+                                                   initWithFrame:CGRectMake(0, 0, 257.5, 40)];
+    passwordViewBackgroundImageView.image = [UIImage imageNamed:@"LoginInputField"];
+    [passwordView addSubview:passwordViewBackgroundImageView];
+    //前部小图片
+    UIImageView *passwordFrontImageView = [[UIImageView alloc]initWithFrame:CGRectMake(15, 12, 18, 16)];
+    passwordFrontImageView.image = [UIImage imageNamed:@"LoginPassword"];
+    [passwordView addSubview: passwordFrontImageView];
+    //文本输入框
+    _passwordTF = [[UITextField alloc]initWithFrame:CGRectMake(44, 0, 190, 40)];
     _passwordTF.delegate = self;
     _passwordTF.placeholder = @"请输入密码";
     _passwordTF.textColor = [CommonFunction colorFromHex:0XFFFFFFFF];
     _passwordTF.font = [UIFont systemFontOfSize:17];
     [_passwordTF setValue:[CommonFunction colorFromHex:0X7FFFFFFF] forKeyPath:@"_placeholderLabel.textColor"];
     [_passwordTF setValue:[UIFont boldSystemFontOfSize:17] forKeyPath:@"_placeholderLabel.font"];
-    _passwordTF.background = [UIImage imageNamed:@"login_input_field"];
-    _passwordTF.leftViewMode = UITextFieldViewModeAlways;
-    UIButton *passPlaceBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 50)];
-    [passPlaceBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
-    [passPlaceBtn setImage:[UIImage imageNamed:@"login_icon_lock"] forState:(UIControlStateNormal)];
-    [_passwordTF setLeftView:passPlaceBtn];
-    _passwordTF.rightViewMode = UITextFieldViewModeAlways;
-    UIButton *visibleBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 50)];
+
+
+    UIButton *visibleBtn = [[UIButton alloc]initWithFrame:CGRectMake(257.5-15-25, 0, 30, 40)];
     [visibleBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
-    [visibleBtn setImage:[UIImage imageNamed:@"login_visible"] forState:(UIControlStateNormal)];
+    [visibleBtn setImage:[UIImage imageNamed:@"LoginVisible"] forState:(UIControlStateNormal)];
     [visibleBtn setImage:[UIImage imageNamed:@"login_icon_invisible"] forState:(UIControlStateSelected)];
     [visibleBtn addTarget:self action:@selector(visibleBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
     visibleBtn.selected = YES;
     [_passwordTF setSecureTextEntry:YES];
-    [_passwordTF setRightView:visibleBtn];
+    [passwordView addSubview:visibleBtn];
     _passwordTF.text= [DefaultHelper getStringForKey:pwdKey];
-    [_bgView addSubview:_passwordTF];
+    [passwordView addSubview:_passwordTF];
     
     _accountTF.text=@"admin";
     _passwordTF.text=@"123";
     
-    y = 339+45+25+45+60;
+    y = 339+45+25+45+52;
     
     if([DeviceInfoUtil IphoneVersions] == 5){
         y -= 75;
@@ -169,15 +185,15 @@
         y-=100;
     }
     
-    _loginBtn = [[UIButton alloc]initWithFrame:CGRectMake((kScreenWidth - 291)/2, y, 291, 45)];
-    [_loginBtn setImage:[UIImage imageNamed:@"login_btn_pre"] forState:(UIControlStateNormal)];
+    _loginBtn = [[UIButton alloc]initWithFrame:CGRectMake((kScreenWidth - 257.5)/2, y, 257.5, 40)];
+    [_loginBtn setImage:[UIImage imageNamed:@"LoginButtonBackground"] forState:(UIControlStateNormal)];
     [_loginBtn setImage:[UIImage imageNamed:@"login_btn"] forState:(UIControlStateSelected)];
     [_loginBtn addTarget:self action:@selector(loginClick) forControlEvents:(UIControlEventTouchUpInside)];
     [_bgView addSubview:_loginBtn];
     UILabel *loginLabel = [[UILabel alloc]initWithFrame:_loginBtn.frame];
     loginLabel.textColor = [CommonFunction colorFromHex:0XFF122046];
     loginLabel.text = @"登录";
-    loginLabel.font = [UIFont systemFontOfSize:21];
+    loginLabel.font = [UIFont fontWithName:@"PingFang SC" size:18];
     loginLabel.textAlignment = NSTextAlignmentCenter;
     [_bgView addSubview:loginLabel];
 }
@@ -327,12 +343,18 @@
 -(void)KeyboardWillShow:(NSNotification *)sender{
     CGRect rect=[[sender.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey]CGRectValue];
     CGFloat height= rect.size.height;
-    
-    //    UIKeyboardAnimationDurationUserInfoKey//获取键盘升起动画时间
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:[[sender.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey]doubleValue]];
-    _bgView.transform=CGAffineTransformMakeTranslation(0, -height+160);
-    [UIView commitAnimations];
+
+    float y = -height+160;
+    if(y<0){
+        //    UIKeyboardAnimationDurationUserInfoKey//获取键盘升起动画时间
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:[[sender.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey]doubleValue]];
+        _bgView.transform=CGAffineTransformMakeTranslation(0, y);
+        [UIView commitAnimations];
+
+    }
+
+
 }
 
 
@@ -349,10 +371,6 @@
     [UIView commitAnimations];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 /**
  *  tost
  *

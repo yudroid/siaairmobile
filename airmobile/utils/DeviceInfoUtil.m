@@ -164,5 +164,41 @@
     return 0.773;
 }
 
++ (double)lengthFitIp6andIp5WithLength:(double)length
+{
+    if([DeviceInfoUtil IphoneVersions] == 5){
+        NSLog(@"------------iphone5-----------------");
+        return length *[DeviceInfoUtil ip6Facto5];
+    }
+    return length;
+}
+
++(double)iphoneScreenPPi
+{
+    //4、4s、5 、5s、6 、7、 PPI 为326
+    // 6p 7p PPI为401
+
+    if(kScreenWidth == 320 || kScreenWidth == 375){
+        return 326.0;
+    }else if(kScreenWidth == 414){
+        return 401.0;
+    }else{
+        return 326.0;
+    }
+}
+
++(double)pxWithDp:(double)dp
+{
+    return dp*[self iphoneScreenPPi]/160/2;
+}
+
++(double)pxWithSp:(double)sp
+{
+    return sp*[self iphoneScreenPPi]/160/2;
+}
++(double)fontSizeWithSp:(double)sp
+{
+    return [self pxWithSp:sp]/2;
+}
 
 @end
