@@ -14,5 +14,5 @@
 @property (weak, nonatomic) IBOutlet UIImageView *headImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (nonatomic, assign) Boolean isSelected;
-@property (nonatomic, copy) UserInfoModel *user;
+@property (nonatomic, assign) long *userId;
 @end
