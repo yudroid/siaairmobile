@@ -65,6 +65,7 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
 -(void)sureButtonClick:(UIButton *)sender
 {
     ChatViewController *chatVC = [[ChatViewController alloc]initWithNibName:@"ChatViewController" bundle:nil];
+    
     [self.navigationController pushViewController:chatVC animated:YES];
 }
 
@@ -86,15 +87,14 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 30;
+    return 50;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ContactPersonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)CONTACTPERSON_TABLECELL_IDENTIFIER];
     UserInfoModel *userInfo = [[array objectAtIndex:indexPath.section].userArr objectAtIndex:indexPath.row];
-    cell.textLabel.text = userInfo.name;
-    cell.user = userInfo;
+    cell.nameLabel.text = userInfo.name;
     return cell;
 }
 
