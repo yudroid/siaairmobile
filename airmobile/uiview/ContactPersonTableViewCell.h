@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserInfoModel.h"
 
 @interface ContactPersonTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *headImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (nonatomic, assign) Boolean isSelected;
+@property (nonatomic, copy) UserInfoModel *user;
 @end

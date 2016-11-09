@@ -572,7 +572,7 @@
     if (self.singleRowMode) {
         if (self->_currentVisibleRow < 5) {
             ++self->_currentVisibleRow;
-            [UIView transitionWithView:self.contentWrapperView duration:0.4 options:UIViewAnimationOptionTransitionFlipFromRight animations:nil completion:nil];
+            [UIView transitionWithView:self.contentWrapperView duration:0.4 options:UIViewAnimationOptionTransitionFlipFromTop animations:nil completion:nil];
             [self updateCurrentVisibleRow];
             
             return;
@@ -605,7 +605,7 @@
     if (self.singleRowMode) {
         if (self->_currentVisibleRow > 0) {
             --self->_currentVisibleRow;
-            [UIView transitionWithView:self.contentWrapperView duration:0.4 options:UIViewAnimationOptionTransitionFlipFromLeft animations:nil completion:nil];
+            [UIView transitionWithView:self.contentWrapperView duration:0.4 options:UIViewAnimationOptionTransitionFlipFromBottom animations:nil completion:nil];
             [self updateCurrentVisibleRow];
             
             return;
@@ -662,13 +662,11 @@
     
     [self configureContentView];
     
-//    self.contentView.transform = CGAffineTransformMakeTranslation(0, CGRectGetHeight(self.contentView.frame) / 3 * (direction ? 1 : -1));
-    self.contentView.transform = CGAffineTransformMakeTranslation(CGRectGetWidth(self.contentView.frame) / 3 * (direction ? 1 : -1), 0);
+    self.contentView.transform = CGAffineTransformMakeTranslation(0, CGRectGetHeight(self.contentView.frame) / 3 * (direction ? 1 : -1));
     self.contentView.alpha = 0;
     
     [UIView animateWithDuration:0.35 delay:0 usingSpringWithDamping:0.72 initialSpringVelocity:0 options:kNilOptions animations:^{
-//        snapshotView.transform = CGAffineTransformMakeTranslation(0, -CGRectGetHeight(self.contentView.frame) / 2 * (direction ? 1 : -1));
-        snapshotView.transform = CGAffineTransformMakeTranslation( -CGRectGetWidth(self.contentView.frame) / 2 * (direction ? 1 : -1),0);
+        snapshotView.transform = CGAffineTransformMakeTranslation(0, -CGRectGetHeight(self.contentView.frame) / 2 * (direction ? 1 : -1));
         snapshotView.alpha = 0;
         
         self.selectedIndicatorView.transform = CGAffineTransformMakeScale(0, 0);

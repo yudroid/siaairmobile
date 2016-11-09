@@ -11,7 +11,7 @@
 #import "StringUtils.h"
 
 // 生产网络IP地址
-static NSString* baseUri = @"https://223.99.57.126:6443";
+static NSString* baseUri = @"http://192.168.163.29";
 
 /**
  *  请求响应超时时间间隔 以秒为单位  NSTimeInterval = double
@@ -28,7 +28,7 @@ static NSTimeInterval timeInterval = 16;
  *  @param success     success回调
  *  @param failure     failure回调
  */
-+(void) post:(NSString*) segment params:(NSDictionary*) formData success:(void (^) (id)) success failure:(void (^) (NSError*)) failure  {
++(void) post:(NSString*) segment params:(id) formData success:(void (^) (id)) success failure:(void (^) (NSError*)) failure  {
     
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     //使用
@@ -347,20 +347,21 @@ static NSTimeInterval timeInterval = 16;
      
      
      */
-    //使用证书验证模式
-    AFSecurityPolicy* securityPolicy  = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
-    
-    //允许无效证书（也就是自建证书）
-    securityPolicy.allowInvalidCertificates = YES;
-    
-    //不验证域名
-    securityPolicy.validatesDomainName = NO;
-    
-    //把服务端证书(需要转换成cer格式)放到APP项目资源里，AFSecurityPolicy会自动寻找根目录下所有cer文件
-    //证书
-    //securityPolicy.pinnedCertificates = /*@[cerData];*/[NSSet setWithObjects:cerData, nil];
-    
-    return securityPolicy;
+//    //使用证书验证模式
+//    AFSecurityPolicy* securityPolicy  = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
+//    
+//    //允许无效证书（也就是自建证书）
+//    securityPolicy.allowInvalidCertificates = YES;
+//    
+//    //不验证域名
+//    securityPolicy.validatesDomainName = NO;
+//    
+//    //把服务端证书(需要转换成cer格式)放到APP项目资源里，AFSecurityPolicy会自动寻找根目录下所有cer文件
+//    //证书
+//    //securityPolicy.pinnedCertificates = /*@[cerData];*/[NSSet setWithObjects:cerData, nil];
+//    
+//    return securityPolicy;
+    return nil;
 }
 
 @end

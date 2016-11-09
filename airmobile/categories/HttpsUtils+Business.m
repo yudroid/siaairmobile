@@ -9,17 +9,26 @@
 #import "HttpsUtils+Business.h"
 #import "StringUtils.h"
 #import <AdSupport/ASIdentifierManager.h>
+#import "UserInfoModel.h"
+#import "PersistenceUtils+Business.h"
+#import "ThreadUtils.h"
 
 /**
  *  保存用户名
  */
 static NSString* __userName = @"";
-
 /**
  *  保存密码
  */
 static NSString* __password = @"";
 
+
+NSString * const base = @"http://192.168.163.29";
+NSString * const loginUrl = @"/acs/login/mobile";
+NSString * const logoutUrl = @"/acs/login/logout";
+NSString * const userMsgSendUrl = @"/acs/um/m";
+NSString * const groupMsgSendUrl = @"/acs/wm/m";
+NSString * const userlistUrl = @"/acs/wacs/user/SelectAllDeptListForIphone";
 @implementation HttpsUtils (Business)
 
 /**
@@ -33,13 +42,14 @@ static NSString* __password = @"";
  *  @param failure  <#failure description#>
  */
 +(void) loginUser:(NSString*) userName pwd: (NSString*) pwd deviceInfo:(NSString*) deviceInfo success:(void (^) (id)) success failure:(void (^) (NSError*)) failure{
-    NSString* segment = [NSString stringWithFormat:@"geese/auth/login2/%@/%@/%@",userName,pwd,deviceInfo];
-    [HttpsUtils getString:segment params:nil success:success failure:^(NSError* error){
-        [self addLog:[NSString stringWithFormat: @"error:%@",error] type:@"Error"];
-        if(failure){
-            failure(error);
-        }
-    }];
+
+    NSDictionary *params = [NSDictionary dictionaryWithObjects:@[userName,pwd] forKeys:@[@"username",@"password"]];
+    
+    [HttpsUtils post:loginUrl params:params success:^(id responseObj) {
+        UserInfoModel *user = [UserInfoModel new];
+        [user setValuesForKeysWithDictionary:responseObj];
+        success(user);
+    }  failure:failure];
 }
 
 
@@ -51,59 +61,60 @@ static NSString* __password = @"";
  */
 + (void) addLog:(NSString*) logs type:(NSString*) logType{
     
-    @try {
-        if ([StringUtils isNullOrEmpty:logs]) {
-            return;
-        }
-        
-        if ([StringUtils isNullOrEmpty:logType]) {
-            logType = @"Info";
-        }
-        
-        NSString* userName = __userName;
-        
-        if ([StringUtils isNullOrEmpty:userName]) {
-            userName = @"UnknownUser";
-        }
-        
-        NSString* device = [DeviceInfoUtil deviceVersions];
-        
-        if([StringUtils isNullOrEmpty:device]){
-            device = @"UnknownDevice";
-        }
-        
-        NSString* deviceId = [[ASIdentifierManager sharedManager].advertisingIdentifier UUIDString];
-        
-        if([StringUtils isNullOrEmpty:deviceId]){
-            deviceId = @"UnknownDeviceId";
-        }
-        
-        if ([logs length]>=9100) {
-            //截断，不能太长
-            logs = [logs substringWithRange:NSMakeRange(0, 9000)];
-        }
-        
-        
-        //NSString* runParam = @"NoRunParam";
-        
-        NSMutableDictionary* params = [NSMutableDictionary new];
-        NSLog(@"log length = %li",[logs length]);
-        [params setObject:userName forKey:@"user"];
-        [params setObject:logType forKey:@"logType"];
-        [params setObject:logs forKey:@"log"];
-        [params setObject:device forKey:@"deviceType"];
-        [params setObject:deviceId forKey:@"deviceId"];
-        [params setObject:@"NoRunParam" forKey:@"runParam"];
-        
-        //NSString *url = [NSString stringWithFormat:@"app/devicelog/%@/%@/%@/%@/%@/%@",[StringUtils urlEncoding:userName],[StringUtils urlEncoding:logType],[StringUtils urlEncoding:logs],[StringUtils urlEncoding:device],[StringUtils urlEncoding:deviceId],runParam];
-        NSString *url = @"geese/app/devicelog";
-        [HttpsUtils postString:url params:params success:^(id responseObj) {
-            NSLog(@"%@",responseObj);
-        } failure:nil];
-        
-    } @catch (NSException *exception) {
-        NSLog(@"%@",exception);
-    }
+     NSLog(@"%@",logs);
+//    @try {
+//        if ([StringUtils isNullOrEmpty:logs]) {
+//            return;
+//        }
+//        
+//        if ([StringUtils isNullOrEmpty:logType]) {
+//            logType = @"Info";
+//        }
+//        
+//        NSString* userName = __userName;
+//        
+//        if ([StringUtils isNullOrEmpty:userName]) {
+//            userName = @"UnknownUser";
+//        }
+//        
+//        NSString* device = [DeviceInfoUtil deviceVersions];
+//        
+//        if([StringUtils isNullOrEmpty:device]){
+//            device = @"UnknownDevice";
+//        }
+//        
+//        NSString* deviceId = [[ASIdentifierManager sharedManager].advertisingIdentifier UUIDString];
+//        
+//        if([StringUtils isNullOrEmpty:deviceId]){
+//            deviceId = @"UnknownDeviceId";
+//        }
+//        
+//        if ([logs length]>=9100) {
+//            //截断，不能太长
+//            logs = [logs substringWithRange:NSMakeRange(0, 9000)];
+//        }
+//        
+//        
+//        //NSString* runParam = @"NoRunParam";
+//        
+//        NSMutableDictionary* params = [NSMutableDictionary new];
+//        NSLog(@"log length = %li",[logs length]);
+//        [params setObject:userName forKey:@"user"];
+//        [params setObject:logType forKey:@"logType"];
+//        [params setObject:logs forKey:@"log"];
+//        [params setObject:device forKey:@"deviceType"];
+//        [params setObject:deviceId forKey:@"deviceId"];
+//        [params setObject:@"NoRunParam" forKey:@"runParam"];
+//        
+//        //NSString *url = [NSString stringWithFormat:@"app/devicelog/%@/%@/%@/%@/%@/%@",[StringUtils urlEncoding:userName],[StringUtils urlEncoding:logType],[StringUtils urlEncoding:logs],[StringUtils urlEncoding:device],[StringUtils urlEncoding:deviceId],runParam];
+//        NSString *url = @"geese/app/devicelog";
+//        [HttpsUtils postString:url params:params success:^(id responseObj) {
+//            NSLog(@"%@",responseObj);
+//        } failure:nil];
+//        
+//    } @catch (NSException *exception) {
+//        NSLog(@"%@",exception);
+//    }
     
 }
 
@@ -150,5 +161,37 @@ static NSString* __password = @"";
     success(nil);
 }
 
+
++(void)sendUserMessage:(MessageModel *)message success: (void (^)(id))success failure:(void (^)(id))failure
+{
+    [HttpsUtils postString:userMsgSendUrl params:[message toUserMsgNSDictionary]  success:success failure:failure];
+}
+
++(void)sendGroupMessage:(MessageModel *)message success: (void (^)(id))success failure:(void (^)(id))failure
+{
+    [HttpsUtils postString:groupMsgSendUrl params:[message toGroupMsgNSDictionary]  success:success failure:failure];
+}
+
++(void)loadAllUsers
+{
+    [HttpsUtils post:userlistUrl params:nil success:^(id responseObj) {
+        [ThreadUtils dispatch:^{
+             [PersistenceUtils saveUserList:responseObj];
+        }];
+
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
++(void)saveGroupInfo
+{
+    
+}
+
++(void)getGroupInfo:(long)groupId
+{
+    
+}
 
 @end

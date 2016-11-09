@@ -21,7 +21,7 @@
         
         UIView *caleandarView = [[UIView alloc]
                                  initWithFrame:CGRectMake(kScreenWidth/2-190/2, 32, 190, 25)];
-        caleandarView.backgroundColor = [UIColor grayColor];
+        //caleandarView.backgroundColor = [UIColor grayColor];
         [self addSubview:caleandarView];
         
         UIImageView *calendarImage = [CommonFunction imageView:@"HomeCalendar"
@@ -117,7 +117,7 @@
         ratioLabel.font =  [UIFont fontWithName:@"PingFang SC" size:12];
         [self addSubview:ratioLabel];
         
-        UILabel *currentStatus = [CommonFunction addLabelFrame:CGRectMake(50, 25+25+11+20+30+86*2+30+20+5+13+10+20, kScreenWidth-100, 40) text:@"小面积延误" font:25 textAlignment:(NSTextAlignmentCenter) colorFromHex:0xFFFF0000];
+        UILabel *currentStatus = [CommonFunction addLabelFrame:CGRectMake(50, 25+25+11+20+30+86*2+30+20+5+13+10+20, kScreenWidth-100, 40) text:@"当前运行正常" font:25 textAlignment:(NSTextAlignmentCenter) colorFromHex:0xFF00FF00];
         [self addSubview:currentStatus];
         
         UIButton *indicateButton = [[UIButton alloc] initWithFrame:CGRectMake(50, 25+25+11+20+30+86*2+30+20+5+13+10+20, kScreenWidth-100, 40)];

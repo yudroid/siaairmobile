@@ -11,4 +11,8 @@
 
 @interface ChatViewController : RootViewController
 
+@property (nonatomic,assign) long chatId;
+@property (nonatomic,assign) int chatTypeId;// 0表示个人 1表示工作组 1>0人多工作组
+@property (nonatomic,assign) long localChatId;
+
 @end

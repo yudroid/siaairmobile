@@ -7,6 +7,7 @@
 //
 
 #import "HttpsUtils.h"
+#import "MessageModel.h"
 
 @interface HttpsUtils (Business)
 
@@ -55,5 +56,30 @@
  */
 +(void)flightListSuccess:(void(^)(id))success failure:(void (^)(NSError *))failue;
 
+
+
+/**
+ 发送个人消息
+
+ @param message 消息内容
+ @param success 成功回调
+ @param failure 失败回调
+ */
++(void)sendUserMessage:(MessageModel *)message success: (void (^)(id))success failure:(void (^)(id))failure;
+
+/**
+ 发送工作组消息
+ 
+ @param message 消息内容
+ @param success 成功回调
+ @param failure 失败回调
+ */
++(void)sendGroupMessage:(MessageModel *)message success: (void (^)(id))success failure:(void (^)(id))failure;
+
++(void)loadAllUsers;
+
++(void)saveGroupInfo;
+
++(void)getGroupInfo:(long)groupId;
 
 @end

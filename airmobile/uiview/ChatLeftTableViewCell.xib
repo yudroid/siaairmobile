@@ -21,25 +21,33 @@
                             <constraint firstAttribute="width" constant="30" id="ZmM-kg-P1N"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YFo-9R-CCv"/>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="你好啊" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jju-wz-1fY">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="你好啊" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jju-wz-1fY">
                         <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="13"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="02I-08-tzP">
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="YFo-9R-CCv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="GEr-GG-nkY"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="YFo-9R-CCv" secondAttribute="trailing" id="Hjn-al-AGE"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="02I-08-tzP" secondAttribute="trailing" constant="66" id="5YE-pA-P2P"/>
+                    <constraint firstItem="02I-08-tzP" firstAttribute="leading" secondItem="Jju-wz-1fY" secondAttribute="leading" id="E2b-iI-NCV"/>
                     <constraint firstItem="634-pv-1t6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="Pxn-1Y-XkC"/>
-                    <constraint firstItem="Jju-wz-1fY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="4" id="XA4-dL-4bb"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="Jju-wz-1fY" secondAttribute="bottom" constant="4" id="bDn-Ba-pvL"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="YFo-9R-CCv" secondAttribute="bottom" id="mkn-zt-eFt"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="Jju-wz-1fY" secondAttribute="trailing" constant="8" id="rDN-Jl-jTS"/>
+                    <constraint firstItem="Jju-wz-1fY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="34" id="XA4-dL-4bb"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Jju-wz-1fY" secondAttribute="bottom" id="bDn-Ba-pvL"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Jju-wz-1fY" secondAttribute="trailing" constant="117" id="rDN-Jl-jTS"/>
                     <constraint firstItem="Jju-wz-1fY" firstAttribute="leading" secondItem="634-pv-1t6" secondAttribute="trailing" constant="8" id="uUK-v9-YSz"/>
+                    <constraint firstItem="Jju-wz-1fY" firstAttribute="top" secondItem="02I-08-tzP" secondAttribute="bottom" constant="6" id="uqz-og-ZXy"/>
                     <constraint firstItem="634-pv-1t6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="z0A-pk-sND"/>
-                    <constraint firstItem="YFo-9R-CCv" firstAttribute="leading" secondItem="634-pv-1t6" secondAttribute="trailing" constant="2" id="zY1-PK-OCt"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="contentLabel" destination="Jju-wz-1fY" id="AEn-1P-qdx"/>
+                <outlet property="headImage" destination="634-pv-1t6" id="lDn-dh-Tkz"/>
+                <outlet property="nameLabel" destination="02I-08-tzP" id="sXd-CX-CmV"/>
+            </connections>
             <point key="canvasLocation" x="25" y="119"/>
         </tableViewCell>
     </objects>

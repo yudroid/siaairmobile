@@ -15,6 +15,8 @@
 #import "ContactPersonViewController.h"
 #import "MessageTableViewCell.h"
 #import "FixedMessageTableViewCell.h"
+#import "ChatViewController.h"
+#import "PersistenceUtils+Business.h"
 
 static const NSString *MESSAGE_TABLECELL_IDENTIFIER = @"MESSAGE_TABLECELL_IDENTIFIER";
 static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_IDENTIFIER";
@@ -33,6 +35,7 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 @implementation MessageViewController{
     SRWebSocket *srWebSocket;
     UITextField *textfield;
+    NSArray<NSDictionary *> *array;
 }
 
 
@@ -73,73 +76,7 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
     self.tabBarView = [[TabBarView alloc] initTabBarWithModel:TabBarBgModelNormal selectedType:TabBarSelectedTypeMessage delegate:self];
     [self.view insertSubview:self.tabBarView aboveSubview:self.view];
     
-    [self initSRWebSocket];
-}
-
--(void) initSRWebSocket
-{
-    srWebSocket.delegate = nil;
-    [srWebSocket close];
-    srWebSocket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"ws://192.168.163.3:8090/msg/usermsg"]]];
-    srWebSocket.delegate = self;
-    
-    NSLog(@"Opening Connection...");
-    
-    [srWebSocket open];
-}
-
-#pragma mark - SRWebSocketDelegate实现
-
-- (void)webSocketDidOpen:(SRWebSocket *)webSocket
-{
-    
-    NSLog(@"Websocket Connected");
-    
-    NSError *error;
-    
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:@{@"id":@"2",@"clientid":@"yangql_2016",@"to":@""} options:NSJSONWritingPrettyPrinted error:&error];
-    
-    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    
-    [webSocket send:jsonString];
-    
-}
-
-
-- (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error
-{
-    
-    NSLog(@":( Websocket Failed With Error %@", error);
-    
-    webSocket = nil;
-    
-}
-
-- (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message
-{
-    
-    NSLog(@"Received \"%@\"", message);
-    
-}
-
-- (void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean
-{
-    
-    NSLog(@"WebSocket closed");
-    
-    webSocket = nil;
-    
-}
-
-- (void)sendMessage:(id)sender {
-    
-    NSError *error;
-    
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:@{@"id":@"2",@"clientid":@"yangql_2016",@"to":@"wangdeyan2016",@"msg":@{@"type":@"0",@"content":textfield.text}} options:NSJSONWritingPrettyPrinted error:&error];
-    
-    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    
-    [srWebSocket send:jsonString];
+    [self loadChatList:100 start:0];
 }
 
 #pragma mark - 切换底部主功能页面
@@ -290,40 +227,81 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    return [array count]+2;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 56;
 }
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row <2) {
+    if (indexPath.row ==0) {
         FixedMessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)MESSAGE_FIXTABLECELL_IDENTIFIER];
-        
+        cell.nameLabel.text = @"航班变更事件消息";
+        return cell;
+    }else if (indexPath.row ==1) {
+        FixedMessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)MESSAGE_FIXTABLECELL_IDENTIFIER];
+        cell.nameLabel.text = @"指令消息";
         return cell;
     }else{
         MessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)MESSAGE_TABLECELL_IDENTIFIER];
+        NSDictionary *dic = [array objectAtIndex:indexPath.row-2];
+        if(dic == nil){
+            return nil;
+        }
+        cell.nameLabel.text = [dic objectForKey:@"name"];
+        cell.messageLabel.text = [dic objectForKey:@"describe"];
+        cell.timeLable.text = [[dic objectForKey:@"time"] stringByReplacingOccurrencesOfString:@" " withString:@"\n"];
         return cell;
-        
     }
     return  nil;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if(indexPath.row == 0){
+        [self showFlightEventView];
+    }else if(indexPath.row ==1){
+        [self showCommendMsgView];
+    }else{
+        NSDictionary *dic = [array objectAtIndex:indexPath.row-2];
+        long chatId = [[dic objectForKey:@"chatid"]  longLongValue];
+        long typeId = [[dic objectForKey:@"type"] longLongValue];
+        long localChatId = [[dic objectForKey:@"id"] longLongValue];
+        [self showMessageDialog:chatId chatTypeId:typeId localChatId:localChatId];
+    }
+}
+
+-(void) showFlightEventView
+{
     
 }
 
+-(void) showCommendMsgView
+{
+    
+}
 
+-(void) showMessageDialog:(long)chatId chatTypeId:(long)chatTypeId localChatId:(long)localChatId
+{
+    ChatViewController *chatVC = [[ChatViewController alloc]initWithNibName:@"ChatViewController" bundle:nil];
+    chatVC.chatId = chatId;
+    chatVC.chatTypeId = (int)chatTypeId;
+    chatVC.localChatId = localChatId;
+    [self.navigationController pushViewController:chatVC animated:YES];
+}
 
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
     _searchView.alpha = 1;
 }
 
-
+-(void)loadChatList:(int)num start:(int)start
+{
+    array = [PersistenceUtils findChatList:start num:num];
+}
 
 
 

@@ -13,9 +13,11 @@
 #import "HttpsUtils+Business.h"
 #import "ThreadUtils.h"
 #import "HomePageViewController.h"
+#import "UserInfoModel.h"
+#import "AppDelegate.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
-    
+
 @end
 
 @implementation LoginViewController{
@@ -37,7 +39,7 @@
     
     [self createLogoView];
     [self createInputView];
-
+    
 }
 
 // 创建logo的view
@@ -56,9 +58,9 @@
     UIImageView *logoImgV = [[UIImageView alloc]
                              initWithFrame:CGRectMake((kScreenWidth-width)/2, 105, width , height)];
     logoImgV.image = [UIImage imageNamed:@"LoginLogo"];
-
+    
     [_bgView addSubview:logoImgV];
-
+    
 }
 
 - (void)tapClick{
@@ -85,10 +87,10 @@
     
     NSString* userKey = @"taocares_userName";
     NSString* pwdKey = @"taocares_pwd";
-
+    
     //用户名view
     UIView *AccountView = [[UIView alloc] initWithFrame:CGRectMake((kScreenWidth - 257.5)/2, y, 257.5, 40)];
-     [_bgView addSubview:AccountView];
+    [_bgView addSubview:AccountView];
     ///背景图片
     UIImageView *AccountViewBackgroundImageView = [[UIImageView alloc]
                                                    initWithFrame:CGRectMake(0, 0, 257.5, 40)];
@@ -100,33 +102,14 @@
     [AccountView addSubview: accountFrontImageView];
     //文本输入框
     _accountTF = [[UITextField alloc]initWithFrame:CGRectMake(44, 0, 200, 40)];
-
+    
     _accountTF.placeholder = @"请输入账号";
     _accountTF.textColor = [CommonFunction colorFromHex:0XFFFFFFFF];
     _accountTF.font = [UIFont systemFontOfSize:15];
     [_accountTF setValue:[CommonFunction colorFromHex:0X7FFFFFFF] forKeyPath:@"_placeholderLabel.textColor"];
     [_accountTF setValue:[UIFont boldSystemFontOfSize:17] forKeyPath:@"_placeholderLabel.font"];
     [AccountView addSubview:_accountTF];
-
-
-
-//    _accountTF = [[UITextField alloc]initWithFrame:CGRectMake((kScreenWidth - 291)/2, y, 291, 45)];
-//    _accountTF.delegate = self;
-//    _accountTF.placeholder = @"请输入账号";
-//    _accountTF.textColor = [CommonFunction colorFromHex:0XFFFFFFFF];
-//    _accountTF.font = [UIFont systemFontOfSize:17];
-
-//    _accountTF.background = [UIImage imageNamed:@"LoginInputField"];
-//    _accountTF.leftViewMode = UITextFieldViewModeAlways;
-//
-
-////    UIButton *placeBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 50)];
-//    [placeBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
-//    [placeBtn setImage:[UIImage imageNamed:@"LoginAccounts"] forState:(UIControlStateNormal)];
-//    [_accountTF setLeftView:placeBtn];
-//    _accountTF.text = [DefaultHelper getStringForKey:userKey];
-//    [_bgView addSubview:_accountTF];
-
+    
     y = 339 +40 +21;
     
     if([DeviceInfoUtil IphoneVersions] == 5){
@@ -137,13 +120,13 @@
     if([DeviceInfoUtil IphoneVersions] == 4){
         y -= 85;
     }
-
+    
     //密码view
     UIView *passwordView = [[UIView alloc] initWithFrame:CGRectMake((kScreenWidth - 257.5)/2, y, 257.5, 40)];
     [_bgView addSubview:passwordView];
     ///背景图片
     UIImageView *passwordViewBackgroundImageView = [[UIImageView alloc]
-                                                   initWithFrame:CGRectMake(0, 0, 257.5, 40)];
+                                                    initWithFrame:CGRectMake(0, 0, 257.5, 40)];
     passwordViewBackgroundImageView.image = [UIImage imageNamed:@"LoginInputField"];
     [passwordView addSubview:passwordViewBackgroundImageView];
     //前部小图片
@@ -158,8 +141,8 @@
     _passwordTF.font = [UIFont systemFontOfSize:17];
     [_passwordTF setValue:[CommonFunction colorFromHex:0X7FFFFFFF] forKeyPath:@"_placeholderLabel.textColor"];
     [_passwordTF setValue:[UIFont boldSystemFontOfSize:17] forKeyPath:@"_placeholderLabel.font"];
-
-
+    
+    
     UIButton *visibleBtn = [[UIButton alloc]initWithFrame:CGRectMake(257.5-15-25, 0, 30, 40)];
     [visibleBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
     [visibleBtn setImage:[UIImage imageNamed:@"LoginVisible"] forState:(UIControlStateNormal)];
@@ -171,8 +154,8 @@
     _passwordTF.text= [DefaultHelper getStringForKey:pwdKey];
     [passwordView addSubview:_passwordTF];
     
-    _accountTF.text=@"admin";
-    _passwordTF.text=@"123";
+    _accountTF.text=[DefaultHelper getStringForKey:userKey];
+    _passwordTF.text=[DefaultHelper getStringForKey:pwdKey];
     
     y = 339+45+25+45+52;
     
@@ -222,8 +205,6 @@
     NSString* password = _passwordTF.text;
     NSLog(@"%s  %@  %@",__func__,userName,password);
     
-    
-    
     if ([StringUtils isNullOrWhiteSpace:userName]) {
         [self toast:@"用户名不能为空"];
         return;
@@ -239,111 +220,110 @@
     
     NSString* deviceId = [[ASIdentifierManager sharedManager].advertisingIdentifier UUIDString];
     NSString *deviceInfo = [NSString stringWithFormat:@"%@:%@:iOS:%@",deviceId,deviceId,userName];
-    HomePageViewController *homepage = [[HomePageViewController alloc] init];
-    [self.navigationController pushViewController:homepage animated:YES];
     
-//    [HttpsUtils loginUser:userName pwd:password deviceInfo:deviceInfo success:^(id responseObj){
-//        //[HttpUtils loginUser:userName pwd:password success:^(id responseObj){
-//        //隐藏忙碌提示
-//        [ThreadUtils dispatchMain:^{
-//            _loginBtn.enabled = YES;
-//            [self.view hideToastActivity];
-//        }];
-//        
-//        /*
-//         返回 1 登录成功  2 登录失败，用户名不存在 3登录失败，密码输入错误 4 用户被禁用 5已在其他设备登录，登录失败 6 账号已过期 7 MAC地址不匹配
-//         */
-//        //调用成功的回调
-//        if ([StringUtils equals:responseObj To:@"1" ByIgnoreCase:YES]) {
-//            //LWGMainViewController* mainController = [[LWGMainViewController alloc] init];
-//            //[self presentViewController:mainController animated:YES completion:nil];
-//            //返回
-//            //[self dismissViewControllerAnimated:YES completion:nil];
-//            [HttpsUtils setUserName:userName];
-//            [HttpsUtils setPassword:password];
-//            NSString* userKey = @"taocares_userName";
-//            NSString* pwdKey = @"taocares_pwd";
-//            [DefaultHelper setString:userName forKey:userKey];
-//            [DefaultHelper setString:password forKey:pwdKey];
-//            [ThreadUtils dispatchMain:^{
-//                HomePageViewController *homepage = [[HomePageViewController alloc] init];
-//                [self.navigationController pushViewController:homepage animated:YES];
-//            }];
-//            
-//            //            //保存用户名和密码
-//            //            NSDictionary* dictionary = [NSDictionary dictionaryWithObjectsAndKeys:userName,userNameKey,pwd,pwdKey,isAutoLogin?@"YES":@"NO",autoLoginKey, nil];
-//            //
-//            //            NSString* destFile = [[PersistenceUtils getDirectoryOfDocuments] stringByAppendingPathComponent:autoLoginFile];
-//            //            [PersistenceUtils writeDictionary:dictionary toFile:destFile];
-//            BOOL isFirstTime = [StringUtils isNullOrWhiteSpace:[DefaultHelper getStringForKey:@"Goose.LOGINFIRSTTIME"]];
-//            if (isFirstTime) {
-//                //绑定MAC地址
-//                [HttpsUtils binding:userName uuid:deviceId];
-//            }
-//            return;
-//        }
-//        else{
-//            
-//            if([StringUtils equals:responseObj To:@"2" ByIgnoreCase:YES]){
-//                [ThreadUtils dispatchMain:^{
-//                    [self toast:@"登录失败，用户名不存在"];
-//                }];
-//            }
-//            else if([StringUtils equals:responseObj To:@"3" ByIgnoreCase:YES]){
-//                [ThreadUtils dispatchMain:^{
-//                    [self toast:@"登录失败，密码输入错误"];
-//                }];
-//            }
-//            else if([StringUtils equals:responseObj To:@"4" ByIgnoreCase:YES]){
-//                [ThreadUtils dispatchMain:^{
-//                    [self toast:@"用户被禁用"];
-//                }];
-//            }
-//            else if([StringUtils equals:responseObj To:@"5" ByIgnoreCase:YES]){
-//                [ThreadUtils dispatchMain:^{
-//                    [self toast:@"已在别处登录，请注销或联系管理单位"];
-//                }];
-//            }else if([StringUtils equals:responseObj To:@"6" ByIgnoreCase:YES]){
-//                [ThreadUtils dispatchMain:^{
-//                    [self toast:@"本账号已过期，请联系管理单位"];
-//                }];
-//            }else if([StringUtils equals:responseObj To:@"7" ByIgnoreCase:YES]){
-//                [ThreadUtils dispatchMain:^{
-//                    [self toast:@"请在绑定设备上登录或联系管理单位"];
-//                }];
-//            }
-//            else{
-//                [ThreadUtils dispatchMain:^{
-//                    [self toast:@"登录失败"];
-//                }];
-//            }
-//            return;
-//        }
-//    }failure:^(NSError* error){
-//        [ThreadUtils dispatchMain:^{
-//            _loginBtn.enabled = YES;
-//            [self.view hideToastActivity];
-//            //调用失败的回调
-//            [self toast:@"服务或网络异常"];
-//        }];
-//        return;
-//    }];
+    [HttpsUtils loginUser:userName pwd:password deviceInfo:deviceInfo success:^(UserInfoModel *user){
+        //隐藏忙碌提示
+        [ThreadUtils dispatchMain:^{
+            _loginBtn.enabled = YES;
+            [self.view hideToastActivity];
+        }];
+        
+        /*
+         返回 1 登录成功  2 登录失败，用户名\密码为空 3登录失败，用户名或密码输入错误 4 用户被禁用 5已在其他设备登录，登录失败 6 账号已过期 7 MAC地址不匹配
+         */
+        //调用成功的回调
+        switch (user.flag) {
+            case 1:
+            {
+                [HttpsUtils setUserName:userName];
+                [HttpsUtils setPassword:password];
+                NSString* userKey = @"taocares_userName";
+                NSString* pwdKey = @"taocares_pwd";
+                //保存用户名和密码
+                [DefaultHelper setString:userName forKey:userKey];
+                [DefaultHelper setString:password forKey:pwdKey];
+                AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+                delegate.userInfoModel = user;
+                
+                [ThreadUtils dispatchMain:^{
+                    HomePageViewController *homepage = [[HomePageViewController alloc] init];
+                    [self.navigationController pushViewController:homepage animated:YES];
+                }];
+                BOOL isFirstTime = [StringUtils isNullOrWhiteSpace:[DefaultHelper getStringForKey:@"SIAAIRMOBILE.LOGINFIRSTTIME"]];
+                if (isFirstTime) {
+                    //绑定MAC地址
+                    //[HttpsUtils binding:userName uuid:deviceId];
+                }
+                break;
+            }
+            case 2:{
+                [ThreadUtils dispatchMain:^{
+                    [self toast:@"登录失败，用户名不存在"];
+                }];
+                break;
+            }
+                
+            case 3:{
+                [ThreadUtils dispatchMain:^{
+                    [self toast:@"登录失败，密码输入错误"];
+                }];
+                break;
+            }
+                
+            case 4:{
+                [ThreadUtils dispatchMain:^{
+                    [self toast:@"用户被禁用"];
+                }];
+                break;
+            }
+            case 5:{
+                [ThreadUtils dispatchMain:^{
+                    [self toast:@"已在别处登录，请注销或联系管理单位"];
+                }];
+                break;
+            }
+            case 6:{
+                [ThreadUtils dispatchMain:^{
+                    [self toast:@"本账号已过期，请联系管理单位"];
+                }];
+                break;
+            }
+            case 7:{
+                [ThreadUtils dispatchMain:^{
+                    [self toast:@"请在绑定设备上登录或联系管理单位"];
+                }];
+                break;
+            }
+            default:{
+                [ThreadUtils dispatchMain:^{
+                    [self toast:@"登录失败"];
+                }];
+                break;
+            }
+        }
+        
+    }failure:^(NSError* error){
+        NSLog(@"%@",error);
+        [ThreadUtils dispatchMain:^{
+            _loginBtn.enabled = YES;
+            [self.view hideToastActivity];
+            //调用失败的回调
+            [self toast:@"服务或网络异常"];
+        }];
+        return;
+    }];
     
-    
-    
-    //    HomePageViewController *homepage = [[HomePageViewController alloc] init];
-    //    [self.navigationController pushViewController:homepage animated:YES];
 }
 
 /**
  textfield编辑时显示键盘
-
+ 
  @param sender <#sender description#>
  */
 -(void)KeyboardWillShow:(NSNotification *)sender{
     CGRect rect=[[sender.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey]CGRectValue];
     CGFloat height= rect.size.height;
-
+    
     float y = -height+160;
     if(y<0){
         //    UIKeyboardAnimationDurationUserInfoKey//获取键盘升起动画时间
@@ -351,16 +331,16 @@
         [UIView setAnimationDuration:[[sender.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey]doubleValue]];
         _bgView.transform=CGAffineTransformMakeTranslation(0, y);
         [UIView commitAnimations];
-
+        
     }
-
-
+    
+    
 }
 
 
 /**
  退出编辑时隐藏键盘
-
+ 
  @param sender <#sender description#>
  */
 -(void)KeyboardWillHide:(NSNotification *)sender{
@@ -381,13 +361,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
