@@ -2,11 +2,14 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChatViewController">
             <connections>
+                <outlet property="msgTextView" destination="1kA-DM-sJE" id="nl8-AG-UCM"/>
+                <outlet property="msgView" destination="mLS-fV-QfB" id="iqO-Z1-6IE"/>
                 <outlet property="tableView" destination="GbR-pv-xdw" id="jWs-0c-c8T"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -16,16 +19,16 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GbR-pv-xdw">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="20" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="GbR-pv-xdw">
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mLS-fV-QfB">
                     <subviews>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DxN-Ty-shy">
-                            <nil key="textColor"/>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1kA-DM-sJE">
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="send"/>
+                        </textView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sWP-tB-mtx">
                             <constraints>
                                 <constraint firstAttribute="width" constant="30" id="GLD-bi-hwP"/>
@@ -37,11 +40,13 @@
                     </subviews>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
-                        <constraint firstItem="DxN-Ty-shy" firstAttribute="leading" secondItem="mLS-fV-QfB" secondAttribute="leading" constant="8" id="3q8-dE-yTl"/>
-                        <constraint firstItem="DxN-Ty-shy" firstAttribute="centerY" secondItem="mLS-fV-QfB" secondAttribute="centerY" id="9Tm-u5-X6A"/>
-                        <constraint firstItem="sWP-tB-mtx" firstAttribute="centerY" secondItem="mLS-fV-QfB" secondAttribute="centerY" id="Rr0-O8-BxL"/>
-                        <constraint firstItem="sWP-tB-mtx" firstAttribute="leading" secondItem="DxN-Ty-shy" secondAttribute="trailing" constant="8" id="a09-El-VcK"/>
-                        <constraint firstAttribute="height" constant="40" id="dEN-1z-cyt"/>
+                        <constraint firstItem="1kA-DM-sJE" firstAttribute="leading" secondItem="mLS-fV-QfB" secondAttribute="leadingMargin" id="Ral-Uq-hNQ"/>
+                        <constraint firstItem="sWP-tB-mtx" firstAttribute="centerY" secondItem="1kA-DM-sJE" secondAttribute="centerY" id="SYn-Qm-klm"/>
+                        <constraint firstItem="1kA-DM-sJE" firstAttribute="bottom" secondItem="mLS-fV-QfB" secondAttribute="bottomMargin" id="TjA-qo-Mnc"/>
+                        <constraint firstItem="1kA-DM-sJE" firstAttribute="centerY" secondItem="sWP-tB-mtx" secondAttribute="centerY" id="Yv7-LQ-WfW"/>
+                        <constraint firstItem="1kA-DM-sJE" firstAttribute="top" secondItem="mLS-fV-QfB" secondAttribute="top" constant="2" id="ahh-5b-Sj9"/>
+                        <constraint firstItem="sWP-tB-mtx" firstAttribute="leading" secondItem="1kA-DM-sJE" secondAttribute="trailing" id="ayD-05-Okj"/>
+                        <constraint firstAttribute="height" constant="60" id="dEN-1z-cyt"/>
                         <constraint firstAttribute="trailing" secondItem="sWP-tB-mtx" secondAttribute="trailing" constant="8" id="l9b-Ee-veq"/>
                     </constraints>
                 </view>
@@ -54,9 +59,9 @@
                 <constraint firstItem="GbR-pv-xdw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="Fjz-Ud-f1G"/>
                 <constraint firstItem="GbR-pv-xdw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="YRT-tg-jEX"/>
                 <constraint firstItem="mLS-fV-QfB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hs6-3s-OvD"/>
-                <constraint firstItem="mLS-fV-QfB" firstAttribute="top" secondItem="GbR-pv-xdw" secondAttribute="bottom" id="ykv-X0-z4f"/>
+                <constraint firstItem="mLS-fV-QfB" firstAttribute="top" secondItem="GbR-pv-xdw" secondAttribute="bottom" constant="-2" id="ykv-X0-z4f"/>
             </constraints>
-            <point key="canvasLocation" x="25.5" y="52.5"/>
+            <point key="canvasLocation" x="-1.5" y="41.5"/>
         </view>
     </objects>
 </document>

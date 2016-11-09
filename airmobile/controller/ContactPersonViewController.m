@@ -9,6 +9,7 @@
 #import "ContactPersonViewController.h"
 #import "ContactPersonTableViewCell.h"
 #import "ChatViewController.h"
+#import "PersistenceUtils+Business.h"
 
 static const NSString *CONTACTPERSON_TABLECELL_IDENTIFIER = @"CONTACTPERSON_TABLECELL_IDENTIFIER";
 static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSON_TABLECELLHEADER_IDENTIFIER";
@@ -21,6 +22,9 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
 @end
 
 @implementation ContactPersonViewController
+{
+    NSArray<DeptInfoModel *> *array;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,6 +39,9 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
     [_tableView registerNib:[UINib nibWithNibName:@"ContactPersonTableViewCell" bundle:nil] forCellReuseIdentifier:(NSString *)CONTACTPERSON_TABLECELL_IDENTIFIER];
     [_tableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:(NSString *)CONTACTPERSON_TABLECELLHRADER_IDENTIFIER];
     // Do any additional setup after loading the view from its nib.
+    
+    array = [NSArray new];
+    [self initTableData];
 }
 
 -(void)initTitleView
@@ -66,23 +73,31 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return [array count];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    NSArray *tempArr = [array objectAtIndex:section].userArr;
+    if(tempArr==nil)
+        return 0;
+    return [tempArr count];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 56;
+    return 30;
 }
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ContactPersonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)CONTACTPERSON_TABLECELL_IDENTIFIER];
+    UserInfoModel *userInfo = [[array objectAtIndex:indexPath.section].userArr objectAtIndex:indexPath.row];
+    cell.textLabel.text = userInfo.name;
+    cell.user = userInfo;
     return cell;
 }
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -102,8 +117,10 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UITableViewHeaderFooterView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:(NSString *)CONTACTPERSON_TABLECELLHRADER_IDENTIFIER];
-    header.textLabel.text = @"头";
+    UITableViewHeaderFooterView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:[array objectAtIndex:section].deptName];
+    if(header==nil)
+        header = [UITableViewHeaderFooterView new];
+    header.textLabel.text = [array objectAtIndex:section].deptName;
     return header;
 }
 #pragma mark -searchBarDelegate
@@ -111,14 +128,10 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
 {
     NSLog(@"search -text %@",searchText);
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)initTableData
+{
+    array = [PersistenceUtils loadUserListGroupByDept];
 }
-*/
 
 @end

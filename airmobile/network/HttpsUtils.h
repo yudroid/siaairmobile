@@ -14,11 +14,11 @@
  *  post请求 返回结果为json格式
  *
  *  @param segment  指定除主网站地址以外的其它部分 如 form/1
- *  @param formData formData 如果没有，传nil
+ *  @param formData formData 如果没有，传nil (NSDictionary*) 
  *  @param success     success回调
  *  @param failure     failure回调
  */
-+(void) post:(NSString*) segment params:(NSDictionary*) formData success:(void (^) (id)) success failure:(void (^) (NSError*)) failure ;
++(void) post:(NSString*) segment params:(id) formData success:(void (^) (id)) success failure:(void (^) (NSError*)) failure ;
 
 /**
  *  get 请求 返回结果为json格式

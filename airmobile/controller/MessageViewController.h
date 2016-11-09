@@ -9,6 +9,6 @@
 #import "RootViewController.h"
 #import <SocketRocket/SRWebSocket.h>
 
-@interface MessageViewController : RootViewController<TabBarViewDelegate,SRWebSocketDelegate>
+@interface MessageViewController : RootViewController<TabBarViewDelegate>
 
 @end
