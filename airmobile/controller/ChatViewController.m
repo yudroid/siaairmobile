@@ -39,7 +39,6 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
 }
 
 
-
 -(void)initTitleView
 {
     //titleView订制
@@ -64,7 +63,6 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
 
 
 #pragma mark - UITableViewDelegate UITableViewDataSource
-
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 3;
@@ -73,7 +71,7 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
-        return 20;
+        return 50;
 
     }else if (indexPath.row == 1){
 
