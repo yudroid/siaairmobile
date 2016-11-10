@@ -14,7 +14,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016年10月18日19:24:45" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bj6-qg-JQp">
@@ -32,7 +32,6 @@
                     <constraint firstItem="Bj6-qg-JQp" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="C3f-OQ-5SA"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.090196078430000007" green="0.72549019609999998" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="timeLabel" destination="Bj6-qg-JQp" id="sOA-Yb-z58"/>
             </connections>

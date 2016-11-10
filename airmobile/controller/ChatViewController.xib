@@ -4,20 +4,17 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChatViewController">
             <connections>
-
                 <outlet property="msgTextView" destination="1kA-DM-sJE" id="nl8-AG-UCM"/>
                 <outlet property="msgView" destination="mLS-fV-QfB" id="iqO-Z1-6IE"/>
+                <outlet property="msgViewButtom" destination="SjC-It-Lyq" id="iZH-Dz-qsR"/>
                 <outlet property="tableView" destination="GbR-pv-xdw" id="jWs-0c-c8T"/>
-
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -26,23 +23,28 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="20" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="GbR-pv-xdw">
-
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jpx-oI-2eF">
+                    <rect key="frame" x="0.0" y="64" width="375" height="0.0"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" id="UGb-Mi-Mfp"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="20" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="GbR-pv-xdw">
+                    <rect key="frame" x="0.0" y="64" width="375" height="543"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mLS-fV-QfB">
-                    <rect key="frame" x="0.0" y="627" width="375" height="40"/>
+                    <rect key="frame" x="0.0" y="607" width="375" height="60"/>
                     <subviews>
-
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1kA-DM-sJE">
+                            <rect key="frame" x="8" y="2" width="329" height="50"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="send"/>
                         </textView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sWP-tB-mtx">
-                            <rect key="frame" x="337" y="5" width="30" height="30"/>
+                            <rect key="frame" x="337" y="12" width="30" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="30" id="GLD-bi-hwP"/>
                             </constraints>
@@ -66,16 +68,16 @@
             </subviews>
             <color key="backgroundColor" red="0.1764705882" green="0.80784313730000001" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="mLS-fV-QfB" secondAttribute="bottom" id="08s-Aq-odJ"/>
-                <constraint firstAttribute="trailing" secondItem="mLS-fV-QfB" secondAttribute="trailing" id="3Av-U9-m2Q"/>
-                <constraint firstItem="mLS-fV-QfB" firstAttribute="top" secondItem="PZT-k4-ZTj" secondAttribute="bottom" id="6I5-Qz-bwG"/>
-                <constraint firstItem="PZT-k4-ZTj" firstAttribute="top" secondItem="Fgd-qu-eCr" secondAttribute="bottom" id="6dL-4p-0fo"/>
-                <constraint firstAttribute="trailing" secondItem="Fgd-qu-eCr" secondAttribute="trailing" id="dQd-Uj-xqL"/>
-                <constraint firstItem="Fgd-qu-eCr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="h5u-3D-C0o"/>
-                <constraint firstItem="mLS-fV-QfB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hs6-3s-OvD"/>
-
-                <constraint firstItem="mLS-fV-QfB" firstAttribute="top" secondItem="GbR-pv-xdw" secondAttribute="bottom" constant="-2" id="ykv-X0-z4f"/>
-
+                <constraint firstItem="GbR-pv-xdw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="91X-ZI-IJG"/>
+                <constraint firstAttribute="trailing" secondItem="jpx-oI-2eF" secondAttribute="trailing" id="9Hy-7T-U6o"/>
+                <constraint firstItem="jpx-oI-2eF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="Dt0-d3-7hE"/>
+                <constraint firstAttribute="trailing" secondItem="GbR-pv-xdw" secondAttribute="trailing" id="Jmm-sm-nxo"/>
+                <constraint firstAttribute="bottom" secondItem="mLS-fV-QfB" secondAttribute="bottom" id="SjC-It-Lyq"/>
+                <constraint firstItem="jpx-oI-2eF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="dXV-PN-eDl"/>
+                <constraint firstItem="GbR-pv-xdw" firstAttribute="top" secondItem="jpx-oI-2eF" secondAttribute="bottom" id="dcB-kW-p7P"/>
+                <constraint firstAttribute="trailing" secondItem="mLS-fV-QfB" secondAttribute="trailing" id="muV-Qf-h6p"/>
+                <constraint firstItem="mLS-fV-QfB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="nja-xX-wDj"/>
+                <constraint firstItem="mLS-fV-QfB" firstAttribute="top" secondItem="GbR-pv-xdw" secondAttribute="bottom" id="vuH-Xh-GnU"/>
             </constraints>
             <point key="canvasLocation" x="-1.5" y="41.5"/>
         </view>
