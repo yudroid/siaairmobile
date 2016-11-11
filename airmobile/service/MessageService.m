@@ -7,11 +7,16 @@
 //
 
 #import "MessageService.h"
-#define wsurl @"ws://192.168.163.29/acs/usermsg"
+#import "PersistenceUtils+Business.h"
+#define wsuserurl @"ws://192.168.163.126:8080/acs/usermsg"
+#define wsgroupurl @"ws://192.168.163.126:8080/acs/workgroupmsg"
+#define wssysurl @"ws://192.168.163.126:8080/acs/alertmsg"
 
 @implementation MessageService
 {
-    SRWebSocket *srWebSocket;
+    SRWebSocket *userWebSocket;
+    SRWebSocket *groupWebSocket;
+    SRWebSocket *sysWebSocket;
     long _clientId;
     long _userId;
     long _toId;
@@ -34,7 +39,12 @@ singleton_implementation(MessageService);
     _userId = userId;
     _toId = toId;
     _group = type;
-    [srWebSocket send:[NSString stringWithFormat:@"register:%li",_clientId]];
+//    if(userWebSocket == nil){
+//        [self regiestWebSocket];
+//    }
+    if(!type){
+        [userWebSocket send:[NSString stringWithFormat:@"register:%li",_clientId]];
+    }
 }
 
 -(void)refreshMessage
@@ -44,17 +54,91 @@ singleton_implementation(MessageService);
 
 -(void) regiestWebSocket
 {
-    srWebSocket.delegate = nil;
-    [srWebSocket close];
-    srWebSocket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:wsurl]]];
-    srWebSocket.delegate = self;
+    userWebSocket.delegate = nil;
+    [userWebSocket close];
+    userWebSocket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:wsuserurl]]];
+    userWebSocket.delegate = self;
     NSLog(@"Opening Connection...");
-    [srWebSocket open];
+    [userWebSocket open];
+    
+    groupWebSocket.delegate = nil;
+    [groupWebSocket close];
+    groupWebSocket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:wsgroupurl]]];
+    groupWebSocket.delegate = self;
+    NSLog(@"Opening Connection...");
+    [groupWebSocket open];
+    
+    sysWebSocket.delegate = nil;
+    [sysWebSocket close];
+    sysWebSocket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:wssysurl]]];
+    sysWebSocket.delegate = self;
+    NSLog(@"Opening Connection...");
+    [sysWebSocket open];
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message
 {
+    // usermessage --- "{"content":"Yang","createTime":"2016-11-10 15:17:06","fromId":65,"handleStatus":0,"id":65,"toId":66}"
+    // groupmessage --- "{"content":"Yang also","createTime":"2016-04-10 15:40:20","sendUserId":65,"sendUserName":"杨泉林","workgroupId":619,"workgroupTitle":"成员: admin 张宇","workgroupUserIds":"1,66"}"
+    // sysmessage --- "toDept toDeptIds"
+    
     NSLog(@"Received \"%@\"", message);
+    
+    NSString *urlString = [webSocket.url absoluteString];
+    NSData *jsonData = [message dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&err];
+    if(dic == nil){
+        return;
+    }
+    
+    if([urlString isEqualToString:wsuserurl]){
+        if(![[dic allKeys] containsObject:@"createTime"]){
+            return;
+        }
+        long toId = [[dic objectForKey:@"toId"] longLongValue];
+        long fromId = [[dic objectForKey:@"fromId"] longLongValue];
+        if(toId != _userId || fromId == _userId){
+            return;
+        }
+        NSMutableDictionary *msgDict = [NSMutableDictionary dictionary];
+        [msgDict setValue:[NSNumber numberWithLong:fromId] forKey:@"chatid"];// 源头
+        [msgDict setValue:[dic objectForKey:@"content"] forKey:@"content"];
+        [msgDict setValue:[NSNumber numberWithLong:fromId] forKey:@"userid"];
+        [msgDict setValue:[NSNumber numberWithLong:0] forKey:@"type"];
+        
+        [PersistenceUtils insertNewChatMessage:msgDict needid:YES success:^{
+            if(_chatDelegate != nil){
+                [_chatDelegate refreshDialogData];
+            }
+        }];
+    }else if([urlString isEqualToString:wsgroupurl]){
+        if(![[dic allKeys] containsObject:@"createTime"]){
+            return;
+        }
+        long toId = [[dic objectForKey:@"workgroupId"] longLongValue];
+        long fromId = [[dic objectForKey:@"sendUserId"] longLongValue];
+        if(fromId == _userId){
+            return;
+        }
+        NSMutableDictionary *msgDict = [NSMutableDictionary dictionary];
+        [msgDict setValue:[NSNumber numberWithLong:toId] forKey:@"chatid"];// 源头
+        [msgDict setValue:[dic objectForKey:@"content"] forKey:@"content"];
+        [msgDict setValue:[NSNumber numberWithLong:fromId] forKey:@"userid"];
+        [msgDict setValue:[dic objectForKey:@"sendUserName"] forKey:@"username"];
+        [msgDict setValue:[NSNumber numberWithLong:1] forKey:@"type"];
+        
+        [PersistenceUtils insertNewChatMessage:msgDict needid:YES success:^{
+            if(_chatDelegate != nil){
+                [_chatDelegate refreshDialogData];
+            }
+        }];
+    }else if([urlString isEqualToString:wssysurl]){
+//        2016-11-10 18:34:21.459 airmobile[15371:1493091] Received "{"content":"33333333","createTime":"2016-04-10 18:33:46","id":766,"title":"www"}"
+    }
+ 
 }
 
 - (void)webSocketDidOpen:(SRWebSocket *)webSocket
@@ -62,15 +146,15 @@ singleton_implementation(MessageService);
     NSLog(@"Websocket Connected");
     [webSocket send:[NSString stringWithFormat:@"register:%li",_userId]];
     
-    NSError *error;
+    //    NSError *error;
+    //
+    //    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:@{@"id":@"2",@"clientid":@"yangql_2016",@"to":@""} options:NSJSONWritingPrettyPrinted error:&error];
+    //
+    //    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    //
+    //    [webSocket send:jsonString];
     
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:@{@"id":@"2",@"clientid":@"yangql_2016",@"to":@""} options:NSJSONWritingPrettyPrinted error:&error];
-    
-    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    
-    [webSocket send:jsonString];
-    
-    [self sendMessage];
+    //    [self sendMessage];
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error
@@ -92,15 +176,15 @@ singleton_implementation(MessageService);
     return YES;
 }
 
-- (void)sendMessage{
-    
-    NSError *error;
-    
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:@{@"id":@"2",@"clientid":@"yangql_2016",@"to":@"wangdeyan2016",@"msg":@{@"type":@"0",@"content":@"发送的测试消息"}} options:NSJSONWritingPrettyPrinted error:&error];
-    
-    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    
-    [srWebSocket send:jsonString];
-}
+//- (void)sendMessage{
+
+//    NSError *error;
+//
+//    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:@{@"id":@"2",@"clientid":@"yangql_2016",@"to":@"wangdeyan2016",@"msg":@{@"type":@"0",@"content":@"发送的测试消息"}} options:NSJSONWritingPrettyPrinted error:&error];
+//
+//    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+//
+//    [srWebSocket send:jsonString];
+//}
 
 @end

@@ -78,7 +78,7 @@
 
 +(void)loadAllUsers;
 
-+(void)saveGroupInfo;
++(void)saveGroupInfo:(NSDictionary *)groupInfo success:(void (^) (id)) success;
 
 +(void)getGroupInfo:(long)groupId;
 

@@ -29,6 +29,7 @@ NSString * const logoutUrl = @"/acs/login/logout";
 NSString * const userMsgSendUrl = @"/acs/um/m";
 NSString * const groupMsgSendUrl = @"/acs/wm/m";
 NSString * const userlistUrl = @"/acs/wacs/user/SelectAllDeptListForIphone";
+NSString * const groupSaveUrl = @"/acs/wacs/group/save";
 @implementation HttpsUtils (Business)
 
 /**
@@ -184,9 +185,16 @@ NSString * const userlistUrl = @"/acs/wacs/user/SelectAllDeptListForIphone";
     }];
 }
 
-+(void)saveGroupInfo
++(void)saveGroupInfo:(NSDictionary *)groupInfo success:(void (^) (id)) success
 {
-    
+    [HttpsUtils post:groupSaveUrl params:groupInfo success:^(id responseObj) {
+        NSLog(@"%@",responseObj);
+        if(success){
+            success(responseObj);
+        }
+    } failure:^(NSError * error) {
+        
+    }];
 }
 
 +(void)getGroupInfo:(long)groupId

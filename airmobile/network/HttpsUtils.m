@@ -11,7 +11,7 @@
 #import "StringUtils.h"
 
 // 生产网络IP地址
-static NSString* baseUri = @"http://192.168.163.29";
+static NSString* baseUri = @"http://192.168.163.126:8080";
 
 /**
  *  请求响应超时时间间隔 以秒为单位  NSTimeInterval = double
