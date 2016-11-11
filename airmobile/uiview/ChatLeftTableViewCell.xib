@@ -18,17 +18,23 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_flight.png" translatesAutoresizingMaskIntoConstraints="NO" id="634-pv-1t6">
-                        <rect key="frame" x="10" y="0.0" width="30" height="30"/>
+                        <rect key="frame" x="10" y="0.0" width="42" height="42"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="30" id="Pkd-AP-ScM"/>
-                            <constraint firstAttribute="width" constant="30" id="yAH-jC-I3n"/>
+                            <constraint firstAttribute="height" constant="42" id="Pkd-AP-ScM"/>
+                            <constraint firstAttribute="width" constant="42" id="yAH-jC-I3n"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LeftBubble" translatesAutoresizingMaskIntoConstraints="NO" id="j9q-Uo-U8t">
-                        <rect key="frame" x="50" y="5" width="125" height="110"/>
+                        <rect key="frame" x="62" y="23.5" width="125" height="110"/>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="张三" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w8A-7l-sNB">
+                        <rect key="frame" x="62" y="0.0" width="26.5" height="18.5"/>
+                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="13"/>
+                        <color key="textColor" red="0.58039215690000001" green="0.58039215690000001" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="你好啊" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jju-wz-1fY">
-                        <rect key="frame" x="65" y="10" width="100" height="100"/>
+                        <rect key="frame" x="77" y="28" width="100" height="100"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="100" id="W2O-Sp-oAi"/>
                             <constraint firstAttribute="width" constant="100" id="gMW-jb-APb"/>
@@ -37,15 +43,17 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
-                <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
+                <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
-                    <constraint firstItem="j9q-Uo-U8t" firstAttribute="top" secondItem="634-pv-1t6" secondAttribute="top" constant="5" id="6kd-9h-X7A"/>
+                    <constraint firstItem="w8A-7l-sNB" firstAttribute="top" secondItem="634-pv-1t6" secondAttribute="top" id="DjI-f2-rAl"/>
                     <constraint firstItem="Jju-wz-1fY" firstAttribute="leading" secondItem="j9q-Uo-U8t" secondAttribute="leading" constant="15" id="MEu-sD-Gx9"/>
                     <constraint firstItem="j9q-Uo-U8t" firstAttribute="leading" secondItem="634-pv-1t6" secondAttribute="trailing" constant="10" id="S7Z-yb-I4Z"/>
                     <constraint firstItem="634-pv-1t6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="fAI-qM-CjI"/>
+                    <constraint firstItem="j9q-Uo-U8t" firstAttribute="top" secondItem="w8A-7l-sNB" secondAttribute="bottom" constant="5" id="klb-cM-alN"/>
                     <constraint firstItem="634-pv-1t6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="m2v-hf-1ak"/>
                     <constraint firstItem="Jju-wz-1fY" firstAttribute="trailing" secondItem="j9q-Uo-U8t" secondAttribute="trailing" constant="-10" id="mIL-HM-04T"/>
                     <constraint firstItem="Jju-wz-1fY" firstAttribute="top" secondItem="j9q-Uo-U8t" secondAttribute="top" constant="5" id="rIQ-Zq-pnc"/>
+                    <constraint firstItem="w8A-7l-sNB" firstAttribute="leading" secondItem="634-pv-1t6" secondAttribute="trailing" constant="10" id="zCh-K3-gGz"/>
                     <constraint firstItem="Jju-wz-1fY" firstAttribute="bottom" secondItem="j9q-Uo-U8t" secondAttribute="bottom" constant="-5" id="zWT-Se-D1o"/>
                 </constraints>
             </tableViewCellContentView>
@@ -54,6 +62,11 @@
                 <outlet property="contentLabel" destination="Jju-wz-1fY" id="AEn-1P-qdx"/>
                 <outlet property="contentWidth" destination="gMW-jb-APb" id="m6d-8H-3Zf"/>
                 <outlet property="headImage" destination="634-pv-1t6" id="lDn-dh-Tkz"/>
+                <outlet property="headerImageViewHeight" destination="Pkd-AP-ScM" id="Cts-Lc-SUd"/>
+                <outlet property="headerImageViewTrailing" destination="m2v-hf-1ak" id="7FA-wJ-qZf"/>
+                <outlet property="headerImageViewWidth" destination="yAH-jC-I3n" id="jo0-6M-NrN"/>
+                <outlet property="nameLabel" destination="w8A-7l-sNB" id="QKX-ZD-jWA"/>
+                <outlet property="nameLabelTrailing" destination="zCh-K3-gGz" id="j9f-ix-Lh1"/>
             </connections>
             <point key="canvasLocation" x="25" y="119"/>
         </tableViewCell>

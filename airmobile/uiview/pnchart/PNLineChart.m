@@ -200,6 +200,8 @@
                 PNChartLabel *label = [[PNChartLabel alloc] initWithFrame:CGRectMake(x, y, (NSInteger) _xLabelWidth*(_skipXPoints+1), (NSInteger) _chartMarginBottom)];
                 [label setTextAlignment:NSTextAlignmentCenter];
                 label.text = labelText;
+                label.textColor = [UIColor whiteColor];
+                label.font = [UIFont fontWithName:@"PingFang SC" size:px2(22)];
                 [self setCustomStyleForXLabel:label];
                 [self addSubview:label];
                 [_xChartLabels addObject:label];

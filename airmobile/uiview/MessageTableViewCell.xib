@@ -19,14 +19,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash.png" translatesAutoresizingMaskIntoConstraints="NO" id="alu-o4-xZU">
-                        <rect key="frame" x="10" y="17" width="40" height="40"/>
+                        <rect key="frame" x="11" y="17" width="40" height="40"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="Quz-ri-yCM"/>
                             <constraint firstAttribute="height" constant="40" id="T2L-pP-bxz"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今天的天气真好啊 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ksp-Qk-rOM">
-                        <rect key="frame" x="58" y="38" width="83.5" height="14"/>
+                        <rect key="frame" x="59" y="38" width="83.5" height="14"/>
                         <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="10"/>
                         <color key="textColor" red="0.75294117647058822" green="0.75294117647058822" blue="0.75294117647058822" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -41,7 +41,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="刘月阳" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pmR-d5-dZx">
-                        <rect key="frame" x="58" y="17" width="39.5" height="18.5"/>
+                        <rect key="frame" x="59" y="17" width="39.5" height="18.5"/>
                         <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -52,7 +52,7 @@
                     <constraint firstItem="47C-0n-Z7v" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Lxe-sE-rxk"/>
                     <constraint firstItem="pmR-d5-dZx" firstAttribute="leading" secondItem="alu-o4-xZU" secondAttribute="trailing" constant="8" id="UpY-5E-MfW"/>
                     <constraint firstItem="pmR-d5-dZx" firstAttribute="top" secondItem="alu-o4-xZU" secondAttribute="top" id="g87-bz-CPR"/>
-                    <constraint firstItem="alu-o4-xZU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="i2r-8C-sDJ"/>
+                    <constraint firstItem="alu-o4-xZU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="iwK-bc-KeB"/>
                     <constraint firstItem="alu-o4-xZU" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="mls-sm-ily"/>
                     <constraint firstItem="ksp-Qk-rOM" firstAttribute="leading" secondItem="alu-o4-xZU" secondAttribute="trailing" constant="8" id="rFM-z4-9lb"/>
                     <constraint firstItem="47C-0n-Z7v" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="tMv-ur-Rrp"/>

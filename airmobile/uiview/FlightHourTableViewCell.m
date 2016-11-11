@@ -25,8 +25,17 @@
 {
     self = [super init];
     if(self){
-        [self addSubview:[CommonFunction addLabelFrame:CGRectMake(0, 0, kScreenWidth/2-20, 25) text:flightHour.hour font:20 textAlignment:(NSTextAlignmentLeft) colorFromHex:0xFF1B1B1B]];
-        [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, 0, kScreenWidth/2-40, 25) text:[NSString stringWithFormat:@"%i",(int)flightHour.count] font:20 textAlignment:(NSTextAlignmentRight) colorFromHex:0xFF1B1B1B]];
+        UILabel *timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(px2(23), 0, (kScreenWidth-2*px2(23))/2, px2(108))];
+        timeLabel.text = flightHour.hour;
+        timeLabel.font = [UIFont fontWithName:@"PingFang SC" size:px2(36)];
+        [self addSubview:timeLabel];
+
+
+        UILabel *countLabel = [[UILabel alloc]initWithFrame:CGRectMake(px2(23)+(kScreenWidth-2*px2(23))/2, 0, (kScreenWidth-2*px2(23))/2, px2(108))];
+        countLabel.text =[NSString stringWithFormat:@"%i", flightHour.count];
+        countLabel.font = [UIFont fontWithName:@"PingFang SC" size:px2(36)];
+        countLabel.textAlignment = NSTextAlignmentRight;
+        [self addSubview:countLabel];
     }
     return self;
 }

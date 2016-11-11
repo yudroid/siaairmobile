@@ -57,9 +57,6 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
     // Do any additional setup after loading the view from its nib.
     
     _msgTextView.delegate = self;
-    _msgTextView.layer.borderColor = [[UIColor blackColor] CGColor];
-    _msgTextView.layer.borderWidth = 0.8;
-    _msgTextView.layer.cornerRadius = 7;
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                           action:@selector(tapBgClick)];
@@ -83,13 +80,13 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
     [self titleViewAddTitleText:@"聊天"];
     [self titleViewAddBackBtn];
     
-    UIButton *sureButton = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-16-40, 30, 40, 25)];
-    sureButton.titleLabel.font = [UIFont systemFontOfSize:15];
-    [sureButton setTitle:@"详情" forState:UIControlStateNormal];
-    [sureButton addTarget:self action:@selector(groupInfoButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    sureButton.backgroundColor = [UIColor orangeColor];
-    sureButton.layer.cornerRadius = 5.0;
-    [self.titleView addSubview:sureButton];
+//    UIButton *sureButton = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-16-40, 30, 40, 25)];
+//    sureButton.titleLabel.font = [UIFont systemFontOfSize:15];
+//    [sureButton setTitle:@"详情" forState:UIControlStateNormal];
+//    [sureButton addTarget:self action:@selector(groupInfoButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+//    sureButton.backgroundColor = [UIColor orangeColor];
+//    sureButton.layer.cornerRadius = 5.0;
+//    [self.titleView addSubview:sureButton];
 }
 
 -(void)groupInfoButtonClick:(UIButton *)sender
@@ -106,20 +103,14 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-    if (indexPath.row == 0) {
-        return 50;
-
-    }else if (indexPath.row == 1){
-
-        return 50;
-    }else{
-
-        return 50;
-    }
-
-    return 70;
-
+    NSDictionary *dic = [_chatArray objectAtIndex:indexPath.row];
+    UIFont *textFont =[UIFont fontWithName:@"PingFang SC" size:13];
+    NSString *contentText =  [dic objectForKey:@"content"];
+    CGSize size = ([contentText boundingRectWithSize:CGSizeMake(kScreenWidth-80, CGFLOAT_MAX)
+                                             options:NSStringDrawingUsesLineFragmentOrigin
+                                          attributes:@{NSFontAttributeName:textFont}
+                                             context:nil]).size;
+    return size.height + 45;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -132,7 +123,6 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
         ChatRightTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)CHAT_RIGHTTABLECELL_IDENTIFIER];
         if(cell == nil)
             cell = [[NSBundle mainBundle] loadNibNamed:@"ChatRightTableViewCell" owner:nil options:nil][0];
-
         cell.contentText = content;
         return cell;
     }else{

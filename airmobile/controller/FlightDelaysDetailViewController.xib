@@ -8,13 +8,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EventRemindViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FlightDelaysDetailViewController">
             <connections>
                 <outlet property="authorLabel" destination="may-ty-XNb" id="bkH-MB-GCF"/>
                 <outlet property="contentLabel" destination="Xer-NP-hA3" id="bzB-cj-AY7"/>
+                <outlet property="contentLabelLeading" destination="hpE-P1-oZ5" id="e1G-pt-mpx"/>
+                <outlet property="contentLabelTop" destination="dXt-tg-arV" id="1zq-gM-lD5"/>
                 <outlet property="textFieldWidth" destination="pGo-A0-IlK" id="IDa-pd-8m8"/>
                 <outlet property="timeLabel" destination="lrS-gr-PlA" id="Nb2-Tc-iAM"/>
                 <outlet property="titleLabel" destination="0Sp-es-Ua2" id="9dp-E3-Xvc"/>
+                <outlet property="titleLabelLeading" destination="lcp-68-kUw" id="1dX-2y-aE3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -23,8 +26,15 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JyL-LJ-1xZ">
+                    <rect key="frame" x="0.0" y="64" width="375" height="3.5"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="3.5" id="1bq-iY-HtB"/>
+                    </constraints>
+                </view>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GiC-SN-dlc">
-                    <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                    <rect key="frame" x="0.0" y="67.5" width="375" height="599.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="大会发电和法律考试的返回拉萨法拉盛案说法啊加 爱了就发觉；案例介绍设计费；爱睡懒觉啊；剪短发；老费劲啊；费劲；埃及法；手机发； 激发；世界发达；手机发；手机发； 级沙发就是发生纠纷；安老师放假啊；发；司法局啊；十分骄傲" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xer-NP-hA3">
                             <rect key="frame" x="31" y="130" width="326" height="126"/>
@@ -90,6 +100,7 @@
                             </constraints>
                         </view>
                     </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="Fvh-1K-oUK" firstAttribute="leading" secondItem="GiC-SN-dlc" secondAttribute="leading" id="5cw-iz-mMI"/>
                         <constraint firstAttribute="trailing" secondItem="Fvh-1K-oUK" secondAttribute="trailing" id="DCm-M8-EZH"/>
@@ -102,12 +113,15 @@
                     </constraints>
                 </scrollView>
             </subviews>
-            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="GiC-SN-dlc" firstAttribute="top" secondItem="JyL-LJ-1xZ" secondAttribute="bottom" id="3N3-UK-cBK"/>
+                <constraint firstItem="JyL-LJ-1xZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="3O5-j3-AAh"/>
                 <constraint firstAttribute="trailing" secondItem="GiC-SN-dlc" secondAttribute="trailing" id="8re-Y5-fXA"/>
                 <constraint firstAttribute="bottom" secondItem="GiC-SN-dlc" secondAttribute="bottom" id="WUI-ZJ-Ipx"/>
-                <constraint firstItem="GiC-SN-dlc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="moU-fO-Bc6"/>
+                <constraint firstAttribute="trailing" secondItem="JyL-LJ-1xZ" secondAttribute="trailing" id="brz-Vs-ADD"/>
                 <constraint firstItem="GiC-SN-dlc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="pe8-Ub-HHX"/>
+                <constraint firstItem="JyL-LJ-1xZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="q0u-zu-0bp"/>
             </constraints>
             <point key="canvasLocation" x="25.5" y="52.5"/>
         </view>

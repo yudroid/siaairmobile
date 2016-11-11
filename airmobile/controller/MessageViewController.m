@@ -128,9 +128,9 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 //    [self.view addSubview:_searBar];
 
     UIView *searchView = [[UIView alloc]initWithFrame:CGRectMake(0, 64, kScreenWidth, 50)];
-    searchView.backgroundColor = [CommonFunction colorFromHex:0XFFEBEBF1];
+    searchView.backgroundColor = [CommonFunction colorFromHex:0XFFF1F1F1];
     [self.view addSubview:searchView];
-    UIView *contentView = [[UIView alloc]initWithFrame:CGRectMake(4, 11, kScreenWidth-8, 32)];
+    UIView *contentView = [[UIView alloc]initWithFrame:CGRectMake(7, 11, kScreenWidth-8, 32)];
     contentView.backgroundColor = [UIColor whiteColor];
     contentView.layer.cornerRadius = 4.0;
     [searchView addSubview:contentView];
@@ -143,6 +143,11 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
     searchTextField.textColor = [CommonFunction colorFromHex:0XFFbbbbbb];
     searchTextField.placeholder = @"航班号、机号、机型";
     [contentView addSubview:searchTextField];
+    if([DeviceInfoUtil isPlus]){
+        contentView.frame = CGRectMake(px_3(20), px_3(22), kScreenWidth-2*px_3(20), px_3(105));
+        searchImageView.frame = CGRectMake(px_3(21), 10, 15, 15);
+        searchTextField.frame = CGRectMake(px_3(21)+15+px_3(26), 0, viewWidth(contentView)-(px_3(21)+15+px_3(26)), px_3(105));
+    }
 }
 
 -(void)initTable

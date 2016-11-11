@@ -13,13 +13,28 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentWidth;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerImgeViewTrailing;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *nameLabelTrailing;
+
+
+
+
 @end
 
 @implementation ChatRightTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    if ([DeviceInfoUtil isPlus]) {
+        [self adjustPLUS];
+    }
+
+}
+
+-(void) adjustPLUS
+{
+    _headerImgeViewTrailing.constant = px_3(35);
+    _nameLabelTrailing.constant = px_3(31);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

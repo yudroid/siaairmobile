@@ -11,6 +11,11 @@
 @interface FlightDelaysTableViewCell ()
 
 @property (weak, nonatomic) IBOutlet UIView *bgView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleLabelLeading;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *backgroundViewLeading;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleLabelTop;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleLabelbottom;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *authorLableBottom;
 
 @end
 
@@ -18,10 +23,22 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    _bgView.layer.cornerRadius = 10;
-    _bgView.layer.borderWidth = 1.0;
-    _bgView.layer.borderColor = [CommonFunction colorFromHex:0XFF949494].CGColor;
+
+    if ([DeviceInfoUtil isPlus]) {
+        [self adjustPLUS];
+    }
+
     // Initialization code
+}
+
+-(void)adjustPLUS
+{
+    _titleLabelTop.constant = px_3(26);
+    _titleLabelLeading.constant = px_3(40);
+    _backgroundViewLeading.constant = px_3(33);
+    _titleLabelbottom.constant = px_3(37);
+    _authorLableBottom.constant = px_3(27);
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

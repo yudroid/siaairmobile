@@ -8,6 +8,7 @@
 
 #import "ResourceContentView.h"
 #import "SeatUsedModel.h"
+#import "TagView.h"
 
 @implementation ResourceContentView
 {
@@ -18,12 +19,13 @@
 {
     self = [super initWithFrame:frame];
     if(self){
-        
 //        self.backgroundColor = [UIColor lightGrayColor];
         _delegate = delegate;
+
+        CGFloat y = px2(90);
         
         //圆圈
-        RoundProgressView *progressRound = [[RoundProgressView alloc] initWithCenter:CGPointMake(kScreenWidth/2, 25+86) radius:86 aboveColos:@[(__bridge id)[CommonFunction colorFromHex:0XFF00C7E4].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFF00F383].CGColor ] belowColos:@[(__bridge id)[CommonFunction colorFromHex:0XFFFF9F38].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFFFFCD21].CGColor ] start:270 end:271 clockwise:NO];
+        RoundProgressView *progressRound = [[RoundProgressView alloc] initWithCenter:CGPointMake(kScreenWidth/2, y+86) radius:86 aboveColos:@[(__bridge id)[CommonFunction colorFromHex:0XFF00aedd].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFF00d6a0].CGColor ] belowColos:@[(__bridge id)[CommonFunction colorFromHex:0XFFFF9F38].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFFFFCD21].CGColor ] start:270 end:271 clockwise:NO];
         [self addSubview:progressRound];
         
         normalProportion = 0.6;
@@ -42,38 +44,64 @@
         UILabel *totalNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2-50, 25+86-20, 100, 45)];// 机位总数
         totalNumLabel.text = @"325";
         totalNumLabel.textAlignment = NSTextAlignmentCenter;
-        totalNumLabel.font = [UIFont systemFontOfSize:45];
+        totalNumLabel.font = [UIFont fontWithName:@"PingFang SC" size:px2(113)];
+        CGSize maxSize = CGSizeMake(100, 45);
+        CGSize exportSize = [totalNumLabel sizeThatFits:maxSize];
+        totalNumLabel.frame = CGRectMake((kScreenWidth-exportSize.width)/2, y+86/2+10, exportSize.width, 45);
         [self addSubview:totalNumLabel];
         
-        UILabel *totalLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2-50, 25+86+25, 100, 15)];
+        UILabel *totalLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2-50, viewY(totalNumLabel)+viewHeight(totalNumLabel)+7, 100, 15)];
         totalLabel.text = @"机位";
         totalLabel.textAlignment = NSTextAlignmentCenter;
         totalLabel.font = [UIFont systemFontOfSize:15];
         [self addSubview:totalLabel];
-        
-        UILabel *disAbleLabel= [[UILabel alloc] initWithFrame:CGRectMake(0, 25+86+5+15+5+65, kScreenWidth/2, 25)];// 不可用
-        disAbleLabel.text = @"占用";
-        disAbleLabel.textAlignment = NSTextAlignmentCenter;
-        disAbleLabel.font = [UIFont systemFontOfSize:20];
-        [self addSubview:disAbleLabel];
-        
-        UILabel *disable = [[UILabel alloc] initWithFrame:CGRectMake(0, 25+86+5+15+5+65+25+5, kScreenWidth/2, 17)];
+
+
+        y=viewHeight(progressRound)+viewY(progressRound)+px2(83);
+
+        TagView *useView = [[NSBundle mainBundle]loadNibNamed:@"TagView" owner:nil options:nil][0];
+        useView.bigLabel.text = @"3";
+        useView.smallLabel.text = @"占用";
+        useView.frame =  CGRectMake(kScreenWidth/2-32-[useView contentWidth], y,[useView contentWidth], [useView contentHeight]-20);
+        [self addSubview:useView];
+        UILabel *disable = [[UILabel alloc] init];
         disable.text = @"3";
         disable.textAlignment = NSTextAlignmentCenter;
-        disable.font = [UIFont systemFontOfSize:17];
+        disable.font = [UIFont fontWithName:@"PingFang SC" size:px2(75)];
+        exportSize = [disable sizeThatFits:maxSize];
+        disable.frame = CGRectMake(kScreenWidth/2-32-exportSize.width, y, exportSize.width, 30);
         [self addSubview:disable];
-        
-        UILabel *longInSeatLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2, 25+86+5+15+5+65, kScreenWidth/2, 25)];// 长期占用
+
+        UILabel *percentLabel = [[UILabel alloc]init];
+        percentLabel.text = @"25%";
+        percentLabel.font = [UIFont fontWithName:@"PingFang SC" size:px2(23)];
+        percentLabel.textColor = [CommonFunction colorFromHex:0XFF2dce71];
+        exportSize = [percentLabel sizeThatFits:maxSize];
+        percentLabel.frame = CGRectMake(viewWidth(disable)+viewX(disable), viewY(disable)-15, exportSize.width, 15) ;
+        [self addSubview:percentLabel];
+
+        UILabel *longInSeat = [[UILabel alloc] init];
+        longInSeat.text = @"10";
+        longInSeat.textAlignment = NSTextAlignmentCenter;
+        longInSeat.font = [UIFont fontWithName:@"PingFang SC" size:px2(75)];
+        exportSize = [longInSeat sizeThatFits:maxSize];
+        longInSeat.frame = CGRectMake(kScreenWidth/2+32, y, exportSize.width, 30);
+        [self addSubview:longInSeat];
+
+        y = viewY(disable)+viewHeight(disable)+px2(24);
+        UILabel *disAbleLabel= [[UILabel alloc] initWithFrame:CGRectMake(viewX(disable), y, 30, 30)];// 不可用
+        disAbleLabel.text = @"占用";
+        disAbleLabel.textAlignment = NSTextAlignmentCenter;
+        disAbleLabel.font = [UIFont fontWithName:@"PingFang SC" size:px2(30)];
+        [self addSubview:disAbleLabel];
+
+        UILabel *longInSeatLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2, y, kScreenWidth/2, 25)];// 长期占用
         longInSeatLabel.text = @"剩余";
         longInSeatLabel.textAlignment = NSTextAlignmentCenter;
         longInSeatLabel.font = [UIFont systemFontOfSize:20];
         [self addSubview:longInSeatLabel];
-        
-        UILabel *longInSeat = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2, 25+86+5+15+5+65+25+5, kScreenWidth/2, 17)];
-        longInSeat.text = @"10";
-        longInSeat.textAlignment = NSTextAlignmentCenter;
-        longInSeat.font = [UIFont systemFontOfSize:17];
-        [self addSubview:longInSeat];
+//
+
         
         
     }
