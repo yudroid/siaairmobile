@@ -4,6 +4,7 @@
 //
 //  Created by 杨泉林研发部 on 16/11/4.
 //  Copyright © 2016年 杨泉林. All rights reserved.
+//  本类中插入、更新方法认为不会有sql注入未做验证
 //
 
 #import "PersistenceUtils.h"
@@ -46,7 +47,7 @@
 
 
 /**
- <#Description#>
+ 查找最新的几条聊天记录
 
  @param chatId <#chatId description#>
  @param start  <#start description#>
@@ -65,11 +66,46 @@
 
 
 /**
- 查询用户列表手机端使用
+ 查询用户列表手机端使用，如果不存在缓存用户列表，下次查询可以展示
 
  @return <#return value description#>
  */
 +(NSArray<DeptInfoModel *> *)loadUserListGroupByDept;
 
+
+/**
+ 聊天记录操作：1.判断聊天记录是否存在，如果存在更新name和time字段
+            2.如果不存在将聊天记录插入到记录列表中
+            3.如果更新的聊天记录为工作组聊天，调整工作组信息；原有人员删除，重新写入人员
+
+ @param chat 创建新的聊天记录
+
+ @return 聊天记录信息
+ */
++(NSDictionary *)saveOrUpdateChat:(id)chat;
+
+
+/**
+ 根据chatid更新name time信息
+
+ @param chatId 聊天id
+ */
++(void)updateChatName:name chatId:(int)chatId;
+
+
+/**
+ 根据chatid更新time字段
+
+ @param chatId 聊天记录本地id
+ */
++(void)updateUnReadCountAndTime:(int)count chatid:(int)chatId;
+
+
+/**
+ 插入聊天消息到数据表中
+
+ @param message <#message description#>
+ */
++(void)insertNewChatMessage:(NSDictionary *)message needid:(BOOL)need success:(void (^)())success;
 
 @end

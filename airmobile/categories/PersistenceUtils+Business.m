@@ -50,53 +50,7 @@
         }
         
     }];
-    [self initTableData];
-}
 
-
-+(void) initTableData
-{
-    NSMutableArray *chatList = [[NSMutableArray alloc] init];
-    [chatList addObject:@"INSERT INTO ChatInfo VALUES (20, 66, '张宇', 0, '2016-11-06 12:22:00', 0, null, null);"];
-    [chatList addObject:@"INSERT INTO ChatInfo VALUES (2, 10205, '青岛凯亚深圳项目组', 1, '2016-11-06 12:30:00', 0, null, null);"];
-
-    [self executeInsertBatch:chatList];
-    
-    NSMutableArray *chatMsgList = [[NSMutableArray alloc] init];
-    [chatMsgList addObject:@"INSERT INTO ChatMessage VALUES (1, 20, '代码提交了吗？', 66, '张宇', '2016-11-06 12:30:00', null);"];
-    [chatMsgList addObject:@"INSERT INTO ChatMessage VALUES (2, 20, '还没，稍等', 65, '杨泉林', '2016-11-06 12:40:00', null);"];
-    [chatMsgList addObject:@"INSERT INTO ChatMessage VALUES (3, 20, '加快，要发布了', 66, '张宇', '2016-11-06 12:50:00', null);"];
-    [chatMsgList addObject:@"INSERT INTO ChatMessage VALUES (4, 20, '代码提交了吗？', 66, '张宇', '2016-11-06 12:55:00', null);"];
-    [chatMsgList addObject:@"INSERT INTO ChatMessage VALUES (5, 20, '还没，稍等', 65, '杨泉林', '2016-11-06 12:55:03', null);"];
-    [chatMsgList addObject:@"INSERT INTO ChatMessage VALUES (6, 20, '加快，要发布了', 66, '张宇', '2016-11-06 12:56:00', null);"];
-    [chatMsgList addObject:@"INSERT INTO ChatMessage VALUES (7, 20, '代码提交了吗？', 66, '张宇', '2016-11-06 12:57:00', null);"];
-    [chatMsgList addObject:@"INSERT INTO ChatMessage VALUES (8, 20, '还没，稍等', 65, '杨泉林', '2016-11-06 12:58:00', null);"];
-    [chatMsgList addObject:@"INSERT INTO ChatMessage VALUES (9, 20, '加快，要发布了', 66, '张宇', '2016-11-06 12:58:10', null);"];
-    
-    [chatMsgList addObject:@"INSERT INTO ChatMessage VALUES (51, 2, '代码提交了吗？', 66, '张宇', '2016-11-06 12:30:00', null);"];
-    [chatMsgList addObject:@"INSERT INTO ChatMessage VALUES (52, 2, '还没，稍等', 65, '杨泉林', '2016-11-06 12:40:00', null);"];
-    [chatMsgList addObject:@"INSERT INTO ChatMessage VALUES (53, 2, '加快，要发布了', 66, '张宇', '2016-11-06 12:50:00', null);"];
-    [chatMsgList addObject:@"INSERT INTO ChatMessage VALUES (54, 2, '代码提交了吗？', 66, '张宇', '2016-11-06 12:55:00', null);"];
-    [chatMsgList addObject:@"INSERT INTO ChatMessage VALUES (55, 2, '还没，稍等', 65, '杨泉林', '2016-11-06 12:55:03', null);"];
-    [chatMsgList addObject:@"INSERT INTO ChatMessage VALUES (56, 2, '加快，要发布了', 66, '张宇', '2016-11-06 12:56:00', null);"];
-    [chatMsgList addObject:@"INSERT INTO ChatMessage VALUES (57, 2, '代码提交了吗？', 66, '张宇', '2016-11-06 12:57:00', null);"];
-    [chatMsgList addObject:@"INSERT INTO ChatMessage VALUES (58, 2, '还没，稍等', 65, '杨泉林', '2016-11-06 12:58:00', null);"];
-    [chatMsgList addObject:@"INSERT INTO ChatMessage VALUES (59, 2, '加快，要发布了', 66, '张宇', '2016-11-06 12:58:10', null);"];
-    
-    
-    [self executeInsertBatch:chatMsgList];
-    
-    NSMutableArray *groupList = [[NSMutableArray alloc] init];
-    [groupList addObject:@"INSERT INTO GroupInfo VALUES (1, 3, 1, '杨泉林', null, null);"];
-    [groupList addObject:@"INSERT INTO GroupInfo VALUES (2, 3, 2, '蓝蓝', null, null);"];
-    [groupList addObject:@"INSERT INTO GroupInfo VALUES (3, 3, 3, '宝宝', null, null);"];
-    [groupList addObject:@"INSERT INTO GroupInfo VALUES (4, 11, 4, '贝贝', null, null);"];
-    [groupList addObject:@"INSERT INTO GroupInfo VALUES (5, 11, 5, '莹莹', null, null);"];
-    [groupList addObject:@"INSERT INTO GroupInfo VALUES (6, 11, 6, '盈盈', null, null);"];
-    [groupList addObject:@"INSERT INTO GroupInfo VALUES (7, 12, 7, '芳芳', null, null);"];
-    [groupList addObject:@"INSERT INTO GroupInfo VALUES (8, 12, 5, '萱萱', null, null);"];
-    [self executeInsertBatch:groupList];
-    
 }
 
 #pragma mark 消息查询、存储、删除
@@ -124,7 +78,7 @@
 
 +(NSArray<NSDictionary *> *)findMsgListByChatId:(long)chatId start:(long)start
 {
-    NSString *sql = [NSString stringWithFormat:@"select * from ChatMessage t where t.chatid=%li and t.id=%li order by t.time",chatId,start];
+    NSString *sql = [NSString stringWithFormat:@"select * from ChatMessage t where t.chatid=%li and t.id>%li order by t.time",chatId,start];
     NSArray *result = [self executeQuery:sql];
     return result;
 }
@@ -193,5 +147,174 @@
     [result addObjectsFromArray:[deptDict allValues]];
     return result;
 }
+
++(NSDictionary *)saveOrUpdateChat:(id)chat
+{
+
+    if(![chat isKindOfClass:[NSDictionary class]]){
+        return nil;
+    }
+    int type = 0;
+    NSString *single = nil;
+    if([[chat allKeys] containsObject:@"single"]){
+        single = [chat objectForKey:@"single"];
+    }
+    if(single==nil){
+        type = 1;
+    }
+    int chatId = 0;
+    NSString *name = @"";
+    if(type==0){
+        chatId = [[chat objectForKey:@"userId"] intValue];
+        name = [chat objectForKey:@"userName"];
+    }else{
+        chatId = [[chat objectForKey:@"id"] intValue];
+        name = [chat objectForKey:@"groupname"];
+    }
+    // 查询判断语句
+    NSDictionary *localChat =  [self getLocalChatIdByName:name type:type chatId:chatId];
+    int localId = [[localChat objectForKey:@"id"] intValue];
+    
+    if(type==1 && localId>=0){
+        NSString *insertGroupSql = @"delete from GroupInfo where chatid=%i;commit;insert into GroupInfo(chatid,userid,username) select %i,t.userid,t.username from userinfo t where t.userid in (%@)";
+        NSString *userids = [chat objectForKey:@"groupusers"];
+        [self executeNoQuery:[NSString stringWithFormat:insertGroupSql,localId,localId,userids]];
+    }
+    return  localChat;
+}
+
++(void)updateChatName:name chatId:(int)chatId
+{
+    NSString *updateSql = @"update ChatInfo set name='%@',time=CURRENT_TIMESTAMP where chatid=%i;";
+    [self executeNoQuery:[NSString stringWithFormat:updateSql,name,chatId]];
+}
+
++(void)updateUnReadCountAndTime:(int)count chatid:(int)chatId;
+{
+    NSString *updateSql = @"update ChatInfo set time=CURRENT_TIMESTAMP,unread=unread+%i where id=%i;";
+    [self executeNoQuery:[NSString stringWithFormat:updateSql,count,chatId]];
+}
+
++(void)insertNewChatMessage:(NSDictionary *)message needid:(BOOL)need success:(void (^)())success;
+{
+    if(message==nil)
+        return;
+    if(need){
+        int type = [[message objectForKey:@"type"] intValue];
+        int chatId = [[message objectForKey:@"chatid"] intValue];
+        NSString *name = @"";
+        if(type==1){
+            name = [message objectForKey:@"username"];
+        }else{
+            NSDictionary *userDic = [self getUserById:chatId];
+            if(userDic==nil){
+                return;
+            }
+            name = [userDic objectForKey:@"username"];
+        }
+        NSDictionary *localChat =  [self getLocalChatIdByName:name type:type chatId:chatId];
+        int localId = [[localChat objectForKey:@"id"] intValue];
+        int userid = [[message objectForKey:@"userid"] intValue];
+        NSString *content = [message objectForKey:@"content"];
+        [self saveChatMessage:localId content:content userid:userid userName:name];
+    }else{
+        int localid = [[message objectForKey:@"chatid"] intValue];
+        int userid = [[message objectForKey:@"userid"] intValue];
+        NSString *userName = [message objectForKey:@"username"];
+        NSString *content = [message objectForKey:@"content"];
+        [self saveChatMessage:localid content:content userid:userid userName:userName];
+    }
+    if(success!=nil){
+        success();
+    }
+}
+
++(void)saveChatMessage:(int)localid content:(NSString *)content userid:(int)userid userName:(NSString *)userName
+{
+    NSString *insertSql = @"INSERT INTO ChatMessage VALUES (?, %i, '%@', %i, '%@', CURRENT_TIMESTAMP, 0);";
+    [self executeNoQuery:[NSString stringWithFormat:insertSql,localid,content,userid,userName]];
+    [self updateUnReadCountAndTime:1 chatid:localid];
+}
+
++(NSDictionary *)getLocalChatIdByName:(NSString *)name type:(int)type chatId:(int)chatId
+{
+    // 查询判断语句
+    NSString *querySql = @"select * from ChatInfo t where t.chatid=%i and t.type=%i";
+    NSArray *result = [self executeQuery:[NSString stringWithFormat:querySql,chatId,type]];
+    if(result==nil || [result count]==0){
+        NSString *insertChatSql = @"INSERT INTO ChatInfo VALUES (?, %i, '%@', %i, CURRENT_TIMESTAMP, 0, null, null);";
+        [self executeNoQuery:[NSString stringWithFormat:insertChatSql,chatId,name,type]];
+    }else{
+        [self updateChatName:name chatId:chatId];
+    }
+    result = [self executeQuery:[NSString stringWithFormat:querySql,chatId,type]];
+    if(result==nil || [result count]==0){
+        return nil;
+    }
+    NSDictionary *dic = [result objectAtIndex:0];
+    return dic;
+}
+
++(NSDictionary *)getUserById:(int)userId
+{
+    // 查询判断语句
+    NSString *querySql = @"select * from userinfo t where t.userid=%i";
+    NSArray *result = [self executeQuery:[NSString stringWithFormat:querySql,userId]];
+    if(result==nil || [result count]==0){
+        return nil;
+    }
+    NSDictionary *dic = [result objectAtIndex:0];
+    return dic;
+}
+
+//+(void) updateAllMessage:(NSArray*) array{
+//    if(array == nil || [array count] == 0){
+//        return;
+//    }
+//    
+//    
+//    [self commonSqlProcess:^(sqlite3* database){
+//        
+//        for(MessageItem* messageItem in array){
+//            sqlite3_stmt* statement;
+//            NSString* sql = @"select Id from DT_MESSAGE where AssoId = ?";
+//            
+//            sqlite3_prepare_v2(database, [sql UTF8String], -1, &statement, NULL);
+//            
+//            //设置占位符
+//            sqlite3_bind_int(statement, 1, messageItem.assoId);
+//            
+//            int count = 0;//执行语句返回的结果数
+//            while (sqlite3_step(statement) == SQLITE_ROW) {
+//                count++;
+//            }
+//            
+//            sqlite3_finalize(statement);
+//            
+//            if (count == 0) {
+//                //数据库中没有，新插入到数据库中
+//                sqlite3_stmt* insertStmt;
+//                sql = @"insert into DT_MESSAGE(AssoId,MessageType,Sender,Title,Content,CreateTime,IsRead) values(?,?,?,?,?,?,?)";
+//                
+//                sqlite3_prepare_v2(database, [sql UTF8String], -1, &insertStmt, nil);
+//                
+//                //设置占位符
+//                sqlite3_bind_int(insertStmt, 1, messageItem.assoId);
+//                sqlite3_bind_text(insertStmt, 2, [[StringUtils trim:messageItem.msgType] UTF8String], -1, NULL);
+//                sqlite3_bind_text(insertStmt, 3, [[StringUtils trim:messageItem.sender] UTF8String], -1, NULL);
+//                sqlite3_bind_text(insertStmt, 4, [[StringUtils trim:messageItem.title] UTF8String], -1, NULL);
+//                sqlite3_bind_text(insertStmt, 5, [[StringUtils trim:messageItem.content] UTF8String], -1, NULL);
+//                sqlite3_bind_text(insertStmt, 6, [messageItem.createTime UTF8String], -1, NULL);
+//                sqlite3_bind_int(insertStmt, 7, 0);
+//                
+//                sqlite3_step(insertStmt);
+//                sqlite3_finalize(insertStmt);
+//            }
+//            
+//        }
+//        
+//        
+//    }];
+//}
 
 @end

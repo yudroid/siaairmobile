@@ -9,6 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "RootViewController.h"
 
+@protocol ChatViewDelegate <NSObject>
+
+@required
+-(void)refreshDialogData;
+
+@end
+
 @interface ChatViewController : RootViewController
 
 @property (nonatomic,assign) long chatId;

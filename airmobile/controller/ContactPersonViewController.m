@@ -10,6 +10,7 @@
 #import "ContactPersonTableViewCell.h"
 #import "ChatViewController.h"
 #import "PersistenceUtils+Business.h"
+#import "HttpsUtils+Business.h"
 
 static const NSString *CONTACTPERSON_TABLECELL_IDENTIFIER = @"CONTACTPERSON_TABLECELL_IDENTIFIER";
 static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSON_TABLECELLHEADER_IDENTIFIER";
@@ -24,6 +25,7 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
 @implementation ContactPersonViewController
 {
     NSArray<DeptInfoModel *> *array;
+    NSDictionary *chat;
 }
 
 - (void)viewDidLoad {
@@ -52,7 +54,6 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
     [self titleViewAddTitleText:@"选择联系人"];
     [self titleViewAddBackBtn];
 
-    
     UIButton *sureButton = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-16-40, 33, 40, 18)];
     sureButton.titleLabel.font = [UIFont fontWithName:@"PingFang SC" size:10];
     [sureButton setTitle:@"确定" forState:UIControlStateNormal];
@@ -64,8 +65,46 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
 
 -(void)sureButtonClick:(UIButton *)sender
 {
-    ChatViewController *chatVC = [[ChatViewController alloc]initWithNibName:@"ChatViewController" bundle:nil];
+    if([_selectTableArray count] == 0){
+        return;
+    }
     
+    int chatType = 0;
+    if([_selectTableArray count]>1){
+        NSMutableArray *userIdsArray = [NSMutableArray array];
+        chatType = 1;
+        NSString *deptName=@"成员:";
+        for(ContactPersonTableViewCell *item in _selectTableArray){
+            [userIdsArray addObject:[NSString stringWithFormat:@"%li", item.userId]];
+            if([[NSString stringWithFormat:@"%@,%@",deptName,item.nameLabel.text] length]>40){
+                deptName = [NSString stringWithFormat:@"%@...",deptName];
+            }else{
+                deptName = [NSString stringWithFormat:@"%@ %@",deptName,item.nameLabel.text];
+            }
+        }
+        
+        NSDictionary *dic = [[NSDictionary alloc] initWithObjectsAndKeys:[userIdsArray componentsJoinedByString:@","],@"groupusers",deptName,@"groupname", nil];
+        
+        [HttpsUtils saveGroupInfo:dic success:^(id reponseObj) {
+            if(reponseObj == nil){
+                return;
+            }
+           chat = [PersistenceUtils saveOrUpdateChat:reponseObj];
+        }];
+    }else{
+        ContactPersonTableViewCell *item = [_selectTableArray objectAtIndex:0];
+        NSDictionary *single = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:(int)item.userId],@"userId",item.nameLabel.text,@"userName",@"single",@"single", nil];
+        chat = [PersistenceUtils saveOrUpdateChat:single];
+    }
+    
+    if(chat == nil){
+        return;
+    }
+    
+    ChatViewController *chatVC = [[ChatViewController alloc]initWithNibName:@"ChatViewController" bundle:nil];
+    chatVC.chatId = [[chat objectForKey:@"chatid"] longLongValue];
+    chatVC.chatTypeId = [[chat objectForKey:@"type"] intValue];
+    chatVC.localChatId = [[chat objectForKey:@"id"] longLongValue];
     [self.navigationController pushViewController:chatVC animated:YES];
 }
 
@@ -95,6 +134,7 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
     ContactPersonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)CONTACTPERSON_TABLECELL_IDENTIFIER];
     UserInfoModel *userInfo = [[array objectAtIndex:indexPath.section].userArr objectAtIndex:indexPath.row];
     cell.nameLabel.text = userInfo.name;
+    cell.userId = userInfo.id;
     return cell;
 }
 
@@ -115,6 +155,7 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
 {
     return 20;
 }
+
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UITableViewHeaderFooterView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:[array objectAtIndex:section].deptName];
@@ -123,6 +164,7 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
     header.textLabel.text = [array objectAtIndex:section].deptName;
     return header;
 }
+
 #pragma mark -searchBarDelegate
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {

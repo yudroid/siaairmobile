@@ -21,7 +21,7 @@ static const NSString *CHAT_RIGHTTABLECELL_IDENTIFIER = @"CHAT_RIGHTTABLECELL_ID
 static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDENTIFIER";
 
 
-@interface ChatViewController ()<UITableViewDelegate,UITableViewDataSource,UITextViewDelegate>
+@interface ChatViewController ()<UITableViewDelegate,UITableViewDataSource,UITextViewDelegate,ChatViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, copy) NSMutableArray *chatArray;
@@ -64,6 +64,14 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
     [self.view addGestureRecognizer:tap];
 }
 
+-(void)viewWillAppear{
+    [MessageService sharedMessageService].chatDelegate = self;
+}
+
+-(void)viewWillDisappear{
+    [MessageService sharedMessageService].chatDelegate = nil;
+}
+
 - (void)tapBgClick{
     [_msgTextView resignFirstResponder];
 }
@@ -82,7 +90,8 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
     [sureButton addTarget:self action:@selector(groupInfoButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     sureButton.backgroundColor = [UIColor orangeColor];
     sureButton.layer.cornerRadius = 5.0;
-    [self.titleView addSubview:sureButton];
+    if(_chatTypeId==1)
+        [self.titleView addSubview:sureButton];
 }
 
 -(void)groupInfoButtonClick:(UIButton *)sender
@@ -181,6 +190,7 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
         [_msgTextView resignFirstResponder];
         MessageModel *msg = [[MessageModel alloc] initWithId:user.id content:_msgTextView.text fromId:user.id toId:_chatId type:_chatTypeId status:0];
         _msgTextView.text = @"";
+        [self saveSendMessage:msg.content];
         if(_chatTypeId==0){
             [HttpsUtils sendUserMessage:msg success:^(id resp) {
                 
@@ -215,11 +225,22 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
     return YES;
 }
 
+//(id integer PRIMARY KEY AUTOINCREMENT NOT NULL,chatid integer NOT NULL,content nvarchar(1024),senduserid integer NOT NULL,username nvarchar(50),time datetime NOT NULL,status integer(1),CONSTRAINT 'ChatMessage_FK1' FOREIGN KEY ('chatid') REFERENCES 'ChatInfo' ('id') ON DELETE CASCADE ON UPDATE CASCADE);
+
 -(void)initChatMsgData
 {
     [_chatArray addObjectsFromArray:[PersistenceUtils findMsgListByChatId:_localChatId start:0 num:20]];
 }
 
+-(void)saveSendMessage:(NSString *)content
+{
+    NSDictionary *message = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithLong:_localChatId],@"chatid",content,@"content",[NSNumber numberWithLong:user.id],@"userid",user.name,@"username", nil];
+    [PersistenceUtils insertNewChatMessage:message needid:NO success:^{
+        [self refreshDialogData];
+    }];
+}
+
+// 未读消息数据没有做处理
 -(void)refreshDialogData
 {
     if([_chatArray count] == 0){
@@ -228,6 +249,12 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
         NSDictionary *dic = [_chatArray lastObject];
         long lastId = [[dic objectForKey:@"id"] longLongValue];
         [_chatArray addObjectsFromArray:[PersistenceUtils findMsgListByChatId:_localChatId start:lastId]];
+    }
+    if(_tableView!=nil){
+        [_tableView reloadData];
+        if(self.tableView.contentSize.height -self.tableView.bounds.size.height>0){
+            [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentSize.height -self.tableView.bounds.size.height) animated:YES];
+        }
     }
 }
 
