@@ -8,6 +8,13 @@
 
 #import "ChatRightTableViewCell.h"
 
+@interface ChatRightTableViewCell ()
+@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentWidth;
+
+@end
+
 @implementation ChatRightTableViewCell
 
 - (void)awakeFromNib {
@@ -21,4 +28,16 @@
     // Configure the view for the selected state
 }
 
+-(void)setContentText:(NSString *)contentText
+{
+    UIFont *textFont =[UIFont fontWithName:@"PingFang SC" size:13];
+    CGSize size = ([contentText boundingRectWithSize:CGSizeMake(kScreenWidth-80, CGFLOAT_MAX)
+                                             options:NSStringDrawingUsesLineFragmentOrigin
+                                          attributes:@{NSFontAttributeName:textFont}
+                                             context:nil]).size;
+    _contentWidth.constant = size.width;
+    _contentHeight.constant = size.height;
+    _contentLabel.text = [contentText copy];
+
+}
 @end

@@ -17,6 +17,8 @@
 #import "FixedMessageTableViewCell.h"
 #import "ChatViewController.h"
 #import "PersistenceUtils+Business.h"
+#import "FlightDelaysViewController.h"
+
 
 static const NSString *MESSAGE_TABLECELL_IDENTIFIER = @"MESSAGE_TABLECELL_IDENTIFIER";
 static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_IDENTIFIER";
@@ -121,14 +123,31 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 
 -(void)initSearBar
 {
-    _searBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 64, kScreenWidth, 44)];
-    _searBar.delegate = self;
-    [self.view addSubview:_searBar];
+//    _searBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 64, kScreenWidth, 44)];
+//    _searBar.delegate = self;
+//    [self.view addSubview:_searBar];
+
+    UIView *searchView = [[UIView alloc]initWithFrame:CGRectMake(0, 64, kScreenWidth, 50)];
+    searchView.backgroundColor = [CommonFunction colorFromHex:0XFFEBEBF1];
+    [self.view addSubview:searchView];
+    UIView *contentView = [[UIView alloc]initWithFrame:CGRectMake(4, 11, kScreenWidth-8, 32)];
+    contentView.backgroundColor = [UIColor whiteColor];
+    contentView.layer.cornerRadius = 4.0;
+    [searchView addSubview:contentView];
+    UIImageView *searchImageView = [[UIImageView alloc]initWithFrame:CGRectMake(6, 8, 15, 15)];
+    searchImageView.image = [UIImage imageNamed:@"SearchIconBig"];
+    [contentView addSubview:searchImageView];
+
+    UITextField *searchTextField = [[UITextField alloc]initWithFrame:CGRectMake(27, 0, kScreenWidth-50, 32)];
+    searchTextField.font = [UIFont fontWithName:@"PingFang SC" size:14];
+    searchTextField.textColor = [CommonFunction colorFromHex:0XFFbbbbbb];
+    searchTextField.placeholder = @"航班号、机号、机型";
+    [contentView addSubview:searchTextField];
 }
 
 -(void)initTable
 {
-    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 108, kScreenWidth, kScreenHeight-108-48)];
+    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 114, kScreenWidth, kScreenHeight-114-48)];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.tableFooterView = [[UIView alloc]init];
@@ -145,9 +164,9 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
     self.titleView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"home_title_bg.png"]];
     [self titleViewAddTitleText:@"消息"];
     
-    UIButton *chatButton = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-16-20, 33, 20, 20)];
+    UIButton *chatButton = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-10-22, 33, 22, 20)];
     
-    [chatButton setBackgroundImage:[UIImage imageNamed:@"icon_flight"] forState:UIControlStateNormal];
+    [chatButton setBackgroundImage:[UIImage imageNamed:@"message"] forState:UIControlStateNormal];
     [chatButton addTarget:self action:@selector(chatButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.titleView addSubview:chatButton];
@@ -232,18 +251,20 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 56;
+    return 64;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row ==0) {
         FixedMessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)MESSAGE_FIXTABLECELL_IDENTIFIER];
-        cell.nameLabel.text = @"航班变更事件消息";
+        cell.headImageView.image = [UIImage imageNamed:@"FlightDelays"];
+        cell.nameLabel.text = @"大面积航班延误";
         return cell;
     }else if (indexPath.row ==1) {
         FixedMessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)MESSAGE_FIXTABLECELL_IDENTIFIER];
-        cell.nameLabel.text = @"指令消息";
+        cell.nameLabel.text = @"群体事件提醒";
+        cell.headImageView.image = [UIImage imageNamed:@"EventRemind"];
         return cell;
     }else{
         MessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)MESSAGE_TABLECELL_IDENTIFIER];
@@ -261,6 +282,7 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if(indexPath.row == 0){
         [self showFlightEventView];
     }else if(indexPath.row ==1){
@@ -276,7 +298,9 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 
 -(void) showFlightEventView
 {
-    
+    FlightDelaysViewController *flightDelaysVC = [[FlightDelaysViewController alloc]initWithNibName:@"FlightDelaysViewController" bundle:nil];
+    [self.navigationController pushViewController:flightDelaysVC animated:YES];
+
 }
 
 -(void) showCommendMsgView

@@ -27,6 +27,7 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
 @property (nonatomic, copy) NSMutableArray *chatArray;
 @property (weak, nonatomic) IBOutlet UIView *msgView;
 @property (weak, nonatomic) IBOutlet UITextView *msgTextView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *msgViewButtom;
 
 @end
 
@@ -44,8 +45,9 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     user = delegate.userInfoModel;
     
-    [[MessageService sharedMessageService] resetDialogParam:user.id userId:user.id toId:_chatId type:_chatTypeId];
+//    [[MessageService sharedMessageService] resetDialogParam:user.id userId:user.id toId:_chatId type:_chatTypeId];
     _chatArray = [[NSMutableArray alloc] init];
+
     [self initChatMsgData];
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -62,6 +64,9 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                           action:@selector(tapBgClick)];
     [self.view addGestureRecognizer:tap];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 -(void)viewWillAppear{
@@ -101,7 +106,6 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
 
 
 #pragma mark - UITableViewDelegate UITableViewDataSource
-
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [_chatArray count];
@@ -109,7 +113,20 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+
+    if (indexPath.row == 0) {
+        return 50;
+
+    }else if (indexPath.row == 1){
+
+        return 50;
+    }else{
+
+        return 50;
+    }
+
     return 70;
+
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -122,15 +139,14 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
         ChatRightTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)CHAT_RIGHTTABLECELL_IDENTIFIER];
         if(cell == nil)
             cell = [[NSBundle mainBundle] loadNibNamed:@"ChatRightTableViewCell" owner:nil options:nil][0];
-        cell.nameLabel.text = [NSString stringWithFormat:@"%@ %@",[time substringFromIndex:11],name];
-        cell.contentLabel.text = content;
+
+        cell.contentText = content;
         return cell;
     }else{
         ChatLeftTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)CHAT_RIGHTTABLECELL_IDENTIFIER];
         if(cell == nil)
             cell = [[NSBundle mainBundle] loadNibNamed:@"ChatLeftTableViewCell" owner:nil options:nil][0];
-        cell.nameLabel.text = [NSString stringWithFormat:@"%@ %@",name,[time substringFromIndex:11]];
-        cell.contentLabel.text = content;
+        cell.contentText = content;
         return cell;
     }
     return  nil;
@@ -160,15 +176,22 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
     CGRect rect=[[sender.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey]CGRectValue];
     CGFloat height= rect.size.height;
     
-    float y = -height;
-    if(y<0){
-        //    UIKeyboardAnimationDurationUserInfoKey//获取键盘升起动画时间
-        [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationDuration:[[sender.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey]doubleValue]];
-        self.view.transform=CGAffineTransformMakeTranslation(0, y);
-        [UIView commitAnimations];
-        
-    }
+//    float y = -height;
+//    if(y<0){
+//        //    UIKeyboardAnimationDurationUserInfoKey//获取键盘升起动画时间
+//        [UIView beginAnimations:nil context:nil];
+//        [UIView setAnimationDuration:[[sender.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey]doubleValue]];
+//        self.view.transform=CGAffineTransformMakeTranslation(0, y);
+//        [UIView commitAnimations];
+//        
+//    }
+
+    [UIView animateWithDuration:[[sender.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey]doubleValue]
+                     animations:^{
+                         _msgViewButtom.constant = height;
+                         [self.view layoutIfNeeded];
+
+                     }];
 }
 
 
@@ -179,10 +202,17 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
  */
 -(void)keyboardWillHide:(NSNotification *)sender{
     
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:[[sender.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey]doubleValue]];
-    self.view.transform=CGAffineTransformIdentity;//重置状态
-    [UIView commitAnimations];
+//    [UIView beginAnimations:nil context:nil];
+//    [UIView setAnimationDuration:[[sender.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey]doubleValue]];
+//    self.view.transform=CGAffineTransformIdentity;//重置状态
+//    [UIView commitAnimations];
+
+    [UIView animateWithDuration:[[sender.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey]doubleValue]
+                     animations:^{
+                         _msgViewButtom.constant = 0;
+                         [self.view layoutIfNeeded];
+
+                     }];
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{

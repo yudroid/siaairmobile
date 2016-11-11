@@ -107,6 +107,13 @@
 		84BA54FD1DA256940037198F /* airmobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BA54FC1DA256940037198F /* airmobileTests.m */; };
 		84BA55081DA256950037198F /* airmobileUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BA55071DA256950037198F /* airmobileUITests.m */; };
 		EF83C19148C2E7B85CE63B08 /* libPods-airmobileUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8CFFB110A86FE6AFFEBBEDD /* libPods-airmobileUITests.a */; };
+		F70893E11DD2EC1B00135540 /* FlightDelaysViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F70893DF1DD2EC1B00135540 /* FlightDelaysViewController.m */; };
+		F70893E21DD2EC1B00135540 /* FlightDelaysViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F70893E01DD2EC1B00135540 /* FlightDelaysViewController.xib */; };
+		F70893E61DD2ECAD00135540 /* FlightDelaysDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F70893E41DD2ECAD00135540 /* FlightDelaysDetailViewController.m */; };
+		F70893E71DD2ECAD00135540 /* FlightDelaysDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F70893E51DD2ECAD00135540 /* FlightDelaysDetailViewController.xib */; };
+		F70893EB1DD2F66700135540 /* FlightDelaysTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F70893E91DD2F66700135540 /* FlightDelaysTableViewCell.m */; };
+		F70893EC1DD2F66700135540 /* FlightDelaysTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F70893EA1DD2F66700135540 /* FlightDelaysTableViewCell.xib */; };
+		F747F9361DD2B3B90099E7AF /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F747F9351DD2B3B90099E7AF /* libsqlite3.0.tbd */; };
 		F74902621DC71202005B193D /* DayOnDutyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902601DC71202005B193D /* DayOnDutyViewController.m */; };
 		F74902631DC71202005B193D /* DayOnDutyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F74902611DC71202005B193D /* DayOnDutyViewController.xib */; };
 		F74902931DC82B1F005B193D /* CommonAbnormalityReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902921DC82B1F005B193D /* CommonAbnormalityReportViewController.m */; };
@@ -424,6 +431,16 @@
 		B40A6E3BB15FEF8D72885961 /* libPods-airmobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-airmobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4CB8290AC5A124080793599 /* Pods-airmobileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-airmobileTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-airmobileTests/Pods-airmobileTests.release.xcconfig"; sourceTree = "<group>"; };
 		C8CF004928F1770818C25801 /* libPods-airmobileTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-airmobileTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F70893DE1DD2EC1B00135540 /* FlightDelaysViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightDelaysViewController.h; sourceTree = "<group>"; };
+		F70893DF1DD2EC1B00135540 /* FlightDelaysViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightDelaysViewController.m; sourceTree = "<group>"; };
+		F70893E01DD2EC1B00135540 /* FlightDelaysViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightDelaysViewController.xib; sourceTree = "<group>"; };
+		F70893E31DD2ECAD00135540 /* FlightDelaysDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightDelaysDetailViewController.h; sourceTree = "<group>"; };
+		F70893E41DD2ECAD00135540 /* FlightDelaysDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightDelaysDetailViewController.m; sourceTree = "<group>"; };
+		F70893E51DD2ECAD00135540 /* FlightDelaysDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightDelaysDetailViewController.xib; sourceTree = "<group>"; };
+		F70893E81DD2F66700135540 /* FlightDelaysTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightDelaysTableViewCell.h; sourceTree = "<group>"; };
+		F70893E91DD2F66700135540 /* FlightDelaysTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightDelaysTableViewCell.m; sourceTree = "<group>"; };
+		F70893EA1DD2F66700135540 /* FlightDelaysTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightDelaysTableViewCell.xib; sourceTree = "<group>"; };
+		F747F9351DD2B3B90099E7AF /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		F749025F1DC71202005B193D /* DayOnDutyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayOnDutyViewController.h; sourceTree = "<group>"; };
 		F74902601DC71202005B193D /* DayOnDutyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = DayOnDutyViewController.m; sourceTree = "<group>"; };
 		F74902611DC71202005B193D /* DayOnDutyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayOnDutyViewController.xib; sourceTree = "<group>"; };
@@ -639,6 +656,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F747F9361DD2B3B90099E7AF /* libsqlite3.0.tbd in Frameworks */,
 				6D859A9CB7F46A46E3C321A4 /* libPods-airmobile.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -678,6 +696,7 @@
 		414AFCB9EEEABA248FA28392 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F747F9351DD2B3B90099E7AF /* libsqlite3.0.tbd */,
 				B40A6E3BB15FEF8D72885961 /* libPods-airmobile.a */,
 				C8CF004928F1770818C25801 /* libPods-airmobileTests.a */,
 				A8CFFB110A86FE6AFFEBBEDD /* libPods-airmobileUITests.a */,
@@ -1165,6 +1184,12 @@
 				F792515B1DB6352D006AA119 /* ChatViewController.h */,
 				F792515C1DB6352D006AA119 /* ChatViewController.m */,
 				F7A25D1A1DBDA6B400F36C32 /* ChatViewController.xib */,
+				F70893DE1DD2EC1B00135540 /* FlightDelaysViewController.h */,
+				F70893DF1DD2EC1B00135540 /* FlightDelaysViewController.m */,
+				F70893E01DD2EC1B00135540 /* FlightDelaysViewController.xib */,
+				F70893E31DD2ECAD00135540 /* FlightDelaysDetailViewController.h */,
+				F70893E41DD2ECAD00135540 /* FlightDelaysDetailViewController.m */,
+				F70893E51DD2ECAD00135540 /* FlightDelaysDetailViewController.xib */,
 			);
 			name = Message;
 			sourceTree = "<group>";
@@ -1221,6 +1246,9 @@
 				F792516A1DB63D62006AA119 /* ChatTimeTableViewCell.h */,
 				F792516B1DB63D62006AA119 /* ChatTimeTableViewCell.m */,
 				F792516C1DB63D62006AA119 /* ChatTimeTableViewCell.xib */,
+				F70893E81DD2F66700135540 /* FlightDelaysTableViewCell.h */,
+				F70893E91DD2F66700135540 /* FlightDelaysTableViewCell.m */,
+				F70893EA1DD2F66700135540 /* FlightDelaysTableViewCell.xib */,
 			);
 			name = "消息";
 			sourceTree = "<group>";
@@ -1505,7 +1533,9 @@
 				8450555A1DACF65200400EBF /* login_bg@3x.png in Resources */,
 				845055751DACF65200400EBF /* splash_4@3x.png in Resources */,
 				845055741DACF65200400EBF /* splash_4@2x.png in Resources */,
+				F70893EC1DD2F66700135540 /* FlightDelaysTableViewCell.xib in Resources */,
 				8450555C1DACF65200400EBF /* login_btn@3x.png in Resources */,
+				F70893E21DD2EC1B00135540 /* FlightDelaysViewController.xib in Resources */,
 				8450556C1DACF65200400EBF /* splash@2x.png in Resources */,
 				F792519D1DB85FA0006AA119 /* AddressBookGroupTableViewCell.xib in Resources */,
 				F792515A1DB61D9C006AA119 /* ContactPersonTableViewCell.xib in Resources */,
@@ -1547,6 +1577,7 @@
 				845055701DACF65200400EBF /* splash_2@2x.png in Resources */,
 				845055651DACF65200400EBF /* login_logo@2x.png in Resources */,
 				8450556E1DACF65200400EBF /* splash_1@2x.png in Resources */,
+				F70893E71DD2ECAD00135540 /* FlightDelaysDetailViewController.xib in Resources */,
 				845055671DACF65200400EBF /* login_visible@2x.png in Resources */,
 				F7A25D191DBDA67A00F36C32 /* ContactPersonViewController.xib in Resources */,
 				845055611DACF65200400EBF /* login_icon_lock@2x.png in Resources */,
@@ -1741,6 +1772,7 @@
 				F7EAE1A21DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.m in Sources */,
 				840D15D11DC0C18F005FA910 /* AbnReasonTableViewCell.m in Sources */,
 				F7A25D7E1DBE277500F36C32 /* SJPhotoAlbumsController.m in Sources */,
+				F70893E61DD2ECAD00135540 /* FlightDelaysDetailViewController.m in Sources */,
 				F758C9911DC360BD00556120 /* HomePageViewController.m in Sources */,
 				84183A051DBDB6DF00D7DD86 /* PNBar.m in Sources */,
 				84183A281DBE150E00D7DD86 /* EightMonthRatioView.m in Sources */,
@@ -1799,6 +1831,7 @@
 				F74902C61DC87A34005B193D /* PassenCntModel.m in Sources */,
 				F74902A21DC866CA005B193D /* FlightDetailsModel.m in Sources */,
 				84183A091DBDDBD600D7DD86 /* FlightHourViewController.m in Sources */,
+				F70893EB1DD2F66700135540 /* FlightDelaysTableViewCell.m in Sources */,
 				F79251371DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.m in Sources */,
 				F7A25D051DB9E6C900F36C32 /* PsnSafetyContentView.m in Sources */,
 				F7A2A0631DB8D0EE0023F228 /* OverViewContentView.m in Sources */,
@@ -1847,6 +1880,7 @@
 				F74902DB1DC881E9005B193D /* CraftseatCntModel.m in Sources */,
 				F7A25D0F1DBA059800F36C32 /* AbnormalityReportTableViewCell.m in Sources */,
 				84183A341DBF8F2B00D7DD86 /* FlightHourTableViewCell.m in Sources */,
+				F70893E11DD2EC1B00135540 /* FlightDelaysViewController.m in Sources */,
 				F7A2A0651DB8D0EE0023F228 /* ResourceContentView.m in Sources */,
 				F7A25D921DBEF34800F36C32 /* OptionsViewController.m in Sources */,
 				F758C9931DC3632800556120 /* DelayTimeTableViewCell.m in Sources */,
