@@ -113,6 +113,11 @@
 		F70893E71DD2ECAD00135540 /* FlightDelaysDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F70893E51DD2ECAD00135540 /* FlightDelaysDetailViewController.xib */; };
 		F70893EB1DD2F66700135540 /* FlightDelaysTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F70893E91DD2F66700135540 /* FlightDelaysTableViewCell.m */; };
 		F70893EC1DD2F66700135540 /* FlightDelaysTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F70893EA1DD2F66700135540 /* FlightDelaysTableViewCell.xib */; };
+		F70893EF1DD43F9300135540 /* UILabel+Business.m in Sources */ = {isa = PBXBuildFile; fileRef = F70893EE1DD43F9300135540 /* UILabel+Business.m */; };
+		F70893F21DD492AD00135540 /* TagView.m in Sources */ = {isa = PBXBuildFile; fileRef = F70893F11DD492AD00135540 /* TagView.m */; };
+		F70893F41DD492BD00135540 /* TagView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F70893F31DD492BD00135540 /* TagView.xib */; };
+		F70893FC1DD5952F00135540 /* ContactPersonTableViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F70893FB1DD5952F00135540 /* ContactPersonTableViewHeaderView.m */; };
+		F70893FE1DD5955200135540 /* ContactPersonTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F70893FD1DD5955200135540 /* ContactPersonTableViewHeaderView.xib */; };
 		F747F9361DD2B3B90099E7AF /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F747F9351DD2B3B90099E7AF /* libsqlite3.0.tbd */; };
 		F74902621DC71202005B193D /* DayOnDutyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902601DC71202005B193D /* DayOnDutyViewController.m */; };
 		F74902631DC71202005B193D /* DayOnDutyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F74902611DC71202005B193D /* DayOnDutyViewController.xib */; };
@@ -440,6 +445,14 @@
 		F70893E81DD2F66700135540 /* FlightDelaysTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightDelaysTableViewCell.h; sourceTree = "<group>"; };
 		F70893E91DD2F66700135540 /* FlightDelaysTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightDelaysTableViewCell.m; sourceTree = "<group>"; };
 		F70893EA1DD2F66700135540 /* FlightDelaysTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightDelaysTableViewCell.xib; sourceTree = "<group>"; };
+		F70893ED1DD43F9300135540 /* UILabel+Business.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Business.h"; sourceTree = "<group>"; };
+		F70893EE1DD43F9300135540 /* UILabel+Business.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Business.m"; sourceTree = "<group>"; };
+		F70893F01DD492AD00135540 /* TagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagView.h; sourceTree = "<group>"; };
+		F70893F11DD492AD00135540 /* TagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagView.m; sourceTree = "<group>"; };
+		F70893F31DD492BD00135540 /* TagView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagView.xib; sourceTree = "<group>"; };
+		F70893FA1DD5952F00135540 /* ContactPersonTableViewHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactPersonTableViewHeaderView.h; sourceTree = "<group>"; };
+		F70893FB1DD5952F00135540 /* ContactPersonTableViewHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactPersonTableViewHeaderView.m; sourceTree = "<group>"; };
+		F70893FD1DD5955200135540 /* ContactPersonTableViewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactPersonTableViewHeaderView.xib; sourceTree = "<group>"; };
 		F747F9351DD2B3B90099E7AF /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		F749025F1DC71202005B193D /* DayOnDutyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayOnDutyViewController.h; sourceTree = "<group>"; };
 		F74902601DC71202005B193D /* DayOnDutyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = DayOnDutyViewController.m; sourceTree = "<group>"; };
@@ -747,6 +760,9 @@
 				840D15D91DC19B3B005FA910 /* DelayTimeTableViewCell.m */,
 				840D15DB1DC1D6E0005FA910 /* PsnHourTableViewCell.h */,
 				840D15DC1DC1D6E0005FA910 /* PsnHourTableViewCell.m */,
+				F70893F01DD492AD00135540 /* TagView.h */,
+				F70893F11DD492AD00135540 /* TagView.m */,
+				F70893F31DD492BD00135540 /* TagView.xib */,
 			);
 			name = overview;
 			sourceTree = "<group>";
@@ -937,6 +953,8 @@
 				843F4CF71DACCA6D00D73D56 /* HttpsUtils+Business.m */,
 				84ADE6D61DCC8E8700F58A46 /* PersistenceUtils+Business.h */,
 				84ADE6D71DCC8E8700F58A46 /* PersistenceUtils+Business.m */,
+				F70893ED1DD43F9300135540 /* UILabel+Business.h */,
+				F70893EE1DD43F9300135540 /* UILabel+Business.m */,
 			);
 			name = categories;
 			sourceTree = "<group>";
@@ -1237,6 +1255,9 @@
 				F79251561DB61D9C006AA119 /* ContactPersonTableViewCell.h */,
 				F79251571DB61D9C006AA119 /* ContactPersonTableViewCell.m */,
 				F79251581DB61D9C006AA119 /* ContactPersonTableViewCell.xib */,
+				F70893FA1DD5952F00135540 /* ContactPersonTableViewHeaderView.h */,
+				F70893FB1DD5952F00135540 /* ContactPersonTableViewHeaderView.m */,
+				F70893FD1DD5955200135540 /* ContactPersonTableViewHeaderView.xib */,
 				F79251601DB63A10006AA119 /* ChatLeftTableViewCell.h */,
 				F79251611DB63A10006AA119 /* ChatLeftTableViewCell.m */,
 				F79251621DB63A10006AA119 /* ChatLeftTableViewCell.xib */,
@@ -1525,6 +1546,7 @@
 				845055601DACF65200400EBF /* login_icon_invisible@3x.png in Resources */,
 				F7EAE1971DB4776C0060626F /* AbnormalityReportViewController.xib in Resources */,
 				8450556D1DACF65200400EBF /* splash@3x.png in Resources */,
+				F70893F41DD492BD00135540 /* TagView.xib in Resources */,
 				845055681DACF65200400EBF /* login_visible@3x.png in Resources */,
 				845055571DACF65200400EBF /* login_accounts@2x.png in Resources */,
 				840D15E91DC2FBCE005FA910 /* overview_toppsn@2x.png in Resources */,
@@ -1579,6 +1601,7 @@
 				8450556E1DACF65200400EBF /* splash_1@2x.png in Resources */,
 				F70893E71DD2ECAD00135540 /* FlightDelaysDetailViewController.xib in Resources */,
 				845055671DACF65200400EBF /* login_visible@2x.png in Resources */,
+				F70893FE1DD5955200135540 /* ContactPersonTableViewHeaderView.xib in Resources */,
 				F7A25D191DBDA67A00F36C32 /* ContactPersonViewController.xib in Resources */,
 				845055611DACF65200400EBF /* login_icon_lock@2x.png in Resources */,
 				F79251931DB858D9006AA119 /* AddressBookViewController.xib in Resources */,
@@ -1793,6 +1816,7 @@
 				F792514F1DB60BD0006AA119 /* MessageTableViewCell.m in Sources */,
 				846F1DAE1DAA229600C8920B /* DefaultHelper.m in Sources */,
 				841839EF1DBCB87600D7DD86 /* PNGenericChart.m in Sources */,
+				F70893FC1DD5952F00135540 /* ContactPersonTableViewHeaderView.m in Sources */,
 				840D15C11DC044DA005FA910 /* ArrDepFlightHourViewController.m in Sources */,
 				F74902C01DC878C0005B193D /* SummaryModel.m in Sources */,
 				F74902DE1DC8823B005B193D /* ArrivalByHourModel.m in Sources */,
@@ -1832,6 +1856,7 @@
 				F74902A21DC866CA005B193D /* FlightDetailsModel.m in Sources */,
 				84183A091DBDDBD600D7DD86 /* FlightHourViewController.m in Sources */,
 				F70893EB1DD2F66700135540 /* FlightDelaysTableViewCell.m in Sources */,
+				F70893EF1DD43F9300135540 /* UILabel+Business.m in Sources */,
 				F79251371DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.m in Sources */,
 				F7A25D051DB9E6C900F36C32 /* PsnSafetyContentView.m in Sources */,
 				F7A2A0631DB8D0EE0023F228 /* OverViewContentView.m in Sources */,
@@ -1862,6 +1887,7 @@
 				840D15CB1DC0B6DB005FA910 /* AbnormalReasonView.m in Sources */,
 				F7A25D8D1DBE277500F36C32 /* SJPickPhotoCell.m in Sources */,
 				F74902B11DC86978005B193D /* WillReleaseFltModel.m in Sources */,
+				F70893F21DD492AD00135540 /* TagView.m in Sources */,
 				F79251921DB858D9006AA119 /* AddressBookViewController.m in Sources */,
 				F74902CC1DC87B26005B193D /* KeySafegurdModel.m in Sources */,
 				84BA54ED1DA256940037198F /* airmobile.xcdatamodeld in Sources */,

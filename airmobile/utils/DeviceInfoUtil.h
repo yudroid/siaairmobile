@@ -22,11 +22,9 @@
 +(NSInteger)MemoryUsed;// 内存使用量
 +(NSInteger)MemoryAvailable;// 内存剩余量
 +(double) ip6Facto5;// 6到5转换
-+(double) iphoneScreenPPi;//获取设备屏幕PPI
 
-+(double)pxWithDp:(double)dp;//将dp转为px
-+(double)pxWithSp:(double)sp;//将sp转为Px
-+(double)fontSizeWithSp:(double)sp;
 + (double)lengthFitIp6andIp5WithLength:(double)length;//将值转化为iPhone5 尺寸下的值，或者iPhone6 下对应的值
+
++ (BOOL)isPlus;
 
 @end
