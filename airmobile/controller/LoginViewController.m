@@ -221,9 +221,6 @@
     NSString* deviceId = [[ASIdentifierManager sharedManager].advertisingIdentifier UUIDString];
     NSString *deviceInfo = [NSString stringWithFormat:@"%@:%@:iOS:%@",deviceId,deviceId,userName];
 
-    HomePageViewController *homepage = [[HomePageViewController alloc] init];
-    [self.navigationController pushViewController:homepage animated:YES];
-
     [HttpsUtils loginUser:userName pwd:password deviceInfo:deviceInfo success:^(UserInfoModel *user){
         //隐藏忙碌提示
         [ThreadUtils dispatchMain:^{

@@ -44,7 +44,6 @@
     pageControl.pageIndicatorTintColor = [CommonFunction colorFromHex:0X5F16C1F4];
     pageControl.currentPageIndicatorTintColor = [CommonFunction colorFromHex:0XFF16C1F4];
     [self.view addSubview:pageControl];
-
 }
 
 -(void) initTitle
