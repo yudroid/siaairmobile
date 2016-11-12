@@ -20,7 +20,7 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *selectTableArray;
 @property (nonatomic, strong) NSMutableArray *tableArray;
-
+@property (nonatomic, strong) UIButton *sureButton;
 @end
 
 @implementation ContactPersonViewController
@@ -73,15 +73,15 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
 
 
     
-    UIButton *sureButton = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-16-40, 33, 41, 18)];
+    _sureButton = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-16-40, 33, 41, 18)];
 
 
-    sureButton.titleLabel.font = [UIFont fontWithName:@"PingFang SC" size:10];
-    [sureButton setTitle:@"确定(2)" forState:UIControlStateNormal];
-    [sureButton addTarget:self action:@selector(sureButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    [sureButton setBackgroundImage:[UIImage imageNamed:@"PersonSure"] forState:UIControlStateNormal];
+    _sureButton.titleLabel.font = [UIFont fontWithName:@"PingFang SC" size:10];
+    [_sureButton setTitle:@"确定(0)" forState:UIControlStateNormal];
+    [_sureButton addTarget:self action:@selector(sureButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_sureButton setBackgroundImage:[UIImage imageNamed:@"PersonSure"] forState:UIControlStateNormal];
 
-    [self.titleView addSubview:sureButton];
+    [self.titleView addSubview:_sureButton];
 }
 
 -(void)sureButtonClick:(UIButton *)sender
@@ -188,11 +188,13 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     ContactPersonTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.isSelected = !cell.isSelected;
+     DeptInfoModel *depModel = [array objectAtIndex:indexPath.section];
     if(cell.isSelected){
-        
+        [_selectTableArray addObject: [depModel.userArr  objectAtIndex:indexPath.row]];
+    }else{
+        [_selectTableArray removeObject:[depModel.userArr objectAtIndex:indexPath.row]];
     }
-
-
+    [_sureButton setTitle:[NSString stringWithFormat:@"确定(%lu)",(unsigned long)_selectTableArray.count] forState:UIControlStateNormal];
 }
 
 

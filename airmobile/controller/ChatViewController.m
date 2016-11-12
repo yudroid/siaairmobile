@@ -45,7 +45,7 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     user = delegate.userInfoModel;
     
-//    [[MessageService sharedMessageService] resetDialogParam:user.id userId:user.id toId:_chatId type:_chatTypeId];
+    [[MessageService sharedMessageService] resetDialogParam:user.id userId:user.id toId:_chatId type:_chatTypeId];
     _chatArray = [[NSMutableArray alloc] init];
 
     [self initChatMsgData];
@@ -64,14 +64,8 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-}
-
--(void)viewWillAppear{
+    
     [MessageService sharedMessageService].chatDelegate = self;
-}
-
--(void)viewWillDisappear{
-    [MessageService sharedMessageService].chatDelegate = nil;
 }
 
 - (void)tapBgClick{
@@ -239,6 +233,7 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    [MessageService sharedMessageService].chatDelegate = nil;
     [self.view endEditing:YES];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
