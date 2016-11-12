@@ -49,18 +49,12 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
     
     array = [NSArray new];
 
-    DeptInfoModel *model = [[DeptInfoModel alloc]init];
-    model.deptName = @"研发部";
-    UserInfoModel *umodel = [[UserInfoModel alloc]init];
-    umodel.name = @"张三";
-    model.userArr = @[umodel];
-    array = @[model];
     _resultArry = [NSMutableArray array];
     for (NSDictionary *item in array) {
         // 初始时都是折叠状态（bool不能直接放在数组里）
         [_resultArry addObject:[NSNumber numberWithBool:NO]];
     }
-//    [self initTableData];
+    [self initTableData];
 }
 
 -(void)initTitleView
