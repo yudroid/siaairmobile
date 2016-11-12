@@ -18,17 +18,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_flight.png" translatesAutoresizingMaskIntoConstraints="NO" id="HZ1-uv-Alz">
-                        <rect key="frame" x="280" y="0.0" width="30" height="30"/>
+                        <rect key="frame" x="268" y="0.0" width="42" height="42"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="30" id="hQC-vq-mJf"/>
-                            <constraint firstAttribute="width" constant="30" id="qWU-l0-iz4"/>
+                            <constraint firstAttribute="height" constant="42" id="hQC-vq-mJf"/>
+                            <constraint firstAttribute="width" constant="42" id="qWU-l0-iz4"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RightBubble" translatesAutoresizingMaskIntoConstraints="NO" id="PHR-t1-lXk">
-                        <rect key="frame" x="145" y="15" width="125" height="110"/>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我叫张三来自东北" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2LC-Sd-pcW">
-                        <rect key="frame" x="155" y="20" width="100" height="100"/>
+                        <rect key="frame" x="143" y="28.5" width="100" height="100"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="100" id="U2i-TA-qbT"/>
                             <constraint firstAttribute="width" constant="100" id="u5U-sx-7Gg"/>
@@ -37,11 +34,22 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="赵四" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gR-RT-eoY">
+                        <rect key="frame" x="231.5" y="0.0" width="26.5" height="18.5"/>
+                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RightBubble" translatesAutoresizingMaskIntoConstraints="NO" id="PHR-t1-lXk">
+                        <rect key="frame" x="133" y="23.5" width="125" height="110"/>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                 <constraints>
-                    <constraint firstItem="2LC-Sd-pcW" firstAttribute="top" secondItem="PHR-t1-lXk" secondAttribute="top" constant="5" id="KLb-JL-NM7"/>
-                    <constraint firstItem="HZ1-uv-Alz" firstAttribute="top" secondItem="PHR-t1-lXk" secondAttribute="top" constant="-15" id="eda-CO-uWE"/>
+                    <constraint firstItem="HZ1-uv-Alz" firstAttribute="leading" secondItem="4gR-RT-eoY" secondAttribute="trailing" constant="10" id="ScO-qN-Pty"/>
+                    <constraint firstItem="2LC-Sd-pcW" firstAttribute="top" secondItem="PHR-t1-lXk" secondAttribute="top" constant="5" id="cLh-ek-h8P"/>
+                    <constraint firstItem="4gR-RT-eoY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="hwI-x6-sUN"/>
+                    <constraint firstItem="PHR-t1-lXk" firstAttribute="top" secondItem="4gR-RT-eoY" secondAttribute="bottom" constant="5" id="k7b-PV-SS3"/>
                     <constraint firstItem="HZ1-uv-Alz" firstAttribute="leading" secondItem="PHR-t1-lXk" secondAttribute="trailing" constant="10" id="oqU-oV-wq4"/>
                     <constraint firstItem="2LC-Sd-pcW" firstAttribute="trailing" secondItem="PHR-t1-lXk" secondAttribute="trailing" constant="-15" id="thD-74-6b2"/>
                     <constraint firstItem="2LC-Sd-pcW" firstAttribute="leading" secondItem="PHR-t1-lXk" secondAttribute="leading" constant="10" id="tuM-Yb-06W"/>
@@ -55,6 +63,8 @@
                 <outlet property="contentLabel" destination="2LC-Sd-pcW" id="uA6-ZS-EPv"/>
                 <outlet property="contentWidth" destination="u5U-sx-7Gg" id="J9b-vC-SHB"/>
                 <outlet property="headImageView" destination="HZ1-uv-Alz" id="KiS-s1-1p8"/>
+                <outlet property="headerImgeViewTrailing" destination="vM1-YX-iEm" id="Ayt-aT-3gY"/>
+                <outlet property="nameLabelTrailing" destination="oqU-oV-wq4" id="j5M-jh-39A"/>
             </connections>
             <point key="canvasLocation" x="25" y="114.5"/>
         </tableViewCell>

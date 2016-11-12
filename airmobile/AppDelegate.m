@@ -10,6 +10,7 @@
 #import "HomePageService.h"
 #import "MessageService.h"
 #import "PersistenceUtils+Business.h"
+#import "HomePageViewController.h"
 
 @interface AppDelegate ()
 
@@ -25,6 +26,13 @@
     [[HomePageService sharedHomePageService] startService];
     [[MessageService sharedMessageService] startService];
     [PersistenceUtils initTable];
+
+    self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    HomePageViewController *homepage = [[HomePageViewController alloc] init];
+    UINavigationController *nv = [[UINavigationController alloc]initWithRootViewController:homepage];
+    nv.navigationBarHidden= YES;
+    self.window.rootViewController = nv;
+    [self.window makeKeyWindow];
     return YES;
 }
 

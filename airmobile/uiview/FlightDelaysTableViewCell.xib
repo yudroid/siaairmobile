@@ -20,6 +20,9 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rqh-VP-mcr">
                         <rect key="frame" x="10" y="7" width="300" height="128.5"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FlightDelaysTableCellBackground" translatesAutoresizingMaskIntoConstraints="NO" id="6kV-LK-B3b">
+                                <rect key="frame" x="0.0" y="0.0" width="300" height="128"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="【T1航站】发生大面积延误" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wGF-iA-jnm">
                                 <rect key="frame" x="10" y="7" width="282" height="21"/>
                                 <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="15"/>
@@ -39,14 +42,17 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="6kV-LK-B3b" secondAttribute="trailing" id="3jc-2D-qjT"/>
                             <constraint firstItem="Qs5-fE-Tmb" firstAttribute="leading" secondItem="wGF-iA-jnm" secondAttribute="leading" id="45p-JD-Xy0"/>
                             <constraint firstAttribute="trailing" secondItem="wGF-iA-jnm" secondAttribute="trailing" constant="8" id="665-9D-oCp"/>
                             <constraint firstItem="CRm-LV-i9t" firstAttribute="leading" secondItem="wGF-iA-jnm" secondAttribute="leading" id="A1V-pX-fKs"/>
                             <constraint firstItem="wGF-iA-jnm" firstAttribute="top" secondItem="rqh-VP-mcr" secondAttribute="top" constant="7" id="EWm-PX-9Fl"/>
+                            <constraint firstItem="6kV-LK-B3b" firstAttribute="top" secondItem="rqh-VP-mcr" secondAttribute="top" id="EuU-hl-6kV"/>
+                            <constraint firstItem="6kV-LK-B3b" firstAttribute="leading" secondItem="rqh-VP-mcr" secondAttribute="leading" id="T79-bv-aDj"/>
                             <constraint firstItem="wGF-iA-jnm" firstAttribute="leading" secondItem="rqh-VP-mcr" secondAttribute="leading" constant="10" id="UZK-wA-JRW"/>
                             <constraint firstItem="Qs5-fE-Tmb" firstAttribute="top" secondItem="CRm-LV-i9t" secondAttribute="bottom" constant="7" id="iVg-fI-RVC"/>
+                            <constraint firstAttribute="bottom" secondItem="6kV-LK-B3b" secondAttribute="bottom" id="rdU-F3-pPy"/>
                             <constraint firstItem="CRm-LV-i9t" firstAttribute="top" secondItem="wGF-iA-jnm" secondAttribute="bottom" constant="10" id="vib-Fc-qG2"/>
                         </constraints>
                     </view>
@@ -61,10 +67,18 @@
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <connections>
                 <outlet property="authorLabel" destination="CRm-LV-i9t" id="I8q-E9-BHR"/>
+                <outlet property="authorLableBottom" destination="iVg-fI-RVC" id="HbA-Z2-GCh"/>
+                <outlet property="backgroundViewLeading" destination="BFQ-cu-9jn" id="raB-6b-O7H"/>
                 <outlet property="bgView" destination="rqh-VP-mcr" id="Ubq-4C-sWj"/>
                 <outlet property="titleLabel" destination="wGF-iA-jnm" id="L7M-Cj-0Ux"/>
+                <outlet property="titleLabelLeading" destination="UZK-wA-JRW" id="fwQ-AA-w3R"/>
+                <outlet property="titleLabelTop" destination="EWm-PX-9Fl" id="8cl-1M-jdt"/>
+                <outlet property="titleLabelbottom" destination="vib-Fc-qG2" id="3eE-wF-xcW"/>
             </connections>
             <point key="canvasLocation" x="25" y="101.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="FlightDelaysTableCellBackground" width="355" height="84"/>
+    </resources>
 </document>

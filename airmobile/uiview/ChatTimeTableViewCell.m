@@ -12,10 +12,20 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
-    _timeLabel.layer.cornerRadius = 5.0;
+    if ([DeviceInfoUtil isPlus]) {
+        [self adjustPLUS];
+    }
+
+
+
 }
 
+
+-(void)adjustPLUS
+{
+    _timeLabel.font = [UIFont fontWithName:@"PingFang SC" size:px_3(43)];
+
+}
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

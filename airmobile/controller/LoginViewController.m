@@ -15,6 +15,7 @@
 #import "HomePageViewController.h"
 #import "UserInfoModel.h"
 #import "AppDelegate.h"
+#import "DeviceInfoUtil.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
 
@@ -22,7 +23,6 @@
 
 @implementation LoginViewController{
     UIImageView *_bgView;
-    
     UITextField *_accountTF;
     UITextField *_passwordTF;
     UIButton *_loginBtn;
@@ -42,6 +42,7 @@
     
 }
 
+#pragma mark - custom funtion
 // 创建logo的view
 -(void) createLogoView
 {
@@ -60,7 +61,6 @@
     logoImgV.image = [UIImage imageNamed:@"LoginLogo"];
     
     [_bgView addSubview:logoImgV];
-    
 }
 
 - (void)tapClick{
@@ -71,20 +71,15 @@
 // 创建输入框view
 -(void) createInputView
 {
-    
     int y = 339;
     if([DeviceInfoUtil IphoneVersions] == 5){
         y -= 70;
         
     }
-    
     //ipad
     if([DeviceInfoUtil IphoneVersions] == 4){
         y -= 85;
     }
-    
-    
-    
     NSString* userKey = @"taocares_userName";
     NSString* pwdKey = @"taocares_pwd";
     

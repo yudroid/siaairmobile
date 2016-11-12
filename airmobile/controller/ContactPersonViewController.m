@@ -8,6 +8,7 @@
 
 #import "ContactPersonViewController.h"
 #import "ContactPersonTableViewCell.h"
+#import "ContactPersonTableViewHeaderView.h"
 #import "ChatViewController.h"
 #import "PersistenceUtils+Business.h"
 #import "HttpsUtils+Business.h"
@@ -15,17 +16,21 @@
 static const NSString *CONTACTPERSON_TABLECELL_IDENTIFIER = @"CONTACTPERSON_TABLECELL_IDENTIFIER";
 static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSON_TABLECELLHEADER_IDENTIFIER";
 
-@interface ContactPersonViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
-@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@interface ContactPersonViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,ContactPersonTableViewHeaderViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *selectTableArray;
+@property (nonatomic, strong) NSMutableArray *tableArray;
 
 @end
 
 @implementation ContactPersonViewController
 {
     NSArray<DeptInfoModel *> *array;
+
+    NSMutableArray *_resultArry;// 保存数据的展开状态(因为分组很多，所以不能设置一个bool类型记录)
+
     NSDictionary *chat;
+
 }
 
 - (void)viewDidLoad {
@@ -34,16 +39,28 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
     [self initTitleView];
 
     _selectTableArray = [NSMutableArray array];
-    _searchBar.delegate = self;
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.tableFooterView = [[UIView alloc]init];
     [_tableView registerNib:[UINib nibWithNibName:@"ContactPersonTableViewCell" bundle:nil] forCellReuseIdentifier:(NSString *)CONTACTPERSON_TABLECELL_IDENTIFIER];
     [_tableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:(NSString *)CONTACTPERSON_TABLECELLHRADER_IDENTIFIER];
+    [_tableView registerNib:[UINib nibWithNibName:@"ContactPersonTableViewHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:(NSString *)CONTACTPERSON_TABLECELLHRADER_IDENTIFIER];
     // Do any additional setup after loading the view from its nib.
     
     array = [NSArray new];
-    [self initTableData];
+
+    DeptInfoModel *model = [[DeptInfoModel alloc]init];
+    model.deptName = @"研发部";
+    UserInfoModel *umodel = [[UserInfoModel alloc]init];
+    umodel.name = @"张三";
+    model.userArr = @[umodel];
+    array = @[model];
+    _resultArry = [NSMutableArray array];
+    for (NSDictionary *item in array) {
+        // 初始时都是折叠状态（bool不能直接放在数组里）
+        [_resultArry addObject:[NSNumber numberWithBool:NO]];
+    }
+//    [self initTableData];
 }
 
 -(void)initTitleView
@@ -54,12 +71,16 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
     [self titleViewAddTitleText:@"选择联系人"];
     [self titleViewAddBackBtn];
 
-    UIButton *sureButton = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-16-40, 33, 40, 18)];
+
+    
+    UIButton *sureButton = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-16-40, 33, 41, 18)];
+
+
     sureButton.titleLabel.font = [UIFont fontWithName:@"PingFang SC" size:10];
-    [sureButton setTitle:@"确定" forState:UIControlStateNormal];
+    [sureButton setTitle:@"确定(2)" forState:UIControlStateNormal];
     [sureButton addTarget:self action:@selector(sureButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [sureButton setBackgroundImage:[UIImage imageNamed:@"PersonSure"] forState:UIControlStateNormal];
-    sureButton.layer.cornerRadius = 5.0;
+
     [self.titleView addSubview:sureButton];
 }
 
@@ -111,6 +132,8 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
 
 #pragma mark - UITableViewDelegate UITableViewDataSource
 
+
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return [array count];
@@ -118,23 +141,45 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSArray *tempArr = [array objectAtIndex:section].userArr;
-    if(tempArr==nil)
+    if ([[_resultArry objectAtIndex:section] boolValue]) {
+        NSArray *tempArr = [array objectAtIndex:section].userArr;
+        if(tempArr==nil)
+            return 0;
+        return [tempArr count];
+    }else{
         return 0;
-    return [tempArr count];
+    }
+
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 50;
+
+    return 58;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 70.5;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    ContactPersonTableViewHeaderView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:(NSString *)CONTACTPERSON_TABLECELLHRADER_IDENTIFIER];
+    view.delegate =self;
+    view.tag = section;
+    view.open = [[_resultArry objectAtIndex:view.tag] boolValue];;
+    return view;
+}
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+
+
     ContactPersonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)CONTACTPERSON_TABLECELL_IDENTIFIER];
     UserInfoModel *userInfo = [[array objectAtIndex:indexPath.section].userArr objectAtIndex:indexPath.row];
     cell.nameLabel.text = userInfo.name;
     cell.userId = userInfo.id;
+
     return cell;
 }
 
@@ -142,27 +187,27 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     ContactPersonTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    if ([_selectTableArray containsObject:cell]) {
-        [_selectTableArray removeObject:cell];
-        cell.isSelected = NO;
-    }else{
-        [_selectTableArray addObject:cell];
-        cell.isSelected = YES;
-    }
+    cell.isSelected = !cell.isSelected;
+
+
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 20;
-}
 
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+#pragma mark - ContactPersonTableViewHeaderViewDelegate
+-(void)contactPersonTableViewHeaderViewClick:(UIView *)view
 {
-    UITableViewHeaderFooterView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:[array objectAtIndex:section].deptName];
-    if(header==nil)
-        header = [UITableViewHeaderFooterView new];
-    header.textLabel.text = [array objectAtIndex:section].deptName;
-    return header;
+    ContactPersonTableViewHeaderView *headerView = (ContactPersonTableViewHeaderView *)view;
+    headerView.open = !headerView.open;
+        // 通过点击的段数，来获取数组里的bool（对应的展开状态）
+        BOOL bo = [[_resultArry objectAtIndex:view.tag] boolValue];
+        // 把点击段数的状态转换为相反的状态
+        [_resultArry replaceObjectAtIndex:view.tag withObject:[NSNumber numberWithBool:!bo]];
+        // 刷新某个分段（只有这一个刷新分组的方法，所以刷新一组，或者刷新全组都是这样写，NSIndexSet为一个集合）
+
+        //刷新某个 section 里面的 cell 数据
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:view.tag] withRowAnimation:UITableViewRowAnimationAutomatic];
+
+
 }
 
 #pragma mark -searchBarDelegate
