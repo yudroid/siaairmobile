@@ -28,9 +28,9 @@
 
 -(void)bigText:(NSString *)bigText bigFontSize:(CGFloat)bigSize smallText:(NSString *)smallText smallFontSize:(CGFloat)smallSize interval:(CGFloat)interval tagImage:(UIImage *)tagImage{
     _bigLabel.text = bigText;
-    _bigLabel.font = [UIFont fontWithName:@"PingFang SC" size:bigSize];
+    _bigLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:bigSize];
     _smallLabel.text = smallText;
-    _smallLabel.font = [UIFont fontWithName:@"PingFang SC" size:smallSize];
+    _smallLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:smallSize];
     self.interval = interval;
     _tagImageView.image = tagImage;
 
@@ -54,7 +54,7 @@
 -(CGFloat) contentWidth
 {
     float bigLabelwidth = _bigLabel.frame.size.width;
-    float smallViewWidth = _smallView.frame.size.width;
+    float smallViewWidth = _smallView.frame.size.width+4;
     return bigLabelwidth>smallViewWidth?bigLabelwidth:smallViewWidth;
 }
 -(CGFloat)contentHeight

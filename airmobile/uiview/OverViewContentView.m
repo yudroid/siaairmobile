@@ -88,7 +88,7 @@
         UILabel *totalNumLabel = [[UILabel alloc] init ];
         totalNumLabel.text = @"800";
         totalNumLabel.textAlignment = NSTextAlignmentCenter;
-        totalNumLabel.font =  [UIFont fontWithName:@"PingFang SC" size:px2(111)];
+        totalNumLabel.font =  [UIFont fontWithName:@"PingFangSC-Semibold" size:px2(111)];
         maxLabelSize = CGSizeMake(100,50);
         expectSize = [totalNumLabel sizeThatFits:maxLabelSize];
         totalNumLabel.frame = CGRectMake((kScreenWidth - expectSize.width)/2,viewY(progressRound)+((viewHeight(progressRound)-45)/2)-45/4, expectSize.width, 45);
@@ -111,84 +111,58 @@
 
         y = viewY(progressRound)+viewHeight(progressRound)+px_px_2_3(59, 99);
 
+
         //未执行
         TagView *planView = [[NSBundle mainBundle]loadNibNamed:@"TagView" owner:nil options:nil][0];
-        [planView bigText:@"500" bigFontSize:5 smallText:@"计划" smallFontSize:50 interval:10 tagImage:nil];
+        [planView bigText:@"500" bigFontSize:px_px_2_3(73, 123) smallText:@"未执行" smallFontSize:px_px_2_3(30, 50) interval:px_px_2_3(32, 39) tagImage:[UIImage imageNamed:@"status_green"]];
         planView.frame = CGRectMake((kScreenWidth-[planView contentWidth])/2, y, [planView contentWidth], [planView contentHeight]);
         [self addSubview:planView];
 
-//        UILabel *planNum = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2-50, viewY(progressRound)+viewHeight(progressRound)+px2(59), 100, 30)];
-//        planNum.text = @"311";
-//        planNum.textAlignment = NSTextAlignmentCenter;
-//        planNum.font =  [UIFont fontWithName:@"PingFang SC" size:35];
-//        [self addSubview:planNum];
-//
-//        UILabel *planLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2-50, viewHeight(finished)+viewY(finished)+px2(25), 100, 13)];
-//        planLabel.text = @"未执行";
-//        planLabel.textAlignment = NSTextAlignmentCenter;
-//        planLabel.font =  [UIFont fontWithName:@"PingFang SC" size:12];
-//        [self addSubview:planLabel];
+        TagView *finishView = [[NSBundle mainBundle]loadNibNamed:@"TagView" owner:nil options:nil][0];
+        [finishView bigText:@"234" bigFontSize:px_px_2_3(73, 123) smallText:@"已执行" smallFontSize:px_px_2_3(30, 50) interval:px_px_2_3(32, 39) tagImage:[UIImage imageNamed:@"StatusBlue"]];
+        finishView.frame = CGRectMake(viewX(planView)-px_px_2_3(98, 167)-[finishView contentWidth], y, [finishView contentWidth], [finishView contentHeight]);
+        [self addSubview:finishView];
 
 
-//        TagView *finishView = [[NSBundle mainBundle]loadNibNamed:@"TagView" owner:nil options:nil][0];
-//        finishView.bigLabel.text = @"489";
-//        finishView.bigLabel.font = [UIFont fontWithName:@"PingPang SC" size:px_px_2_3(73, 123)];
-//        finishView.smallLabel.font = [UIFont fontWithName:@"PingPang SC" size:px_px_2_3(30, 50)];
-//        finishView.interval = px_px_2_3(25, 39);
-//        finishView.frame = CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
-//        UILabel *finished = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2-150, y, 100, px2(59))];
-//        finished.text = @"489";
-//        finished.textAlignment = NSTextAlignmentCenter;
-//        finished.font =  [UIFont fontWithName:@"PingFang SC" size:px2(73)];
-//        [self addSubview:finished];
-//        
-//        UILabel *finishedLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2-150, viewHeight(finished)+viewY(finished)+px2(25), 100, px2(30))];
-//        finishedLabel.text = @"已执行";
-//        finishedLabel.textAlignment = NSTextAlignmentCenter;
-//        finishedLabel.font =  [UIFont fontWithName:@"PingFang SC" size:12];
-//        [self addSubview:finishedLabel];
-//        
-//
-//        
-//        UILabel *ratio = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2+50, viewY(progressRound)+viewHeight(progressRound)+px2(59), 100, 30)];
-//        ratio.text = @"80%";
-//        ratio.textAlignment = NSTextAlignmentCenter;
-//        ratio.font =  [UIFont fontWithName:@"PingFang SC" size:35];
-//        [self addSubview:ratio];
-//        
-//        UIButton *ratioButton = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth/2+50, viewHeight(finished)+viewY(finished)+px2(25), 100, 40)];
-//        [ratioButton addTarget:self action:@selector(showRatioView:) forControlEvents:(UIControlEventTouchUpInside)];
-//        [self addSubview:ratioButton];
-//        
-//        UILabel *ratioLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2+50, viewHeight(finished)+viewY(finished)+px2(25), 100, 13)];
-//        ratioLabel.text = @"放行正常率";
-//        ratioLabel.textAlignment = NSTextAlignmentCenter;
-//        ratioLabel.font =  [UIFont fontWithName:@"PingFang SC" size:12];
-//        [self addSubview:ratioLabel];
-//        
-//        UILabel *currentStatus = [[UILabel alloc]initWithFrame:CGRectMake((kScreenWidth-px2(342))/2,viewY(planLabel)+viewHeight(planLabel)+px2(44), px2(342), px2(114) )];
-//        currentStatus.text = @"小面积延误";
-//        currentStatus.textAlignment = NSTextAlignmentCenter;
-//        currentStatus.font =  [UIFont fontWithName:@"PingFang SC" size:px2(32)];
-//        currentStatus.textColor = [CommonFunction colorFromHex:0XFFF46970];
-//        UIImageView *currentStatusBackgroundImageView = [[UIImageView alloc]initWithFrame:currentStatus.frame];
-//        currentStatusBackgroundImageView.image = [UIImage imageNamed:@"currentStatusLabel"];
-//        [self addSubview:currentStatusBackgroundImageView];
-//        [self addSubview:currentStatus];
-//        UIImageView *lineImageView = [[UIImageView alloc]initWithFrame:CGRectMake((kScreenWidth-px2(718))/2, viewHeight(currentStatus)+viewY(currentStatus)+px2(29), px2(718), px2(3))];
-//        lineImageView.image = [UIImage imageNamed:@"line"];
-//        [self addSubview:lineImageView];
-//
-//        UIButton *indicateButton = [[UIButton alloc] initWithFrame:CGRectMake(50, 25+25+11+20+30+86*2+30+20+5+13+10+20, kScreenWidth-100, 40)];
-//        [indicateButton addTarget:self action:@selector(showAlterIndicateView:) forControlEvents:(UIControlEventTouchUpInside)];
-//        [self addSubview:indicateButton];
-//        
-//        UITextView *noticeTextView = [[UITextView alloc] initWithFrame:CGRectMake(50,viewY(lineImageView)+viewHeight(lineImageView), kScreenWidth-100, 50)];
-//        noticeTextView.text = @"12:30   今日航班执行总体情况正常，因华东地区天气原因流量控制，前往该地区的航班放行正常率低于75%预计2小时候恢复正常";
-//        noticeTextView.textAlignment = NSTextAlignmentLeft;
-//        noticeTextView.font = [UIFont systemFontOfSize:12];
-//        noticeTextView.editable = NO;
-//        [self addSubview:noticeTextView];
+
+        TagView *ratioView = [[NSBundle mainBundle]loadNibNamed:@"TagView" owner:nil options:nil][0];
+        [ratioView bigText:@"80%" bigFontSize:px_px_2_3(73, 123) smallText:@"放行率" smallFontSize:px_px_2_3(30, 50) interval:px_px_2_3(32, 39) tagImage:[UIImage imageNamed:@"StatusRed"]];
+        ratioView.frame = CGRectMake(viewX(planView)+viewWidth(planView)+px_px_2_3(98, 167), y, [ratioView contentWidth], [ratioView contentHeight]);
+        [self addSubview:ratioView];
+
+
+
+        UIButton *ratioButton = [[UIButton alloc] initWithFrame:ratioView.frame];
+        [ratioButton addTarget:self action:@selector(showRatioView:) forControlEvents:(UIControlEventTouchUpInside)];
+        [self addSubview:ratioButton];
+
+
+        y = viewY(ratioView)+viewHeight(ratioView)+px_px_2_3(44, 71);
+        UILabel *currentStatus = [[UILabel alloc]initWithFrame:CGRectMake((kScreenWidth-px2(342))/2,y, px2(342), px2(114) )];
+        currentStatus.text = @"小面积延误";
+        currentStatus.textAlignment = NSTextAlignmentCenter;
+        currentStatus.font =  [UIFont fontWithName:@"PingFang SC" size:px2(32)];
+        currentStatus.textColor = [CommonFunction colorFromHex:0XFFF46970];
+        UIImageView *currentStatusBackgroundImageView = [[UIImageView alloc]initWithFrame:currentStatus.frame];
+        currentStatusBackgroundImageView.image = [UIImage imageNamed:@"currentStatusLabel"];
+        [self addSubview:currentStatusBackgroundImageView];
+        [self addSubview:currentStatus];
+
+        UIButton *indicateButton = [[UIButton alloc] initWithFrame:currentStatus.frame];
+        [indicateButton addTarget:self action:@selector(showAlterIndicateView:) forControlEvents:(UIControlEventTouchUpInside)];
+        [self addSubview:indicateButton];
+
+        y = viewY(currentStatus)+viewHeight(currentStatus)+px_px_2_3(29, 49);
+        UIImageView *lineImageView = [[UIImageView alloc]initWithFrame:CGRectMake((kScreenWidth-px_px_2_3(718, 1056))/2,y, px2(718), px2(3))];
+        lineImageView.image = [UIImage imageNamed:@"line"];
+        [self addSubview:lineImageView];
+
+        UITextView *noticeTextView = [[UITextView alloc] initWithFrame:CGRectMake(50,viewY(lineImageView)+viewHeight(lineImageView), kScreenWidth-100, 50)];
+        noticeTextView.text = @"12:30   今日航班执行总体情况正常，因华东地区天气原因流量控制，前往该地区的航班放行正常率低于75%预计2小时候恢复正常";
+        noticeTextView.textAlignment = NSTextAlignmentLeft;
+        noticeTextView.font = [UIFont systemFontOfSize:12];
+        noticeTextView.editable = NO;
+        [self addSubview:noticeTextView];
     }
     return self;
 }

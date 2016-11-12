@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *headImage;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (nonatomic, copy) NSString *contentText;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 
 @end

@@ -11,5 +11,6 @@
 @interface ChatRightTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *headImageView;
 @property (nonatomic, copy) NSString *contentText;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 
 @end

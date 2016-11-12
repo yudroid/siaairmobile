@@ -81,19 +81,12 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
     [self titleViewAddBackBtn];
     
 
-//    UIButton *sureButton = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-16-40, 30, 40, 25)];
-//    sureButton.titleLabel.font = [UIFont systemFontOfSize:15];
-//    [sureButton setTitle:@"详情" forState:UIControlStateNormal];
-//    [sureButton addTarget:self action:@selector(groupInfoButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-//    sureButton.backgroundColor = [UIColor orangeColor];
-//    sureButton.layer.cornerRadius = 5.0;
-//    [self.titleView addSubview:sureButton];
 
-    UIButton *sureButton = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-16-40, 30, 40, 25)];
-    sureButton.titleLabel.font = [UIFont systemFontOfSize:15];
+    UIButton *sureButton = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-16-40, 33, 41, 18)];
+    sureButton.titleLabel.font = [UIFont fontWithName:@"PingFang SC" size:10];
     [sureButton setTitle:@"详情" forState:UIControlStateNormal];
     [sureButton addTarget:self action:@selector(groupInfoButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    sureButton.backgroundColor = [UIColor orangeColor];
+    [sureButton setBackgroundImage:[UIImage imageNamed:@"PersonSure"] forState:UIControlStateNormal];
     sureButton.layer.cornerRadius = 5.0;
     if(_chatTypeId==1)
         [self.titleView addSubview:sureButton];

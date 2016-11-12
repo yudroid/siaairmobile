@@ -15,8 +15,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="28" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bit-qx-tSr">
-                    <rect key="frame" x="165.5" y="0.0" width="44.5" height="52"/>
-                    <color key="backgroundColor" red="0.75294117650000003" green="0.75294117650000003" blue="0.75294117650000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <rect key="frame" x="165" y="0.0" width="45" height="52"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="52" id="kY8-PH-OCv"/>
                     </constraints>
@@ -25,7 +24,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Nx-xu-Uoe">
-                    <rect key="frame" x="169" y="60" width="36" height="21"/>
+                    <rect key="frame" x="166" y="60" width="42" height="21"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="占用" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ck-g1-zuc">
                             <rect key="frame" x="6" y="0.0" width="30" height="21"/>
@@ -37,17 +36,12 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="status_green" translatesAutoresizingMaskIntoConstraints="NO" id="KOO-2r-ZFK">
-                            <rect key="frame" x="0.0" y="7.5" width="6" height="6"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="6" id="72d-Dn-Pjl"/>
-                                <constraint firstAttribute="height" constant="6" id="faY-uY-kJ6"/>
-                            </constraints>
+                            <rect key="frame" x="0.0" y="8" width="6" height="6"/>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="KOO-2r-ZFK" firstAttribute="leading" secondItem="6Nx-xu-Uoe" secondAttribute="leading" id="3hC-3s-cCb"/>
-                        <constraint firstAttribute="trailing" secondItem="6ck-g1-zuc" secondAttribute="trailing" id="IHE-tX-zWq"/>
+                        <constraint firstItem="6ck-g1-zuc" firstAttribute="centerX" secondItem="6Nx-xu-Uoe" secondAttribute="centerX" id="MdJ-yM-rJU"/>
                         <constraint firstItem="6ck-g1-zuc" firstAttribute="leading" secondItem="KOO-2r-ZFK" secondAttribute="trailing" id="POl-sw-o47"/>
                         <constraint firstItem="KOO-2r-ZFK" firstAttribute="centerY" secondItem="6Nx-xu-Uoe" secondAttribute="centerY" id="c6r-nK-PlU"/>
                         <constraint firstAttribute="bottom" secondItem="6ck-g1-zuc" secondAttribute="bottom" id="fPa-6C-an4"/>
@@ -59,7 +53,7 @@
             <constraints>
                 <constraint firstItem="6Nx-xu-Uoe" firstAttribute="top" secondItem="Bit-qx-tSr" secondAttribute="bottom" constant="8" id="6ji-7c-R3f"/>
                 <constraint firstItem="Bit-qx-tSr" firstAttribute="top" secondItem="bmk-15-dw9" secondAttribute="top" id="Ei9-68-hpP"/>
-                <constraint firstItem="Bit-qx-tSr" firstAttribute="centerX" secondItem="6Nx-xu-Uoe" secondAttribute="centerX" id="fON-9y-azy"/>
+                <constraint firstItem="6Nx-xu-Uoe" firstAttribute="centerX" secondItem="bmk-15-dw9" secondAttribute="centerX" id="WhH-Tb-8y7"/>
                 <constraint firstItem="Bit-qx-tSr" firstAttribute="centerX" secondItem="bmk-15-dw9" secondAttribute="centerX" id="qkI-oJ-rIb"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -72,7 +66,7 @@
                 <outlet property="smallView" destination="6Nx-xu-Uoe" id="TZd-g4-cpQ"/>
                 <outlet property="tagImageView" destination="KOO-2r-ZFK" id="7cp-tt-knk"/>
             </connections>
-            <point key="canvasLocation" x="-274" y="-272"/>
+            <point key="canvasLocation" x="-274.5" y="-272.5"/>
         </view>
     </objects>
     <resources>
