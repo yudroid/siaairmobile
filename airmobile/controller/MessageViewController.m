@@ -264,11 +264,11 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
     if (indexPath.row ==0) {
         FixedMessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)MESSAGE_FIXTABLECELL_IDENTIFIER];
         cell.headImageView.image = [UIImage imageNamed:@"FlightDelays"];
-        cell.nameLabel.text = @"大面积航班延误";
+        cell.nameLabel.text = @"指令消息提醒";
         return cell;
     }else if (indexPath.row ==1) {
         FixedMessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)MESSAGE_FIXTABLECELL_IDENTIFIER];
-        cell.nameLabel.text = @"群体事件提醒";
+        cell.nameLabel.text = @"航班变更提醒";
         cell.headImageView.image = [UIImage imageNamed:@"EventRemind"];
         return cell;
     }else{

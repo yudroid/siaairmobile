@@ -188,6 +188,9 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     ContactPersonTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.isSelected = !cell.isSelected;
+    if(cell.isSelected){
+        
+    }
 
 
 }
