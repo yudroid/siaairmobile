@@ -991,6 +991,8 @@
 				840D15EF1DC30983005FA910 /* PassengerTopModel.m */,
 				840D15F11DC31F9E005FA910 /* SeatUsedModel.h */,
 				840D15F21DC31F9E005FA910 /* SeatUsedModel.m */,
+				F749029D1DC865D1005B193D /* FlightModel.h */,
+				F749029E1DC865D1005B193D /* FlightModel.m */,
 				F74902641DC82258005B193D /* Flight */,
 				84B941C21DCC63570001F402 /* UserInfoModel.h */,
 				84B941C31DCC63570001F402 /* UserInfoModel.m */,
@@ -1106,7 +1108,6 @@
 		F74902641DC82258005B193D /* Flight */ = {
 			isa = PBXGroup;
 			children = (
-				F74902E21DC88630005B193D /* FlightList */,
 				F74902DF1DC883C2005B193D /* DepartmentByHourModel.h */,
 				F74902E01DC883C2005B193D /* DepartmentByHourModel.m */,
 				F74902DC1DC8823B005B193D /* ArrivalByHourModel.h */,
@@ -1153,15 +1154,6 @@
 				F74902C81DC87AA7005B193D /* NearAndFarTakeUpModel.m */,
 			);
 			name = Flight;
-			sourceTree = "<group>";
-		};
-		F74902E21DC88630005B193D /* FlightList */ = {
-			isa = PBXGroup;
-			children = (
-				F749029D1DC865D1005B193D /* FlightModel.h */,
-				F749029E1DC865D1005B193D /* FlightModel.m */,
-			);
-			name = FlightList;
 			sourceTree = "<group>";
 		};
 		F758C9B51DC4373F00556120 /* UserInfo */ = {

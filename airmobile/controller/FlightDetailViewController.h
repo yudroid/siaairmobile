@@ -11,4 +11,5 @@
 
 @interface FlightDetailViewController : RootViewController
 
+@property (nonatomic,assign) int flightId;
 @end

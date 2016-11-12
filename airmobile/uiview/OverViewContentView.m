@@ -12,6 +12,9 @@
 #import "TagView.h"
 
 @implementation OverViewContentView
+{
+    
+}
 
 
 -(id)initWithFrame:(CGRect)frame delegate:(id<OverviewContentViewDelegate>)delegate

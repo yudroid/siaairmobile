@@ -7,15 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-@class FlightProcessModel;
+#import "FlightModel.h"
 
 @interface FlightFilterTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *carftModelLabel;//机型
-    @property (weak, nonatomic) IBOutlet UILabel *flightLabel;
-    @property (weak, nonatomic) IBOutlet UIImageView *FlightImageView;
-@property (weak, nonatomic) IBOutlet UIView *middleView;
 
-@property (nonatomic, strong) FlightProcessModel *flightProcessModlel;
 
+-(void) refreshData:(FlightModel *)flight;
 
 @end

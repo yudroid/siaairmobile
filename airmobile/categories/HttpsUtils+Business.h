@@ -48,13 +48,16 @@
 +(void) setPassword:(NSString*) password;
 
 
+
+
 /**
- *  航班列表
- *
- *  @parm <#parm#> <#description#>
- *
+ 根据条件查询航班列表信息
+
+ @param conditions 查询条件：flightNum：搜索的内容（模糊查询） screenRegion:区域筛选 screenModel：性质筛选 screenState：状态筛选 startSize：分页的起始页 allSize：每页的数据
+ @param success 成功处理
+ @param failue 异常处理
  */
-+(void)flightListSuccess:(void(^)(id))success failure:(void (^)(NSError *))failue;
++(void)queryFlightList:(NSDictionary *)conditions success:(void(^)(id))success failure:(void (^)(NSError *))failue;
 
 
 
@@ -81,5 +84,19 @@
 +(void)saveGroupInfo:(NSDictionary *)groupInfo success:(void (^) (id)) success;
 
 +(void)getGroupInfo:(long)groupId;
+
+
+/**
+ <#Description#>
+
+ @param flightId <#flightId description#>
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)getFlightDetail:(int)flightId success:(void (^)(id))success failure:(void (^)(id))failure;
+
++(void)getDispatchDetail:(int)flightId success:(void (^)(id))success failure:(void (^)(id))failure;
+
++(void)getSpecialDetail:(int)flightId success:(void (^)(id))success failure:(void (^)(id))failure;
 
 @end

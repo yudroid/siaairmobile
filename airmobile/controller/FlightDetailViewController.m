@@ -13,6 +13,7 @@
 #import "FlightDetailSafeguardTableViewCell.h"
 #import "FlightDetailAirLineCollectionViewCell.h"
 #import "UIViewController+Reminder.h"
+#import "HttpsUtils+Business.h"
 
 static const NSString *FLIGHTDETAIL_TABLECELL_IDENTIFIER = @"FLIGHTDETAIL_TABLECELL_IDENTIFIER";
 static const NSString *FLIGHTDETAIL_SAFEGUARDTABLECELL_IDENTIFIER = @"FLIGHTDETAIL_SAFEGUARDTABLECELL_IDENTIFIER";
@@ -43,6 +44,8 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self loadData];
     
     //titleView订制
     [self titleViewInitWithHight:64];
@@ -202,14 +205,9 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
     sender.backgroundColor = [UIColor grayColor];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)loadData
+{
+    [HttpsUtils ];
 }
-*/
 
 @end

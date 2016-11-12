@@ -31,11 +31,24 @@ static  NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_IDETIF
 @implementation FlightViewController
 {
     FlightFilterView *filterView;
+    NSMutableArray<FlightModel *> *dataArray;
+    int startIndex;
+    int pagesize;
+    NSString *flightNo;//搜索的内容（模糊查询）
+    NSString *flightRegion;//区域筛选
+    NSString *flightType;//性质筛选
+    NSString *flightStatus;//状态筛选
 }
 
 - (void)viewDidLoad {
 
     [super viewDidLoad];
+    
+    // 优先加载数据，存在网络延迟，认为会在视图加载完成后返回结果
+    startIndex = 0;
+    pagesize = 20;
+    dataArray = [NSMutableArray array];
+    
     [self initTitleView];
     //TabBer自定义
     self.tabBarView = [[TabBarView alloc] initTabBarWithModel:TabBarBgModelHomePage
@@ -67,7 +80,6 @@ static  NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_IDETIF
     //添加上拉加载
     _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self
                                                           refreshingAction:@selector(loadMoreNetwork)];
-
 }
 
 
@@ -139,20 +151,69 @@ static  NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_IDETIF
 
 -(void)UpdateNetwork
 {
-    [HttpsUtils flightListSuccess:^(id responseItem) {
-        FlightModel *model = [[FlightModel alloc]init];
+    NSDictionary *conds = [[NSDictionary alloc] initWithObjectsAndKeys:flightNo,@"search_flightNO",flightRegion,@"search_region",flightType,@"search_model",flightStatus,@"search_state",startIndex,@"start",pagesize,@"length", nil];
+    [HttpsUtils queryFlightList:conds success:^(id responseObj) {
+        // 数据加载完成
         [_tableView.mj_header endRefreshing];
+        if(![responseObj isKindOfClass:[NSDictionary class]]){
+            return;
+        }
+        FlightModel *flight = nil;
+        for(id item in responseObj){
+            flight = [FlightModel new];
+            [self copyToFlightModel:flight item:item];
+            [dataArray addObject:flight];
+        }
+        [_tableView reloadData];
+        startIndex +=pagesize;
+        
     } failure:^(NSError *error) {
-
+        NSLog(@"%@",error);
+        [_tableView.mj_header endRefreshing];
     }];
 }
+
 -(void)loadMoreNetwork
 {
-    [HttpsUtils flightListSuccess:^(id responseItem) {
-
+    NSDictionary *conds = [[NSDictionary alloc] initWithObjectsAndKeys:flightNo,@"search_flightNO",flightRegion,@"search_region",flightType,@"search_model",flightStatus,@"search_state",startIndex,@"start",pagesize,@"length", nil];
+    [HttpsUtils queryFlightList:conds success:^(id responseObj) {
+        // 数据加载完成
+        [_tableView.mj_footer endRefreshing];
+        if(![responseObj isKindOfClass:[NSDictionary class]]){
+            return;
+        }
+        FlightModel *flight = nil;
+        for(id item in responseObj){
+            flight = [FlightModel new];
+            [self copyToFlightModel:flight item:item];
+            [dataArray addObject:flight];
+        }
+        [_tableView reloadData];
+        startIndex +=pagesize;
+        
     } failure:^(NSError *error) {
-
+        NSLog(@"%@",error);
+        [_tableView.mj_footer endRefreshing];
     }];
+}
+
+-(void)copyToFlightModel:(FlightModel *)flight item:(id)item
+{
+    flight.id = [[item objectForKey:@""] intValue];// 航班ID
+    flight.fNum = [item objectForKey:@""];//航班号
+    flight.fName= [item objectForKey:@""];//航班名称
+    flight.model= [item objectForKey:@""];//机型
+    flight.seat= [item objectForKey:@""]; //机位
+    flight.sTime= [item objectForKey:@""];//前序航班城市时间
+    flight.mTime= [item objectForKey:@""];//本站时间
+    flight.eTime= [item objectForKey:@""];//后序航班城市时间
+    flight.sCity= [item objectForKey:@""];//前序航班城市
+    flight.mCity= [item objectForKey:@""];//本站
+    flight.eCity= [item objectForKey:@""];//后序航班城市
+    flight.rangeSate= [item objectForKey:@""];
+    flight.region= [item objectForKey:@""];//区域属性
+    flight.fState= [item objectForKey:@""];//航班状态
+    flight.special= [item objectForKey:@""];//是否特殊航班 0:普通 1：特殊
 }
 
 #pragma mark - EVENT
@@ -188,7 +249,7 @@ static  NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_IDETIF
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return [dataArray count];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -197,14 +258,12 @@ static  NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_IDETIF
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    FlightModel *flight = [dataArray objectAtIndex:indexPath.row];
     FlightFilterTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TABLEVIEWCELL_IDETIFIER ];
     if (cell==nil) {
         cell= [[NSBundle mainBundle] loadNibNamed:@"FlightFilterTableViewCell" owner:nil options:nil][0];
     }
-    if (indexPath.row%2) {
-        cell.middleView.hidden = YES;
-    }
+    [cell refreshData:flight];
     return cell;
 }
 
@@ -212,6 +271,8 @@ static  NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_IDETIF
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     FlightDetailViewController *flightDetailVC = [[FlightDetailViewController alloc]initWithNibName:@"FlightDetailViewController" bundle:nil];
+    FlightModel *flight = [dataArray objectAtIndex:indexPath.row];
+    flightDetailVC.flightId = flight.id;
     [self.navigationController pushViewController:flightDetailVC animated:YES];
 }
 
