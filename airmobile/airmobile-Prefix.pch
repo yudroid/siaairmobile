@@ -17,10 +17,13 @@
 #define px2(x)  ((x)/2.0)
 #define px_3(x) ((x)/3.0)
 #define px_px_2_3(x,y) ((kScreenWidth==414)?((y)/3.0):((x)/2.0))
+#define plus_ratio ((kScreenWidth==414)?(1.104):(1))
 #define viewX(view)  (view.frame.origin.x)
 #define viewY(view)  (view.frame.origin.y)
 #define viewWidth(view) (view.frame.size.width)
 #define viewHeight(view) (view.frame.size.height)
+#define viewBotton(view) (((view).frame.size.height)+((view).frame.origin.y))
+#define viewTrailing(view) (((view).frame.size.width)+((view).frame.origin.x))
 #define localAirportIata @"SZX"
 #define baseUriTest @"https://192.168.163.126:443"
 #define baseUriPro  @"https://192.168.163.126:443"
