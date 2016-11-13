@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "RootViewController.h"
 
-@interface PassengerTopViewController : RootViewController<UITableViewDataSource,UITableViewDelegate>
+@interface PassengerTopViewController : RootViewController
 
 @end

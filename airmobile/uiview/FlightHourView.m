@@ -24,36 +24,49 @@
         _flightHourType = type;
         [self initData];
         
-        UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(20, 20, kScreenWidth-40, 200)];
+        UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, kScreenWidth-20, 220)];
         [self addSubview:topBgView];
+
+        UIImageView *topBgBackgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, viewWidth(topBgView), viewHeight(topBgView))];
+        topBgBackgroundImageView.image = [UIImage imageNamed:@"HourChartBackground"];
+        [topBgView addSubview:topBgBackgroundImageView];
         
-        CAGradientLayer *gradient = [CAGradientLayer layer];
-        gradient.frame = topBgView.bounds;
-        gradient.colors = [NSArray arrayWithObjects:(id)[[CommonFunction colorFromHex:0XFF3AB2F7] CGColor], (id)[[CommonFunction colorFromHex:0XFF936DF7] CGColor], nil];
-        [topBgView.layer insertSublayer:gradient atIndex:0];
-        [topBgView.layer setCornerRadius:8.0];// 将图层的边框设置为圆脚
-        [topBgView.layer setMasksToBounds:YES];// 隐藏边界
+//        CAGradientLayer *gradient = [CAGradientLayer layer];
+//        gradient.frame = topBgView.bounds;
+//        gradient.colors = [NSArray arrayWithObjects:(id)[[CommonFunction colorFromHex:0XFF3AB2F7] CGColor], (id)[[CommonFunction colorFromHex:0XFF936DF7] CGColor], nil];
+//        [topBgView.layer insertSublayer:gradient atIndex:0];
+//        [topBgView.layer setCornerRadius:8.0];// 将图层的边框设置为圆脚
+//        [topBgView.layer setMasksToBounds:YES];// 隐藏边界
         
-        UILabel *passengerTtitle = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, topBgView.frame.size.width-100, 23)];
+        UILabel *passengerTtitle = [[UILabel alloc] initWithFrame:CGRectMake(16, 5, viewWidth(topBgView)-100, 11)];
+        passengerTtitle.font = [UIFont fontWithName:@"PingFangSC-Regular" size:27/2];
+        passengerTtitle.textColor = [UIColor whiteColor];
+        [topBgView addSubview:passengerTtitle];
         if(type == ArrFlightHour){
             passengerTtitle.text = @"进港航班小时分布";
         }else{
             passengerTtitle.text = @"出港航班小时分布";
         }
-        passengerTtitle.font = [UIFont systemFontOfSize:18];
-        passengerTtitle.textColor = [UIColor whiteColor];
-        [topBgView addSubview:passengerTtitle];
-        
-        UILabel *planLabel = [CommonFunction addLabelFrame:CGRectMake(20, 5+23 , 100, 15) text:@"计划" font:15 textAlignment:NSTextAlignmentLeft colorFromHex:0xFFFFFFFF];
+
+
+        UIImageView *planImageView = [[UIImageView alloc]initWithFrame:CGRectMake(16, viewBotton(passengerTtitle)+ 8, 11, 11)];
+        planImageView.image = [UIImage imageNamed:@"ChartSign"];
+        [topBgView addSubview:planImageView];
+        UILabel *planLabel = [CommonFunction addLabelFrame:CGRectMake(viewTrailing(planImageView), viewY(planImageView), 100, 11) text:@"计划航班数" font:13 textAlignment:NSTextAlignmentLeft colorFromHex:0xB5FEFEFE];
         [topBgView addSubview:planLabel];
-        
-        UILabel *realLabel = [CommonFunction addLabelFrame:CGRectMake(20+100, 5+23 , 100, 15) text:@"实际" font:15 textAlignment:NSTextAlignmentLeft colorFromHex:0xFFFFFFFF];
+
+
+        UIImageView *realImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewTrailing(planLabel), viewY(planImageView), 11, 11)];
+        realImageView.image = [UIImage imageNamed:@"ChartSign"];
+        [topBgView addSubview:realImageView];
+        UILabel *realLabel = [CommonFunction addLabelFrame:CGRectMake(viewTrailing(realImageView), viewY(realImageView) , 100, 11) text:@"实际航班数" font:13 textAlignment:NSTextAlignmentLeft colorFromHex:0xB5FEFEFE];
         [topBgView addSubview:realLabel];
         
+        UIImageView *lineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(planImageView),viewBotton(planLabel)+8, viewWidth(topBgView)-32, 0.5)];
+        lineImageView.image = [UIImage imageNamed:@"Line"];
+        [topBgView addSubview:lineImageView];
         
-        [topBgView addSubview:[CommonFunction addLine:CGRectMake(20, 5+23+15, topBgView.frame.size.width-40, 1) color:[CommonFunction colorFromHex:0XFF3FDFB7]]];
-        
-        UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(20, 5+23+15+2, topBgView.frame.size.width-40, 12) text:@"100" font:12 textAlignment:NSTextAlignmentRight colorFromHex:0xFFFFFFFF];
+        UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(20, viewBotton(lineImageView)+4, topBgView.frame.size.width-40, 12) text:@"100" font:11 textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF];
         [topBgView addSubview:maxLabel];
         
         
@@ -115,21 +128,28 @@
         barChart.barBackgroundColor = [UIColor clearColor];
         
         [barChart strokeChart];
+
         
         [topBgView addSubview:barChart];
         [topBgView addSubview:lineChart];
 
         
         if(type==DepFlightHour){
-            [topBgView addSubview:[CommonFunction addLine:CGRectMake(20, topBgView.frame.size.height-70-10-15, topBgView.frame.size.width-40, 1) color:[CommonFunction colorFromHex:0XFFFF7095]]];
+
+            UIImageView *redLine = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(planImageView), viewY(barChart)+viewHeight(barChart)/2, viewWidth(lineImageView), 15)];
+            redLine.image = [UIImage imageNamed:@"HourRedLine"];
+            [topBgView addSubview:redLine];
         }
         
-        [topBgView addSubview:[CommonFunction addLabelFrame:CGRectMake(20, topBgView.frame.size.height-(10+15+12), topBgView.frame.size.width-40, 12) text:@"0" font:12 textAlignment:NSTextAlignmentRight colorFromHex:0xFFFFFFFF]];
-        
-        [topBgView addSubview:[CommonFunction addLine:CGRectMake(20, topBgView.frame.size.height-10-15, topBgView.frame.size.width-40, 1) color:[CommonFunction colorFromHex:0XFF3FDFB7]]];
+        [topBgView addSubview:[CommonFunction addLabelFrame:CGRectMake(20, topBgView.frame.size.height-(10+15+12), topBgView.frame.size.width-40, 12) text:@"0" font:11 textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF]];
+
+        UIImageView *downLineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(planImageView),viewHeight(topBgView)-10-15, viewWidth(topBgView)-32, 0.5)];
+        downLineImageView.image = [UIImage imageNamed:@"Line"];
+        [topBgView addSubview:downLineImageView];
+
         
         //小时分布表格
-        UITableView *flightHourTableView = [[UITableView alloc]initWithFrame:CGRectMake(20, 20+200+20, kScreenWidth-40, kScreenHeight-10-(65+20+200+20+40))];
+        UITableView *flightHourTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, viewBotton(topBgView), kScreenWidth, kScreenHeight-10-(65+viewBotton(topBgView)+40+5))];
         flightHourTableView.delegate = self;
         flightHourTableView.dataSource = self;
         flightHourTableView.showsVerticalScrollIndicator = NO;
@@ -142,7 +162,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 30;
+    return px2(108);
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [hourArray count];

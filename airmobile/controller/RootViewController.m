@@ -25,6 +25,8 @@
     return UIStatusBarStyleLightContent;
 }
 
+
+
 #pragma mark TitleView方法
 
 -(void)titleViewInitWithHight:(CGFloat)high
@@ -61,6 +63,7 @@
 - (void)backButtonClick{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 
 #pragma mark Tabbar方法
 

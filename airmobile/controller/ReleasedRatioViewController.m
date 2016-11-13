@@ -13,6 +13,13 @@
 @end
 
 @implementation ReleasedRatioViewController
+{
+    UIImageView *tenDayBackgroundImageView;
+    UIImageView *eightMonthBackgroundImageView;
+    UILabel *tenDayLabel;
+    UILabel *eightMonthLabel;
+    UIView *segmentedView;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,56 +29,66 @@
 //    UIImageView *tenDayImageView = [CommonFunction imageView:nil frame:CGRectMake(0, 0, 120, 35)];
 //    tenDayImageView.center = CGPointMake(kScreenWidth/2-120/2, 65+10+35/2);
 //    [self.view addSubview:tenDayImageView];
-    tenDayImageView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 120, 35)];
-    tenDayImageView.center = CGPointMake(kScreenWidth/2-120/2, 65+10+35/2);
-    tenDayImageView.backgroundColor = [CommonFunction colorFromHex:0xFF17B9EA];
-    [tenDayImageView.layer setCornerRadius:8.0f];
-    [self.view addSubview:tenDayImageView];
+    float y = 15+65;
+    segmentedView = [[UIView alloc]initWithFrame:CGRectMake(10, y, kScreenWidth-2*10, 34)];
+    [self.view addSubview:segmentedView];
+    UIImageView *segmentedBackgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, viewWidth(segmentedView), viewHeight(segmentedView))];
+    segmentedBackgroundImageView.image = [UIImage imageNamed:@"segmentedBackground"];
+    [segmentedView addSubview:segmentedBackgroundImageView];
+    tenDayImageView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, viewWidth(segmentedView)/2, viewHeight(segmentedView))];
+    [segmentedView addSubview:tenDayImageView];
+
+    //10天的背景
+    tenDayBackgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, viewWidth(tenDayImageView), viewHeight(tenDayImageView))];
+    tenDayBackgroundImageView.image = [UIImage imageNamed:@"SegmentedLeft"];
+    [tenDayImageView addSubview:tenDayBackgroundImageView];
+    //10天的Label
+    tenDayLabel = [CommonFunction addLabelFrame:CGRectMake(0, 0, viewWidth(tenDayImageView) , viewHeight(tenDayImageView)) text:@"最近10天" font:33/2 textAlignment:(NSTextAlignmentCenter) colorFromHex:0xFFFFFFFF];
+    [tenDayImageView addSubview:tenDayLabel];
     
-    UILabel *tenDayLabel = [CommonFunction addLabelFrame:CGRectMake(0, 0, 120, 35) text:@"最近10天" font:20 textAlignment:(NSTextAlignmentCenter) colorFromHex:0xFF1B1B1B];
-    tenDayLabel.center = CGPointMake(kScreenWidth/2-120/2, 65+10+35/2);
-    [self.view addSubview:tenDayLabel];
-    
-    UIButton *tenDayButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 120, 35)];
-    tenDayButton.center = CGPointMake(kScreenWidth/2-120/2, 65+10+35/2);
+    UIButton *tenDayButton = [[UIButton alloc] initWithFrame:tenDayLabel.frame];
     [tenDayButton addTarget:self action:@selector(buttonClickedWithSender:) forControlEvents:(UIControlEventTouchUpInside)];
     tenDayButton.tag = 0;
-    [self.view addSubview:tenDayButton];
+    [tenDayImageView addSubview:tenDayButton];
     
-//    UIImageView *eightMonthImageView = [CommonFunction imageView:nil frame:CGRectMake(0, 0, 120, 35)];
-    eightMonthImageView = [[UIView alloc ] initWithFrame:CGRectMake(0, 0, 120, 35)];
-    eightMonthImageView.center = CGPointMake(kScreenWidth/2+120/2, 65+10+35/2);
-    [self.view addSubview:eightMonthImageView];
-    
-    UILabel *eightMonthLabel = [CommonFunction addLabelFrame:CGRectMake(0, 0, 120, 35) text:@"近8个月" font:20 textAlignment:(NSTextAlignmentCenter) colorFromHex:0xFF1B1B1B];
-    eightMonthLabel.center = CGPointMake(kScreenWidth/2+120/2, 65+10+35/2);
-    [self.view addSubview:eightMonthLabel];
-    
-    UIButton *eightMonthButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 120, 35)];
-    eightMonthButton.center = CGPointMake(kScreenWidth/2+120/2, 65+10+35/2);
+    //8个月
+    eightMonthImageView = [[UIView alloc ] initWithFrame:CGRectMake(viewWidth(tenDayImageView), 0, viewWidth(tenDayImageView), viewHeight(tenDayImageView))];
+    [segmentedView addSubview:eightMonthImageView];
+    //背景
+    eightMonthBackgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, viewWidth(eightMonthImageView), viewHeight(eightMonthImageView))];
+    eightMonthBackgroundImageView.image = nil;
+    [eightMonthImageView addSubview:eightMonthBackgroundImageView];
+
+    eightMonthLabel = [CommonFunction addLabelFrame:CGRectMake(0, 0, viewWidth(tenDayLabel), viewHeight(tenDayLabel)) text:@"近8个月" font:33/2 textAlignment:(NSTextAlignmentCenter) colorFromHex:0xFF17B9E8];
+    [eightMonthImageView addSubview:eightMonthLabel];
+
+    UIButton *eightMonthButton = [[UIButton alloc] initWithFrame:eightMonthLabel.frame];
     [eightMonthButton addTarget:self action:@selector(buttonClickedWithSender:) forControlEvents:(UIControlEventTouchUpInside)];
     eightMonthButton.tag = 1;
-    [self.view addSubview:eightMonthButton];
- 
+    [eightMonthImageView addSubview:eightMonthButton];
+
     [self showTenDayRatioView];
 }
 
 -(void) buttonClickedWithSender:(UIButton *)sender
 {
-    tenDayImageView.backgroundColor = [CommonFunction colorFromHex:0X7FFFFFFF];
-    eightMonthImageView.backgroundColor = [CommonFunction colorFromHex:0X7FFFFFFF];
-    
-    [self removeAllView];
-    
+    tenDayBackgroundImageView.image = nil;
+    eightMonthBackgroundImageView.image = nil;
+
     switch (sender.tag)
     {
         case 0:
-            tenDayImageView.backgroundColor = [CommonFunction colorFromHex:0xFF17B9EA];
+            tenDayBackgroundImageView.image = [UIImage imageNamed:@"SegmentedLeft"];
+            eightMonthLabel.textColor = [CommonFunction colorFromHex:0xFF17B9E8];
+            tenDayLabel.textColor = [CommonFunction colorFromHex:0xFFFFFFFF];
+
             [self showTenDayRatioView];
             break;
             
         case 1:
-            eightMonthImageView.backgroundColor = [CommonFunction colorFromHex:0xFF17B9EA];
+            eightMonthBackgroundImageView.image = [UIImage imageNamed:@"SegmentedRight"];
+            tenDayLabel.textColor = [CommonFunction colorFromHex:0xFF17B9E8];
+            eightMonthLabel.textColor = [CommonFunction colorFromHex:0xFFFFFFFF];
             [self showEightMonthRatioView];
             break;
             
@@ -90,7 +107,7 @@
     }
     else
     {
-        tenDayRatioView = [[TenDayRatioView alloc] initWithFrame:CGRectMake(0, 65+10+35, kScreenWidth, kScreenHeight-110)];
+        tenDayRatioView = [[TenDayRatioView alloc] initWithFrame:CGRectMake(0,viewBotton(segmentedView) +13 , kScreenWidth, kScreenHeight-110)];
         [self.view addSubview:tenDayRatioView];
     }
 }
@@ -103,7 +120,7 @@
     }
     else
     {
-        eightMonthRatioView = [[EightMonthRatioView alloc] initWithFrame:CGRectMake(0, 110, kScreenWidth, kScreenHeight-110)];
+        eightMonthRatioView = [[EightMonthRatioView alloc] initWithFrame:CGRectMake(0,viewBotton(segmentedView) +13 , kScreenWidth, kScreenHeight-110)];
         [self.view addSubview:eightMonthRatioView];
     }
 }

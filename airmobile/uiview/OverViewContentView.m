@@ -68,8 +68,8 @@
         y= viewHeight(chiefButton)+viewY(chiefButton)+px_px_2_3(52, 89);
         //圆圈
         RoundProgressView *progressRound = [[RoundProgressView alloc]
-                                            initWithCenter:CGPointMake(kScreenWidth/2, y+px_px_2_3(86*2, 680))
-                                            radius:px_px_2_3(86*2, 680) aboveColos:@[(__bridge id)[CommonFunction colorFromHex:0XFFc62dec].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFF46bacd].CGColor ] belowColos:@[(__bridge id)[CommonFunction colorFromHex:0XFFFF9F38].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFFFFCD21].CGColor ] start:270 end:271 clockwise:NO];
+                                            initWithCenter:CGPointMake(kScreenWidth/2, y+px_px_2_3(86*2, 680/2))
+                                            radius:px_px_2_3(95*2, (680-61)/2) aboveColos:@[(__bridge id)[CommonFunction colorFromHex:0XFFc62dec].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFF46bacd].CGColor ] belowColos:@[(__bridge id)[CommonFunction colorFromHex:0XFFFF9F38].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFFFFCD21].CGColor ] start:270 end:271 clockwise:NO];
         [self addSubview:progressRound];
         
         normalProportion = 0.6;
@@ -134,27 +134,24 @@
         [self addSubview:ratioButton];
 
 
-        y = viewY(ratioView)+viewHeight(ratioView)+px_px_2_3(44, 71);
+        y = viewY(ratioView)+viewHeight(ratioView)+px_px_2_3(20, 30);
         UILabel *currentStatus = [[UILabel alloc]initWithFrame:CGRectMake((kScreenWidth-px2(342))/2,y, px2(342), px2(114) )];
         currentStatus.text = @"小面积延误";
         currentStatus.textAlignment = NSTextAlignmentCenter;
         currentStatus.font =  [UIFont fontWithName:@"PingFang SC" size:px2(32)];
         currentStatus.textColor = [CommonFunction colorFromHex:0XFFF46970];
-        UIImageView *currentStatusBackgroundImageView = [[UIImageView alloc]initWithFrame:currentStatus.frame];
-        currentStatusBackgroundImageView.image = [UIImage imageNamed:@"currentStatusLabel"];
-        [self addSubview:currentStatusBackgroundImageView];
         [self addSubview:currentStatus];
 
         UIButton *indicateButton = [[UIButton alloc] initWithFrame:currentStatus.frame];
         [indicateButton addTarget:self action:@selector(showAlterIndicateView:) forControlEvents:(UIControlEventTouchUpInside)];
         [self addSubview:indicateButton];
 
-        y = viewY(currentStatus)+viewHeight(currentStatus)+px_px_2_3(29, 49);
+        y = viewY(currentStatus)+viewHeight(currentStatus)+px_px_2_3(10, 15);
         UIImageView *lineImageView = [[UIImageView alloc]initWithFrame:CGRectMake((kScreenWidth-px_px_2_3(718, 1056))/2,y, px2(718), px2(3))];
         lineImageView.image = [UIImage imageNamed:@"line"];
         [self addSubview:lineImageView];
 
-        UITextView *noticeTextView = [[UITextView alloc] initWithFrame:CGRectMake(50,viewY(lineImageView)+viewHeight(lineImageView), kScreenWidth-100, 50)];
+        UITextView *noticeTextView = [[UITextView alloc] initWithFrame:CGRectMake(50,viewBotton(lineImageView)+5, kScreenWidth-100,kScreenHeight- viewBotton(lineImageView)-5-49-76)];
         noticeTextView.text = @"12:30   今日航班执行总体情况正常，因华东地区天气原因流量控制，前往该地区的航班放行正常率低于75%预计2小时候恢复正常";
         noticeTextView.textAlignment = NSTextAlignmentLeft;
         noticeTextView.font = [UIFont systemFontOfSize:12];

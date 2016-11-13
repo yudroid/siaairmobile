@@ -34,13 +34,18 @@
     CGFloat y = 64+px2(33);
     
     UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(px2(22), y, kScreenWidth-2*px2(22), 200)];
+    UIImageView *backgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, viewWidth(topBgView), viewHeight(topBgView))];
+    backgroundImageView.image = [UIImage imageNamed:@"chartBlackground"];
+    [topBgView addSubview:backgroundImageView];
     [self.view addSubview:topBgView];
     
-    CAGradientLayer *gradient = [CAGradientLayer layer];
-    gradient.frame = topBgView.bounds;
-    gradient.colors = [NSArray arrayWithObjects:(id)[[CommonFunction colorFromHex:0XFF17B9E8] CGColor], (id)[[CommonFunction colorFromHex:0XFF5684FB] CGColor], nil];
-    [topBgView.layer insertSublayer:gradient atIndex:0];
-    [topBgView.layer setCornerRadius:8.0];// 将图层的边框设置为圆脚
+//    CAGradientLayer *gradient = [CAGradientLayer layer];
+//    gradient.frame = topBgView.bounds;
+//    gradient.colors = [NSArray arrayWithObjects:(id)[[CommonFunction colorFromHex:0XFF17B9E8] CGColor], (id)[[CommonFunction colorFromHex:0XFF5684FB] CGColor], nil];
+//    [topBgView.layer insertSublayer:gradient atIndex:0];
+//    [topBgView.layer setCornerRadius:8.0];// 将图层的边框设置为圆脚
+
+
     [topBgView.layer setMasksToBounds:YES];// 隐藏边界
     
     UILabel *passengerTtitle = [[UILabel alloc] initWithFrame:CGRectMake(px2(33), 5, topBgView.frame.size.width-100, 23)];

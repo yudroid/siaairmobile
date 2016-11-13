@@ -219,7 +219,7 @@
     UILabel *label = [[UILabel alloc]initWithFrame:rect];
     label.textAlignment = textAlignment;
     label.text = text;
-    label.font = [UIFont systemFontOfSize:font];
+    label.font = [UIFont fontWithName:@"PingFangSC-Regular" size:font];
     label.textColor = [CommonFunction colorFromHex:hexColor];
     return label;
 }
