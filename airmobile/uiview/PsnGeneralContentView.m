@@ -46,7 +46,7 @@
         [prTitleView addSubview:[CommonFunction addLabelFrame:CGRectMake(viewTrailing(planImageView)+2, 0, 40, 12) text:@"计划" font:27/2 textAlignment:NSTextAlignmentLeft colorFromHex:0xFFFFFFFF]];
 
         UIImageView *realImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewTrailing(planImageView)+2+40+16, 0, 11, 12)];
-        realImageView.image = [UIImage imageNamed:@"ChartPlanTag"];
+        realImageView.image = [UIImage imageNamed:@"ChartRealTag"];
         [prTitleView addSubview:realImageView];
         [prTitleView addSubview:[CommonFunction addLabelFrame:CGRectMake(viewTrailing(realImageView)+2, 0, 40, 12) text:@"实际" font:27/2 textAlignment:NSTextAlignmentLeft colorFromHex:0xFFFFFFFF]];
         

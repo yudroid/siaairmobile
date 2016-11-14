@@ -17,6 +17,10 @@
     UIView *arrFlightImageView;
     UIImageView *arrFlightBackgroundImageView;
     UILabel *arrFlightLabel;
+
+    UIButton *depFlightButton ;
+    UIButton *arrFlightButton ;
+    UIScrollView *scrollView ;
 }
 
 -(instancetype)initWithFrame:(CGRect)frame delegate:(id<FlightContentViewDelegate>)delegate
@@ -47,7 +51,7 @@
         depFlightLabel = [CommonFunction addLabelFrame:CGRectMake(0, 0, viewWidth(depFlightImageView) , viewHeight(depFlightImageView)) text:@"出港航班" font:33/2 textAlignment:(NSTextAlignmentCenter) colorFromHex:0xFFFFFFFF];
         [depFlightImageView addSubview:depFlightLabel];
 
-        UIButton *depFlightButton = [[UIButton alloc] initWithFrame:depFlightLabel.frame];
+        depFlightButton = [[UIButton alloc] initWithFrame:depFlightLabel.frame];
         [depFlightButton addTarget:self action:@selector(buttonClickedWithSender:) forControlEvents:(UIControlEventTouchUpInside)];
         depFlightButton.tag = 0;
         [depFlightImageView addSubview:depFlightButton];
@@ -62,7 +66,7 @@
         arrFlightLabel = [CommonFunction addLabelFrame:CGRectMake(0, 0, viewWidth(depFlightLabel), viewHeight(depFlightLabel)) text:@"进港航班" font:33/2 textAlignment:(NSTextAlignmentCenter) colorFromHex:0xFF17B9E8];
         [arrFlightImageView addSubview:arrFlightLabel];
 
-        UIButton *arrFlightButton = [[UIButton alloc] initWithFrame:arrFlightLabel.frame];
+        arrFlightButton = [[UIButton alloc] initWithFrame:arrFlightLabel.frame];
         [arrFlightButton addTarget:self action:@selector(buttonClickedWithSender:) forControlEvents:(UIControlEventTouchUpInside)];
         arrFlightButton.tag = 1;
         [arrFlightImageView addSubview:arrFlightButton];
@@ -77,7 +81,7 @@
         explainImageView.image = [UIImage imageNamed:@"Completed"];
         [self addSubview:explainImageView];
 
-        UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, viewBotton(explainImageView)+20, frame.size.width, 250)];
+        scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, viewBotton(explainImageView)+20, frame.size.width, 250)];
         scrollView.delegate = self;
         scrollView.contentSize = CGSizeMake(frame.size.width*2, 250);
         scrollView.backgroundColor = [UIColor clearColor];
@@ -220,7 +224,7 @@
         cancel.attributedText = cancelAttributeString;
         [self addSubview:cancel];
         
-        UIButton *abnButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 30+64+25+250+30+30, frame.size.width, 30)];
+        UIButton *abnButton = [[UIButton alloc] initWithFrame:unusualImageView.frame];
         [abnButton addTarget:self action:@selector(showAbnRsnAndDlyTime:) forControlEvents:(UIControlEventTouchUpInside)];
         [self addSubview:abnButton];
     }
@@ -266,14 +270,15 @@
             depFlightBackgroundImageView.image = [UIImage imageNamed:@"SegmentedLeft"];
             arrFlightLabel.textColor = [CommonFunction colorFromHex:0xFF17B9E8];
             depFlightLabel.textColor = [CommonFunction colorFromHex:0xFFFFFFFF];
+            [scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
 
-//            [self showTenDayRatioView];
             break;
 
         case 1:
             arrFlightBackgroundImageView.image = [UIImage imageNamed:@"SegmentedRight"];
             depFlightLabel.textColor = [CommonFunction colorFromHex:0xFF17B9E8];
             arrFlightLabel.textColor = [CommonFunction colorFromHex:0xFFFFFFFF];
+            [scrollView setContentOffset:CGPointMake(viewWidth(scrollView), 0) animated:YES];
 //            [self showEightMonthRatioView];
             break;
 
@@ -290,16 +295,22 @@
  */
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    NSInteger page = scrollView.contentOffset.x/kScreenWidth;
-    NSLog(@"%ld",page);
-    [pageControl setCurrentPage:page];
-    if (page == 0)
-    {
-        
-    }
-    else if (page == 1)
-    {
-        
+//    NSInteger page = scrollView.contentOffset.x/kScreenWidth;
+//    NSLog(@"%ld",page);
+//    [pageControl setCurrentPage:page];
+//    if (page == 0)
+//    {
+//        
+//    }
+//    else if (page == 1)
+//    {
+//        
+//    }
+
+    if (scrollView.contentOffset.x== 0) {
+        [self buttonClickedWithSender:depFlightButton];
+    }else{
+        [self buttonClickedWithSender:arrFlightButton];
     }
 }
 @end

@@ -30,7 +30,7 @@
     [self initTitle];
     
     //圆圈
-    RoundProgressView *progressRound = [[RoundProgressView alloc] initWithCenter:CGPointMake(kScreenWidth/2, 65+25+86) radius:86
+    RoundProgressView *progressRound = [[RoundProgressView alloc] initWithCenter:CGPointMake(kScreenWidth/2, 65+px_px_2_3(89, 89)+86) radius:86
                                                                       aboveColos:@[(__bridge id)[CommonFunction colorFromHex:0XFF00C7E4].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFF00F383].CGColor ]
                                                                       belowColos:@[(__bridge id)[CommonFunction colorFromHex:0XFFFF9F38].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFFFFCD21].CGColor ] start:150.0f end:45 clockwise:YES];
     [self.view addSubview:progressRound];
@@ -44,82 +44,157 @@
     [progressRound animationWithStrokeEnd:abnormalProportion withProgressType:ProgreesTypeAbnormal];
     [progressRound animationWithStrokeEnd:cancleProportion withProgressType:ProgreesTypeCancel];
     
-    
-    UILabel *totalNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2-50, 65+25+86-40, 100, 45)];// 机位总数
+
+
+    UILabel *totalNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(viewX(progressRound), (viewY(progressRound)+viewBotton(progressRound))/2-45/2-20, viewWidth(progressRound), 45)];// 机位总数
     totalNumLabel.text = @"325";
+
     totalNumLabel.textAlignment = NSTextAlignmentCenter;
-    totalNumLabel.font = [UIFont systemFontOfSize:45];
+    totalNumLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:55];
     [self.view addSubview:totalNumLabel];
     
-    UILabel *totalLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2-50, 65+25+86+5, 100, 15)];
+    UILabel *totalLabel = [[UILabel alloc] initWithFrame:CGRectMake(viewX(progressRound), viewBotton(totalNumLabel)+8, viewWidth(progressRound), 12)];
     totalLabel.text = @"机位";
     totalLabel.textAlignment = NSTextAlignmentCenter;
-    totalLabel.font = [UIFont systemFontOfSize:15];
+    totalLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:15];
     [self.view addSubview:totalLabel];
     
-    UILabel *inSeatLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2-60, 65+25+86+5+15+5, 70, 15)];// 当前停占
-    inSeatLabel.text = @"当前停占";
+    UILabel *inSeatLabel = [[UILabel alloc] initWithFrame:CGRectMake(viewX(progressRound), viewBotton(totalLabel)+8, viewWidth(progressRound), 12)];// 当前停占
+    NSMutableAttributedString *inSeatAttributedString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"过夜航班 %@",@"456"] ];
+     [inSeatAttributedString addAttribute:NSForegroundColorAttributeName value:[CommonFunction colorFromHex:0xFFF24737] range:NSMakeRange(5, inSeatAttributedString.length-5)];
+    [inSeatAttributedString addAttribute:NSForegroundColorAttributeName value:[CommonFunction colorFromHex:0xFFd4d4d4] range:NSMakeRange(0, 5)];
+    inSeatLabel.attributedText = inSeatAttributedString;
     inSeatLabel.textAlignment = NSTextAlignmentCenter;
-    inSeatLabel.font = [UIFont systemFontOfSize:15];
+    inSeatLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:15];
     [self.view addSubview:inSeatLabel];
     
-    UILabel *nightNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2+15, 65+25+86+5+15+5, 50, 15)];
-    nightNumLabel.text = @"245";
-    nightNumLabel.font = [UIFont systemFontOfSize:15];
-    [self.view addSubview:nightNumLabel];
-    
-    
-    UILabel *disAbleLabel= [[UILabel alloc] initWithFrame:CGRectMake(0, 65+25+86+5+15+5+65, kScreenWidth/4, 15)];// 不可用
+//    UILabel *nightNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2+15, 65+25+86+5+15+5, 50, 15)];
+//    nightNumLabel.text = @"245";
+//    nightNumLabel.font = [UIFont systemFontOfSize:15];
+//    [self.view addSubview:nightNumLabel];
+
+    UILabel *minLabel = [[UILabel alloc]initWithFrame:CGRectMake(viewX(progressRound)+16, viewBotton(progressRound)-30, 11, 11)];
+    minLabel.text = @"0";
+    minLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:13];
+    [self.view addSubview:minLabel];
+
+
+    UILabel *maxLabel = [[UILabel alloc]initWithFrame:CGRectMake(viewTrailing(progressRound)-20, viewY(minLabel), 30, 11)];
+    maxLabel.text = @"100";
+    maxLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:13];
+    [self.view addSubview:maxLabel];
+
+
+    CGFloat y = viewBotton( maxLabel)+20;
+    CGFloat width = (kScreenWidth-43)/4;
+
+    UIView *disAbleView = [[UIView alloc]initWithFrame:CGRectMake(43, y, width, 30)];
+    [self.view addSubview:disAbleView];
+    UIImageView *disAbleImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 6, 6)];
+    disAbleImageView.image = [UIImage imageNamed:@"DisableResource"];
+    [disAbleView addSubview:disAbleImageView];
+
+    UILabel *disAbleLabel= [[UILabel alloc] initWithFrame:CGRectMake(viewTrailing(disAbleImageView)+5, 0, width-viewTrailing(disAbleImageView)-5, 11)];// 不可用
     disAbleLabel.text = @"不可用";
-    disAbleLabel.textAlignment = NSTextAlignmentCenter;
-    disAbleLabel.font = [UIFont systemFontOfSize:15];
-    [self.view addSubview:disAbleLabel];
+    disAbleLabel.font =  [UIFont fontWithName:@"PingFangSC-Regular" size:13];
+    [disAbleView addSubview:disAbleLabel];
     
-    UILabel *disable = [[UILabel alloc] initWithFrame:CGRectMake(0, 65+25+86+5+15+5+65+15+5, kScreenWidth/4, 15)];
+    UILabel *disable = [[UILabel alloc] initWithFrame:CGRectMake(viewX(disAbleLabel),viewBotton(disAbleLabel)+5, width, 16)];
     disable.text = @"3";
-    disable.textAlignment = NSTextAlignmentCenter;
-    disable.font = [UIFont systemFontOfSize:15];
-    [self.view addSubview:disable];
-    
-    UILabel *longInSeatLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/4, 65+25+86+5+15+5+65, kScreenWidth/4, 15)];// 长期占用
+    disable.textAlignment = NSTextAlignmentLeft;
+    disable.font =  [UIFont fontWithName:@"PingFangSC-Regular" size:20];
+    [disAbleView addSubview:disable];
+
+    UIView *longInSeatView = [[UIView alloc]initWithFrame:CGRectMake(viewTrailing(disAbleView), y, width, 30)];
+    [self.view addSubview:longInSeatView];
+    UIImageView *longInSeatImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 6, 6)];
+    longInSeatImageView.image = [UIImage imageNamed:@"DisableResource"];
+    [longInSeatView addSubview:longInSeatImageView];
+
+    UILabel *longInSeatLabel= [[UILabel alloc] initWithFrame:CGRectMake(viewTrailing(longInSeatImageView)+5, 0, width-viewTrailing(longInSeatImageView)-5, 11)];// 不可用
     longInSeatLabel.text = @"长期占用";
-    longInSeatLabel.textAlignment = NSTextAlignmentCenter;
-    longInSeatLabel.font = [UIFont systemFontOfSize:15];
-    [self.view addSubview:longInSeatLabel];
+    longInSeatLabel.font =  [UIFont fontWithName:@"PingFangSC-Regular" size:13];
+    [longInSeatView addSubview:longInSeatLabel];
+
+    UILabel *longInSeat = [[UILabel alloc] initWithFrame:CGRectMake(viewX(longInSeatLabel),viewBotton(longInSeatLabel)+5, width, 16)];
+    longInSeat.text = @"333";
+    longInSeat.textAlignment = NSTextAlignmentLeft;
+    longInSeat.font =  [UIFont fontWithName:@"PingFangSC-Regular" size:20];
+    [longInSeatView addSubview:longInSeat];
     
-    UILabel *longInSeat = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/4, 65+25+86+5+15+5+65+15+5, kScreenWidth/4, 15)];
-    longInSeat.text = @"10";
-    longInSeat.textAlignment = NSTextAlignmentCenter;
-    longInSeat.font = [UIFont systemFontOfSize:15];
-    [self.view addSubview:longInSeat];
-    
-    UILabel *nightLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2, 65+25+86+5+15+5+65, kScreenWidth/4, 15)];// 过夜
-    nightLabel.text = @"过夜停占";
-    nightLabel.textAlignment = NSTextAlignmentCenter;
-    nightLabel.font = [UIFont systemFontOfSize:15];
-    [self.view addSubview:nightLabel];
-    
-    UILabel *nightNum = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2, 65+25+86+5+15+5+65+15+5, kScreenWidth/4, 15)];
-    nightNum.text = @"247";
-    nightNum.textAlignment = NSTextAlignmentCenter;
-    nightNum.font = [UIFont systemFontOfSize:15];
-    [self.view addSubview:nightNum];
-    
-    UILabel *freeSeatLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth*3/4, 65+25+86+5+15+5+65, kScreenWidth/4, 15)];// 空余 325-13-247
-    freeSeatLabel.text = @"空余";
-    freeSeatLabel.textAlignment = NSTextAlignmentCenter;
-    freeSeatLabel.font = [UIFont systemFontOfSize:15];
-    [self.view addSubview:freeSeatLabel];
-    
-    UILabel *freeSeat = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth*3/4, 65+25+86+5+15+5+65+15+5, kScreenWidth/4, 15)];
-    freeSeat.text = @"65";
-    freeSeat.textAlignment = NSTextAlignmentCenter;
-    freeSeat.font = [UIFont systemFontOfSize:20];
-    [self.view addSubview:freeSeat];
-    
+//    UILabel *longInSeatLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/4, 65+25+86+5+15+5+65, kScreenWidth/4, 15)];// 长期占用
+//    longInSeatLabel.text = @"长期占用";
+//    longInSeatLabel.textAlignment = NSTextAlignmentCenter;
+//    longInSeatLabel.font =  [UIFont fontWithName:@"PingFangSC-Regular" size:13];
+//    [self.view addSubview:longInSeatLabel];
+//    
+//    UILabel *longInSeat = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/4, 65+25+86+5+15+5+65+15+5, kScreenWidth/4, 15)];
+//    longInSeat.text = @"10";
+//    longInSeat.textAlignment = NSTextAlignmentCenter;
+//    longInSeat.font =  [UIFont fontWithName:@"PingFangSC-Regular" size:13];
+//    [self.view addSubview:longInSeat];
+
+    UIView *nightView = [[UIView alloc]initWithFrame:CGRectMake(viewTrailing(longInSeatView), y, width, 30)];
+    [self.view addSubview:nightView];
+    UIImageView *nightImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 6, 6)];
+    nightImageView.image = [UIImage imageNamed:@"DisableResource"];
+    [nightView addSubview:nightImageView];
+
+    UILabel *nightLabel= [[UILabel alloc] initWithFrame:CGRectMake(viewTrailing(nightImageView)+5, 0, width-viewTrailing(nightImageView)-5, 11)];// 不可用
+    nightLabel.text = @"今日停场";
+    nightLabel.font =  [UIFont fontWithName:@"PingFangSC-Regular" size:13];
+    [nightView addSubview:nightLabel];
+
+    UILabel *night = [[UILabel alloc] initWithFrame:CGRectMake(viewX(nightLabel),viewBotton(nightLabel)+5, width, 16)];
+    night.text = @"12";
+    night.textAlignment = NSTextAlignmentLeft;
+    night.font =  [UIFont fontWithName:@"PingFangSC-Regular" size:20];
+    [nightView addSubview:night];
+//
+//    UILabel *nightLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2, 65+25+86+5+15+5+65, kScreenWidth/4, 15)];// 过夜
+//    nightLabel.text = @"过夜停占";
+//    nightLabel.textAlignment = NSTextAlignmentCenter;
+//    nightLabel.font =  [UIFont fontWithName:@"PingFangSC-Regular" size:13];
+//    [self.view addSubview:nightLabel];
+//    
+//    UILabel *nightNum = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2, 65+25+86+5+15+5+65+15+5, kScreenWidth/4, 15)];
+//    nightNum.text = @"247";
+//    nightNum.textAlignment = NSTextAlignmentCenter;
+//    nightNum.font =  [UIFont fontWithName:@"PingFangSC-Regular" size:13];
+//    [self.view addSubview:nightNum];
+
+    UIView *freeSeatView = [[UIView alloc]initWithFrame:CGRectMake(viewTrailing(nightView), y, width, 30)];
+    [self.view addSubview:freeSeatView];
+    UIImageView *freeSeatImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 6, 6)];
+    freeSeatImageView.image = [UIImage imageNamed:@"DisableResource"];
+    [freeSeatView addSubview:freeSeatImageView];
+
+    UILabel *freeSeatLabel= [[UILabel alloc] initWithFrame:CGRectMake(viewTrailing(freeSeatImageView)+5, 0, width-viewTrailing(freeSeatImageView)-5, 11)];// 不可用
+    freeSeatLabel.text = @"空余机位";
+    freeSeatLabel.font =  [UIFont fontWithName:@"PingFangSC-Regular" size:13];
+    [freeSeatView addSubview:freeSeatLabel];
+
+    UILabel *freeSeat = [[UILabel alloc] initWithFrame:CGRectMake(viewX(freeSeatLabel),viewBotton(freeSeatLabel)+5, width, 16)];
+    freeSeat.text = @"253";
+    freeSeat.textAlignment = NSTextAlignmentLeft;
+    freeSeat.font =  [UIFont fontWithName:@"PingFangSC-Regular" size:20];
+    [freeSeatView addSubview:freeSeat];
+
+//    UILabel *freeSeatLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth*3/4, 65+25+86+5+15+5+65, kScreenWidth/4, 15)];// 空余 325-13-247
+//    freeSeatLabel.text = @"空余";
+//    freeSeatLabel.textAlignment = NSTextAlignmentCenter;
+//    freeSeatLabel.font =  [UIFont fontWithName:@"PingFangSC-Regular" size:13];
+//    [self.view addSubview:freeSeatLabel];
+//    
+//    UILabel *freeSeat = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth*3/4, 65+25+86+5+15+5+65+15+5, kScreenWidth/4, 15)];
+//    freeSeat.text = @"65";
+//    freeSeat.textAlignment = NSTextAlignmentCenter;
+//    freeSeat.font =  [UIFont fontWithName:@"PingFangSC-Regular" size:13];
+//    [self.view addSubview:freeSeat];
+
     [self initData];
     //小时分布表格
-    UITableView *flightHourTableView = [[UITableView alloc]initWithFrame:CGRectMake(20, 65+25+86+5+15+5+65+15+5+40+20, kScreenWidth-40, 250)];
+    UITableView *flightHourTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, viewBotton(freeSeatView)+30, kScreenWidth, 250)];
     flightHourTableView.delegate = self;
     flightHourTableView.dataSource = self;
     flightHourTableView.showsVerticalScrollIndicator = NO;
@@ -142,7 +217,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 50;
+    return 125/2;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [array count];
@@ -154,13 +229,44 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:model.type];
     
     if (!cell) {
+
+
         cell = [[UITableViewCell alloc]initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:model.type];
-        
-        [cell addSubview:[CommonFunction addLabelFrame:CGRectMake(20, 0, 30, 30) text:model.type font:30 textAlignment:(NSTextAlignmentLeft) colorFromHex:0xFF1B1B1B]];
-        [cell addSubview:[CommonFunction addLabelFrame:CGRectMake(50, 0, kScreenWidth/2-50-30, 13) text:[NSString stringWithFormat:@"占用 %i",model.used] font:12 textAlignment:(NSTextAlignmentLeft) colorFromHex:0xFF1B1B1B]];
-        [cell addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, 0, kScreenWidth/2-50, 12) text:[NSString stringWithFormat:@"空余 %i",model.free] font:12 textAlignment:(NSTextAlignmentRight) colorFromHex:0xFF1B1B1B]];
-        
-        LDProgressView *progressF= [[LDProgressView alloc] initWithFrame:CGRectMake(50, 12+3, kScreenWidth-100, 10)];
+
+//        UIImageView *backgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(5, 3,kScreenWidth-10, 125/2-6)];
+//        backgroundImageView.image = [UIImage imageNamed:@"FlightFilterbuttonNoSelected"];
+//        [cell addSubview:backgroundImageView];
+
+        UIView *contentView = [[UIView alloc]initWithFrame:CGRectMake(5, 3,kScreenWidth-10, 125/2-6)];
+        contentView.layer.cornerRadius = 5.0;
+        contentView.layer.borderColor = [CommonFunction colorFromHex:0xFFf0f0f0].CGColor;
+        contentView.layer.borderWidth = 1.0;
+        [cell addSubview:contentView];
+        [contentView addSubview:[CommonFunction addLabelFrame:CGRectMake(7, 0, 30, 22) text:model.type font:25/2 textAlignment:(NSTextAlignmentLeft) colorFromHex:0xFF000000]];
+        UILabel *notUseLabel = [[UILabel alloc]init];
+        CGSize maxSize = CGSizeMake(100, 100);
+        notUseLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:25/2];
+        notUseLabel.text = [NSString stringWithFormat:@"空余 %i",model.free];
+        CGSize exportSize = [notUseLabel sizeThatFits:maxSize];
+        notUseLabel.frame = CGRectMake(viewWidth(contentView)-10-exportSize.width, 0, exportSize.width, 22);
+        [contentView addSubview:notUseLabel];
+
+        UILabel *useLabel = [[UILabel alloc]init];
+        maxSize = CGSizeMake(100, 100);
+        useLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:25/2];
+        useLabel.text = [NSString stringWithFormat:@"占用 %i",model.used];
+        exportSize = [useLabel sizeThatFits:maxSize];
+        useLabel.frame = CGRectMake(viewX(notUseLabel)-10-exportSize.width, 0, exportSize.width, 22);
+        [contentView addSubview:useLabel];
+
+        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(1, viewBotton(useLabel), viewWidth(contentView), 0.5)];
+        lineView.backgroundColor = [CommonFunction colorFromHex:0xFFf0f0f0];
+        [contentView addSubview:lineView];
+
+//        [contentView addSubview:[CommonFunction addLabelFrame:CGRectMake(50, 0, kScreenWidth/2-50-30, 13) text:[NSString stringWithFormat:@"占用 %i",model.used] font:12 textAlignment:(NSTextAlignmentLeft) colorFromHex:0xFF1B1B1B]];
+//        [contentView addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, 0, kScreenWidth/2-50, 12) text:[NSString stringWithFormat:@"空余 %i",model.free] font:12 textAlignment:(NSTextAlignmentRight) colorFromHex:0xFF1B1B1B]];
+//        
+        LDProgressView *progressF= [[LDProgressView alloc] initWithFrame:CGRectMake(7, viewBotton(lineView)+11, viewWidth(contentView)-14, 10)];
         progressF.color = [CommonFunction colorFromHex:0XFF05CA6E];
         progressF.progress = [model getPercent];
         progressF.showText = @NO;
@@ -170,7 +276,7 @@
         progressF.outerStrokeWidth = @NO;
         progressF.showStroke = @NO;
         progressF.background = [CommonFunction colorFromHex:0XFFE9EDF1];
-        [cell addSubview:progressF];
+        [contentView addSubview:progressF];
         
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

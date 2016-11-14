@@ -23,18 +23,18 @@
     if(self){
         
         [self updateShapeArray];
-        
-        UILabel *rsnLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 20, kScreenWidth-40, 23)];
-        rsnLabel.text = @"异常原因分类";
-        rsnLabel.font = [UIFont systemFontOfSize:18];
-        rsnLabel.textColor = [UIColor blackColor];
-        [self addSubview:rsnLabel];
-        
-        UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(20, 20+23, kScreenWidth-40, 200)];
-        topBgView.layer.borderWidth = 2.0f;
-        topBgView.layer.borderColor = [[UIColor blackColor] CGColor];
-        [topBgView.layer setCornerRadius:8.0];// 将图层的边框设置为圆脚
-        [topBgView.layer setMasksToBounds:YES];// 隐藏边界
+//        
+//        UILabel *rsnLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 20, kScreenWidth-40, 23)];
+//        rsnLabel.text = @"异常原因分类";
+//        rsnLabel.font = [UIFont systemFontOfSize:18];
+//        rsnLabel.textColor = [UIColor blackColor];
+//        [self addSubview:rsnLabel];
+        UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, kScreenWidth-20, 220)];
+        [self addSubview:topBgView];
+
+        UIImageView *topBgBackgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, viewWidth(topBgView), viewHeight(topBgView))];
+        topBgBackgroundImageView.image = [UIImage imageNamed:@"FlightDelaysChartBackground"];
+        [topBgView addSubview:topBgBackgroundImageView];
         [self addSubview:topBgView];
         
 //        CAGradientLayer *gradient = [CAGradientLayer layer];
@@ -42,8 +42,8 @@
 //        gradient.colors = [NSArray arrayWithObjects:(id)[[CommonFunction colorFromHex:0XFF3AB2F7] CGColor], (id)[[CommonFunction colorFromHex:0XFF936DF7] CGColor], nil];
 //        [topBgView.layer insertSublayer:gradient atIndex:0];
         
-        PNPieChart *abnRsnProgress = [[PNPieChart alloc] initWithFrame:CGRectMake(0, 0, 180, 180) items:shapeArray];
-        abnRsnProgress.center = CGPointMake(20+100, 100);
+        PNPieChart *abnRsnProgress = [[PNPieChart alloc] initWithFrame:CGRectMake(0, 10, 200, 200) items:shapeArray];
+        abnRsnProgress.center = CGPointMake(20+100, 110);
         abnRsnProgress.descriptionTextColor = [UIColor whiteColor];
         abnRsnProgress.descriptionTextFont  = [UIFont systemFontOfSize:11];
         abnRsnProgress.descriptionTextShadowColor = [UIColor clearColor];
@@ -51,15 +51,14 @@
         abnRsnProgress.showOnlyValues = YES;
         [abnRsnProgress strokeChart];
         abnRsnProgress.legendStyle = PNLegendItemStyleStacked;
-        abnRsnProgress.legendFont = [UIFont systemFontOfSize:10];
-        abnRsnProgress.innerCircleRadius = 180/2-40;
+        abnRsnProgress.legendFont = [UIFont fontWithName:@"PingFangSC-Regular" size:10];
+        abnRsnProgress.innerCircleRadius = 200/2-40;
         [topBgView addSubview:abnRsnProgress];
+
         
-        UILabel *arrInNum = [CommonFunction addLabelFrame:CGRectMake(0, 0, 80, 35) text:@"100" font:30 textAlignment:(NSTextAlignmentCenter) colorFromHex:0xFF1B1B1B];
-        arrInNum.center = CGPointMake(180/2, 180/2-10);
+        UILabel *arrInNum = [CommonFunction addLabelFrame:CGRectMake(0, (viewY(abnRsnProgress)+viewHeight(abnRsnProgress))/2-35/2-12, viewWidth(abnRsnProgress), 24) text:@"100" font:30 textAlignment:(NSTextAlignmentCenter) colorFromHex:0xFF129cc4];
         [abnRsnProgress addSubview:arrInNum];
-        UILabel *arrInLabel = [CommonFunction addLabelFrame:CGRectMake(0, 0, 80, 20) text:@"延误总数" font:17 textAlignment:(NSTextAlignmentCenter) colorFromHex:0xFF1B1B1B];
-        arrInLabel.center = CGPointMake(180/2, 180/2-10+30);
+        UILabel *arrInLabel = [CommonFunction addLabelFrame:CGRectMake(0, viewBotton(arrInNum)+8, viewWidth(abnRsnProgress), 10) text:@"延误总数" font:17 textAlignment:(NSTextAlignmentCenter) colorFromHex:0xFF129cc4];
         [abnRsnProgress addSubview:arrInLabel];
         
         UIView *legend = [abnRsnProgress getLegendWithMaxWidth:200];
@@ -67,12 +66,13 @@
         [topBgView addSubview:legend];
         
         //小时分布表格
-        UITableView *flightHourTableView = [[UITableView alloc]initWithFrame:CGRectMake(20, 20+23+200+40, kScreenWidth-40, kScreenHeight-10-(65+20+23+200+40+20))];
+        UITableView *flightHourTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, viewBotton(topBgView)+20, kScreenWidth, kScreenHeight-viewBotton(topBgView)-20)];
         flightHourTableView.delegate = self;
         flightHourTableView.dataSource = self;
         flightHourTableView.showsVerticalScrollIndicator = NO;
         flightHourTableView.backgroundColor = [UIColor whiteColor];
-        flightHourTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//        flightHourTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        flightHourTableView.tableFooterView = [[UIView alloc]init];
         [self addSubview:flightHourTableView];
         
     }
@@ -81,7 +81,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 30;
+    return 41;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [array count];
