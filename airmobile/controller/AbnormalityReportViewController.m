@@ -65,9 +65,13 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
     _photoCollectionView.dataSource = self;
     [_photoCollectionView registerNib:[UINib nibWithNibName:@"AbnormalityReportCollectionViewCell"  bundle:nil]forCellWithReuseIdentifier:(NSString *)ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER];
     _collectionArray = [NSMutableArray array];
-    
-    _remarksTextView.returnKeyType =UIReturnKeyDone;
-    _remarksTextView.delegate = self;
+
+
+    _requireTextView.returnKeyType =UIReturnKeyDone;
+    _requireTextView.delegate = self;
+
+    _explainTextView.returnKeyType = UIReturnKeyDone;
+    _explainTextView.delegate = self;
     
     //注册键盘事件
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -101,14 +105,14 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 // 键盘通知
 - (void)keyboardWillShowNotification:(NSNotification *)info
 {
-    NSDictionary *userInfo = [info userInfo];
-    CGSize kbSize = [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
-    float y =244-( kScreenHeight-kbSize.height- _remarksTextView.frame.size.height)+8;
-    if (y>self.scrollView.contentOffset.y) {
-        [UIView animateWithDuration:1.0 animations:^{
-            self.scrollView.contentOffset = CGPointMake(0, y);
-        }];
-    }
+//    NSDictionary *userInfo = [info userInfo];
+//    CGSize kbSize = [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+//    float y =244-( kScreenHeight-kbSize.height- _remarksTextView.frame.size.height)+8;
+//    if (y>self.scrollView.contentOffset.y) {
+//        [UIView animateWithDuration:1.0 animations:^{
+//            self.scrollView.contentOffset = CGPointMake(0, y);
+//        }];
+//    }
 }
 - (void)keyboardWillHideNotification:(NSNotification *)info
 {
@@ -227,7 +231,7 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
     if ([text isEqualToString:@"\n"]) {
-        [_remarksTextView resignFirstResponder];
+        [textView resignFirstResponder];
         return NO;
     }
     return YES;
