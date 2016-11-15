@@ -71,7 +71,7 @@
         arrFlightButton.tag = 1;
         [arrFlightImageView addSubview:arrFlightButton];
 
-        UILabel *explainLabel = [[UILabel alloc]initWithFrame:CGRectMake(viewWidth(self)-90-15, viewBotton(segmentedView)+20, 90, 11)];
+        UILabel *explainLabel = [[UILabel alloc]initWithFrame:CGRectMake(viewWidth(self)-90-15, viewBotton(segmentedView)+px_px_2_3(43, 64), 90, 11)];
         explainLabel.text = @"即将出港航班";
         explainLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:27/2];
         explainLabel.textColor = [CommonFunction colorFromHex:0xFFFFCD21];
@@ -93,7 +93,7 @@
         [self updateShapeArray:arrShapeArray];
         [self updateShapeArray:depShapeArray];
 
-        PNPieChart *arrRoundProgress = [[PNPieChart alloc] initWithFrame:CGRectMake(0, 0, 220, 220) items:arrShapeArray];
+        PNPieChart *arrRoundProgress = [[PNPieChart alloc] initWithFrame:CGRectMake(0, 0, px_px_2_3(400, 664), px_px_2_3(400, 664)) items:arrShapeArray];
         arrRoundProgress.center = CGPointMake(frame.size.width/2, 250/2);
         arrRoundProgress.descriptionTextColor = [UIColor whiteColor];
         arrRoundProgress.descriptionTextFont  = [UIFont fontWithName:@"PingFangSC-Regular" size:29/2];
@@ -106,27 +106,24 @@
         arrRoundProgress.legendFontColor = [CommonFunction colorFromHex:0xff595757];
         [scrollView addSubview:arrRoundProgress];
 
-        
-
-
 
         
         UIView *legend = [arrRoundProgress getLegendWithMaxWidth:200];
-        [legend setFrame:CGRectMake(frame.size.width-legend.frame.size.width-20, 250/2+250-legend.frame.size.height, legend.frame.size.width, legend.frame.size.height)];
+        [legend setFrame:CGRectMake(frame.size.width-legend.frame.size.width-20, viewBotton(scrollView)-viewHeight(legend), legend.frame.size.width, legend.frame.size.height)];
         [self addSubview:legend];
         
-        UILabel *arrInNum = [CommonFunction addLabelFrame:CGRectMake(0, (viewHeight(arrRoundProgress)-48)/2-20,viewWidth(arrRoundProgress), 48) text:@"4274" font:30 textAlignment:(NSTextAlignmentCenter) colorFromHex:0xFF0b0b0b];
-        arrInNum.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:60];
+        UILabel *arrInNum = [CommonFunction addLabelFrame:CGRectMake(0, (viewHeight(arrRoundProgress)-48)/2-20,viewWidth(arrRoundProgress), 52) text:@"4274" font:px_px_2_3(120, 203) textAlignment:(NSTextAlignmentCenter) colorFromHex:0xFF0b0b0b];
+        arrInNum.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:px_px_2_3(120, 203)];
         [arrRoundProgress addSubview:arrInNum];
-        UILabel *arrInLabel = [CommonFunction addLabelFrame:CGRectMake(0, viewBotton(arrInNum)+22, viewWidth(arrRoundProgress), 20) text:@"进港航班" font:18 textAlignment:(NSTextAlignmentCenter) colorFromHex:0xFF00b0d8];
+        UILabel *arrInLabel = [CommonFunction addLabelFrame:CGRectMake(0, viewBotton(arrInNum)+px_px_2_3(44, 73), viewWidth(arrRoundProgress), 18) text:@"进港航班" font:18 textAlignment:(NSTextAlignmentCenter) colorFromHex:0xFF00b0d8];
         [arrRoundProgress addSubview:arrInLabel];
         
-        UIButton *arrButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 80, 35+20)];
+        UIButton *arrButton = [[UIButton alloc] initWithFrame:arrRoundProgress.frame];
         [arrButton addTarget:self action:@selector(showArrFlightHourView:) forControlEvents:(UIControlEventTouchUpInside)];
         arrButton.center = CGPointMake(frame.size.width/2, 250/2);
         [scrollView addSubview:arrButton];
         
-        PNPieChart *depRoundProgress = [[PNPieChart alloc] initWithFrame:CGRectMake(0, 0, 220, 220) items:depShapeArray];
+        PNPieChart *depRoundProgress = [[PNPieChart alloc] initWithFrame:CGRectMake(0, 0, px_px_2_3(400, 664), px_px_2_3(400, 664)) items:depShapeArray];
         depRoundProgress.center = CGPointMake(frame.size.width+frame.size.width/2, 250/2);
         depRoundProgress.descriptionTextColor = [UIColor whiteColor];
         depRoundProgress.descriptionTextFont  = [UIFont fontWithName:@"PingFangSC-Regular" size:29/2];
@@ -135,16 +132,16 @@
         depRoundProgress.showOnlyValues = YES;
         [depRoundProgress strokeChart];
         depRoundProgress.legendStyle = PNLegendItemStyleStacked;
-        depRoundProgress.legendFont = [UIFont systemFontOfSize:10];
+        depRoundProgress.legendFont = [UIFont fontWithName:@"PingFangSC-Regular" size:9];
         [scrollView addSubview:depRoundProgress];
         
-        UILabel *depOutNum = [CommonFunction addLabelFrame:CGRectMake(0, (viewHeight(arrRoundProgress)-48)/2-20,viewWidth(arrRoundProgress), 48) text:@"427" font:30 textAlignment:(NSTextAlignmentCenter) colorFromHex:0xFF0B0b0b];
-        depOutNum.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:60];
+        UILabel *depOutNum = [CommonFunction addLabelFrame:CGRectMake(0, (viewHeight(arrRoundProgress)-48)/2-20,viewWidth(arrRoundProgress), 52) text:@"427" font:px_px_2_3(120, 203) textAlignment:(NSTextAlignmentCenter) colorFromHex:0xFF0B0b0b];
+        depOutNum.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:px_px_2_3(120, 203)];
         [depRoundProgress addSubview:depOutNum];
-        UILabel *depOutLabel = [CommonFunction addLabelFrame:CGRectMake(0, viewBotton(arrInNum)+22, viewWidth(arrRoundProgress), 20) text:@"出港航班" font:18 textAlignment:(NSTextAlignmentCenter) colorFromHex:0xFF00b0d8];
+        UILabel *depOutLabel = [CommonFunction addLabelFrame:CGRectMake(0, viewBotton(arrInNum)+22, viewWidth(arrRoundProgress), 15) text:@"出港航班" font:18 textAlignment:(NSTextAlignmentCenter) colorFromHex:0xFF00b0d8];
         [depRoundProgress addSubview:depOutLabel];
 
-        UIButton *depButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 80, 35+20)];
+        UIButton *depButton = [[UIButton alloc] initWithFrame:depRoundProgress.frame];
         [depButton addTarget:self action:@selector(showDepFlightHourView:) forControlEvents:(UIControlEventTouchUpInside)];
         depButton.center = CGPointMake(frame.size.width+frame.size.width/2, 250/2);
         [scrollView addSubview:depButton];
@@ -158,7 +155,7 @@
 //        pageControl.currentPageIndicatorTintColor = [CommonFunction colorFromHex:0XFF16C1F4];
 //        [self addSubview:pageControl];
 
-        UIView *uiview = [[UIView alloc] initWithFrame:CGRectMake(0, viewBotton(scrollView)+30, viewWidth(self), 48)];
+        UIView *uiview = [[UIView alloc] initWithFrame:CGRectMake(0, viewBotton(scrollView)+px_px_2_3(60, 195), viewWidth(self), 48)];
 
         [self addSubview:uiview];
 
@@ -190,11 +187,11 @@
         depNum.font = [UIFont fontWithName:@"PingFangSC-Medium" size:65/2];
         [uiview addSubview:depNum];
 
-        UILabel *depLabel = [CommonFunction addLabelFrame:CGRectMake(viewX(depNum), viewBotton(depNum), 100, 12) text:@"出港航班" font:20 textAlignment:NSTextAlignmentCenter colorFromHex:0xFF8B8C8C];
+        UILabel *depLabel = [CommonFunction addLabelFrame:CGRectMake(viewX(depNum), viewBotton(depNum)+ 6, 100, 12) text:@"出港航班" font:20 textAlignment:NSTextAlignmentCenter colorFromHex:0xFF8B8C8C];
         depLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:31/2];
         [uiview addSubview:depLabel];
 
-        UIImageView *lineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, viewBotton(uiview)+20, kScreenWidth, 0.5)];
+        UIImageView *lineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, viewBotton(uiview)+px_px_2_3(50, 118), kScreenWidth, 1.5)];
         lineImageView.image = [UIImage imageNamed:@"Line"];
         [self addSubview:lineImageView];
 //
@@ -205,7 +202,7 @@
 //        abnBgView.backgroundColor = [UIColor blackColor];
 //        [self addSubview:abnBgView];
 
-        UIImageView *unusualImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(totalNum)+7.5, viewBotton(lineImageView)+28, 85, 26)];
+        UIImageView *unusualImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(totalNum)+7.5, viewBotton(lineImageView)+px_px_2_3(50, 92), 85, 26)];
         unusualImageView.image =  [UIImage imageNamed:@"unusualBackground"];
         [self addSubview:unusualImageView];
         UILabel *abnLabel = [CommonFunction addLabelFrame:CGRectMake(viewX(unusualImageView), viewY(unusualImageView), viewWidth(unusualImageView), viewHeight(unusualImageView)) text:@"异常航班" font:23 textAlignment:NSTextAlignmentCenter colorFromHex:0xFFFFFFFF];

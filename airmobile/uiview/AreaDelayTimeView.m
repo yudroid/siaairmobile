@@ -29,35 +29,36 @@
         
         [self initData];
 
-        UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, kScreenWidth-20, 220)];
+        CGFloat topBgViewWidth = kScreenWidth-2*px2(22);
+        UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, topBgViewWidth, topBgViewWidth *391/709)];
         [self addSubview:topBgView];
 
         UIImageView *topBgBackgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, viewWidth(topBgView), viewHeight(topBgView))];
-        topBgBackgroundImageView.image = [UIImage imageNamed:@"HourChartBackground"];
+        topBgBackgroundImageView.image = [UIImage imageNamed:@"TenDayRatioChartBackground"];
         [topBgView addSubview:topBgBackgroundImageView];
 
-        UILabel *passengerTtitle = [[UILabel alloc] initWithFrame:CGRectMake(16, 5, viewWidth(topBgView)-100, 11)];
+        UILabel *passengerTtitle = [[UILabel alloc] initWithFrame:CGRectMake(16, 8, viewWidth(topBgView)-100, 11)];
         passengerTtitle.font = [UIFont fontWithName:@"PingFangSC-Regular" size:27/2];
         passengerTtitle.textColor = [UIColor whiteColor];
         passengerTtitle.text = @"区域平均延误时间";
         [topBgView addSubview:passengerTtitle];
 
 
-        UIImageView *planImageView = [[UIImageView alloc]initWithFrame:CGRectMake(16, viewBotton(passengerTtitle)+ 8, 11, 11)];
-        planImageView.image = [UIImage imageNamed:@"ChartSign"];
+        UIImageView *planImageView = [[UIImageView alloc]initWithFrame:CGRectMake(16, viewBotton(passengerTtitle)+ 8, 10, 10)];
+        planImageView.image = [UIImage imageNamed:@"AreaDelayTimeChartTag1"];
         [topBgView addSubview:planImageView];
-        UILabel *planLabel = [CommonFunction addLabelFrame:CGRectMake(viewTrailing(planImageView), viewY(planImageView), 120, 11) text:@"区域平均延误时间" font:13 textAlignment:NSTextAlignmentLeft colorFromHex:0xB5FEFEFE];
+        UILabel *planLabel = [CommonFunction addLabelFrame:CGRectMake(viewTrailing(planImageView)+2, viewY(planImageView)-1, 120, 11) text:@"区域平均延误时间" font:13 textAlignment:NSTextAlignmentLeft colorFromHex:0xB5FEFEFE];
         [topBgView addSubview:planLabel];
 
 
-        UIImageView *realImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewTrailing(planLabel), viewY(planImageView), 11, 11)];
-        realImageView.image = [UIImage imageNamed:@"ChartSign"];
+        UIImageView *realImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewTrailing(planLabel), viewY(planImageView), 10, 10)];
+        realImageView.image = [UIImage imageNamed:@"AreaDelayTimeChartTag2"];
         [topBgView addSubview:realImageView];
-        UILabel *realLabel = [CommonFunction addLabelFrame:CGRectMake(viewTrailing(realImageView), viewY(realImageView) , 100, 11) text:@"出港航班数" font:13 textAlignment:NSTextAlignmentLeft colorFromHex:0xB5FEFEFE];
+        UILabel *realLabel = [CommonFunction addLabelFrame:CGRectMake(viewTrailing(realImageView)+2, viewY(realImageView)-1 , 100, 11) text:@"出港航班数" font:13 textAlignment:NSTextAlignmentLeft colorFromHex:0xB5FEFEFE];
         [topBgView addSubview:realLabel];
 
         UIImageView *lineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(planImageView),viewBotton(planLabel)+8, viewWidth(topBgView)-32, 0.5)];
-        lineImageView.image = [UIImage imageNamed:@"Line"];
+        lineImageView.image = [UIImage imageNamed:@"hiddenLine"];
         [topBgView addSubview:lineImageView];
 
         UILabel *timeLabel = [CommonFunction addLabelFrame:CGRectMake(viewX(passengerTtitle), viewBotton(lineImageView)+4, topBgView.frame.size.width/2-20, 12) text:@"100 min" font:11 textAlignment:NSTextAlignmentLeft colorFromHex:0x75FFFFFF];
@@ -163,13 +164,13 @@
 
         
         UIImageView *downLineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(planImageView),viewHeight(topBgView)-10-15, viewWidth(topBgView)-32, 0.5)];
-        downLineImageView.image = [UIImage imageNamed:@"Line"];
+        downLineImageView.image = [UIImage imageNamed:@"hiddenLine"];
         [topBgView addSubview:downLineImageView];
 
         [topBgView addSubview:[CommonFunction addLabelFrame:CGRectMake(viewTrailing(downLineImageView)-10 , viewY(downLineImageView)-14, 10, 12) text:@"0" font:12 textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF]];
         
         //小时分布表格
-        UITableView *flightHourTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, viewBotton(topBgView)+20, kScreenWidth, viewHeight(self)-10-viewBotton(topBgView))];
+        UITableView *flightHourTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, viewBotton(topBgView)+20, kScreenWidth, viewHeight(self)-25-viewBotton(topBgView))];
         flightHourTableView.delegate = self;
         flightHourTableView.dataSource = self;
         flightHourTableView.showsVerticalScrollIndicator = NO;

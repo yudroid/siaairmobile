@@ -30,10 +30,10 @@
     [self initTitle];
     
     //圆圈
-    RoundProgressView *progressRound = [[RoundProgressView alloc] initWithCenter:CGPointMake(kScreenWidth/2, 65+px_px_2_3(89, 89)+86) radius:86
+    RoundProgressView *progressRound = [[RoundProgressView alloc] initWithCenter:CGPointMake(kScreenWidth/2, 65+px_px_2_3(89, 135)+px_px_2_3(95*2, 104*3)) radius:px_px_2_3(95*2, 104*3)
                                                                       aboveColos:@[(__bridge id)[CommonFunction colorFromHex:0XFF00C7E4].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFF00F383].CGColor ]
                                                                       belowColos:@[(__bridge id)[CommonFunction colorFromHex:0XFFFF9F38].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFFFFCD21].CGColor ] start:150.0f end:45 clockwise:YES];
-    [self.view addSubview:progressRound];
+
     
     normalProportion = 0.6;
     abnormalProportion = 0.66;
@@ -43,7 +43,14 @@
     [progressRound animationWithStrokeEnd:normalProportion withProgressType:ProgreesTypeNormal];
     [progressRound animationWithStrokeEnd:abnormalProportion withProgressType:ProgreesTypeAbnormal];
     [progressRound animationWithStrokeEnd:cancleProportion withProgressType:ProgreesTypeCancel];
-    
+
+    //圆圈底部圆圈
+    UIImage *bottomRoundImage = [UIImage imageNamed:@"chartBack"];
+    UIImageView *bottomRoundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, viewWidth(progressRound)-7, viewHeight(progressRound)-7)];
+    bottomRoundImageView.image = bottomRoundImage;
+    bottomRoundImageView.center = progressRound.center;
+    [self.view addSubview:bottomRoundImageView];
+    [self.view addSubview:progressRound];
 
 
     UILabel *totalNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(viewX(progressRound), (viewY(progressRound)+viewBotton(progressRound))/2-45/2-20, viewWidth(progressRound), 45)];// 机位总数
@@ -79,13 +86,13 @@
     [self.view addSubview:minLabel];
 
 
-    UILabel *maxLabel = [[UILabel alloc]initWithFrame:CGRectMake(viewTrailing(progressRound)-20, viewY(minLabel), 30, 11)];
+    UILabel *maxLabel = [[UILabel alloc]initWithFrame:CGRectMake(viewTrailing(progressRound)-25, viewY(minLabel), 30, 11)];
     maxLabel.text = @"100";
     maxLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:13];
     [self.view addSubview:maxLabel];
 
 
-    CGFloat y = viewBotton( maxLabel)+20;
+    CGFloat y = viewBotton( maxLabel)+px_px_2_3(60, 100);
     CGFloat width = (kScreenWidth-43)/4;
 
     UIView *disAbleView = [[UIView alloc]initWithFrame:CGRectMake(43, y, width, 30)];
@@ -194,7 +201,7 @@
 
     [self initData];
     //小时分布表格
-    UITableView *flightHourTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, viewBotton(freeSeatView)+30, kScreenWidth, 250)];
+    UITableView *flightHourTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, viewBotton(freeSeatView)+px_px_2_3(60, 100), kScreenWidth, 250)];
     flightHourTableView.delegate = self;
     flightHourTableView.dataSource = self;
     flightHourTableView.showsVerticalScrollIndicator = NO;

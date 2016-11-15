@@ -22,11 +22,11 @@
 //        self.backgroundColor = [UIColor lightGrayColor];
         _delegate = delegate;
 
-        CGFloat y = px2(90);
+        CGFloat y = px_px_2_3(90, 131);
         
         //圆圈
-        RoundProgressView *progressRound = [[RoundProgressView alloc] initWithCenter:CGPointMake(kScreenWidth/2, y+86) radius:86 aboveColos:@[(__bridge id)[CommonFunction colorFromHex:0XFF00aedd].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFF00d6a0].CGColor ] belowColos:@[(__bridge id)[CommonFunction colorFromHex:0XFFFF9F38].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFFFFCD21].CGColor ] start:270 end:271 clockwise:NO];
-        [self addSubview:progressRound];
+        RoundProgressView *progressRound = [[RoundProgressView alloc] initWithCenter:CGPointMake(kScreenWidth/2, y+px_px_2_3(95*2, 575/2)) radius:px_px_2_3(95*2, 575/2) aboveColos:@[(__bridge id)[CommonFunction colorFromHex:0XFF00aedd].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFF00d6a0].CGColor ] belowColos:@[(__bridge id)[CommonFunction colorFromHex:0XFFFF9F38].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFFFFCD21].CGColor ] start:270 end:271 clockwise:NO];
+
         
         normalProportion = 0.6;
         abnormalProportion = 0.6;
@@ -36,6 +36,15 @@
         [progressRound animationWithStrokeEnd:normalProportion withProgressType:ProgreesTypeNormal];
         [progressRound animationWithStrokeEnd:abnormalProportion withProgressType:ProgreesTypeAbnormal];
         [progressRound animationWithStrokeEnd:cancleProportion withProgressType:ProgreesTypeCancel];
+
+        //圆圈底部圆圈
+        UIImage *bottomRoundImage = [UIImage imageNamed:@"chartBack"];
+        UIImageView *bottomRoundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, viewWidth(progressRound)-7, viewHeight(progressRound)-7)];
+        bottomRoundImageView.image = bottomRoundImage;
+        bottomRoundImageView.center = progressRound.center;
+        [self addSubview:bottomRoundImageView];
+
+        [self addSubview:progressRound];
         
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 86*2, 86*2)];
         [button addTarget:self action:@selector(showSeatUsedDetail:) forControlEvents:(UIControlEventTouchUpInside)];
@@ -55,7 +64,7 @@
         [self addSubview:totalLabel];
 
 
-        y=viewBotton(progressRound)+83/2+9.5;
+        y=viewBotton(progressRound)+px_px_2_3(83, 135)+9.5;
 
         UILabel *disable = [[UILabel alloc] init];
         disable.text = @"28";
@@ -122,11 +131,11 @@
         [self addSubview:greenLineImageView];
 
 
-        UIView *lessView = [[UIView alloc]initWithFrame:CGRectMake(15, viewHeight(self)-54-164/2, 338/2, 164/2)];
+        UIImage *lessImage = [UIImage imageNamed:@"lessThanBackground"];
+        UIView *lessView = [[UIView alloc]initWithFrame:CGRectMake(15, viewHeight(self)-54-px_px_2_3(164, 266), lessImage.size.width, lessImage.size.height)];
         [self addSubview:lessView];
-
         UIImageView *lessThanImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 338/2, 164/2)];
-        lessThanImageView.image = [UIImage imageNamed:@"lessThanBackground"];
+        lessThanImageView.image = lessImage;
         [lessView addSubview:lessThanImageView];
 
         UIImage *arrImage = [UIImage imageNamed:@"ArrFlight"];
@@ -146,7 +155,7 @@
         lessLabel.text = @"<1小时进港";
         [lessView addSubview:lessLabel];
 
-        UIView *moreView = [[UIView alloc]initWithFrame:CGRectMake(viewWidth(self)-15-338/2,  viewHeight(self)-54-164/2, 338/2, 164/2)];
+        UIView *moreView = [[UIView alloc]initWithFrame:CGRectMake(viewWidth(self)-15-338/2,  viewHeight(self)-54-px_px_2_3(164, 266), 338/2, 164/2)];
         [self addSubview:moreView];
         UIImageView *moreThanImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 338/2, 164/2)];
         moreThanImageView.image = [UIImage imageNamed:@"lessThanBackground"];

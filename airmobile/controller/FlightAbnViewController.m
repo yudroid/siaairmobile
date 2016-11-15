@@ -34,7 +34,7 @@
     
     [self initTitle];
 
-    float y =65+ 9.5;
+    float y =65+ px_px_2_3(19, 43);
     segmentedView = [[UIView alloc]initWithFrame:CGRectMake(10, y, kScreenWidth-2*10, 34)];
     [self.view addSubview:segmentedView];
     UIImageView *segmentedBackgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, viewWidth(segmentedView), viewHeight(segmentedView))];
@@ -74,7 +74,7 @@
 
 
 
-    scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, viewBotton(segmentedView)+10, kScreenWidth, kScreenHeight-viewBotton(segmentedView)-40)];
+    scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, viewBotton(segmentedView)+px_px_2_3(26, 43), kScreenWidth, kScreenHeight-viewBotton(segmentedView)-40)];
     scrollView.backgroundColor = [UIColor redColor];
     scrollView.contentSize = CGSizeMake(scrollView.frame.size.width*2, scrollView.frame.size.height) ;
     scrollView.delegate = self;

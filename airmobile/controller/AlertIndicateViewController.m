@@ -37,13 +37,13 @@
 
     [self initData];
     
-    UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(10, 65+12, kScreenWidth-20, 220*plus_ratio)];
+    CGFloat topBgViewWidth = kScreenWidth-2*px2(22);
+    UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(10, 65+px_px_2_3(24, 116), topBgViewWidth, topBgViewWidth *391/709)];
     [self.view addSubview:topBgView];
 
     UIImageView *topBgBackgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, viewWidth(topBgView), viewHeight(topBgView))];
-    topBgBackgroundImageView.image = [UIImage imageNamed:@"FlightDelaysChartBackground"];
+    topBgBackgroundImageView.image = [UIImage imageNamed:@"TenDayRatioChartBackground"];
     [topBgView addSubview:topBgBackgroundImageView];
-
     //        CAGradientLayer *gradient = [CAGradientLayer layer];
     //        gradient.frame = topBgView.bounds;
     //        gradient.colors = [NSArray arrayWithObjects:(id)[[CommonFunction colorFromHex:0XFF17B9E8] CGColor], (id)[[CommonFunction colorFromHex:0XFF5684FB] CGColor], nil];
@@ -62,7 +62,7 @@
 
 
 
-    UILabel *todayLabel = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-140, viewHeight(ratioNum)+viewY(ratioNum) , 120, 20) text:[NSString stringWithFormat:@"当前 %@",[CommonFunction dateFormat:nil format:@"hh:mi"]] font:11 textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF];
+    UILabel *todayLabel = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-140, viewBotton(ratioNum)+4 , 120, 9) text:[NSString stringWithFormat:@"当前 %@",[CommonFunction dateFormat:nil format:@"hh:mi"]] font:11 textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF];
     [topBgView addSubview:todayLabel];
 
 //    UILabel *circleLabel= [CommonFunction addLabelFrame:CGRectMake(viewX(passengerTtitle), viewY(todayLabel), 20, 20) text:@"●" font:11 textAlignment:NSTextAlignmentLeft colorFromHex:0xFFFFFFFF];
@@ -73,11 +73,11 @@
 
 
     UIImageView *lineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(passengerTtitle), viewBotton(todayLabel)+4, viewWidth(topBgView)-viewX(passengerTtitle)-18, 0.5)];
-    lineImageView.image = [UIImage imageNamed:@"Line"];
+    lineImageView.image = [UIImage imageNamed:@"hiddenLine"];
     [topBgView addSubview:lineImageView];
 
 
-    UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(viewWidth(topBgView)-18-50,viewBotton(lineImageView)+4, 50, 12) text:@"100" font:11 textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF];
+    UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(viewWidth(topBgView)-18-50,viewBotton(lineImageView)+4, 50, 9) text:@"100" font:11 textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF];
     [topBgView addSubview:maxLabel];
 
     lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(20, 5+23+23+2, topBgView.frame.size.width-40, topBgView.frame.size.height-(5+23+23+2)-5)];
@@ -115,21 +115,21 @@
     [topBgView addSubview:lineChart];
 
 
-    UIImageView *downlineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(passengerTtitle), topBgView.frame.size.height-10-15, viewWidth(topBgView)-viewX(passengerTtitle)-18, 0.5)];
-    downlineImageView.image = [UIImage imageNamed:@"Line"];
+    UIImageView *downlineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(passengerTtitle), topBgView.frame.size.height-10-15-2, viewWidth(topBgView)-viewX(passengerTtitle)-18, 0.5)];
+    downlineImageView.image = [UIImage imageNamed:@"hiddenLine"];
     [topBgView addSubview:downlineImageView];
 
     [topBgView addSubview:[CommonFunction addLabelFrame:CGRectMake(20, viewY(downlineImageView)-13-4, topBgView.frame.size.width-40, 13) text:@"0" font:11 textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF]];
 
 
-    UIImageView *buildingImageView = [CommonFunction imageView:@"BedetainedPeople" frame:CGRectMake(45/2, viewBotton(topBgView)+30, 15, 18)];
+    UIImageView *buildingImageView = [CommonFunction imageView:@"BedetainedPeople" frame:CGRectMake(45/2, viewBotton(topBgView)+px_px_2_3(60, 92), 15, 18)];
     [self.view addSubview:buildingImageView];
     
     [self.view addSubview:[CommonFunction addLabelFrame:CGRectMake(viewTrailing(buildingImageView)+16, viewY(buildingImageView), kScreenWidth-160, viewHeight(buildingImageView)) text:@"航站楼内滞留旅客" font:36/2 textAlignment:(NSTextAlignmentLeft) colorFromHex:0xFF000000]];
     
     [self.view addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth-80-22, viewY(buildingImageView), 80, viewHeight(buildingImageView)) text:@"6520" font:36/2 textAlignment:(NSTextAlignmentRight) colorFromHex:0xFF000000]];
 
-    UIImageView *lineImageView1= [[UIImageView alloc]initWithFrame:CGRectMake(viewTrailing(buildingImageView)+16, viewBotton(buildingImageView)+18, viewWidth(self.view)-(viewTrailing(buildingImageView)+16+43/2), 1)];
+    UIImageView *lineImageView1= [[UIImageView alloc]initWithFrame:CGRectMake(viewTrailing(buildingImageView)+px_px_2_3(42, 63), viewBotton(buildingImageView)+18, viewWidth(self.view)-(viewTrailing(buildingImageView)+16+43/2), 1)];
     lineImageView1.image = [UIImage imageNamed:@"Line"];
     [self.view addSubview:lineImageView1];
 
@@ -140,18 +140,18 @@
     
     [self.view addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth-80-43/2,viewY(delayImageView), 80, viewHeight(delayImageView)) text:@"97%" font:18 textAlignment:(NSTextAlignmentRight) colorFromHex:0xFF000000]];
 
-    UIImageView *lineImageView2= [[UIImageView alloc]initWithFrame:CGRectMake(viewTrailing(buildingImageView)+16, viewBotton(delayImageView)+18, viewWidth(self.view)-viewTrailing(buildingImageView)-16-43/2, 1)];
+    UIImageView *lineImageView2= [[UIImageView alloc]initWithFrame:CGRectMake(viewTrailing(buildingImageView)+px_px_2_3(42, 63), viewBotton(delayImageView)+18, viewWidth(self.view)-viewTrailing(buildingImageView)-16-43/2, 1)];
     lineImageView2.image = [UIImage imageNamed:@"Line"];
     [self.view addSubview:lineImageView2];
     
     UIImageView *noFlightImageView = [CommonFunction imageView:@"BedetainedTime" frame:CGRectMake(viewX(buildingImageView), viewBotton(lineImageView2)+18, 15, 18)];
     [self.view addSubview:noFlightImageView];
     
-    [self.view addSubview:[CommonFunction addLabelFrame:CGRectMake(viewTrailing(noFlightImageView)+16, viewBotton(lineImageView2)+16, kScreenWidth-160, viewHeight(noFlightImageView)) text:@"无航班起降累积时间" font:18 textAlignment:(NSTextAlignmentLeft) colorFromHex:0xFF000000]];
+    [self.view addSubview:[CommonFunction addLabelFrame:CGRectMake(viewTrailing(noFlightImageView)+16, viewBotton(lineImageView2)+px_px_2_3(42, 63), kScreenWidth-160, viewHeight(noFlightImageView)) text:@"无航班起降累积时间" font:18 textAlignment:(NSTextAlignmentLeft) colorFromHex:0xFF000000]];
     
     [self.view addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth-80-43/2, viewY(noFlightImageView), 80, viewHeight(noFlightImageView)) text:@"110min" font:18 textAlignment:(NSTextAlignmentRight) colorFromHex:0xFF000000]];
 
-    UIImageView *lineImageView3= [[UIImageView alloc]initWithFrame:CGRectMake(viewTrailing(buildingImageView)+18, viewBotton(noFlightImageView)+16, viewWidth(self.view)-viewTrailing(buildingImageView)-16-43/2, 1)];
+    UIImageView *lineImageView3= [[UIImageView alloc]initWithFrame:CGRectMake(viewTrailing(buildingImageView)+px_px_2_3(42, 63), viewBotton(noFlightImageView)+16, viewWidth(self.view)-viewTrailing(buildingImageView)-16-43/2, 1)];
     lineImageView3.image = [UIImage imageNamed:@"Line"];
     [self.view addSubview:lineImageView3];
 
@@ -160,7 +160,7 @@
 -(void)initTitle
 {
     [self titleViewInitWithHight:65];
-    [self titleViewAddTitleText:@"关键指标"];
+    [self titleViewAddTitleText:@"小面积延误"];
     
     UIView *titleLabelView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 65)];
     self.titleView .backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"home_title_bg.png"]];

@@ -17,14 +17,14 @@
     if(self){
         //        self.backgroundColor = [UIColor lightGrayColor];
         
-        UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, kScreenWidth-20, 220*plus_ratio)];
+        CGFloat topBgViewWidth = kScreenWidth-2*px2(22);
+        UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, topBgViewWidth, topBgViewWidth *391/709)];
         [self addSubview:topBgView];
 
         UIImageView *topBgBackgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, viewWidth(topBgView), viewHeight(topBgView))];
         topBgBackgroundImageView.image = [UIImage imageNamed:@"PsnGeneralChartBackground"];
         [topBgView addSubview:topBgBackgroundImageView];
-        [topBgView.layer setMasksToBounds:YES];// 隐藏边界
-        
+
         UILabel *passengerTtitle = [[UILabel alloc] initWithFrame:CGRectMake(16, 8, viewWidth(topBgView)-100, 10)];
         passengerTtitle.text = @"旅客进出港统计";
         passengerTtitle.font = [UIFont fontWithName:@"PingFangSC-Regular" size:27/2];
@@ -40,13 +40,13 @@
         UIView *prTitleView = [[UIView alloc] initWithFrame:CGRectMake(16, viewBotton(arrPsn)+2, 120, 12)];
         [topBgView addSubview:prTitleView];
 
-        UIImageView *planImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 11, 12)];
-        planImageView.image = [UIImage imageNamed:@"ChartPlanTag"];
+        UIImageView *planImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 2, 10, 10)];
+        planImageView.image = [UIImage imageNamed:@"PsnGeneralChartTag1"];
         [prTitleView addSubview:planImageView];
         [prTitleView addSubview:[CommonFunction addLabelFrame:CGRectMake(viewTrailing(planImageView)+2, 0, 40, 12) text:@"计划" font:27/2 textAlignment:NSTextAlignmentLeft colorFromHex:0xFFFFFFFF]];
 
-        UIImageView *realImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewTrailing(planImageView)+2+40+16, 0, 11, 12)];
-        realImageView.image = [UIImage imageNamed:@"ChartRealTag"];
+        UIImageView *realImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewTrailing(planImageView)+2+40+16, 2, 10, 10)];
+        realImageView.image = [UIImage imageNamed:@"PsnGeneralChartTag2"];
         [prTitleView addSubview:realImageView];
         [prTitleView addSubview:[CommonFunction addLabelFrame:CGRectMake(viewTrailing(realImageView)+2, 0, 40, 12) text:@"实际" font:27/2 textAlignment:NSTextAlignmentLeft colorFromHex:0xFFFFFFFF]];
         
@@ -56,7 +56,7 @@
         
 
         UIImageView *lineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(16, viewBotton(prTitleView)+8, viewWidth(topBgView)-32, 0.5)];
-        lineImageView.image = [UIImage imageNamed:@"Line"];
+        lineImageView.image = [UIImage imageNamed:@"hiddenLine"];
         [topBgView addSubview:lineImageView];
         
         UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(viewWidth(topBgView)-18-50,viewBotton(lineImageView)+4, 50, 12) text:@"2500" font:11 textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF];
@@ -88,14 +88,14 @@
         [topBgView addSubview:[CommonFunction addLabelFrame:CGRectMake(20, topBgView.frame.size.height-(35+15), topBgView.frame.size.width-40, 12) text:@"0" font:11 textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF]];
 
         UIImageView *downlineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(20, topBgView.frame.size.height-32, topBgView.frame.size.width-40, 0.5)];
-        downlineImageView.image = [UIImage imageNamed:@"Line"];
+        downlineImageView.image = [UIImage imageNamed:@"hiddenLine"];
         [topBgView addSubview:downlineImageView];
         
         [topBgView addSubview:[CommonFunction addLabelFrame:CGRectMake(viewX(arrBarView), topBgView.frame.size.height-35+8,viewWidth(arrBarView), 15) text:@"进港" font:29/2 textAlignment:NSTextAlignmentCenter colorFromHex:0xFFFFFFFF]];
         
         [topBgView addSubview:[CommonFunction addLabelFrame:CGRectMake(viewX(depBarView), topBgView.frame.size.height-35+8,viewWidth(depBarView), 15) text:@"出港" font:29/2 textAlignment:NSTextAlignmentCenter colorFromHex:0xFFFFFFFF]];
 
-        UIImageView *arrImageView = [[UIImageView alloc]initWithFrame:CGRectMake(20, viewBotton(topBgView)+30, 20, 15)];
+        UIImageView *arrImageView = [[UIImageView alloc]initWithFrame:CGRectMake(20, viewBotton(topBgView)+30+21, 20, 15)];
         arrImageView.image = [UIImage imageNamed:@"ArrFlightTag"];
 //        arrImageView.backgroundColor = [UIColor redColor];
         [self addSubview:arrImageView];
@@ -108,11 +108,11 @@
         
         [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, viewY(arrImageView), kScreenWidth/2-20, viewHeight(arrImageView)) text:@"1520/1519" font:36/2 textAlignment:NSTextAlignmentRight colorFromHex:0xFF000000]];
 
-        UIImageView *arrlineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(arrLabel), viewBotton(arrLabel)+12, viewWidth(self)-viewX(arrLabel)-20, 0.5)];
+        UIImageView *arrlineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(arrLabel), viewBotton(arrLabel)+21, viewWidth(self)-viewX(arrLabel)-20, 0.5)];
         arrlineImageView.image = [UIImage imageNamed:@"Line"];
         [self addSubview:arrlineImageView];
 
-        UIImageView *depImageView = [[UIImageView alloc]initWithFrame:CGRectMake(20, viewBotton(arrlineImageView)+16, 20, 15)];
+        UIImageView *depImageView = [[UIImageView alloc]initWithFrame:CGRectMake(20, viewBotton(arrlineImageView)+21, 20, 15)];
         depImageView.image = [UIImage imageNamed:@"DepFlightTag"];
         [self addSubview:depImageView];
         
@@ -124,9 +124,9 @@
         [self addSubview:depLabel];
 
         
-        [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, 200+30+30+30, kScreenWidth/2-20, 20) text:@"1568/1562" font:36/2 textAlignment:NSTextAlignmentRight colorFromHex:0xFF000000]];
+        [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, viewY(depImageView), kScreenWidth/2-20, 20) text:@"1568/1562" font:36/2 textAlignment:NSTextAlignmentRight colorFromHex:0xFF000000]];
 
-        UIImageView *deplineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(arrLabel), viewBotton(depLabel)+12, viewWidth(self)-viewX(arrLabel)-20, 0.5)];
+        UIImageView *deplineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(arrLabel), viewBotton(depLabel)+21, viewWidth(self)-viewX(arrLabel)-20, 0.5)];
         deplineImageView.image = [UIImage imageNamed:@"Line"];
         [self addSubview:deplineImageView];
         

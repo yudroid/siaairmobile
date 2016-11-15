@@ -26,13 +26,13 @@
 
         [self initData];
         
-        UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, kScreenWidth-20, 220*plus_ratio)];
+        CGFloat topBgViewWidth = kScreenWidth-2*px2(22);
+        UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, topBgViewWidth, topBgViewWidth *391/709)];
         [self addSubview:topBgView];
 
         UIImageView *topBgBackgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, viewWidth(topBgView), viewHeight(topBgView))];
-        topBgBackgroundImageView.image = [UIImage imageNamed:@"FlightDelaysChartBackground"];
+        topBgBackgroundImageView.image = [UIImage imageNamed:@"PsnSafetyHourTopBackground"];
         [topBgView addSubview:topBgBackgroundImageView];
-        [topBgView.layer setMasksToBounds:YES];// 隐藏边界
 
         UILabel *passengerTtitle = [[UILabel alloc] initWithFrame:CGRectMake(15, 7, viewWidth(topBgView)-100, 11)];
         passengerTtitle.text = @"隔离区内旅客小时分布";
@@ -40,22 +40,22 @@
         passengerTtitle.textColor = [UIColor whiteColor];
         [topBgView addSubview:passengerTtitle];
 
-        UILabel *ratioNum = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-100, 5, 80, 18) text:@"3233" font:20 textAlignment:NSTextAlignmentRight colorFromHex:0xFFFFFFFF];
+        UILabel *ratioNum = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-100, 10, 80, 18) text:@"3233" font:20 textAlignment:NSTextAlignmentRight colorFromHex:0xFFFFFFFF];
         ratioNum.font = [UIFont fontWithName:@"PingFang SC" size:px2(48)];
         [topBgView addSubview:ratioNum];
 
         UIImageView *planImageView = [[UIImageView alloc]initWithFrame:CGRectMake(17, viewBotton(passengerTtitle)+ 8, 11, 11)];
-        planImageView.image = [UIImage imageNamed:@"ChartSign"];
+        planImageView.image = [UIImage imageNamed:@"PsnSafetyHourChartTag1"];
         [topBgView addSubview:planImageView];
-        UILabel *planLabel = [CommonFunction addLabelFrame:CGRectMake(viewTrailing(planImageView)+9, viewY(planImageView), 100, 11) text:@"旅客人数" font:27/2 textAlignment:NSTextAlignmentLeft colorFromHex:0xB5FFFFFF];
+        UILabel *planLabel = [CommonFunction addLabelFrame:CGRectMake(viewTrailing(planImageView)+2, viewY(planImageView), 100, 11) text:@"人数" font:27/2 textAlignment:NSTextAlignmentLeft colorFromHex:0xB5FFFFFF];
         [topBgView addSubview:planLabel];
 
 
-        UIImageView *upImageView = [[UIImageView alloc]initWithFrame:CGRectMake(px2(34), viewBotton(planLabel)+px2(7), viewWidth(topBgView)-2*px2(34), px2(2))];
-        upImageView.image = [UIImage imageNamed:@"upLine"];
+        UIImageView *upImageView = [[UIImageView alloc]initWithFrame:CGRectMake(px2(34), viewBotton(planLabel)+px2(8), viewWidth(topBgView)-2*px2(34), px2(2))];
+        upImageView.image = [UIImage imageNamed:@"hiddenLine"];
         [topBgView addSubview:upImageView];
 
-        UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(20, viewBotton(upImageView)+px2(7), topBgView.frame.size.width-40, 12) text:@"10000" font:11 textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF];
+        UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(20, viewBotton(upImageView)+px2(8), topBgView.frame.size.width-40, 12) text:@"10000" font:11 textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF];
         [topBgView addSubview:maxLabel];
         
         // 计划的折线图
@@ -90,14 +90,14 @@
         [lineChart strokeChart];
         [topBgView addSubview:lineChart];
         
-        UILabel *zoreLabel = [[UILabel alloc]initWithFrame:CGRectMake(viewWidth(topBgView)-6-px2(31), topBgView.frame.size.height-(10+15+12), topBgView.frame.size.width-40, 10)];
+        UILabel *zoreLabel = [[UILabel alloc]initWithFrame:CGRectMake(viewWidth(topBgView)-6-px2(31), topBgView.frame.size.height-(10+15+12+2), topBgView.frame.size.width-40, 10)];
         zoreLabel.text = @"0";
         zoreLabel.font = [UIFont fontWithName:@"PingFang SC" size:px2(22)];
         zoreLabel.textColor = [CommonFunction colorFromHex:0X75ffffff];
         [topBgView addSubview:zoreLabel];
 
-        UIImageView *lowImageView = [[UIImageView alloc]initWithFrame:CGRectMake(px2(31), topBgView.frame.size.height-10-15, viewWidth(topBgView)-2*px2(31), px2(2))];
-        lowImageView.image = [UIImage imageNamed:@"upLine"];
+        UIImageView *lowImageView = [[UIImageView alloc]initWithFrame:CGRectMake(px2(31), topBgView.frame.size.height-10-15-2, viewWidth(topBgView)-2*px2(31), px2(2))];
+        lowImageView.image = [UIImage imageNamed:@"hiddenLine"];
         [topBgView addSubview:lowImageView];
         
         //小时分布表格

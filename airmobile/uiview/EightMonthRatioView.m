@@ -27,11 +27,12 @@
 
         [self initData];
 
-        UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, kScreenWidth-20, 220*plus_ratio)];
+        CGFloat topBgViewWidth = kScreenWidth-2*px2(22);
+        UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, topBgViewWidth, topBgViewWidth *391/709)];
         [self addSubview:topBgView];
 
         UIImageView *topBgBackgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, viewWidth(topBgView), viewHeight(topBgView))];
-        topBgBackgroundImageView.image = [UIImage imageNamed:@"FlightDelaysChartBackground"];
+        topBgBackgroundImageView.image = [UIImage imageNamed:@"TenDayRatioChartBackground"];
         [topBgView addSubview:topBgBackgroundImageView];
 
         //        CAGradientLayer *gradient = [CAGradientLayer layer];
@@ -63,7 +64,7 @@
 
 
         UIImageView *lineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(passengerTtitle), viewY(circleLabel)+viewHeight(circleLabel)+4, viewWidth(topBgView)-viewX(passengerTtitle)-18, 0.5)];
-        lineImageView.image = [UIImage imageNamed:@"Line"];
+        lineImageView.image = [UIImage imageNamed:@"FlightHourLine"];
         [topBgView addSubview:lineImageView];
 
 
@@ -99,14 +100,14 @@
 
 
         UIImageView *downlineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(passengerTtitle), topBgView.frame.size.height-10-15, viewWidth(topBgView)-viewX(passengerTtitle)-18, 0.5)];
-        downlineImageView.image = [UIImage imageNamed:@"Line"];
+        downlineImageView.image = [UIImage imageNamed:@"FlightHourLine"];
         [topBgView addSubview:downlineImageView];
 
         [topBgView addSubview:[CommonFunction addLabelFrame:CGRectMake(20, viewY(downlineImageView)-13-4, topBgView.frame.size.width-40, 13) text:@"0" font:11 textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF]];
 
 
         //小时分布表格
-         UITableView *tenDayTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, viewBotton(topBgView), kScreenWidth, kScreenHeight-viewBotton(topBgView))];
+         UITableView *tenDayTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, viewBotton(topBgView)+8, kScreenWidth, viewHeight(self)-viewBotton(topBgView)-8-10)];
         tenDayTableView.delegate = self;
         tenDayTableView.dataSource = self;
         tenDayTableView.showsVerticalScrollIndicator = NO;
@@ -119,7 +120,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 40;
+    return 54;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [eightMonthArray count];

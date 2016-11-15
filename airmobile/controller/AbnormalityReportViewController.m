@@ -58,7 +58,7 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
     _abnormalityTableView.delegate = self;
     _abnormalityTableView.dataSource = self;
     [_abnormalityTableView registerNib:[UINib nibWithNibName:@"AbnormalityReportHistoryTableViewCell" bundle:nil] forCellReuseIdentifier:(NSString *)ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER];
-    _abnormalityHistoryArray = @[@"类型",@"事件"];
+    _abnormalityHistoryArray = @[@"类型",@"事件",@"事件级别"];
     
 
     _photoCollectionView.delegate =self;

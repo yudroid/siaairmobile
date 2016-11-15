@@ -24,14 +24,15 @@
         _flightHourType = type;
         [self initData];
         
-        UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, kScreenWidth-20, 220)];
+        CGFloat topBgViewWidth = kScreenWidth-2*px2(22);
+        UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, topBgViewWidth, topBgViewWidth *391/709)];
         [self addSubview:topBgView];
 
         UIImageView *topBgBackgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, viewWidth(topBgView), viewHeight(topBgView))];
-        topBgBackgroundImageView.image = [UIImage imageNamed:@"HourChartBackground"];
+        topBgBackgroundImageView.image = [UIImage imageNamed:@"FlightHourChartBlackground"];
         [topBgView addSubview:topBgBackgroundImageView];
         
-        UILabel *passengerTtitle = [[UILabel alloc] initWithFrame:CGRectMake(16, 5, viewWidth(topBgView)-100, 11)];
+        UILabel *passengerTtitle = [[UILabel alloc] initWithFrame:CGRectMake(px_px_2_3(32, 73),px_px_2_3(10, 24) , viewWidth(topBgView)-100, 11)];
         passengerTtitle.font = [UIFont fontWithName:@"PingFangSC-Regular" size:27/2];
         passengerTtitle.textColor = [UIColor whiteColor];
         [topBgView addSubview:passengerTtitle];
@@ -42,21 +43,25 @@
         }
 
 
-        UIImageView *planImageView = [[UIImageView alloc]initWithFrame:CGRectMake(16, viewBotton(passengerTtitle)+ 8, 11, 11)];
-        planImageView.image = [UIImage imageNamed:@"ChartSign"];
+        UIImageView *planImageView = [[UIImageView alloc]initWithFrame:CGRectMake(16, viewBotton(passengerTtitle)+ px_px_2_3(16, 28), 10, 10)];
+        planImageView.image = [UIImage imageNamed:@"FlightHourChartTag"];
         [topBgView addSubview:planImageView];
-        UILabel *planLabel = [CommonFunction addLabelFrame:CGRectMake(viewTrailing(planImageView), viewY(planImageView), 100, 11) text:@"计划航班数" font:13 textAlignment:NSTextAlignmentLeft colorFromHex:0xB5FEFEFE];
+        UIImageView *inPlanImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"FlightHourChartTag3"]];
+        inPlanImageView.center = planImageView.center;
+        [topBgView addSubview:inPlanImageView];
+
+        UILabel *planLabel = [CommonFunction addLabelFrame:CGRectMake(viewTrailing(planImageView)+2, viewY(planImageView)-1, 100, 11) text:@"实际航班数" font:13 textAlignment:NSTextAlignmentLeft colorFromHex:0xB5FEFEFE];
         [topBgView addSubview:planLabel];
 
 
-        UIImageView *realImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewTrailing(planLabel), viewY(planImageView), 11, 11)];
-        realImageView.image = [UIImage imageNamed:@"ChartSign"];
+        UIImageView *realImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewTrailing(planLabel), viewY(planImageView)-3, 5, 14)];
+        realImageView.image = [UIImage imageNamed:@"FlightHourChartTag2"];
         [topBgView addSubview:realImageView];
-        UILabel *realLabel = [CommonFunction addLabelFrame:CGRectMake(viewTrailing(realImageView), viewY(realImageView) , 100, 11) text:@"实际航班数" font:13 textAlignment:NSTextAlignmentLeft colorFromHex:0xB5FEFEFE];
+        UILabel *realLabel = [CommonFunction addLabelFrame:CGRectMake(viewTrailing(realImageView)+2, viewY(planLabel) , 100, 11) text:@"计划航班数" font:13 textAlignment:NSTextAlignmentLeft colorFromHex:0xB5FEFEFE];
         [topBgView addSubview:realLabel];
         
         UIImageView *lineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(planImageView),viewBotton(planLabel)+8, viewWidth(topBgView)-32, 0.5)];
-        lineImageView.image = [UIImage imageNamed:@"Line"];
+        lineImageView.image = [UIImage imageNamed:@"hiddenLine"];
         [topBgView addSubview:lineImageView];
         
         UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(20, viewBotton(lineImageView)+4, topBgView.frame.size.width-40, 12) text:@"100" font:11 textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF];
@@ -137,7 +142,7 @@
         [topBgView addSubview:[CommonFunction addLabelFrame:CGRectMake(20, topBgView.frame.size.height-(10+15+12), topBgView.frame.size.width-40, 12) text:@"0" font:11 textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF]];
 
         UIImageView *downLineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(planImageView),viewHeight(topBgView)-10-15, viewWidth(topBgView)-32, 0.5)];
-        downLineImageView.image = [UIImage imageNamed:@"Line"];
+        downLineImageView.image = [UIImage imageNamed:@"hiddenLine"];
         [topBgView addSubview:downLineImageView];
 
         

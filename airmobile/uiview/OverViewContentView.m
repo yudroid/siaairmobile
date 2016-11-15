@@ -66,11 +66,13 @@
 //        chiefButton.backgroundColor = [UIColor grayColor];
 
         y= viewHeight(chiefButton)+viewY(chiefButton)+px_px_2_3(52, 89);
+
+
         //圆圈
         RoundProgressView *progressRound = [[RoundProgressView alloc]
                                             initWithCenter:CGPointMake(kScreenWidth/2, y+px_px_2_3(86*2, 680/2))
                                             radius:px_px_2_3(95*2, (680-61)/2) aboveColos:@[(__bridge id)[CommonFunction colorFromHex:0XFFc62dec].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFF46bacd].CGColor ] belowColos:@[(__bridge id)[CommonFunction colorFromHex:0XFFFF9F38].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFFFFCD21].CGColor ] start:270 end:271 clockwise:NO];
-        [self addSubview:progressRound];
+
         
         normalProportion = 0.6;
         abnormalProportion = 0.62;
@@ -80,7 +82,14 @@
         [progressRound animationWithStrokeEnd:normalProportion withProgressType:ProgreesTypeNormal];
         [progressRound animationWithStrokeEnd:abnormalProportion withProgressType:ProgreesTypeAbnormal];
         [progressRound animationWithStrokeEnd:cancleProportion withProgressType:ProgreesTypeCancel];
-        
+
+        //圆圈底部圆圈
+        UIImage *bottomRoundImage = [UIImage imageNamed:@"chartBack"];
+        UIImageView *bottomRoundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, viewWidth(progressRound)-7, viewHeight(progressRound)-7)];
+        bottomRoundImageView.image = bottomRoundImage;
+        bottomRoundImageView.center = progressRound.center;
+        [self addSubview:bottomRoundImageView];
+        [self addSubview:progressRound];
         
         UILabel *totalNumLabel = [[UILabel alloc] init ];
         totalNumLabel.text = @"800";
@@ -148,7 +157,8 @@
 
         y = viewY(currentStatus)+viewHeight(currentStatus)+px_px_2_3(10, 15);
         UIImageView *lineImageView = [[UIImageView alloc]initWithFrame:CGRectMake((kScreenWidth-px_px_2_3(718, 1056))/2,y, px2(718), px2(3))];
-        lineImageView.image = [UIImage imageNamed:@"line"];
+        lineImageView.image = [UIImage imageNamed:@"hiddenLine"];
+//        lineImageView.backgroundColor = [UIColor redColor];
         [self addSubview:lineImageView];
 
         UITextView *noticeTextView = [[UITextView alloc] initWithFrame:CGRectMake(50,viewBotton(lineImageView)+5, kScreenWidth-100,kScreenHeight- viewBotton(lineImageView)-5-49-76)];

@@ -14,9 +14,14 @@
 {
     self = [super init];
     if(self){
-        [self addSubview:[CommonFunction addLabelFrame:CGRectMake(13, 0, kScreenWidth/2-13, viewHeight(self)) text:ratio.time font:18 textAlignment:(NSTextAlignmentLeft) colorFromHex:0xFF000000]];
+        [self.contentView addSubview:[CommonFunction addLabelFrame:CGRectMake(px2(32), 0, kScreenWidth/2-px2(32), viewHeight(self.contentView)) text:ratio.time font:18 textAlignment:(NSTextAlignmentLeft) colorFromHex:0xFF000000]];
 
-        [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, 0, kScreenWidth/2-13, viewHeight(self)) text:[NSString stringWithFormat:@"%i",(int)(ratio.ratio*100)] font:18 textAlignment:(NSTextAlignmentRight) colorFromHex:0xFF000000]];
+        [self.contentView addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, 0, kScreenWidth/2-px2(32), viewHeight(self.contentView)) text:[NSString stringWithFormat:@"%i",(int)(ratio.ratio*100)] font:18 textAlignment:(NSTextAlignmentRight) colorFromHex:0xFF000000]];
+
+        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(px2(32), viewHeight(self)-0.5, kScreenWidth-2*px2(32), 0.5 )];
+        lineView.backgroundColor = [UIColor grayColor];
+        lineView.alpha = 0.5;
+        [self.contentView addSubview:lineView];
     }
     return self;
 }

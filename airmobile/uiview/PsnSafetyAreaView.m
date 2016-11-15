@@ -23,13 +23,14 @@
     self = [super initWithFrame:frame];
     if(self){
         [self initData];
-        UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, kScreenWidth-20, 220*plus_ratio)];
+        CGFloat topBgViewWidth = kScreenWidth-2*px2(22);
+        UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, topBgViewWidth, topBgViewWidth *391/709)];
         [self addSubview:topBgView];
 
         UIImageView *topBgBackgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, viewWidth(topBgView), viewHeight(topBgView))];
-        topBgBackgroundImageView.image = [UIImage imageNamed:@"FlightDelaysChartBackground"];
+        topBgBackgroundImageView.image = [UIImage imageNamed:@"FlightHourChartBlackground"];
         [topBgView addSubview:topBgBackgroundImageView];
-        [topBgView.layer setMasksToBounds:YES];// 隐藏边界
+
 
         UILabel *passengerTtitle = [[UILabel alloc] initWithFrame:CGRectMake(16, 8, viewWidth(topBgView)-100, 11)];
         passengerTtitle.text = @"隔离区旅客区域分布";
@@ -39,13 +40,13 @@
 
 
         UIImageView *planImageView = [[UIImageView alloc]initWithFrame:CGRectMake(17, viewBotton(passengerTtitle)+ 8, 11, 11)];
-        planImageView.image = [UIImage imageNamed:@"ChartSign"];
+        planImageView.image = [UIImage imageNamed:@"PsnSafetyHourChartTag1"];
         [topBgView addSubview:planImageView];
         UILabel *planLabel = [CommonFunction addLabelFrame:CGRectMake(viewTrailing(planImageView)+9, viewY(planImageView), 100, 11) text:@"近机位" font:27/2 textAlignment:NSTextAlignmentLeft colorFromHex:0xB5FFFFFF];
         [topBgView addSubview:planLabel];
 
         UIImageView *realImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewTrailing(planLabel)+50, viewY(planLabel), 11, 11)];
-        realImageView.image = [UIImage imageNamed:@"ChartSign"];
+        realImageView.image = [UIImage imageNamed:@"PsnSafetyHourChartTag2"];
         [topBgView addSubview:realImageView];
 
         UILabel *realLabel = [CommonFunction addLabelFrame:CGRectMake(viewTrailing(realImageView)+5, viewY(planImageView), 50, 11) text:@"远机位" font:27/2 textAlignment:NSTextAlignmentLeft colorFromHex:0xB5FFFFFF];
@@ -55,7 +56,7 @@
 //        [topBgView addSubview:realLabel];
 
         UIImageView *upImageView = [[UIImageView alloc]initWithFrame:CGRectMake(px2(34), viewBotton(planLabel)+px2(7), viewWidth(topBgView)-2*px2(34), px2(2))];
-        upImageView.image = [UIImage imageNamed:@"upLine"];
+        upImageView.image = [UIImage imageNamed:@"hiddenLine"];
         [topBgView addSubview:upImageView];
 
 //        [topBgView addSubview:[CommonFunction addLine:CGRectMake(20, 5+23+15, topBgView.frame.size.width-40, 1) color:[CommonFunction colorFromHex:0XFF3FDFB7]]];
@@ -97,16 +98,16 @@
         [topBgView addSubview:zoreLabel];
 
         UIImageView *lowImageView = [[UIImageView alloc]initWithFrame:CGRectMake(px2(31), topBgView.frame.size.height-10-15, viewWidth(topBgView)-2*px2(31), px2(2))];
-        lowImageView.image = [UIImage imageNamed:@"upLine"];
+        lowImageView.image = [UIImage imageNamed:@"hiddenLine"];
         [topBgView addSubview:lowImageView];
         
         //小时分布表格
-        UITableView *flightHourTableView = [[UITableView alloc]initWithFrame:CGRectMake(20, 20+200+20, kScreenWidth-40, kScreenHeight-10-(65+20+200+20+40))];
+        UITableView *flightHourTableView = [[UITableView alloc]initWithFrame:CGRectMake(20, viewBotton(topBgView)+20, kScreenWidth-40, viewHeight(self)-10-20-viewBotton(topBgView))];
         flightHourTableView.delegate = self;
         flightHourTableView.dataSource = self;
         flightHourTableView.showsVerticalScrollIndicator = NO;
         flightHourTableView.backgroundColor = [UIColor whiteColor];
-//        flightHourTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        flightHourTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self addSubview:flightHourTableView];
         
     }
@@ -156,10 +157,21 @@
 {
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth-40, 40)];
     headerView.backgroundColor = [UIColor whiteColor];
-    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, viewWidth(headerView), viewHeight(headerView))];
-    titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:20];
-    titleLabel.text = @"近机位登机口";
+
+    UIImageView *headerImageView= [[UIImageView alloc]initWithFrame:CGRectMake(0,(viewHeight(headerView)-18)/2, 18, 18)];
+    [headerView addSubview:headerImageView];
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(viewTrailing(headerImageView)+4, 0, viewWidth(headerView), viewHeight(headerView))];
+    titleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:20];
     [headerView addSubview:titleLabel];
+
+    if (section == 0) {
+        headerImageView.image = [UIImage imageNamed:@"PsnSafetyAreaNear"];
+        titleLabel.text = @"近机位";
+    }else{
+        headerImageView.image = [UIImage imageNamed:@"PsnSafetyAreaFar"];
+        titleLabel.text = @"远机位";
+    }
+
     return headerView;
 }
 
