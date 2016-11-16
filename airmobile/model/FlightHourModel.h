@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RootModel.h"
 
-@interface FlightHourModel : NSObject
+@interface FlightHourModel : RootModel
 
 @property(nonatomic,copy) NSString *hour;
 

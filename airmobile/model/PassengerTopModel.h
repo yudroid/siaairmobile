@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RootModel.h"
 
-@interface PassengerTopModel : NSObject
+@interface PassengerTopModel : RootModel
 
 @property (nonatomic,copy) NSString *date;
 @property (nonatomic,assign) int count;

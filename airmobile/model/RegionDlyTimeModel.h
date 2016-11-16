@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RootModel.h"
 
-@interface RegionDlyTimeModel : NSObject
+@interface RegionDlyTimeModel : RootModel
 
 @property (nonatomic,copy) NSString *region;
 @property (nonatomic,assign) int count;

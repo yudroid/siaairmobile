@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RootModel.h"
 
-@interface AbnReasonModel : NSObject
+@interface AbnReasonModel : RootModel
 
 @property (nonatomic,copy) NSString *reason;
 @property (nonatomic,assign) int count;

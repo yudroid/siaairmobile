@@ -53,12 +53,12 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
     [self titleViewAddBackBtn];
     
     self.titleView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"home_title_bg.png"]];
-    
+    // 航班保障信息相关
     _tableView.dataSource       = self;
     _tableView.delegate         = self;
     _tableViewHeight.constant   = 1000;
     _tableView.allowsSelection  = NO;
-    
+    // 航班特殊保障详情相关
     _safeguardTableView.dataSource      = self;
     _safeguardTableView.delegate        = self;
     _safeguardTableView.allowsSelection = NO;
@@ -207,7 +207,17 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 
 -(void)loadData
 {
-    [HttpsUtils ];
+    [HttpsUtils getFlightDetail:_flightId success:^(id responseObj) {
+        
+    } failure:nil];
+    
+    [HttpsUtils getDispatchDetail:_flightId success:^(id responseObj) {
+        
+    } failure:nil];
+    
+    [HttpsUtils getSpecialDetail:_flightId success:^(id responseObj) {
+        
+    } failure:nil];
 }
 
 @end

@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RootModel.h"
 
-@interface FlightProcessModel : NSObject
+@interface FlightProcessModel : RootModel
 
 @property(nonatomic,assign)  int index;
 @property(nonatomic,copy)  NSString * flag;
