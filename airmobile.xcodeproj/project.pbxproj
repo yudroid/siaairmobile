@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		06E9E80EB42E98A0933793F5 /* libPods-airmobileTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C8CF004928F1770818C25801 /* libPods-airmobileTests.a */; };
 		6D859A9CB7F46A46E3C321A4 /* libPods-airmobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B40A6E3BB15FEF8D72885961 /* libPods-airmobile.a */; };
+		840A4D111DD85DE200C39A79 /* PassengerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 840A4D101DD85DE200C39A79 /* PassengerModel.m */; };
+		840A4D141DD99EB900C39A79 /* SeatStatusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 840A4D131DD99EB900C39A79 /* SeatStatusModel.m */; };
 		840D15C11DC044DA005FA910 /* ArrDepFlightHourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840D15C01DC044DA005FA910 /* ArrDepFlightHourViewController.m */; };
 		840D15C71DC0557F005FA910 /* FlightHourView.m in Sources */ = {isa = PBXBuildFile; fileRef = 840D15C61DC0557F005FA910 /* FlightHourView.m */; };
 		840D15CB1DC0B6DB005FA910 /* AbnormalReasonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 840D15CA1DC0B6DB005FA910 /* AbnormalReasonView.m */; };
@@ -130,26 +132,19 @@
 		F74902991DC860AA005B193D /* RootModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902981DC860AA005B193D /* RootModel.m */; };
 		F749029C1DC86302005B193D /* AbnormalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F749029B1DC86302005B193D /* AbnormalModel.m */; };
 		F749029F1DC865D1005B193D /* FlightModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F749029E1DC865D1005B193D /* FlightModel.m */; };
-		F74902A21DC866CA005B193D /* FlightDetailsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902A11DC866CA005B193D /* FlightDetailsModel.m */; };
 		F74902A51DC86735005B193D /* FlightLargeDelayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902A41DC86735005B193D /* FlightLargeDelayModel.m */; };
 		F74902A81DC867F0005B193D /* FlightStusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902A71DC867F0005B193D /* FlightStusModel.m */; };
 		F74902AB1DC868AC005B193D /* DutyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902AA1DC868AC005B193D /* DutyModel.m */; };
 		F74902AE1DC86959005B193D /* WillTravelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902AD1DC86959005B193D /* WillTravelModel.m */; };
 		F74902B11DC86978005B193D /* WillReleaseFltModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902B01DC86978005B193D /* WillReleaseFltModel.m */; };
 		F74902B71DC86A95005B193D /* WillOneHourFltModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902B61DC86A95005B193D /* WillOneHourFltModel.m */; };
-		F74902BA1DC8752F005B193D /* UserNessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902B91DC8752F005B193D /* UserNessageModel.m */; };
 		F74902BD1DC877E6005B193D /* ThresholdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902BC1DC877E6005B193D /* ThresholdModel.m */; };
 		F74902C01DC878C0005B193D /* SummaryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902BF1DC878C0005B193D /* SummaryModel.m */; };
 		F74902C31DC879C2005B193D /* SafeguardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902C21DC879C2005B193D /* SafeguardModel.m */; };
 		F74902C61DC87A34005B193D /* PassenCntModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902C51DC87A34005B193D /* PassenCntModel.m */; };
 		F74902C91DC87AA7005B193D /* NearAndFarTakeUpModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902C81DC87AA7005B193D /* NearAndFarTakeUpModel.m */; };
-		F74902CC1DC87B26005B193D /* KeySafegurdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902CB1DC87B26005B193D /* KeySafegurdModel.m */; };
-		F74902CF1DC87B84005B193D /* IslateTravelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902CE1DC87B84005B193D /* IslateTravelModel.m */; };
-		F74902D21DC87BDE005B193D /* HourToCountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902D11DC87BDE005B193D /* HourToCountModel.m */; };
 		F74902D51DC87C5B005B193D /* DelayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902D41DC87C5B005B193D /* DelayModel.m */; };
 		F74902DB1DC881E9005B193D /* CraftseatCntModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902DA1DC881E9005B193D /* CraftseatCntModel.m */; };
-		F74902DE1DC8823B005B193D /* ArrivalByHourModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902DD1DC8823B005B193D /* ArrivalByHourModel.m */; };
-		F74902E11DC883C2005B193D /* DepartmentByHourModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902E01DC883C2005B193D /* DepartmentByHourModel.m */; };
 		F758C9911DC360BD00556120 /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F758C9901DC360BD00556120 /* HomePageViewController.m */; };
 		F758C9921DC362E700556120 /* PassengerTopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 840D15EF1DC30983005FA910 /* PassengerTopModel.m */; };
 		F758C9931DC3632800556120 /* DelayTimeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 840D15D91DC19B3B005FA910 /* DelayTimeTableViewCell.m */; };
@@ -269,6 +264,10 @@
 		08436D948989B250E6E82404 /* Pods-airmobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-airmobileTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-airmobileTests/Pods-airmobileTests.debug.xcconfig"; sourceTree = "<group>"; };
 		156304CC87D9023ADDF48874 /* Pods-airmobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-airmobile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-airmobile/Pods-airmobile.debug.xcconfig"; sourceTree = "<group>"; };
 		74FA8B73EA500FA5476239D4 /* Pods-airmobileUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-airmobileUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-airmobileUITests/Pods-airmobileUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		840A4D0F1DD85DE200C39A79 /* PassengerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PassengerModel.h; sourceTree = "<group>"; };
+		840A4D101DD85DE200C39A79 /* PassengerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PassengerModel.m; sourceTree = "<group>"; };
+		840A4D121DD99EB900C39A79 /* SeatStatusModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeatStatusModel.h; sourceTree = "<group>"; };
+		840A4D131DD99EB900C39A79 /* SeatStatusModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeatStatusModel.m; sourceTree = "<group>"; };
 		840D15BF1DC044DA005FA910 /* ArrDepFlightHourViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrDepFlightHourViewController.h; sourceTree = "<group>"; };
 		840D15C01DC044DA005FA910 /* ArrDepFlightHourViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrDepFlightHourViewController.m; sourceTree = "<group>"; };
 		840D15C51DC0557F005FA910 /* FlightHourView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightHourView.h; sourceTree = "<group>"; };
@@ -477,8 +476,6 @@
 		F749029B1DC86302005B193D /* AbnormalModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbnormalModel.m; sourceTree = "<group>"; };
 		F749029D1DC865D1005B193D /* FlightModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightModel.h; sourceTree = "<group>"; };
 		F749029E1DC865D1005B193D /* FlightModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightModel.m; sourceTree = "<group>"; };
-		F74902A01DC866CA005B193D /* FlightDetailsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightDetailsModel.h; sourceTree = "<group>"; };
-		F74902A11DC866CA005B193D /* FlightDetailsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightDetailsModel.m; sourceTree = "<group>"; };
 		F74902A31DC86735005B193D /* FlightLargeDelayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightLargeDelayModel.h; sourceTree = "<group>"; };
 		F74902A41DC86735005B193D /* FlightLargeDelayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightLargeDelayModel.m; sourceTree = "<group>"; };
 		F74902A61DC867EF005B193D /* FlightStusModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightStusModel.h; sourceTree = "<group>"; };
@@ -491,8 +488,6 @@
 		F74902B01DC86978005B193D /* WillReleaseFltModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WillReleaseFltModel.m; sourceTree = "<group>"; };
 		F74902B51DC86A95005B193D /* WillOneHourFltModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WillOneHourFltModel.h; sourceTree = "<group>"; };
 		F74902B61DC86A95005B193D /* WillOneHourFltModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WillOneHourFltModel.m; sourceTree = "<group>"; };
-		F74902B81DC8752F005B193D /* UserNessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserNessageModel.h; sourceTree = "<group>"; };
-		F74902B91DC8752F005B193D /* UserNessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserNessageModel.m; sourceTree = "<group>"; };
 		F74902BB1DC877E6005B193D /* ThresholdModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThresholdModel.h; sourceTree = "<group>"; };
 		F74902BC1DC877E6005B193D /* ThresholdModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThresholdModel.m; sourceTree = "<group>"; };
 		F74902BE1DC878C0005B193D /* SummaryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummaryModel.h; sourceTree = "<group>"; };
@@ -503,20 +498,10 @@
 		F74902C51DC87A34005B193D /* PassenCntModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PassenCntModel.m; sourceTree = "<group>"; };
 		F74902C71DC87AA7005B193D /* NearAndFarTakeUpModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearAndFarTakeUpModel.h; sourceTree = "<group>"; };
 		F74902C81DC87AA7005B193D /* NearAndFarTakeUpModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearAndFarTakeUpModel.m; sourceTree = "<group>"; };
-		F74902CA1DC87B26005B193D /* KeySafegurdModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeySafegurdModel.h; sourceTree = "<group>"; };
-		F74902CB1DC87B26005B193D /* KeySafegurdModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeySafegurdModel.m; sourceTree = "<group>"; };
-		F74902CD1DC87B84005B193D /* IslateTravelModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IslateTravelModel.h; sourceTree = "<group>"; };
-		F74902CE1DC87B84005B193D /* IslateTravelModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IslateTravelModel.m; sourceTree = "<group>"; };
-		F74902D01DC87BDE005B193D /* HourToCountModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HourToCountModel.h; sourceTree = "<group>"; };
-		F74902D11DC87BDE005B193D /* HourToCountModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HourToCountModel.m; sourceTree = "<group>"; };
 		F74902D31DC87C5B005B193D /* DelayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelayModel.h; sourceTree = "<group>"; };
 		F74902D41DC87C5B005B193D /* DelayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelayModel.m; sourceTree = "<group>"; };
 		F74902D91DC881E9005B193D /* CraftseatCntModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CraftseatCntModel.h; sourceTree = "<group>"; };
 		F74902DA1DC881E9005B193D /* CraftseatCntModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CraftseatCntModel.m; sourceTree = "<group>"; };
-		F74902DC1DC8823B005B193D /* ArrivalByHourModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrivalByHourModel.h; sourceTree = "<group>"; };
-		F74902DD1DC8823B005B193D /* ArrivalByHourModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrivalByHourModel.m; sourceTree = "<group>"; };
-		F74902DF1DC883C2005B193D /* DepartmentByHourModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DepartmentByHourModel.h; sourceTree = "<group>"; };
-		F74902E01DC883C2005B193D /* DepartmentByHourModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DepartmentByHourModel.m; sourceTree = "<group>"; };
 		F758C98F1DC360BD00556120 /* HomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageViewController.h; sourceTree = "<group>"; };
 		F758C9901DC360BD00556120 /* HomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageViewController.m; sourceTree = "<group>"; };
 		F758C9BD1DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbnormalityReportHistoryTableViewCell.h; sourceTree = "<group>"; };
@@ -981,23 +966,39 @@
 		846F1D8E1DA89E5200C8920B /* model */ = {
 			isa = PBXGroup;
 			children = (
-				F79251821DB7518E006AA119 /* FlightProcessModel.h */,
-				F79251831DB7518E006AA119 /* FlightProcessModel.m */,
-				84183A291DBF5DE900D7DD86 /* ReleasedRatioModel.h */,
-				84183A2A1DBF5DE900D7DD86 /* ReleasedRatioModel.m */,
+				F74902BE1DC878C0005B193D /* SummaryModel.h */,
+				F74902BF1DC878C0005B193D /* SummaryModel.m */,
 				84183A2F1DBF8E6700D7DD86 /* FlightHourModel.h */,
 				84183A301DBF8E6700D7DD86 /* FlightHourModel.m */,
-				840D15C81DC07AA7005FA910 /* EnumTypeModel.h */,
+				F74902A31DC86735005B193D /* FlightLargeDelayModel.h */,
+				F74902A41DC86735005B193D /* FlightLargeDelayModel.m */,
+				84183A291DBF5DE900D7DD86 /* ReleasedRatioModel.h */,
+				84183A2A1DBF5DE900D7DD86 /* ReleasedRatioModel.m */,
+				F74902A61DC867EF005B193D /* FlightStusModel.h */,
+				F74902A71DC867F0005B193D /* FlightStusModel.m */,
 				840D15D21DC0C3E8005FA910 /* AbnReasonModel.h */,
 				840D15D31DC0C3E8005FA910 /* AbnReasonModel.m */,
 				840D15D51DC0C478005FA910 /* RegionDlyTimeModel.h */,
 				840D15D61DC0C478005FA910 /* RegionDlyTimeModel.m */,
+				840A4D0F1DD85DE200C39A79 /* PassengerModel.h */,
+				840A4D101DD85DE200C39A79 /* PassengerModel.m */,
 				840D15E41DC2E99A005FA910 /* PassengerAreaModel.h */,
 				840D15E51DC2E99A005FA910 /* PassengerAreaModel.m */,
 				840D15EE1DC30983005FA910 /* PassengerTopModel.h */,
 				840D15EF1DC30983005FA910 /* PassengerTopModel.m */,
+				840A4D121DD99EB900C39A79 /* SeatStatusModel.h */,
+				840A4D131DD99EB900C39A79 /* SeatStatusModel.m */,
+				F74902D91DC881E9005B193D /* CraftseatCntModel.h */,
+				F74902DA1DC881E9005B193D /* CraftseatCntModel.m */,
 				840D15F11DC31F9E005FA910 /* SeatUsedModel.h */,
 				840D15F21DC31F9E005FA910 /* SeatUsedModel.m */,
+				F79251821DB7518E006AA119 /* FlightProcessModel.h */,
+				F79251831DB7518E006AA119 /* FlightProcessModel.m */,
+				840D15C81DC07AA7005FA910 /* EnumTypeModel.h */,
+				F749029D1DC865D1005B193D /* FlightModel.h */,
+				F749029E1DC865D1005B193D /* FlightModel.m */,
+				F74902971DC860AA005B193D /* RootModel.h */,
+				F74902981DC860AA005B193D /* RootModel.m */,
 				F74902641DC82258005B193D /* Flight */,
 				84B941C21DCC63570001F402 /* UserInfoModel.h */,
 				84B941C31DCC63570001F402 /* UserInfoModel.m */,
@@ -1113,31 +1114,10 @@
 		F74902641DC82258005B193D /* Flight */ = {
 			isa = PBXGroup;
 			children = (
-				F74902E21DC88630005B193D /* FlightList */,
-				F74902DF1DC883C2005B193D /* DepartmentByHourModel.h */,
-				F74902E01DC883C2005B193D /* DepartmentByHourModel.m */,
-				F74902DC1DC8823B005B193D /* ArrivalByHourModel.h */,
-				F74902DD1DC8823B005B193D /* ArrivalByHourModel.m */,
-				F74902D91DC881E9005B193D /* CraftseatCntModel.h */,
-				F74902DA1DC881E9005B193D /* CraftseatCntModel.m */,
 				F74902D31DC87C5B005B193D /* DelayModel.h */,
 				F74902D41DC87C5B005B193D /* DelayModel.m */,
-				F74902D01DC87BDE005B193D /* HourToCountModel.h */,
-				F74902D11DC87BDE005B193D /* HourToCountModel.m */,
-				F74902CD1DC87B84005B193D /* IslateTravelModel.h */,
-				F74902CE1DC87B84005B193D /* IslateTravelModel.m */,
-				F74902CA1DC87B26005B193D /* KeySafegurdModel.h */,
-				F74902CB1DC87B26005B193D /* KeySafegurdModel.m */,
-				F74902971DC860AA005B193D /* RootModel.h */,
-				F74902981DC860AA005B193D /* RootModel.m */,
 				F749029A1DC86302005B193D /* AbnormalModel.h */,
 				F749029B1DC86302005B193D /* AbnormalModel.m */,
-				F74902A01DC866CA005B193D /* FlightDetailsModel.h */,
-				F74902A11DC866CA005B193D /* FlightDetailsModel.m */,
-				F74902A31DC86735005B193D /* FlightLargeDelayModel.h */,
-				F74902A41DC86735005B193D /* FlightLargeDelayModel.m */,
-				F74902A61DC867EF005B193D /* FlightStusModel.h */,
-				F74902A71DC867F0005B193D /* FlightStusModel.m */,
 				F74902A91DC868AC005B193D /* DutyModel.h */,
 				F74902AA1DC868AC005B193D /* DutyModel.m */,
 				F74902AC1DC86959005B193D /* WillTravelModel.h */,
@@ -1146,12 +1126,8 @@
 				F74902B01DC86978005B193D /* WillReleaseFltModel.m */,
 				F74902B51DC86A95005B193D /* WillOneHourFltModel.h */,
 				F74902B61DC86A95005B193D /* WillOneHourFltModel.m */,
-				F74902B81DC8752F005B193D /* UserNessageModel.h */,
-				F74902B91DC8752F005B193D /* UserNessageModel.m */,
 				F74902BB1DC877E6005B193D /* ThresholdModel.h */,
 				F74902BC1DC877E6005B193D /* ThresholdModel.m */,
-				F74902BE1DC878C0005B193D /* SummaryModel.h */,
-				F74902BF1DC878C0005B193D /* SummaryModel.m */,
 				F74902C11DC879C2005B193D /* SafeguardModel.h */,
 				F74902C21DC879C2005B193D /* SafeguardModel.m */,
 				F74902C41DC87A34005B193D /* PassenCntModel.h */,
@@ -1160,15 +1136,6 @@
 				F74902C81DC87AA7005B193D /* NearAndFarTakeUpModel.m */,
 			);
 			name = Flight;
-			sourceTree = "<group>";
-		};
-		F74902E21DC88630005B193D /* FlightList */ = {
-			isa = PBXGroup;
-			children = (
-				F749029D1DC865D1005B193D /* FlightModel.h */,
-				F749029E1DC865D1005B193D /* FlightModel.m */,
-			);
-			name = FlightList;
 			sourceTree = "<group>";
 		};
 		F758C9B51DC4373F00556120 /* UserInfo */ = {
@@ -1789,6 +1756,7 @@
 				841839FA1DBCC10200D7DD86 /* PNLineChartDataItem.m in Sources */,
 				F7A2A0551DB8D0590023F228 /* MessageViewController.m in Sources */,
 				843F4CF21DACC3FD00D73D56 /* StringUtils.m in Sources */,
+				840A4D141DD99EB900C39A79 /* SeatStatusModel.m in Sources */,
 				F74902D51DC87C5B005B193D /* DelayModel.m in Sources */,
 				843F4CF81DACCA6D00D73D56 /* HttpsUtils+Business.m in Sources */,
 				846F1DB11DAA22E800C8920B /* GlobalHelper.m in Sources */,
@@ -1800,7 +1768,6 @@
 				F792519C1DB85FA0006AA119 /* AddressBookGroupTableViewCell.m in Sources */,
 				F758C9921DC362E700556120 /* PassengerTopModel.m in Sources */,
 				F749029F1DC865D1005B193D /* FlightModel.m in Sources */,
-				F74902D21DC87BDE005B193D /* HourToCountModel.m in Sources */,
 				843F4CFB1DACCF2500D73D56 /* ThreadUtils.m in Sources */,
 				F79251591DB61D9C006AA119 /* ContactPersonTableViewCell.m in Sources */,
 				840D15E31DC20C4F005FA910 /* PsnSafetyAreaView.m in Sources */,
@@ -1817,11 +1784,9 @@
 				F758C9911DC360BD00556120 /* HomePageViewController.m in Sources */,
 				84183A051DBDB6DF00D7DD86 /* PNBar.m in Sources */,
 				84183A281DBE150E00D7DD86 /* EightMonthRatioView.m in Sources */,
-				F74902E11DC883C2005B193D /* DepartmentByHourModel.m in Sources */,
 				840D15C71DC0557F005FA910 /* FlightHourView.m in Sources */,
 				840D15F31DC31F9E005FA910 /* SeatUsedModel.m in Sources */,
 				84ADE6D51DCC7B9300F58A46 /* PersistenceUtils.m in Sources */,
-				F74902CF1DC87B84005B193D /* IslateTravelModel.m in Sources */,
 				84183A1C1DBDDE4F00D7DD86 /* PassengerHourViewController.m in Sources */,
 				843F4CF51DACC70F00D73D56 /* HttpsUtils.m in Sources */,
 				840D15D71DC0C478005FA910 /* RegionDlyTimeModel.m in Sources */,
@@ -1837,7 +1802,6 @@
 				F70893FC1DD5952F00135540 /* ContactPersonTableViewHeaderView.m in Sources */,
 				840D15C11DC044DA005FA910 /* ArrDepFlightHourViewController.m in Sources */,
 				F74902C01DC878C0005B193D /* SummaryModel.m in Sources */,
-				F74902DE1DC8823B005B193D /* ArrivalByHourModel.m in Sources */,
 				84183A251DBE14A800D7DD86 /* TenDayRatioView.m in Sources */,
 				84183A1F1DBDDEA300D7DD86 /* SecurityPsnViewController.m in Sources */,
 				84183A121DBDDD3B00D7DD86 /* ReleasedRatioViewController.m in Sources */,
@@ -1872,7 +1836,7 @@
 				840D15D41DC0C3E8005FA910 /* AbnReasonModel.m in Sources */,
 				840D15ED1DC2FC67005FA910 /* PassengerTopViewController.m in Sources */,
 				F74902C61DC87A34005B193D /* PassenCntModel.m in Sources */,
-				F74902A21DC866CA005B193D /* FlightDetailsModel.m in Sources */,
+				840A4D111DD85DE200C39A79 /* PassengerModel.m in Sources */,
 				84183A091DBDDBD600D7DD86 /* FlightHourViewController.m in Sources */,
 				F70893EB1DD2F66700135540 /* FlightDelaysTableViewCell.m in Sources */,
 				F70893EF1DD43F9300135540 /* UILabel+Business.m in Sources */,
@@ -1909,7 +1873,6 @@
 				F74902B11DC86978005B193D /* WillReleaseFltModel.m in Sources */,
 				F70893F21DD492AD00135540 /* TagView.m in Sources */,
 				F79251921DB858D9006AA119 /* AddressBookViewController.m in Sources */,
-				F74902CC1DC87B26005B193D /* KeySafegurdModel.m in Sources */,
 				84BA54ED1DA256940037198F /* airmobile.xcdatamodeld in Sources */,
 				F7A25D021DB9E6C000F36C32 /* PsnGeneralContentView.m in Sources */,
 				F79251541DB610D6006AA119 /* FixedMessageTableViewCell.m in Sources */,
@@ -1934,7 +1897,6 @@
 				841839F91DBCC10200D7DD86 /* PNLineChartData.m in Sources */,
 				84183A2B1DBF5DE900D7DD86 /* ReleasedRatioModel.m in Sources */,
 				845E643E1DAB980C0072360D /* CommonFunction.m in Sources */,
-				F74902BA1DC8752F005B193D /* UserNessageModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

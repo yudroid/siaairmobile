@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RootModel.h"
 
-@interface SeatUsedModel : NSObject
+@interface SeatUsedModel : RootModel
 
 @property(nonatomic,copy) NSString *type;
 @property(nonatomic,assign) int free;

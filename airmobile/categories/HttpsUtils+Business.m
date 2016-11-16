@@ -30,6 +30,10 @@ NSString * const userMsgSendUrl = @"/acs/um/m";
 NSString * const groupMsgSendUrl = @"/acs/wm/m";
 NSString * const userlistUrl = @"/acs/wacs/user/SelectAllDeptListForIphone";
 NSString * const groupSaveUrl = @"/acs/wacs/group/save";
+NSString * const flightListUrl = @"/acs/m/flightList";
+NSString * const flightDetailUrl = @"/acs/m/flightDetail";
+NSString * const dispatchDetailUrl = @"/acs/m/dispatchDetail";
+NSString * const specialDetailUrl = @"/acs/m/specialDetail";
 @implementation HttpsUtils (Business)
 
 /**
@@ -157,9 +161,13 @@ NSString * const groupSaveUrl = @"/acs/wacs/group/save";
 }
 
 
-+(void)flightListSuccess:(void(^)(id))success failure:(void (^)(NSError *))failue
++(void)queryFlightList:(NSDictionary *)conditions success:(void(^)(id))success failure:(void (^)(NSError *))failue
 {
-    success(nil);
+    [HttpsUtils get:nil params:conditions success:^(id responseObj) {
+        if(success){
+            success(responseObj);
+        }
+    } failure:failue];
 }
 
 
@@ -200,6 +208,33 @@ NSString * const groupSaveUrl = @"/acs/wacs/group/save";
 +(void)getGroupInfo:(long)groupId
 {
     
+}
+
++(void)getFlightDetail:(int)flightId success:(void (^)(id))success failure:(void (^)(id))failure
+{
+    [HttpsUtils get:flightDetailUrl params:nil success:^(id responseObj) {
+        if(success){
+            success(responseObj);
+        }
+    } failure:failure];
+}
+
++(void)getDispatchDetail:(int)flightId success:(void (^)(id))success failure:(void (^)(id))failure
+{
+    [HttpsUtils get:dispatchDetailUrl params:nil success:^(id responseObj) {
+        if(success){
+            success(responseObj);
+        }
+    } failure:failure];
+}
+
++(void)getSpecialDetail:(int)flightId success:(void (^)(id))success failure:(void (^)(id))failure
+{
+    [HttpsUtils get:specialDetailUrl params:nil success:^(id responseObj) {
+        if(success){
+            success(responseObj);
+        }
+    } failure:failure];
 }
 
 @end

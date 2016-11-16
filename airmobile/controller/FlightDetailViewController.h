@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "RootViewController.h"
+#import "FlightModel.h"
 
 @interface FlightDetailViewController : RootViewController
 
+@property (nonatomic,assign) int flightId;
 @end

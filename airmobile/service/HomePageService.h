@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "BaseService.h"
+#import "SummaryModel.h"
+#import "FlightStusModel.h"
+#import "PassengerModel.h"
+#import "SeatStatusModel.h"
 
 @interface HomePageService : BaseService
 

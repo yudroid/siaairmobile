@@ -7,11 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RootModel.h"
 
-@interface ReleasedRatioModel : NSObject
+@interface ReleasedRatioModel : RootModel
 
 @property(nonatomic,copy) NSString *time;
 @property(nonatomic,assign) CGFloat ratio;
+@property(nonatomic,assign) int realCount;
+@property(nonatomic,assign) int planCount;
 
 -(instancetype) initWithTime:(NSString *)time ratio:(CGFloat)ratio;
 

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -14,6 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="93"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+
                 <rect key="frame" x="0.0" y="0.0" width="375" height="92"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
@@ -22,6 +25,7 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FlightSpecial" translatesAutoresizingMaskIntoConstraints="NO" id="fF0-Hz-JiH">
                                 <rect key="frame" x="0.0" y="0.0" width="367" height="81"/>
+
                                 <constraints>
                                     <constraint firstAttribute="height" constant="81" id="kOD-rG-NDa"/>
                                 </constraints>
@@ -52,47 +56,61 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14:10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ntx-LF-FXs">
+
                                 <rect key="frame" x="238" y="38" width="39" height="24"/>
+
                                 <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
                                 <color key="textColor" red="0.1058823529" green="0.1058823529" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15:30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zmw-B4-yOQ">
                                 <rect key="frame" x="30" y="38" width="42" height="24"/>
+
                                 <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
                                 <color key="textColor" red="0.1058823529" green="0.1058823529" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="流亭T1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uUl-42-To8">
                                 <rect key="frame" x="30" y="64" width="42" height="16"/>
+
                                 <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="11"/>
                                 <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="虹桥T1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fiO-Mo-F4h">
+
                                 <rect key="frame" x="238" y="64" width="39" height="16"/>
+
                                 <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="11"/>
                                 <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cBw-zQ-Fq8">
+
                                 <rect key="frame" x="30" y="33" width="337" height="1"/>
+
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="p0Y-Bj-D4d"/>
                                 </constraints>
                             </view>
+
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="特" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRs-Be-kis">
                                 <rect key="frame" x="354" y="2" width="11" height="16"/>
+
                                 <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="11"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kab-XV-GPN">
+
                                 <rect key="frame" x="80" y="38" width="150" height="42"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FlightArrow" translatesAutoresizingMaskIntoConstraints="NO" id="qnd-g3-S2q">
                                         <rect key="frame" x="0.0" y="19" width="150" height="4"/>
+
                                         <constraints>
                                             <constraint firstAttribute="height" constant="4" id="DTt-wn-qWY"/>
                                         </constraints>
@@ -108,10 +126,12 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CeQ-eG-81E">
+
                                 <rect key="frame" x="80" y="38" width="150" height="42"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14:10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qfH-eO-yzU">
                                         <rect key="frame" x="86" y="0.0" width="40" height="24"/>
+
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="4TS-bz-ITn"/>
                                         </constraints>
@@ -120,6 +140,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="虹桥T1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vkn-Bv-u3M">
+
                                         <rect key="frame" x="89" y="26" width="34" height="16"/>
                                         <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="11"/>
                                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -139,10 +160,12 @@
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="虹桥T1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AKH-1q-CB8">
                                         <rect key="frame" x="25" y="26" width="34" height="16"/>
+
                                         <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="11"/>
                                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14:10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sff-Dk-srV">
                                         <rect key="frame" x="22" y="0.0" width="40" height="24"/>
                                         <constraints>
@@ -152,6 +175,7 @@
                                         <color key="textColor" red="0.1058823529" green="0.1058823529" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -244,10 +268,23 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="FlightImageView" destination="PVa-RK-GXr" id="vzg-9n-M9V"/>
+                <outlet property="airlineImage" destination="PVa-RK-GXr" id="7qr-8m-VQc"/>
+                <outlet property="airportLable" destination="Vkn-Bv-u3M" id="D3O-48-PMX"/>
+                <outlet property="backImageView" destination="fF0-Hz-JiH" id="GtU-Xm-u22"/>
                 <outlet property="carftModelLabel" destination="TyG-hl-pWH" id="ns1-zP-uKR"/>
+                <outlet property="craftModelLable" destination="TyG-hl-pWH" id="lMn-NK-0nK"/>
+                <outlet property="craftSeatLabel" destination="vc7-au-A5g" id="Y6Z-gq-1XM"/>
                 <outlet property="flightLabel" destination="8k7-fS-B8M" id="EeB-Fu-aXr"/>
+                <outlet property="flightNoLabel" destination="8k7-fS-B8M" id="qBo-xp-E0W"/>
+                <outlet property="flightStatus" destination="joe-aZ-w98" id="llx-gA-5nw"/>
                 <outlet property="insideView" destination="ZdR-zi-Lt0" id="Yca-Hg-Xvy"/>
-                <outlet property="middleView" destination="CeQ-eG-81E" id="Rlg-fw-IEU"/>
+                <outlet property="landingLabel" destination="qfH-eO-yzU" id="4I9-t7-yIB"/>
+                <outlet property="middleView" destination="CeQ-eG-81E" id="EaZ-HG-dOC"/>
+                <outlet property="nextAirport" destination="fiO-Mo-F4h" id="xRS-eg-MeY"/>
+                <outlet property="nextLandingLabel" destination="ntx-LF-FXs" id="yI5-FI-dVB"/>
+                <outlet property="preAirportLabel" destination="uUl-42-To8" id="J3s-Mr-tIq"/>
+                <outlet property="preTakeOffLabel" destination="zmw-B4-yOQ" id="2rX-nA-ZZ2"/>
+                <outlet property="regionLabel" destination="P2Z-0e-c7G" id="r5n-kP-gpP"/>
             </connections>
             <point key="canvasLocation" x="32.5" y="54.5"/>
         </tableViewCell>

@@ -7,19 +7,46 @@
 //
 
 #import "HomePageService.h"
+#import "SummaryModel.h"
 
 @implementation HomePageService
-
+{
+    SummaryModel *summaryModel;// 首页概览数据
+    
+}
 singleton_implementation(HomePageService);
 
 -(void)startService
 {
     [super startService:^{
-        [self refreshMessage];
+        [self cacheHomePageData];
     }];
 }
 
--(void)refreshMessage
+-(void)cacheHomePageData
+{
+    [self cacheSummaryData];
+    [self cacheFlightData];
+    [self cachePassengerData];
+    [self cacheSeatUsedData];
+}
+
+-(void) cacheSummaryData
+{
+    
+}
+
+-(void) cacheFlightData
+{
+    
+}
+
+-(void) cachePassengerData
+{
+    
+}
+
+-(void) cacheSeatUsedData
 {
     
 }

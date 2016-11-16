@@ -12,6 +12,9 @@
 #import "TagView.h"
 
 @implementation OverViewContentView
+{
+    UILabel *calendarLabel;// 当天日期
+}
 
 
 -(id)initWithFrame:(CGRect)frame delegate:(id<OverviewContentViewDelegate>)delegate
@@ -23,7 +26,6 @@
         float y = 0;
 
         _delegate = delegate;
-         
 
         y+=px_px_2_3(77, 141);
         UIView *caleandarView = [[UIView alloc]
@@ -35,8 +37,8 @@
                                                          frame:CGRectMake(0, 0, px2(34), px2(35))];
         [caleandarView addSubview:calendarImage];
         CGSize maxLabelSize = CGSizeMake(100, CGFLOAT_MAX);
-        UILabel *calendarLabel = [[UILabel alloc] init];
-        calendarLabel.text = @"2016-10-17";
+        calendarLabel = [[UILabel alloc] init];
+        calendarLabel.text = [CommonFunction dateFormat:nil format:@"yyyy-MM-dd"];
         calendarLabel.font = [UIFont fontWithName:@"PingFang SC" size:px_px_2_3(36, 60)];
         calendarLabel.textColor = [CommonFunction colorFromHex:0XFF3E3737];
         calendarLabel.textAlignment = NSTextAlignmentCenter;
@@ -167,6 +169,8 @@
         noticeTextView.font = [UIFont systemFontOfSize:12];
         noticeTextView.editable = NO;
         [self addSubview:noticeTextView];
+        
+        [self loadData];
     }
     return self;
 }
@@ -206,6 +210,11 @@
         }
     }
     return nil;
+}
+
+-(void) loadData
+{
+    
 }
 
 @end
