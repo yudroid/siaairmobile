@@ -27,7 +27,6 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 @interface MessageViewController ()<TabBarViewDelegate,UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
 
 
-@property (nonatomic, strong) UIView *optionView;
 @property (nonatomic, strong) UISearchBar *searBar;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIView *searchView;
@@ -50,7 +49,7 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
     [self initTable];
     [self initSearchTableView];
     
-    [self initOptionView];
+//    [self initOptionView];
     
     //TabBer自定义
     self.tabBarView = [[TabBarView alloc] initTabBarWithModel:TabBarBgModelHomePage selectedType:TabBarSelectedTypeMessage delegate:self];
@@ -181,40 +180,33 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 
 -(void)chatButtonClick:(UIButton *)sender
 {
-    if (_optionView.alpha == 0) {
-        [UIView animateWithDuration:0.3 animations:^{
-            _optionView.alpha = 1;
-        }];
-    }else{
-        [UIView animateWithDuration:0.3 animations:^{
-            _optionView.alpha = 0;
-        }];
-    }
+    ContactPersonViewController *contactPersonVC = [[ContactPersonViewController alloc]initWithNibName:@"ContactPersonViewController" bundle:nil];
+    [self.navigationController  pushViewController:contactPersonVC animated:YES];
 }
 
--(void)initOptionView
-{
-    _optionView = [[UIView alloc]initWithFrame:CGRectMake(kScreenWidth-8-100, 53, 100, 40)];
-    [self.view addSubview:_optionView];
-    
-    UIImageView *backgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 00, 100, 40)];
-    backgroundImageView.image = [UIImage imageNamed:@"optionChatBackground"];
-    [_optionView addSubview:backgroundImageView];
-    
-    
-    UIImageView *openChatImageView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 13, 20, 20)];
-    openChatImageView.image = [UIImage imageNamed:@"icon_flight"];
-    [_optionView addSubview:openChatImageView];
-    
-    UIButton *openChatButton = [[UIButton alloc]initWithFrame:CGRectMake(33, 5, 67, 35)];
-    [openChatButton setTitle:@"发起聊天" forState:UIControlStateNormal];
-    openChatButton.titleLabel.font = [UIFont systemFontOfSize:14];
-    openChatButton.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [openChatButton addTarget:self action:@selector(optionChatButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    [_optionView addSubview:openChatButton];
-    
-    _optionView.alpha = 0;
-}
+//-(void)initOptionView
+//{
+//    _optionView = [[UIView alloc]initWithFrame:CGRectMake(kScreenWidth-8-100, 53, 100, 40)];
+//    [self.view addSubview:_optionView];
+//    
+//    UIImageView *backgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 00, 100, 40)];
+//    backgroundImageView.image = [UIImage imageNamed:@"optionChatBackground"];
+//    [_optionView addSubview:backgroundImageView];
+//    
+//    
+//    UIImageView *openChatImageView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 13, 20, 20)];
+//    openChatImageView.image = [UIImage imageNamed:@"icon_flight"];
+//    [_optionView addSubview:openChatImageView];
+//    
+//    UIButton *openChatButton = [[UIButton alloc]initWithFrame:CGRectMake(33, 5, 67, 35)];
+//    [openChatButton setTitle:@"发起聊天" forState:UIControlStateNormal];
+//    openChatButton.titleLabel.font = [UIFont systemFontOfSize:14];
+//    openChatButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+//    [openChatButton addTarget:self action:@selector(optionChatButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+//    [_optionView addSubview:openChatButton];
+//    
+//    _optionView.alpha = 0;
+//}
 
 
 
@@ -231,11 +223,10 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 
 #pragma mark - EVENT
 
--(void)optionChatButtonClick:(UIButton *)sender
-{
-    ContactPersonViewController *contactPersonVC = [[ContactPersonViewController alloc]initWithNibName:@"ContactPersonViewController" bundle:nil];
-    [self.navigationController  pushViewController:contactPersonVC animated:YES];
-}
+//-(void)optionChatButtonClick:(UIButton *)sender
+//{
+//   
+//}
 
 
 -(void)searchViewClick:(UIView *)view

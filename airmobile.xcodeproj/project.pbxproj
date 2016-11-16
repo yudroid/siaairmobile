@@ -183,8 +183,6 @@
 		F79251931DB858D9006AA119 /* AddressBookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F79251911DB858D9006AA119 /* AddressBookViewController.xib */; };
 		F79251971DB85D78006AA119 /* AddressBookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F79251951DB85D78006AA119 /* AddressBookTableViewCell.m */; };
 		F79251981DB85D78006AA119 /* AddressBookTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F79251961DB85D78006AA119 /* AddressBookTableViewCell.xib */; };
-		F792519C1DB85FA0006AA119 /* AddressBookGroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F792519A1DB85FA0006AA119 /* AddressBookGroupTableViewCell.m */; };
-		F792519D1DB85FA0006AA119 /* AddressBookGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F792519B1DB85FA0006AA119 /* AddressBookGroupTableViewCell.xib */; };
 		F7A25D021DB9E6C000F36C32 /* PsnGeneralContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D011DB9E6C000F36C32 /* PsnGeneralContentView.m */; };
 		F7A25D051DB9E6C900F36C32 /* PsnSafetyContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D041DB9E6C900F36C32 /* PsnSafetyContentView.m */; };
 		F7A25D081DB9E6EE00F36C32 /* ProgreesBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D071DB9E6EE00F36C32 /* ProgreesBarView.m */; };
@@ -557,9 +555,6 @@
 		F79251941DB85D78006AA119 /* AddressBookTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookTableViewCell.h; sourceTree = "<group>"; };
 		F79251951DB85D78006AA119 /* AddressBookTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookTableViewCell.m; sourceTree = "<group>"; };
 		F79251961DB85D78006AA119 /* AddressBookTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressBookTableViewCell.xib; sourceTree = "<group>"; };
-		F79251991DB85FA0006AA119 /* AddressBookGroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookGroupTableViewCell.h; sourceTree = "<group>"; };
-		F792519A1DB85FA0006AA119 /* AddressBookGroupTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookGroupTableViewCell.m; sourceTree = "<group>"; };
-		F792519B1DB85FA0006AA119 /* AddressBookGroupTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressBookGroupTableViewCell.xib; sourceTree = "<group>"; };
 		F7A25D001DB9E6C000F36C32 /* PsnGeneralContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PsnGeneralContentView.h; sourceTree = "<group>"; };
 		F7A25D011DB9E6C000F36C32 /* PsnGeneralContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PsnGeneralContentView.m; sourceTree = "<group>"; };
 		F7A25D031DB9E6C900F36C32 /* PsnSafetyContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PsnSafetyContentView.h; sourceTree = "<group>"; };
@@ -913,6 +908,7 @@
 				841839E61DBC87DD00D7DD86 /* overview */,
 				F7EE87821DB370C4006473F5 /* 航班列表 */,
 				F792513C1DB5EE01006AA119 /* 消息 */,
+				F7003E4F1DDC4EED0056F3DA /* 功能 */,
 				F79251721DB73DD3006AA119 /* 我的 */,
 				F7A25D1C1DBDB5C000F36C32 /* TimePickerView.h */,
 				F7A25D1D1DBDB5C000F36C32 /* TimePickerView.m */,
@@ -1111,6 +1107,19 @@
 			path = airmobileUITests;
 			sourceTree = "<group>";
 		};
+		F7003E4F1DDC4EED0056F3DA /* 功能 */ = {
+			isa = PBXGroup;
+			children = (
+				F792518A1DB7890E006AA119 /* NightShiftRoomTableViewCell.h */,
+				F792518B1DB7890E006AA119 /* NightShiftRoomTableViewCell.m */,
+				F792518C1DB7890E006AA119 /* NightShiftRoomTableViewCell.xib */,
+				F79251941DB85D78006AA119 /* AddressBookTableViewCell.h */,
+				F79251951DB85D78006AA119 /* AddressBookTableViewCell.m */,
+				F79251961DB85D78006AA119 /* AddressBookTableViewCell.xib */,
+			);
+			name = "功能";
+			sourceTree = "<group>";
+		};
 		F74902641DC82258005B193D /* Flight */ = {
 			isa = PBXGroup;
 			children = (
@@ -1260,15 +1269,6 @@
 				F792517D1DB74576006AA119 /* UserManagermentTableViewCell.h */,
 				F792517E1DB74576006AA119 /* UserManagermentTableViewCell.m */,
 				F792517F1DB74576006AA119 /* UserManagermentTableViewCell.xib */,
-				F792518A1DB7890E006AA119 /* NightShiftRoomTableViewCell.h */,
-				F792518B1DB7890E006AA119 /* NightShiftRoomTableViewCell.m */,
-				F792518C1DB7890E006AA119 /* NightShiftRoomTableViewCell.xib */,
-				F79251941DB85D78006AA119 /* AddressBookTableViewCell.h */,
-				F79251951DB85D78006AA119 /* AddressBookTableViewCell.m */,
-				F79251961DB85D78006AA119 /* AddressBookTableViewCell.xib */,
-				F79251991DB85FA0006AA119 /* AddressBookGroupTableViewCell.h */,
-				F792519A1DB85FA0006AA119 /* AddressBookGroupTableViewCell.m */,
-				F792519B1DB85FA0006AA119 /* AddressBookGroupTableViewCell.xib */,
 			);
 			name = "我的";
 			sourceTree = "<group>";
@@ -1542,7 +1542,6 @@
 				8450555C1DACF65200400EBF /* login_btn@3x.png in Resources */,
 				F70893E21DD2EC1B00135540 /* FlightDelaysViewController.xib in Resources */,
 				8450556C1DACF65200400EBF /* splash@2x.png in Resources */,
-				F792519D1DB85FA0006AA119 /* AddressBookGroupTableViewCell.xib in Resources */,
 				F792515A1DB61D9C006AA119 /* ContactPersonTableViewCell.xib in Resources */,
 				845055711DACF65200400EBF /* splash_2@3x.png in Resources */,
 				F792516E1DB63D62006AA119 /* ChatTimeTableViewCell.xib in Resources */,
@@ -1765,7 +1764,6 @@
 				846F1D951DA8F8F700C8920B /* DeviceInfoUtil.m in Sources */,
 				F79251971DB85D78006AA119 /* AddressBookTableViewCell.m in Sources */,
 				840D15DD1DC1D6E0005FA910 /* PsnHourTableViewCell.m in Sources */,
-				F792519C1DB85FA0006AA119 /* AddressBookGroupTableViewCell.m in Sources */,
 				F758C9921DC362E700556120 /* PassengerTopModel.m in Sources */,
 				F749029F1DC865D1005B193D /* FlightModel.m in Sources */,
 				843F4CFB1DACCF2500D73D56 /* ThreadUtils.m in Sources */,

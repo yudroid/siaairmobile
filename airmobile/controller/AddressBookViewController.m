@@ -8,14 +8,17 @@
 
 #import "AddressBookViewController.h"
 #import "AddressBookTableViewCell.h"
-#import "AddressBookGroupTableViewCell.h"
 #import <objc/runtime.h>
+#import "ContactPersonTableViewHeaderView.h"
+#import "ContactPersonTableViewCell.h"
+#import "UserInfoModel.h"
+#import "DeptInfoModel.h"
 
 const char * ALERTVIEW_BLOCK = "ALERTVIEW_BLOCK";
-static const NSString *ADDRESSBOOK_TABLEGROUPCELL_IDENTIFIER = @"ADDRESSBOOK_TABLEGROUPCELL_IDENTIFIER";
+static const NSString *ADDRESSBOOK_TABLEGROUPHEAER_IDENTIFIER = @"ADDRESSBOOK_TABLEGROUPHEADER_IDENTIFIER";
 static const NSString *ADDRESSBOOK_TABLECELL_IDENTIFIER = @"ADDRESSBOOK_TABLECELL_IDENTIFIER";
 
-@interface AddressBookViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
+@interface AddressBookViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate,ContactPersonTableViewHeaderViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *tableArray;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -23,6 +26,11 @@ static const NSString *ADDRESSBOOK_TABLECELL_IDENTIFIER = @"ADDRESSBOOK_TABLECEL
 @end
 
 @implementation AddressBookViewController
+{
+    NSArray<DeptInfoModel *> *array;
+
+    NSMutableArray *_resultArry;// 保存数据的展开状态(因为分组很多，所以不能设置一个bool类型记录)
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,142 +43,106 @@ static const NSString *ADDRESSBOOK_TABLECELL_IDENTIFIER = @"ADDRESSBOOK_TABLECEL
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.tableFooterView = [[UIView alloc]init];
-    _tableArray = [NSMutableArray arrayWithArray:@[
-                           @{
-                               @"Name":@"朋友",
-                               @"Group":@"YES",
-                               @"Child":@[
-                                       @{@"Name":@"张三",
-                                         @"phone":@"10010",},
-                                       @{@"Name":@"王五",
-                                         @"phone":@"10010"}
-                                       ]
-                               },
-                           @{
-                               @"Name":@"家人",
-                               @"Group":@"YES",
-                               @"Child":@[@{@"Name":@"姐姐",
-                                            @"phone":@"10010"},
-                                          @{@"Name":@"妹妹",
-                                            @"phone":@"10010"},
-                                          @{@"Name":@"哥哥",
-                                            @"phone":@"10010"},
-                                          @{@"Name":@"弟弟",
-                                            @"phone":@"10010"}]
-                               },
-                           @{
-                               @"Name":@"陌生人",
-                               @"Group":@"YES",
-                               @"Child":@[
-                                       @{@"Name":@"小王",
-                                         @"phone":@"10010"},
-                                       @{@"Name":@"小李",
-                                         @"phone":@"10010"},
-                                       @{@"Name":@"小红",
-                                         @"phone":@"10010"}]
-                               
-                               }
-                           ]];
-    // Do any additional setup after loading the view from its nib.
+    [_tableView registerNib:[UINib nibWithNibName:@"AddressBookTableViewCell" bundle:nil] forCellReuseIdentifier:(NSString *)ADDRESSBOOK_TABLECELL_IDENTIFIER];
+    [_tableView registerNib:[UINib nibWithNibName:@"ContactPersonTableViewHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:(NSString *)ADDRESSBOOK_TABLEGROUPHEAER_IDENTIFIER];
+
+    DeptInfoModel *dep = [[DeptInfoModel alloc]init];
+
+
+    UserInfoModel *user1 = [[UserInfoModel alloc]init];
+    user1.name = @"寇雪松";
+    UserInfoModel *user2 = [[UserInfoModel alloc]init];
+    user2.name = @"寇雪松";
+    UserInfoModel *user3 = [[UserInfoModel alloc]init];
+    user3.name = @"寇雪松";
+    UserInfoModel *user4 = [[UserInfoModel alloc]init];
+    user4.name = @"寇雪松";
+
+    dep.userArr =[NSMutableArray arrayWithArray:@[user1,user2,user3,user4]];
+
+    array = @[dep];
+    _resultArry = [NSMutableArray array];
+    for (NSDictionary *item in array) {
+        // 初始时都是折叠状态（bool不能直接放在数组里）
+        [_resultArry addObject:[NSNumber numberWithBool:NO]];
+    }
 }
 
 
 
 #pragma mark - UITableViewDelegate UITableViewDataSource
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if( [ [_tableArray objectAtIndex: indexPath.row] objectForKey:@"Group"])
-    {
-        return 30;
-    }
-    return  60;
+    return [array count];
 }
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSDictionary * dectionary = [_tableArray objectAtIndex:indexPath.row];
-    if([dectionary objectForKey:@"Group"])
-    {
-        AddressBookGroupTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)ADDRESSBOOK_TABLEGROUPCELL_IDENTIFIER];
-        if (cell == nil) {
-            cell = [[NSBundle mainBundle] loadNibNamed:@"AddressBookGroupTableViewCell" owner:nil options:nil][0];
-        }
-        
-        cell.namelLabel.text = [dectionary objectForKey:@"Name"];
-        cell.tag = 1;
-        return cell;
-    }
-    else
-    {
-        AddressBookTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)ADDRESSBOOK_TABLECELL_IDENTIFIER];
-        if (cell == nil) {
-            cell = [[NSBundle mainBundle] loadNibNamed:@"AddressBookTableViewCell" owner:nil options:nil][0];
-        }
-        cell.nameLabel.text = [dectionary objectForKey:@"Name"];
-        return cell;
-    }
-    
-}
--(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return _tableArray.count;
-}
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSMutableDictionary * dictionary = [NSMutableDictionary dictionaryWithDictionary:[_tableArray objectAtIndex:indexPath.row]];
-    
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    NSLog(@"%@",cell.textLabel.text);
-    if([dictionary objectForKey:@"Group"])
-    {
-        NSArray *ChildArray = [dictionary objectForKey:@"Child"];
-        NSMutableArray *PathArray = [NSMutableArray array];
-        
-        if(cell.tag==1)
-        {
-            [UIView animateWithDuration:0.3 animations:^{
-                ((AddressBookGroupTableViewCell *)cell).headImageView.transform = CGAffineTransformMakeRotation(M_PI_2);
-            }];
-            cell.tag=2;
-            for (int i =0 ;i<ChildArray.count;i++)
-            {
-                dictionary = [ChildArray objectAtIndex:i];
-                [_tableArray insertObject:dictionary atIndex:i+indexPath.row+1];
-                NSIndexPath *path = [NSIndexPath indexPathForRow:i+indexPath.row+1 inSection:0];
-                [PathArray addObject:path];
-            }
-            [tableView insertRowsAtIndexPaths:PathArray withRowAnimation:UITableViewRowAnimationAutomatic];
-        }
-        else
-        {
-            [UIView animateWithDuration:0.3 animations:^{
-                ((AddressBookGroupTableViewCell *)cell).headImageView.transform = CGAffineTransformMakeRotation(0);
-            }];
-            cell.tag=1;
-            NSMutableIndexSet * deleteSet= [NSMutableIndexSet indexSet];
-            for (NSDictionary *dic  in ChildArray)
-            {
-                NSInteger row= [_tableArray indexOfObject:dic];
-                NSIndexPath * Path = [NSIndexPath indexPathForRow:row inSection:0];
-                [PathArray addObject:Path];
-                [deleteSet addIndex:row];
-            }
-            [_tableArray removeObjectsAtIndexes:deleteSet];
-            [tableView deleteRowsAtIndexPaths:PathArray withRowAnimation:UITableViewRowAnimationBottom];
-        }
+    if ([[_resultArry objectAtIndex:section] boolValue]) {
+        NSArray *tempArr = [array objectAtIndex:section].userArr;
+        if(tempArr==nil)
+            return 0;
+        return [tempArr count];
     }else{
-        NSString *phoneNumber = [NSString stringWithFormat:@"telprompt://%@",[dictionary objectForKey:@"phone"]];
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneNumber]];
+        return 0;
     }
 
 }
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+    return 58;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 70.5;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    ContactPersonTableViewHeaderView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:(NSString *)ADDRESSBOOK_TABLEGROUPHEAER_IDENTIFIER];
+    view.tag = section;
+    view.delegate = self;
+    view.open = [[_resultArry objectAtIndex:view.tag] boolValue];;
+    return view;
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+
+    AddressBookTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)ADDRESSBOOK_TABLECELL_IDENTIFIER];
+    UserInfoModel *userInfo = [[array objectAtIndex:indexPath.section].userArr objectAtIndex:indexPath.row];
+    cell.nameLabel.text = userInfo.name;
+
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",@"10086"];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+
+}
+
+#pragma mark - ContactPersonTableViewHeaderViewDelegate
+-(void)contactPersonTableViewHeaderViewClick:(UIView *)view
+{
+    ContactPersonTableViewHeaderView *headerView = (ContactPersonTableViewHeaderView *)view;
+    headerView.open = !headerView.open;
+    // 通过点击的段数，来获取数组里的bool（对应的展开状态）
+    BOOL bo = [[_resultArry objectAtIndex:view.tag] boolValue];
+    // 把点击段数的状态转换为相反的状态
+    [_resultArry replaceObjectAtIndex:view.tag withObject:[NSNumber numberWithBool:!bo]];
+    // 刷新某个分段（只有这一个刷新分组的方法，所以刷新一组，或者刷新全组都是这样写，NSIndexSet为一个集合）
+
+    //刷新某个 section 里面的 cell 数据
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:view.tag] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
 
 //-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 //{

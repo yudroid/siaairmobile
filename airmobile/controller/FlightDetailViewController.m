@@ -169,6 +169,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
     }
     cell.titleNameLabel.text = _airLineCollectionArray[indexPath.row];
     return cell;
+
 }
 
 - (IBAction)safeguradContractButtonClick:(UIButton *)sender {
