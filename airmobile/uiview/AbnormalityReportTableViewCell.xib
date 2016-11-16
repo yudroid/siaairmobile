@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -11,39 +14,41 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <frame key="frameInset" width="320" height="81"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="81"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="类型" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yOM-Ja-2yA">
+                        <rect key="frame" x="18.5" y="29.5" width="34" height="24"/>
                         <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
                         <color key="textColor" red="0.10588235294117647" green="0.10588235294117647" blue="0.10588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kuozhan" translatesAutoresizingMaskIntoConstraints="NO" id="Ebx-mJ-w3R">
+                        <rect key="frame" x="295" y="34" width="7" height="14"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="14" id="peo-t4-yGb"/>
                             <constraint firstAttribute="width" constant="7" id="s4g-hN-nxl"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pcr-yL-diZ">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="航班延误" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="65h-Q4-bnG">
+                        <rect key="frame" x="65.5" y="29.5" width="68" height="24"/>
                         <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
-                        <color key="textColor" red="0.58039215690000001" green="0.58039215690000001" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.7803921568627451" green="0.7803921568627451" blue="0.7803921568627451" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="pcr-yL-diZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="100" id="Cto-jL-bR9"/>
-                    <constraint firstItem="yOM-Ja-2yA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="25" id="YJC-uj-nde"/>
+                    <constraint firstItem="65h-Q4-bnG" firstAttribute="leading" secondItem="yOM-Ja-2yA" secondAttribute="trailing" constant="13" id="7JW-gS-Dya"/>
+                    <constraint firstItem="yOM-Ja-2yA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="18.5" id="YJC-uj-nde"/>
                     <constraint firstItem="yOM-Ja-2yA" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="bcp-rA-yRt"/>
                     <constraint firstAttribute="trailing" secondItem="Ebx-mJ-w3R" secondAttribute="trailing" constant="18" id="eCx-ve-IdV"/>
                     <constraint firstItem="Ebx-mJ-w3R" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="hHr-eh-04b"/>
-                    <constraint firstItem="Ebx-mJ-w3R" firstAttribute="leading" secondItem="pcr-yL-diZ" secondAttribute="trailing" constant="8" id="kjt-rB-cnv"/>
-                    <constraint firstItem="pcr-yL-diZ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="wx7-B7-JkR"/>
+                    <constraint firstItem="65h-Q4-bnG" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="un5-a9-QsS"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="nameLabel" destination="yOM-Ja-2yA" id="13L-WD-K1E"/>
-                <outlet property="valueLabel" destination="pcr-yL-diZ" id="Qvm-wV-3Gn"/>
+                <outlet property="valueLabel" destination="65h-Q4-bnG" id="JIx-zD-kIS"/>
             </connections>
             <point key="canvasLocation" x="25" y="71"/>
         </tableViewCell>

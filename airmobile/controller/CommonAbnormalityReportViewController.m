@@ -39,21 +39,24 @@ typedef NS_ENUM(NSUInteger, ReportState) {
             self.startReportButton.enabled = YES;
             self.endReportButton.enabled = YES;
             self.tableView.allowsSelection = YES;
-            self.remarksTextView.editable = YES;
+            self.requireTextView.editable = YES;
+            self.explainTextView.editable = YES;
             self.iphoneButton.enabled = YES;
             break;
         case ReportStateStarted:
             self.startReportButton.enabled = NO;
             self.endReportButton.enabled = YES;
             self.tableView.allowsSelection = YES;
-            self.remarksTextView.editable = YES;
+            self.requireTextView.editable = YES;
+            self.explainTextView.editable = YES;
             self.iphoneButton.enabled = YES;
             break;
         case ReportStateCompleted:
             self.startReportButton.enabled = NO;
             self.endReportButton.enabled = NO;
             self.tableView.allowsSelection = NO;
-            self.remarksTextView.editable = NO;
+            self.requireTextView.editable = NO;
+            self.explainTextView.editable = NO;
             self.iphoneButton.enabled = NO;
             break;
         default:

@@ -9,7 +9,7 @@
 #import "PassengerTopViewController.h"
 #import "PassengerTopModel.h"
 
-@interface PassengerTopViewController ()
+@interface PassengerTopViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @end
 
@@ -24,16 +24,40 @@
     [self initTitle];
     
     [self initData];
-    UIImageView *imageView = [CommonFunction imageView:@"overview_toppsn.png" frame:CGRectMake(0, 65, kScreenWidth, 200)];
-    [self.view addSubview:imageView];
-    
+
+    UIView *topView = [[UIView alloc]initWithFrame:CGRectMake(0, 65, kScreenWidth, kScreenWidth *369/750)];
+    [self.view addSubview:topView];
+
+    UIImageView *imageView = [CommonFunction imageView:@"PeaktravellerBackground" frame:CGRectMake(0, 0, kScreenWidth, kScreenWidth *369/750)];
+    [topView addSubview:imageView];
+
+    UILabel *deapTravellerLabel = [[UILabel alloc]initWithFrame:CGRectMake(21, 85/2, 100, 17)];
+    deapTravellerLabel.text = @"高峰旅客";
+    deapTravellerLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:21];
+    deapTravellerLabel.textColor = [CommonFunction colorFromHex:0XFFefeff0];
+    [topView addSubview:deapTravellerLabel];
+
+    UIImage *topImage = [UIImage imageNamed:@"TopList"];
+    UIImageView *TopImageView = [[UIImageView alloc]initWithFrame:CGRectMake(22, viewBotton(deapTravellerLabel)+10, topImage.size.width, topImage.size.height)];
+    TopImageView.image = topImage;
+    [topView addSubview:TopImageView];
+
+    UILabel *timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(viewX(TopImageView), viewBotton(TopImageView)+10, 300, 9)];
+    timeLabel.text = [NSString stringWithFormat:@"时间范围:%@",@"2016年11月13日-2016年11月13日"];
+    timeLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:21/2];
+    timeLabel.textColor = [CommonFunction colorFromHex:0XFFefeff0];
+    [topView addSubview:timeLabel];
+
+
+
     //小时分布表格
-    UITableView *flightHourTableView = [[UITableView alloc]initWithFrame:CGRectMake(20, 65+200+20, kScreenWidth-40, kScreenHeight-10-(65+20+200+20+40))];
+    UITableView *flightHourTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, viewBotton(topView)+8, kScreenWidth, kScreenHeight-viewBotton(topView)-65-49)];
     flightHourTableView.delegate = self;
     flightHourTableView.dataSource = self;
     flightHourTableView.showsVerticalScrollIndicator = NO;
     flightHourTableView.backgroundColor = [UIColor whiteColor];
-    flightHourTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//    flightHourTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    flightHourTableView.tableFooterView = [[UIView alloc]init];
     [self.view addSubview:flightHourTableView];
 }
 
@@ -50,7 +74,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 40;
+    return 54.0;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [array count];
@@ -63,9 +87,11 @@
     
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:model.date];
-        [cell addSubview:[CommonFunction addLabelFrame:CGRectMake(0, 0, cell.frame.size.width/2-20, cell.frame.size.height) text:model.date font:20 textAlignment:(NSTextAlignmentLeft) colorFromHex:0xFF1B1B1B]];
-        
-        [cell addSubview:[CommonFunction addLabelFrame:CGRectMake(cell.frame.size.width/2, 0, cell.frame.size.width/2-20, cell.frame.size.height) text:[NSString stringWithFormat:@"%i",model.count] font:20 textAlignment:(NSTextAlignmentRight) colorFromHex:0xFF1B1B1B]];
+        UIImageView *headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(16, (viewHeight(cell)-17)/2, 16, 17)];
+        headerImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"PeakList_%ld",indexPath.row+1]];
+        [cell addSubview:headerImageView];
+        [cell addSubview:[CommonFunction addLabelFrame:CGRectMake(viewTrailing(headerImageView)+20, 0, cell.frame.size.width/2-20-viewTrailing(headerImageView), cell.frame.size.height) text:model.date font:35/2 textAlignment:(NSTextAlignmentLeft) colorFromHex:0xFF000000]];
+        [cell addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, 0, kScreenWidth/2-20, cell.frame.size.height) text:[NSString stringWithFormat:@"%i",model.count] font:35/2 textAlignment:(NSTextAlignmentRight) colorFromHex:0xFF000000]];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
@@ -84,6 +110,12 @@
     [array addObject:[[PassengerTopModel alloc] initWithDate:@"2016-7-25" count:5120 index:3]];
     [array addObject:[[PassengerTopModel alloc] initWithDate:@"2016-8-25" count:5048 index:4]];
     [array addObject:[[PassengerTopModel alloc] initWithDate:@"2016-9-25" count:5042 index:5]];
+    [array addObject:[[PassengerTopModel alloc] initWithDate:@"2016-7-25" count:5120 index:6]];
+    [array addObject:[[PassengerTopModel alloc] initWithDate:@"2016-8-25" count:5048 index:7]];
+    [array addObject:[[PassengerTopModel alloc] initWithDate:@"2016-9-25" count:5042 index:8]];
+    [array addObject:[[PassengerTopModel alloc] initWithDate:@"2016-7-25" count:5120 index:9]];
+    [array addObject:[[PassengerTopModel alloc] initWithDate:@"2016-8-25" count:5048 index:10]];
+    [array addObject:[[PassengerTopModel alloc] initWithDate:@"2016-9-25" count:5042 index:11]];
     
 }
 

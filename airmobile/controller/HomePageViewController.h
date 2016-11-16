@@ -23,7 +23,7 @@ typedef enum
 
 @interface HomePageViewController : RootViewController<TabBarViewDelegate,OverviewContentViewDelegate,FlightContentViewDelegate,PassengerContentViewDelegate,ResourceContentViewDelegate>
 {
-    UIView *selectedLine;
+    UIImageView *selectedLine;
     
     UILabel *overviewLabel;// 总览
     UILabel *flightLabel;// 航班

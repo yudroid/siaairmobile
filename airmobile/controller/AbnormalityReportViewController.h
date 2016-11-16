@@ -12,6 +12,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *startReportButton;
 @property (weak, nonatomic) IBOutlet UIButton *endReportButton;
 @property (weak, nonatomic) IBOutlet UIButton *iphoneButton;
-@property (weak, nonatomic) IBOutlet UITextView *remarksTextView;
+@property (weak, nonatomic) IBOutlet UITextView *requireTextView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UITextView *explainTextView;
 @end

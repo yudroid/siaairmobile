@@ -69,10 +69,14 @@
     [self.titleView addSubview:titleLabelView];
     
     // 当前选中的标记线
-    selectedLine = [CommonFunction addLine:CGRectMake(0, 0, kScreenWidth/4-16, 2.5) color:[UIColor whiteColor]];
+//    selectedLine = [CommonFunction addLine:CGRectMake(0, 0, kScreenWidth/4-16, 2.5) color:[UIColor redColor]];
+//    selectedLine.center = CGPointMake(kScreenWidth/8, 74);
+//    [titleLabelView addSubview:selectedLine];
+    selectedLine = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth/4-16, 6)];
     selectedLine.center = CGPointMake(kScreenWidth/8, 74);
+    selectedLine.image = [UIImage imageNamed:@"SelectedLine"];
     [titleLabelView addSubview:selectedLine];
-    
+
     overviewLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth/4, titleLableHeight)];//整体概览
     overviewLabel.center = CGPointMake(kScreenWidth/8, 57);
     overviewLabel.textColor = [CommonFunction colorFromHex:0XFFFFFFFF];
