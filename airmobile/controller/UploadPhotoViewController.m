@@ -50,8 +50,10 @@ static const NSString *UPLOADPHOTO_COLLECTIONCELL_IDENTIFIER = @"UPLOADPHOTO_COL
 {
     AbnormalityReportCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:(NSString *)UPLOADPHOTO_COLLECTIONCELL_IDENTIFIER forIndexPath:indexPath];
     if (indexPath.row == 0) {
-        cell.imageView.image = [UIImage imageNamed:@"相机"];
+        cell.imageView.image = [UIImage imageNamed:@"TakePhoto"];
+        cell.selectedBackgroundImageView.hidden = YES;
     }else{
+        cell.selectedBackgroundImageView.hidden = NO;
         cell.imageView.image = _collectionArray[indexPath.row-1];
     }
 

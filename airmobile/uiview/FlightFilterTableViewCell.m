@@ -13,6 +13,8 @@
 
 @property (weak, nonatomic) IBOutlet UIView *insideView;
 
+
+
 @end
 
 @implementation FlightFilterTableViewCell

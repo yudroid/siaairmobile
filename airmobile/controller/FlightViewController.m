@@ -105,35 +105,47 @@ static  NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_IDETIF
                                 colorWithPatternImage:[UIImage imageNamed:@"home_title_bg.png"]];
     [self.titleView addSubview:_searBar];
 
-    //查找按钮
+    //返回按钮
     UIButton *searchBackButton = [[UIButton alloc]
                                   initWithFrame:CGRectMake(0, 20, 51, 44)];
     searchBackButton.backgroundColor = [UIColor clearColor];
     //    [backBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
-    [searchBackButton setImage:[UIImage imageNamed:@"icon_newMessage"]
+    [searchBackButton setImage:[UIImage imageNamed:@"back"]
                       forState:(UIControlStateNormal)];
-    [searchBackButton setImage:[UIImage imageNamed:@"icon_newMessage"]
+    [searchBackButton setImage:[UIImage imageNamed:@"back"]
                       forState:(UIControlStateSelected)];
     [_searBar addSubview:searchBackButton];
     [searchBackButton addTarget:self
                          action:@selector(searchBackButtonClick:)
                forControlEvents:(UIControlEventTouchUpInside)];
     //查询文本输入框
+
+    //背景
+    UIImageView *searchTextBackgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewTrailing(searchBackButton), (44- px_px_2_3(59, 91))/2+20, kScreenWidth-viewTrailing(searchBackButton)-16,px_px_2_3(59, 91) )];
+    searchTextBackgroundImageView.image = [UIImage imageNamed:@"SearchTextBackground"];
+    [_searBar addSubview:searchTextBackgroundImageView];
+
+    //放大镜图标
+    UIImageView *searchTagImageView = [[UIImageView alloc]initWithFrame:CGRectMake(px_px_2_3(11, 17)+viewX(searchTextBackgroundImageView), viewY(searchTextBackgroundImageView)+(viewHeight(searchTextBackgroundImageView)-15)/2, 15, 15)];
+    searchTagImageView.image = [UIImage imageNamed:@"SearchIconBig"];
+//    searchTagImageView.backgroundColor = [UIColor redColor];
+    [_searBar addSubview:searchTagImageView];
+    
     UITextField *searContentTextField = [[UITextField alloc]
-                                         initWithFrame:CGRectMake(51, 20, kScreenWidth-100, 44)];
-    searContentTextField.textAlignment = NSTextAlignmentCenter;
+                                         initWithFrame:CGRectMake(px_px_2_3(14, 22)+viewTrailing(searchTagImageView), viewY(searchTextBackgroundImageView), viewWidth(searchTextBackgroundImageView)-viewTrailing(searchTagImageView)-px_px_2_3(14, 22), viewHeight(searchTextBackgroundImageView))];
     searContentTextField.placeholder = @"请输入查询内容";
+    searContentTextField.font = [UIFont fontWithName:@"PingFangSC-Regular" size:px_px_2_3(26, 40)];
     [_searBar addSubview:searContentTextField];
 
     //搜索按钮
-    UIButton *searchBarSearchButton = [[UIButton alloc]
-                                       initWithFrame:CGRectMake(kScreenWidth-51, 20, 51, 44)];
-    [searchBarSearchButton setTitle:@"搜索"
-                           forState:UIControlStateNormal];
-    [searchBarSearchButton addTarget:self
-                              action:@selector(searchBarSearchButtonClick:)
-                    forControlEvents:UIControlEventTouchUpInside];
-    [_searBar addSubview:searchBarSearchButton];
+//    UIButton *searchBarSearchButton = [[UIButton alloc]
+//                                       initWithFrame:CGRectMake(kScreenWidth-51, 20, 51, 44)];
+//    [searchBarSearchButton setTitle:@"搜索"
+//                           forState:UIControlStateNormal];
+//    [searchBarSearchButton addTarget:self
+//                              action:@selector(searchBarSearchButtonClick:)
+//                    forControlEvents:UIControlEventTouchUpInside];
+//    [_searBar addSubview:searchBarSearchButton];
 
 }
 

@@ -11,6 +11,7 @@
 @interface AbnormalityReportCollectionViewCell : UICollectionViewCell
     
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIImageView *selectedBackgroundImageView;
 @property (nonatomic ,assign) BOOL isSelected;
 
 @end

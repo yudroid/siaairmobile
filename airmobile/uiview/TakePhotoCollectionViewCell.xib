@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="TakePhotoCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="99" height="94"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="99" height="94"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UploadImageBackground" translatesAutoresizingMaskIntoConstraints="NO" id="GjR-GR-NVB">
+                        <rect key="frame" x="7" y="5" width="85" height="84"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UploadPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="qkv-YP-zKF">
+                        <rect key="frame" x="19" y="22" width="61" height="50"/>
+                    </imageView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="GjR-GR-NVB" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="KJz-l1-WXU"/>
+                <constraint firstItem="GjR-GR-NVB" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="bHO-mf-3Ko"/>
+                <constraint firstItem="qkv-YP-zKF" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="eyO-FP-fNz"/>
+                <constraint firstItem="qkv-YP-zKF" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="fc9-IM-lby"/>
+            </constraints>
+            <size key="customSize" width="99" height="94"/>
+            <point key="canvasLocation" x="49.5" y="74"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="UploadImageBackground" width="85" height="84"/>
+        <image name="UploadPhoto" width="61" height="50"/>
+    </resources>
+</document>

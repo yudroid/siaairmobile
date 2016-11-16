@@ -10,7 +10,8 @@
 
 @interface AbnormalityReportCollectionViewCell ()
 
-@property (weak, nonatomic) IBOutlet UIImageView *selectedBackgroundImageView;
+
+
 
 @end
 
@@ -25,9 +26,9 @@
 {
     _isSelected = isSelected;
     if (isSelected) {
-        _selectedBackgroundImageView.image = [UIImage imageNamed:@"UploadImageSelected1"];
+        _selectedBackgroundImageView.image = [UIImage imageNamed:@"UploadImageSelected"];
     }else{
-        _selectedBackgroundImageView.image = [UIImage imageNamed:@""];
+        _selectedBackgroundImageView.image = [UIImage imageNamed:@"UploadImageNotSelected"];
     }
 }
 

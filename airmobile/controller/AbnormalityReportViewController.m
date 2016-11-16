@@ -35,8 +35,13 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 @property (nonatomic ,strong) NSMutableArray *collectionArray;
 
 @property (nonatomic, copy) NSArray *abnormalityHistoryArray;
-@property (weak, nonatomic) IBOutlet UITableView *abnormalityTableView;
+@property (weak, nonatomic) IBOutlet UITableView *abnormalityHistoryTableView;
 @property (nonatomic, strong) TimePickerView * timePickerView;
+
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *abnormalityHistoryViewHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewBottom;
+
 @end
 
 @implementation AbnormalityReportViewController
@@ -53,19 +58,18 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
     _tableView.dataSource =self;
     _tableView.scrollEnabled = NO;
     [_tableView registerNib:[UINib nibWithNibName:@"AbnormalityReportTableViewCell" bundle:nil] forCellReuseIdentifier:(NSString *)ABNORMALITYREPORT_TABLECELL_IDENTIFIER];
-    _tableViewArray = @[@"类型",@"事件"];
+    _tableViewArray = @[@"类型",@"事件",@"事件级别"];
 
-    _abnormalityTableView.delegate = self;
-    _abnormalityTableView.dataSource = self;
-    [_abnormalityTableView registerNib:[UINib nibWithNibName:@"AbnormalityReportHistoryTableViewCell" bundle:nil] forCellReuseIdentifier:(NSString *)ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER];
-    _abnormalityHistoryArray = @[@"类型",@"事件",@"事件级别"];
-    
+    _abnormalityHistoryTableView.delegate = self;
+    _abnormalityHistoryTableView.dataSource = self;
+    [_abnormalityHistoryTableView registerNib:[UINib nibWithNibName:@"AbnormalityReportHistoryTableViewCell" bundle:nil] forCellReuseIdentifier:(NSString *)ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER];
+    _abnormalityHistoryArray = @[@"类型",@"事件"];
+    _abnormalityHistoryViewHeight.constant = _abnormalityHistoryArray.count * 61 +51;
 
     _photoCollectionView.delegate =self;
     _photoCollectionView.dataSource = self;
     [_photoCollectionView registerNib:[UINib nibWithNibName:@"AbnormalityReportCollectionViewCell"  bundle:nil]forCellWithReuseIdentifier:(NSString *)ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER];
     _collectionArray = [NSMutableArray array];
-
 
     _requireTextView.returnKeyType =UIReturnKeyDone;
     _requireTextView.delegate = self;
@@ -105,14 +109,22 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 // 键盘通知
 - (void)keyboardWillShowNotification:(NSNotification *)info
 {
-//    NSDictionary *userInfo = [info userInfo];
-//    CGSize kbSize = [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
-//    float y =244-( kScreenHeight-kbSize.height- _remarksTextView.frame.size.height)+8;
-//    if (y>self.scrollView.contentOffset.y) {
-//        [UIView animateWithDuration:1.0 animations:^{
-//            self.scrollView.contentOffset = CGPointMake(0, y);
-//        }];
-//    }
+    NSDictionary *userInfo = [info userInfo];
+    CGSize kbSize = [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+
+    _scrollViewBottom.constant = kbSize.height;
+    UITextView *textView ;
+    if ([_requireTextView isFirstResponder]) {
+        textView = _requireTextView;
+    }else{
+        textView = _explainTextView;
+    }
+    float y =viewY(textView.superview)+8;
+    if (y>self.scrollView.contentOffset.y) {
+        [UIView animateWithDuration:1.0 animations:^{
+            [self.scrollView setContentOffset:CGPointMake(0, y) animated:YES];
+        }];
+    }
 }
 - (void)keyboardWillHideNotification:(NSNotification *)info
 {
@@ -179,6 +191,9 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (tableView == _abnormalityHistoryTableView) {
+        return 61;
+    }
     return 58;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -186,6 +201,7 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
     if (tableView == _tableView) {
         AbnormalityReportTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString*)ABNORMALITYREPORT_TABLECELL_IDENTIFIER];
         cell.nameLabel.text =_tableViewArray[indexPath.row];
+        cell.valueLabel.text = _tableViewArray[indexPath.row];
         return  cell;
     }else
     {
@@ -200,7 +216,7 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-    if(tableView == _abnormalityTableView){
+    if(tableView == _abnormalityHistoryTableView){
         return;
     }
 

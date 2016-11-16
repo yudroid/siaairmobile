@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface AbnormalityReportHistoryTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *starLabel;
+@property (weak, nonatomic) IBOutlet UILabel *endLabel;
+@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 
 @end

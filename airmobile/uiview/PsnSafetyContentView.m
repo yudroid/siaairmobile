@@ -97,7 +97,7 @@
         [self addSubview:lesslineImageView];
 
         //equal
-        UIImageView *equalImageView = [[UIImageView alloc]initWithFrame:CGRectMake(20, viewBotton(lesslineImageView)+21+7, 32/2,11/2)];
+        UIImageView *equalImageView = [[UIImageView alloc]initWithFrame:CGRectMake(px_px_2_3(54, 89), viewBotton(lesslineImageView)+21+7, 32/2,11/2)];
         equalImageView.image = [UIImage imageNamed:@"PsnSafetyEqual"];
         [self addSubview:equalImageView];
 
@@ -113,7 +113,7 @@
 
         //more
 
-        UIImageView *moreImageView = [[UIImageView alloc]initWithFrame:CGRectMake(20, viewBotton(equallineImageView)+21, 19/2,37/2)];
+        UIImageView *moreImageView = [[UIImageView alloc]initWithFrame:CGRectMake(px_px_2_3(54, 89), viewBotton(equallineImageView)+21, 19/2,37/2)];
         moreImageView.image = [UIImage imageNamed:@"PsnSafetyMore"];
         [self addSubview:moreImageView];
 

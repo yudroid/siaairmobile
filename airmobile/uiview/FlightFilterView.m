@@ -8,6 +8,8 @@
 
 #import "FlightFilterView.h"
 
+
+
 @implementation FilghtFilterButton
 
 
@@ -34,10 +36,14 @@
 
 @end
 
+
+
 @interface FlightFilterView ()
 
 @property (nonatomic, strong) NSMutableArray *selectedArray;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *areaLabelLeading;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *areaLabelTop;
 @end
 
 @implementation FlightFilterView
@@ -46,8 +52,19 @@
 {
     [super awakeFromNib];
     _selectedArray = [NSMutableArray array];
-    
+    if ([DeviceInfoUtil isPlus]) {
+        [self adjustPLUS];
+    }
+
 }
+
+-(void)adjustPLUS
+{
+    _areaLabelLeading.constant = 118/3;
+    _areaLabelTop.constant = 57/3;
+}
+
+
 - (IBAction)cancelButtonClick:(id)sender {
     [UIView animateWithDuration:0.3 animations:^{
         self.alpha = 0;

@@ -45,11 +45,11 @@
     [progressRound animationWithStrokeEnd:cancleProportion withProgressType:ProgreesTypeCancel];
 
     //圆圈底部圆圈
-    UIImage *bottomRoundImage = [UIImage imageNamed:@"chartBack"];
-    UIImageView *bottomRoundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, viewWidth(progressRound)-7, viewHeight(progressRound)-7)];
-    bottomRoundImageView.image = bottomRoundImage;
-    bottomRoundImageView.center = progressRound.center;
-    [self.view addSubview:bottomRoundImageView];
+//    UIImage *bottomRoundImage = [UIImage imageNamed:@"chartBack"];
+//    UIImageView *bottomRoundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, viewWidth(progressRound)-7, viewHeight(progressRound)-7)];
+//    bottomRoundImageView.image = bottomRoundImage;
+//    bottomRoundImageView.center = progressRound.center;
+//    [self.view addSubview:bottomRoundImageView];
     [self.view addSubview:progressRound];
 
 

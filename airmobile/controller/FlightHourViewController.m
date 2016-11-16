@@ -71,7 +71,7 @@
     
 
     UIImageView *upImageView = [[UIImageView alloc]initWithFrame:CGRectMake(px2(33), viewY(todayLabel)+viewHeight(todayLabel)+px_px_2_3(10, 15), viewWidth(topBgView)-2*px2(33), px2(2))];
-    upImageView.image = [UIImage imageNamed:@"FlightHourLine"];
+    upImageView.image = [UIImage imageNamed:@"hiddenLine"];
     [topBgView addSubview:upImageView];
     
     UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(px2(33), viewBotton(upImageView)+px_px_2_3(10, 15),viewWidth(topBgView)-2*px2(33), 12) text:@"100" font:px_px_2_3(22, 36) textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF];
@@ -123,7 +123,7 @@
 
 
     UIImageView *lowImageView = [[UIImageView alloc]initWithFrame:CGRectMake(px2(31), viewBotton(lineChart)-15-7, viewWidth(topBgView)-2*px2(31), px2(2))];
-    lowImageView.image = [UIImage imageNamed:@"FlightHourLine"];
+    lowImageView.image = [UIImage imageNamed:@"hiddenLine"];
     [topBgView addSubview:lowImageView];
 
     y =viewHeight(topBgView)+viewY(topBgView)+px2(10);
