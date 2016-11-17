@@ -44,11 +44,6 @@
     UIImageView *topBgBackgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, viewWidth(topBgView), viewHeight(topBgView))];
     topBgBackgroundImageView.image = [UIImage imageNamed:@"TenDayRatioChartBackground"];
     [topBgView addSubview:topBgBackgroundImageView];
-    //        CAGradientLayer *gradient = [CAGradientLayer layer];
-    //        gradient.frame = topBgView.bounds;
-    //        gradient.colors = [NSArray arrayWithObjects:(id)[[CommonFunction colorFromHex:0XFF17B9E8] CGColor], (id)[[CommonFunction colorFromHex:0XFF5684FB] CGColor], nil];
-    //        [topBgView.layer insertSublayer:gradient atIndex:0];
-    //        [topBgView.layer setCornerRadius:8.0];// 将图层的边框设置为圆脚
     [topBgView.layer setMasksToBounds:YES];// 隐藏边界
 
     UILabel *passengerTtitle = [[UILabel alloc] initWithFrame:CGRectMake(16, 8, viewWidth(topBgView)-100, 11)];
@@ -125,9 +120,9 @@
     UIImageView *buildingImageView = [CommonFunction imageView:@"BedetainedPeople" frame:CGRectMake(45/2, viewBotton(topBgView)+px_px_2_3(60, 92), 15, 18)];
     [self.view addSubview:buildingImageView];
     
-    [self.view addSubview:[CommonFunction addLabelFrame:CGRectMake(viewTrailing(buildingImageView)+16, viewY(buildingImageView), kScreenWidth-160, viewHeight(buildingImageView)) text:@"航站楼内滞留旅客" font:36/2 textAlignment:(NSTextAlignmentLeft) colorFromHex:0xFF000000]];
+    [self.view addSubview:[CommonFunction addLabelFrame:CGRectMake(viewTrailing(buildingImageView)+16, viewY(buildingImageView), kScreenWidth-160, viewHeight(buildingImageView)) text:@"航站楼内滞留旅客" font:px_px_2_2_3(25, 36, 48) textAlignment:(NSTextAlignmentLeft) colorFromHex:0xFF000000]];
     
-    [self.view addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth-80-22, viewY(buildingImageView), 80, viewHeight(buildingImageView)) text:@"6520" font:36/2 textAlignment:(NSTextAlignmentRight) colorFromHex:0xFF000000]];
+    [self.view addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth-80-22, viewY(buildingImageView), 80, viewHeight(buildingImageView)) text:@"6520" font:px_px_2_2_3(25, 36, 48) textAlignment:(NSTextAlignmentRight) colorFromHex:0xFF000000]];
 
     UIImageView *lineImageView1= [[UIImageView alloc]initWithFrame:CGRectMake(viewTrailing(buildingImageView)+px_px_2_3(42, 63), viewBotton(buildingImageView)+18, viewWidth(self.view)-(viewTrailing(buildingImageView)+16+43/2), 1)];
     lineImageView1.image = [UIImage imageNamed:@"Line"];
@@ -136,9 +131,9 @@
     UIImageView *delayImageView = [CommonFunction imageView:@"BedetainedRatio" frame:CGRectMake(viewX(buildingImageView), viewBotton(lineImageView1)+18, 15, 18)];
     [self.view addSubview:delayImageView];
     
-    [self.view addSubview:[CommonFunction addLabelFrame:CGRectMake(viewTrailing(delayImageView)+16, viewY(delayImageView), kScreenWidth-160, viewHeight(delayImageView)) text:@"延误>1h航班出港率" font:36/2 textAlignment:(NSTextAlignmentLeft) colorFromHex:0xFF000000]];
+    [self.view addSubview:[CommonFunction addLabelFrame:CGRectMake(viewTrailing(delayImageView)+16, viewY(delayImageView), kScreenWidth-160, viewHeight(delayImageView)) text:@"延误>1h航班出港率" font:px_px_2_2_3(25, 36, 48) textAlignment:(NSTextAlignmentLeft) colorFromHex:0xFF000000]];
     
-    [self.view addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth-80-43/2,viewY(delayImageView), 80, viewHeight(delayImageView)) text:@"97%" font:18 textAlignment:(NSTextAlignmentRight) colorFromHex:0xFF000000]];
+    [self.view addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth-80-43/2,viewY(delayImageView), 80, viewHeight(delayImageView)) text:@"97%" font:px_px_2_2_3(25, 36, 48) textAlignment:(NSTextAlignmentRight) colorFromHex:0xFF000000]];
 
     UIImageView *lineImageView2= [[UIImageView alloc]initWithFrame:CGRectMake(viewTrailing(buildingImageView)+px_px_2_3(42, 63), viewBotton(delayImageView)+18, viewWidth(self.view)-viewTrailing(buildingImageView)-16-43/2, 1)];
     lineImageView2.image = [UIImage imageNamed:@"Line"];
@@ -147,9 +142,13 @@
     UIImageView *noFlightImageView = [CommonFunction imageView:@"BedetainedTime" frame:CGRectMake(viewX(buildingImageView), viewBotton(lineImageView2)+18, 15, 18)];
     [self.view addSubview:noFlightImageView];
     
-    [self.view addSubview:[CommonFunction addLabelFrame:CGRectMake(viewTrailing(noFlightImageView)+16, viewBotton(lineImageView2)+px_px_2_3(42, 63), kScreenWidth-160, viewHeight(noFlightImageView)) text:@"无航班起降累积时间" font:18 textAlignment:(NSTextAlignmentLeft) colorFromHex:0xFF000000]];
+    [self.view addSubview:[CommonFunction addLabelFrame:CGRectMake(viewTrailing(noFlightImageView)+16, viewBotton(lineImageView2)+px_px_2_3(42, 63), kScreenWidth-160, viewHeight(noFlightImageView))
+                                                   text:@"无航班起降累积时间"
+                                                   font:px_px_2_2_3(25, 36, 48)
+                                          textAlignment:(NSTextAlignmentLeft)
+                                           colorFromHex:0xFF000000]];
     
-    [self.view addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth-80-43/2, viewY(noFlightImageView), 80, viewHeight(noFlightImageView)) text:@"110min" font:18 textAlignment:(NSTextAlignmentRight) colorFromHex:0xFF000000]];
+    [self.view addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth-80-43/2, viewY(noFlightImageView), 80, viewHeight(noFlightImageView)) text:@"110min" font:px_px_2_2_3(25, 36, 48) textAlignment:(NSTextAlignmentRight) colorFromHex:0xFF000000]];
 
     UIImageView *lineImageView3= [[UIImageView alloc]initWithFrame:CGRectMake(viewTrailing(buildingImageView)+px_px_2_3(42, 63), viewBotton(noFlightImageView)+16, viewWidth(self.view)-viewTrailing(buildingImageView)-16-43/2, 1)];
     lineImageView3.image = [UIImage imageNamed:@"Line"];

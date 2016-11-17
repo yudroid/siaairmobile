@@ -41,29 +41,40 @@
         UIButton *psnHourBtn = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth/2, 200+30, kScreenWidth/2-20, 90)];
         [psnHourBtn addTarget:self action:@selector(showPassengerHourView:) forControlEvents:(UIControlEventTouchUpInside)];
         [scrollView addSubview:psnHourBtn];
-        
-        UIButton *showSafeBtn = [[UIButton alloc] initWithFrame:CGRectMake(20, 200+30+30+30+90, kScreenWidth-40, 30)];
-        [showSafeBtn addTarget:self action:@selector(showSafetyPassenger:) forControlEvents:UIControlEventTouchUpInside];
-        [scrollView addSubview:showSafeBtn];
+//        
+//        UIButton *showSafeBtn = [[UIButton alloc] initWithFrame:CGRectMake(20, 200+30+30+30+90, kScreenWidth-40, 30)];
+//        showSafeBtn.backgroundColor = [UIColor blackColor];
+//        [showSafeBtn addTarget:self action:@selector(showSafetyPassenger:) forControlEvents:UIControlEventTouchUpInside];
+//        [scrollView addSubview:showSafeBtn];
         
         psnSafety = [[PsnSafetyContentView alloc] initWithFrame:CGRectMake(width, 0, width, height)];
         [scrollView addSubview:psnSafety];
         
-        UIButton *showTopBtn = [[UIButton alloc] initWithFrame:CGRectMake(width+20, 200+30+30+10+30+10+90, kScreenWidth-40, 30)];
-        [showTopBtn addTarget:self action:@selector(showTop5DaysView:) forControlEvents:UIControlEventTouchUpInside];
-        [scrollView addSubview:showTopBtn];
-        
+//        UIButton *showTopBtn = [[UIButton alloc] initWithFrame:CGRectMake(width+20, 200+30+30+10+30+10+90, kScreenWidth-40, 30)];
+//        showTopBtn.backgroundColor = [UIColor redColor];
+//        [showTopBtn addTarget:self action:@selector(showTop5DaysView:) forControlEvents:UIControlEventTouchUpInside];
+//        [scrollView addSubview:showTopBtn];
+
         pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, 0, width, 30)];
-        pageControl.center = CGPointMake(width/2, height);
+        pageControl.center = CGPointMake(width/2, height-15);
         pageControl.numberOfPages = 2;
         pageControl.userInteractionEnabled = NO;
         pageControl.pageIndicatorTintColor = [CommonFunction colorFromHex:0X5F16C1F4];
         pageControl.currentPageIndicatorTintColor = [CommonFunction colorFromHex:0XFF16C1F4];
 //        pageControl.backgroundColor = [UIColor blueColor];
         [self addSubview:pageControl];//四个按钮
+
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showSafetyPassenger:) name:@"showSafetyPassenger" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showTop5DaysView:) name:@"showTop5DaysView" object:nil];
     }
     
     return self;
+}
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"showSafetyPassenger" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"showTop5DaysView" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"showPassengerHourView" object:nil];
 }
 
 -(void) showPassengerHourView:(UIButton *)sender

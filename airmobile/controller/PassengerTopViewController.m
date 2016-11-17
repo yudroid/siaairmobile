@@ -51,7 +51,7 @@
 
 
     //小时分布表格
-    UITableView *flightHourTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, viewBotton(topView)+8, kScreenWidth, kScreenHeight-viewBotton(topView)-65-49)];
+    UITableView *flightHourTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, viewBotton(topView)+8, kScreenWidth, kScreenHeight-viewBotton(topView)-49)];
     flightHourTableView.delegate = self;
     flightHourTableView.dataSource = self;
     flightHourTableView.showsVerticalScrollIndicator = NO;
@@ -84,7 +84,7 @@
 {
     PassengerTopModel *model = array[indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:model.date];
-    
+    cell = nil;
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:model.date];
         UIImageView *headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(16, (viewHeight(cell)-17)/2, 16, 17)];

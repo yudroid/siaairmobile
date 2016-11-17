@@ -175,12 +175,7 @@
     return headerView;
 }
 
-#pragma mark 返回每组头标题名称
-//-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-//    if(section==0)
-//        return @"近机位登机口";
-//    return @"远机位登机口";
-//}
+
 
 -(NSArray *) getFlightHourXLabels
 {

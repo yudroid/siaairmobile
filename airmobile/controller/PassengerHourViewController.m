@@ -32,35 +32,41 @@
     
     [self initData];
     
-    UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(20, 65+20, kScreenWidth-40, 200)];
+    CGFloat topBgViewWidth = kScreenWidth-2*px2(22);
+    UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(10, 65+px_px_2_3(24, 50), topBgViewWidth, topBgViewWidth *391/709)];
     [self.view addSubview:topBgView];
-    
-    CAGradientLayer *gradient = [CAGradientLayer layer];
-    gradient.frame = topBgView.bounds;
-    gradient.colors = [NSArray arrayWithObjects:(id)[[CommonFunction colorFromHex:0XFF17B9E8] CGColor], (id)[[CommonFunction colorFromHex:0XFF5684FB] CGColor], nil];
-    [topBgView.layer insertSublayer:gradient atIndex:0];
-    [topBgView.layer setCornerRadius:8.0];// 将图层的边框设置为圆脚
-    [topBgView.layer setMasksToBounds:YES];// 隐藏边界
-    
-    UILabel *passengerTtitle = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, topBgView.frame.size.width-100, 23)];
+
+    UIImageView *topBgBackgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, viewWidth(topBgView), viewHeight(topBgView))];
+    topBgBackgroundImageView.image = [UIImage imageNamed:@"PsnGeneralChartBackground"];
+    [topBgView addSubview:topBgBackgroundImageView];
+
+    UILabel *passengerTtitle = [[UILabel alloc] initWithFrame:CGRectMake(16, 8, viewWidth(topBgView)-100, 11)];
     passengerTtitle.text = @"旅客小时分布";
-    passengerTtitle.font = [UIFont systemFontOfSize:17];
+    passengerTtitle.font = [UIFont fontWithName:@"PingFangSC-Regular" size:27/2];
     passengerTtitle.textColor = [UIColor whiteColor];
     [topBgView addSubview:passengerTtitle];
 
-    UILabel *arrLabel = [CommonFunction addLabelFrame:CGRectMake(20, 5+20 , 50, 20) text:@"进港" font:14 textAlignment:NSTextAlignmentLeft colorFromHex:0xFFFFFFFF];
-    [topBgView addSubview:arrLabel];
-    
-    UILabel *depLabel = [CommonFunction addLabelFrame:CGRectMake(20+50, 5+20 , 50, 20) text:@"出港" font:14 textAlignment:NSTextAlignmentLeft colorFromHex:0xFFFFFFFF];
-    [topBgView addSubview:depLabel];
-    
-    
-    [topBgView addSubview:[CommonFunction addLine:CGRectMake(20, 5+23+23, topBgView.frame.size.width-40, 1) color:[CommonFunction colorFromHex:0XFF3FDFB7]]];
-    
-    UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(20, 5+23+23+2, topBgView.frame.size.width-40, 12) text:@"350" font:12 textAlignment:NSTextAlignmentRight colorFromHex:0xFFFFFFFF];
+    UIView *prTitleView = [[UIView alloc] initWithFrame:CGRectMake(16, viewBotton(passengerTtitle)+px_px_2_3(12, 18), 120, 12)];
+    [topBgView addSubview:prTitleView];
+
+    UIImageView *planImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 2, 10, 10)];
+    planImageView.image = [UIImage imageNamed:@"PsnGeneralChartTag_1"];
+    [prTitleView addSubview:planImageView];
+    [prTitleView addSubview:[CommonFunction addLabelFrame:CGRectMake(viewTrailing(planImageView)+2, 0, 40, 12) text:@"计划" font:27/2 textAlignment:NSTextAlignmentLeft colorFromHex:0xFFFFFFFF]];
+
+    UIImageView *realImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewTrailing(planImageView)+2+40+16, 2, 10, 10)];
+    realImageView.image = [UIImage imageNamed:@"PsnGeneralChartTag_2"];
+    [prTitleView addSubview:realImageView];
+    [prTitleView addSubview:[CommonFunction addLabelFrame:CGRectMake(viewTrailing(realImageView)+2, 0, 40, 12) text:@"实际" font:27/2 textAlignment:NSTextAlignmentLeft colorFromHex:0xFFFFFFFF]];
+
+    UIImageView *lineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(passengerTtitle), viewBotton(prTitleView)+4, viewWidth(topBgView)-viewX(passengerTtitle)*2, 0.5)];
+    lineImageView.image = [UIImage imageNamed:@"hiddenLine"];
+    [topBgView addSubview:lineImageView];
+
+    UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(viewWidth(topBgView)-18-50,viewBotton(lineImageView)+4, 50, 12) text:@"350" font:11 textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF];
     [topBgView addSubview:maxLabel];
-    
-    arrLineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(20, 5+23+23+2, topBgView.frame.size.width-40, topBgView.frame.size.height-(5+23+23+2)-5)];
+
+    arrLineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(viewX(passengerTtitle), viewBotton(maxLabel), viewWidth(topBgView)-viewX(passengerTtitle)-18, viewHeight(topBgView)-viewBotton(maxLabel))];
     arrLineChart.backgroundColor = [UIColor clearColor];
     arrLineChart.skipXPoints = 1;
     [arrLineChart setXLabels:[self getFlightHourXLabels]];
@@ -107,12 +113,14 @@
     [arrLineChart strokeChart];
     [topBgView addSubview:arrLineChart];
     
-    [topBgView addSubview:[CommonFunction addLabelFrame:CGRectMake(20, topBgView.frame.size.height-(10+15+12), topBgView.frame.size.width-40, 12) text:@"0" font:12 textAlignment:NSTextAlignmentRight colorFromHex:0xFFFFFFFF]];
-    
-    [topBgView addSubview:[CommonFunction addLine:CGRectMake(20, topBgView.frame.size.height-10-15, topBgView.frame.size.width-40, 1) color:[CommonFunction colorFromHex:0XFF3FDFB7]]];
-    
+    UIImageView *downlineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(passengerTtitle), topBgView.frame.size.height-10-15, viewWidth(topBgView)-viewX(passengerTtitle)-18, 0.5)];
+    downlineImageView.image = [UIImage imageNamed:@"hiddenLine"];
+    [topBgView addSubview:downlineImageView];
+
+    [topBgView addSubview:[CommonFunction addLabelFrame:CGRectMake(20, viewY(downlineImageView)-13-4, topBgView.frame.size.width-40, 13) text:@"0" font:11 textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF]];
+
     //小时分布表格
-    UITableView *flightHourTableView = [[UITableView alloc]initWithFrame:CGRectMake(20, 65+20+200+20, kScreenWidth-40, kScreenHeight-10-(65+20+200+20))];
+    UITableView *flightHourTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, viewBotton(topBgView)+8, kScreenWidth, kScreenHeight-viewBotton(topBgView)-10)];
     flightHourTableView.delegate = self;
     flightHourTableView.dataSource = self;
     flightHourTableView.showsVerticalScrollIndicator = NO;
@@ -135,7 +143,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 30;
+    return 41;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [hourArray count];

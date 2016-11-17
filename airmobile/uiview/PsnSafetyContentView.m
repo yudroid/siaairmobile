@@ -83,7 +83,7 @@
 //        
 
         //less
-        UIImageView *lessImageView = [[UIImageView alloc]initWithFrame:CGRectMake(px_px_2_3(54, 89), viewBotton(topBgView)+10+21, 19/2,37/2)];
+        UIImageView *lessImageView = [[UIImageView alloc]initWithFrame:CGRectMake(px_px_2_3(54, 89), viewBotton(topBgView)+px_px_2_2_3(40, 62, 93), 19/2,37/2)];
         lessImageView.image = [UIImage imageNamed:@"PsnSafetyLess"];
         //        arrImageView.backgroundColor = [UIColor redColor];
         [self addSubview:lessImageView];
@@ -92,12 +92,12 @@
 
         [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, viewY(lessImageView), kScreenWidth/2-20, viewHeight(lessImageView)) text:@"100" font:36/2 textAlignment:NSTextAlignmentRight colorFromHex:0xFF000000]];
 
-        UIImageView *lesslineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(lessLabel), viewBotton(lessLabel)+21, viewWidth(self)-viewX(lessLabel)-20, 0.5)];
+        UIImageView *lesslineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(lessLabel), viewBotton(lessLabel)+px_px_2_2_3(30, 42, 63), viewWidth(self)-viewX(lessLabel)-20, 0.5)];
         lesslineImageView.image = [UIImage imageNamed:@"Line"];
         [self addSubview:lesslineImageView];
 
         //equal
-        UIImageView *equalImageView = [[UIImageView alloc]initWithFrame:CGRectMake(px_px_2_3(54, 89), viewBotton(lesslineImageView)+21+7, 32/2,11/2)];
+        UIImageView *equalImageView = [[UIImageView alloc]initWithFrame:CGRectMake(px_px_2_3(54, 89), viewBotton(lesslineImageView)+px_px_2_2_3(30, 42, 63)+7, 32/2,11/2)];
         equalImageView.image = [UIImage imageNamed:@"PsnSafetyEqual"];
         [self addSubview:equalImageView];
 
@@ -107,13 +107,13 @@
 
         [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, viewY(equalLabel), kScreenWidth/2-20, 20) text:@"99" font:36/2 textAlignment:NSTextAlignmentRight colorFromHex:0xFF000000]];
 
-        UIImageView *equallineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(equalLabel), viewBotton(equalLabel)+21, viewWidth(self)-viewX(equalLabel)-20, 0.5)];
+        UIImageView *equallineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(equalLabel), viewBotton(equalLabel)+px_px_2_2_3(30, 42, 63), viewWidth(self)-viewX(equalLabel)-20, 0.5)];
         equallineImageView.image = [UIImage imageNamed:@"Line"];
         [self addSubview:equallineImageView];
 
         //more
 
-        UIImageView *moreImageView = [[UIImageView alloc]initWithFrame:CGRectMake(px_px_2_3(54, 89), viewBotton(equallineImageView)+21, 19/2,37/2)];
+        UIImageView *moreImageView = [[UIImageView alloc]initWithFrame:CGRectMake(px_px_2_3(54, 89), viewBotton(equallineImageView)+px_px_2_2_3(30, 42, 63), 19/2,37/2)];
         moreImageView.image = [UIImage imageNamed:@"PsnSafetyMore"];
         [self addSubview:moreImageView];
 
@@ -123,7 +123,7 @@
 
         [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, viewY(moreImageView), kScreenWidth/2-20, 20) text:@"99" font:36/2 textAlignment:NSTextAlignmentRight colorFromHex:0xFF000000]];
 
-        UIImageView *morelineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(moreLabel), viewBotton(moreImageView)+21, viewWidth(self)-viewX(moreImageView)-20, 0.5)];
+        UIImageView *morelineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(moreLabel), viewBotton(moreImageView)+px_px_2_2_3(30, 42, 63), viewWidth(self)-viewX(moreImageView)-20, 0.5)];
         morelineImageView.image = [UIImage imageNamed:@"Line"];
         [self addSubview:morelineImageView];
 
@@ -133,6 +133,9 @@
         UIImageView *DMZNumBackgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake((viewWidth(self)-199)/2, (viewHeight(self)-viewBotton(morelineImageView)-42)/2+viewBotton(morelineImageView), 199, 42)];
         DMZNumBackgroundImageView.image = [UIImage imageNamed:@"DMZNumBackground"];
         [self addSubview:DMZNumBackgroundImageView];
+        UIButton *DMZNumButton = [[UIButton alloc] initWithFrame:DMZNumBackgroundImageView.frame];
+        [DMZNumButton addTarget:self action:@selector(showTop5DaysView:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:DMZNumButton];
 
 
         
@@ -141,6 +144,11 @@
     }
     
     return self;
+}
+
+-(void)showTop5DaysView:(NSNotification *)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"showTop5DaysView" object:nil];
 }
 
 

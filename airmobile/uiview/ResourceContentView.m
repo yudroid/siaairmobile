@@ -22,10 +22,10 @@
 //        self.backgroundColor = [UIColor lightGrayColor];
         _delegate = delegate;
 
-        CGFloat y = px_px_2_3(90, 131);
+        CGFloat y = px_px_2_2_3(70,90, 131);
         
         //圆圈
-        RoundProgressView *progressRound = [[RoundProgressView alloc] initWithCenter:CGPointMake(kScreenWidth/2, y+px_px_2_3(95*2, 575/2)) radius:px_px_2_3(95*2, 575/2) aboveColos:@[(__bridge id)[CommonFunction colorFromHex:0XFF00aedd].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFF00d6a0].CGColor ] belowColos:@[(__bridge id)[CommonFunction colorFromHex:0XFFFF9F38].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFFFFCD21].CGColor ] start:270 end:271 clockwise:NO];
+        RoundProgressView *progressRound = [[RoundProgressView alloc] initWithCenter:CGPointMake(kScreenWidth/2, y+px_px_2_2_3(80*2,95*2, 575/2)) radius:px_px_2_2_3(80*2,95*2, 575/2) aboveColos:@[(__bridge id)[CommonFunction colorFromHex:0XFF00aedd].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFF00d6a0].CGColor ] belowColos:@[(__bridge id)[CommonFunction colorFromHex:0XFFFF9F38].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFFFFCD21].CGColor ] start:270 end:271 clockwise:NO];
 
         
         normalProportion = 0.6;
@@ -46,14 +46,14 @@
 
         [self addSubview:progressRound];
         
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 86*2, 86*2)];
+        UIButton *button = [[UIButton alloc] initWithFrame:progressRound.frame];
         [button addTarget:self action:@selector(showSeatUsedDetail:) forControlEvents:(UIControlEventTouchUpInside)];
         [progressRound addSubview:button];
 
         UILabel *totalNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(viewX(progressRound), viewY(progressRound)+viewHeight(progressRound)/2-45+15, viewWidth(progressRound), 45)];// 机位总数
         totalNumLabel.text = @"325";
         totalNumLabel.textAlignment = NSTextAlignmentCenter;
-        totalNumLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:px2(113)];
+        totalNumLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:px_px_2_2_3(95, 113, 113/2*3)];
 
         [self addSubview:totalNumLabel];
         
@@ -64,7 +64,7 @@
         [self addSubview:totalLabel];
 
 
-        y=viewBotton(progressRound)+px_px_2_3(83, 135)+9.5;
+        y=viewBotton(progressRound)+px_px_2_2_3(70,83, 135)+9.5;
 
         UILabel *disable = [[UILabel alloc] init];
         disable.text = @"28";
@@ -121,60 +121,63 @@
 //
 
 
-        UIImageView *grayLineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, viewY(disable)+8, kScreenWidth, 94)];
+        UIImageView *grayLineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, viewY(disable)+px_px_2_2_3(8*2, 8*2, 8*3), kScreenWidth, px_px_2_2_3(80, 94, 94/2*3))];
         grayLineImageView.image = [UIImage imageNamed:@"GrayCurves"];
         [self addSubview:grayLineImageView];
        
 
-        UIImageView *greenLineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, viewY(disable)-16, kScreenWidth, 94)];
+        UIImageView *greenLineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, viewY(disable)-px_px_2_2_3(8, 16*2, 16*3), kScreenWidth,px_px_2_2_3(80, 94, 94/2*3))];
         greenLineImageView.image = [UIImage imageNamed:@"GreenCurves"];
         [self addSubview:greenLineImageView];
 
 
+        CGFloat width = (viewWidth(self)-16*3)/2;
         UIImage *lessImage = [UIImage imageNamed:@"lessThanBackground"];
-        UIView *lessView = [[UIView alloc]initWithFrame:CGRectMake(15, viewHeight(self)-54-px_px_2_3(164, 266), lessImage.size.width, lessImage.size.height)];
+        CGFloat height = width *lessImage.size.height/lessImage.size.width;
+        UIView *lessView = [[UIView alloc]initWithFrame:CGRectMake(16, viewHeight(self)-height-px_px_2_2_3(45*2, 54*2, 54*3),width, height)];
         [self addSubview:lessView];
-        UIImageView *lessThanImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 338/2, 164/2)];
+        
+        UIImageView *lessThanImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0,viewWidth(lessView),viewHeight(lessView))];
         lessThanImageView.image = lessImage;
         [lessView addSubview:lessThanImageView];
 
         UIImage *arrImage = [UIImage imageNamed:@"ArrFlight"];
-        UIImageView *arrImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, (viewHeight(lessView)-arrImage.size.height)/2, arrImage.size.width, arrImage.size.height)];
+        UIImageView *arrImageView = [[UIImageView alloc]initWithFrame:CGRectMake(px_px_2_2_3(20, 20, 30), (viewHeight(lessView)-arrImage.size.height)/2, arrImage.size.width, arrImage.size.height)];
         arrImageView.image = arrImage;
         [lessView addSubview:arrImageView];
 
-        UILabel *arrLabel = [[UILabel alloc]initWithFrame:CGRectMake(viewTrailing(arrImageView)+10, 20, viewWidth(lessView)-viewTrailing(arrImageView), 20)];
-        arrLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:28];
+        UILabel *arrLabel = [[UILabel alloc]initWithFrame:CGRectMake(viewTrailing(arrImageView)+px_px_2_2_3(5, 20, 30), viewHeight(lessView)/2-20, viewWidth(lessView)-viewTrailing(arrImageView), 20)];
+        arrLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:px_px_2_2_3(20*2, 28*2, 28*3)];
         NSMutableAttributedString *arrAttributeString = [[NSMutableAttributedString alloc ] initWithString:[NSString stringWithFormat:@"%@机位占用",@"200"]];
         [arrAttributeString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"PingFangSC-Regular" size:8] range:NSMakeRange(arrAttributeString.length-4, 4)];
         arrLabel.attributedText = arrAttributeString;
         [lessView addSubview:arrLabel];
 
-        UILabel *lessLabel = [[UILabel alloc]initWithFrame:CGRectMake(viewTrailing(arrImageView)+10, viewBotton(arrLabel)+10, viewWidth(lessView)-viewTrailing(arrImageView), 13)];
-        lessLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:48/3];
+        UILabel *lessLabel = [[UILabel alloc]initWithFrame:CGRectMake(viewX(arrLabel), viewBotton(arrLabel)+10, viewWidth(lessView)-viewTrailing(arrImageView), 13)];
+        lessLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:px_px_2_2_3(25, 32, 48)];
         lessLabel.text = @"<1小时进港";
         [lessView addSubview:lessLabel];
 
-        UIView *moreView = [[UIView alloc]initWithFrame:CGRectMake(viewWidth(self)-15-338/2,  viewHeight(self)-54-px_px_2_3(164, 266), 338/2, 164/2)];
+        UIView *moreView = [[UIView alloc]initWithFrame:CGRectMake(viewTrailing(lessView)+16,  viewY(lessView), width, height)];
         [self addSubview:moreView];
-        UIImageView *moreThanImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 338/2, 164/2)];
+        UIImageView *moreThanImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0,viewWidth(moreView), viewHeight(moreView))];
         moreThanImageView.image = [UIImage imageNamed:@"lessThanBackground"];
         [moreView addSubview:moreThanImageView];
 
         UIImage *depImage = [UIImage imageNamed:@"DepFlight"];
-        UIImageView *depImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, (viewHeight(moreView)-depImage.size.height)/2, depImage.size.width, depImage.size.height)];
+        UIImageView *depImageView = [[UIImageView alloc]initWithFrame:CGRectMake(px_px_2_2_3(20, 20, 30), (viewHeight(moreView)-depImage.size.height)/2, depImage.size.width, depImage.size.height)];
         depImageView.image = depImage;
         [moreView addSubview:depImageView];
 
-        UILabel *depLabel = [[UILabel alloc]initWithFrame:CGRectMake(viewTrailing(depImageView)+10, 20, viewWidth(moreView)-viewTrailing(depImageView), 20)];
-        depLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:28];
+        UILabel *depLabel = [[UILabel alloc]initWithFrame:CGRectMake(viewTrailing(depImageView)+px_px_2_2_3(5, 20, 30), viewHeight(lessView)/2-20, viewWidth(moreView)-viewTrailing(depImageView), 20)];
+        depLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:px_px_2_2_3(20*2, 28*2, 28*3)];
         NSMutableAttributedString *depAttributeString = [[NSMutableAttributedString alloc ] initWithString:[NSString stringWithFormat:@"%@机位占用",@"200"]];
         [depAttributeString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"PingFangSC-Regular" size:8] range:NSMakeRange(depAttributeString.length-4, 4)];
         depLabel.attributedText = depAttributeString;
         [moreView addSubview:depLabel];
 
-        UILabel *moreLabel = [[UILabel alloc]initWithFrame:CGRectMake(viewTrailing(depImageView)+10, viewBotton(arrLabel)+10, viewWidth(lessView)-viewTrailing(arrImageView), 13)];
-        moreLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:48/3];
+        UILabel *moreLabel = [[UILabel alloc]initWithFrame:CGRectMake(viewX(depLabel), viewBotton(arrLabel)+10, viewWidth(lessView)-viewTrailing(arrImageView), 13)];
+        moreLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:px_px_2_2_3(25, 32, 48)];
         moreLabel.text = @">1小时出港";
         [moreView addSubview:moreLabel];
 

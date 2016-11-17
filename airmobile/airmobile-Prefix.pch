@@ -17,6 +17,8 @@
 #define px2(x)  ((x)/2.0)
 #define px_3(x) ((x)/3.0)
 #define px_px_2_3(x,y) ((kScreenWidth==414)?((y)/3.0):((x)/2.0))
+//x为 5、5S、SE ， y为6、6S、7， z为6P、6SP、7P
+#define px_px_2_2_3(x,y,z) ((kScreenWidth==414)?((z)/3.0):((kScreenWidth==320)?((x)/2.0):(y)/2.0))
 #define plus_ratio ((kScreenWidth==414)?(1.104):(1))
 #define viewX(view)  (view.frame.origin.x)
 #define viewY(view)  (view.frame.origin.y)

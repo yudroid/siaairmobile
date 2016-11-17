@@ -97,7 +97,6 @@
 
         UIImageView *arrImageView = [[UIImageView alloc]initWithFrame:CGRectMake(20, viewBotton(topBgView)+30+21, 20, 15)];
         arrImageView.image = [UIImage imageNamed:@"ArrFlightTag"];
-//        arrImageView.backgroundColor = [UIColor redColor];
         [self addSubview:arrImageView];
         UILabel *arrLabel = [CommonFunction addLabelFrame:CGRectMake(viewTrailing(arrImageView)+16, viewY(arrImageView), 150,  viewHeight(arrImageView)) text:@"进港(计划/实际)" font:18 textAlignment:NSTextAlignmentLeft colorFromHex:0xFF000000];
         NSMutableAttributedString* attrStr = [[NSMutableAttributedString alloc] initWithString:@"进港(计划/实际)"];
@@ -123,8 +122,13 @@
         depLabel.attributedText = attrStrD;
         [self addSubview:depLabel];
 
-        
-        [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, viewY(depImageView), kScreenWidth/2-20, 20) text:@"1568/1562" font:36/2 textAlignment:NSTextAlignmentRight colorFromHex:0xFF000000]];
+
+        UILabel *depValueLabel =[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, viewY(depImageView), kScreenWidth/2-20, 20) text:@"1568/1562" font:36/2 textAlignment:NSTextAlignmentRight colorFromHex:0xFF000000];
+        [self addSubview:depValueLabel];
+
+        UIButton * depValueButton = [[UIButton alloc]initWithFrame:depValueLabel.frame];
+        [depValueButton addTarget:self action:@selector(showPassengerHourView:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:depValueButton];
 
         UIImageView *deplineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(arrLabel), viewBotton(depLabel)+21, viewWidth(self)-viewX(arrLabel)-20, 0.5)];
         deplineImageView.image = [UIImage imageNamed:@"Line"];
@@ -134,6 +138,10 @@
         UIImageView *DMZNumBackgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake((viewWidth(self)-199)/2, (viewHeight(self)-viewBotton(deplineImageView)-42)/2+viewBotton(deplineImageView), 199, 42)];
         DMZNumBackgroundImageView.image = [UIImage imageNamed:@"DMZNumBackground"];
         [self addSubview:DMZNumBackgroundImageView];
+        UIButton *DMZNumButton = [[UIButton alloc] initWithFrame:DMZNumBackgroundImageView.frame];
+        [DMZNumButton addTarget:self action:@selector(showSafetyPassenger:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:DMZNumButton];
+
         
 //        [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, 200+30+30+30+90, kScreenWidth/2-20, 20) text:@"1568人" font:25 textAlignment:NSTextAlignmentLeft colorFromHex:0xFF000000]];
 
@@ -141,6 +149,16 @@
     }
     
     return self;
+}
+
+-(void)showPassengerHourView:(NSNotification *)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"showSafetyPassenger" object:nil];
+}
+
+-(void)showSafetyPassenger:(NSNotification *)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"showSafetyPassenger" object:nil];
 }
 
 @end

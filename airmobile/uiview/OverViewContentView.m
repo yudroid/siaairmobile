@@ -24,10 +24,9 @@
     if(self){
 
         float y = 0;
-
         _delegate = delegate;
 
-        y+=px_px_2_3(77, 141);
+        y+=px_px_2_2_3(60,77, 141);
         UIView *caleandarView = [[UIView alloc]
                                  initWithFrame:CGRectMake(kScreenWidth/2-190/2, y, 190, px2(35))];
         //caleandarView.backgroundColor = [UIColor grayColor];
@@ -67,13 +66,13 @@
         [self addSubview:chiefButton];
 //        chiefButton.backgroundColor = [UIColor grayColor];
 
-        y= viewHeight(chiefButton)+viewY(chiefButton)+px_px_2_3(52, 89);
+        y= viewHeight(chiefButton)+viewY(chiefButton)+px_px_2_2_3(40,52, 89);
 
 
         //圆圈
         RoundProgressView *progressRound = [[RoundProgressView alloc]
-                                            initWithCenter:CGPointMake(kScreenWidth/2, y+px_px_2_3(86*2, 680/2))
-                                            radius:px_px_2_3(95*2, (680-61)/2) aboveColos:@[(__bridge id)[CommonFunction colorFromHex:0XFFc62dec].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFF46bacd].CGColor ] belowColos:@[(__bridge id)[CommonFunction colorFromHex:0XFFFF9F38].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFFFFCD21].CGColor ] start:270 end:271 clockwise:NO];
+                                            initWithCenter:CGPointMake(kScreenWidth/2, y+px_px_2_2_3(80*2,95*2, 680/2))
+                                            radius:px_px_2_2_3(80*2,95*2, (680-61)/2) aboveColos:@[(__bridge id)[CommonFunction colorFromHex:0XFFc62dec].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFF46bacd].CGColor ] belowColos:@[(__bridge id)[CommonFunction colorFromHex:0XFFFF9F38].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFFFFCD21].CGColor ] start:270 end:271 clockwise:NO];
 
         
         normalProportion = 0.6;
@@ -96,7 +95,7 @@
         UILabel *totalNumLabel = [[UILabel alloc] init ];
         totalNumLabel.text = @"800";
         totalNumLabel.textAlignment = NSTextAlignmentCenter;
-        totalNumLabel.font =  [UIFont fontWithName:@"PingFangSC-Semibold" size:px2(111)];
+        totalNumLabel.font =  [UIFont fontWithName:@"PingFangSC-Semibold" size:px_px_2_2_3(100, 111, 55*3)];
         maxLabelSize = CGSizeMake(100,50);
         expectSize = [totalNumLabel sizeThatFits:maxLabelSize];
         totalNumLabel.frame = CGRectMake((kScreenWidth - expectSize.width)/2,viewY(progressRound)+((viewHeight(progressRound)-45)/2)-45/4, expectSize.width, 45);
@@ -117,24 +116,24 @@
         totalLabel.frame = CGRectMake((kScreenWidth-expectSize.width)/2, viewY(totalNumLabel)+viewHeight(totalNumLabel)+px_px_2_3(17, 28), expectSize.width, 15);
         [self addSubview:totalLabel];
 
-        y = viewY(progressRound)+viewHeight(progressRound)+px_px_2_3(59, 99);
+        y = viewY(progressRound)+viewHeight(progressRound)+px_px_2_2_3(40,59, 99);
 
 
         //未执行
         TagView *planView = [[NSBundle mainBundle]loadNibNamed:@"TagView" owner:nil options:nil][0];
-        [planView bigText:@"500" bigFontSize:px_px_2_3(73, 123) smallText:@"未执行" smallFontSize:px_px_2_3(30, 50) interval:px_px_2_3(32, 39) tagImage:[UIImage imageNamed:@"status_green"]];
+        [planView bigText:@"500" bigFontSize:px_px_2_2_3(65,73, 123) smallText:@"未执行" smallFontSize:px_px_2_3(30, 50) interval:px_px_2_2_3(20,32, 39) tagImage:[UIImage imageNamed:@"status_green"]];
         planView.frame = CGRectMake((kScreenWidth-[planView contentWidth])/2, y, [planView contentWidth], [planView contentHeight]);
         [self addSubview:planView];
 
         TagView *finishView = [[NSBundle mainBundle]loadNibNamed:@"TagView" owner:nil options:nil][0];
-        [finishView bigText:@"234" bigFontSize:px_px_2_3(73, 123) smallText:@"已执行" smallFontSize:px_px_2_3(30, 50) interval:px_px_2_3(32, 39) tagImage:[UIImage imageNamed:@"StatusBlue"]];
+        [finishView bigText:@"234" bigFontSize:px_px_2_2_3(65,73, 123) smallText:@"已执行" smallFontSize:px_px_2_3(30, 50) interval:px_px_2_2_3(20,32, 39) tagImage:[UIImage imageNamed:@"StatusBlue"]];
         finishView.frame = CGRectMake(viewX(planView)-px_px_2_3(98, 167)-[finishView contentWidth], y, [finishView contentWidth], [finishView contentHeight]);
         [self addSubview:finishView];
 
 
 
         TagView *ratioView = [[NSBundle mainBundle]loadNibNamed:@"TagView" owner:nil options:nil][0];
-        [ratioView bigText:@"80%" bigFontSize:px_px_2_3(73, 123) smallText:@"放行率" smallFontSize:px_px_2_3(30, 50) interval:px_px_2_3(32, 39) tagImage:[UIImage imageNamed:@"StatusRed"]];
+        [ratioView bigText:@"80%" bigFontSize:px_px_2_2_3(65,73, 123) smallText:@"放行率" smallFontSize:px_px_2_3(30, 50) interval:px_px_2_2_3(20,32, 39) tagImage:[UIImage imageNamed:@"StatusRed"]];
         ratioView.frame = CGRectMake(viewX(planView)+viewWidth(planView)+px_px_2_3(98, 167), y, [ratioView contentWidth], [ratioView contentHeight]);
         [self addSubview:ratioView];
 
@@ -145,8 +144,8 @@
         [self addSubview:ratioButton];
 
 
-        y = viewY(ratioView)+viewHeight(ratioView)+px_px_2_3(20, 30);
-        UILabel *currentStatus = [[UILabel alloc]initWithFrame:CGRectMake((kScreenWidth-px2(342))/2,y, px2(342), px2(114) )];
+        y = viewY(ratioView)+viewHeight(ratioView)+px_px_2_2_3(10,20, 30);
+        UILabel *currentStatus = [[UILabel alloc]initWithFrame:CGRectMake((kScreenWidth-px2(342))/2,y, px2(342), px_px_2_2_3(90, 114, 57*3) )];
         currentStatus.text = @"小面积延误";
         currentStatus.textAlignment = NSTextAlignmentCenter;
         currentStatus.font =  [UIFont fontWithName:@"PingFang SC" size:px2(32)];
@@ -163,7 +162,7 @@
 //        lineImageView.backgroundColor = [UIColor redColor];
         [self addSubview:lineImageView];
 
-        UITextView *noticeTextView = [[UITextView alloc] initWithFrame:CGRectMake(50,viewBotton(lineImageView)+5, kScreenWidth-100,kScreenHeight- viewBotton(lineImageView)-5-49-76)];
+        UITextView *noticeTextView = [[UITextView alloc] initWithFrame:CGRectMake(50,viewBotton(lineImageView)+5, kScreenWidth-100,kScreenHeight-viewBotton(lineImageView)-5-49-76)];
         noticeTextView.text = @"12:30   今日航班执行总体情况正常，因华东地区天气原因流量控制，前往该地区的航班放行正常率低于75%预计2小时候恢复正常";
         noticeTextView.textAlignment = NSTextAlignmentLeft;
         noticeTextView.font = [UIFont systemFontOfSize:12];
