@@ -27,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *backImageView;
 @property (weak, nonatomic) IBOutlet UIView *middleView;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *leadingAlign;
 
 
 @end
@@ -36,6 +37,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     _insideView.layer.cornerRadius = 5.0;
+
+    _leadingAlign.constant = px_px_2_2_3(-40, 0, 0);
     // Initialization code
 }
 

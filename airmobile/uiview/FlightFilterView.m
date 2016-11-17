@@ -56,11 +56,13 @@
         [self adjustPLUS];
     }
 
+    _areaLabelLeading.constant = px_px_2_2_3(30, 70, 118);
+
 }
 
 -(void)adjustPLUS
 {
-    _areaLabelLeading.constant = 118/3;
+
     _areaLabelTop.constant = 57/3;
 }
 
