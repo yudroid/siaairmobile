@@ -21,6 +21,10 @@ static const NSString *UPLOADPHOTO_COLLECTIONCELL_IDENTIFIER = @"UPLOADPHOTO_COL
 @end
 
 @implementation UploadPhotoViewController
+{
+    ALAssetsLibrary *_assetsLibrary;
+    NSMutableArray *_groupArray;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,6 +43,7 @@ static const NSString *UPLOADPHOTO_COLLECTIONCELL_IDENTIFIER = @"UPLOADPHOTO_COL
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     [_collectionView registerNib:[UINib nibWithNibName:@"AbnormalityReportCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:(NSString *)UPLOADPHOTO_COLLECTIONCELL_IDENTIFIER];
+    [self getAlbumList];
 }
 
     
@@ -55,13 +60,15 @@ static const NSString *UPLOADPHOTO_COLLECTIONCELL_IDENTIFIER = @"UPLOADPHOTO_COL
     }else{
         cell.selectedBackgroundImageView.hidden = NO;
         cell.imageView.image = _collectionArray[indexPath.row-1];
+
+        if ([_selectedArray containsObject:_collectionArray[indexPath.row-1]]) {
+            cell.isSelected = YES;
+        }else{
+            cell.isSelected = NO;
+        }
     }
 
-    if ([_selectedArray containsObject:cell]) {
-        cell.isSelected = YES;
-    }else{
-        cell.isSelected = NO;
-    }
+
     return cell;
 }
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -87,6 +94,8 @@ static const NSString *UPLOADPHOTO_COLLECTIONCELL_IDENTIFIER = @"UPLOADPHOTO_COL
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     if (indexPath.row == 0) {
     ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
@@ -98,6 +107,7 @@ static const NSString *UPLOADPHOTO_COLLECTIONCELL_IDENTIFIER = @"UPLOADPHOTO_COL
         [self showAnimationTitle:@"相机访问被限制"];
         return;
     }
+#pragma clang diagnostic pop
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
     picker.sourceType = UIImagePickerControllerSourceTypeCamera;
@@ -105,12 +115,12 @@ static const NSString *UPLOADPHOTO_COLLECTIONCELL_IDENTIFIER = @"UPLOADPHOTO_COL
 
     }else{
         AbnormalityReportCollectionViewCell *cell = (AbnormalityReportCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-        if ([_selectedArray containsObject:cell]) {
+        if ([_selectedArray containsObject:_collectionArray[indexPath.row-1]]) {
             cell.isSelected = NO;
-            [_selectedArray removeObject:cell];
+            [_selectedArray removeObject:_collectionArray[indexPath.row-1]];
         }else{
             cell.isSelected = YES;
-            [_selectedArray addObject:cell];
+            [_selectedArray addObject:_collectionArray[indexPath.row-1]];
         }
     }
 
@@ -119,13 +129,86 @@ static const NSString *UPLOADPHOTO_COLLECTIONCELL_IDENTIFIER = @"UPLOADPHOTO_COL
 #pragma mark - ImagePickerController
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
+    UIImage *image = [info
+                      objectForKey:@"UIImagePickerControllerOriginalImage"];
+    UIImageWriteToSavedPhotosAlbum(image, self,
+                                   @selector(image:didFinishSavingWithError:contextInfo:), nil);
     [picker dismissViewControllerAnimated:YES completion:^{
-        [_collectionArray addObject:[info objectForKey:UIImagePickerControllerOriginalImage]];
+        [_collectionArray insertObject:[info objectForKey:UIImagePickerControllerOriginalImage] atIndex:0];
         [_collectionView reloadData];
     }];
 }
 
+- (void)image:(UIImage *)image didFinishSavingWithError:
+(NSError *)error contextInfo:(void *)contextInfo;
+{
+    // Handle the end of the image write process
+    if (!error)
+        NSLog(@"Image written to photo album");
+    else
+        NSLog(@"Error writing to photo album: %@",
+                  [error localizedDescription]);
+}
 
+#pragma mark - CoustomFunction
+//获取相册列表
+- (void)getAlbumList
+{
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    //获取相册列表
+    _assetsLibrary = [[ALAssetsLibrary alloc] init];
+    _groupArray = [NSMutableArray array];
+    [_assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop)
+     {
+         NSString *groupName = [group valueForProperty:ALAssetsGroupPropertyName];
+         [self getImageWithGroup:group name:groupName];
+
+     } failureBlock:^(NSError *error)
+     {
+         NSLog(@"error:%@",error.localizedDescription);
+     }];
+#pragma clang diagnostic pop
+}
+
+//根据相册获取下面的图片
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+- (void)getImageWithGroup:(ALAssetsGroup *)group name:(NSString *)name
+{
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        //根据相册获取下面的图片
+        NSString *groupName = [group valueForProperty:ALAssetsGroupPropertyName];
+        if (name && ![name isEqualToString:groupName])
+        {
+            return;
+        }
+
+        [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+
+            if (result) {
+
+                [_collectionArray addObject:[UIImage imageWithCGImage:result.thumbnail]];
+
+//                [_thumbnailArray addObject:[UIImage imageWithCGImage:result.thumbnail]];
+//
+//                ALAssetRepresentation *representation = result.defaultRepresentation;
+//                [_imageArray addObject:representation.url];
+
+            }
+            if (index == group.numberOfAssets - 1)
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [_collectionView reloadData];
+                });
+            }
+        }];
+    });
+    
+    
+}
+#pragma clang diagnostic pop
 
 
 

@@ -13,8 +13,7 @@
 #import "UserInfoViewController.h"
 #import "UserInfoTableViewCell.h"
 #import "UserManagementViewController.h"
-#import "NightShiftRoomViewController.h"
-#import "AddressBookViewController.h"
+#import "UploadPhotoViewController.h"
 
 
 
@@ -111,7 +110,8 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     _tableView.tableFooterView = [[UIView alloc]init];
     _tableArray= @[@{@"name":@"用户管理",@"image":@"UserManager"},
                    @{@"name":@"消息过滤",@"image":@"AccessControl"},
-                   @{@"name":@"版本检测",@"image":@"VersionCheck"}];
+                   @{@"name":@"版本检测",@"image":@"VersionCheck"},
+                   @{@"name":@"更新基础数据",@"image":@"RefreshData"}];
     
     [self.view addSubview:_tableView];
 }
@@ -158,12 +158,15 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     if ([name isEqualToString:@"用户管理"]) {
         UserManagementViewController *userManagementVC = [[UserManagementViewController alloc]initWithNibName:@"UserManagementViewController" bundle:nil];
         [self.navigationController pushViewController:userManagementVC animated:YES];
-    }else if ([name isEqualToString:@"值班表"]){
-        NightShiftRoomViewController *nightShiftRoomVC = [[NightShiftRoomViewController alloc]initWithNibName:@"NightShiftRoomViewController" bundle:nil];
-        [self.navigationController pushViewController:nightShiftRoomVC animated:YES];
-    }else if ([name isEqualToString:@"通讯录"]){
-        AddressBookViewController *addressBookVC = [[AddressBookViewController alloc]initWithNibName:@"AddressBookViewController" bundle:nil];
-        [self.navigationController pushViewController:addressBookVC animated:YES];
+    }else if ([name isEqualToString:@"消息过滤"]){
+
+    }else if ([name isEqualToString:@"版本检测"]){
+
+
+    }else if ([name isEqualToString:@"更新基础数据"]){
+        UploadPhotoViewController *uploadPhotoVC = [[UploadPhotoViewController alloc]initWithNibName:@"UploadPhotoViewController" bundle:nil];
+        [self.navigationController pushViewController:uploadPhotoVC animated:YES];
+
     }
     
 }

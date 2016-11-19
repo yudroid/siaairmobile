@@ -196,7 +196,6 @@ static NSMutableDictionary *ZHDIC;
         return @"";
     }
     else{
-        
         return [s stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     }
 }
