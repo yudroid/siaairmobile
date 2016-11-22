@@ -33,6 +33,7 @@
     nv.navigationBarHidden= YES;
     self.window.rootViewController = nv;
     [self.window makeKeyWindow];
+    
     return YES;
 }
 

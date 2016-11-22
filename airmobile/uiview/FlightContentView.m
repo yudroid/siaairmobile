@@ -157,7 +157,36 @@
 //        pageControl.currentPageIndicatorTintColor = [CommonFunction colorFromHex:0XFF16C1F4];
 //        [self addSubview:pageControl];
 
-        UIView *uiview = [[UIView alloc] initWithFrame:CGRectMake(0, viewBotton(scrollView)+px_px_2_2_3(45,60, 195), viewWidth(self), 48)];
+
+        UIImageView *unusualImageView = [[UIImageView alloc]initWithFrame:CGRectMake((viewWidth(self)-302)/2, viewBotton(scrollView)+px_px_2_2_3(45,60, 195), 85, 26)];
+        unusualImageView.image =  [UIImage imageNamed:@"unusualBackground"];
+        [self addSubview:unusualImageView];
+        UILabel *abnLabel = [CommonFunction addLabelFrame:CGRectMake(viewX(unusualImageView), viewY(unusualImageView), viewWidth(unusualImageView), viewHeight(unusualImageView)) text:@"异常航班" font:23 textAlignment:NSTextAlignmentCenter colorFromHex:0xFFFFFFFF];
+        abnLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:35/2];
+        [self addSubview:abnLabel];
+
+        UIButton *abnButton = [[UIButton alloc] initWithFrame:unusualImageView.frame];
+        [abnButton addTarget:self action:@selector(showAbnRsnAndDlyTime:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:abnButton];
+
+        UILabel *delay = [CommonFunction addLabelFrame:CGRectMake(viewX(unusualImageView)+101, viewY(unusualImageView), 100, 30) text:@"延误  " font:13 textAlignment:NSTextAlignmentCenter colorFromHex:0xFF4D4D4D];
+        NSMutableAttributedString *delayAttributeString = [[NSMutableAttributedString alloc ] initWithString:@"延误 52"];
+        [delayAttributeString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"PingFangSC-Regular" size:22] range:NSMakeRange(3, 2)];
+        delay.attributedText = delayAttributeString;
+        [self addSubview:delay];
+
+        UILabel *cancel = [CommonFunction addLabelFrame:CGRectMake(viewX(unusualImageView)+202, viewY(unusualImageView), 100, 30) text:@"取消" font:13 textAlignment:NSTextAlignmentCenter colorFromHex:0xFF4D4D4D];
+        NSMutableAttributedString *cancelAttributeString = [[NSMutableAttributedString alloc ] initWithString:@"取消 12"];
+        [cancelAttributeString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"PingFangSC-Regular" size:22] range:NSMakeRange(3, 2)];
+        cancel.attributedText = cancelAttributeString;
+        [self addSubview:cancel];
+
+
+
+        UIImageView *lineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, viewBotton(unusualImageView)+px_px_2_2_3(35,50, 118), kScreenWidth, 1.5)];
+        lineImageView.image = [UIImage imageNamed:@"Line"];
+        [self addSubview:lineImageView];
+        UIView *uiview = [[UIView alloc] initWithFrame:CGRectMake(0, viewBotton(lineImageView)+px_px_2_2_3(35,50, 92), viewWidth(self), 48)];
 
         [self addSubview:uiview];
 
@@ -193,39 +222,6 @@
         depLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:31/2];
         [uiview addSubview:depLabel];
 
-        UIImageView *lineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, viewBotton(uiview)+px_px_2_2_3(35,50, 118), kScreenWidth, 1.5)];
-        lineImageView.image = [UIImage imageNamed:@"Line"];
-        [self addSubview:lineImageView];
-//
-//        UIView *abnBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
-//        abnBgView.center = CGPointMake(frame.size.width/6, 30+64+25+250+30+30+30/2);
-//        [abnBgView setBackgroundColor:[CommonFunction colorFromHex:0xFFFF4D62]];
-//        [abnBgView.layer setCornerRadius:8.0f];
-//        abnBgView.backgroundColor = [UIColor blackColor];
-//        [self addSubview:abnBgView];
-
-        UIImageView *unusualImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(totalNum)+7.5, viewBotton(lineImageView)+px_px_2_2_3(35,50, 92), 85, 26)];
-        unusualImageView.image =  [UIImage imageNamed:@"unusualBackground"];
-        [self addSubview:unusualImageView];
-        UILabel *abnLabel = [CommonFunction addLabelFrame:CGRectMake(viewX(unusualImageView), viewY(unusualImageView), viewWidth(unusualImageView), viewHeight(unusualImageView)) text:@"异常航班" font:23 textAlignment:NSTextAlignmentCenter colorFromHex:0xFFFFFFFF];
-        abnLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:35/2];
-        [self addSubview:abnLabel];
-
-        UIButton *abnButton = [[UIButton alloc] initWithFrame:unusualImageView.frame];
-        [abnButton addTarget:self action:@selector(showAbnRsnAndDlyTime:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:abnButton];
-
-        UILabel *delay = [CommonFunction addLabelFrame:CGRectMake(viewX(arrNum), viewY(unusualImageView), 100, 30) text:@"延误  " font:13 textAlignment:NSTextAlignmentCenter colorFromHex:0xFF4D4D4D];
-        NSMutableAttributedString *delayAttributeString = [[NSMutableAttributedString alloc ] initWithString:@"延误 52"];
-        [delayAttributeString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"PingFangSC-Regular" size:22] range:NSMakeRange(3, 2)];
-        delay.attributedText = delayAttributeString;
-        [self addSubview:delay];
-        
-        UILabel *cancel = [CommonFunction addLabelFrame:CGRectMake(viewX(depNum), viewY(unusualImageView), 100, 30) text:@"取消" font:13 textAlignment:NSTextAlignmentCenter colorFromHex:0xFF4D4D4D];
-        NSMutableAttributedString *cancelAttributeString = [[NSMutableAttributedString alloc ] initWithString:@"取消 12"];
-        [cancelAttributeString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"PingFangSC-Regular" size:22] range:NSMakeRange(3, 2)];
-        cancel.attributedText = cancelAttributeString;
-        [self addSubview:cancel];
         
 
     }

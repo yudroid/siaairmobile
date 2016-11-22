@@ -14,6 +14,7 @@
 #import "UserInfoTableViewCell.h"
 #import "UserManagementViewController.h"
 #import "UploadPhotoViewController.h"
+#import "LoadingView.h"
 
 
 
@@ -161,7 +162,8 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     }else if ([name isEqualToString:@"消息过滤"]){
 
     }else if ([name isEqualToString:@"版本检测"]){
-
+        LoadingView *loadingView = [[NSBundle mainBundle]loadNibNamed:@"LoadingView" owner:nil options:nil][0];
+        [self.view addSubview:loadingView];
 
     }else if ([name isEqualToString:@"更新基础数据"]){
         UploadPhotoViewController *uploadPhotoVC = [[UploadPhotoViewController alloc]initWithNibName:@"UploadPhotoViewController" bundle:nil];
