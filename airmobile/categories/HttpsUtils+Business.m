@@ -32,8 +32,8 @@ NSString * const userlistUrl = @"/acs/wacs/user/SelectAllDeptListForIphone";
 NSString * const groupSaveUrl = @"/acs/wacs/group/save";
 NSString * const flightListUrl = @"/acs/m/flightList";
 NSString * const flightDetailUrl = @"/acs/m/flightDetail";
-NSString * const dispatchDetailUrl = @"/acs/m/dispatchDetail";
-NSString * const specialDetailUrl = @"/acs/m/specialDetail";
+NSString * const dispatchDetailUrl = @"/acs/m/getDispatchsByFlightId";
+NSString * const specialDetailUrl = @"/acs/wacs/flightDetail/queryFlightDispatchDetailForIphone";
 NSString * const ovSummaryUrl = @"/acs/ov/summary";
 NSString * const ovFltFDRlUrl = @"/acs/ov/fltFDR";
 NSString * const ovFltFMRUrl = @"/acs/ov/fltFMR";
@@ -226,7 +226,7 @@ NSString * const craftSeatTypeTakeUpSortUrl = @"/acs/bmap/rs/craftSeatTypeTakeUp
 
 +(void)queryFlightList:(NSDictionary *)conditions success:(void(^)(id))success failure:(void (^)(NSError *))failue
 {
-    [HttpsUtils get:nil params:conditions success:^(id responseObj) {
+    [HttpsUtils get:flightListUrl params:conditions success:^(id responseObj) {
         if(success){
             success(responseObj);
         }
@@ -253,7 +253,8 @@ NSString * const craftSeatTypeTakeUpSortUrl = @"/acs/bmap/rs/craftSeatTypeTakeUp
 
 +(void)getSpecialDetail:(int)flightId success:(void (^)(id))success failure:(void (^)(id))failure
 {
-    [HttpsUtils get:specialDetailUrl params:nil success:^(id responseObj) {
+    NSString *temp = [NSString stringWithFormat:@"%@/%i",specialDetailUrl,flightId];
+    [HttpsUtils get:temp params:nil success:^(id responseObj) {
         if(success){
             success(responseObj);
         }

@@ -211,21 +211,9 @@ static  NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_IDETIF
 
 -(void)copyToFlightModel:(FlightModel *)flight item:(id)item
 {
-    flight.id = [[item objectForKey:@""] intValue];// 航班ID
-    flight.fNum = [item objectForKey:@""];//航班号
-    flight.fName= [item objectForKey:@""];//航班名称
-    flight.model= [item objectForKey:@""];//机型
-    flight.seat= [item objectForKey:@""]; //机位
-    flight.sTime= [item objectForKey:@""];//前序航班城市时间
-    flight.mTime= [item objectForKey:@""];//本站时间
-    flight.eTime= [item objectForKey:@""];//后序航班城市时间
-    flight.sCity= [item objectForKey:@""];//前序航班城市
-    flight.mCity= [item objectForKey:@""];//本站
-    flight.eCity= [item objectForKey:@""];//后序航班城市
-    flight.rangeSate= [item objectForKey:@""];
-    flight.region= [item objectForKey:@""];//区域属性
-    flight.fState= [item objectForKey:@""];//航班状态
-    flight.special= [item objectForKey:@""];//是否特殊航班 0:普通 1：特殊
+    if([flight isNull:item])
+        return;
+    [flight setValuesForKeysWithDictionary:item];
 }
 
 #pragma mark - EVENT
