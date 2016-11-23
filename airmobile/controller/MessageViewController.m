@@ -76,8 +76,7 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
     //TabBer自定义
     self.tabBarView = [[TabBarView alloc] initTabBarWithModel:TabBarBgModelNormal selectedType:TabBarSelectedTypeMessage delegate:self];
     [self.view insertSubview:self.tabBarView aboveSubview:self.view];
-    
-    [self loadChatList:100 start:0];
+
 }
 
 #pragma mark - 切换底部主功能页面
@@ -321,8 +320,14 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 -(void)loadChatList:(int)num start:(int)start
 {
     array = [PersistenceUtils findChatList:start num:num];
+    [_tableView reloadData];
 }
 
-
+-(void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    NSLog(@"%s",__func__);
+    [self loadChatList:100 start:0];
+}
 
 @end

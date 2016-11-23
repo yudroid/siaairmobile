@@ -276,4 +276,12 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
     }
 }
 
+- (void)backButtonClick{
+    UIViewController *viewCtl = self.navigationController.viewControllers[2];
+    if(viewCtl !=nil)
+        [self.navigationController popToViewController:viewCtl animated:YES];
+    else
+        [self.navigationController popViewControllerAnimated:YES];
+}
+
 @end

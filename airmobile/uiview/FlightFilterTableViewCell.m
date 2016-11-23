@@ -7,7 +7,6 @@
 //
 
 #import "FlightFilterTableViewCell.h"
-#import "FlightProcessModel.h"
 
 @interface FlightFilterTableViewCell()
 

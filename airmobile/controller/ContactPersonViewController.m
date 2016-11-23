@@ -18,7 +18,7 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
 
 @interface ContactPersonViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,ContactPersonTableViewHeaderViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *selectTableArray;
+@property (nonatomic, strong) NSMutableArray<UserInfoModel *> *selectTableArray;
 @property (nonatomic, strong) NSMutableArray *tableArray;
 @property (nonatomic, strong) UIButton *sureButton;
 @end
@@ -26,18 +26,20 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
 @implementation ContactPersonViewController
 {
     NSArray<DeptInfoModel *> *array;
-
+    
     NSMutableArray *_resultArry;// 保存数据的展开状态(因为分组很多，所以不能设置一个bool类型记录)
-
+    
     NSDictionary *chat;
-
+    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self initTitleView];
-
+    
+    [self initTableData];
+    
     _selectTableArray = [NSMutableArray array];
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -47,14 +49,7 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
     [_tableView registerNib:[UINib nibWithNibName:@"ContactPersonTableViewHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:(NSString *)CONTACTPERSON_TABLECELLHRADER_IDENTIFIER];
     // Do any additional setup after loading the view from its nib.
     
-    array = [NSArray new];
-
-    _resultArry = [NSMutableArray array];
-    for (NSDictionary *item in array) {
-        // 初始时都是折叠状态（bool不能直接放在数组里）
-        [_resultArry addObject:[NSNumber numberWithBool:NO]];
-    }
-    [self initTableData];
+    
 }
 
 -(void)initTitleView
@@ -64,17 +59,15 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
     self.titleView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"home_title_bg.png"]];
     [self titleViewAddTitleText:@"选择联系人"];
     [self titleViewAddBackBtn];
-
-
     
     _sureButton = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-16-40, 33, 41, 18)];
-
-
+    
+    
     _sureButton.titleLabel.font = [UIFont fontWithName:@"PingFang SC" size:10];
     [_sureButton setTitle:@"确定(0)" forState:UIControlStateNormal];
     [_sureButton addTarget:self action:@selector(sureButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [_sureButton setBackgroundImage:[UIImage imageNamed:@"PersonSure"] forState:UIControlStateNormal];
-
+    
     [self.titleView addSubview:_sureButton];
 }
 
@@ -89,12 +82,12 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
         NSMutableArray *userIdsArray = [NSMutableArray array];
         chatType = 1;
         NSString *deptName=@"成员:";
-        for(ContactPersonTableViewCell *item in _selectTableArray){
-            [userIdsArray addObject:[NSString stringWithFormat:@"%li", item.userId]];
-            if([[NSString stringWithFormat:@"%@,%@",deptName,item.nameLabel.text] length]>40){
+        for(UserInfoModel *item in _selectTableArray){
+            [userIdsArray addObject:[NSString stringWithFormat:@"%li", item.id]];
+            if([[NSString stringWithFormat:@"%@,%@",deptName,item.name] length]>40){
                 deptName = [NSString stringWithFormat:@"%@...",deptName];
             }else{
-                deptName = [NSString stringWithFormat:@"%@ %@",deptName,item.nameLabel.text];
+                deptName = [NSString stringWithFormat:@"%@ %@",deptName,item.name];
             }
         }
         
@@ -104,23 +97,33 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
             if(reponseObj == nil){
                 return;
             }
-           chat = [PersistenceUtils saveOrUpdateChat:reponseObj];
+            chat = [PersistenceUtils saveOrUpdateChat:reponseObj];
+            
+            if(chat == nil){
+                return;
+            }
+            
+            ChatViewController *chatVC = [[ChatViewController alloc]initWithNibName:@"ChatViewController" bundle:nil];
+            chatVC.chatId = [[chat objectForKey:@"chatid"] longLongValue];
+            chatVC.chatTypeId = [[chat objectForKey:@"type"] intValue];
+            chatVC.localChatId = [[chat objectForKey:@"id"] longLongValue];
+            [self.navigationController pushViewController:chatVC animated:YES];
         }];
     }else{
-        ContactPersonTableViewCell *item = [_selectTableArray objectAtIndex:0];
-        NSDictionary *single = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:(int)item.userId],@"userId",item.nameLabel.text,@"userName",@"single",@"single", nil];
+        UserInfoModel *item = [_selectTableArray objectAtIndex:0];
+        NSDictionary *single = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:(int)item.id],@"userId",item.name,@"userName",@"single",@"single", nil];
         chat = [PersistenceUtils saveOrUpdateChat:single];
+        if(chat == nil){
+            return;
+        }
+
+        ChatViewController *chatVC = [[ChatViewController alloc]initWithNibName:@"ChatViewController" bundle:nil];
+        chatVC.chatId = [[chat objectForKey:@"chatid"] longLongValue];
+        chatVC.chatTypeId = [[chat objectForKey:@"type"] intValue];
+        chatVC.localChatId = [[chat objectForKey:@"id"] longLongValue];
+        [self.navigationController pushViewController:chatVC animated:YES];
     }
-    
-    if(chat == nil){
-        return;
-    }
-    
-    ChatViewController *chatVC = [[ChatViewController alloc]initWithNibName:@"ChatViewController" bundle:nil];
-    chatVC.chatId = [[chat objectForKey:@"chatid"] longLongValue];
-    chatVC.chatTypeId = [[chat objectForKey:@"type"] intValue];
-    chatVC.localChatId = [[chat objectForKey:@"id"] longLongValue];
-    [self.navigationController pushViewController:chatVC animated:YES];
+
 }
 
 
@@ -143,12 +146,12 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
     }else{
         return 0;
     }
-
+    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    
     return 58;
 }
 
@@ -162,18 +165,19 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
     ContactPersonTableViewHeaderView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:(NSString *)CONTACTPERSON_TABLECELLHRADER_IDENTIFIER];
     view.delegate =self;
     view.tag = section;
+    view.nameLabel.text = [array objectAtIndex:section].deptName;
     view.open = [[_resultArry objectAtIndex:view.tag] boolValue];;
     return view;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-
+    
+    
     ContactPersonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)CONTACTPERSON_TABLECELL_IDENTIFIER];
     UserInfoModel *userInfo = [[array objectAtIndex:indexPath.section].userArr objectAtIndex:indexPath.row];
     cell.nameLabel.text = userInfo.name;
     cell.userId = userInfo.id;
-
+    
     return cell;
 }
 
@@ -182,7 +186,7 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     ContactPersonTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.isSelected = !cell.isSelected;
-     DeptInfoModel *depModel = [array objectAtIndex:indexPath.section];
+    DeptInfoModel *depModel = [array objectAtIndex:indexPath.section];
     if(cell.isSelected){
         [_selectTableArray addObject: [depModel.userArr  objectAtIndex:indexPath.row]];
     }else{
@@ -197,16 +201,16 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
 {
     ContactPersonTableViewHeaderView *headerView = (ContactPersonTableViewHeaderView *)view;
     headerView.open = !headerView.open;
-        // 通过点击的段数，来获取数组里的bool（对应的展开状态）
-        BOOL bo = [[_resultArry objectAtIndex:view.tag] boolValue];
-        // 把点击段数的状态转换为相反的状态
-        [_resultArry replaceObjectAtIndex:view.tag withObject:[NSNumber numberWithBool:!bo]];
-        // 刷新某个分段（只有这一个刷新分组的方法，所以刷新一组，或者刷新全组都是这样写，NSIndexSet为一个集合）
-
-        //刷新某个 section 里面的 cell 数据
-        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:view.tag] withRowAnimation:UITableViewRowAnimationAutomatic];
-
-
+    // 通过点击的段数，来获取数组里的bool（对应的展开状态）
+    BOOL bo = [[_resultArry objectAtIndex:view.tag] boolValue];
+    // 把点击段数的状态转换为相反的状态
+    [_resultArry replaceObjectAtIndex:view.tag withObject:[NSNumber numberWithBool:!bo]];
+    // 刷新某个分段（只有这一个刷新分组的方法，所以刷新一组，或者刷新全组都是这样写，NSIndexSet为一个集合）
+    
+    //刷新某个 section 里面的 cell 数据
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:view.tag] withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    
 }
 
 #pragma mark -searchBarDelegate
@@ -218,6 +222,11 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
 -(void)initTableData
 {
     array = [PersistenceUtils loadUserListGroupByDept];
+    _resultArry = [NSMutableArray array];
+    for (NSDictionary *item in array) {
+        // 初始时都是折叠状态（bool不能直接放在数组里）
+        [_resultArry addObject:[NSNumber numberWithBool:NO]];
+    }
 }
 
 @end

@@ -14,6 +14,8 @@
 #import "FlightDetailAirLineCollectionViewCell.h"
 #import "UIViewController+Reminder.h"
 #import "HttpsUtils+Business.h"
+#import "FlightDetailModel.h"
+#import "SafeguardModel.h"
 
 static const NSString *FLIGHTDETAIL_TABLECELL_IDENTIFIER = @"FLIGHTDETAIL_TABLECELL_IDENTIFIER";
 static const NSString *FLIGHTDETAIL_SAFEGUARDTABLECELL_IDENTIFIER = @"FLIGHTDETAIL_SAFEGUARDTABLECELL_IDENTIFIER";
@@ -41,9 +43,18 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 @end
 
 @implementation FlightDetailViewController
+{
+    FlightDetailModel *flight;
+    NSMutableArray<SafeguardModel *> *dispatches;
+    NSMutableArray<SafeguardModel *> *specicals;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    flight = [FlightDetailModel new];
+    dispatches = [NSMutableArray array];
+    specicals = [NSMutableArray array];
     
     [self loadData];
     
@@ -209,15 +220,29 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 -(void)loadData
 {
     [HttpsUtils getFlightDetail:_flightId success:^(id responseObj) {
-        
+        [flight setValuesForKeysWithDictionary:responseObj];
     } failure:nil];
     
     [HttpsUtils getDispatchDetail:_flightId success:^(id responseObj) {
+        [dispatches removeAllObjects];
+        if([flight isNull:responseObj]){
+            return;
+        }
         
+        for(id item in responseObj){
+            [dispatches addObject:[[SafeguardModel alloc] initWithDictionary:item]];
+        }
     } failure:nil];
     
     [HttpsUtils getSpecialDetail:_flightId success:^(id responseObj) {
+        [specicals removeAllObjects];
+        if([flight isNull:responseObj]){
+            return;
+        }
         
+        for(id item in responseObj){
+            [specicals addObject:[[SafeguardModel alloc] initWithDictionary:item]];
+        }
     } failure:nil];
 }
 

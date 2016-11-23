@@ -49,6 +49,7 @@
 		84183A2E1DBF65D400D7DD86 /* RatioTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84183A2D1DBF65D400D7DD86 /* RatioTableViewCell.m */; };
 		84183A311DBF8E6700D7DD86 /* FlightHourModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84183A301DBF8E6700D7DD86 /* FlightHourModel.m */; };
 		84183A341DBF8F2B00D7DD86 /* FlightHourTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84183A331DBF8F2B00D7DD86 /* FlightHourTableViewCell.m */; };
+		843DF1E71DE5BBE100B247B0 /* FlightDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 843DF1E61DE5BBE100B247B0 /* FlightDetailModel.m */; };
 		843F4CF21DACC3FD00D73D56 /* StringUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 843F4CF11DACC3FD00D73D56 /* StringUtils.m */; };
 		843F4CF51DACC70F00D73D56 /* HttpsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 843F4CF41DACC70F00D73D56 /* HttpsUtils.m */; };
 		843F4CF81DACCA6D00D73D56 /* HttpsUtils+Business.m in Sources */ = {isa = PBXBuildFile; fileRef = 843F4CF71DACCA6D00D73D56 /* HttpsUtils+Business.m */; };
@@ -135,15 +136,8 @@
 		F74902A51DC86735005B193D /* FlightLargeDelayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902A41DC86735005B193D /* FlightLargeDelayModel.m */; };
 		F74902A81DC867F0005B193D /* FlightStusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902A71DC867F0005B193D /* FlightStusModel.m */; };
 		F74902AB1DC868AC005B193D /* DutyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902AA1DC868AC005B193D /* DutyModel.m */; };
-		F74902AE1DC86959005B193D /* WillTravelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902AD1DC86959005B193D /* WillTravelModel.m */; };
-		F74902B11DC86978005B193D /* WillReleaseFltModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902B01DC86978005B193D /* WillReleaseFltModel.m */; };
-		F74902B71DC86A95005B193D /* WillOneHourFltModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902B61DC86A95005B193D /* WillOneHourFltModel.m */; };
-		F74902BD1DC877E6005B193D /* ThresholdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902BC1DC877E6005B193D /* ThresholdModel.m */; };
 		F74902C01DC878C0005B193D /* SummaryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902BF1DC878C0005B193D /* SummaryModel.m */; };
 		F74902C31DC879C2005B193D /* SafeguardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902C21DC879C2005B193D /* SafeguardModel.m */; };
-		F74902C61DC87A34005B193D /* PassenCntModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902C51DC87A34005B193D /* PassenCntModel.m */; };
-		F74902C91DC87AA7005B193D /* NearAndFarTakeUpModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902C81DC87AA7005B193D /* NearAndFarTakeUpModel.m */; };
-		F74902D51DC87C5B005B193D /* DelayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902D41DC87C5B005B193D /* DelayModel.m */; };
 		F74902DB1DC881E9005B193D /* CraftseatCntModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902DA1DC881E9005B193D /* CraftseatCntModel.m */; };
 		F758C9911DC360BD00556120 /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F758C9901DC360BD00556120 /* HomePageViewController.m */; };
 		F758C9921DC362E700556120 /* PassengerTopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 840D15EF1DC30983005FA910 /* PassengerTopModel.m */; };
@@ -174,7 +168,6 @@
 		F792517C1DB7431D006AA119 /* UserManagementViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F792517A1DB7431D006AA119 /* UserManagementViewController.xib */; };
 		F79251801DB74576006AA119 /* UserManagermentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F792517E1DB74576006AA119 /* UserManagermentTableViewCell.m */; };
 		F79251811DB74576006AA119 /* UserManagermentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F792517F1DB74576006AA119 /* UserManagermentTableViewCell.xib */; };
-		F79251841DB7518E006AA119 /* FlightProcessModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F79251831DB7518E006AA119 /* FlightProcessModel.m */; };
 		F79251881DB781AB006AA119 /* NightShiftRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F79251861DB781AB006AA119 /* NightShiftRoomViewController.m */; };
 		F79251891DB781AB006AA119 /* NightShiftRoomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F79251871DB781AB006AA119 /* NightShiftRoomViewController.xib */; };
 		F792518D1DB7890E006AA119 /* NightShiftRoomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F792518B1DB7890E006AA119 /* NightShiftRoomTableViewCell.m */; };
@@ -351,6 +344,8 @@
 		84183A301DBF8E6700D7DD86 /* FlightHourModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightHourModel.m; sourceTree = "<group>"; };
 		84183A321DBF8F2B00D7DD86 /* FlightHourTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightHourTableViewCell.h; sourceTree = "<group>"; };
 		84183A331DBF8F2B00D7DD86 /* FlightHourTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightHourTableViewCell.m; sourceTree = "<group>"; };
+		843DF1E51DE5BBE100B247B0 /* FlightDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightDetailModel.h; sourceTree = "<group>"; };
+		843DF1E61DE5BBE100B247B0 /* FlightDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightDetailModel.m; sourceTree = "<group>"; };
 		843F4CF01DACC3FD00D73D56 /* StringUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StringUtils.h; path = utils/StringUtils.h; sourceTree = "<group>"; };
 		843F4CF11DACC3FD00D73D56 /* StringUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StringUtils.m; path = utils/StringUtils.m; sourceTree = "<group>"; };
 		843F4CF31DACC70F00D73D56 /* HttpsUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpsUtils.h; path = network/HttpsUtils.h; sourceTree = "<group>"; };
@@ -483,24 +478,10 @@
 		F74902A71DC867F0005B193D /* FlightStusModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightStusModel.m; sourceTree = "<group>"; };
 		F74902A91DC868AC005B193D /* DutyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DutyModel.h; sourceTree = "<group>"; };
 		F74902AA1DC868AC005B193D /* DutyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DutyModel.m; sourceTree = "<group>"; };
-		F74902AC1DC86959005B193D /* WillTravelModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WillTravelModel.h; sourceTree = "<group>"; };
-		F74902AD1DC86959005B193D /* WillTravelModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WillTravelModel.m; sourceTree = "<group>"; };
-		F74902AF1DC86978005B193D /* WillReleaseFltModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WillReleaseFltModel.h; sourceTree = "<group>"; };
-		F74902B01DC86978005B193D /* WillReleaseFltModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WillReleaseFltModel.m; sourceTree = "<group>"; };
-		F74902B51DC86A95005B193D /* WillOneHourFltModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WillOneHourFltModel.h; sourceTree = "<group>"; };
-		F74902B61DC86A95005B193D /* WillOneHourFltModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WillOneHourFltModel.m; sourceTree = "<group>"; };
-		F74902BB1DC877E6005B193D /* ThresholdModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThresholdModel.h; sourceTree = "<group>"; };
-		F74902BC1DC877E6005B193D /* ThresholdModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThresholdModel.m; sourceTree = "<group>"; };
 		F74902BE1DC878C0005B193D /* SummaryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummaryModel.h; sourceTree = "<group>"; };
 		F74902BF1DC878C0005B193D /* SummaryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummaryModel.m; sourceTree = "<group>"; };
 		F74902C11DC879C2005B193D /* SafeguardModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafeguardModel.h; sourceTree = "<group>"; };
 		F74902C21DC879C2005B193D /* SafeguardModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SafeguardModel.m; sourceTree = "<group>"; };
-		F74902C41DC87A34005B193D /* PassenCntModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PassenCntModel.h; sourceTree = "<group>"; };
-		F74902C51DC87A34005B193D /* PassenCntModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PassenCntModel.m; sourceTree = "<group>"; };
-		F74902C71DC87AA7005B193D /* NearAndFarTakeUpModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearAndFarTakeUpModel.h; sourceTree = "<group>"; };
-		F74902C81DC87AA7005B193D /* NearAndFarTakeUpModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearAndFarTakeUpModel.m; sourceTree = "<group>"; };
-		F74902D31DC87C5B005B193D /* DelayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelayModel.h; sourceTree = "<group>"; };
-		F74902D41DC87C5B005B193D /* DelayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelayModel.m; sourceTree = "<group>"; };
 		F74902D91DC881E9005B193D /* CraftseatCntModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CraftseatCntModel.h; sourceTree = "<group>"; };
 		F74902DA1DC881E9005B193D /* CraftseatCntModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CraftseatCntModel.m; sourceTree = "<group>"; };
 		F758C98F1DC360BD00556120 /* HomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageViewController.h; sourceTree = "<group>"; };
@@ -544,8 +525,6 @@
 		F792517D1DB74576006AA119 /* UserManagermentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManagermentTableViewCell.h; sourceTree = "<group>"; };
 		F792517E1DB74576006AA119 /* UserManagermentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManagermentTableViewCell.m; sourceTree = "<group>"; };
 		F792517F1DB74576006AA119 /* UserManagermentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserManagermentTableViewCell.xib; sourceTree = "<group>"; };
-		F79251821DB7518E006AA119 /* FlightProcessModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightProcessModel.h; sourceTree = "<group>"; };
-		F79251831DB7518E006AA119 /* FlightProcessModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightProcessModel.m; sourceTree = "<group>"; };
 		F79251851DB781AB006AA119 /* NightShiftRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NightShiftRoomViewController.h; sourceTree = "<group>"; };
 		F79251861DB781AB006AA119 /* NightShiftRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = NightShiftRoomViewController.m; sourceTree = "<group>"; };
 		F79251871DB781AB006AA119 /* NightShiftRoomViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NightShiftRoomViewController.xib; sourceTree = "<group>"; };
@@ -997,20 +976,25 @@
 				F74902DA1DC881E9005B193D /* CraftseatCntModel.m */,
 				840D15F11DC31F9E005FA910 /* SeatUsedModel.h */,
 				840D15F21DC31F9E005FA910 /* SeatUsedModel.m */,
-				F79251821DB7518E006AA119 /* FlightProcessModel.h */,
-				F79251831DB7518E006AA119 /* FlightProcessModel.m */,
 				840D15C81DC07AA7005FA910 /* EnumTypeModel.h */,
 				F749029D1DC865D1005B193D /* FlightModel.h */,
 				F749029E1DC865D1005B193D /* FlightModel.m */,
 				F74902971DC860AA005B193D /* RootModel.h */,
 				F74902981DC860AA005B193D /* RootModel.m */,
-				F74902641DC82258005B193D /* Flight */,
+				843DF1E51DE5BBE100B247B0 /* FlightDetailModel.h */,
+				843DF1E61DE5BBE100B247B0 /* FlightDetailModel.m */,
+				F74902C11DC879C2005B193D /* SafeguardModel.h */,
+				F74902C21DC879C2005B193D /* SafeguardModel.m */,
+				F749029A1DC86302005B193D /* AbnormalModel.h */,
+				F749029B1DC86302005B193D /* AbnormalModel.m */,
 				84B941C21DCC63570001F402 /* UserInfoModel.h */,
 				84B941C31DCC63570001F402 /* UserInfoModel.m */,
 				84ADE6D91DCC9A3000F58A46 /* MessageModel.h */,
 				84ADE6DA1DCC9A3000F58A46 /* MessageModel.m */,
 				84163BEA1DD1E73700DD9163 /* DeptInfoModel.h */,
 				84163BEB1DD1E73700DD9163 /* DeptInfoModel.m */,
+				F74902A91DC868AC005B193D /* DutyModel.h */,
+				F74902AA1DC868AC005B193D /* DutyModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1127,33 +1111,6 @@
 				F79251961DB85D78006AA119 /* AddressBookTableViewCell.xib */,
 			);
 			name = "功能";
-			sourceTree = "<group>";
-		};
-		F74902641DC82258005B193D /* Flight */ = {
-			isa = PBXGroup;
-			children = (
-				F74902D31DC87C5B005B193D /* DelayModel.h */,
-				F74902D41DC87C5B005B193D /* DelayModel.m */,
-				F749029A1DC86302005B193D /* AbnormalModel.h */,
-				F749029B1DC86302005B193D /* AbnormalModel.m */,
-				F74902A91DC868AC005B193D /* DutyModel.h */,
-				F74902AA1DC868AC005B193D /* DutyModel.m */,
-				F74902AC1DC86959005B193D /* WillTravelModel.h */,
-				F74902AD1DC86959005B193D /* WillTravelModel.m */,
-				F74902AF1DC86978005B193D /* WillReleaseFltModel.h */,
-				F74902B01DC86978005B193D /* WillReleaseFltModel.m */,
-				F74902B51DC86A95005B193D /* WillOneHourFltModel.h */,
-				F74902B61DC86A95005B193D /* WillOneHourFltModel.m */,
-				F74902BB1DC877E6005B193D /* ThresholdModel.h */,
-				F74902BC1DC877E6005B193D /* ThresholdModel.m */,
-				F74902C11DC879C2005B193D /* SafeguardModel.h */,
-				F74902C21DC879C2005B193D /* SafeguardModel.m */,
-				F74902C41DC87A34005B193D /* PassenCntModel.h */,
-				F74902C51DC87A34005B193D /* PassenCntModel.m */,
-				F74902C71DC87AA7005B193D /* NearAndFarTakeUpModel.h */,
-				F74902C81DC87AA7005B193D /* NearAndFarTakeUpModel.m */,
-			);
-			name = Flight;
 			sourceTree = "<group>";
 		};
 		F758C9B51DC4373F00556120 /* UserInfo */ = {
@@ -1777,7 +1734,6 @@
 				F7A2A0551DB8D0590023F228 /* MessageViewController.m in Sources */,
 				843F4CF21DACC3FD00D73D56 /* StringUtils.m in Sources */,
 				840A4D141DD99EB900C39A79 /* SeatStatusModel.m in Sources */,
-				F74902D51DC87C5B005B193D /* DelayModel.m in Sources */,
 				843F4CF81DACCA6D00D73D56 /* HttpsUtils+Business.m in Sources */,
 				846F1DB11DAA22E800C8920B /* GlobalHelper.m in Sources */,
 				F7A25D831DBE277500F36C32 /* SJAlbumModel.m in Sources */,
@@ -1794,7 +1750,6 @@
 				F7A25D811DBE277500F36C32 /* SJPreviewPhotoController.m in Sources */,
 				F74902A81DC867F0005B193D /* FlightStusModel.m in Sources */,
 				F74902621DC71202005B193D /* DayOnDutyViewController.m in Sources */,
-				F79251841DB7518E006AA119 /* FlightProcessModel.m in Sources */,
 				F7A25D891DBE277500F36C32 /* SJPhotoAlbumCell.m in Sources */,
 				F7EAE1A21DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.m in Sources */,
 				840D15D11DC0C18F005FA910 /* AbnReasonTableViewCell.m in Sources */,
@@ -1812,7 +1767,6 @@
 				840D15D71DC0C478005FA910 /* RegionDlyTimeModel.m in Sources */,
 				84183A181DBDDDDE00D7DD86 /* FlightAbnViewController.m in Sources */,
 				F7A25D851DBE277500F36C32 /* SJPhotoPicker.m in Sources */,
-				F74902AE1DC86959005B193D /* WillTravelModel.m in Sources */,
 				84919D791DC9FDFA00C6F5DE /* BaseService.m in Sources */,
 				F7A25D8E1DBE277500F36C32 /* SJPreviewPhotoCell.m in Sources */,
 				84ADE6DB1DCC9A3000F58A46 /* MessageModel.m in Sources */,
@@ -1831,12 +1785,9 @@
 				F7A25D0B1DB9E71A00F36C32 /* RoundProgressView.m in Sources */,
 				841839F81DBCC10200D7DD86 /* PNLineChart.m in Sources */,
 				F7EEEF1C1DB396E0004AF0AE /* FlightDetailViewController.m in Sources */,
-				F74902BD1DC877E6005B193D /* ThresholdModel.m in Sources */,
 				F7EAE1961DB4776C0060626F /* AbnormalityReportViewController.m in Sources */,
-				F74902B71DC86A95005B193D /* WillOneHourFltModel.m in Sources */,
 				840D15CE1DC0B709005FA910 /* AreaDelayTimeView.m in Sources */,
 				F74902C31DC879C2005B193D /* SafeguardModel.m in Sources */,
-				F74902C91DC87AA7005B193D /* NearAndFarTakeUpModel.m in Sources */,
 				F7003E4D1DDC38540056F3DA /* TakePhotoCollectionViewCell.m in Sources */,
 				84163BEC1DD1E73700DD9163 /* DeptInfoModel.m in Sources */,
 				F7EEEF211DB3A580004AF0AE /* FlightDetailTableViewCell.m in Sources */,
@@ -1855,7 +1806,6 @@
 				840D15E01DC20C2D005FA910 /* PsnSafetyHourView.m in Sources */,
 				840D15D41DC0C3E8005FA910 /* AbnReasonModel.m in Sources */,
 				840D15ED1DC2FC67005FA910 /* PassengerTopViewController.m in Sources */,
-				F74902C61DC87A34005B193D /* PassenCntModel.m in Sources */,
 				840A4D111DD85DE200C39A79 /* PassengerModel.m in Sources */,
 				84183A091DBDDBD600D7DD86 /* FlightHourViewController.m in Sources */,
 				F70893EB1DD2F66700135540 /* FlightDelaysTableViewCell.m in Sources */,
@@ -1886,11 +1836,11 @@
 				84BA54E41DA256940037198F /* AppDelegate.m in Sources */,
 				841839F01DBCB87600D7DD86 /* PNPieChart.m in Sources */,
 				F74902961DC82B42005B193D /* SpecialAbnormalityReportViewController.m in Sources */,
+				843DF1E71DE5BBE100B247B0 /* FlightDetailModel.m in Sources */,
 				F7A2A0511DB8D0590023F228 /* FlightViewController.m in Sources */,
 				F7A2A0641DB8D0EE0023F228 /* PassengerContentView.m in Sources */,
 				840D15CB1DC0B6DB005FA910 /* AbnormalReasonView.m in Sources */,
 				F7A25D8D1DBE277500F36C32 /* SJPickPhotoCell.m in Sources */,
-				F74902B11DC86978005B193D /* WillReleaseFltModel.m in Sources */,
 				F70893F21DD492AD00135540 /* TagView.m in Sources */,
 				F79251921DB858D9006AA119 /* AddressBookViewController.m in Sources */,
 				84BA54ED1DA256940037198F /* airmobile.xcdatamodeld in Sources */,
