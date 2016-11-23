@@ -10,6 +10,7 @@
 #import "PoP.h"
 #import "RoundProgressView.h"
 #import "LDProgressView.h"
+@class SeatStatusModel;
 
 @protocol ResourceContentViewDelegate <NSObject>
 
@@ -41,5 +42,5 @@
     id<ResourceContentViewDelegate> _delegate;
 }
 
--(id)initWithFrame:(CGRect)frame delegate:(id<ResourceContentViewDelegate>)delegate;
+-(id)initWithFrame:(CGRect)frame seatStatusModel:(SeatStatusModel *)seatStatusModel delegate:(id<ResourceContentViewDelegate>)delegate;
 @end

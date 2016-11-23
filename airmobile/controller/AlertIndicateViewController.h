@@ -7,7 +7,10 @@
 //
 
 #import "RootViewController.h"
+@class FlightLargeDelayModel;
 
 @interface AlertIndicateViewController : RootViewController
+
+-(instancetype)initWithDalayTagart:(FlightLargeDelayModel *)flightLargeDelayModel;
 
 @end

@@ -7,7 +7,10 @@
 //
 
 #import "RootViewController.h"
+@class CraftseatCntModel;
 
 @interface SeatUsedViewController : RootViewController<UITableViewDataSource,UITableViewDelegate>
+
+-(instancetype)initWithCraftseatCntModel:(CraftseatCntModel *)craftseatCntModel;
 
 @end

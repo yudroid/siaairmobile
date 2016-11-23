@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "RoundProgressView.h"
+@class SummaryModel;
 
 @protocol OverviewContentViewDelegate <NSObject>
 
@@ -46,6 +47,6 @@
     id<OverviewContentViewDelegate> _delegate;
 }
 
--(id)initWithFrame:(CGRect)frame delegate:(id<OverviewContentViewDelegate>)delegate;
+-(id)initWithFrame:(CGRect)frame summaryModel:(SummaryModel *)summaryModel delegate:(id<OverviewContentViewDelegate>)delegate;
 
 @end

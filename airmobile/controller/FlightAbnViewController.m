@@ -7,8 +7,10 @@
 //
 
 #import "FlightAbnViewController.h"
+#import "FlightStusModel.h"
 
 @interface FlightAbnViewController ()
+@property (nonatomic, strong) FlightStusModel *flightHourModel;
 
 @end
 
@@ -26,6 +28,15 @@
 
     UIButton *abnsButton;
     UIButton *delayButton;
+}
+
+-(instancetype)initWithFlightStusModel:(FlightStusModel *)flightHourModel
+{
+    self = [super init];
+    if (self) {
+        _flightHourModel = flightHourModel;
+    }
+    return self;
 }
 
 - (void)viewDidLoad {
@@ -84,10 +95,14 @@
     scrollView.showsVerticalScrollIndicator = NO;
     [self.view addSubview:scrollView];
 
-    AbnormalReasonView *abnView = [[AbnormalReasonView alloc] initWithFrame:CGRectMake(0, 0, scrollView.frame.size.width, scrollView.frame.size.height)];
+    AbnormalReasonView *abnView = [[AbnormalReasonView alloc] initWithFrame:CGRectMake(0,
+                                                                                       0,
+                                                                                       scrollView.frame.size.width,
+                                                                                       scrollView.frame.size.height)
+                                                                  dataArray:_flightHourModel.abnReasons];
     [scrollView addSubview:abnView];
     
-    AreaDelayTimeView *dlyView = [[AreaDelayTimeView alloc] initWithFrame:CGRectMake(scrollView.frame.size.width, 0, scrollView.frame.size.width, scrollView.frame.size.height)];
+    AreaDelayTimeView *dlyView = [[AreaDelayTimeView alloc] initWithFrame:CGRectMake(scrollView.frame.size.width, 0, scrollView.frame.size.width, scrollView.frame.size.height)dataArray:_flightHourModel.regionDlyTimes];
     [scrollView addSubview:dlyView];
     
 //    pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, kScreenHeight-40, kScreenWidth, 40)];
@@ -161,13 +176,6 @@
     }else{
         [self buttonClickedWithSender:delayButton];
     }
-}
-
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 

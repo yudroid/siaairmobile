@@ -10,8 +10,11 @@
 #import "SeatUsedModel.h"
 #import "RoundProgressView.h"
 #import "LDProgressView.H"
+#import "CraftseatCntModel.h"
 
 @interface SeatUsedViewController ()
+
+@property (nonatomic ,strong) CraftseatCntModel *craftseatCntModel ;
 
 @end
 
@@ -22,6 +25,15 @@
     CGFloat abnormalProportion;
     CGFloat cancleProportion;
     
+}
+
+-(instancetype)initWithCraftseatCntModel:(CraftseatCntModel *)craftseatCntModel
+{
+    self = [super init];
+    if (self) {
+        _craftseatCntModel = craftseatCntModel;
+    }
+    return self;
 }
 
 - (void)viewDidLoad {
@@ -36,9 +48,9 @@
                                                                       belowColos:@[(__bridge id)[CommonFunction colorFromHex:0XFFFF9F38].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFFFFCD21].CGColor ] start:150.0f end:45 clockwise:YES];
 
     
-    normalProportion = 0.6;
-    abnormalProportion = 0.66;
-    cancleProportion = 0.75;
+    normalProportion = _craftseatCntModel.currentTakeUp/@(_craftseatCntModel.allCount).floatValue;
+    abnormalProportion = normalProportion+(_craftseatCntModel.unusable/@(_craftseatCntModel.allCount).floatValue);
+    cancleProportion = abnormalProportion + (_craftseatCntModel.longTakeUp/@(_craftseatCntModel.allCount).floatValue);
     
     //对数据进行动画
     [progressRound animationWithStrokeEnd:normalProportion withProgressType:ProgreesTypeNormal];
@@ -55,7 +67,7 @@
 
 
     UILabel *totalNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(viewX(progressRound), (viewY(progressRound)+viewBotton(progressRound))/2-45/2-20, viewWidth(progressRound), 45)];// 机位总数
-    totalNumLabel.text = @"325";
+    totalNumLabel.text = @(_craftseatCntModel.allCount).stringValue;
 
     totalNumLabel.textAlignment = NSTextAlignmentCenter;
     totalNumLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:55];
@@ -68,7 +80,7 @@
     [self.view addSubview:totalLabel];
     
     UILabel *inSeatLabel = [[UILabel alloc] initWithFrame:CGRectMake(viewX(progressRound), viewBotton(totalLabel)+8, viewWidth(progressRound), 12)];// 当前停占
-    NSMutableAttributedString *inSeatAttributedString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"过夜航班 %@",@"456"] ];
+    NSMutableAttributedString *inSeatAttributedString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"过夜航班 %@",@(_craftseatCntModel.passNight).stringValue] ];
      [inSeatAttributedString addAttribute:NSForegroundColorAttributeName value:[CommonFunction colorFromHex:0xFFF24737] range:NSMakeRange(5, inSeatAttributedString.length-5)];
     [inSeatAttributedString addAttribute:NSForegroundColorAttributeName value:[CommonFunction colorFromHex:0xFFd4d4d4] range:NSMakeRange(0, 5)];
     inSeatLabel.attributedText = inSeatAttributedString;
@@ -112,7 +124,7 @@
     [disAbleView addSubview:disAbleImageView];
     
     UILabel *disable = [[UILabel alloc] initWithFrame:CGRectMake(viewX(disAbleLabel),viewBotton(disAbleLabel)+5, viewWidth(disAbleLabel), 16)];
-    disable.text = @"3";
+    disable.text = @(_craftseatCntModel.unusable).stringValue;
     disable.textAlignment = NSTextAlignmentCenter;
     disable.font =  [UIFont fontWithName:@"PingFangSC-Regular" size:20];
     [disAbleView addSubview:disable];
@@ -131,7 +143,7 @@
     [longInSeatView addSubview:longInSeatLabel];
 
     UILabel *longInSeat = [[UILabel alloc] initWithFrame:CGRectMake(viewX(longInSeatLabel),viewBotton(longInSeatLabel)+5, viewWidth(longInSeatLabel), 16)];
-    longInSeat.text = @"333";
+    longInSeat.text = @(_craftseatCntModel.longTakeUp).stringValue;
     longInSeat.textAlignment = NSTextAlignmentCenter;
     longInSeat.font =  [UIFont fontWithName:@"PingFangSC-Regular" size:20];
     [longInSeatView addSubview:longInSeat];
@@ -162,7 +174,7 @@
     [nightView addSubview:nightLabel];
 
     UILabel *night = [[UILabel alloc] initWithFrame:CGRectMake(viewX(nightLabel),viewBotton(nightLabel)+5, viewWidth(nightLabel), 16)];
-    night.text = @"12";
+    night.text = @(_craftseatCntModel.todayFltTakeUp).stringValue;
     night.textAlignment = NSTextAlignmentCenter;
     night.font =  [UIFont fontWithName:@"PingFangSC-Regular" size:20];
     [nightView addSubview:night];
@@ -193,7 +205,7 @@
     [freeSeatView addSubview:freeSeatLabel];
 
     UILabel *freeSeat = [[UILabel alloc] initWithFrame:CGRectMake(viewX(freeSeatLabel),viewBotton(freeSeatLabel)+5, viewWidth(freeSeatLabel), 16)];
-    freeSeat.text = @"253";
+    freeSeat.text = @(_craftseatCntModel.idle).stringValue;
     freeSeat.textAlignment = NSTextAlignmentCenter;
     freeSeat.font =  [UIFont fontWithName:@"PingFangSC-Regular" size:20];
     [freeSeatView addSubview:freeSeat];
@@ -210,7 +222,9 @@
 //    freeSeat.font =  [UIFont fontWithName:@"PingFangSC-Regular" size:13];
 //    [self.view addSubview:freeSeat];
 
-    [self initData];
+//    [self initData];
+
+    array = _craftseatCntModel.seatUsed;
     //小时分布表格
     UITableView *flightHourTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, viewBotton(freeSeatView)+px_px_2_3(60, 100), kScreenWidth,viewHeight(self.view) - viewBotton(freeSeatView)-px_px_2_3(60, 100))];
     flightHourTableView.delegate = self;
@@ -301,20 +315,20 @@
     return cell;
 }
 
--(void) initData
-{
-    if(array == nil){
-        array = [[NSMutableArray alloc] init];
-    }else{
-        [array removeAllObjects];
-    }
-    
-    [array addObject:[[SeatUsedModel alloc] initWithType:@"B" free:25 used:75]];
-    [array addObject:[[SeatUsedModel alloc] initWithType:@"C" free:35 used:40]];
-    [array addObject:[[SeatUsedModel alloc] initWithType:@"D" free:40 used:35]];
-    [array addObject:[[SeatUsedModel alloc] initWithType:@"E" free:25 used:15]];
-    [array addObject:[[SeatUsedModel alloc] initWithType:@"F" free:25 used:35]];
-}
+//-(void) initData
+//{
+//    if(array == nil){
+//        array = [[NSMutableArray alloc] init];
+//    }else{
+//        [array removeAllObjects];
+//    }
+//    
+//    [array addObject:[[SeatUsedModel alloc] initWithType:@"B" free:25 used:75]];
+//    [array addObject:[[SeatUsedModel alloc] initWithType:@"C" free:35 used:40]];
+//    [array addObject:[[SeatUsedModel alloc] initWithType:@"D" free:40 used:35]];
+//    [array addObject:[[SeatUsedModel alloc] initWithType:@"E" free:25 used:15]];
+//    [array addObject:[[SeatUsedModel alloc] initWithType:@"F" free:25 used:35]];
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

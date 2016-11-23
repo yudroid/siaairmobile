@@ -7,7 +7,10 @@
 //
 
 #import "RootViewController.h"
+@class FlightHourModel;
 
 @interface PassengerHourViewController : RootViewController<UITableViewDelegate,UITableViewDataSource>
+
+-(instancetype)initWithDataArray:(NSArray<FlightHourModel *> *)dataArray;
 
 @end

@@ -19,7 +19,7 @@
         int arrCount = flightHour.before?flightHour.arrCount:flightHour.planArrCount;
         int depCount = flightHour.before?flightHour.depCount:flightHour.planDepCount;
 
-        UILabel *valueLable =[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, 0, kScreenWidth/2-20, viewHeight(self.contentView)) text:[NSString stringWithFormat:@"进%i 出%i",arrCount,depCount] font:18 textAlignment:(NSTextAlignmentRight) colorFromHex:0xFF1B1B1B];
+        UILabel *valueLable =[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, 0, kScreenWidth/2-20, viewHeight(self.contentView)) text:[NSString stringWithFormat:@"进 %i 出 %i",arrCount,depCount] font:18 textAlignment:(NSTextAlignmentRight) colorFromHex:0xFF1B1B1B];
         NSMutableAttributedString *valueAttributedString = [[NSMutableAttributedString alloc]initWithString:valueLable.text];
         [valueAttributedString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"PingFangSC-Regular" size:11] range:[valueLable.text rangeOfString:@"进"]];
         [valueAttributedString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"PingFangSC-Regular" size:11] range:[valueLable.text rangeOfString:@" 出"]];

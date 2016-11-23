@@ -10,4 +10,5 @@
 
 @interface EightMonthRatioView : UIView<UITableViewDelegate,UITableViewDataSource>
 
+-(instancetype)initWithFrame:(CGRect)frame dataArray:(NSArray *)dataArray;
 @end

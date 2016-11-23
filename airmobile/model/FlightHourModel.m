@@ -20,8 +20,8 @@
     self = [super init];
     if(self){
         _hour = hour;
-//        _count = count;
-//        _planCount = planCount;
+        _count = count;
+        _planCount = planCount;
     }
     return self;
 }

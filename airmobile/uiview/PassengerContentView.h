@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PsnSafetyContentView.h"
 #import "PsnGeneralContentView.h"
+@class PassengerModel;
 
 @protocol PassengerContentViewDelegate <NSObject>
 
@@ -29,6 +30,6 @@
 
 @interface PassengerContentView : UIView<UIScrollViewDelegate>
 
--(instancetype)initWithFrame:(CGRect)frame delegate: (id<PassengerContentViewDelegate>)delegate;
+-(instancetype)initWithFrame:(CGRect)frame PassengerModel:(PassengerModel *)passengermodel delegate: (id<PassengerContentViewDelegate>)delegate;
 
 @end

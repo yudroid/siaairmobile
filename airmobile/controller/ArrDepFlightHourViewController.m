@@ -7,14 +7,28 @@
 //
 
 #import "ArrDepFlightHourViewController.h"
+#import "FlightHourModel.h"
 
 @interface ArrDepFlightHourViewController ()
+
+@property (nonatomic, copy) NSArray<FlightHourModel*> *dataArray;
 
 @end
 
 @implementation ArrDepFlightHourViewController
 {
     UIPageControl *pageControl;
+}
+
+
+-(instancetype)initWithDataArray:(NSArray<FlightHourModel *> *)dataArray
+{
+    self = [super init];
+    if (self) {
+        _dataArray = [dataArray copy];
+    }
+    return self;
+
 }
 
 - (void)viewDidLoad {
@@ -31,10 +45,20 @@
     scrollView.showsVerticalScrollIndicator = NO;
     [self.view addSubview:scrollView];
     
-    FlightHourView *arrView = [[FlightHourView alloc] initWithFrame:CGRectMake(0, 0, scrollView.frame.size.width, scrollView.frame.size.height) flightHourType:ArrFlightHour];
+    FlightHourView *arrView = [[FlightHourView alloc] initWithFrame:CGRectMake(0,
+                                                                               0,
+                                                                               scrollView.frame.size.width,
+                                                                               scrollView.frame.size.height)
+                                                          DataArray:_dataArray
+                                                     flightHourType:ArrFlightHour];
     [scrollView addSubview:arrView];
     
-    FlightHourView *depView = [[FlightHourView alloc] initWithFrame:CGRectMake(scrollView.frame.size.width, 0, scrollView.frame.size.width, scrollView.frame.size.height) flightHourType:DepFlightHour];
+    FlightHourView *depView = [[FlightHourView alloc] initWithFrame:CGRectMake(scrollView.frame.size.width,
+                                                                               0,
+                                                                               scrollView.frame.size.width,
+                                                                               scrollView.frame.size.height)
+                                                          DataArray:_dataArray
+                                                     flightHourType:DepFlightHour];
     [scrollView addSubview:depView];
     
     pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, kScreenHeight-40, kScreenWidth, 40)];
@@ -82,6 +106,8 @@
         
     }
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

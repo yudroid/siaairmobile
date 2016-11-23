@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class RegionDlyTimeModel;
 
 
 @interface AreaDelayTimeView : UIView<UITableViewDataSource,UITableViewDelegate>
 
--(instancetype) initWithFrame:(CGRect)frame;
+-(instancetype) initWithFrame:(CGRect)frame dataArray:(NSArray<RegionDlyTimeModel *> *)dataArray;
 
 @end
