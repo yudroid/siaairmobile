@@ -37,24 +37,26 @@ NSString * const specialDetailUrl = @"/acs/m/specialDetail";
 NSString * const ovSummaryUrl = @"/acs/ov/summary";
 NSString * const ovFltFDRlUrl = @"/acs/ov/fltFDR";
 NSString * const ovFltFMRUrl = @"/acs/ov/fltFMR";
-NSString * const ovFltLDUrl = @"/acs/fltLD";
-NSString * const planArrFltPerHourUrl = @"/acs/flt/planArrFltPerHour";
-NSString * const realArrFltPerHourUrl = @"/acs/flt/realArrFltPerHour";
-NSString * const depFltPerHourUrl = @"/acs/flt/depFltPerHour";
-NSString * const realDepFltPerHourUrl = @"/acs/flt/realDepFltPerHour";
+NSString * const ovFltLDUrl = @"/acs/ov/fltLD";
+NSString * const planArrFltPerHourUrl = @"/acs/bmap/flt/arrFltPerHour";
+NSString * const realArrFltPerHourUrl = @"/acs/bmap/flt/arrFltPerHour";
+NSString * const depFltPerHourUrl = @"/acs/bmap/flt/depFltPerHour";
+NSString * const realDepFltPerHourUrl = @"/acs/bmap/flt/depFltPerHour";
 NSString * const ovFltCntUrl = @"/acs/ov/fltCnt";
-NSString * const delayReasonSortUrl = @"/acs/flt/delayReasonSort";
-NSString * const delayAreaSortUrl = @"/acs/flt/delayAreaSort";
-NSString * const inOutPsnUrl = @"/acs/psn/inOutPsn";
-NSString * const willInOutPsnUrl = @"/acs/psn/willInOutPsn";
-NSString * const glqRelatedPsnUrl = @"/acs/psn/glqRelatedPsn";
-NSString * const planeWaitSortUrl = @"/acs/psn/planeWaitSort";
-NSString * const arrPsnPerHourUrl = @"/acs/psn/arrPsnPerHour";
-NSString * const depPsnPerHourUrl = @"/acs/psn/depPsnPerHour";
-NSString * const glqPsnPerHourUrl = @"/acs/psn/glqPsnPerHour";
-NSString * const craftSeatTakeUpInfoUrl = @"/acs/rs/craftSeatTakeUpInfo";
-NSString * const willCraftSeatTakeUpUrl = @"/acs/rs/willCraftSeatTakeUp";
-NSString * const craftSeatTypeTakeUpSortUrl = @"/acs/rs/craftSeatTypeTakeUpSort";
+NSString * const delayReasonSortUrl = @"/acs/bmap/flt/delayReasonSort";
+NSString * const delayAreaSortUrl = @"/acs/bmap/flt/delayAreaSort";
+NSString * const inOutPsnUrl = @"/acs/bmap/psn/inOutPsn";
+NSString * const willInOutPsnUrl = @"/acs/bmap/psn/willInOutPsn";
+NSString * const glqRelatedPsnUrl = @"/acs/bmap/psn/glqRelatedPsn";
+NSString * const planeWaitSortUrl = @"/acs/bmap/psn/planeWaitSort";
+NSString * const arrPsnPerHourUrl = @"/acs/bmap/psn/arrPsnPerHour";
+NSString * const depPsnPerHourUrl = @"/acs/bmap/psn/depPsnPerHour";
+NSString * const glqPsnPerHourUrl = @"/acs/bmap/psn/glqPsnPerHour";
+NSString * const glqNearPsnUrl = @"/acs/bmap/psn/glqNearPsn";
+NSString * const peakPnsDaysUrl = @"/acs/bmap/psn/peakPnsDays";
+NSString * const craftSeatTakeUpInfoUrl = @"/acs/bmap/rs/craftSeatTakeUpInfo";
+NSString * const willCraftSeatTakeUpUrl = @"/acs/bmap/rs/willCraftSeatTakeUp";
+NSString * const craftSeatTypeTakeUpSortUrl = @"/acs/bmap/rs/craftSeatTypeTakeUpSort";
 
 @implementation HttpsUtils (Business)
 
@@ -559,6 +561,38 @@ NSString * const craftSeatTypeTakeUpSortUrl = @"/acs/rs/craftSeatTypeTakeUpSort"
 +(void)getSafetyPsnHours:(NSString *)date success:(void (^)(id))success failure:(void (^)(id))failure
 {
     [HttpsUtils get:glqPsnPerHourUrl params:nil success:^(id responseObj) {
+        if(success){
+            success(responseObj);
+        }
+    } failure:failure];
+}
+
+/**
+ 旅客区域分布 /psn/glqNearPsn
+ 
+ @param date <#date description#>
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)getGlqNearPsn:(NSString *)date success:(void (^)(id))success failure:(void (^)(id))failure
+{
+    [HttpsUtils get:glqNearPsnUrl params:nil success:^(id responseObj) {
+        if(success){
+            success(responseObj);
+        }
+    } failure:failure];
+}
+
+/**
+ 高峰旅客日排名 /psn/peakPnsDays
+ 
+ @param date <#date description#>
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)getPeakPnsDays:(NSString *)date success:(void (^)(id))success failure:(void (^)(id))failure
+{
+    [HttpsUtils get:peakPnsDaysUrl params:nil success:^(id responseObj) {
         if(success){
             success(responseObj);
         }

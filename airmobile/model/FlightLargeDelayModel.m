@@ -10,4 +10,24 @@
 
 @implementation FlightLargeDelayModel
 
+-(void) updateHourExecuteRateList:(NSDictionary *)responesObj
+{
+    if(responesObj ==nil || [[responesObj allKeys] count] == 0){
+        return;
+    }
+    
+    // NSDictionary {"count":0,"hour":"23","ratio":0.8}
+    [[self getHourExecuteRateList] removeAllObjects];
+    for(NSDictionary *item in responesObj){
+        [[self getHourExecuteRateList] addObject:item];
+    }
+}
+
+-(NSMutableArray *) getHourExecuteRateList
+{
+    if(_hourExecuteRateList==nil)
+        _hourExecuteRateList = [NSMutableArray array];
+    return _hourExecuteRateList;
+}
+
 @end

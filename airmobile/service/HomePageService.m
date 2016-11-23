@@ -64,64 +64,35 @@ singleton_implementation(HomePageService);
         [summaryModel updateTenDayReleased:responesObj];
     } failure:nil];
     
-    /**
-     今年航班放行正常率 /ov/fltFMR
-     
-     @param date <#date description#>
-     @param success <#success description#>
-     @param failure <#failure description#>
-     */
-//    +(void)getFlightYearRatio:(NSString *)date success:(void (^)(id))success failure:(void (^)(id))failure;
+    // 今年航班放行正常率
+    [HttpsUtils getFlightYearRatio:nil success:^(id responesObj) {
+        [summaryModel updateYearReleased:responesObj];
+    } failure:nil];
     
+    // 航班延误指标 /fltLD
+    [HttpsUtils getFlightDelayTarget:nil success:^(id responesObj) {
+        [summaryModel updateFlightDelayTarget:responesObj];
+    } failure:nil];
     
-    /**
-     航班延误指标 /fltLD
-     
-     @param date <#date description#>
-     @param success <#success description#>
-     @param failure <#failure description#>
-     */
-//    +(void)getFlightDelayTarget:(NSString *)date success:(void (^)(id))success failure:(void (^)(id))failure;
+    // 计划进港航班小时分布 /flt/planArrFltPerHour
+    [HttpsUtils getPlanArrHours:nil success:^(id responesObj) {
+        [summaryModel updateFlightHourModel:responesObj flag:1];
+    } failure:nil];
     
+    // 实际进港航班小时分布 /flt/realArrFltPerHour
+    [HttpsUtils getRealArrHours:nil success:^(id responesObj) {
+        [summaryModel updateFlightHourModel:responesObj flag:2];
+    } failure:nil];
     
-    /**
-     计划进港航班小时分布 /flt/planArrFltPerHour
-     
-     @param date <#date description#>
-     @param success <#success description#>
-     @param failure <#failure description#>
-     */
-//    +(void)getPlanArrHours:(NSString *)date success:(void (^)(id))success failure:(void (^)(id))failure;
+    // 计划出港航班小时分布 /flt/depFltPerHour
+    [HttpsUtils getPlanDepHours:nil success:^(id responesObj) {
+        [summaryModel updateFlightHourModel:responesObj flag:3];
+    } failure:nil];
     
-    
-    /**
-     实际进港航班小时分布 /flt/realArrFltPerHour
-     
-     @param date <#date description#>
-     @param success <#success description#>
-     @param failure <#failure description#>
-     */
-//    +(void)getRealArrHours:(NSString *)date success:(void (^)(id))success failure:(void (^)(id))failure;
-    
-    
-    /**
-     计划出港航班小时分布 /flt/depFltPerHour
-     
-     @param date <#date description#>
-     @param success <#success description#>
-     @param failure <#failure description#>
-     */
-//    +(void)getPlanDepHours:(NSString *)date success:(void (^)(id))success failure:(void (^)(id))failure;
-    
-    
-    /**
-     实际出港航班小时分布 /flt/realDepFltPerHour
-     
-     @param date <#date description#>
-     @param success <#success description#>
-     @param failure <#failure description#>
-     */
-//    +(void)getRealDepHours:(NSString *)date success:(void (^)(id))success failure:(void (^)(id))failure;
+    // 实际出港航班小时分布 /flt/realDepFltPerHour
+    [HttpsUtils getRealDepHours:nil success:^(id responesObj) {
+        [summaryModel updateFlightHourModel:responesObj flag:4];
+    } failure:nil];
 }
 
 -(SummaryModel *)getSummaryModel
@@ -229,34 +200,20 @@ singleton_implementation(HomePageService);
 -(void) cacheFlightData
 {
     
-//    /**
-//     获取航班信息汇总 /ov/fltCnt
-//     
-//     @param date <#date description#>
-//     @param success <#success description#>
-//     @param failure <#failure description#>
-//     */
-//    +(void)getFlightStatusInfo:(NSString *)date success:(void (^)(id))success failure:(void (^)(id))failure;
-//    
-//    
-//    /**
-//     航班异常原因分类 /flt/delayReasonSort
-//     
-//     @param date <#date description#>
-//     @param success <#success description#>
-//     @param failure <#failure description#>
-//     */
-//    +(void)getFlightAbnReason:(NSString *)date success:(void (^)(id))success failure:(void (^)(id))failure;
-//    
-//    
-//    /**
-//     航班区域延误时间 /flt/delayAreaSort
-//     
-//     @param date <#date description#>
-//     @param success <#success description#>
-//     @param failure <#failure description#>
-//     */
-//    +(void)getRegionDlyTime:(NSString *)date success:(void (^)(id))success failure:(void (^)(id))failure;
+    [HttpsUtils getFlightStatusInfo:nil success:^(id responesObj) {
+        [flightModel updateFlightStatusInfo:responesObj];
+    } failure:nil];
+    
+    // 航班异常原因分类 /flt/delayReasonSort
+    [HttpsUtils getFlightAbnReason:nil success:^(id responesObj) {
+        [flightModel updateFlightAbnReason:responesObj];
+    } failure:nil];
+    
+    // 航班区域延误时间 /flt/delayAreaSort
+    [HttpsUtils getRegionDlyTime:nil success:^(id responesObj) {
+        [flightModel updateRegionDlyTime:responesObj];
+    } failure:nil];
+
 }
 
 -(FlightStusModel *)getFlightStusModel
@@ -333,74 +290,41 @@ singleton_implementation(HomePageService);
 
 -(void) cachePassengerData
 {
-    /**
-     获取旅客的摘要信息 /psn/inOutPsn
-     
-     @param date <#date description#>
-     @param success <#success description#>
-     @param failure <#failure description#>
-     */
-//    +(void)getPassengerSummary:(NSString *)date success:(void (^)(id))success failure:(void (^)(id))failure;
-//    
-//    
-//    /**
-//     获取旅客预测信息 /psn/willInOutPsn
-//     
-//     @param date <#date description#>
-//     @param success <#success description#>
-//     @param failure <#failure description#>
-//     */
-//    +(void)getPassengerForecast:(NSString *)date success:(void (^)(id))success failure:(void (^)(id))failure;
-//    
-//    
-//    /**
-//     获取隔离区内旅客信息 /psn/glqRelatedPsn
-//     
-//     @param date <#date description#>
-//     @param success <#success description#>
-//     @param failure <#failure description#>
-//     */
-//    +(void)getSafetyPassenger:(NSString *)date success:(void (^)(id))success failure:(void (^)(id))failure;
-//    
-//    
-//    /**
-//     机上旅客等待信息 /psn/planeWaitSort
-//     
-//     @param date <#date description#>
-//     @param success <#success description#>
-//     @param failure <#failure description#>
-//     */
-//    +(void)getPassengerOnboard:(NSString *)date success:(void (^)(id))success failure:(void (^)(id))failure;
-//    
-//    
-//    /**
-//     进港旅客小时分布 /psn/arrPsnPerHour
-//     
-//     @param date <#date description#>
-//     @param success <#success description#>
-//     @param failure <#failure description#>
-//     */
-//    +(void)getArrPsnHours:(NSString *)date success:(void (^)(id))success failure:(void (^)(id))failure;
-//    
-//    
-//    /**
-//     出港旅客小时分布 /psn/depPsnPerHour
-//     
-//     @param date <#date description#>
-//     @param success <#success description#>
-//     @param failure <#failure description#>
-//     */
-//    +(void)getDepPsnHours:(NSString *)date success:(void (^)(id))success failure:(void (^)(id))failure;
-//    
-//    
-//    /**
-//     隔离区内旅客小时分布 /psn/glqPsnPerHour
-//     
-//     @param date <#date description#>
-//     @param success <#success description#>
-//     @param failure <#failure description#>
-//     */
-//    +(void)getSafetyPsnHours:(NSString *)date success:(void (^)(id))success failure:(void (^)(id))failure;
+    [HttpsUtils getPassengerSummary:nil success:^(id responseObj) {
+        [psnModel updatePassengerSummary:responseObj];
+    } failure:nil];
+    
+    [HttpsUtils getPassengerForecast:nil success:^(id responseObj) {
+        [psnModel updatePassengerForecast:responseObj];
+    } failure:nil];
+    
+    [HttpsUtils getSafetyPassenger:nil success:^(id responseObj) {
+        [psnModel updateSafetyPassenger:responseObj];
+    } failure:nil];
+    
+    [HttpsUtils getPassengerOnboard:nil success:^(id responseObj) {
+        [psnModel updatePassengerOnboard:responseObj];
+    } failure:nil];
+    
+    [HttpsUtils getArrPsnHours:nil success:^(id responseObj) {
+        [psnModel updatePsnHours:responseObj flag:1];
+    } failure:nil];
+    
+    [HttpsUtils getDepPsnHours:nil success:^(id responseObj) {
+        [psnModel updatePsnHours:responseObj flag:2];
+    } failure:nil];
+    
+    [HttpsUtils getSafetyPsnHours:nil success:^(id responseObj) {
+        [psnModel updatePsnHours:responseObj flag:3];
+    } failure:nil];
+    
+    [HttpsUtils getGlqNearPsn:nil success:^(id responseObj) {
+        [psnModel updateGlqNearPsn:responseObj];
+    } failure:nil];
+    
+    [HttpsUtils getPeakPnsDays:nil success:^(id responseObj) {
+        [psnModel updatePeakPnsDays:responseObj];
+    } failure:nil];
 }
 
 -(PassengerModel *)getPassengerTopModel
@@ -471,35 +395,20 @@ singleton_implementation(HomePageService);
 
 -(void) cacheSeatUsedData
 {
+    // 机位占用信息
+    [HttpsUtils getCraftSeatTakeUpInfo:nil success:^(id responseObj) {
+        [seatModel updateCraftSeatTakeUpInfo:responseObj];
+    } failure:nil];
+
+    // 机位占用预测
+    [HttpsUtils getWillCraftSeatTakeUp:nil success:^(id responseObj) {
+        [seatModel updateWillCraftSeatTakeUp:responseObj];
+    } failure:nil];
     
-    /**
-     当前占用 当前占用、剩余机位、占用比 /rs/craftSeatTakeUpInfo
-     
-     @param date <#date description#>
-     @param success <#success description#>
-     @param failure <#failure description#>
-     */
-//    +(void)getCraftSeatTakeUpInfo:(NSString *)date success:(void (^)(id))success failure:(void (^)(id))failure;
-//    
-//    
-//    /**
-//     机位占用预测 <1小时到港：10 <1小时出港：15 下小时机位占用：-5  /rs/willCraftSeatTakeUp
-//     
-//     @param date <#date description#>
-//     @param success <#success description#>
-//     @param failure <#failure description#>
-//     */
-//    +(void)getWillCraftSeatTakeUp:(NSString *)date success:(void (^)(id))success failure:(void (^)(id))failure;
-//    
-//    
-//    /**
-//     机位类型占用详情 /rs/craftSeatTypeTakeUpSort
-//     
-//     @param date <#date description#>
-//     @param success <#success description#>
-//     @param failure <#failure description#>
-//     */
-//    +(void)getCraftSeatTypeTakeUpSort:(NSString *)date success:(void (^)(id))success failure:(void (^)(id))failure;
+    // 机位类型占用详情
+    [HttpsUtils getCraftSeatTypeTakeUpSort:nil success:^(id responseObj) {
+        [seatModel updateCraftSeatTypeTakeUp:responseObj];
+    } failure:nil];
 }
 
 -(SeatStatusModel *)getSeatStatusModel

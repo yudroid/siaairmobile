@@ -28,12 +28,21 @@
 @property (nonatomic, strong) NSMutableArray<ReleasedRatioModel *> *tenDayReleased;// 近10的放行正常率
 @property (nonatomic, strong) NSMutableArray<ReleasedRatioModel *> *yearReleased;// 今年放行正常率
 
--(void)updateFlightHourModel:(NSDictionary *)data;
+
+/**
+ <#Description#>
+
+ @param data <#data description#>
+ @param flag 1:计划进港 2:实际进港 3:计划出港  4:实际出港
+ */
+-(void)updateFlightHourModel:(NSDictionary *)data flag:(int)flag;
 
 -(void)updateTenDayReleased:(NSDictionary *)data;
 
 -(void)updateYearReleased:(NSDictionary *)data;
 
 -(void)updatePropertyData:(NSDictionary *)data;
+
+-(void)updateFlightDelayTarget:(NSDictionary *)data;
 
 @end

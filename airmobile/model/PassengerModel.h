@@ -29,9 +29,23 @@
 @property (nonatomic,copy) NSMutableArray<NSDictionary *> *psnOnPlane;// 旅客机上等待时间
 
 @property (nonatomic,copy) NSMutableArray<FlightHourModel *> *psnHours;// 旅客小时分布：进港旅客、出港旅客、隔离区内
-@property (nonatomic,copy) NSMutableArray<PassengerAreaModel *> *psnAreas;// 旅客小时分布：进港旅客、出港旅客、隔离区内
+@property (nonatomic,copy) NSMutableArray<PassengerAreaModel *> *psnAreas;
 
 @property (nonatomic,copy) NSMutableArray<PassengerTopModel *> *psnTops;// 旅客排名
 
+-(void) updatePassengerSummary: (id)data;
+
+-(void) updatePassengerForecast: (id)data;
+
+-(void) updateSafetyPassenger: (id)data;
+
+
+-(void) updatePassengerOnboard: (id)data;
+
+-(void) updatePsnHours: (id)data flag:(int)flag;
+
+-(void) updatePeakPnsDays: (id)data;
+
+-(void) updateGlqNearPsn:(id)data;
 
 @end

@@ -311,6 +311,25 @@
  */
 +(void)getSafetyPsnHours:(NSString *)date success:(void (^)(id))success failure:(void (^)(id))failure;
 
+
+/**
+ 旅客区域分布 /psn/glqNearPsn
+ 
+ @param date <#date description#>
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)getGlqNearPsn:(NSString *)date success:(void (^)(id))success failure:(void (^)(id))failure;
+
+/**
+ 高峰旅客日排名 /psn/peakPnsDays
+ 
+ @param date <#date description#>
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)getPeakPnsDays:(NSString *)date success:(void (^)(id))success failure:(void (^)(id))failure;
+
 #pragma mark 首页资源 机位使用信息
 
 /**

@@ -26,7 +26,7 @@
 -(NSMutableArray *)getTenDayReleasedArray
 {
     if(_tenDayReleased == nil){
-        _tenDayReleased = [NSMutableArray array];
+        _tenDayReleased = [[NSMutableArray alloc] init];
     }
     return _tenDayReleased;
 }
@@ -39,19 +39,91 @@
     return _yearReleased;
 }
 
--(void)updateFlightHourModel:(NSDictionary *)data
+-(FlightLargeDelayModel *)getFlightLargeDelayModel
+{
+    if(_delayTagart)
+        _delayTagart = [FlightLargeDelayModel new];
+    return _delayTagart;
+}
+
+-(void)updateFlightHourModel:(NSDictionary *)data flag:(int)flag
 {
     if([self isNull:data])
         return;
-
+    int index = 0;
+    NSDictionary *dic = nil;
+    switch (flag) {
+        case 1:
+            dic = [data objectForKey:@"planArrFltH"];
+            break;
+            
+        case 2:
+            dic = [data objectForKey:@"realArrFltH"];
+            break;
+            
+        case 3:
+            dic = [data objectForKey:@"planDepFltH"];
+            break;
+            
+        case 4:
+            dic = [data objectForKey:@"realDepFltH"];
+            break;
+            
+        default:
+            break;
+    }
+    
+    if([self isNull:dic])
+        return;
+    
+    for(NSDictionary *item in dic){
+        FlightHourModel *model = nil;
+        if([[self getFlightHoursArray] count]<index+1){
+            model = [FlightHourModel new];
+            [[self getTenDayReleasedArray] addObject:model];
+        }else{
+            model = [[self getTenDayReleasedArray] objectAtIndex:index];
+        }
+        switch (flag) {
+            case 1:
+                model.planArrCount = [[item objectForKey:@"count"] intValue];
+                break;
+                
+            case 2:
+                model.arrCount = [[item objectForKey:@"count"] intValue];
+                break;
+                
+            case 3:
+                model.planDepCount = [[item objectForKey:@"count"] intValue];
+                break;
+                
+            case 4:
+                model.depCount = [[item objectForKey:@"count"] intValue];
+                break;
+                
+            default:
+                break;
+        }
+        index ++;
+    }
 }
 
 -(void)updateTenDayReleased:(NSDictionary *)data
 {
     if([self isNull:data])
         return;
+    int index = 0;
     for(NSDictionary *item in data){
-//        FlightHourModel *model = [[self getFlightHoursArray] objectAtIndex:<#(NSUInteger)#>];
+        ReleasedRatioModel *model = nil;
+        if([[self getTenDayReleasedArray] count]<index+1){
+            model = [ReleasedRatioModel new];
+            [[self getTenDayReleasedArray] addObject:model];
+        }else{
+            model = [[self getTenDayReleasedArray] objectAtIndex:index];
+        }
+        model.time = [item objectForKey:@"hour"];
+        model.ratio = [[item objectForKey:@"ratio"] floatValue];
+        index ++;
     }
 }
 
@@ -59,8 +131,18 @@
 {
     if([self isNull:data])
         return;
+    int index = 0;
     for(NSDictionary *item in data){
-        //       FlightHourModel *model = [[self getFlightHoursArray] objectAtIndex:<#(NSUInteger)#>];
+        ReleasedRatioModel *model = nil;
+        if([[self getYearReleasedArray] count]<index+1){
+            model = [ReleasedRatioModel new];
+            [[self getYearReleasedArray] addObject:model];
+        }else{
+            model = [[self getYearReleasedArray] objectAtIndex:index];
+        }
+        model.time = [item objectForKey:@"hour"];
+        model.ratio = [[item objectForKey:@"ratio"] floatValue];
+        index ++;
     }
 }
 
@@ -78,10 +160,26 @@
     _aovTxt = [data objectForKey:@"aovTxt"];
 }
 
--(BOOL)isNull:(NSDictionary *)data
+-(void)updateFlightDelayTarget:(NSDictionary *)data
 {
-   return (data == nil || [[data allKeys] count]==0);
+    if([self isNull:data])
+        return;
     
+    FlightLargeDelayModel *model = [self getFlightLargeDelayModel];
+    model.allOutCnt = [[data objectForKey:@"allOutCnt"] intValue];
+    model.delayOneHourCnt = [[data objectForKey:@"delayOneHourCnt"] intValue];
+    model.delayOneHourRatio = [[data objectForKey:@"delayOneHourRatio"] floatValue];
+    model.delayOneHourRatioThreshold = [[data objectForKey:@"delayOneHourRatioThreshold"] floatValue];
+    
+    model.executeRateThreshold = [[data objectForKey:@"executeRateThreshold"] floatValue];
+    [model updateHourExecuteRateList:[data objectForKey:@"hourExecuteRateList"]];
+    
+    model.glqPassenCnt = [[data objectForKey:@"glqPassenCnt"] intValue];
+    model.glqPassenThreshold = [[data objectForKey:@"glqPassenThreshold"] floatValue];
+    
+    model.noTakeoffAndLanding = [[data objectForKey:@"noTakeoffAndLanding"] intValue];
+    model.noTakeoffAndLandingThreshold = [[data objectForKey:@"noTakeoffAndLandingThreshold"] intValue];
 }
+
 
 @end

@@ -12,4 +12,6 @@
 
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
+-(BOOL)isNull:(NSDictionary *)data;
+
 @end

@@ -25,4 +25,8 @@
 
 @property (nonatomic, copy) NSMutableArray<SeatUsedModel *> *seatUsed;// 机位使用列表
 
+-(void) updateCraftSeatTakeUpInfo:(id)data;
+
+-(void) updateCraftSeatTypeTakeUp:(id)data;
+
 @end

@@ -31,9 +31,13 @@
 @property (nonatomic, assign) int depDelay;
 @property (nonatomic, assign) int depCancel;
 
-@property (nonatomic, copy) NSMutableArray<FlightHourModel *> *flightHours;// 航班小时分布
 @property (nonatomic, copy) NSMutableArray<AbnReasonModel *> *abnReasons;// 航班异常原因分类 不区分进出港
 @property (nonatomic, copy) NSMutableArray<RegionDlyTimeModel *> *regionDlyTimes;// 区域延误时间分类 不区分进出港
 
+-(void) updateFlightStatusInfo:(id)data;
+
+-(void) updateFlightAbnReason:(id)data;
+
+-(void) updateRegionDlyTime:(id)data;
 
 @end
