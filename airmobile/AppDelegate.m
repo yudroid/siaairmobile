@@ -23,16 +23,14 @@
     // Override point for customization after application launch.
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
-    [[HomePageService sharedHomePageService] startService];
-    [[MessageService sharedMessageService] startService];
     [PersistenceUtils initTable];
 
-    self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
-    HomePageViewController *homepage = [[HomePageViewController alloc] init];
-    UINavigationController *nv = [[UINavigationController alloc]initWithRootViewController:homepage];
-    nv.navigationBarHidden= YES;
-    self.window.rootViewController = nv;
-    [self.window makeKeyWindow];
+//    self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
+//    HomePageViewController *homepage = [[HomePageViewController alloc] init];
+//    UINavigationController *nv = [[UINavigationController alloc]initWithRootViewController:homepage];
+//    nv.navigationBarHidden= YES;
+//    self.window.rootViewController = nv;
+//    [self.window makeKeyWindow];
     
     return YES;
 }

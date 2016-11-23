@@ -30,4 +30,8 @@
 
 -(instancetype) initWithHour:(NSString *)hour count:(int)count planCount:(int)planCount arrCount:(int)arrCount planArrCount:(int)planArrCount depCount:(int)depCount planDepCount:(int)planDepCount before:(BOOL)before;
 
+-(int) getCount;
+
+-(int) getPlanCount;
+
 @end

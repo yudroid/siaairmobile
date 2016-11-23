@@ -19,4 +19,10 @@
 
 @property (nonatomic,copy) CraftseatCntModel *usedDetail;// 机位使用的详细信息
 
+-(void) updateCraftSeatTakeUpInfo:(id)data;
+
+-(void) updateWillCraftSeatTakeUp:(id)data;
+
+-(void) updateCraftSeatTypeTakeUp:(id)data;
+
 @end

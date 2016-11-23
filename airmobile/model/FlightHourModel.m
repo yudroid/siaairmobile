@@ -20,8 +20,8 @@
     self = [super init];
     if(self){
         _hour = hour;
-        _count = count;
-        _planCount = planCount;
+//        _count = count;
+//        _planCount = planCount;
     }
     return self;
 }
@@ -34,8 +34,8 @@
     self = [super init];
     if(self){
         _hour = hour;
-        _count = count;
-        _planCount = planCount;
+//        _count = count;
+//        _planCount = planCount;
         _arrCount = arrCount;
         _planArrCount = planArrCount;
         _depCount = depCount;
@@ -44,4 +44,16 @@
     }
     return self;
 }
+
+-(int) getCount
+{
+    return _arrCount+_depCount;
+}
+
+-(int) getPlanCount
+{
+    return _planArrCount+_planDepCount;
+}
+
+
 @end

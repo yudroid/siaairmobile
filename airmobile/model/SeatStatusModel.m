@@ -10,4 +10,31 @@
 
 @implementation SeatStatusModel
 
+-(void) updateCraftSeatTakeUpInfo:(id)data
+{
+    if([self isNull:data])
+        return;
+    _seatNum = [[data objectForKey:@"seatNum"] intValue];// 机位总数
+    _seatUsed = [[data objectForKey:@"seatUsed"] intValue];// 机位使用数
+    _seatFree = [[data objectForKey:@"seatFree"] intValue];// 机位空闲数
+    if(_usedDetail == nil)
+        _usedDetail = [CraftseatCntModel new];
+    [_usedDetail updateCraftSeatTakeUpInfo:data];
+}
+
+-(void) updateWillCraftSeatTakeUp:(id)data
+{
+    if([self isNull:data])
+        return;
+    _nextIn = [[data objectForKey:@"nextIn"] intValue];// 下小时进港
+    _nextOut = [[data objectForKey:@"nextOut"] intValue];// 下小时出港
+}
+
+-(void) updateCraftSeatTypeTakeUp:(id)data
+{
+    if(_usedDetail == nil)
+        _usedDetail = [CraftseatCntModel new];
+    [_usedDetail updateCraftSeatTypeTakeUp:data];
+}
+
 @end
