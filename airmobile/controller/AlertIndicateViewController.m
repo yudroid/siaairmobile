@@ -77,7 +77,7 @@
                                                                  7.5,
                                                                  80,
                                                                  20)
-                                                 text:@(_flightLargeDelayModel.allOutCnt).stringValue
+                                                 text:@(_flightLargeDelayModel.delayOneHourRatio).stringValue
                                                  font:24
                                         textAlignment:NSTextAlignmentRight
                                          colorFromHex:0xFFFFFFFF];

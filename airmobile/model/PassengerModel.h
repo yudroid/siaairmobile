@@ -33,6 +33,8 @@
 
 @property (nonatomic,copy) NSMutableArray<PassengerTopModel *> *psnTops;// 旅客排名
 
+@property (nonatomic, copy) NSArray *psnInOutHours;//旅客小时分布
+
 -(void) updatePassengerSummary: (id)data;
 
 -(void) updatePassengerForecast: (id)data;

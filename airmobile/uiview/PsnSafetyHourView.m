@@ -32,6 +32,9 @@
 
 //        [self initData];
         hourArray = psnHours ;
+        for (FlightHourModel *model  in hourArray) {
+            NSLog(@"%d",model.count);
+        }
 
         CGFloat topBgViewWidth = kScreenWidth-2*px2(22);
         UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, topBgViewWidth, topBgViewWidth *391/709)];
@@ -47,7 +50,9 @@
         passengerTtitle.textColor = [UIColor whiteColor];
         [topBgView addSubview:passengerTtitle];
 
-        UILabel *ratioNum = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-100, 10, 80, 18) text:@"3233" font:20 textAlignment:NSTextAlignmentRight colorFromHex:0xFFFFFFFF];
+        UILabel *ratioNum = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-100, 10, 80, 18) text:@([self sum]).stringValue
+                                                     font:20
+                                            textAlignment:NSTextAlignmentRight colorFromHex:0xFFFFFFFF];
         ratioNum.font = [UIFont fontWithName:@"PingFang SC" size:px2(48)];
         [topBgView addSubview:ratioNum];
 
@@ -62,7 +67,7 @@
         upImageView.image = [UIImage imageNamed:@"hiddenLine"];
         [topBgView addSubview:upImageView];
 
-        UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(20, viewBotton(upImageView)+px2(8), topBgView.frame.size.width-40, 12) text:@"10000" font:11 textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF];
+        UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(20, viewBotton(upImageView)+px2(8), topBgView.frame.size.width-40, 12) text:@"120" font:11 textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF];
         [topBgView addSubview:maxLabel];
         
         // 计划的折线图
@@ -165,6 +170,14 @@
         [arr addObject:@((int)(model.planCount))];
     }
     return arr;
+}
+-(NSInteger)sum
+{
+    NSInteger s = 0;
+    for (FlightHourModel *model in hourArray) {
+        s +=model.count;
+    }
+    return s;
 }
 
 //-(void) initData

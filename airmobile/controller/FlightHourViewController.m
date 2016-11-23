@@ -204,7 +204,7 @@
 {
     int s = 0;
     for (FlightHourModel *model in _flightArray) {
-        s+=model.arrCount;
+        s+=model.count;
     }
     return s;
 }

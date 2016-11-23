@@ -58,7 +58,8 @@
     _flighStusModel = [homePageService getFlightStusModel];
     _passengerModel = [homePageService getPassengerTopModel];
     _seatStatusModel = [homePageService getSeatStatusModel];
-    
+
+
     homePageType = HomePageTypeOverview;//设置当前页面为整体概览
     [self showOverviewContentView];//根据显示类型显示页面
 }
@@ -436,7 +437,8 @@
  */
 -(void) showFlightHourView:(FlightHourType) type
 {
-    ArrDepFlightHourViewController *arrDepController = [[ArrDepFlightHourViewController alloc]initWithDataArray:_flighStusModel.flightHours];
+//    ArrDepFlightHourViewController *arrDepController = [[ArrDepFlightHourViewController alloc]initWithDataArray:_flighStusModel.flightHours];
+    ArrDepFlightHourViewController *arrDepController = [[ArrDepFlightHourViewController alloc]init];
     arrDepController.hourType = type;
     [self.navigationController pushViewController:arrDepController
                                          animated:YES];
@@ -457,7 +459,7 @@
  展示旅客小时分布
  */
 -(void) showPassengerHourView{
-    PassengerHourViewController *psnHour = [[PassengerHourViewController alloc] init];
+    PassengerHourViewController *psnHour = [[PassengerHourViewController alloc] initWithDataArray:_passengerModel.psnInOutHours];
     [self.navigationController pushViewController:psnHour
                                          animated:YES];
 }

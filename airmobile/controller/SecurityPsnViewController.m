@@ -46,6 +46,7 @@
     [self.view addSubview:scrollView];
     
     PsnSafetyHourView *safetyView = [[PsnSafetyHourView alloc] initWithFrame:CGRectMake(0, 0, scrollView.frame.size.width, scrollView.frame.size.height) dataArray:_passengerModel.psnHours];
+
     [scrollView addSubview:safetyView];
     
     PsnSafetyAreaView *areaView = [[PsnSafetyAreaView alloc] initWithFrame:CGRectMake(scrollView.frame.size.width, 0, scrollView.frame.size.width, scrollView.frame.size.height) dataArray:_passengerModel.psnAreas];

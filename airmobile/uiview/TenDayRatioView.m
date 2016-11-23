@@ -55,7 +55,7 @@
                                                                      7.5,
                                                                      80,
                                                                      20)
-                                                     text:[NSString stringWithFormat:@"%d",[self sum]]
+                                                     text:[NSString stringWithFormat:@"%ld%%",(long)@([self sum]*100.0).integerValue]
                                                      font:24
                                             textAlignment:NSTextAlignmentRight
                                              colorFromHex:0xFFFFFFFF];
@@ -198,12 +198,13 @@
     return arr;
 }
 
--(NSInteger)sum
+-(CGFloat)sum
 {
-    NSInteger s = 0;
+    CGFloat s = 0.0;
     for (ReleasedRatioModel *model in tenDayArray) {
-        s +=model.realCount;
+        s +=model.ratio;
     }
+    s = s/tenDayArray.count;
     return s;
 }
 

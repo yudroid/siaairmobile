@@ -49,7 +49,7 @@
         [topBgView addSubview:passengerTtitle];
 
         UILabel *ratioNum = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-100, 7.5, 80, 20)
-                                                     text:@([self sum]).stringValue
+                                                     text:[NSString stringWithFormat:@"%ld%%",(long)@([self sum]*100.0).integerValue]
                                                      font:24
                                             textAlignment:NSTextAlignmentRight
                                              colorFromHex:0xFFFFFFFF];
@@ -160,12 +160,13 @@
     }
     return arr;
 }
--(NSInteger)sum
+-(CGFloat)sum
 {
-    NSInteger s = 0;
+    CGFloat s = 0.0;
     for (ReleasedRatioModel *model in eightMonthArray) {
-        s +=model.realCount;
+        s +=model.ratio;
     }
+    s = s/eightMonthArray.count;
     return s;
 }
 

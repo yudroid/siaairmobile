@@ -165,6 +165,7 @@
                                                                             kScreenHeight-110)
                                                        dataArray:_tenDayReleased];
         [self.view addSubview:tenDayRatioView];
+        eightMonthRatioView = nil;
     }
 }
 
@@ -183,6 +184,7 @@
                                dataArray:_yearReleased];
 
         [self.view addSubview:eightMonthRatioView];
+        tenDayRatioView = nil;
     }
 }
 
