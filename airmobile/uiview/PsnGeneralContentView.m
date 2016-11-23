@@ -50,16 +50,16 @@
         [prTitleView addSubview:realImageView];
         [prTitleView addSubview:[CommonFunction addLabelFrame:CGRectMake(viewTrailing(realImageView)+2, 0, 40, 12) text:@"实际" font:27/2 textAlignment:NSTextAlignmentLeft colorFromHex:0xFFFFFFFF]];
         
-        [topBgView addSubview:[CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width/2, viewBotton(arrPsn)+4, topBgView.frame.size.width/4, 11) text:@"<30min 进港" font:11 textAlignment:NSTextAlignmentCenter colorFromHex:0x75FFFFFF]];
+        [topBgView addSubview:[CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width/2, viewBotton(arrPsn)+4, topBgView.frame.size.width/4, 11) text:@"<30min 进港" font:11 textAlignment:NSTextAlignmentCenter colorFromHex:0x95FFFFFF]];
         
-        [topBgView addSubview:[CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width*3/4, viewBotton(arrPsn)+4, topBgView.frame.size.width/4-20, 11) text:@"<1h 出港" font:11 textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF]];
+        [topBgView addSubview:[CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width*3/4, viewBotton(arrPsn)+4, topBgView.frame.size.width/4-20, 11) text:@"<1h 出港" font:11 textAlignment:NSTextAlignmentRight colorFromHex:0x95FFFFFF]];
         
 
         UIImageView *lineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(16, viewBotton(prTitleView)+8, viewWidth(topBgView)-32, 0.5)];
         lineImageView.image = [UIImage imageNamed:@"hiddenLine"];
         [topBgView addSubview:lineImageView];
         
-        UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(viewWidth(topBgView)-18-50,viewBotton(lineImageView)+4, 50, 12) text:@"2500" font:11 textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF];
+        UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(viewWidth(topBgView)-18-50,viewBotton(lineImageView)+4, 50, 12) text:@"2500" font:11 textAlignment:NSTextAlignmentRight colorFromHex:0x95FFFFFF];
         [topBgView addSubview:maxLabel];
         
         UIView *arrBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, topBgView.frame.size.height-60-35)];

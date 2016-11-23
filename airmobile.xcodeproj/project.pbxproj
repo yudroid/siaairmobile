@@ -225,6 +225,9 @@
 		F7A2A0641DB8D0EE0023F228 /* PassengerContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A05D1DB8D0EE0023F228 /* PassengerContentView.m */; };
 		F7A2A0651DB8D0EE0023F228 /* ResourceContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A05F1DB8D0EE0023F228 /* ResourceContentView.m */; };
 		F7A2A0661DB8D0EE0023F228 /* TabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A0611DB8D0EE0023F228 /* TabBarView.m */; };
+		F7D38D701DE3D1D4001110AF /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D38D6F1DE3D1D4001110AF /* LoadingView.m */; };
+		F7D38D721DE3D1E5001110AF /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7D38D711DE3D1E5001110AF /* LoadingView.xib */; };
+		F7D38D761DE3E05F001110AF /* Loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = F7D38D751DE3E05F001110AF /* Loading.gif */; };
 		F7EAE1961DB4776C0060626F /* AbnormalityReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EAE1941DB4776C0060626F /* AbnormalityReportViewController.m */; };
 		F7EAE1971DB4776C0060626F /* AbnormalityReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7EAE1951DB4776C0060626F /* AbnormalityReportViewController.xib */; };
 		F7EAE19D1DB4B0680060626F /* AbnormalityReportCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EAE19B1DB4B0680060626F /* AbnormalityReportCollectionViewCell.m */; };
@@ -631,6 +634,10 @@
 		F7A2A05F1DB8D0EE0023F228 /* ResourceContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceContentView.m; sourceTree = "<group>"; };
 		F7A2A0601DB8D0EE0023F228 /* TabBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarView.h; sourceTree = "<group>"; };
 		F7A2A0611DB8D0EE0023F228 /* TabBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarView.m; sourceTree = "<group>"; };
+		F7D38D6E1DE3D1D4001110AF /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
+		F7D38D6F1DE3D1D4001110AF /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
+		F7D38D711DE3D1E5001110AF /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
+		F7D38D751DE3E05F001110AF /* Loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Loading.gif; sourceTree = "<group>"; };
 		F7EAE1931DB4776C0060626F /* AbnormalityReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbnormalityReportViewController.h; sourceTree = "<group>"; };
 		F7EAE1941DB4776C0060626F /* AbnormalityReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = AbnormalityReportViewController.m; sourceTree = "<group>"; };
 		F7EAE1951DB4776C0060626F /* AbnormalityReportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AbnormalityReportViewController.xib; sourceTree = "<group>"; };
@@ -902,6 +909,7 @@
 		846F1D8A1DA89E2600C8920B /* uiview */ = {
 			isa = PBXGroup;
 			children = (
+				F7D38D6D1DE3D1B5001110AF /* LoadingView */,
 				841839E71DBCB87600D7DD86 /* pnchart */,
 				F7A2A0601DB8D0EE0023F228 /* TabBarView.h */,
 				F7A2A0611DB8D0EE0023F228 /* TabBarView.m */,
@@ -950,6 +958,7 @@
 		846F1D8D1DA89E4700C8920B /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				F7D38D751DE3E05F001110AF /* Loading.gif */,
 				8473A5221DB4DAE800A8DCE2 /* home */,
 				845055821DAE3F1A00400EBF /* tabbar */,
 				845055371DACF65200400EBF /* login */,
@@ -1368,6 +1377,16 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		F7D38D6D1DE3D1B5001110AF /* LoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				F7D38D6E1DE3D1D4001110AF /* LoadingView.h */,
+				F7D38D6F1DE3D1D4001110AF /* LoadingView.m */,
+				F7D38D711DE3D1E5001110AF /* LoadingView.xib */,
+			);
+			name = LoadingView;
+			sourceTree = "<group>";
+		};
 		F7EE87821DB370C4006473F5 /* 航班列表 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1531,12 +1550,14 @@
 				8450556D1DACF65200400EBF /* splash@3x.png in Resources */,
 				F70893F41DD492BD00135540 /* TagView.xib in Resources */,
 				845055681DACF65200400EBF /* login_visible@3x.png in Resources */,
+				F7D38D761DE3E05F001110AF /* Loading.gif in Resources */,
 				845055571DACF65200400EBF /* login_accounts@2x.png in Resources */,
 				840D15E91DC2FBCE005FA910 /* overview_toppsn@2x.png in Resources */,
 				840D15EA1DC2FBCE005FA910 /* overview_toppsn@3x.png in Resources */,
 				84BA54F21DA256940037198F /* LaunchScreen.storyboard in Resources */,
 				8450555A1DACF65200400EBF /* login_bg@3x.png in Resources */,
 				845055751DACF65200400EBF /* splash_4@3x.png in Resources */,
+				F7D38D721DE3D1E5001110AF /* LoadingView.xib in Resources */,
 				845055741DACF65200400EBF /* splash_4@2x.png in Resources */,
 				F70893EC1DD2F66700135540 /* FlightDelaysTableViewCell.xib in Resources */,
 				8450555C1DACF65200400EBF /* login_btn@3x.png in Resources */,
@@ -1786,6 +1807,7 @@
 				840D15F31DC31F9E005FA910 /* SeatUsedModel.m in Sources */,
 				84ADE6D51DCC7B9300F58A46 /* PersistenceUtils.m in Sources */,
 				84183A1C1DBDDE4F00D7DD86 /* PassengerHourViewController.m in Sources */,
+				F7D38D701DE3D1D4001110AF /* LoadingView.m in Sources */,
 				843F4CF51DACC70F00D73D56 /* HttpsUtils.m in Sources */,
 				840D15D71DC0C478005FA910 /* RegionDlyTimeModel.m in Sources */,
 				84183A181DBDDDDE00D7DD86 /* FlightAbnViewController.m in Sources */,
