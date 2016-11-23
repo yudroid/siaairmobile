@@ -13,7 +13,6 @@
 
 @interface SummaryModel : RootModel
 
-
 @property (nonatomic, copy) NSString *flightDate;//当天日期 年月日 格式为2016-09-08
 @property (nonatomic, copy) NSString *userName;//运行总监名称
 @property (nonatomic, assign) int allCnt; //当天所有航班数
@@ -27,5 +26,13 @@
 @property (nonatomic, copy) FlightLargeDelayModel *delayTagart;// 判断是否大面积航延指标
 @property (nonatomic, copy) NSMutableArray<ReleasedRatioModel *> *tenDayReleased;// 近10的放行正常率
 @property (nonatomic, copy) NSMutableArray<ReleasedRatioModel *> *yearReleased;// 今年放行正常率
+
+-(void)updateFlightHourModel:(NSDictionary *)data;
+
+-(void)updateTenDayReleased:(NSDictionary *)data;
+
+-(void)updateYearReleased:(NSDictionary *)data;
+
+-(void)updatePropertyData:(NSDictionary *)data;
 
 @end
