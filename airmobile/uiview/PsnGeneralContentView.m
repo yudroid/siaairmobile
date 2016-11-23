@@ -7,15 +7,23 @@
 //
 
 #import "PsnGeneralContentView.h"
+#import "PassengerModel.h"
+
+@interface PsnGeneralContentView()
+
+@property (nonatomic ,strong) PassengerModel *passengerModel;
+
+@end
 
 @implementation PsnGeneralContentView
 
--(instancetype)initWithFrame:(CGRect)frame
+-(instancetype)initWithFrame:(CGRect)frame passengerModel:(PassengerModel *)passengerModel
 {
     self = [super initWithFrame:frame];
     
     if(self){
-        //        self.backgroundColor = [UIColor lightGrayColor];
+
+        _passengerModel = passengerModel;
         
         CGFloat topBgViewWidth = kScreenWidth-2*px2(22);
         UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, topBgViewWidth, topBgViewWidth *391/709)];
@@ -31,10 +39,18 @@
         passengerTtitle.textColor = [UIColor whiteColor];
         [topBgView addSubview:passengerTtitle];
         
-        UILabel *arrPsn = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width/2, 8, topBgView.frame.size.width/4, 23) text:@"1350" font:18 textAlignment:NSTextAlignmentCenter colorFromHex:0xFFFFFFFF];
+        UILabel *arrPsn = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width/2, 8, topBgView.frame.size.width/4, 23)
+                                                   text:@(_passengerModel.hourInCount).stringValue
+                                                   font:18
+                                          textAlignment:NSTextAlignmentCenter
+                                           colorFromHex:0xFFFFFFFF];
         [topBgView addSubview:arrPsn];
         
-        UILabel *depPsn = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width*3/4, viewY(arrPsn), topBgView.frame.size.width/4-20, 23) text:@"1500" font:18 textAlignment:NSTextAlignmentRight colorFromHex:0xFFFFFFFF];
+        UILabel *depPsn = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width*3/4, viewY(arrPsn), topBgView.frame.size.width/4-20, 23)
+                                                   text:@(_passengerModel.hourOutCount).stringValue
+                                                   font:18
+                                          textAlignment:NSTextAlignmentRight
+                                           colorFromHex:0xFFFFFFFF];
         [topBgView addSubview:depPsn];
         
         UIView *prTitleView = [[UIView alloc] initWithFrame:CGRectMake(16, viewBotton(arrPsn)+2, 120, 12)];
@@ -59,17 +75,21 @@
         lineImageView.image = [UIImage imageNamed:@"hiddenLine"];
         [topBgView addSubview:lineImageView];
         
-        UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(viewWidth(topBgView)-18-50,viewBotton(lineImageView)+4, 50, 12) text:@"2500" font:11 textAlignment:NSTextAlignmentRight colorFromHex:0x95FFFFFF];
+        UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(viewWidth(topBgView)-18-50,viewBotton(lineImageView)+4, 50, 12)
+                                                     text:@(_passengerModel.maxCount).stringValue
+                                                     font:11
+                                            textAlignment:NSTextAlignmentRight
+                                             colorFromHex:0x95FFFFFF];
         [topBgView addSubview:maxLabel];
         
         UIView *arrBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, topBgView.frame.size.height-60-35)];
         arrBarView.center = CGPointMake(topBgView.frame.size.width/4, (60+topBgView.frame.size.height-35)/2);
         [topBgView addSubview:arrBarView];
         
-        ProgreesBarView *arrPlan = [[ProgreesBarView alloc] initWithCenter:CGPointMake(arrBarView.frame.size.width/4, arrBarView.frame.size.height/2) size:CGSizeMake(15, arrBarView.frame.size.height) direction:4 colors:@[(__bridge id)[CommonFunction colorFromHex:0XFF9BEEDA].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFF94E1EB].CGColor ]proportion:0.5];
+        ProgreesBarView *arrPlan = [[ProgreesBarView alloc] initWithCenter:CGPointMake(arrBarView.frame.size.width/4, arrBarView.frame.size.height/2) size:CGSizeMake(15, arrBarView.frame.size.height) direction:4 colors:@[(__bridge id)[CommonFunction colorFromHex:0XFF9BEEDA].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFF94E1EB].CGColor ]proportion:_passengerModel.planInCount/@(_passengerModel.maxCount).floatValue];
         [arrBarView addSubview:arrPlan];
         
-        ProgreesBarView *arrReal = [[ProgreesBarView alloc] initWithCenter:CGPointMake(arrBarView.frame.size.width*3/4, arrBarView.frame.size.height/2) size:CGSizeMake(15, arrBarView.frame.size.height) direction:4 colors:@[(__bridge id)[CommonFunction colorFromHex:0XFF4A9EB8].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFF4991CB].CGColor ]  proportion:0.55];
+        ProgreesBarView *arrReal = [[ProgreesBarView alloc] initWithCenter:CGPointMake(arrBarView.frame.size.width*3/4, arrBarView.frame.size.height/2) size:CGSizeMake(15, arrBarView.frame.size.height) direction:4 colors:@[(__bridge id)[CommonFunction colorFromHex:0XFF4A9EB8].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFF4991CB].CGColor ]  proportion:_passengerModel.realInCount/@(_passengerModel.maxCount).floatValue];
         
         [arrBarView addSubview:arrReal];
         
@@ -78,14 +98,21 @@
         depBarView.center = CGPointMake(topBgView.frame.size.width*3/4, (60+topBgView.frame.size.height-35)/2);
         [topBgView addSubview:depBarView];
         
-        ProgreesBarView *depPlan = [[ProgreesBarView alloc] initWithCenter:CGPointMake(depBarView.frame.size.width/4, depBarView.frame.size.height/2) size:CGSizeMake(15, depBarView.frame.size.height) direction:4 colors:@[(__bridge id)[CommonFunction colorFromHex:0XFF9BEEDA].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFF94E1EB].CGColor ] proportion:0.6];
+        ProgreesBarView *depPlan = [[ProgreesBarView alloc] initWithCenter:CGPointMake(depBarView.frame.size.width/4, depBarView.frame.size.height/2)
+                                                                      size:CGSizeMake(15, depBarView.frame.size.height)
+                                                                 direction:4
+                                                                    colors:@[(__bridge id)[CommonFunction colorFromHex:0XFF9BEEDA].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFF94E1EB].CGColor ] proportion:_passengerModel.planOutCount/@(_passengerModel.maxCount).floatValue];
         [depBarView addSubview:depPlan];
         
-        ProgreesBarView *depReal = [[ProgreesBarView alloc] initWithCenter:CGPointMake(depBarView.frame.size.width*3/4, depBarView.frame.size.height/2) size:CGSizeMake(15, depBarView.frame.size.height) direction:4 colors:@[(__bridge id)[CommonFunction colorFromHex:0XFF4A9EB8].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFF4991CB].CGColor ] proportion:0.62];
+        ProgreesBarView *depReal = [[ProgreesBarView alloc] initWithCenter:CGPointMake(depBarView.frame.size.width*3/4, depBarView.frame.size.height/2) size:CGSizeMake(15, depBarView.frame.size.height) direction:4 colors:@[(__bridge id)[CommonFunction colorFromHex:0XFF4A9EB8].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFF4991CB].CGColor ] proportion:_passengerModel.realOutCount/@(_passengerModel.maxCount).floatValue];
         
         [depBarView addSubview:depReal];
         
-        [topBgView addSubview:[CommonFunction addLabelFrame:CGRectMake(20, topBgView.frame.size.height-(35+15), topBgView.frame.size.width-40, 12) text:@"0" font:11 textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF]];
+        [topBgView addSubview:[CommonFunction addLabelFrame:CGRectMake(20, topBgView.frame.size.height-(35+15), topBgView.frame.size.width-40, 12)
+                                                       text:@(_passengerModel.minCount).stringValue
+                                                       font:11
+                                              textAlignment:NSTextAlignmentRight
+                                               colorFromHex:0x75FFFFFF]];
 
         UIImageView *downlineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(20, topBgView.frame.size.height-32, topBgView.frame.size.width-40, 0.5)];
         downlineImageView.image = [UIImage imageNamed:@"hiddenLine"];
@@ -105,7 +132,11 @@
         arrLabel.attributedText = attrStr;
         [self addSubview:arrLabel];
         
-        [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, viewY(arrImageView), kScreenWidth/2-20, viewHeight(arrImageView)) text:@"1520/1519" font:36/2 textAlignment:NSTextAlignmentRight colorFromHex:0xFF000000]];
+        [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, viewY(arrImageView), kScreenWidth/2-20, viewHeight(arrImageView))
+                                                  text:[NSString stringWithFormat:@"%d/%d",_passengerModel.planInCount,_passengerModel.realInCount]
+                                                  font:36/2
+                                         textAlignment:NSTextAlignmentRight
+                                          colorFromHex:0xFF000000]];
 
         UIImageView *arrlineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(arrLabel), viewBotton(arrLabel)+21, viewWidth(self)-viewX(arrLabel)-20, 0.5)];
         arrlineImageView.image = [UIImage imageNamed:@"Line"];
@@ -123,7 +154,11 @@
         [self addSubview:depLabel];
 
 
-        UILabel *depValueLabel =[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, viewY(depImageView), kScreenWidth/2-20, 20) text:@"1568/1562" font:36/2 textAlignment:NSTextAlignmentRight colorFromHex:0xFF000000];
+        UILabel *depValueLabel =[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, viewY(depImageView), kScreenWidth/2-20, 20)
+                                                         text:[NSString stringWithFormat:@"%d/%d",_passengerModel.planOutCount,_passengerModel.realOutCount]
+                                                         font:36/2
+                                                textAlignment:NSTextAlignmentRight
+                                                 colorFromHex:0xFF000000];
         [self addSubview:depValueLabel];
 
         UIButton * depValueButton = [[UIButton alloc]initWithFrame:depValueLabel.frame];
@@ -134,7 +169,7 @@
         deplineImageView.image = [UIImage imageNamed:@"Line"];
         [self addSubview:deplineImageView];
         
-        [self addSubview:[CommonFunction addLabelFrame:CGRectMake(20,viewBotton(deplineImageView), kScreenWidth-40, viewHeight(self)- viewBotton(deplineImageView)) text:[NSString stringWithFormat:@"隔离区%@人",@"1231"] font:33/2 textAlignment:NSTextAlignmentCenter colorFromHex:0xFF17B9E8]];
+        [self addSubview:[CommonFunction addLabelFrame:CGRectMake(20,viewBotton(deplineImageView), kScreenWidth-40, viewHeight(self)- viewBotton(deplineImageView)) text:[NSString stringWithFormat:@"隔离区%@人",@(_passengerModel.safeCount)] font:33/2 textAlignment:NSTextAlignmentCenter colorFromHex:0xFF17B9E8]];
         UIImageView *DMZNumBackgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake((viewWidth(self)-199)/2, (viewHeight(self)-viewBotton(deplineImageView)-42)/2+viewBotton(deplineImageView), 199, 42)];
         DMZNumBackgroundImageView.image = [UIImage imageNamed:@"DMZNumBackground"];
         [self addSubview:DMZNumBackgroundImageView];
@@ -153,12 +188,18 @@
 
 -(void)showPassengerHourView:(NSNotification *)sender
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"showSafetyPassenger" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"showPassengerHourView" object:nil];
 }
 
 -(void)showSafetyPassenger:(NSNotification *)sender
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"showSafetyPassenger" object:nil];
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"showPassengerHourView" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"showSafetyPassenger" object:nil];
 }
 
 @end

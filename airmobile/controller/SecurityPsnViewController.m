@@ -9,14 +9,26 @@
 #import "SecurityPsnViewController.h"
 #import "PsnSafetyAreaView.h"
 #import "PsnSafetyHourView.h"
+#import "PassengerModel.h"
 
 @interface SecurityPsnViewController ()
+
+@property (nonatomic ,strong) PassengerModel *passengerModel;
 
 @end
 
 @implementation SecurityPsnViewController
 {
     UIPageControl *pageControl;
+}
+
+-(instancetype)initWithPassengerModel:(id)passengerModel
+{
+    self = [super init];
+    if (self) {
+        _passengerModel = passengerModel;
+    }
+    return self;
 }
 
 - (void)viewDidLoad {
@@ -33,10 +45,10 @@
     scrollView.showsVerticalScrollIndicator = NO;
     [self.view addSubview:scrollView];
     
-    PsnSafetyHourView *safetyView = [[PsnSafetyHourView alloc] initWithFrame:CGRectMake(0, 0, scrollView.frame.size.width, scrollView.frame.size.height)];
+    PsnSafetyHourView *safetyView = [[PsnSafetyHourView alloc] initWithFrame:CGRectMake(0, 0, scrollView.frame.size.width, scrollView.frame.size.height) dataArray:_passengerModel.psnHours];
     [scrollView addSubview:safetyView];
     
-    PsnSafetyAreaView *areaView = [[PsnSafetyAreaView alloc] initWithFrame:CGRectMake(scrollView.frame.size.width, 0, scrollView.frame.size.width, scrollView.frame.size.height)];
+    PsnSafetyAreaView *areaView = [[PsnSafetyAreaView alloc] initWithFrame:CGRectMake(scrollView.frame.size.width, 0, scrollView.frame.size.width, scrollView.frame.size.height) dataArray:_passengerModel.psnAreas];
     [scrollView addSubview:areaView];
     
     pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, kScreenHeight-40, kScreenWidth, 40)];

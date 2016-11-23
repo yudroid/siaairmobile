@@ -15,12 +15,23 @@
 
 @interface FlightHourViewController ()
 
+@property (nonatomic, copy) NSArray<FlightHourModel *> *flightArray;
+
 @end
 
 @implementation FlightHourViewController
 {
     PNLineChart *lineChart;
-    NSMutableArray<FlightHourModel *> *eightMonthArray;
+
+}
+
+-(instancetype)initWithFlightHours:(NSArray *)flighthours
+{
+    self = [super init];
+    if (self) {
+        self.flightArray = flighthours;
+    }
+    return self;
 }
 
 - (void)viewDidLoad {
@@ -29,7 +40,7 @@
     
     [self initTitle];
     
-    [self initData];
+//    [self initData];
 
     CGFloat y = 65+px_px_2_3(33, 102);
     CGFloat topBgViewWidth = kScreenWidth-2*px2(22);
@@ -54,7 +65,9 @@
     passengerTtitle.textColor = [UIColor whiteColor];
     [topBgView addSubview:passengerTtitle];
     
-    UILabel *ratioNum = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-100, 5, 80, 23+20) text:@"800" font:20 textAlignment:NSTextAlignmentRight colorFromHex:0xFFFFFFFF];
+    UILabel *ratioNum = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-100, 5, 80, 23+20)
+                                                 text:@([self sum]).stringValue
+                                                 font:20 textAlignment:NSTextAlignmentRight colorFromHex:0xFFFFFFFF];
     ratioNum.font = [UIFont fontWithName:@"PingFang SC" size:px_px_2_3(48, 79)];
 
     [topBgView addSubview:ratioNum];
@@ -74,7 +87,7 @@
     upImageView.image = [UIImage imageNamed:@"hiddenLine"];
     [topBgView addSubview:upImageView];
     
-    UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(px2(33), viewBotton(upImageView)+px_px_2_3(10, 15),viewWidth(topBgView)-2*px2(33), 12) text:@"100" font:px_px_2_3(22, 36) textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF];
+    UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(px2(33), viewBotton(upImageView)+px_px_2_3(10, 15),viewWidth(topBgView)-2*px2(33), 12) text:@"120" font:px_px_2_3(22, 36) textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF];
     [topBgView addSubview:maxLabel];
     
     
@@ -92,7 +105,7 @@
     
     //Use yFixedValueMax and yFixedValueMin to Fix the Max and Min Y Value
     //Only if you needed
-    lineChart.yFixedValueMax = 100;
+    lineChart.yFixedValueMax = 120;
     lineChart.yFixedValueMin = 0;
     
     
@@ -154,12 +167,12 @@
     return px2(108);
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [eightMonthArray count];
+    return [_flightArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    FlightHourModel *flightHour = eightMonthArray[indexPath.row];
+    FlightHourModel *flightHour = _flightArray[indexPath.row];
     FlightHourTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:flightHour.hour];
     
     if (!cell) {
@@ -173,7 +186,7 @@
 -(NSArray *) getFlightHourXLabels
 {
     NSMutableArray *arr = [[NSMutableArray alloc] init];
-    for(FlightHourModel *model in eightMonthArray){
+    for(FlightHourModel *model in _flightArray){
         [arr addObject:[model.hour componentsSeparatedByString:@":"][0]];
     }
     return arr;
@@ -182,45 +195,53 @@
 -(NSArray *) getFlightHourYLabels
 {
     NSMutableArray *arr = [[NSMutableArray alloc] init];
-    for(FlightHourModel *model in eightMonthArray){
+    for(FlightHourModel *model in _flightArray){
         [arr addObject:@((int)(model.count))];
     }
     return arr;
 }
-
--(void) initData
+-(NSInteger)sum
 {
-    if(eightMonthArray == nil){
-        eightMonthArray = [[NSMutableArray alloc] init];
-    }else{
-        [eightMonthArray removeAllObjects];
+    int s = 0;
+    for (FlightHourModel *model in _flightArray) {
+        s+=model.arrCount;
     }
-    
-    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"1:00" count:25]];
-    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"2:00" count:35]];
-    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"3:00" count:15]];
-    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"4:00" count:10]];
-    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"5:00" count:25]];
-    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"6:00" count:35]];
-    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"7:00" count:45]];
-    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"8:00" count:65]];
-    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"9:00" count:70]];
-    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"10:00" count:48]];
-    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"11:00" count:62]];
-    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"12:00" count:45]];
-    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"13:00" count:55]];
-    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"14:00" count:60]];
-    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"15:00" count:75]];
-    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"16:00" count:60]];
-    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"17:00" count:45]];
-    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"18:00" count:35]];
-    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"19:00" count:45]];
-    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"20:00" count:25]];
-    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"21:00" count:20]];
-    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"22:00" count:25]];
-    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"23:00" count:30]];
-    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"00:00" count:15]];
+    return s;
 }
+
+//-(void) initData
+//{
+//    if(eightMonthArray == nil){
+//        eightMonthArray = [[NSMutableArray alloc] init];
+//    }else{
+//        [eightMonthArray removeAllObjects];
+//    }
+//    
+//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"1:00" count:25]];
+//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"2:00" count:35]];
+//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"3:00" count:15]];
+//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"4:00" count:10]];
+//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"5:00" count:25]];
+//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"6:00" count:35]];
+//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"7:00" count:45]];
+//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"8:00" count:65]];
+//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"9:00" count:70]];
+//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"10:00" count:48]];
+//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"11:00" count:62]];
+//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"12:00" count:45]];
+//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"13:00" count:55]];
+//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"14:00" count:60]];
+//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"15:00" count:75]];
+//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"16:00" count:60]];
+//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"17:00" count:45]];
+//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"18:00" count:35]];
+//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"19:00" count:45]];
+//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"20:00" count:25]];
+//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"21:00" count:20]];
+//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"22:00" count:25]];
+//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"23:00" count:30]];
+//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"00:00" count:15]];
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

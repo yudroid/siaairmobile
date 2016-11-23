@@ -10,4 +10,6 @@
 
 @interface TenDayRatioView : UIView<UITableViewDelegate,UITableViewDataSource>
 
+-(instancetype)initWithFrame:(CGRect)frame dataArray:(NSArray *)dataArray;
+
 @end

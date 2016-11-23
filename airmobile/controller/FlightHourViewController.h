@@ -10,4 +10,6 @@
 
 @interface FlightHourViewController : RootViewController<UITableViewDelegate,UITableViewDataSource>
 
+-(instancetype)initWithFlightHours:(NSArray *)flighthours;
+
 @end

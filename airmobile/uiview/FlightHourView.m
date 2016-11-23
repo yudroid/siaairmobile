@@ -11,29 +11,42 @@
 @implementation FlightHourView
 {
     PNLineChart *lineChart;
-    NSMutableArray<FlightHourModel *> *hourArray;
+    NSArray<FlightHourModel *> *hourArray;
     FlightHourType _flightHourType;
     PNBarChart *barChart;
 }
 
--(instancetype) initWithFrame:(CGRect)frame flightHourType:(FlightHourType) type
+-(instancetype) initWithFrame:(CGRect)frame
+                    DataArray:(NSArray<FlightHourModel *> *)dataArray
+               flightHourType:(FlightHourType) type
 {
     self = [super initWithFrame:frame];
     if(self){
         
         _flightHourType = type;
-        [self initData];
-        
+//        [self initData];
+        hourArray = dataArray;
+
         CGFloat topBgViewWidth = kScreenWidth-2*px2(22);
-        UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, topBgViewWidth, topBgViewWidth *391/709)];
+        UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(10,
+                                                                     0,
+                                                                     topBgViewWidth,
+                                                                     topBgViewWidth *391/709)];
         [self addSubview:topBgView];
 
-        UIImageView *topBgBackgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, viewWidth(topBgView), viewHeight(topBgView))];
+        UIImageView *topBgBackgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0,
+                                                                                             0,
+                                                                                             viewWidth(topBgView),
+                                                                                             viewHeight(topBgView))];
         topBgBackgroundImageView.image = [UIImage imageNamed:@"FlightHourChartBlackground"];
         [topBgView addSubview:topBgBackgroundImageView];
         
-        UILabel *passengerTtitle = [[UILabel alloc] initWithFrame:CGRectMake(px_px_2_3(32, 73),px_px_2_3(10, 24) , viewWidth(topBgView)-100, 11)];
-        passengerTtitle.font = [UIFont fontWithName:@"PingFangSC-Regular" size:27/2];
+        UILabel *passengerTtitle = [[UILabel alloc] initWithFrame:CGRectMake(px_px_2_3(32, 73),
+                                                                             px_px_2_3(10, 24) ,
+                                                                             viewWidth(topBgView)-100,
+                                                                             11)];
+        passengerTtitle.font = [UIFont fontWithName:@"PingFangSC-Regular"
+                                               size:27/2];
         passengerTtitle.textColor = [UIColor whiteColor];
         [topBgView addSubview:passengerTtitle];
         if(type == ArrFlightHour){
@@ -43,28 +56,55 @@
         }
 
 
-        UIImageView *planImageView = [[UIImageView alloc]initWithFrame:CGRectMake(16, viewBotton(passengerTtitle)+ px_px_2_3(16, 28), 10, 10)];
+        UIImageView *planImageView = [[UIImageView alloc]initWithFrame:CGRectMake(16,
+                                                                                  viewBotton(passengerTtitle)+ px_px_2_3(16, 28),
+                                                                                  10,
+                                                                                  10)];
         planImageView.image = [UIImage imageNamed:@"FlightHourChartTag"];
         [topBgView addSubview:planImageView];
         UIImageView *inPlanImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"FlightHourChartTag3"]];
         inPlanImageView.center = planImageView.center;
         [topBgView addSubview:inPlanImageView];
 
-        UILabel *planLabel = [CommonFunction addLabelFrame:CGRectMake(viewTrailing(planImageView)+2, viewY(planImageView)-1, 100, 11) text:@"实际航班数" font:13 textAlignment:NSTextAlignmentLeft colorFromHex:0xB5FEFEFE];
+        UILabel *planLabel = [CommonFunction addLabelFrame:CGRectMake(viewTrailing(planImageView)+2,
+                                                                      viewY(planImageView)-1,
+                                                                      100,
+                                                                      11)
+                                                      text:@"实际航班数"
+                                                      font:13
+                                             textAlignment:NSTextAlignmentLeft
+                                              colorFromHex:0xB5FEFEFE];
         [topBgView addSubview:planLabel];
 
 
-        UIImageView *realImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewTrailing(planLabel), viewY(planImageView)-3, 5, 14)];
+        UIImageView *realImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewTrailing(planLabel),
+                                                                                  viewY(planImageView)-3,
+                                                                                  5,
+                                                                                  14)];
         realImageView.image = [UIImage imageNamed:@"FlightHourChartTag2"];
         [topBgView addSubview:realImageView];
-        UILabel *realLabel = [CommonFunction addLabelFrame:CGRectMake(viewTrailing(realImageView)+2, viewY(planLabel) , 100, 11) text:@"计划航班数" font:13 textAlignment:NSTextAlignmentLeft colorFromHex:0xB5FEFEFE];
+        UILabel *realLabel = [CommonFunction addLabelFrame:CGRectMake(viewTrailing(realImageView)+2,
+                                                                      viewY(planLabel) , 100, 11)
+                                                      text:@"计划航班数"
+                                                      font:13
+                                             textAlignment:NSTextAlignmentLeft
+                                              colorFromHex:0xB5FEFEFE];
         [topBgView addSubview:realLabel];
         
-        UIImageView *lineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(planImageView),viewBotton(planLabel)+8, viewWidth(topBgView)-32, 0.5)];
+        UIImageView *lineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(planImageView),
+                                                                                  viewBotton(planLabel)+8,
+                                                                                  viewWidth(topBgView)-32,
+                                                                                  0.5)];
         lineImageView.image = [UIImage imageNamed:@"hiddenLine"];
         [topBgView addSubview:lineImageView];
         
-        UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(20, viewBotton(lineImageView)+4, topBgView.frame.size.width-40, 12) text:@"100" font:11 textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF];
+        UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(20,
+                                                                     viewBotton(lineImageView)+4,
+                                                                     topBgView.frame.size.width-40, 12)
+                                                     text:@"120"
+                                                     font:11
+                                            textAlignment:NSTextAlignmentRight
+                                             colorFromHex:0x75FFFFFF];
         [topBgView addSubview:maxLabel];
         
         
@@ -75,7 +115,7 @@
         [lineChart setXLabels:[self getFlightHourXLabels]];
         lineChart.showCoordinateAxis = NO;
         lineChart.showGenYLabels=NO;
-        lineChart.yFixedValueMax = 100;
+        lineChart.yFixedValueMax = 120;
         lineChart.yFixedValueMin = 0;
         
         // added an examle to show how yGridLines can be enabled
@@ -105,7 +145,7 @@
         
         barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(20, 5+23+15+2, topBgView.frame.size.width-40, topBgView.frame.size.height-(5+23+15+2)-5)];//折线图
         
-        barChart.yMaxValue = 100;
+        barChart.yMaxValue = 120;
         barChart.yMinValue = 0;
         barChart.showXLabel = NO;
         barChart.showYLabel = NO;
@@ -132,12 +172,12 @@
         [topBgView addSubview:lineChart];
 
         
-        if(type==DepFlightHour){
-
-            UIImageView *redLine = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(planImageView), viewY(barChart)+viewHeight(barChart)/2, viewWidth(lineImageView), 15)];
-            redLine.image = [UIImage imageNamed:@"HourRedLine"];
-            [topBgView addSubview:redLine];
-        }
+//        if(type==DepFlightHour){
+//
+//            UIImageView *redLine = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(planImageView), viewY(barChart)+viewHeight(barChart)/2, viewWidth(lineImageView), 15)];
+//            redLine.image = [UIImage imageNamed:@"HourRedLine"];
+//            [topBgView addSubview:redLine];
+//        }
         
         [topBgView addSubview:[CommonFunction addLabelFrame:CGRectMake(20, topBgView.frame.size.height-(10+15+12), topBgView.frame.size.width-40, 12) text:@"0" font:11 textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF]];
 
@@ -206,39 +246,39 @@
     return arr;
 }
 
--(void) initData
-{
-    if(hourArray == nil){
-        hourArray = [[NSMutableArray alloc] init];
-    }else{
-        [hourArray removeAllObjects];
-    }
-    
-    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"1:00" count:25 planCount:25]];
-    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"2:00" count:35 planCount:35]];
-    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"3:00" count:15 planCount:15]];
-    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"4:00" count:10 planCount:10]];
-    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"5:00" count:25 planCount:25]];
-    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"6:00" count:35 planCount:35]];
-    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"7:00" count:45 planCount:50]];
-    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"8:00" count:55 planCount:65]];
-    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"9:00" count:50 planCount:50]];
-    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"10:00" count:48 planCount:48]];
-    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"11:00" count:50 planCount:62]];
-    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"12:00" count:45 planCount:45]];
-    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"13:00" count:55 planCount:55]];
-    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"14:00" count:60 planCount:60]];
-    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"15:00" count:50 planCount:50]];
-    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"16:00" count:60 planCount:60]];
-    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"17:00" count:45 planCount:45]];
-    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"18:00" count:35 planCount:35]];
-    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"19:00" count:45 planCount:45]];
-    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"20:00" count:25 planCount:25]];
-    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"21:00" count:20 planCount:20]];
-    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"22:00" count:25 planCount:25]];
-    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"23:00" count:30 planCount:30]];
-    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"00:00" count:15 planCount:15]];
-}
+//-(void) initData
+//{
+//    if(hourArray == nil){
+//        hourArray = [[NSMutableArray alloc] init];
+//    }else{
+//        [hourArray removeAllObjects];
+//    }
+//    
+//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"1:00" count:25 planCount:25]];
+//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"2:00" count:35 planCount:35]];
+//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"3:00" count:15 planCount:15]];
+//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"4:00" count:10 planCount:10]];
+//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"5:00" count:25 planCount:25]];
+//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"6:00" count:35 planCount:35]];
+//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"7:00" count:45 planCount:50]];
+//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"8:00" count:55 planCount:65]];
+//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"9:00" count:50 planCount:50]];
+//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"10:00" count:48 planCount:48]];
+//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"11:00" count:50 planCount:62]];
+//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"12:00" count:45 planCount:45]];
+//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"13:00" count:55 planCount:55]];
+//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"14:00" count:60 planCount:60]];
+//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"15:00" count:50 planCount:50]];
+//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"16:00" count:60 planCount:60]];
+//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"17:00" count:45 planCount:45]];
+//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"18:00" count:35 planCount:35]];
+//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"19:00" count:45 planCount:45]];
+//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"20:00" count:25 planCount:25]];
+//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"21:00" count:20 planCount:20]];
+//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"22:00" count:25 planCount:25]];
+//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"23:00" count:30 planCount:30]];
+//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"00:00" count:15 planCount:15]];
+//}
 
 
 @end

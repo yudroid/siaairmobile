@@ -17,6 +17,6 @@
 @property (nonatomic,assign) int nextIn;// 下小时进港
 @property (nonatomic,assign) int nextOut;// 下小时出港
 
-@property (nonatomic,copy) CraftseatCntModel *usedDetail;// 机位使用的详细信息
+@property (nonatomic,strong) CraftseatCntModel *usedDetail;// 机位使用的详细信息
 
 @end

@@ -8,9 +8,12 @@
 
 #import "RootViewController.h"
 #import "FlightHourView.h"
+@class FlightHourModel;
 
 @interface ArrDepFlightHourViewController : RootViewController<UIScrollViewDelegate>
 
 @property (nonatomic,assign)FlightHourType hourType;
+
+-(instancetype)initWithDataArray:(NSArray<FlightHourModel *>*)dataArray;
 
 @end

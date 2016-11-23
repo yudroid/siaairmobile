@@ -11,4 +11,6 @@
 
 @interface PassengerTopViewController : RootViewController
 
+-(instancetype)initWithDataArray:(NSArray *)dataArray;
+
 @end

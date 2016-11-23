@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 #import "TenDayRatioView.h"
 #import "EightMonthRatioView.h"
+@class ReleasedRatioModel;
 
 
 @interface ReleasedRatioViewController : RootViewController
@@ -19,5 +20,8 @@
     EightMonthRatioView *eightMonthRatioView;
     
 }
+
+-(instancetype)initWithTenDayDataArray:(NSArray<ReleasedRatioModel *> *)tenDayDataArray
+                         yearDataArray:(NSArray<ReleasedRatioModel *> *)yearDataArray;
 
 @end

@@ -7,7 +7,10 @@
 //
 
 #import "RootViewController.h"
+@class PassengerModel;
 
 @interface SecurityPsnViewController : RootViewController<UIScrollViewDelegate>
+
+-(instancetype)initWithPassengerModel:(PassengerModel *)passengerModel;
 
 @end

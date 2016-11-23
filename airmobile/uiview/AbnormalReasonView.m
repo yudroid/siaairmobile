@@ -13,22 +13,25 @@
 @implementation AbnormalReasonView
 {
     NSMutableArray *shapeArray;
-    NSMutableArray<AbnReasonModel *> *array;
+    NSArray<AbnReasonModel *> *array;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame dataArray:(NSArray *)dataArray
 {
     self = [super initWithFrame:frame];
     
     if(self){
         
-        [self updateShapeArray];
-//        
+//        [self updateShapeArray];
+//
 //        UILabel *rsnLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 20, kScreenWidth-40, 23)];
 //        rsnLabel.text = @"异常原因分类";
 //        rsnLabel.font = [UIFont systemFontOfSize:18];
 //        rsnLabel.textColor = [UIColor blackColor];
 //        [self addSubview:rsnLabel];
+
+        array = dataArray;
+        [self updateShapeArray];
         CGFloat topBgViewWidth = kScreenWidth-2*px2(22);
         UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, topBgViewWidth, topBgViewWidth *391/709)];
         [self addSubview:topBgView];
@@ -57,7 +60,9 @@
         [topBgView addSubview:abnRsnProgress];
 
         
-        UILabel *arrInNum = [CommonFunction addLabelFrame:CGRectMake(0, (viewY(abnRsnProgress)+viewHeight(abnRsnProgress))/2-35/2-12, viewWidth(abnRsnProgress), 24) text:@"100" font:32 textAlignment:(NSTextAlignmentCenter) colorFromHex:0xFF129cc4];
+        UILabel *arrInNum = [CommonFunction addLabelFrame:CGRectMake(0, (viewY(abnRsnProgress)+viewHeight(abnRsnProgress))/2-35/2-12, viewWidth(abnRsnProgress), 24)
+                                                     text:@([self sum]).stringValue
+                                                     font:32 textAlignment:(NSTextAlignmentCenter) colorFromHex:0xFF129cc4];
         [abnRsnProgress addSubview:arrInNum];
         UILabel *arrInLabel = [CommonFunction addLabelFrame:CGRectMake(0, viewBotton(arrInNum)+10, viewWidth(abnRsnProgress), 13) text:@"延误总数" font:17 textAlignment:(NSTextAlignmentCenter) colorFromHex:0xFF129cc4];
         [abnRsnProgress addSubview:arrInLabel];
@@ -103,21 +108,41 @@
 
 -(void) updateShapeArray
 {
+    NSDictionary *colorDic = @{@"天气原因":[CommonFunction colorFromHex:0xFFFF7C36] ,
+                               @"军事控制":[CommonFunction colorFromHex:0xFF17B9E8] ,
+                               @"航空公司":[CommonFunction colorFromHex:0xFFFF7C36] ,
+                               @"空管":[CommonFunction colorFromHex:0xFFFF2F57] ,
+                               @"机场":[CommonFunction colorFromHex:0xFF2FEE65] ,
+                               @"其他":[CommonFunction colorFromHex:0xFF5A57D8]
+                               };
     shapeArray = [NSMutableArray new];
-    [shapeArray addObject: [PNPieChartDataItem dataItemWithValue:15 color:[CommonFunction colorFromHex:0xFFFF7C36] description:@"天气原因"]];
-    [shapeArray addObject: [PNPieChartDataItem dataItemWithValue:25 color:[CommonFunction colorFromHex:0xFF17B9E8] description:@"军事控制"]];
-    [shapeArray addObject: [PNPieChartDataItem dataItemWithValue:25 color:[CommonFunction colorFromHex:0xFFFFC000] description:@"航空公司"]];
-    [shapeArray addObject: [PNPieChartDataItem dataItemWithValue:20 color:[CommonFunction colorFromHex:0xFFFF2F57] description:@"空管"]];
-    [shapeArray addObject: [PNPieChartDataItem dataItemWithValue:5 color:[CommonFunction colorFromHex:0xFF2FEE65] description:@"机场"]];
-    [shapeArray addObject: [PNPieChartDataItem dataItemWithValue:10 color:[CommonFunction colorFromHex:0xFF5A57D8] description:@"其他"]];
-    
-    array = [NSMutableArray new];
-    [array addObject: [[AbnReasonModel alloc] initWithReason:@"天气原因" count:15 percent:0.15]];
-    [array addObject: [[AbnReasonModel alloc] initWithReason:@"军事控制" count:25 percent:0.25]];
-    [array addObject: [[AbnReasonModel alloc] initWithReason:@"航空公司" count:25 percent:0.25]];
-    [array addObject: [[AbnReasonModel alloc] initWithReason:@"空管" count:20 percent:0.2]];
-    [array addObject: [[AbnReasonModel alloc] initWithReason:@"机场" count:5 percent:0.05]];
-    [array addObject: [[AbnReasonModel alloc] initWithReason:@"其他" count:10 percent:0.10]];
+    for (AbnReasonModel *model in array) {
+        [shapeArray addObject: [PNPieChartDataItem dataItemWithValue:model.count
+                                                               color:[colorDic objectForKey:model.reason]
+                                                         description:model.reason]];
+    }
+//    [shapeArray addObject: [PNPieChartDataItem dataItemWithValue:15 color:[CommonFunction colorFromHex:0xFFFF7C36] description:@"天气原因"]];
+//    [shapeArray addObject: [PNPieChartDataItem dataItemWithValue:25 color:[CommonFunction colorFromHex:0xFF17B9E8] description:@"军事控制"]];
+//    [shapeArray addObject: [PNPieChartDataItem dataItemWithValue:25 color:[CommonFunction colorFromHex:0xFFFFC000] description:@"航空公司"]];
+//    [shapeArray addObject: [PNPieChartDataItem dataItemWithValue:20 color:[CommonFunction colorFromHex:0xFFFF2F57] description:@"空管"]];
+//    [shapeArray addObject: [PNPieChartDataItem dataItemWithValue:5 color:[CommonFunction colorFromHex:0xFF2FEE65] description:@"机场"]];
+//    [shapeArray addObject: [PNPieChartDataItem dataItemWithValue:10 color:[CommonFunction colorFromHex:0xFF5A57D8] description:@"其他"]];
+
+//    array = [NSMutableArray new];
+//    [array addObject: [[AbnReasonModel alloc] initWithReason:@"天气原因" count:15 percent:0.15]];
+//    [array addObject: [[AbnReasonModel alloc] initWithReason:@"军事控制" count:25 percent:0.25]];
+//    [array addObject: [[AbnReasonModel alloc] initWithReason:@"航空公司" count:25 percent:0.25]];
+//    [array addObject: [[AbnReasonModel alloc] initWithReason:@"空管" count:20 percent:0.2]];
+//    [array addObject: [[AbnReasonModel alloc] initWithReason:@"机场" count:5 percent:0.05]];
+//    [array addObject: [[AbnReasonModel alloc] initWithReason:@"其他" count:10 percent:0.10]];
 }
 
+-(NSInteger)sum
+{
+    NSInteger s = 0;
+    for (AbnReasonModel *model in array) {
+        s +=model.count;
+    }
+    return s;
+}
 @end

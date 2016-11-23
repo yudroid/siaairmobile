@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "ProgreesBarView.h"
 #import "PassengerContentView.h"
+@class PassengerModel;
 
 @interface PsnGeneralContentView : UIView
+
+-(instancetype)initWithFrame:(CGRect)frame passengerModel:(PassengerModel *)passengerModel;
 
 @end

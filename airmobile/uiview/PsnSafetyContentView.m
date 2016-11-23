@@ -9,14 +9,21 @@
 #import "PsnSafetyContentView.h"
 #import "ProgreesBarView.h"
 
+@interface PsnSafetyContentView()
+
+@property (nonatomic ,copy) NSArray<NSDictionary *> *dataArray;
+
+@end
+
 @implementation PsnSafetyContentView
 
--(instancetype)initWithFrame:(CGRect)frame
+-(instancetype)initWithFrame:(CGRect)frame dataArray:(NSArray<NSDictionary *> *)dataArray
 {
     self = [super initWithFrame:frame];
     
     if(self){
-        //        self.backgroundColor = [UIColor lightGrayColor];
+
+        _dataArray = dataArray;
         
         CGFloat topBgViewWidth = kScreenWidth-2*px2(22);
         UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, topBgViewWidth, topBgViewWidth *391/709)];

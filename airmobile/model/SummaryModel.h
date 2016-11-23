@@ -1,3 +1,4 @@
+
 //
 //  SummaryModel.h
 //  airmobile
@@ -22,10 +23,10 @@
 @property (nonatomic, copy) NSString *warning;//航班正常性判定，分正常、黄色Ⅲ级(一般)、橙色Ⅱ级(重大)、红色 Ⅰ级(严重)
 @property (nonatomic, copy) NSString *aovTxt;//aov输入的自由文本
 
-@property (nonatomic, copy) NSMutableArray<FlightHourModel *> *flightHours;// 航班小时分布
-@property (nonatomic, copy) FlightLargeDelayModel *delayTagart;// 判断是否大面积航延指标
-@property (nonatomic, copy) NSMutableArray<ReleasedRatioModel *> *tenDayReleased;// 近10的放行正常率
-@property (nonatomic, copy) NSMutableArray<ReleasedRatioModel *> *yearReleased;// 今年放行正常率
+@property (nonatomic, strong) NSMutableArray<FlightHourModel *> *flightHours;// 航班小时分布
+@property (nonatomic, strong) FlightLargeDelayModel *delayTagart;// 判断是否大面积航延指标
+@property (nonatomic, strong) NSMutableArray<ReleasedRatioModel *> *tenDayReleased;// 近10的放行正常率
+@property (nonatomic, strong) NSMutableArray<ReleasedRatioModel *> *yearReleased;// 今年放行正常率
 
 -(void)updateFlightHourModel:(NSDictionary *)data;
 

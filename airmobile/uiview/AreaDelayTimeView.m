@@ -18,16 +18,17 @@
 
 {
     PNLineChart *lineChart;
-    NSMutableArray<RegionDlyTimeModel *> *hourArray;
+    NSArray<RegionDlyTimeModel *> *hourArray;
     PNBarChart *barChart;
 }
 
--(instancetype) initWithFrame:(CGRect)frame
+-(instancetype) initWithFrame:(CGRect)frame dataArray:(NSArray<RegionDlyTimeModel *> *)dataArray
 {
     self = [super initWithFrame:frame];
     if(self){
         
-        [self initData];
+//        [self initData];
+        hourArray = dataArray;
 
         CGFloat topBgViewWidth = kScreenWidth-2*px2(22);
         UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, topBgViewWidth, topBgViewWidth *391/709)];
@@ -61,10 +62,10 @@
         lineImageView.image = [UIImage imageNamed:@"hiddenLine"];
         [topBgView addSubview:lineImageView];
 
-        UILabel *timeLabel = [CommonFunction addLabelFrame:CGRectMake(viewX(passengerTtitle), viewBotton(lineImageView)+4, topBgView.frame.size.width/2-20, 12) text:@"100 min" font:11 textAlignment:NSTextAlignmentLeft colorFromHex:0x75FFFFFF];
+        UILabel *timeLabel = [CommonFunction addLabelFrame:CGRectMake(viewX(passengerTtitle), viewBotton(lineImageView)+4, topBgView.frame.size.width/2-20, 12) text:@"120 min" font:11 textAlignment:NSTextAlignmentLeft colorFromHex:0x75FFFFFF];
         [topBgView addSubview:timeLabel];
 
-        UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(viewWidth(topBgView)/2, viewBotton(lineImageView)+4, topBgView.frame.size.width/2-20, 12) text:@"100 架" font:11 textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF];
+        UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(viewWidth(topBgView)/2, viewBotton(lineImageView)+4, topBgView.frame.size.width/2-20, 12) text:@"120 架" font:11 textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF];
         [topBgView addSubview:maxLabel];
 
         
@@ -106,7 +107,7 @@
         [lineChart setXLabels:[self getFlightHourXLabels]];
         lineChart.showCoordinateAxis = NO;
         lineChart.showGenYLabels=NO;
-        lineChart.yFixedValueMax = 70;
+        lineChart.yFixedValueMax = 90;
         lineChart.yFixedValueMin = 0;
         
         // added an examle to show how yGridLines can be enabled
@@ -136,7 +137,7 @@
         
         barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(20, 5+23+15+2, topBgView.frame.size.width-40, topBgView.frame.size.height-(5+23+15+2)-5)];//折线图
         
-        barChart.yMaxValue = 70;
+        barChart.yMaxValue = 120;
         barChart.yMinValue = 0;
         barChart.showXLabel = NO;
         barChart.showYLabel = NO;
@@ -229,23 +230,23 @@
     return arr;
 }
 
--(void) initData
-{
-    if(hourArray == nil){
-        hourArray = [[NSMutableArray alloc] init];
-    }else{
-        [hourArray removeAllObjects];
-    }
-    
-    [hourArray addObject:[[RegionDlyTimeModel alloc] initWithRegion:@"华东" count:25 time:45]];
-    [hourArray addObject:[[RegionDlyTimeModel alloc] initWithRegion:@"华北" count:15 time:60]];
-    [hourArray addObject:[[RegionDlyTimeModel alloc] initWithRegion:@"华中" count:35 time:70]];
-    [hourArray addObject:[[RegionDlyTimeModel alloc] initWithRegion:@"华南" count:25 time:35]];
-    [hourArray addObject:[[RegionDlyTimeModel alloc] initWithRegion:@"西南" count:15 time:55]];
-    [hourArray addObject:[[RegionDlyTimeModel alloc] initWithRegion:@"西北" count:60 time:10]];
-    [hourArray addObject:[[RegionDlyTimeModel alloc] initWithRegion:@"东北" count:70 time:12]];
-    [hourArray addObject:[[RegionDlyTimeModel alloc] initWithRegion:@"地区" count:21 time:45]];
-    [hourArray addObject:[[RegionDlyTimeModel alloc] initWithRegion:@"国际" count:25 time:16]];
-}
+//-(void) initData
+//{
+//    if(hourArray == nil){
+//        hourArray = [[NSMutableArray alloc] init];
+//    }else{
+//        [hourArray removeAllObjects];
+//    }
+//    
+//    [hourArray addObject:[[RegionDlyTimeModel alloc] initWithRegion:@"华东" count:25 time:45]];
+//    [hourArray addObject:[[RegionDlyTimeModel alloc] initWithRegion:@"华北" count:15 time:60]];
+//    [hourArray addObject:[[RegionDlyTimeModel alloc] initWithRegion:@"华中" count:35 time:70]];
+//    [hourArray addObject:[[RegionDlyTimeModel alloc] initWithRegion:@"华南" count:25 time:35]];
+//    [hourArray addObject:[[RegionDlyTimeModel alloc] initWithRegion:@"西南" count:15 time:55]];
+//    [hourArray addObject:[[RegionDlyTimeModel alloc] initWithRegion:@"西北" count:60 time:10]];
+//    [hourArray addObject:[[RegionDlyTimeModel alloc] initWithRegion:@"东北" count:70 time:12]];
+//    [hourArray addObject:[[RegionDlyTimeModel alloc] initWithRegion:@"地区" count:21 time:45]];
+//    [hourArray addObject:[[RegionDlyTimeModel alloc] initWithRegion:@"国际" count:25 time:16]];
+//}
 
 @end

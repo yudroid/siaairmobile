@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "PNPieChart.h"
+@class AbnReasonModel;
 
 @interface AbnormalReasonView : UIView<UITableViewDelegate,UITableViewDataSource>
 
--(instancetype)initWithFrame:(CGRect)frame;
+-(instancetype)initWithFrame:(CGRect)frame dataArray:(NSArray<AbnReasonModel *>*)dataArray;
 
 @end

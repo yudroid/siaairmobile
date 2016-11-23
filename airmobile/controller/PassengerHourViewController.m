@@ -79,7 +79,7 @@
     
     //Use yFixedValueMax and yFixedValueMin to Fix the Max and Min Y Value
     //Only if you needed
-    arrLineChart.yFixedValueMax = 350;
+    arrLineChart.yFixedValueMax = 400;
     arrLineChart.yFixedValueMin = 0;
     
     

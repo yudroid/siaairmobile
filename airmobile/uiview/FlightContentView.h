@@ -10,6 +10,7 @@
 #import "RoundProgressView.h"
 #import "PNPieChart.h"
 #import "FlightHourView.h"
+@class FlightStusModel;
 
 @protocol FlightContentViewDelegate <NSObject>
 
@@ -38,6 +39,8 @@
 }
 
 
--(instancetype) initWithFrame:(CGRect)frame delegate:(id<FlightContentViewDelegate>)delegate;
+-(instancetype)initWithFrame:(CGRect)frame
+             flightStusModel:(FlightStusModel *)flightStusModel
+                    delegate:(id<FlightContentViewDelegate>)delegate;
 
 @end

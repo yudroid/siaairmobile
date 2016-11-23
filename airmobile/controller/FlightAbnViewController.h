@@ -9,7 +9,10 @@
 #import "RootViewController.h"
 #import "AreaDelayTimeView.h"
 #import "AbnormalReasonView.h"
+@class FlightStusModel;
 
 @interface FlightAbnViewController : RootViewController<UIScrollViewDelegate>
+
+-(instancetype)initWithFlightStusModel:(FlightStusModel *)flightHourModel;
 
 @end

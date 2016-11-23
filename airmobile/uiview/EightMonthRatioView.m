@@ -18,14 +18,14 @@
     NSMutableArray<ReleasedRatioModel *> *eightMonthArray;
 }
 
--(instancetype)initWithFrame:(CGRect)frame
+-(instancetype)initWithFrame:(CGRect)frame dataArray:(NSArray *)dataArray
 {
     self = [super initWithFrame:frame];
 
     if(self){
         //        backgroundColor = [UIColor lightGrayColor];
 
-        [self initData];
+        eightMonthArray = [dataArray copy];
 
         CGFloat topBgViewWidth = kScreenWidth-2*px2(22);
         UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, topBgViewWidth, topBgViewWidth *391/709)];
@@ -48,12 +48,16 @@
         passengerTtitle.textColor = [UIColor whiteColor];
         [topBgView addSubview:passengerTtitle];
 
-        UILabel *ratioNum = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-100, 7.5, 80, 20) text:@"86%" font:24 textAlignment:NSTextAlignmentRight colorFromHex:0xFFFFFFFF];
+        UILabel *ratioNum = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-100, 7.5, 80, 20)
+                                                     text:@([self sum]).stringValue
+                                                     font:24
+                                            textAlignment:NSTextAlignmentRight
+                                             colorFromHex:0xFFFFFFFF];
         [topBgView addSubview:ratioNum];
 
 
 
-        UILabel *todayLabel = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-140, viewHeight(ratioNum)+viewY(ratioNum) , 120, 20) text:[NSString stringWithFormat:@"今日 %@",[CommonFunction dateFormat:nil format:@"mm月dd日"]] font:11 textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF];
+        UILabel *todayLabel = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-140, viewHeight(ratioNum)+viewY(ratioNum) , 120, 20) text:[NSString stringWithFormat:@"今日 %@",[CommonFunction dateFormat:nil format:@"MM月dd日"]] font:11 textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF];
         [topBgView addSubview:todayLabel];
 
         UILabel *circleLabel= [CommonFunction addLabelFrame:CGRectMake(viewX(passengerTtitle), viewY(todayLabel), 20, 20) text:@"●" font:11 textAlignment:NSTextAlignmentLeft colorFromHex:0xFFFFFFFF];
@@ -64,11 +68,11 @@
 
 
         UIImageView *lineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(passengerTtitle), viewY(circleLabel)+viewHeight(circleLabel)+4, viewWidth(topBgView)-viewX(passengerTtitle)-18, 0.5)];
-        lineImageView.image = [UIImage imageNamed:@"FlightHourLine"];
+        lineImageView.image = [UIImage imageNamed:@"hiddenLine"];
         [topBgView addSubview:lineImageView];
 
 
-        UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(viewWidth(topBgView)-18-50,viewBotton(lineImageView)+4, 50, 12) text:@"100" font:11 textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF];
+        UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(viewWidth(topBgView)-18-50,viewBotton(lineImageView)+4, 50, 12) text:@"120" font:11 textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF];
         [topBgView addSubview:maxLabel];
 
         barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(viewX(passengerTtitle), viewBotton(maxLabel), viewWidth(topBgView)-viewX(passengerTtitle)-18, viewHeight(topBgView)-viewBotton(maxLabel))];//折线图
@@ -77,7 +81,7 @@
         barChart.showYLabel = NO;
         barChart.backgroundColor = [UIColor clearColor];
 
-        barChart.yMaxValue = 100;
+        barChart.yMaxValue = 120;
         barChart.yMinValue = 30;
         barChart.yChartLabelWidth = 20.0;
         barChart.chartMarginTop = 5.0;
@@ -100,7 +104,7 @@
 
 
         UIImageView *downlineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(passengerTtitle), topBgView.frame.size.height-10-15, viewWidth(topBgView)-viewX(passengerTtitle)-18, 0.5)];
-        downlineImageView.image = [UIImage imageNamed:@"FlightHourLine"];
+        downlineImageView.image = [UIImage imageNamed:@"hiddenLine"];
         [topBgView addSubview:downlineImageView];
 
         [topBgView addSubview:[CommonFunction addLabelFrame:CGRectMake(20, viewY(downlineImageView)-13-4, topBgView.frame.size.width-40, 13) text:@"0" font:11 textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF]];
@@ -156,23 +160,32 @@
     }
     return arr;
 }
-
--(void) initData
+-(NSInteger)sum
 {
-    if(eightMonthArray == nil){
-        eightMonthArray = [[NSMutableArray alloc] init];
-    }else{
-        [eightMonthArray removeAllObjects];
+    NSInteger s = 0;
+    for (ReleasedRatioModel *model in eightMonthArray) {
+        s +=model.realCount;
     }
-    
-    [eightMonthArray addObject:[[ReleasedRatioModel alloc] initWithTime:@"3月" ratio:0.8f]];
-    [eightMonthArray addObject:[[ReleasedRatioModel alloc] initWithTime:@"4月" ratio:0.75f]];
-    [eightMonthArray addObject:[[ReleasedRatioModel alloc] initWithTime:@"5月" ratio:0.85f]];
-    [eightMonthArray addObject:[[ReleasedRatioModel alloc] initWithTime:@"6月" ratio:0.75f]];
-    [eightMonthArray addObject:[[ReleasedRatioModel alloc] initWithTime:@"7月" ratio:0.75f]];
-    [eightMonthArray addObject:[[ReleasedRatioModel alloc] initWithTime:@"8月" ratio:0.75f]];
-    [eightMonthArray addObject:[[ReleasedRatioModel alloc] initWithTime:@"9月" ratio:0.75f]];
-    [eightMonthArray addObject:[[ReleasedRatioModel alloc] initWithTime:@"10月" ratio:0.75f]];
+    return s;
 }
+
+
+//-(void) initData
+//{
+//    if(eightMonthArray == nil){
+//        eightMonthArray = [[NSMutableArray alloc] init];
+//    }else{
+//        [eightMonthArray removeAllObjects];
+//    }
+//    
+//    [eightMonthArray addObject:[[ReleasedRatioModel alloc] initWithTime:@"3月" ratio:0.8f]];
+//    [eightMonthArray addObject:[[ReleasedRatioModel alloc] initWithTime:@"4月" ratio:0.75f]];
+//    [eightMonthArray addObject:[[ReleasedRatioModel alloc] initWithTime:@"5月" ratio:0.85f]];
+//    [eightMonthArray addObject:[[ReleasedRatioModel alloc] initWithTime:@"6月" ratio:0.75f]];
+//    [eightMonthArray addObject:[[ReleasedRatioModel alloc] initWithTime:@"7月" ratio:0.75f]];
+//    [eightMonthArray addObject:[[ReleasedRatioModel alloc] initWithTime:@"8月" ratio:0.75f]];
+//    [eightMonthArray addObject:[[ReleasedRatioModel alloc] initWithTime:@"9月" ratio:0.75f]];
+//    [eightMonthArray addObject:[[ReleasedRatioModel alloc] initWithTime:@"10月" ratio:0.75f]];
+//}
 
 @end
