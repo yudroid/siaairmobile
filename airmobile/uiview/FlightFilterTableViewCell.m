@@ -12,19 +12,23 @@
 
 @property (weak, nonatomic) IBOutlet UIView *insideView;
 @property (weak, nonatomic) IBOutlet UIImageView *airlineImage;
-@property (weak, nonatomic) IBOutlet UILabel *flightNoLabel;
+@property (weak, nonatomic) IBOutlet UILabel *flightNoLabel; //航班
 @property (weak, nonatomic) IBOutlet UILabel *craftModelLable;
 @property (weak, nonatomic) IBOutlet UILabel *regionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *craftSeatLabel;
 @property (weak, nonatomic) IBOutlet UILabel *preTakeOffLabel;
-@property (weak, nonatomic) IBOutlet UILabel *landingLabel;
-@property (weak, nonatomic) IBOutlet UILabel *nextLandingLabel;
+@property (weak, nonatomic) IBOutlet UILabel *landingLabel;//本站到达时间
+@property (weak, nonatomic) IBOutlet UILabel *takeOffLabel;//本站起飞时间
+@property (weak, nonatomic) IBOutlet UILabel *nextLandingLabel;//下一站到达时间
 @property (weak, nonatomic) IBOutlet UILabel *flightStatus;
-@property (weak, nonatomic) IBOutlet UILabel *preAirportLabel;
-@property (weak, nonatomic) IBOutlet UILabel *airportLable;
-@property (weak, nonatomic) IBOutlet UILabel *nextAirportLabel;
+@property (weak, nonatomic) IBOutlet UILabel *preAirportLabel;//前站起飞城市
+@property (weak, nonatomic) IBOutlet UILabel *airportLable;//本站到达城市
+@property (weak, nonatomic) IBOutlet UILabel *takeOffAirportLabel;//本站起飞城市
+@property (weak, nonatomic) IBOutlet UILabel *nextAirportLabel;//下站到达城市
 @property (weak, nonatomic) IBOutlet UIImageView *backImageView;
 @property (weak, nonatomic) IBOutlet UIView *middleView;
+@property (weak, nonatomic) IBOutlet UILabel *specialLabel;
+@property (weak, nonatomic) IBOutlet UILabel *statusReasonLabel;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *leadingAlign;
 
@@ -88,13 +92,27 @@
     _craftSeatLabel.text = flight.seat;
     _preTakeOffLabel.text = flight.sTime;
     _preAirportLabel.text = flight.sCity;
+    _takeOffLabel.text = flight.mTime;
+    _takeOffAirportLabel.text = flight.mCity;
     _landingLabel.text = flight.mTime;
     _airportLable.text = flight.mCity;
     _nextLandingLabel.text = flight.eTime;
     _nextAirportLabel.text = flight.eCity;
     _flightStatus.text = flight.fState;
-    if(flight.special==0){
-        _backImageView.hidden = YES;
+    if([flight.special isEqualToString:@"0"]){
+        _backImageView.image = [UIImage imageNamed:@"FlightNormal"];
+        _specialLabel.text = @"普";
+        _statusReasonLabel.text = @"";
+    }else{
+        _backImageView.image = [UIImage imageNamed:@"FlightSpecial"];
+        _specialLabel.text = @"特";
+        _statusReasonLabel.text = @"天气原因";
+    }
+
+    if([flight.fState isEqualToString:@"正常"]){
+        _flightStatus.textColor = [CommonFunction colorFromHex:0Xff2DCE70];
+    }else{
+        _flightStatus.textColor = [CommonFunction colorFromHex:0Xffff7c36];
     }
     
 }

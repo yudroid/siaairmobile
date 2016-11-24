@@ -7,11 +7,16 @@
 //
 
 #import "FlightDetailTableViewCell.h"
+#import "SafeguardModel.h"
 
 @interface FlightDetailTableViewCell ()
 @property (weak, nonatomic) IBOutlet UIView *topLineView;
 @property (weak, nonatomic) IBOutlet UIView *bottomLineView;
 
+@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *peopleLabel;
 
 @end
 
@@ -33,15 +38,15 @@
 -(void)setType:(FlightDetailTableViewCellType)type
 {
     switch (type) {
-    case FlightDetailTableViewCellTypeTypeLast:
-    _bottomLineView.hidden = YES;
-    break;
-    case FlightDetailTableViewCellTypeTypeFirst:
-    _topLineView.hidden = YES;
-    break;
-    default:
-    break;
-}
+        case FlightDetailTableViewCellTypeTypeLast:
+            _bottomLineView.hidden = YES;
+            break;
+        case FlightDetailTableViewCellTypeTypeFirst:
+            _topLineView.hidden = YES;
+            break;
+        default:
+            break;
+    }
 }
 
 
@@ -49,6 +54,14 @@
     if ([_delegate respondsToSelector:@selector(flightDetailTableViewCellUsualButtonClick)]) {
         [_delegate flightDetailTableViewCellUsualButtonClick];
     }
+}
+
+-(void)setSafeguardModel:(SafeguardModel *)safeguardModel
+{
+    _nameLabel.text = safeguardModel.name;
+    _statusLabel.text = safeguardModel.status;
+    _peopleLabel.text = safeguardModel.dispatchPeople;
+    _timeLabel.text = [NSString stringWithFormat:@"%@-%@",safeguardModel.realStartTime,safeguardModel.endTime];
 }
 
 @end

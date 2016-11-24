@@ -45,7 +45,7 @@
     RoundProgressView *progressRound = [[RoundProgressView alloc] initWithCenter:CGPointMake(kScreenWidth/2, px_px_2_2_3(50*2, 65*2, 65*3)+px_px_2_3(95, 135)+px_px_2_3(95*2, 104*3))
                                                                           radius:px_px_2_3(95*2, 104*3)
                                                                       aboveColos:@[(__bridge id)[CommonFunction colorFromHex:0XFF00C7E4].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFF00F383].CGColor ]
-                                                                      belowColos:@[(__bridge id)[CommonFunction colorFromHex:0XFFFF9F38].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFFFFCD21].CGColor ] start:150.0f end:45 clockwise:YES];
+                                                                      belowColos:@[(__bridge id)[CommonFunction colorFromHex:0XFFFF9F38].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFFFFCD21].CGColor ] start:150.0f end:30 clockwise:YES];
 
     
     normalProportion = _craftseatCntModel.currentTakeUp/@(_craftseatCntModel.allCount).floatValue;

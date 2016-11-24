@@ -221,6 +221,9 @@
 		F7D38D701DE3D1D4001110AF /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D38D6F1DE3D1D4001110AF /* LoadingView.m */; };
 		F7D38D721DE3D1E5001110AF /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7D38D711DE3D1E5001110AF /* LoadingView.xib */; };
 		F7D38D761DE3E05F001110AF /* Loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = F7D38D751DE3E05F001110AF /* Loading.gif */; };
+		F7D38D7B1DE67741001110AF /* FlightService.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D38D7A1DE67741001110AF /* FlightService.m */; };
+		F7D38D7F1DE6CE9A001110AF /* ImageViewCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D38D7D1DE6CE9A001110AF /* ImageViewCollectionViewCell.m */; };
+		F7D38D801DE6CE9A001110AF /* ImageViewCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7D38D7E1DE6CE9A001110AF /* ImageViewCollectionViewCell.xib */; };
 		F7EAE1961DB4776C0060626F /* AbnormalityReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EAE1941DB4776C0060626F /* AbnormalityReportViewController.m */; };
 		F7EAE1971DB4776C0060626F /* AbnormalityReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7EAE1951DB4776C0060626F /* AbnormalityReportViewController.xib */; };
 		F7EAE19D1DB4B0680060626F /* AbnormalityReportCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EAE19B1DB4B0680060626F /* AbnormalityReportCollectionViewCell.m */; };
@@ -617,6 +620,11 @@
 		F7D38D6F1DE3D1D4001110AF /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
 		F7D38D711DE3D1E5001110AF /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
 		F7D38D751DE3E05F001110AF /* Loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Loading.gif; sourceTree = "<group>"; };
+		F7D38D791DE67741001110AF /* FlightService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightService.h; sourceTree = "<group>"; };
+		F7D38D7A1DE67741001110AF /* FlightService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightService.m; sourceTree = "<group>"; };
+		F7D38D7C1DE6CE9A001110AF /* ImageViewCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewCollectionViewCell.h; sourceTree = "<group>"; };
+		F7D38D7D1DE6CE9A001110AF /* ImageViewCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewCollectionViewCell.m; sourceTree = "<group>"; };
+		F7D38D7E1DE6CE9A001110AF /* ImageViewCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageViewCollectionViewCell.xib; sourceTree = "<group>"; };
 		F7EAE1931DB4776C0060626F /* AbnormalityReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbnormalityReportViewController.h; sourceTree = "<group>"; };
 		F7EAE1941DB4776C0060626F /* AbnormalityReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = AbnormalityReportViewController.m; sourceTree = "<group>"; };
 		F7EAE1951DB4776C0060626F /* AbnormalityReportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AbnormalityReportViewController.xib; sourceTree = "<group>"; };
@@ -1017,6 +1025,8 @@
 				84919D751DC9FD7B00C6F5DE /* MessageService.m */,
 				84919D771DC9FDFA00C6F5DE /* BaseService.h */,
 				84919D781DC9FDFA00C6F5DE /* BaseService.m */,
+				F7D38D791DE67741001110AF /* FlightService.h */,
+				F7D38D7A1DE67741001110AF /* FlightService.m */,
 			);
 			name = service;
 			sourceTree = "<group>";
@@ -1362,6 +1372,9 @@
 				F7EAE19A1DB4B0680060626F /* AbnormalityReportCollectionViewCell.h */,
 				F7EAE19B1DB4B0680060626F /* AbnormalityReportCollectionViewCell.m */,
 				F7EAE19C1DB4B0680060626F /* AbnormalityReportCollectionViewCell.xib */,
+				F7D38D7C1DE6CE9A001110AF /* ImageViewCollectionViewCell.h */,
+				F7D38D7D1DE6CE9A001110AF /* ImageViewCollectionViewCell.m */,
+				F7D38D7E1DE6CE9A001110AF /* ImageViewCollectionViewCell.xib */,
 				F7EAE19F1DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.h */,
 				F7EAE1A01DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.m */,
 				F7EAE1A11DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.xib */,
@@ -1524,6 +1537,7 @@
 				845055711DACF65200400EBF /* splash_2@3x.png in Resources */,
 				F792516E1DB63D62006AA119 /* ChatTimeTableViewCell.xib in Resources */,
 				F7EEEF221DB3A580004AF0AE /* FlightDetailTableViewCell.xib in Resources */,
+				F7D38D801DE6CE9A001110AF /* ImageViewCollectionViewCell.xib in Resources */,
 				845055B31DAE3F1A00400EBF /* home_title_bg@2x.png in Resources */,
 				846F1DC31DAA2E3B00C8920B /* launchScreen@3x.png in Resources */,
 				F758C9C11DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.xib in Resources */,
@@ -1786,6 +1800,7 @@
 				841839F81DBCC10200D7DD86 /* PNLineChart.m in Sources */,
 				F7EEEF1C1DB396E0004AF0AE /* FlightDetailViewController.m in Sources */,
 				F7EAE1961DB4776C0060626F /* AbnormalityReportViewController.m in Sources */,
+				F7D38D7F1DE6CE9A001110AF /* ImageViewCollectionViewCell.m in Sources */,
 				840D15CE1DC0B709005FA910 /* AreaDelayTimeView.m in Sources */,
 				F74902C31DC879C2005B193D /* SafeguardModel.m in Sources */,
 				F7003E4D1DDC38540056F3DA /* TakePhotoCollectionViewCell.m in Sources */,
@@ -1865,6 +1880,7 @@
 				F758C9931DC3632800556120 /* DelayTimeTableViewCell.m in Sources */,
 				F749029C1DC86302005B193D /* AbnormalModel.m in Sources */,
 				841839F91DBCC10200D7DD86 /* PNLineChartData.m in Sources */,
+				F7D38D7B1DE67741001110AF /* FlightService.m in Sources */,
 				84183A2B1DBF5DE900D7DD86 /* ReleasedRatioModel.m in Sources */,
 				845E643E1DAB980C0072360D /* CommonFunction.m in Sources */,
 			);

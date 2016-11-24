@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "RootViewController.h"
+
+@protocol UploadPhotoViewControllerDelegate <NSObject>
+
+-(void)UploadPhotoViewControllerFinished:(NSArray *)dataArray;
+
+@end
+
 @interface UploadPhotoViewController : RootViewController
+
+@property (nonatomic, weak) id<UploadPhotoViewControllerDelegate> delegate;
 
 @end

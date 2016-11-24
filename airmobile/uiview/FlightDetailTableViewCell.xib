@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="321" height="117"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="321" height="117"/>
+                <rect key="frame" x="0.0" y="0.0" width="321" height="116"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FlightDetailNormal" translatesAutoresizingMaskIntoConstraints="NO" id="qbG-Es-wsC">
@@ -132,8 +132,10 @@
             <inset key="separatorInset" minX="50" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
                 <outlet property="bottomLineView" destination="zov-88-MCN" id="41Y-io-B0l"/>
-                <outlet property="finishStatusLabel" destination="ybW-db-YHu" id="nSF-cg-6pM"/>
-                <outlet property="nameLabel" destination="5Py-pW-6n5" id="9cy-Nt-UQb"/>
+                <outlet property="nameLabel" destination="5Py-pW-6n5" id="dcr-bN-WW6"/>
+                <outlet property="peopleLabel" destination="tQp-oK-jOg" id="fK1-gt-YBe"/>
+                <outlet property="statusLabel" destination="ybW-db-YHu" id="dVL-1g-daK"/>
+                <outlet property="timeLabel" destination="qMW-gr-sSG" id="8qv-Z9-dAw"/>
                 <outlet property="topLineView" destination="RMS-SO-0JS" id="e89-nW-hGN"/>
                 <outlet property="unusualButton" destination="6wK-Aq-fSg" id="RHq-jd-AG5"/>
             </connections>

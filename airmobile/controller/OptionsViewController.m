@@ -7,48 +7,97 @@
 //
 
 #import "OptionsViewController.h"
+#import "OptionCollectionViewCell.h"
 
 static const NSString *OPTIONS_COLLECTIONVIEW_INDETIFIER = @"OPTIONS_COLLECTIONVIEW_INDETIFIER";
 
 @interface OptionsViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+//自定义
+@property (nonatomic, assign) OptionsType optionsType;
+@property (nonatomic, strong) NSArray *collectionArray;
+
 
 @end
 
 @implementation OptionsViewController
 
+-(instancetype)initWithOptionType:(OptionsType)optionsType
+{
+	self = [super init];
+	if (self) {
+		_optionsType = optionsType;
+	}
+	return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+	[self initTitle];
+
+	_collectionView.delegate = self;
+	_collectionView.dataSource = self;
+
+
+
+	switch (_optionsType) {
+
+		case OptionsTypeType:
+			_collectionArray = @[@"类型1",@"类型2",@"类型3",@"类型4"];
+			break;
+		case OptionsTypeEvent:
+			_collectionArray = @[@"事件1",@"事件2",@"事件3",@"事件4"];
+			break;
+		case OptionsTypeEventLevel:
+			_collectionArray = @[@"事件级别1",@"事件级别2",@"事件级别3",@"事件级别4"];
+			break;
+		default:
+			_collectionArray = @[@"类型",@"类型",@"类型",@"类型"];
+			break;
+	}
+
+	[_collectionView registerNib:[UINib nibWithNibName:@"OptionCollectionViewCell" bundle:nil]
+	  forCellWithReuseIdentifier:(NSString *)OPTIONS_COLLECTIONVIEW_INDETIFIER];
+}
+
+
+
+-(void)initTitle
+{
 	//titleView订制
 	[self titleViewInitWithHight:64];
 	self.titleView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"home_title_bg.png"]];
 	[self titleViewAddTitleText:@"异常上报"];
 	[self titleViewAddBackBtn];
+//	UIButton *finshButton = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-10-22, 33, 22, 20)];
 
-	_collectionView.delegate = self;
-	_collectionView.dataSource = self;
+//	[finshButton setTitle:@"完成"  forState:UIControlStateNormal];
+//	[finshButton addTarget:self action:@selector(finshButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+//	[self.titleView addSubview:finshButton];
 
-	[_collectionView registerNib:[UINib nibWithNibName:@"OptionCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:(NSString *)OPTIONS_COLLECTIONVIEW_INDETIFIER];
-    // Do any additional setup after loading the view from its nib.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+//-(void)finshButtonClick:(UIButton *)sender
+//{
+//	if (_delegate && [_delegate respondsToSelector:@selector(optionsViewControllerFinshedOptionType:Value:)]) {
+//		[_delegate optionsViewControllerFinshedOptionType:_optionsType Value:];
+//	}
+//	[self.navigationController popViewControllerAnimated:YES];
+//}
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:(NSString *)OPTIONS_COLLECTIONVIEW_INDETIFIER forIndexPath:indexPath];
+	OptionCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:(NSString *)OPTIONS_COLLECTIONVIEW_INDETIFIER forIndexPath:indexPath];
 	cell.contentView.backgroundColor = [UIColor grayColor];
+	cell.nameLabel.text = _collectionArray[indexPath.row];
 	return cell;
 
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-	return 10;
+	return _collectionArray.count;
 }
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -66,6 +115,14 @@ static const NSString *OPTIONS_COLLECTIONVIEW_INDETIFIER = @"OPTIONS_COLLECTIONV
 -(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
 	return 0;
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+	if ([_delegate respondsToSelector:@selector(optionsViewControllerFinshedOptionType:Value:)]) {
+		[_delegate optionsViewControllerFinshedOptionType:_optionsType Value:_collectionArray[indexPath.row]];
+	}
+	[self.navigationController popViewControllerAnimated:YES];
 }
 /*
 #pragma mark - Navigation

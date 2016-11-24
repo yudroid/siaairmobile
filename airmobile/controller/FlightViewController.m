@@ -17,11 +17,12 @@
 #import "FlightModel.h"
 #import "HttpsUtils+Business.h"
 #import <MJRefresh.h>
+#import "FlightService.h"
 
 static const CGFloat FLIGHTFILTERVIEW_HEIGHT = 365;
 static  NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_IDETIFIER";
 
-@interface FlightViewController ()<TabBarViewDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface FlightViewController ()<TabBarViewDelegate,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 
 @property (nonatomic, strong) UIView *searBar;
 @property (nonatomic, strong) UITableView *tableView ;
@@ -31,7 +32,7 @@ static  NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_IDETIF
 @implementation FlightViewController
 {
     FlightFilterView *filterView;
-    NSMutableArray<FlightModel *> *dataArray;
+    NSArray<FlightModel *> *dataArray;
     int startIndex;
     int pagesize;
     NSString *flightNo;//搜索的内容（模糊查询）
@@ -43,12 +44,16 @@ static  NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_IDETIF
 - (void)viewDidLoad {
 
     [super viewDidLoad];
+
+    FlightService *flightService = [[FlightService alloc]init];
+    [flightService startService];
+    dataArray = [flightService getFlightArray];
     
     // 优先加载数据，存在网络延迟，认为会在视图加载完成后返回结果
     startIndex = 0;
     pagesize = 20;
-    dataArray = [NSMutableArray array];
-    
+//    dataArray = [NSMutableArray array];
+
     [self initTitleView];
     //TabBer自定义
     self.tabBarView = [[TabBarView alloc] initTabBarWithModel:TabBarBgModelHomePage
@@ -146,6 +151,8 @@ static  NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_IDETIF
     UITextField *searContentTextField = [[UITextField alloc]
                                          initWithFrame:CGRectMake(px_px_2_3(14, 22)+viewTrailing(searchTagImageView), viewY(searchTextBackgroundImageView), viewWidth(searchTextBackgroundImageView)-viewTrailing(searchTagImageView)-px_px_2_3(14, 22), viewHeight(searchTextBackgroundImageView))];
     searContentTextField.placeholder = @"请输入查询内容";
+    searContentTextField.delegate = self;
+    searContentTextField.returnKeyType = UIReturnKeySearch;
     searContentTextField.font = [UIFont fontWithName:@"PingFangSC-Regular" size:px_px_2_3(26, 40)];
     [_searBar addSubview:searContentTextField];
 
@@ -163,50 +170,50 @@ static  NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_IDETIF
 
 -(void)UpdateNetwork
 {
-    NSDictionary *conds = [[NSDictionary alloc] initWithObjectsAndKeys:flightNo,@"search_flightNO",flightRegion,@"search_region",flightType,@"search_model",flightStatus,@"search_state",startIndex,@"start",pagesize,@"length", nil];
-    [HttpsUtils queryFlightList:conds success:^(id responseObj) {
-        // 数据加载完成
-        [_tableView.mj_header endRefreshing];
-        if(![responseObj isKindOfClass:[NSDictionary class]]){
-            return;
-        }
-        FlightModel *flight = nil;
-        for(id item in responseObj){
-            flight = [FlightModel new];
-            [self copyToFlightModel:flight item:item];
-            [dataArray addObject:flight];
-        }
-        [_tableView reloadData];
-        startIndex +=pagesize;
-        
-    } failure:^(NSError *error) {
-        NSLog(@"%@",error);
-        [_tableView.mj_header endRefreshing];
-    }];
+//    NSDictionary *conds = [[NSDictionary alloc] initWithObjectsAndKeys:flightNo,@"search_flightNO",flightRegion,@"search_region",flightType,@"search_model",flightStatus,@"search_state",startIndex,@"start",pagesize,@"length", nil];
+//    [HttpsUtils queryFlightList:conds success:^(id responseObj) {
+//        // 数据加载完成
+//        [_tableView.mj_header endRefreshing];
+//        if(![responseObj isKindOfClass:[NSDictionary class]]){
+//            return;
+//        }
+//        FlightModel *flight = nil;
+//        for(id item in responseObj){
+//            flight = [FlightModel new];
+//            [self copyToFlightModel:flight item:item];
+//            [dataArray addObject:flight];
+//        }
+//        [_tableView reloadData];
+//        startIndex +=pagesize;
+//        
+//    } failure:^(NSError *error) {
+//        NSLog(@"%@",error);
+//        [_tableView.mj_header endRefreshing];
+//    }];
 }
 
 -(void)loadMoreNetwork
 {
-    NSDictionary *conds = [[NSDictionary alloc] initWithObjectsAndKeys:flightNo,@"search_flightNO",flightRegion,@"search_region",flightType,@"search_model",flightStatus,@"search_state",startIndex,@"start",pagesize,@"length", nil];
-    [HttpsUtils queryFlightList:conds success:^(id responseObj) {
-        // 数据加载完成
-        [_tableView.mj_footer endRefreshing];
-        if(![responseObj isKindOfClass:[NSDictionary class]]){
-            return;
-        }
-        FlightModel *flight = nil;
-        for(id item in responseObj){
-            flight = [FlightModel new];
-            [self copyToFlightModel:flight item:item];
-            [dataArray addObject:flight];
-        }
-        [_tableView reloadData];
-        startIndex +=pagesize;
-        
-    } failure:^(NSError *error) {
-        NSLog(@"%@",error);
-        [_tableView.mj_footer endRefreshing];
-    }];
+//    NSDictionary *conds = [[NSDictionary alloc] initWithObjectsAndKeys:flightNo,@"search_flightNO",flightRegion,@"search_region",flightType,@"search_model",flightStatus,@"search_state",startIndex,@"start",pagesize,@"length", nil];
+//    [HttpsUtils queryFlightList:conds success:^(id responseObj) {
+//        // 数据加载完成
+//        [_tableView.mj_footer endRefreshing];
+//        if(![responseObj isKindOfClass:[NSDictionary class]]){
+//            return;
+//        }
+//        FlightModel *flight = nil;
+//        for(id item in responseObj){
+//            flight = [FlightModel new];
+//            [self copyToFlightModel:flight item:item];
+//            [dataArray addObject:flight];
+//        }
+//        [_tableView reloadData];
+//        startIndex +=pagesize;
+//        
+//    } failure:^(NSError *error) {
+//        NSLog(@"%@",error);
+//        [_tableView.mj_footer endRefreshing];
+//    }];
 }
 
 -(void)copyToFlightModel:(FlightModel *)flight item:(id)item
@@ -276,7 +283,13 @@ static  NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_IDETIF
     [self.navigationController pushViewController:flightDetailVC animated:YES];
 }
 
+#pragma mark - UITextFieldDelegate
 
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self.view endEditing:YES];
+    return YES;
+}
 
 #pragma mark - 切换底部主功能页面
 -(void)selectWithType:(TabBarSelectedType)type
