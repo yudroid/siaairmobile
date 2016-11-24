@@ -36,12 +36,14 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
     CGFloat _keyBoardHeight;
     CGFloat _oldSizeHeight;
     UserInfoModel *user;
+    NSDateFormatter *dateFormatter;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initTitleView];
     
+    dateFormatter = [[NSDateFormatter alloc] init];
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     user = delegate.userInfoModel;
     
@@ -110,7 +112,7 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
     NSDictionary *dic = [_chatArray objectAtIndex:indexPath.row];
     UIFont *textFont =[UIFont fontWithName:@"PingFang SC" size:13];
     NSString *contentText =  [dic objectForKey:@"content"];
-    CGSize size = ([contentText boundingRectWithSize:CGSizeMake(kScreenWidth-80, CGFLOAT_MAX)
+    CGSize size = ([contentText boundingRectWithSize:CGSizeMake(kScreenWidth-150, CGFLOAT_MAX)
                                              options:NSStringDrawingUsesLineFragmentOrigin
                                           attributes:@{NSFontAttributeName:textFont}
                                              context:nil]).size;
@@ -122,18 +124,26 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
     long senduserid = [[dic objectForKey:@"senduserid"] longLongValue];
     NSString *name = [dic objectForKey:@"username"];
     NSString *time = [dic objectForKey:@"time"];
+    if(time != nil)
+    {
+        time = [CommonFunction dateFormat: [dateFormatter dateFromString:time] format:@"[dd]HH:mm"];
+    }
     NSString *content = [dic objectForKey:@"content"];
     if(senduserid == user.id){
         ChatRightTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)CHAT_RIGHTTABLECELL_IDENTIFIER];
         if(cell == nil)
             cell = [[NSBundle mainBundle] loadNibNamed:@"ChatRightTableViewCell" owner:nil options:nil][0];
-        cell.contentText = content;
+        [cell setContentText:content];
+        cell.timeLabel.text = time;
+        cell.nameLabel.text = name;
         return cell;
     }else{
-        ChatLeftTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)CHAT_RIGHTTABLECELL_IDENTIFIER];
+        ChatLeftTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)CHAT_LEFTTABLECELL_IDENTIFIER];
         if(cell == nil)
             cell = [[NSBundle mainBundle] loadNibNamed:@"ChatLeftTableViewCell" owner:nil options:nil][0];
-        cell.contentText = content;
+        [cell setContentText:content];
+        cell.timeLabel.text = time;
+        cell.nameLabel.text = name;
         return cell;
     }
     return  nil;

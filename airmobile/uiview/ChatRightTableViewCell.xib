@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -33,6 +33,16 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RightBubble" translatesAutoresizingMaskIntoConstraints="NO" id="PHR-t1-lXk">
                         <rect key="frame" x="133" y="23.5" width="125" height="110"/>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我叫张三来自东北" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2LC-Sd-pcW">
+                        <rect key="frame" x="143" y="28" width="100" height="100"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="100" id="U2i-TA-qbT"/>
+                            <constraint firstAttribute="width" constant="100" id="u5U-sx-7Gg"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="13"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RbW-Q5-6gO">
                         <rect key="frame" x="198" y="0.0" width="29.5" height="18.5"/>
                         <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="13"/>
@@ -73,6 +83,7 @@
                 <outlet property="contentWidth" destination="u5U-sx-7Gg" id="J9b-vC-SHB"/>
                 <outlet property="headImageView" destination="HZ1-uv-Alz" id="KiS-s1-1p8"/>
                 <outlet property="headerImgeViewTrailing" destination="vM1-YX-iEm" id="Ayt-aT-3gY"/>
+                <outlet property="nameLabel" destination="4gR-RT-eoY" id="bjl-M5-o20"/>
                 <outlet property="nameLabelTrailing" destination="oqU-oV-wq4" id="j5M-jh-39A"/>
                 <outlet property="timeLabel" destination="RbW-Q5-6gO" id="tUN-LZ-Qq2"/>
             </connections>
