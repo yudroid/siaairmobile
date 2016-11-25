@@ -22,7 +22,10 @@ static const NSString *UPLOADPHOTO_COLLECTIONCELL_IDENTIFIER = @"UPLOADPHOTO_COL
 
 @implementation UploadPhotoViewController
 {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     ALAssetsLibrary *_assetsLibrary;
+#pragma clang diagnostic pop
     NSMutableArray *_groupArray;
 }
 

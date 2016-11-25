@@ -114,6 +114,12 @@
     }else{
         _flightStatus.textColor = [CommonFunction colorFromHex:0Xffff7c36];
     }
+
+    if(!flight.eCity||[flight.eCity isEqualToString:@""]){
+        _middleView.hidden = YES;
+        _nextAirportLabel.text = flight.mCity;
+        _nextLandingLabel.text = flight.mTime;
+    }
     
 }
 

@@ -112,7 +112,7 @@ singleton_implementation(FlightService);
     flightModel4.eTime = @"5:05";
     flightModel4.sCity = @"广东";
     flightModel4.mCity = @"深圳";
-    flightModel4.eCity = @"青岛";
+    flightModel4.eCity = @"";
     flightModel4.rangeSate = @"";
     flightModel4.region = @"国内";
     flightModel4.fState = @"正常";
