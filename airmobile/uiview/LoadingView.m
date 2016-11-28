@@ -26,6 +26,8 @@
     FLAnimatedImage *image = [FLAnimatedImage animatedImageWithGIFData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"loading" ofType:@"gif"]]];
     //    _imageView.animatedImage = image;
     _contentImageView.image = image.posterImage;
+
+
 }
 
 @end
