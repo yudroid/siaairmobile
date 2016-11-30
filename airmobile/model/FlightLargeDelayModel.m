@@ -12,7 +12,7 @@
 
 -(void) updateHourExecuteRateList:(NSDictionary *)responesObj
 {
-    if(responesObj ==nil || [[responesObj allKeys] count] == 0){
+    if([self isNull:responesObj]){
         return;
     }
     

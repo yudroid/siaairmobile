@@ -45,10 +45,10 @@ singleton_implementation(HomePageService);
 
 -(void)cacheHomePageData
 {
-    [self cacheSummaryData];
-    [self cacheFlightData];
-    [self cachePassengerData];
-    [self cacheSeatUsedData];
+//    [self cacheSummaryData];
+//    [self cacheFlightData];
+//    [self cachePassengerData];
+//    [self cacheSeatUsedData];
 }
 
 #pragma mark 首页摘要信息、小时分布、放行正常率、航延关键指标
