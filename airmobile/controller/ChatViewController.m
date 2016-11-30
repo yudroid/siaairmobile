@@ -64,8 +64,12 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
                                                                           action:@selector(tapBgClick)];
     [self.view addGestureRecognizer:tap];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
     
     [MessageService sharedMessageService].chatDelegate = self;
 }
@@ -84,11 +88,17 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
     
 
 
-    UIButton *sureButton = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-16-40, 33, 41, 18)];
-    sureButton.titleLabel.font = [UIFont fontWithName:@"PingFang SC" size:10];
+    UIButton *sureButton = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-16-40,
+                                                                     33,
+                                                                     41,
+                                                                     18)];
+    sureButton.titleLabel.font = [UIFont fontWithName:@"PingFang SC"
+                                                 size:10];
     [sureButton setTitle:@"详情" forState:UIControlStateNormal];
-    [sureButton addTarget:self action:@selector(groupInfoButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    [sureButton setBackgroundImage:[UIImage imageNamed:@"PersonSure"] forState:UIControlStateNormal];
+    [sureButton addTarget:self action:@selector(groupInfoButtonClick:)
+         forControlEvents:UIControlEventTouchUpInside];
+    [sureButton setBackgroundImage:[UIImage imageNamed:@"PersonSure"]
+                          forState:UIControlStateNormal];
     sureButton.layer.cornerRadius = 5.0;
     if(_chatTypeId==1)
         [self.titleView addSubview:sureButton];
@@ -132,7 +142,9 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
     if(senduserid == user.id){
         ChatRightTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)CHAT_RIGHTTABLECELL_IDENTIFIER];
         if(cell == nil)
-            cell = [[NSBundle mainBundle] loadNibNamed:@"ChatRightTableViewCell" owner:nil options:nil][0];
+            cell = [[NSBundle mainBundle] loadNibNamed:@"ChatRightTableViewCell"
+                                                 owner:nil
+                                               options:nil][0];
         [cell setContentText:content];
         cell.timeLabel.text = time;
         cell.nameLabel.text = name;
@@ -140,7 +152,9 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
     }else{
         ChatLeftTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)CHAT_LEFTTABLECELL_IDENTIFIER];
         if(cell == nil)
-            cell = [[NSBundle mainBundle] loadNibNamed:@"ChatLeftTableViewCell" owner:nil options:nil][0];
+            cell = [[NSBundle mainBundle] loadNibNamed:@"ChatLeftTableViewCell"
+                                                 owner:nil
+                                               options:nil][0];
         [cell setContentText:content];
         cell.timeLabel.text = time;
         cell.nameLabel.text = name;
@@ -160,8 +174,12 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
 {
     [super viewWillAppear:animated];
     //监听键盘 NSNotificationCenter通知中心
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self
+                                            selector:@selector(keyboardWillShow:)
+                                                name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self
+                                            selector:@selector(keyboardWillHide:)
+                                                name:UIKeyboardWillHideNotification object:nil];
 }
 
 /**
@@ -215,7 +233,11 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
     if ([text isEqualToString:@"\n"]){ //判断输入的字是否是回车，即按下return
         [_msgTextView resignFirstResponder];
-        MessageModel *msg = [[MessageModel alloc] initWithId:user.id content:_msgTextView.text fromId:user.id toId:_chatId type:_chatTypeId status:0];
+        MessageModel *msg = [[MessageModel alloc] initWithId:user.id
+                                                     content:_msgTextView.text
+                                                      fromId:user.id
+                                                        toId:_chatId
+                                                        type:_chatTypeId status:0];
         _msgTextView.text = @"";
         [self saveSendMessage:msg.content];
         if(_chatTypeId==0){
@@ -257,12 +279,17 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
 
 -(void)initChatMsgData
 {
-    [_chatArray addObjectsFromArray:[PersistenceUtils findMsgListByChatId:_localChatId start:0 num:20]];
+    [_chatArray addObjectsFromArray:[PersistenceUtils findMsgListByChatId:_localChatId
+                                                                    start:0
+                                                                      num:20]];
 }
 
 -(void)saveSendMessage:(NSString *)content
 {
-    NSDictionary *message = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithLong:_localChatId],@"chatid",content,@"content",[NSNumber numberWithLong:user.id],@"userid",user.name,@"username", nil];
+    NSDictionary *message = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithLong:_localChatId],
+                             @"chatid",content,
+                             @"content",[NSNumber numberWithLong:user.id],
+                             @"userid",user.name,@"username", nil];
     [PersistenceUtils insertNewChatMessage:message needid:NO success:^{
         [self refreshDialogData];
     }];
@@ -272,16 +299,21 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
 -(void)refreshDialogData
 {
     if([_chatArray count] == 0){
-        [_chatArray addObjectsFromArray:[PersistenceUtils findMsgListByChatId:_localChatId start:0 num:20]];
+        [_chatArray addObjectsFromArray:[PersistenceUtils findMsgListByChatId:_localChatId
+                                                                        start:0
+                                                                          num:20]];
     }else{
         NSDictionary *dic = [_chatArray lastObject];
         long lastId = [[dic objectForKey:@"id"] longLongValue];
-        [_chatArray addObjectsFromArray:[PersistenceUtils findMsgListByChatId:_localChatId start:lastId]];
+        [_chatArray addObjectsFromArray:[PersistenceUtils findMsgListByChatId:_localChatId
+                                                                        start:lastId]];
     }
     if(_tableView!=nil){
         [_tableView reloadData];
         if(self.tableView.contentSize.height -self.tableView.bounds.size.height>0){
-            [self.tableView setContentOffset:CGPointMake(0, self.tableView.contentSize.height -self.tableView.bounds.size.height) animated:YES];
+            [self.tableView setContentOffset:CGPointMake(0,
+                                                         self.tableView.contentSize.height -self.tableView.bounds.size.height)
+                                    animated:YES];
         }
     }
 }
@@ -289,7 +321,8 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
 - (void)backButtonClick{
     UIViewController *viewCtl = self.navigationController.viewControllers[2];
     if(viewCtl !=nil)
-        [self.navigationController popToViewController:viewCtl animated:YES];
+        [self.navigationController popToViewController:viewCtl
+                                              animated:YES];
     else
         [self.navigationController popViewControllerAnimated:YES];
 }

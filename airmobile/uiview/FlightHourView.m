@@ -23,12 +23,11 @@
     self = [super initWithFrame:frame];
     if(self){
         
-        _flightHourType = type;
-//        [self initData];
-        hourArray = dataArray;
+        _flightHourType         = type;
+        hourArray               = dataArray;
 
-        CGFloat topBgViewWidth = kScreenWidth-2*px2(22);
-        UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(10,
+        CGFloat topBgViewWidth  = kScreenWidth-2*px2(22);
+        UIView *topBgView       = [[UIView alloc] initWithFrame:CGRectMake(10,
                                                                      0,
                                                                      topBgViewWidth,
                                                                      topBgViewWidth *391/709)];
@@ -38,14 +37,14 @@
                                                                                              0,
                                                                                              viewWidth(topBgView),
                                                                                              viewHeight(topBgView))];
-        topBgBackgroundImageView.image = [UIImage imageNamed:@"FlightHourChartBlackground"];
+        topBgBackgroundImageView.image      = [UIImage imageNamed:@"FlightHourChartBlackground"];
         [topBgView addSubview:topBgBackgroundImageView];
         
-        UILabel *passengerTtitle = [[UILabel alloc] initWithFrame:CGRectMake(px_px_2_3(32, 73),
+        UILabel *passengerTtitle    = [[UILabel alloc] initWithFrame:CGRectMake(px_px_2_3(32, 73),
                                                                              px_px_2_3(10, 24) ,
                                                                              viewWidth(topBgView)-100,
                                                                              11)];
-        passengerTtitle.font = [UIFont fontWithName:@"PingFangSC-Regular"
+        passengerTtitle.font        = [UIFont fontWithName:@"PingFangSC-Regular"
                                                size:27/2];
         passengerTtitle.textColor = [UIColor whiteColor];
         [topBgView addSubview:passengerTtitle];
@@ -62,8 +61,8 @@
                                                                                   10)];
         planImageView.image = [UIImage imageNamed:@"FlightHourChartTag"];
         [topBgView addSubview:planImageView];
-        UIImageView *inPlanImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"FlightHourChartTag3"]];
-        inPlanImageView.center = planImageView.center;
+        UIImageView *inPlanImageView= [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"FlightHourChartTag3"]];
+        inPlanImageView.center      = planImageView.center;
         [topBgView addSubview:inPlanImageView];
 
         UILabel *planLabel = [CommonFunction addLabelFrame:CGRectMake(viewTrailing(planImageView)+2,
@@ -109,14 +108,17 @@
         
         
         // 计划的折线图
-        lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(20, 5+23+15+2, topBgView.frame.size.width-40, topBgView.frame.size.height-(5+23+15+2)-5)];
-        lineChart.backgroundColor = [UIColor clearColor];
-        lineChart.skipXPoints = 1;
+        lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(20,
+                                                                  5+23+15+2,
+                                                                  topBgView.frame.size.width-40,
+                                                                  topBgView.frame.size.height-(5+23+15+2)-5)];
+        lineChart.backgroundColor   = [UIColor clearColor];
+        lineChart.skipXPoints       = 1;
         [lineChart setXLabels:[self getFlightHourXLabels]];
-        lineChart.showCoordinateAxis = NO;
-        lineChart.showGenYLabels=NO;
-        lineChart.yFixedValueMax = 120;
-        lineChart.yFixedValueMin = 0;
+        lineChart.showCoordinateAxis= NO;
+        lineChart.showGenYLabels    =NO;
+        lineChart.yFixedValueMax    = 120;
+        lineChart.yFixedValueMin    = 0;
         
         // added an examle to show how yGridLines can be enabled
         // the color is set to clearColor so that the demo remains the same
@@ -124,14 +126,14 @@
         
         
         // Line Chart #2
-        NSArray * dataArray = [self getFlightHourYLabels];
-        PNLineChartData *data = [PNLineChartData new];
-        data.dataTitle = @"航班";
-        data.color = [UIColor whiteColor];
-        data.alpha = 0.5f;
-        data.inflexionPointWidth = 2.0f;
-        data.itemCount = dataArray.count;
-        data.inflexionPointStyle = PNLineChartPointStyleCircle;
+        NSArray * dataArray     = [self getFlightHourYLabels];
+        PNLineChartData *data   = [PNLineChartData new];
+        data.dataTitle          = @"航班";
+        data.color              = [UIColor whiteColor];
+        data.alpha              = 0.5f;
+        data.inflexionPointWidth= 2.0f;
+        data.itemCount          = dataArray.count;
+        data.inflexionPointStyle= PNLineChartPointStyleCircle;
         data.getData = ^(NSUInteger index) {
             CGFloat yValue = [dataArray[index] floatValue];
             return [PNLineChartDataItem dataItemWithY:yValue];
@@ -143,26 +145,29 @@
         
         
         
-        barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(20, 5+23+15+2, topBgView.frame.size.width-40, topBgView.frame.size.height-(5+23+15+2)-5)];//折线图
+        barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(20,
+                                                                5+23+15+2,
+                                                                topBgView.frame.size.width-40,
+                                                                topBgView.frame.size.height-(5+23+15+2)-5)];//折线图
         
-        barChart.yMaxValue = 120;
-        barChart.yMinValue = 0;
-        barChart.showXLabel = NO;
-        barChart.showYLabel = NO;
-        barChart.backgroundColor = [UIColor clearColor];
+        barChart.yMaxValue          = 120;
+        barChart.yMinValue          = 0;
+        barChart.showXLabel         = NO;
+        barChart.showYLabel         = NO;
+        barChart.backgroundColor    = [UIColor clearColor];
 
-        barChart.yChartLabelWidth = 20.0;
-        barChart.labelTextColor = [CommonFunction colorFromHex:0xFFFFFFFF];
+        barChart.yChartLabelWidth   = 20.0;
+        barChart.labelTextColor     = [CommonFunction colorFromHex:0xFFFFFFFF];
         
-        barChart.labelMarginTop = 5.0;
-        barChart.showChartBorder = NO;
-        barChart.barRadius = 6.0f;
-        barChart.chartMarginBottom = 5.0f;
+        barChart.labelMarginTop     = 5.0;
+        barChart.showChartBorder    = NO;
+        barChart.barRadius          = 6.0f;
+        barChart.chartMarginBottom  = 5.0f;
         [barChart setXLabels:[self getFlightHourXLabels]];
         [barChart setYValues:[self getPlanYLabels]];
         
-        barChart.isGradientShow = YES;
-        barChart.isShowNumbers = NO;
+        barChart.isGradientShow     = YES;
+        barChart.isShowNumbers      = NO;
         barChart.barBackgroundColor = [UIColor clearColor];
         
         [barChart strokeChart];
@@ -179,18 +184,31 @@
 //            [topBgView addSubview:redLine];
 //        }
         
-        [topBgView addSubview:[CommonFunction addLabelFrame:CGRectMake(20, topBgView.frame.size.height-(10+15+12), topBgView.frame.size.width-40, 12) text:@"0" font:11 textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF]];
+        [topBgView addSubview:[CommonFunction addLabelFrame:CGRectMake(20,
+                                                                       topBgView.frame.size.height-(10+15+12),
+                                                                       topBgView.frame.size.width-40,
+                                                                       12)
+                                                       text:@"0"
+                                                       font:11
+                                              textAlignment:NSTextAlignmentRight
+                                               colorFromHex:0x75FFFFFF]];
 
-        UIImageView *downLineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(planImageView),viewHeight(topBgView)-10-15, viewWidth(topBgView)-32, 0.5)];
-        downLineImageView.image = [UIImage imageNamed:@"hiddenLine"];
+        UIImageView *downLineImageView  = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(planImageView),
+                                                                                      viewHeight(topBgView)-10-15,
+                                                                                      viewWidth(topBgView)-32,
+                                                                                      0.5)];
+        downLineImageView.image         = [UIImage imageNamed:@"hiddenLine"];
         [topBgView addSubview:downLineImageView];
 
         
         //小时分布表格
-        UITableView *flightHourTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, viewBotton(topBgView), kScreenWidth, kScreenHeight-10-(65+viewBotton(topBgView)+40+5))];
-        flightHourTableView.delegate = self;
-        flightHourTableView.dataSource = self;
-        flightHourTableView.showsVerticalScrollIndicator = NO;
+        UITableView *flightHourTableView = [[UITableView alloc]initWithFrame:CGRectMake(0,
+                                                                                        viewBotton(topBgView),
+                                                                                        kScreenWidth,
+                                                                                        kScreenHeight-10-(65+viewBotton(topBgView)+40+5))];
+        flightHourTableView.delegate                        = self;
+        flightHourTableView.dataSource                      = self;
+        flightHourTableView.showsVerticalScrollIndicator    = NO;
         flightHourTableView.backgroundColor = [UIColor whiteColor];
         flightHourTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self addSubview:flightHourTableView];
@@ -212,7 +230,10 @@
     FlightHourTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:flightHour.hour];
     
     if (!cell) {
-        cell = [[FlightHourTableViewCell alloc]initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:flightHour.hour flightHour:flightHour type:_flightHourType];
+        cell = [[FlightHourTableViewCell alloc]initWithStyle:(UITableViewCellStyleDefault)
+                                             reuseIdentifier:flightHour.hour
+                                                  flightHour:flightHour
+                                                        type:_flightHourType];
     }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

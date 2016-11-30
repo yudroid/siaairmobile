@@ -39,7 +39,7 @@
                             <constraint firstAttribute="width" constant="1" id="sgY-uy-cEB"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="椭圆2" translatesAutoresizingMaskIntoConstraints="NO" id="nCI-L0-wVw">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FlightDetailState" translatesAutoresizingMaskIntoConstraints="NO" id="nCI-L0-wVw">
                         <rect key="frame" x="50" y="41" width="35" height="35"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="完成" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ybW-db-YHu">
@@ -72,10 +72,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FlightDetailPerson" translatesAutoresizingMaskIntoConstraints="NO" id="CEL-JF-4D9">
-                        <rect key="frame" x="97" y="57" width="13" height="15"/>
+                        <rect key="frame" x="97" y="57" width="13" height="12"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="13" id="dWd-n0-VTR"/>
-                            <constraint firstAttribute="height" constant="15" id="vBr-gQ-kCO"/>
+                            <constraint firstAttribute="height" constant="12" id="vBr-gQ-kCO"/>
                         </constraints>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6wK-Aq-fSg">
@@ -134,6 +134,7 @@
                 <outlet property="bottomLineView" destination="zov-88-MCN" id="41Y-io-B0l"/>
                 <outlet property="nameLabel" destination="5Py-pW-6n5" id="dcr-bN-WW6"/>
                 <outlet property="peopleLabel" destination="tQp-oK-jOg" id="fK1-gt-YBe"/>
+                <outlet property="stateImageView" destination="nCI-L0-wVw" id="f7T-wP-s0i"/>
                 <outlet property="statusLabel" destination="ybW-db-YHu" id="dVL-1g-daK"/>
                 <outlet property="timeLabel" destination="qMW-gr-sSG" id="8qv-Z9-dAw"/>
                 <outlet property="topLineView" destination="RMS-SO-0JS" id="e89-nW-hGN"/>
@@ -151,7 +152,7 @@
         <image name="FlightDetailNormal" width="10" height="10"/>
         <image name="FlightDetailPerson" width="15" height="12"/>
         <image name="FlightDetailSpecialReport" width="47" height="22"/>
+        <image name="FlightDetailState" width="50" height="50"/>
         <image name="FlightDetailTime" width="15" height="15"/>
-        <image name="椭圆2" width="35" height="35"/>
     </resources>
 </document>

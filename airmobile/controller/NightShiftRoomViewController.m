@@ -33,12 +33,15 @@ static const NSString *NIGHTSHIFTROOM_TABLECELL_IDENTIFIER = @"NIGHTSHIFTROOM_TA
     _tableView.dataSource = self;
     _tableView.tableFooterView = [[UIView alloc]init];
     
-    [_tableView registerNib:[UINib nibWithNibName:@"NightShiftRoomTableViewCell" bundle:nil] forCellReuseIdentifier:(NSString *)NIGHTSHIFTROOM_TABLECELL_IDENTIFIER];
+    [_tableView registerNib:[UINib nibWithNibName:@"NightShiftRoomTableViewCell" bundle:nil]
+     forCellReuseIdentifier:(NSString *)NIGHTSHIFTROOM_TABLECELL_IDENTIFIER];
 
-    UISwipeGestureRecognizer *leftSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(leftSwipeGestureRecognizerEvent)];
+    UISwipeGestureRecognizer *leftSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self
+                                                                                                    action:@selector(leftSwipeGestureRecognizerEvent)];
     leftSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
     [_calendarView addGestureRecognizer:leftSwipeGestureRecognizer];
-    UISwipeGestureRecognizer *rightSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(rightSwipeGestureRecognizerEvent)];
+    UISwipeGestureRecognizer *rightSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self
+                                                                                                     action:@selector(rightSwipeGestureRecognizerEvent)];
     rightSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
     [_calendarView addGestureRecognizer:rightSwipeGestureRecognizer];
     

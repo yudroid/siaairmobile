@@ -33,12 +33,15 @@ singleton_implementation(MessageService);
     }];
 }
 
--(void)resetDialogParam: (long)clientId userId: (long)userId toId: (long)toId type: (BOOL)type
+-(void)resetDialogParam:(long)clientId
+                 userId:(long)userId
+                   toId:(long)toId
+                   type:(BOOL)type
 {
-    _clientId = clientId;
-    _userId = userId;
-    _toId = toId;
-    _group = type;
+    _clientId   = clientId;
+    _userId     = userId;
+    _toId       = toId;
+    _group      = type;
 //    if(userWebSocket == nil){
 //        [self regiestWebSocket];
 //    }
@@ -98,37 +101,39 @@ singleton_implementation(MessageService);
         if(![[dic allKeys] containsObject:@"createTime"]){
             return;
         }
-        long toId = [[dic objectForKey:@"toId"] longLongValue];
+        long toId   = [[dic objectForKey:@"toId"] longLongValue];
         long fromId = [[dic objectForKey:@"fromId"] longLongValue];
         if(toId != _userId || fromId == _userId){
             return;
         }
         NSMutableDictionary *msgDict = [NSMutableDictionary dictionary];
-        [msgDict setValue:[NSNumber numberWithLong:fromId] forKey:@"chatid"];// 源头
-        [msgDict setValue:[dic objectForKey:@"content"] forKey:@"content"];
-        [msgDict setValue:[NSNumber numberWithLong:fromId] forKey:@"userid"];
-        [msgDict setValue:[NSNumber numberWithLong:0] forKey:@"type"];
+        [msgDict setValue:[NSNumber numberWithLong:fromId]  forKey:@"chatid"];// 源头
+        [msgDict setValue:[dic objectForKey:@"content"]     forKey:@"content"];
+        [msgDict setValue:[NSNumber numberWithLong:fromId]  forKey:@"userid"];
+        [msgDict setValue:[NSNumber numberWithLong:0]       forKey:@"type"];
         
-        [PersistenceUtils insertNewChatMessage:msgDict needid:YES success:^{
-            if(_chatDelegate != nil){
-                [_chatDelegate refreshDialogData];
-            }
-        }];
+        [PersistenceUtils insertNewChatMessage:msgDict
+                                        needid:YES
+                                       success:^{
+                if(_chatDelegate != nil){
+                    [_chatDelegate refreshDialogData];
+                }
+            }];
     }else if([urlString isEqualToString:wsgroupurl]){
         if(![[dic allKeys] containsObject:@"createTime"]){
             return;
         }
-        long toId = [[dic objectForKey:@"workgroupId"] longLongValue];
+        long toId   = [[dic objectForKey:@"workgroupId"] longLongValue];
         long fromId = [[dic objectForKey:@"sendUserId"] longLongValue];
         if(fromId == _userId){
             return;
         }
         NSMutableDictionary *msgDict = [NSMutableDictionary dictionary];
-        [msgDict setValue:[NSNumber numberWithLong:toId] forKey:@"chatid"];// 源头
-        [msgDict setValue:[dic objectForKey:@"content"] forKey:@"content"];
-        [msgDict setValue:[NSNumber numberWithLong:fromId] forKey:@"userid"];
-        [msgDict setValue:[dic objectForKey:@"sendUserName"] forKey:@"username"];
-        [msgDict setValue:[NSNumber numberWithLong:1] forKey:@"type"];
+        [msgDict setValue:[NSNumber numberWithLong:toId]        forKey:@"chatid"];// 源头
+        [msgDict setValue:[dic objectForKey:@"content"]         forKey:@"content"];
+        [msgDict setValue:[NSNumber numberWithLong:fromId]      forKey:@"userid"];
+        [msgDict setValue:[dic objectForKey:@"sendUserName"]    forKey:@"username"];
+        [msgDict setValue:[NSNumber numberWithLong:1]           forKey:@"type"];
         
         [PersistenceUtils insertNewChatMessage:msgDict needid:YES success:^{
             if(_chatDelegate != nil){
@@ -163,7 +168,10 @@ singleton_implementation(MessageService);
     
     webSocket = nil;
 }
-- (void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean
+- (void)webSocket:(SRWebSocket *)   webSocket
+ didCloseWithCode:(NSInteger)       code
+           reason:(NSString *)      reason
+         wasClean:(BOOL)            wasClean
 {
     NSLog(@"WebSocket closed");
     

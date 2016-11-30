@@ -18,7 +18,10 @@
  *  @param success     success回调
  *  @param failure     failure回调
  */
-+(void) post:(NSString*) segment params:(id) formData success:(void (^) (id)) success failure:(void (^) (NSError*)) failure ;
++(void) post:(NSString*)            segment
+      params:(id)                   formData
+     success:(void (^) (id))        success
+     failure:(void (^) (NSError*))  failure ;
 
 /**
  *  get 请求 返回结果为json格式
@@ -28,7 +31,10 @@
  *  @param success     success回调
  *  @param failure     failure回调
  */
-+(void) get:(NSString*) segment params:(NSDictionary*) requestData success:(void (^) (id)) success failure:(void (^) (NSError*)) failure ;
++(void) get:(NSString*)             segment
+     params:(NSDictionary*)         requestData
+    success:(void (^) (id))         success
+    failure:(void (^) (NSError*))   failure ;
 
 
 /**
@@ -39,7 +45,10 @@
  *  @param success     success回调
  *  @param failure     failure回调
  */
-+(void) postString:(NSString*) segment params:(NSDictionary*) formData success:(void (^) (id)) success failure:(void (^) (NSError*)) failure ;
++(void) postString:(NSString*)              segment
+            params:(NSDictionary*)          formData
+           success:(void (^) (id))          success
+           failure:(void (^) (NSError*))    failure ;
 
 /**
  *  get 请求 返回结果为string格式
@@ -49,7 +58,10 @@
  *  @param success     success回调
  *  @param failure     failure回调
  */
-+(void) getString:(NSString*) segment params:(NSDictionary*) requestData success:(void (^) (id)) success failure:(void (^) (NSError*)) failure ;
++(void) getString:(NSString*)               segment
+           params:(NSDictionary*)           requestData
+          success:(void (^) (id))           success
+          failure:(void (^) (NSError*))     failure ;
 
 /**
  *  get 请求 返回结果为xml格式
@@ -59,12 +71,15 @@
  *  @param success     success回调
  *  @param failure     failure回调
  */
-+(void) getXml:(NSString*) segment params:(NSDictionary*) requestData success:(void (^) (id)) success failure:(void (^) (NSError*)) failure ;
++(void) getXml:(NSString*)              segment
+        params:(NSDictionary*)          requestData
+       success:(void (^) (id))          success
+       failure:(void (^) (NSError*))    failure ;
 
 /**
  *  获取基地址
  *
- *  @return <#return value description#>
+ *  @return return value description
  */
 +(NSString*) getBaseUri;
 

@@ -42,10 +42,16 @@
     [self initTitle];
     
     //圆圈
-    RoundProgressView *progressRound = [[RoundProgressView alloc] initWithCenter:CGPointMake(kScreenWidth/2, px_px_2_2_3(50*2, 65*2, 65*3)+px_px_2_3(95, 135)+px_px_2_3(95*2, 104*3))
+    RoundProgressView *progressRound = [[RoundProgressView alloc] initWithCenter:CGPointMake(kScreenWidth/2,
+                                                                                             px_px_2_2_3(50*2, 65*2, 65*3)+px_px_2_3(95, 135)+px_px_2_3(95*2, 104*3))
                                                                           radius:px_px_2_3(95*2, 104*3)
-                                                                      aboveColos:@[(__bridge id)[CommonFunction colorFromHex:0XFF00C7E4].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFF00F383].CGColor ]
-                                                                      belowColos:@[(__bridge id)[CommonFunction colorFromHex:0XFFFF9F38].CGColor,(__bridge id)[CommonFunction colorFromHex:0XFFFFCD21].CGColor ] start:150.0f end:30 clockwise:YES];
+                                                                      aboveColos:@[(__bridge id)[CommonFunction colorFromHex:0XFF00C7E4].CGColor,
+                                                                                   (__bridge id)[CommonFunction colorFromHex:0XFF00F383].CGColor ]
+                                                                      belowColos:@[(__bridge id)[CommonFunction colorFromHex:0XFFFF9F38].CGColor,
+                                                                                   (__bridge id)[CommonFunction colorFromHex:0XFFFFCD21].CGColor ]
+                                                                           start:150.0f
+                                                                             end:30
+                                                                       clockwise:YES];
 
     
     normalProportion = _craftseatCntModel.currentTakeUp/@(_craftseatCntModel.allCount).floatValue;
@@ -66,23 +72,36 @@
     [self.view addSubview:progressRound];
 
 
-    UILabel *totalNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(viewX(progressRound), (viewY(progressRound)+viewBotton(progressRound))/2-45/2-20, viewWidth(progressRound), 45)];// 机位总数
+    UILabel *totalNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(viewX(progressRound),
+                                                                       (viewY(progressRound)+viewBotton(progressRound))/2-45/2-20,
+                                                                       viewWidth(progressRound),
+                                                                       45)];// 机位总数
     totalNumLabel.text = @(_craftseatCntModel.allCount).stringValue;
-
     totalNumLabel.textAlignment = NSTextAlignmentCenter;
-    totalNumLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:55];
+    totalNumLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold"
+                                         size:55];
     [self.view addSubview:totalNumLabel];
     
-    UILabel *totalLabel = [[UILabel alloc] initWithFrame:CGRectMake(viewX(progressRound), viewBotton(totalNumLabel)+8, viewWidth(progressRound), 12)];
+    UILabel *totalLabel = [[UILabel alloc] initWithFrame:CGRectMake(viewX(progressRound),
+                                                                    viewBotton(totalNumLabel)+8,
+                                                                    viewWidth(progressRound),
+                                                                    12)];
     totalLabel.text = @"机位";
     totalLabel.textAlignment = NSTextAlignmentCenter;
     totalLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:15];
     [self.view addSubview:totalLabel];
     
-    UILabel *inSeatLabel = [[UILabel alloc] initWithFrame:CGRectMake(viewX(progressRound), viewBotton(totalLabel)+8, viewWidth(progressRound), 12)];// 当前停占
+    UILabel *inSeatLabel = [[UILabel alloc] initWithFrame:CGRectMake(viewX(progressRound),
+                                                                     viewBotton(totalLabel)+8,
+                                                                     viewWidth(progressRound),
+                                                                     12)];// 当前停占
     NSMutableAttributedString *inSeatAttributedString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"过夜航班 %@",@(_craftseatCntModel.passNight).stringValue] ];
-     [inSeatAttributedString addAttribute:NSForegroundColorAttributeName value:[CommonFunction colorFromHex:0xFFF24737] range:NSMakeRange(5, inSeatAttributedString.length-5)];
-    [inSeatAttributedString addAttribute:NSForegroundColorAttributeName value:[CommonFunction colorFromHex:0xFFd4d4d4] range:NSMakeRange(0, 5)];
+     [inSeatAttributedString addAttribute:NSForegroundColorAttributeName
+                                    value:[CommonFunction colorFromHex:0xFFF24737]
+                                    range:NSMakeRange(5, inSeatAttributedString.length-5)];
+    [inSeatAttributedString addAttribute:NSForegroundColorAttributeName
+                                   value:[CommonFunction colorFromHex:0xFFd4d4d4]
+                                   range:NSMakeRange(0, 5)];
     inSeatLabel.attributedText = inSeatAttributedString;
     inSeatLabel.textAlignment = NSTextAlignmentCenter;
     inSeatLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:15];
@@ -93,15 +112,23 @@
 //    nightNumLabel.font = [UIFont systemFontOfSize:15];
 //    [self.view addSubview:nightNumLabel];
 
-    UILabel *minLabel = [[UILabel alloc]initWithFrame:CGRectMake(viewX(progressRound)+16, viewBotton(progressRound)-30, 11, 11)];
+    UILabel *minLabel = [[UILabel alloc]initWithFrame:CGRectMake(viewX(progressRound)+16,
+                                                                 viewBotton(progressRound)-30,
+                                                                 11,
+                                                                 11)];
     minLabel.text = @"0";
-    minLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:13];
+    minLabel.font = [UIFont fontWithName:@"PingFangSC-Regular"
+                                    size:13];
     [self.view addSubview:minLabel];
 
 
-    UILabel *maxLabel = [[UILabel alloc]initWithFrame:CGRectMake(viewTrailing(progressRound)-25, viewY(minLabel), 30, 11)];
+    UILabel *maxLabel = [[UILabel alloc]initWithFrame:CGRectMake(viewTrailing(progressRound)-25,
+                                                                 viewY(minLabel),
+                                                                 30,
+                                                                 11)];
     maxLabel.text = @"100";
-    maxLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:13];
+    maxLabel.font = [UIFont fontWithName:@"PingFangSC-Regular"
+                                    size:13];
     [self.view addSubview:maxLabel];
 
 
@@ -110,42 +137,72 @@
 
     CGSize maxSize = CGSizeMake(100, 100);
     CGSize exportSize;
-    UIView *disAbleView = [[UIView alloc]initWithFrame:CGRectMake(43/2, y, width, 30)];
+    UIView *disAbleView = [[UIView alloc]initWithFrame:CGRectMake(43/2,
+                                                                  y,
+                                                                  width,
+                                                                  30)];
     [self.view addSubview:disAbleView];
 
-    UILabel *disAbleLabel= [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100-5, 11)];// 不可用
+    UILabel *disAbleLabel= [[UILabel alloc] initWithFrame:CGRectMake(0,
+                                                                     0,
+                                                                     100-5,
+                                                                     11)];// 不可用
     disAbleLabel.text = @"不可用";
     disAbleLabel.font =  [UIFont fontWithName:@"PingFangSC-Regular" size:13];
     exportSize = [disAbleLabel sizeThatFits:maxSize];
-    disAbleLabel.frame = CGRectMake((viewWidth(disAbleView)-exportSize.width)/2, 0, exportSize.width, 11);
+    disAbleLabel.frame = CGRectMake((viewWidth(disAbleView)-exportSize.width)/2,
+                                    0,
+                                    exportSize.width,
+                                    11);
     [disAbleView addSubview:disAbleLabel];
-    UIImageView *disAbleImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(disAbleLabel)-8, 2, 6, 6)];
+    UIImageView *disAbleImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(disAbleLabel)-8,
+                                                                                 2,
+                                                                                 6,
+                                                                                 6)];
     disAbleImageView.image = [UIImage imageNamed:@"DisableResource"];
     [disAbleView addSubview:disAbleImageView];
     
-    UILabel *disable = [[UILabel alloc] initWithFrame:CGRectMake(viewX(disAbleLabel),viewBotton(disAbleLabel)+5, viewWidth(disAbleLabel), 16)];
+    UILabel *disable = [[UILabel alloc] initWithFrame:CGRectMake(viewX(disAbleLabel),
+                                                                 viewBotton(disAbleLabel)+5,
+                                                                 viewWidth(disAbleLabel),
+                                                                 16)];
     disable.text = @(_craftseatCntModel.unusable).stringValue;
     disable.textAlignment = NSTextAlignmentCenter;
-    disable.font =  [UIFont fontWithName:@"PingFangSC-Regular" size:20];
+    disable.font =  [UIFont fontWithName:@"PingFangSC-Regular"
+                                    size:20];
     [disAbleView addSubview:disable];
 
-    UIView *longInSeatView = [[UIView alloc]initWithFrame:CGRectMake(viewTrailing(disAbleView), y, width, 30)];
+    UIView *longInSeatView = [[UIView alloc]initWithFrame:CGRectMake(viewTrailing(disAbleView),
+                                                                     y,
+                                                                     width,
+                                                                     30)];
     [self.view addSubview:longInSeatView];
-    UIImageView *longInSeatImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 6, 6)];
+    UIImageView *longInSeatImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0,
+                                                                                    0,
+                                                                                    6,
+                                                                                    6)];
     longInSeatImageView.image = [UIImage imageNamed:@"DisableResource"];
     [longInSeatView addSubview:longInSeatImageView];
 
     UILabel *longInSeatLabel= [[UILabel alloc] init];//长期占用
     longInSeatLabel.text = @"长期占用";
-    longInSeatLabel.font =  [UIFont fontWithName:@"PingFangSC-Regular" size:13];
+    longInSeatLabel.font =  [UIFont fontWithName:@"PingFangSC-Regular"
+                                            size:13];
     exportSize = [longInSeatLabel sizeThatFits:maxSize];
-    longInSeatLabel.frame = CGRectMake((viewWidth(longInSeatView)-exportSize.width)/2, 0, exportSize.width, 11);
+    longInSeatLabel.frame = CGRectMake((viewWidth(longInSeatView)-exportSize.width)/2,
+                                       0,
+                                       exportSize.width,
+                                       11);
     [longInSeatView addSubview:longInSeatLabel];
 
-    UILabel *longInSeat = [[UILabel alloc] initWithFrame:CGRectMake(viewX(longInSeatLabel),viewBotton(longInSeatLabel)+5, viewWidth(longInSeatLabel), 16)];
+    UILabel *longInSeat = [[UILabel alloc] initWithFrame:CGRectMake(viewX(longInSeatLabel),
+                                                                    viewBotton(longInSeatLabel)+5,
+                                                                    viewWidth(longInSeatLabel),
+                                                                    16)];
     longInSeat.text = @(_craftseatCntModel.longTakeUp).stringValue;
     longInSeat.textAlignment = NSTextAlignmentCenter;
-    longInSeat.font =  [UIFont fontWithName:@"PingFangSC-Regular" size:20];
+    longInSeat.font =  [UIFont fontWithName:@"PingFangSC-Regular"
+                                       size:20];
     [longInSeatView addSubview:longInSeat];
     
 //    UILabel *longInSeatLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/4, 65+25+86+5+15+5+65, kScreenWidth/4, 15)];// 长期占用
@@ -160,20 +217,36 @@
 //    longInSeat.font =  [UIFont fontWithName:@"PingFangSC-Regular" size:13];
 //    [self.view addSubview:longInSeat];
 
-    UIView *nightView = [[UIView alloc]initWithFrame:CGRectMake(viewTrailing(longInSeatView), y, width, 30)];
+    UIView *nightView = [[UIView alloc]initWithFrame:CGRectMake(viewTrailing(longInSeatView),
+                                                                y,
+                                                                width,
+                                                                30)];
     [self.view addSubview:nightView];
-    UIImageView *nightImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 6, 6)];
+    UIImageView *nightImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0,
+                                                                               0,
+                                                                               6,
+                                                                               6)];
     nightImageView.image = [UIImage imageNamed:@"DisableResource"];
     [nightView addSubview:nightImageView];
 
-    UILabel *nightLabel= [[UILabel alloc] initWithFrame:CGRectMake(viewTrailing(nightImageView)+5, 0, width-viewTrailing(nightImageView)-5, 11)];// 不可用
+    UILabel *nightLabel= [[UILabel alloc] initWithFrame:CGRectMake(viewTrailing(nightImageView)+5,
+                                                                   0,
+                                                                   width-viewTrailing(nightImageView)-5,
+                                                                   11)];// 不可用
     nightLabel.text = @"今日停场";
-    nightLabel.font =  [UIFont fontWithName:@"PingFangSC-Regular" size:13];
+    nightLabel.font =  [UIFont fontWithName:@"PingFangSC-Regular"
+                                       size:13];
     exportSize = [nightLabel sizeThatFits:maxSize];
-    nightLabel.frame = CGRectMake((viewWidth(nightLabel)-exportSize.width)/2, 0, exportSize.width, 11);
+    nightLabel.frame = CGRectMake((viewWidth(nightLabel)-exportSize.width)/2,
+                                  0,
+                                  exportSize.width,
+                                  11);
     [nightView addSubview:nightLabel];
 
-    UILabel *night = [[UILabel alloc] initWithFrame:CGRectMake(viewX(nightLabel),viewBotton(nightLabel)+5, viewWidth(nightLabel), 16)];
+    UILabel *night = [[UILabel alloc] initWithFrame:CGRectMake(viewX(nightLabel),
+                                                               viewBotton(nightLabel)+5,
+                                                               viewWidth(nightLabel),
+                                                               16)];
     night.text = @(_craftseatCntModel.todayFltTakeUp).stringValue;
     night.textAlignment = NSTextAlignmentCenter;
     night.font =  [UIFont fontWithName:@"PingFangSC-Regular" size:20];
@@ -191,23 +264,40 @@
 //    nightNum.font =  [UIFont fontWithName:@"PingFangSC-Regular" size:13];
 //    [self.view addSubview:nightNum];
 
-    UIView *freeSeatView = [[UIView alloc]initWithFrame:CGRectMake(viewTrailing(nightView), y, width, 30)];
+    UIView *freeSeatView = [[UIView alloc]initWithFrame:CGRectMake(viewTrailing(nightView),
+                                                                   y,
+                                                                   width,
+                                                                   30)];
     [self.view addSubview:freeSeatView];
-    UIImageView *freeSeatImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 6, 6)];
+    UIImageView *freeSeatImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0,
+                                                                                  0,
+                                                                                  6,
+                                                                                  6)];
     freeSeatImageView.image = [UIImage imageNamed:@"DisableResource"];
     [freeSeatView addSubview:freeSeatImageView];
 
-    UILabel *freeSeatLabel= [[UILabel alloc] initWithFrame:CGRectMake(viewTrailing(freeSeatImageView)+5, 0, width-viewTrailing(freeSeatImageView)-5, 11)];// 不可用
+    UILabel *freeSeatLabel= [[UILabel alloc] initWithFrame:CGRectMake(viewTrailing(freeSeatImageView)+5,
+                                                                      0,
+                                                                      width-viewTrailing(freeSeatImageView)-5,
+                                                                      11)];// 不可用
     freeSeatLabel.text = @"空余机位";
-    freeSeatLabel.font =  [UIFont fontWithName:@"PingFangSC-Regular" size:13];
+    freeSeatLabel.font =  [UIFont fontWithName:@"PingFangSC-Regular"
+                                          size:13];
     exportSize = [freeSeatLabel sizeThatFits:maxSize];
-    freeSeatLabel.frame = CGRectMake((viewWidth(freeSeatView)-exportSize.width)/2, 0, exportSize.width, 11);
+    freeSeatLabel.frame = CGRectMake((viewWidth(freeSeatView)-exportSize.width)/2,
+                                     0,
+                                     exportSize.width,
+                                     11);
     [freeSeatView addSubview:freeSeatLabel];
 
-    UILabel *freeSeat = [[UILabel alloc] initWithFrame:CGRectMake(viewX(freeSeatLabel),viewBotton(freeSeatLabel)+5, viewWidth(freeSeatLabel), 16)];
+    UILabel *freeSeat = [[UILabel alloc] initWithFrame:CGRectMake(viewX(freeSeatLabel),
+                                                                  viewBotton(freeSeatLabel)+5,
+                                                                  viewWidth(freeSeatLabel),
+                                                                  16)];
     freeSeat.text = @(_craftseatCntModel.idle).stringValue;
     freeSeat.textAlignment = NSTextAlignmentCenter;
-    freeSeat.font =  [UIFont fontWithName:@"PingFangSC-Regular" size:20];
+    freeSeat.font =  [UIFont fontWithName:@"PingFangSC-Regular"
+                                     size:20];
     [freeSeatView addSubview:freeSeat];
 
 //    UILabel *freeSeatLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth*3/4, 65+25+86+5+15+5+65, kScreenWidth/4, 15)];// 空余 325-13-247
@@ -226,7 +316,10 @@
 
     array = _craftseatCntModel.seatUsed;
     //小时分布表格
-    UITableView *flightHourTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, viewBotton(freeSeatView)+px_px_2_3(60, 100), kScreenWidth,viewHeight(self.view) - viewBotton(freeSeatView)-px_px_2_3(60, 100))];
+    UITableView *flightHourTableView = [[UITableView alloc]initWithFrame:CGRectMake(0,
+                                                                                    viewBotton(freeSeatView)+px_px_2_3(60, 100),
+                                                                                    kScreenWidth,
+                                                                                    viewHeight(self.view) - viewBotton(freeSeatView)-px_px_2_3(60, 100))];
     flightHourTableView.delegate = self;
     flightHourTableView.dataSource = self;
     flightHourTableView.showsVerticalScrollIndicator = NO;
@@ -241,7 +334,10 @@
     [self titleViewInitWithHight:65];
     [self titleViewAddTitleText:@"使用详情"];
     
-    UIView *titleLabelView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 65)];
+    UIView *titleLabelView = [[UIView alloc] initWithFrame:CGRectMake(0,
+                                                                      0,
+                                                                      kScreenWidth,
+                                                                      65)];
     self.titleView .backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"home_title_bg.png"]];
     [self.titleView addSubview:titleLabelView];
     
@@ -269,36 +365,57 @@
 //        backgroundImageView.image = [UIImage imageNamed:@"FlightFilterbuttonNoSelected"];
 //        [cell addSubview:backgroundImageView];
 
-        UIView *contentView = [[UIView alloc]initWithFrame:CGRectMake(5, 3,kScreenWidth-10, 125/2-6)];
+        UIView *contentView = [[UIView alloc]initWithFrame:CGRectMake(5,
+                                                                      3,
+                                                                      kScreenWidth-10,
+                                                                      125/2-6)];
         contentView.layer.cornerRadius = 5.0;
         contentView.layer.borderColor = [CommonFunction colorFromHex:0xFFf0f0f0].CGColor;
         contentView.layer.borderWidth = 1.0;
         [cell addSubview:contentView];
-        [contentView addSubview:[CommonFunction addLabelFrame:CGRectMake(7, 0, 30, 22) text:model.type font:25/2 textAlignment:(NSTextAlignmentLeft) colorFromHex:0xFF000000]];
+        [contentView addSubview:[CommonFunction addLabelFrame:CGRectMake(7, 0, 30, 22)
+                                                         text:model.type
+                                                         font:25/2
+                                                textAlignment:(NSTextAlignmentLeft)
+                                                 colorFromHex:0xFF000000]];
         UILabel *notUseLabel = [[UILabel alloc]init];
         CGSize maxSize = CGSizeMake(100, 100);
-        notUseLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:25/2];
+        notUseLabel.font = [UIFont fontWithName:@"PingFangSC-Regular"
+                                           size:25/2];
         notUseLabel.text = [NSString stringWithFormat:@"空余 %i",model.free];
         CGSize exportSize = [notUseLabel sizeThatFits:maxSize];
-        notUseLabel.frame = CGRectMake(viewWidth(contentView)-10-exportSize.width, 0, exportSize.width, 22);
+        notUseLabel.frame = CGRectMake(viewWidth(contentView)-10-exportSize.width,
+                                       0,
+                                       exportSize.width,
+                                       22);
         [contentView addSubview:notUseLabel];
 
         UILabel *useLabel = [[UILabel alloc]init];
         maxSize = CGSizeMake(100, 100);
-        useLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:25/2];
+        useLabel.font = [UIFont fontWithName:@"PingFangSC-Regular"
+                                        size:25/2];
         useLabel.text = [NSString stringWithFormat:@"占用 %i",model.used];
         exportSize = [useLabel sizeThatFits:maxSize];
-        useLabel.frame = CGRectMake(viewX(notUseLabel)-10-exportSize.width, 0, exportSize.width, 22);
+        useLabel.frame = CGRectMake(viewX(notUseLabel)-10-exportSize.width,
+                                    0,
+                                    exportSize.width,
+                                    22);
         [contentView addSubview:useLabel];
 
-        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(1, viewBotton(useLabel), viewWidth(contentView), 0.5)];
+        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(1,
+                                                                   viewBotton(useLabel),
+                                                                   viewWidth(contentView),
+                                                                   0.5)];
         lineView.backgroundColor = [CommonFunction colorFromHex:0xFFf0f0f0];
         [contentView addSubview:lineView];
 
 //        [contentView addSubview:[CommonFunction addLabelFrame:CGRectMake(50, 0, kScreenWidth/2-50-30, 13) text:[NSString stringWithFormat:@"占用 %i",model.used] font:12 textAlignment:(NSTextAlignmentLeft) colorFromHex:0xFF1B1B1B]];
 //        [contentView addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, 0, kScreenWidth/2-50, 12) text:[NSString stringWithFormat:@"空余 %i",model.free] font:12 textAlignment:(NSTextAlignmentRight) colorFromHex:0xFF1B1B1B]];
 //        
-        LDProgressView *progressF= [[LDProgressView alloc] initWithFrame:CGRectMake(7, viewBotton(lineView)+11, viewWidth(contentView)-14, 10)];
+        LDProgressView *progressF= [[LDProgressView alloc] initWithFrame:CGRectMake(7,
+                                                                                    viewBotton(lineView)+11,
+                                                                                    viewWidth(contentView)-14,
+                                                                                    10)];
         progressF.color = [CommonFunction colorFromHex:0XFF05CA6E];
         progressF.progress = [model getPercent];
         progressF.showText = @NO;

@@ -41,8 +41,11 @@ static const NSString *UPLOADPHOTO_COLLECTIONCELL_IDENTIFIER = @"UPLOADPHOTO_COL
     UIButton *finshButton = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-10-40, 33, 40, 20)];
 
     [finshButton setTitle:@"完成"  forState:UIControlStateNormal];
-    finshButton.titleLabel.font = [UIFont fontWithName:@"PingFang SC" size:10];
-    [finshButton addTarget:self action:@selector(finshButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    finshButton.titleLabel.font = [UIFont fontWithName:@"PingFang SC"
+                                                  size:10];
+    [finshButton addTarget:self
+                    action:@selector(finshButtonClick:)
+          forControlEvents:UIControlEventTouchUpInside];
     [self.titleView addSubview:finshButton];
 
     
@@ -52,7 +55,8 @@ static const NSString *UPLOADPHOTO_COLLECTIONCELL_IDENTIFIER = @"UPLOADPHOTO_COL
     _collectionArray = [NSMutableArray array];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
-    [_collectionView registerNib:[UINib nibWithNibName:@"AbnormalityReportCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:(NSString *)UPLOADPHOTO_COLLECTIONCELL_IDENTIFIER];
+    [_collectionView registerNib:[UINib nibWithNibName:@"AbnormalityReportCollectionViewCell" bundle:nil]
+      forCellWithReuseIdentifier:(NSString *)UPLOADPHOTO_COLLECTIONCELL_IDENTIFIER];
     [self getAlbumList];
 }
 
@@ -146,10 +150,11 @@ static const NSString *UPLOADPHOTO_COLLECTIONCELL_IDENTIFIER = @"UPLOADPHOTO_COL
 #pragma mark - ImagePickerController
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
-    UIImage *image = [info
-                      objectForKey:@"UIImagePickerControllerOriginalImage"];
-    UIImageWriteToSavedPhotosAlbum(image, self,
-                                   @selector(image:didFinishSavingWithError:contextInfo:), nil);
+    UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    UIImageWriteToSavedPhotosAlbum(image,
+                                   self,
+                                   @selector(image:didFinishSavingWithError:contextInfo:),
+                                   nil);
     [picker dismissViewControllerAnimated:YES completion:^{
         [_collectionArray insertObject:[info objectForKey:UIImagePickerControllerOriginalImage] atIndex:0];
         [_collectionView reloadData];

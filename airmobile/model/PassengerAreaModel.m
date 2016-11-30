@@ -10,13 +10,15 @@
 
 @implementation PassengerAreaModel
 
--(instancetype)initWithRegion:(NSString *)region count:(int)count isFar:(BOOL)isFar
+-(instancetype)initWithRegion:(NSString *)  region
+                        count:(int)         count
+                        isFar:(BOOL)        isFar
 {
     self = [super init];
     if(self){
-        _region = region;
-        _count = count;
-        _isFar = isFar;
+        _region     = region;
+        _count      = count;
+        _isFar      = isFar;
     }
     return self;
 }

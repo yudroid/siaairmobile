@@ -28,7 +28,10 @@ static NSTimeInterval timeInterval = 16;
  *  @param success     success回调
  *  @param failure     failure回调
  */
-+(void) post:(NSString*) segment params:(id) formData success:(void (^) (id)) success failure:(void (^) (NSError*)) failure  {
++(void) post:(NSString*)            segment
+      params:(id)                   formData
+     success:(void (^) (id))        success
+     failure:(void (^) (NSError*))  failure  {
     
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     //使用
@@ -66,18 +69,22 @@ static NSTimeInterval timeInterval = 16;
     //    }
     NSLog(@"Post调用地址 %@",absoluteUrl);
     //注：该方法是异步调用的
-    [manager POST:[url absoluteString] parameters:formData progress:nil success:^(NSURLSessionTask* task, id responseObject){
-        NSLog(@"success ----  %@",responseObject);
-        if(success){
-            //回调success
-            success(responseObject);
-        }
-    }failure:^(NSURLSessionTask* operation, NSError* error){
-        NSLog(@"falied ---- %@",error);
-        if(failure){
-            failure(error);
-        }
-    }];
+    [manager POST:[url absoluteString]
+       parameters:formData
+         progress:nil
+          success:^(NSURLSessionTask* task, id responseObject){
+              NSLog(@"success ----  %@",responseObject);
+              if(success){
+                  //回调success
+                  success(responseObject);
+              }
+          }failure:^(NSURLSessionTask* operation, NSError* error){
+              NSLog(@"falied ---- %@",error);
+              if(failure){
+                  failure(error);
+              }
+          }
+     ];
     
 }
 
@@ -114,7 +121,8 @@ static NSTimeInterval timeInterval = 16;
     NSURL* url = [NSURL URLWithString:baseUri];
     
     if (![StringUtils isNullOrWhiteSpace:segment]) {
-        url = [NSURL URLWithString:segment relativeToURL: [NSURL URLWithString:baseUri]];
+        url = [NSURL URLWithString:segment
+                     relativeToURL: [NSURL URLWithString:baseUri]];
     }
     
     NSString* absoluteUrl = [StringUtils trim:[url absoluteString]];
@@ -122,18 +130,21 @@ static NSTimeInterval timeInterval = 16;
     //absoluteUrl = [NSString stringWithFormat:@"%@?uid=%@",absoluteUrl,[GuidUtils GuidString]];
     NSLog(@"Get调用地址 %@",absoluteUrl);
     //注：该方法是异步调用的
-    [manager GET:absoluteUrl parameters:requestData progress:nil success:^(NSURLSessionTask* task, id responseObject){
+    [manager GET:absoluteUrl
+      parameters:requestData
+        progress:nil
+         success:^(NSURLSessionTask* task, id responseObject){
         //NSLog(@"success ----  %@",responseObject);
-        if(success){
-            //回调
-            success(responseObject);
-        }
-    }failure:^(NSURLSessionTask* operation, NSError* error){
-        NSLog(@"falied ---- %@",error);
-        if(failure){
-            //回调
-            failure(error);
-        }
+            if(success){
+                //回调
+                success(responseObject);
+            }
+            }failure:^(NSURLSessionTask* operation, NSError* error){
+                NSLog(@"falied ---- %@",error);
+            if(failure){
+                //回调
+                failure(error);
+            }
     }];
     
 }
@@ -147,7 +158,10 @@ static NSTimeInterval timeInterval = 16;
  *  @param success     success回调
  *  @param failure     failure回调
  */
-+(void) postString:(NSString*) segment params:(NSDictionary*) formData success:(void (^) (id)) success failure:(void (^) (NSError*)) failure  {
++(void) postString:(NSString*)              segment
+            params:(NSDictionary*)          formData
+           success:(void (^) (id))          success
+           failure:(void (^) (NSError*))    failure  {
     
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     //使用
@@ -180,18 +194,22 @@ static NSTimeInterval timeInterval = 16;
     NSLog(@"Post调用地址 %@",absoluteUrl);
     
     //注：该方法是异步调用的
-    [manager POST:absoluteUrl parameters:formData progress:nil success:^(NSURLSessionTask* task, id responseObject){
-        NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        NSLog(@"success ----  %@",result);
-        if(success){
-            //回调
-            success(result);
-        }
-    }failure:^(NSURLSessionTask* operation, NSError* error){
-        NSLog(@"falied ---- %@",error);
-        if(failure){
-            failure(error);
-        }
+    [manager POST:absoluteUrl
+       parameters:formData
+         progress:nil
+          success:^(NSURLSessionTask* task, id responseObject){
+            NSString *result = [[NSString alloc] initWithData:responseObject
+                                                     encoding:NSUTF8StringEncoding];
+            NSLog(@"success ----  %@",result);
+            if(success){
+                //回调
+                success(result);
+            }
+        }failure:^(NSURLSessionTask* operation, NSError* error){
+            NSLog(@"falied ---- %@",error);
+            if(failure){
+                failure(error);
+            }
     }];
     
 }
@@ -205,7 +223,10 @@ static NSTimeInterval timeInterval = 16;
  *  @param success     success回调
  *  @param failure     failure回调
  */
-+(void) getString:(NSString*) segment params:(NSDictionary*) requestData success:(void (^) (id)) success failure:(void (^) (NSError*)) failure {
++(void) getString:(NSString*)               segment
+           params:(NSDictionary*)           requestData
+          success:(void (^) (id))           success
+          failure:(void (^) (NSError*))     failure {
     
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     
@@ -238,19 +259,22 @@ static NSTimeInterval timeInterval = 16;
     NSLog(@"Get调用地址 %@",absoluteUrl);
     
     //注：该方法是异步调用的
-    [manager GET:absoluteUrl parameters:requestData progress:nil success:^(NSURLSessionTask* task, id responseObject){
-        NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        NSLog(@"success ----  %@",result);
-        if(success){
-            //回调
-            success(result);
-        }
-    }failure:^(NSURLSessionTask* operation, NSError* error){
-        NSLog(@"falied ---- %@",error);
-        if(failure){
-            //回调
-            failure(error);
-        }
+    [manager GET:absoluteUrl parameters:requestData
+        progress:nil
+         success:^(NSURLSessionTask* task, id responseObject){
+            NSString *result = [[NSString alloc] initWithData:responseObject
+                                                     encoding:NSUTF8StringEncoding];
+            NSLog(@"success ----  %@",result);
+            if(success){
+                //回调
+                success(result);
+            }
+        }failure:^(NSURLSessionTask* operation, NSError* error){
+            NSLog(@"falied ---- %@",error);
+            if(failure){
+                //回调
+                failure(error);
+            }
     }];
     
 }
@@ -264,7 +288,10 @@ static NSTimeInterval timeInterval = 16;
  *  @param success     success回调
  *  @param failure     failure回调
  */
-+(void) getXml:(NSString*) segment params:(NSDictionary*) requestData success:(void (^) (id)) success failure:(void (^) (NSError*)) failure {
++(void) getXml:(NSString*)              segment
+        params:(NSDictionary*)          requestData
+       success:(void (^) (id))          success
+       failure:(void (^) (NSError*))    failure {
     
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     
@@ -288,25 +315,28 @@ static NSTimeInterval timeInterval = 16;
     NSURL* url = [NSURL URLWithString:baseUri];
     
     if (![StringUtils isNullOrWhiteSpace:segment]) {
-        url = [NSURL URLWithString:segment relativeToURL: [NSURL URLWithString:baseUri]];
+        url = [NSURL URLWithString:segment
+                     relativeToURL: [NSURL URLWithString:baseUri]];
     }
     
     
     NSLog(@"Get调用地址 %@",[url absoluteString]);
     
     //注：该方法是异步调用的
-    [manager GET:[url absoluteString] parameters:requestData progress:nil success:^(NSURLSessionTask* task, id responseObject){
-        //NSLog(@"success ----  %@",responseObject);
-        if(success){
-            //回调
-            success(responseObject);
-        }
-    }failure:^(NSURLSessionTask* operation, NSError* error){
-        NSLog(@"falied ---- %@",error);
-        if(failure){
-            //回调
-            failure(error);
-        }
+    [manager GET:[url absoluteString]
+      parameters:requestData
+        progress:nil success:^(NSURLSessionTask* task, id responseObject){
+            //NSLog(@"success ----  %@",responseObject);
+            if(success){
+                //回调
+                success(responseObject);
+            }
+        }failure:^(NSURLSessionTask* operation, NSError* error){
+            NSLog(@"falied ---- %@",error);
+            if(failure){
+                //回调
+                failure(error);
+            }
     }];
     
 }

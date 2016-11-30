@@ -12,11 +12,11 @@
 
 
 @property (nonatomic, assign) int id;
-@property (nonatomic, copy) NSString *userName;//姓名
-@property (nonatomic, copy) NSString *section;//部门
-@property (nonatomic, copy) NSString *duty;//职责
-@property (nonatomic, copy) NSString *phone;//电话
-@property (nonatomic, copy) NSString *date;//值班日期
+@property (nonatomic, copy) NSString *userName; //姓名
+@property (nonatomic, copy) NSString *section;  //部门
+@property (nonatomic, copy) NSString *duty;     //职责
+@property (nonatomic, copy) NSString *phone;    //电话
+@property (nonatomic, copy) NSString *date;     //值班日期
 
 
 @end

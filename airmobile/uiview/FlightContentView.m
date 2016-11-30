@@ -13,25 +13,28 @@
 
 @property (nonatomic, strong) FlightStusModel *flightStusModel;
 
+
 @end
 
 @implementation FlightContentView
 {
-    UIView *segmentedView;
-    UIView *depFlightView;
-    UIImageView *depFlightBackgroundImageView;
-    UILabel *depFlightLabel;
-    UIView *arrFlightView;
-    UIImageView *arrFlightBackgroundImageView;
-    UILabel *arrFlightLabel;
+    UIView          *segmentedView;
+    UIView          *depFlightView;
+    UIImageView     *depFlightBackgroundImageView;
+    UILabel         *depFlightLabel;
+    UIView          *arrFlightView;
+    UIImageView     *arrFlightBackgroundImageView;
+    UILabel         *arrFlightLabel;
 
-    UIButton *depFlightButton ;
-    UIButton *arrFlightButton ;
-    UIScrollView *scrollView ;
+    UIButton        *depFlightButton ;
+    UIButton        *arrFlightButton ;
+    UIScrollView    *scrollView ;
+    UILabel         *delay;
+    UILabel         *cancel;
 }
 
--(instancetype)initWithFrame:(CGRect)frame
-             flightStusModel:(FlightStusModel *)flightStusModel
+-(instancetype)initWithFrame:(CGRect)                       frame
+             flightStusModel:(FlightStusModel *)            flightStusModel
                     delegate:(id<FlightContentViewDelegate>)delegate
 {
     self = [super initWithFrame:frame];
@@ -66,11 +69,11 @@
                                                                  viewHeight(segmentedView))];
         [segmentedView addSubview:depFlightView];
 
-        depFlightBackgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0,
-                                                                                    0,
-                                                                                    viewWidth(depFlightView),
-                                                                                    viewHeight(depFlightView))];
-        depFlightBackgroundImageView.image = [UIImage imageNamed:@"SegmentedLeft"];
+        depFlightBackgroundImageView        = [[UIImageView alloc]initWithFrame:CGRectMake(0,
+                                                                                            0,
+                                                                                            viewWidth(depFlightView),
+                                                                                            viewHeight(depFlightView))];
+        depFlightBackgroundImageView.image  = [UIImage imageNamed:@"SegmentedLeft"];
         [depFlightView addSubview:depFlightBackgroundImageView];
 
         depFlightLabel = [CommonFunction addLabelFrame:CGRectMake(0,
@@ -83,7 +86,7 @@
                                           colorFromHex:0xFFFFFFFF];
         [depFlightView addSubview:depFlightLabel];
 
-        depFlightButton = [[UIButton alloc] initWithFrame:depFlightLabel.frame];
+        depFlightButton     = [[UIButton alloc] initWithFrame:depFlightLabel.frame];
         [depFlightButton addTarget:self
                             action:@selector(buttonClickedWithSender:)
                   forControlEvents:(UIControlEventTouchUpInside)];
@@ -96,11 +99,11 @@
                                                                   viewHeight(depFlightView))];
         [segmentedView addSubview:arrFlightView];
 
-        arrFlightBackgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0,
-                                                                                    0,
-                                                                                    viewWidth(arrFlightView),
-                                                                                    viewHeight(arrFlightView))];
-        arrFlightBackgroundImageView.image = nil;
+         arrFlightBackgroundImageView       = [[UIImageView alloc]initWithFrame:CGRectMake(0,
+                                                                                            0,
+                                                                                            viewWidth(arrFlightView),
+                                                                                            viewHeight(arrFlightView))];
+        arrFlightBackgroundImageView.image  = nil;
         [arrFlightView addSubview:arrFlightBackgroundImageView];
 
         arrFlightLabel = [CommonFunction addLabelFrame:CGRectMake(0,
@@ -124,29 +127,29 @@
                                                                          viewBotton(segmentedView)+px_px_2_2_3(35,43, 64),
                                                                          90,
                                                                          11)];
-        explainLabel.text = @"即将出港航班";
-        explainLabel.font = [UIFont fontWithName:@"PingFangSC-Regular"
-                                            size:27/2];
-        explainLabel.textColor = [CommonFunction colorFromHex:0xFFFFCD21];
+        explainLabel.text       = @"即将出港航班";
+        explainLabel.font       = [UIFont fontWithName:@"PingFangSC-Regular"
+                                                  size:27/2];
+        explainLabel.textColor  = [CommonFunction colorFromHex:0xFFFFCD21];
         [self addSubview:explainLabel];
 
         UIImageView *explainImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(explainLabel)-4-10,
                                                                                      viewY(explainLabel)+0.5,
                                                                                      10,
                                                                                      10)];
-        explainImageView.image = [UIImage imageNamed:@"Completed"];
+        explainImageView.image      = [UIImage imageNamed:@"Completed"];
         [self addSubview:explainImageView];
 
         scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,
                                                                     viewBotton(explainImageView)+px_px_2_2_3(30, 40, 60),
                                                                     frame.size.width,
                                                                     px_px_2_2_3(400, 500, 750))];
-        scrollView.delegate = self;
-        scrollView.contentSize = CGSizeMake(frame.size.width*2, px_px_2_2_3(400, 500, 750));
-        scrollView.backgroundColor = [UIColor clearColor];
-        scrollView.pagingEnabled = YES;
-        scrollView.showsHorizontalScrollIndicator = NO;
-        scrollView.showsVerticalScrollIndicator = NO;
+        scrollView.delegate         = self;
+        scrollView.contentSize      = CGSizeMake(frame.size.width*2, px_px_2_2_3(400, 500, 750));
+        scrollView.backgroundColor  = [UIColor clearColor];
+        scrollView.pagingEnabled    = YES;
+        scrollView.showsHorizontalScrollIndicator   = NO;
+        scrollView.showsVerticalScrollIndicator     = NO;
         [self addSubview:scrollView];
 
         [self updateShapeArray:arrShapeArray];
@@ -157,16 +160,16 @@
                                                                                     px_px_2_2_3(341,400, 664),
                                                                                     px_px_2_2_3(341,400, 664))
                                                                    items:arrShapeArray];
-        arrRoundProgress.center = CGPointMake(frame.size.width/2, px_px_2_2_3(400, 500, 750)/2.0);
-        arrRoundProgress.descriptionTextColor = [UIColor whiteColor];
-        arrRoundProgress.descriptionTextFont  = [UIFont fontWithName:@"PingFangSC-Regular" size:29/2];
+        arrRoundProgress.center                     = CGPointMake(frame.size.width+frame.size.width/2, px_px_2_2_3(400, 500, 750)/2.0);
+        arrRoundProgress.descriptionTextColor       = [UIColor whiteColor];
+        arrRoundProgress.descriptionTextFont        = [UIFont fontWithName:@"PingFangSC-Regular" size:29/2];
         arrRoundProgress.descriptionTextShadowColor = [UIColor clearColor];
-        arrRoundProgress.showAbsoluteValues = YES;
-        arrRoundProgress.showOnlyValues = YES;
+        arrRoundProgress.showAbsoluteValues         = YES;
+        arrRoundProgress.showOnlyValues             = YES;
         [arrRoundProgress strokeChart];
-        arrRoundProgress.legendStyle = PNLegendItemStyleStacked;
-        arrRoundProgress.legendFont = [UIFont fontWithName:@"PingFangSC-Regular" size:9];
-        arrRoundProgress.legendFontColor = [CommonFunction colorFromHex:0xff595757];
+        arrRoundProgress.legendStyle                = PNLegendItemStyleStacked;
+        arrRoundProgress.legendFont                 = [UIFont fontWithName:@"PingFangSC-Regular" size:9];
+        arrRoundProgress.legendFontColor            = [CommonFunction colorFromHex:0xff595757];
         [scrollView addSubview:arrRoundProgress];
 
 
@@ -215,17 +218,16 @@
                                                                                     px_px_2_2_3(341,400, 664))
                                                                    items:depShapeArray];
 
-        depRoundProgress.center = CGPointMake(frame.size.width+frame.size.width/2,
-                                              px_px_2_2_3(400, 500, 750)/2.0);
-
-        depRoundProgress.descriptionTextColor = [UIColor whiteColor];
-        depRoundProgress.descriptionTextFont  = [UIFont fontWithName:@"PingFangSC-Regular" size:29/2];
+        depRoundProgress.center                     = CGPointMake(frame.size.width/2,
+                                                                  px_px_2_2_3(400, 500, 750)/2.0);
+        depRoundProgress.descriptionTextColor       = [UIColor whiteColor];
+        depRoundProgress.descriptionTextFont        = [UIFont fontWithName:@"PingFangSC-Regular" size:29/2];
         depRoundProgress.descriptionTextShadowColor = [UIColor clearColor];
-        depRoundProgress.showAbsoluteValues = YES;
-        depRoundProgress.showOnlyValues = YES;
+        depRoundProgress.showAbsoluteValues         = YES;
+        depRoundProgress.showOnlyValues             = YES;
         [depRoundProgress strokeChart];
-        depRoundProgress.legendStyle = PNLegendItemStyleStacked;
-        depRoundProgress.legendFont = [UIFont fontWithName:@"PingFangSC-Regular" size:9];
+        depRoundProgress.legendStyle                = PNLegendItemStyleStacked;
+        depRoundProgress.legendFont                 = [UIFont fontWithName:@"PingFangSC-Regular" size:9];
         [scrollView addSubview:depRoundProgress];
         
         UILabel *depOutNum = [CommonFunction addLabelFrame:CGRectMake(0,
@@ -281,10 +283,9 @@
         [abnButton addTarget:self
                       action:@selector(showAbnRsnAndDlyTime:)
             forControlEvents:UIControlEventTouchUpInside];
-
         [self addSubview:abnButton];
 
-        UILabel *delay = [CommonFunction addLabelFrame:CGRectMake(viewX(unusualImageView)+101,
+        delay = [CommonFunction addLabelFrame:CGRectMake(viewX(unusualImageView)+101,
                                                                   viewY(unusualImageView),
                                                                   100,
                                                                   30)
@@ -292,14 +293,14 @@
                                                   font:22
                                          textAlignment:NSTextAlignmentCenter
                                           colorFromHex:0xFF4D4D4D];
-        NSMutableAttributedString *delayAttributeString = [[NSMutableAttributedString alloc ] initWithString:[NSString stringWithFormat:@"延误 %d",_flightStusModel.arrDelay]];
+        NSMutableAttributedString *delayAttributeString = [[NSMutableAttributedString alloc ] initWithString:[NSString stringWithFormat:@"延误 %d",_flightStusModel.depDelay]];
         [delayAttributeString addAttribute:NSFontAttributeName
                                      value:[UIFont fontWithName:@"PingFangSC-Regular" size:13]
                                      range:NSMakeRange(0, 2)];
         delay.attributedText = delayAttributeString;
         [self addSubview:delay];
 
-        UILabel *cancel = [CommonFunction addLabelFrame:CGRectMake(viewX(unusualImageView)+202,
+        cancel = [CommonFunction addLabelFrame:CGRectMake(viewX(unusualImageView)+202,
                                                                    viewY(unusualImageView),
                                                                    100,
                                                                    30)
@@ -309,7 +310,7 @@
                                            colorFromHex:0xFF4D4D4D];
 
         NSMutableAttributedString *cancelAttributeString = [[NSMutableAttributedString alloc ]
-                                                            initWithString:[NSString stringWithFormat:@"延误 %d",_flightStusModel.arrCancel]];
+                                                            initWithString:[NSString stringWithFormat:@"取消 %d",_flightStusModel.depCancel]];
         [cancelAttributeString addAttribute:NSFontAttributeName
                                       value:[UIFont fontWithName:@"PingFangSC-Regular" size:13]
                                       range:NSMakeRange(0, 2)];
@@ -445,25 +446,45 @@
 {
     if (array == arrShapeArray) {
         [array removeAllObjects];
+        [array addObject: [PNPieChartDataItem dataItemWithValue:2
+                                                          color:[UIColor clearColor]]];
+        [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.arrDelay
+                                                          color:[CommonFunction colorFromHex:0xFFFFCD21]
+                                                    description:@"延误"]];
+        [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.arrDoneNormal
+                                                          color:[CommonFunction colorFromHex:0xFF00B0D8]
+                                                    description:@"已执行"]];
         [array addObject: [PNPieChartDataItem dataItemWithValue:2 color:[UIColor clearColor]]];
-        [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.arrDelay color:[CommonFunction colorFromHex:0xFFFFCD21] description:@"延误"]];
-        [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.arrDoneNormal color:[CommonFunction colorFromHex:0xFF00B0D8] description:@"已执行"]];
+        [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.arrCancel
+                                                          color:[CommonFunction colorFromHex:0xFFFF4D62]
+                                                    description:@"取消"]];
         [array addObject: [PNPieChartDataItem dataItemWithValue:2 color:[UIColor clearColor]]];
-        [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.arrCancel color:[CommonFunction colorFromHex:0xFFFF4D62] description:@"取消"]];
-        [array addObject: [PNPieChartDataItem dataItemWithValue:2 color:[UIColor clearColor]]];
-        [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.arrDoneAbn color:[CommonFunction colorFromHex:0xFFC8C8C8] description:@"未执行"]];
-        [array addObject: [PNPieChartDataItem dataItemWithValue:10 color:[CommonFunction colorFromHex:0xFFFFCD21]]];
+        [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.arrDoneAbn
+                                                          color:[CommonFunction colorFromHex:0xFFC8C8C8]
+                                                    description:@"未执行"]];
+        [array addObject: [PNPieChartDataItem dataItemWithValue:10
+                                                          color:[CommonFunction colorFromHex:0xFFFFCD21]]];
 
     }else{
         [array removeAllObjects];
+        [array addObject: [PNPieChartDataItem dataItemWithValue:2
+                                                          color:[UIColor clearColor]]];
+        [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.depDelay
+                                                          color:[CommonFunction colorFromHex:0xFFFFCD21]
+                                                    description:@"延误"]];
+        [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.depDoneNormal
+                                                          color:[CommonFunction colorFromHex:0xFF00B0D8]
+                                                    description:@"已执行"]];
         [array addObject: [PNPieChartDataItem dataItemWithValue:2 color:[UIColor clearColor]]];
-        [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.depDelay color:[CommonFunction colorFromHex:0xFFFFCD21] description:@"延误"]];
-        [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.depDoneNormal color:[CommonFunction colorFromHex:0xFF00B0D8] description:@"已执行"]];
+        [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.depCancel
+                                                          color:[CommonFunction colorFromHex:0xFFFF4D62]
+                                                    description:@"取消"]];
         [array addObject: [PNPieChartDataItem dataItemWithValue:2 color:[UIColor clearColor]]];
-        [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.depCancel color:[CommonFunction colorFromHex:0xFFFF4D62] description:@"取消"]];
-        [array addObject: [PNPieChartDataItem dataItemWithValue:2 color:[UIColor clearColor]]];
-        [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.depDoneAbn color:[CommonFunction colorFromHex:0xFFC8C8C8] description:@"未执行"]];
-        [array addObject: [PNPieChartDataItem dataItemWithValue:10 color:[CommonFunction colorFromHex:0xFFFFCD21]]];
+        [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.depDoneAbn
+                                                          color:[CommonFunction colorFromHex:0xFFC8C8C8]
+                                                    description:@"未执行"]];
+        [array addObject: [PNPieChartDataItem dataItemWithValue:10
+                                                          color:[CommonFunction colorFromHex:0xFFFFCD21]]];
 
     }
 
@@ -477,20 +498,48 @@
     switch (sender.tag)
     {
         case 0:
+        {
             depFlightBackgroundImageView.image = [UIImage imageNamed:@"SegmentedLeft"];
             arrFlightLabel.textColor = [CommonFunction colorFromHex:0xFF17B9E8];
             depFlightLabel.textColor = [CommonFunction colorFromHex:0xFFFFFFFF];
             [scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+            NSMutableAttributedString *delayAttributeString = [[NSMutableAttributedString alloc ] initWithString:[NSString stringWithFormat:@"延误 %d",_flightStusModel.depDelay]];
+            [delayAttributeString addAttribute:NSFontAttributeName
+                                         value:[UIFont fontWithName:@"PingFangSC-Regular" size:13]
+                                         range:NSMakeRange(0, 2)];
+            delay.attributedText = delayAttributeString;
+
+
+            NSMutableAttributedString *cancelAttributeString = [[NSMutableAttributedString alloc ]
+                                                                initWithString:[NSString stringWithFormat:@"取消 %d",_flightStusModel.depCancel]];
+            [cancelAttributeString addAttribute:NSFontAttributeName
+                                          value:[UIFont fontWithName:@"PingFangSC-Regular" size:13]
+                                          range:NSMakeRange(0, 2)];
+            cancel.attributedText = cancelAttributeString;
 
             break;
-
+        }
         case 1:
+        {
             arrFlightBackgroundImageView.image = [UIImage imageNamed:@"SegmentedRight"];
             depFlightLabel.textColor = [CommonFunction colorFromHex:0xFF17B9E8];
             arrFlightLabel.textColor = [CommonFunction colorFromHex:0xFFFFFFFF];
             [scrollView setContentOffset:CGPointMake(viewWidth(scrollView), 0) animated:YES];
+            NSMutableAttributedString *delayAttributeString = [[NSMutableAttributedString alloc ] initWithString:[NSString stringWithFormat:@"延误 %d",_flightStusModel.arrDelay]];
+            [delayAttributeString addAttribute:NSFontAttributeName
+                                         value:[UIFont fontWithName:@"PingFangSC-Regular" size:13]
+                                         range:NSMakeRange(0, 2)];
+            delay.attributedText = delayAttributeString;
+
+            NSMutableAttributedString *cancelAttributeString = [[NSMutableAttributedString alloc ]
+                                                                initWithString:[NSString stringWithFormat:@"取消 %d",_flightStusModel.arrCancel]];
+            [cancelAttributeString addAttribute:NSFontAttributeName
+                                          value:[UIFont fontWithName:@"PingFangSC-Regular" size:13]
+                                          range:NSMakeRange(0, 2)];
+            cancel.attributedText = cancelAttributeString;
 
             break;
+        }
 
         default:
             break;

@@ -88,7 +88,8 @@ static const NSString *OPTIONS_COLLECTIONVIEW_INDETIFIER = @"OPTIONS_COLLECTIONV
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	OptionCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:(NSString *)OPTIONS_COLLECTIONVIEW_INDETIFIER forIndexPath:indexPath];
+	OptionCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:(NSString *)OPTIONS_COLLECTIONVIEW_INDETIFIER
+																			   forIndexPath:indexPath];
 	cell.contentView.backgroundColor = [UIColor grayColor];
 	cell.nameLabel.text = _collectionArray[indexPath.row];
 	return cell;
@@ -120,7 +121,8 @@ static const NSString *OPTIONS_COLLECTIONVIEW_INDETIFIER = @"OPTIONS_COLLECTIONV
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	if ([_delegate respondsToSelector:@selector(optionsViewControllerFinshedOptionType:Value:)]) {
-		[_delegate optionsViewControllerFinshedOptionType:_optionsType Value:_collectionArray[indexPath.row]];
+		[_delegate optionsViewControllerFinshedOptionType:_optionsType
+													Value:_collectionArray[indexPath.row]];
 	}
 	[self.navigationController popViewControllerAnimated:YES];
 }

@@ -44,8 +44,14 @@
 
     CGFloat y = 65+px_px_2_3(33, 102);
     CGFloat topBgViewWidth = kScreenWidth-2*px2(22);
-    UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(px2(22), y,topBgViewWidth, (topBgViewWidth)*391/709)];
-    UIImageView *backgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, viewWidth(topBgView), viewHeight(topBgView))];
+    UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(px2(22),
+                                                                 y,
+                                                                 topBgViewWidth,
+                                                                 (topBgViewWidth)*391/709)];
+    UIImageView *backgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0,
+                                                                                    0,
+                                                                                    viewWidth(topBgView),
+                                                                                    viewHeight(topBgView))];
     backgroundImageView.image = [UIImage imageNamed:@"FlightHourChartBlackground"];
     [topBgView addSubview:backgroundImageView];
     [self.view addSubview:topBgView];
@@ -59,7 +65,10 @@
 
     [topBgView.layer setMasksToBounds:YES];// 隐藏边界
     
-    UILabel *passengerTtitle = [[UILabel alloc] initWithFrame:CGRectMake(px2(33), px_px_2_3(14, 22), topBgView.frame.size.width-100, 11)];
+    UILabel *passengerTtitle = [[UILabel alloc] initWithFrame:CGRectMake(px2(33),
+                                                                         px_px_2_3(14, 22),
+                                                                         topBgView.frame.size.width-100,
+                                                                         11)];
     passengerTtitle.text = @"航班小时分布图";
     passengerTtitle.font = [UIFont fontWithName:@"PingFang SC" size:px_px_2_3(27, 45)];
     passengerTtitle.textColor = [UIColor whiteColor];
@@ -67,32 +76,58 @@
     
     UILabel *ratioNum = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-100, 5, 80, 23+20)
                                                  text:@([self sum]).stringValue
-                                                 font:20 textAlignment:NSTextAlignmentRight colorFromHex:0xFFFFFFFF];
+                                                 font:20
+                                        textAlignment:NSTextAlignmentRight
+                                         colorFromHex:0xFFFFFFFF];
     ratioNum.font = [UIFont fontWithName:@"PingFang SC" size:px_px_2_3(48, 79)];
 
     [topBgView addSubview:ratioNum];
 
 
-    UIImageView *todayImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(passengerTtitle), viewBotton(passengerTtitle)+px_px_2_3(21, 31), 11, 11)];
+    UIImageView *todayImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(passengerTtitle),
+                                                                               viewBotton(passengerTtitle)+px_px_2_3(21, 31),
+                                                                               11,
+                                                                               11)];
     todayImageView.image = [UIImage imageNamed:@"FlightHourChartTag"];
     [topBgView addSubview:todayImageView];
 
     
-    UILabel *todayLabel = [CommonFunction addLabelFrame:CGRectMake(viewTrailing(todayImageView) +px_px_2_3(12, 18), viewBotton(passengerTtitle)+px_px_2_3(21, 31) , 200, 11) text:@"航班数" font:14 textAlignment:NSTextAlignmentLeft colorFromHex:0xFFFFFFFF];
-    todayLabel.font = [UIFont fontWithName:@"PingFang SC" size:px_px_2_3(27, 45)];
+    UILabel *todayLabel = [CommonFunction addLabelFrame:CGRectMake(viewTrailing(todayImageView) +px_px_2_3(12, 18),
+                                                                   viewBotton(passengerTtitle)+px_px_2_3(21, 31) ,
+                                                                   200,
+                                                                   11)
+                                                   text:@"航班数"
+                                                   font:14
+                                          textAlignment:NSTextAlignmentLeft
+                                           colorFromHex:0xFFFFFFFF];
+    todayLabel.font = [UIFont fontWithName:@"PingFang SC"
+                                      size:px_px_2_3(27, 45)];
     [topBgView addSubview:todayLabel];
     
 
-    UIImageView *upImageView = [[UIImageView alloc]initWithFrame:CGRectMake(px2(33), viewY(todayLabel)+viewHeight(todayLabel)+px_px_2_3(10, 15), viewWidth(topBgView)-2*px2(33), px2(2))];
+    UIImageView *upImageView = [[UIImageView alloc]initWithFrame:CGRectMake(px2(33),
+                                                                            viewY(todayLabel)+viewHeight(todayLabel)+px_px_2_3(10, 15),
+                                                                            viewWidth(topBgView)-2*px2(33),
+                                                                            px2(2))];
     upImageView.image = [UIImage imageNamed:@"hiddenLine"];
     [topBgView addSubview:upImageView];
     
-    UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(px2(33), viewBotton(upImageView)+px_px_2_3(10, 15),viewWidth(topBgView)-2*px2(33), 12) text:@"120" font:px_px_2_3(22, 36) textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF];
+    UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(px2(33),
+                                                                 viewBotton(upImageView)+px_px_2_3(10, 15),
+                                                                 viewWidth(topBgView)-2*px2(33),
+                                                                 12)
+                                                 text:@"120"
+                                                 font:px_px_2_3(22, 36)
+                                        textAlignment:NSTextAlignmentRight
+                                         colorFromHex:0x75FFFFFF];
     [topBgView addSubview:maxLabel];
     
     
     
-    lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(px2(33),viewBotton(maxLabel), viewWidth(topBgView)-2*px2(33), viewHeight(topBgView)-viewBotton(maxLabel))];
+    lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(px2(33),
+                                                              viewBotton(maxLabel),
+                                                              viewWidth(topBgView)-2*px2(33),
+                                                              viewHeight(topBgView)-viewBotton(maxLabel))];
     lineChart.backgroundColor = [UIColor clearColor];
     lineChart.skipXPoints = 1;
     [lineChart setXLabels:[self getFlightHourXLabels]];
@@ -127,21 +162,31 @@
     [topBgView addSubview:lineChart];
 
 
-    UILabel *zoreLabel = [[UILabel alloc]initWithFrame:CGRectMake(viewWidth(topBgView)-6-px2(31), topBgView.frame.size.height-(10+15+12), topBgView.frame.size.width-40, 10)];
+    UILabel *zoreLabel = [[UILabel alloc]initWithFrame:CGRectMake(viewWidth(topBgView)-6-px2(31),
+                                                                  topBgView.frame.size.height-(10+15+12),
+                                                                  topBgView.frame.size.width-40,
+                                                                  10)];
     zoreLabel.text = @"0";
-    zoreLabel.font = [UIFont fontWithName:@"PingFang SC" size:px2(22)];
+    zoreLabel.font = [UIFont fontWithName:@"PingFang SC"
+                                     size:px2(22)];
     zoreLabel.textColor = [CommonFunction colorFromHex:0X75ffffff];
     [topBgView addSubview:zoreLabel];
 
 
 
-    UIImageView *lowImageView = [[UIImageView alloc]initWithFrame:CGRectMake(px2(31), viewBotton(lineChart)-15-7, viewWidth(topBgView)-2*px2(31), px2(2))];
+    UIImageView *lowImageView = [[UIImageView alloc]initWithFrame:CGRectMake(px2(31),
+                                                                             viewBotton(lineChart)-15-7,
+                                                                             viewWidth(topBgView)-2*px2(31),
+                                                                             px2(2))];
     lowImageView.image = [UIImage imageNamed:@"hiddenLine"];
     [topBgView addSubview:lowImageView];
 
     y =viewHeight(topBgView)+viewY(topBgView)+px2(10);
     //小时分布表格
-    UITableView *flightHourTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, y, kScreenWidth, kScreenHeight-y)];
+    UITableView *flightHourTableView = [[UITableView alloc]initWithFrame:CGRectMake(0,
+                                                                                    y,
+                                                                                    kScreenWidth,
+                                                                                    kScreenHeight-y)];
     flightHourTableView.delegate = self;
     flightHourTableView.dataSource = self;
     flightHourTableView.showsVerticalScrollIndicator = NO;
@@ -176,9 +221,10 @@
     FlightHourTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:flightHour.hour];
     
     if (!cell) {
-        cell = [[FlightHourTableViewCell alloc]initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:flightHour.hour flightHour:flightHour];
+        cell = [[FlightHourTableViewCell alloc]initWithStyle:(UITableViewCellStyleDefault)
+                                             reuseIdentifier:flightHour.hour
+                                                  flightHour:flightHour];
     }
-    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }

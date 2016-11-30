@@ -11,10 +11,12 @@
 
 @interface PassengerTopModel : RootModel
 
-@property (nonatomic,copy) NSString *date;
-@property (nonatomic,assign) int count;
-@property (nonatomic,assign) int index;
+@property (nonatomic,copy)      NSString    *date;
+@property (nonatomic,assign)    int         count;
+@property (nonatomic,assign)    int         index;
 
--(instancetype)initWithDate:(NSString *)date count:(int)count index:(int)index;
+-(instancetype)initWithDate:(NSString *)date
+                      count:(int)       count
+                      index:(int)       index;
 
 @end

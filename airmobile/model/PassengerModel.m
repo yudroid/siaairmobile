@@ -46,18 +46,18 @@
 {
     if([self isNull:data])
         return;
-    _planInCount = [[data objectForKey:@"planInCount"] intValue];
-    _realInCount = [[data objectForKey:@"realInCount"] intValue];
-    _planOutCount = [[data objectForKey:@"planOutCount"] intValue];
-    _realOutCount = [[data objectForKey:@"realOutCount"] intValue];
+    _planInCount    = [[data objectForKey:@"planInCount"]   intValue];
+    _realInCount    = [[data objectForKey:@"realInCount"]   intValue];
+    _planOutCount   = [[data objectForKey:@"planOutCount"]  intValue];
+    _realOutCount   = [[data objectForKey:@"realOutCount"]  intValue];
 }
 
 -(void) updatePassengerForecast: (id)data
 {
     if([self isNull:data])
         return;
-    _hourInCount = [[data objectForKey:@"hourInCount"] intValue];
-    _hourOutCount = [[data objectForKey:@"hourOutCount"] intValue];
+    _hourInCount =  [[data objectForKey:@"hourInCount"]     intValue];
+    _hourOutCount = [[data objectForKey:@"hourOutCount"]    intValue];
 }
 
 -(void) updateSafetyPassenger: (id)data
@@ -71,7 +71,6 @@
 {
     if([self isNull:data])
         return;
-    
     // hour：代表等待时间分类 分为1、2、3、4 对应图中的相应时间段    count：旅客人数
     [[self getPsnOnPlaneArray] removeAllObjects];
     for(NSDictionary *item in data){
@@ -101,17 +100,17 @@
             model = [[self getPsnHoursArray] objectAtIndex:index];
         }
         switch (flag) {
-                
+
             case 1:
-                model.planArrCount = [[item objectForKey:@"count"] intValue];
+                model.planArrCount =    [[item objectForKey:@"count"] intValue];
                 break;
                 
             case 2:
-                model.arrCount = [[item objectForKey:@"count"] intValue];
+                model.arrCount =        [[item objectForKey:@"count"] intValue];
                 break;
                 
             case 3:
-                model.planDepCount = [[item objectForKey:@"count"] intValue];
+                model.planDepCount =    [[item objectForKey:@"count"] intValue];
                 break;
                 
             default:
@@ -138,8 +137,8 @@
 //        hour：代表日期，如“10-01”
 //        count：代表进港旅客人数
 //        ratio：代表出港旅客人数
-        model.date = [item objectForKey:@"hour"];
-        model.count = [[item objectForKey:@"count"] intValue]+[[item objectForKey:@"ratio"] intValue];
+        model.date  = [item     objectForKey:@"hour"];
+        model.count = [[item    objectForKey:@"count"] intValue] + [[item objectForKey:@"ratio"] intValue];
         index ++;
         model.index = index;
     }
@@ -158,20 +157,20 @@
         }else{
             model = [[self getPsnAreasArray] objectAtIndex:index];
         }
-        
 //        hour：指廊名称 count：指廊旅客数 近机位数=所有count数加起来
 //        hour：INT（国际）或者DOM（国内） count：国际或者国内旅客数 远机位数=国际+国内旅客数
         NSString *region = [item objectForKey:@"hour"];
         if(region == nil)
             continue;
-        if([region isEqualToString:@"INT"] || [region isEqualToString:@"DOM"])
+        if([region isEqualToString:@"INT"] ||
+           [region isEqualToString:@"DOM"])
         {
             model.isFar = YES;
         }else{
             model.isFar = NO;
         }
-        model.region = [item objectForKey:@"hour"];
-        model.count = [[item objectForKey:@"count"] floatValue];
+        model.region =  [item objectForKey:@"hour"];
+        model.count  = [[item objectForKey:@"count"] floatValue];
         index ++;
     }
 }

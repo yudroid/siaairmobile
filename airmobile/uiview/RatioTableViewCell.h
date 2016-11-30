@@ -11,5 +11,7 @@
 
 @interface RatioTableViewCell : UITableViewCell
 
--(instancetype) initWithStyle: (UITableViewCellStyle)style reuseIdentifier: (NSString *)identifier ratio: (ReleasedRatioModel *)ratio;
+-(instancetype) initWithStyle: (UITableViewCellStyle)   style
+              reuseIdentifier: (NSString *)             identifier
+                        ratio: (ReleasedRatioModel *)   ratio;
 @end

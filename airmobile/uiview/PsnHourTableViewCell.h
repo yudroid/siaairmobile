@@ -11,5 +11,7 @@
 
 @interface PsnHourTableViewCell : UITableViewCell
 
--(instancetype) initWithStyle: (UITableViewCellStyle)style reuseIdentifier: (NSString *)identifier flightHour: (FlightHourModel *)flightHour;
+-(instancetype) initWithStyle: (UITableViewCellStyle)   style
+              reuseIdentifier: (NSString *)             identifier
+                   flightHour: (FlightHourModel *)      flightHour;
 @end

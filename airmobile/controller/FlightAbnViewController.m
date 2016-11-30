@@ -46,46 +46,83 @@
     [self initTitle];
 
     float y =65+ px_px_2_3(19, 43);
-    segmentedView = [[UIView alloc]initWithFrame:CGRectMake(10, y, kScreenWidth-2*10, 34)];
+    segmentedView = [[UIView alloc]initWithFrame:CGRectMake(10,
+                                                            y,
+                                                            kScreenWidth-2*10,
+                                                            34)];
     [self.view addSubview:segmentedView];
-    UIImageView *segmentedBackgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, viewWidth(segmentedView), viewHeight(segmentedView))];
+    UIImageView *segmentedBackgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0,
+                                                                                             0,
+                                                                                             viewWidth(segmentedView),
+                                                                                             viewHeight(segmentedView))];
     segmentedBackgroundImageView.image = [UIImage imageNamed:@"segmentedBackground"];
     [segmentedView addSubview:segmentedBackgroundImageView];
-    abnormalView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, viewWidth(segmentedView)/2, viewHeight(segmentedView))];
+    abnormalView = [[UIView alloc] initWithFrame:CGRectMake(0,
+                                                            0,
+                                                            viewWidth(segmentedView)/2,
+                                                            viewHeight(segmentedView))];
     [segmentedView addSubview:abnormalView];
 
 
-    abnBackgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, viewWidth(abnormalView), viewHeight(abnormalView))];
+    abnBackgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0,
+                                                                          0,
+                                                                          viewWidth(abnormalView),
+                                                                          viewHeight(abnormalView))];
     abnBackgroundImageView.image = [UIImage imageNamed:@"SegmentedLeft"];
     [abnormalView addSubview:abnBackgroundImageView];
 
-    abnLabel = [CommonFunction addLabelFrame:CGRectMake(0, 0, viewWidth(abnormalView) , viewHeight(abnormalView)) text:@"异常原因" font:33/2 textAlignment:(NSTextAlignmentCenter) colorFromHex:0xFFFFFFFF];
+    abnLabel = [CommonFunction addLabelFrame:CGRectMake(0,
+                                                        0,
+                                                        viewWidth(abnormalView) ,
+                                                        viewHeight(abnormalView))
+                                        text:@"异常原因"
+                                        font:33/2
+                               textAlignment:(NSTextAlignmentCenter)
+                                colorFromHex:0xFFFFFFFF];
     [abnormalView addSubview:abnLabel];
 
     abnsButton = [[UIButton alloc] initWithFrame:abnLabel.frame];
-    [abnsButton addTarget:self action:@selector(buttonClickedWithSender:) forControlEvents:(UIControlEventTouchUpInside)];
+    [abnsButton addTarget:self
+                   action:@selector(buttonClickedWithSender:)
+         forControlEvents:(UIControlEventTouchUpInside)];
     abnsButton.tag = 0;
     [abnormalView addSubview:abnsButton];
 
-    delayView = [[UIView alloc ] initWithFrame:CGRectMake(viewWidth(abnormalView), 0, viewWidth(abnormalView), viewHeight(abnormalView))];
+    delayView = [[UIView alloc ] initWithFrame:CGRectMake(viewWidth(abnormalView),
+                                                          0,
+                                                          viewWidth(abnormalView),
+                                                          viewHeight(abnormalView))];
     [segmentedView addSubview:delayView];
 
-    delayBackgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, viewWidth(delayView), viewHeight(delayView))];
+    delayBackgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0,
+                                                                            0,
+                                                                            viewWidth(delayView),
+                                                                            viewHeight(delayView))];
     delayBackgroundImageView.image = nil;
     [delayView addSubview:delayBackgroundImageView];
 
-    delayLabel = [CommonFunction addLabelFrame:CGRectMake(0, 0, viewWidth(delayView), viewHeight(delayView)) text:@"区域平均延误时间" font:33/2 textAlignment:(NSTextAlignmentCenter) colorFromHex:0xFF17B9E8];
+    delayLabel = [CommonFunction addLabelFrame:CGRectMake(0,
+                                                          0,
+                                                          viewWidth(delayView),
+                                                          viewHeight(delayView))
+                                          text:@"区域平均延误时间"
+                                          font:33/2
+                                 textAlignment:(NSTextAlignmentCenter)
+                                  colorFromHex:0xFF17B9E8];
     [delayView addSubview:delayLabel];
 
     delayButton = [[UIButton alloc] initWithFrame:delayLabel.frame];
-    [delayButton addTarget:self action:@selector(buttonClickedWithSender:) forControlEvents:(UIControlEventTouchUpInside)];
+    [delayButton addTarget:self
+                    action:@selector(buttonClickedWithSender:)
+          forControlEvents:(UIControlEventTouchUpInside)];
     delayButton.tag = 1;
     [delayView addSubview:delayButton];
 
 
-
-
-    scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, viewBotton(segmentedView)+px_px_2_3(26, 43), kScreenWidth, kScreenHeight-viewBotton(segmentedView)-40)];
+    scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,
+                                                                viewBotton(segmentedView)+px_px_2_3(26, 43),
+                                                                kScreenWidth,
+                                                                kScreenHeight-viewBotton(segmentedView)-40)];
     scrollView.backgroundColor = [UIColor redColor];
     scrollView.contentSize = CGSizeMake(scrollView.frame.size.width*2, scrollView.frame.size.height) ;
     scrollView.delegate = self;
@@ -102,7 +139,11 @@
                                                                   dataArray:_flightHourModel.abnReasons];
     [scrollView addSubview:abnView];
     
-    AreaDelayTimeView *dlyView = [[AreaDelayTimeView alloc] initWithFrame:CGRectMake(scrollView.frame.size.width, 0, scrollView.frame.size.width, scrollView.frame.size.height)dataArray:_flightHourModel.regionDlyTimes];
+    AreaDelayTimeView *dlyView = [[AreaDelayTimeView alloc] initWithFrame:CGRectMake(scrollView.frame.size.width,
+                                                                                     0,
+                                                                                     scrollView.frame.size.width,
+                                                                                     scrollView.frame.size.height)
+                                                                dataArray:_flightHourModel.regionDlyTimes];
     [scrollView addSubview:dlyView];
     
 //    pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, kScreenHeight-40, kScreenWidth, 40)];
@@ -118,10 +159,12 @@
     [self titleViewInitWithHight:65];
     [self titleViewAddTitleText:@"航班异常分析"];
     
-    UIView *titleLabelView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 65)];
+    UIView *titleLabelView = [[UIView alloc] initWithFrame:CGRectMake(0,
+                                                                      0,
+                                                                      kScreenWidth,
+                                                                      65)];
     self.titleView .backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"home_title_bg.png"]];
     [self.titleView addSubview:titleLabelView];
-    
     [self titleViewAddBackBtn];
 }
 

@@ -17,13 +17,10 @@
 singleton_interface(FlightService);
 
 -(void)startService;
-
--(NSArray<FlightModel *> *)getFlightArray;
-
--(FlightDetailModel *)getFlightDetailModel;
-
--(NSArray<SafeguardModel *>* )getSafeguardArray;
-
--(AbnormalModel *)getAbnormalModel;
+-(NSArray<FlightModel *> *)     getFlightArray;
+-(FlightDetailModel *)          getFlightDetailModel;
+-(NSArray<SafeguardModel *>*)   getSafeguardArray;
+-(AbnormalModel *)              getAbnormalModel;
+-(NSArray<SafeguardModel *>* )  getSpecialSafeguardArray;
 
 @end

@@ -8,6 +8,11 @@
 
 #import "AbnormalityReportHistoryTableViewCell.h"
 
+@interface AbnormalityReportHistoryTableViewCell ()
+
+
+@end
+
 @implementation AbnormalityReportHistoryTableViewCell
 
 - (void)awakeFromNib {
@@ -20,5 +25,7 @@
 
     // Configure the view for the selected state
 }
+
+
 
 @end

@@ -20,9 +20,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    _roundView.layer.cornerRadius = 4.0;
-    _roundView.layer.borderWidth = 1.0;
-    _roundView.layer.borderColor = [UIColor grayColor].CGColor;
+    [self setDotStyleMiddle];
     
 }
 
@@ -32,14 +30,33 @@
     switch (type) {
         case FlightDetailAirLineCollectionViewCellTypeLast:
             _rightLIneImageView.hidden = YES;
+            [self setDotStyle];
             break;
         case FlightDetailAirLineCollectionViewCellTypeFirst:
             _leftLineImageView.hidden = YES;
+            [self setDotStyle];
             break;
         default:
+            [self setDotStyleMiddle];
             break;
     }
 }
 
+
+-(void)setDotStyle
+{
+    _roundView.layer.cornerRadius = 4.0;
+    _roundView.layer.borderWidth = 1.0;
+    _roundView.layer.borderColor = [UIColor grayColor].CGColor;
+    _roundView.backgroundColor = [UIColor whiteColor];
+    _roundView.layer.masksToBounds = YES;
+}
+
+-(void)setDotStyleMiddle
+{
+    _roundView.layer.cornerRadius = 4.0;
+    _roundView.layer.backgroundColor = [UIColor grayColor].CGColor;
+    _roundView.layer.masksToBounds = YES;
+}
 
 @end

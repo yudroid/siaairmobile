@@ -272,7 +272,7 @@
 -(void)initTitle
 {
     [self titleViewInitWithHight:65];
-    [self titleViewAddTitleText:@"小面积延误"];
+    [self titleViewAddTitleText:@"延误指标"];
     
     UIView *titleLabelView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 65)];
     self.titleView .backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"home_title_bg.png"]];

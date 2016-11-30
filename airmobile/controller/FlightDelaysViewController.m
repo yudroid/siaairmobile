@@ -57,7 +57,9 @@ static const NSString *FLGHTDELAYS_TABLECELL_IDENTIFIER = @"FLGHTDELAYS_TABLECEL
 {
     FlightDelaysTableViewCell  *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)FLGHTDELAYS_TABLECELL_IDENTIFIER];
     if (cell == nil) {
-        cell = [[NSBundle mainBundle] loadNibNamed:@"FlightDelaysTableViewCell" owner:nil options:nil][0];
+        cell = [[NSBundle mainBundle] loadNibNamed:@"FlightDelaysTableViewCell"
+                                             owner:nil
+                                           options:nil][0];
     }
     return  cell;
 }
@@ -66,7 +68,8 @@ static const NSString *FLGHTDELAYS_TABLECELL_IDENTIFIER = @"FLGHTDELAYS_TABLECEL
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     FlightDelaysDetailViewController *FlightDelaysDetailVC = [[FlightDelaysDetailViewController alloc]initWithNibName:@"FlightDelaysDetailViewController" bundle:nil];
-    [self.navigationController pushViewController:FlightDelaysDetailVC animated:YES];
+    [self.navigationController pushViewController:FlightDelaysDetailVC
+                                         animated:YES];
 
 }
 /*

@@ -31,22 +31,24 @@
 @interface OverViewContentView : UIView
 {
     
-    UILabel *normalNumLabel;
-    UILabel *abnormalNumLabel;
-    UILabel *cancelNumLabel;
+    UILabel     *normalNumLabel;
+    UILabel     *abnormalNumLabel;
+    UILabel     *cancelNumLabel;
     
-    float _totalNum;
-    float _normalNum;
-    float _abnormalNum;
-    float _cancleNum;
+    float       _totalNum;
+    float       _normalNum;
+    float       _abnormalNum;
+    float       _cancleNum;
     
-    CGFloat normalProportion;
-    CGFloat abnormalProportion;
-    CGFloat cancleProportion;
+    CGFloat     normalProportion;
+    CGFloat     abnormalProportion;
+    CGFloat     cancleProportion;
     
     id<OverviewContentViewDelegate> _delegate;
 }
 
--(id)initWithFrame:(CGRect)frame summaryModel:(SummaryModel *)summaryModel delegate:(id<OverviewContentViewDelegate>)delegate;
+-(id)initWithFrame:(CGRect)                         frame
+      summaryModel:(SummaryModel *)                 summaryModel
+          delegate:(id<OverviewContentViewDelegate>)delegate;
 
 @end

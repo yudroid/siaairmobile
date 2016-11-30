@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *peopleLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *stateImageView;
 
 @end
 
@@ -60,8 +61,15 @@
 {
     _nameLabel.text = safeguardModel.name;
     _statusLabel.text = safeguardModel.status;
+    if([safeguardModel.status isEqualToString:@"正常"]){
+        _stateImageView.image = [UIImage imageNamed:@"FlightDetailState1"];
+    }else{
+        _stateImageView.image = [UIImage imageNamed:@"FlightDetailState"];
+    }
     _peopleLabel.text = safeguardModel.dispatchPeople;
     _timeLabel.text = [NSString stringWithFormat:@"%@-%@",safeguardModel.realStartTime,safeguardModel.endTime];
 }
+
+
 
 @end

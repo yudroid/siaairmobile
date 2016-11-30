@@ -23,14 +23,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initTitie];
-
-
     _textFieldWidth.constant = kScreenWidth-62;
 
     if ([DeviceInfoUtil isPlus]) {
         [self adjustPLUS];
     }
-
 }
 
 -(void)initTitie{
@@ -59,7 +56,15 @@
     _timeLabel.font = [UIFont fontWithName:@"PingFang SC" size:px_3(40)];
     _contentLabel.font = [UIFont fontWithName:@"PongFang SC" size:px_3(52)];
 
+}
+-(void)setTitleText:(NSString *)titleText
+{
+    _titleText = titleText;
+    _titleLabel.text = titleText;
 
+    CGSize maxSize = CGSizeMake(kScreenWidth - 31*2, CGFLOAT_MAX);
+    CGSize exportSize = [_titleLabel sizeThatFits:maxSize];
+    
 }
 
 /*

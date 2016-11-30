@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 
+@property (nonatomic, copy) NSString *titleText;
 @property (nonatomic ,copy) NSString *contentText;
 
 @end

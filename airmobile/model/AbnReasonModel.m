@@ -10,14 +10,15 @@
 
 @implementation AbnReasonModel
 
--(instancetype)initWithReason:(NSString *)reason count:(int)count percent:(CGFloat)percent
+-(instancetype)initWithReason:(NSString *)reason
+                        count:(int)count
+                      percent:(CGFloat)percent
 {
     self = [super init];
     if(self){
-        
-        _reason = reason;
-        _count = count;
-        _percent = percent;
+        _reason     = reason;
+        _count      = count;
+        _percent    = percent;
     }
     return self;
 }

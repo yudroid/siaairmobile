@@ -26,16 +26,16 @@ singleton_implementation(HomePageService);
 -(void)startService
 {
     if(summaryModel == nil){
-        summaryModel = [SummaryModel new];
+        summaryModel    = [SummaryModel new];
     }
     if(flightModel == nil){
-        flightModel = [FlightStusModel new];
+        flightModel     = [FlightStusModel new];
     }
     if(psnModel == nil){
-        psnModel = [PassengerModel new];
+        psnModel        = [PassengerModel new];
     }
     if(seatModel == nil){
-        seatModel = [SeatStatusModel new];
+        seatModel       = [SeatStatusModel new];
     }
     
     [super startService:^{
@@ -221,19 +221,19 @@ singleton_implementation(HomePageService);
     flightModel.flightCount = 1000;
     flightModel.arrCount = 448;
     flightModel.depCount = 552;
-    flightModel.arrDoneNormal = 447;
-    flightModel.arrDoneAbn = 1;
+    flightModel.arrDoneNormal = 300;
+    flightModel.arrDoneAbn = 18;
     flightModel.arrPlanNormal = 448;
-    flightModel.arrPlanAbn = 0;
-    flightModel.arrDelay = 1;
-    flightModel.arrCancel = 0;
+    flightModel.arrPlanAbn = 30;
+    flightModel.arrDelay = 50;
+    flightModel.arrCancel = 50;
 
     flightModel.depDoneNormal = 550;
-    flightModel.depDoneAbn = 2;
-    flightModel.depPlanAbn = 0;
-    flightModel.depPlanNormal = 552;
-    flightModel.depDelay = 1;
-    flightModel.depCancel = 1;
+    flightModel.depDoneAbn = 20;
+    flightModel.depPlanAbn = 50;
+    flightModel.depPlanNormal = 252;
+    flightModel.depDelay = 100;
+    flightModel.depCancel = 110;
 
     NSMutableArray *hourArray = [NSMutableArray array];
     [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"1:00" count:25 planCount:25]];
@@ -420,7 +420,7 @@ singleton_implementation(HomePageService);
 
     psnModel.psnInOutHours = array2;
 
-    psnModel.psnOnPlane =[NSMutableArray arrayWithArray: @[@{@"count":@(10),@"ratio":@(0.5),@"hour":@"45min一下"},
+    psnModel.psnOnPlane =[NSMutableArray arrayWithArray: @[@{@"count":@(10),@"ratio":@(0.5),@"hour":@"45min以下"},
                             @{@"count":@(10),@"ratio":@(0.5),@"hour":@"45min一下"},
                             @{@"count":@(10),@"ratio":@(0.5),@"hour":@"45min一下"}]];
 

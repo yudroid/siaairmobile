@@ -25,7 +25,9 @@
 
 -(BOOL)isNull:(NSDictionary *)data
 {
-    return (data == nil || ([data isKindOfClass:[NSArray class]] && [data count]==0) || ([data isKindOfClass:[NSDictionary class]] && [[data allKeys] count]==0));
+    return (data == nil
+            || ([data isKindOfClass:[NSArray class]] && [data count]==0)
+            || ([data isKindOfClass:[NSDictionary class]] && [[data allKeys] count]==0));
 }
 
 @end

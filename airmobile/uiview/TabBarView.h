@@ -37,9 +37,9 @@ typedef enum {
         UIImageView *icon;
         UILabel     *titleLabel;
     }
-    @property (nonatomic,strong)UIImage  *image;
-    @property (nonatomic,strong)NSString *text;
-    @property (nonatomic,strong)UIColor *textColor;
+    @property (nonatomic,strong)UIImage     *image;
+    @property (nonatomic,strong)NSString    *text;
+    @property (nonatomic,strong)UIColor     *textColor;
 @end
 
 // 导航栏按钮
@@ -51,7 +51,9 @@ typedef enum {
     
     @property (nonatomic,assign)BOOL hasNewMessage;
 
-    -(id)initTabBarWithModel:(TabBarBgModel)model selectedType:(TabBarSelectedType)type delegate:(id<TabBarViewDelegate>)delegate;
+    -(id)initTabBarWithModel:(TabBarBgModel)model
+                selectedType:(TabBarSelectedType)type
+                    delegate:(id<TabBarViewDelegate>)delegate;
     -(void) setHasNewMessage:(BOOL)hasNewMessage;
 @end
 

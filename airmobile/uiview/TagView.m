@@ -26,22 +26,27 @@
 }
 
 
--(void)bigText:(NSString *)bigText bigFontSize:(CGFloat)bigSize smallText:(NSString *)smallText smallFontSize:(CGFloat)smallSize interval:(CGFloat)interval tagImage:(UIImage *)tagImage{
-    _bigLabel.text = bigText;
-    _bigLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:bigSize];
-    _smallLabel.text = smallText;
-    _smallLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:smallSize];
-    self.interval = interval;
+-(void)bigText:(NSString *) bigText
+   bigFontSize:(CGFloat)    bigSize
+     smallText:(NSString *) smallText
+ smallFontSize:(CGFloat)    smallSize
+      interval:(CGFloat)    interval
+      tagImage:(UIImage *)  tagImage{
+    _bigLabel.text      = bigText;
+    _bigLabel.font      = [UIFont fontWithName:@"PingFangSC-Regular" size:bigSize];
+    _smallLabel.text    = smallText;
+    _smallLabel.font    = [UIFont fontWithName:@"PingFangSC-Light" size:smallSize];
+    self.interval       = interval;
     _tagImageView.image = tagImage;
 
-    CGRect bigFrame = _bigLabel.frame;
-    CGRect smallFrame = _smallLabel.frame;
-    bigFrame.size.height = bigSize *0.8;
-    smallFrame.size.height = smallSize * 0.8;
-    _bigLabel.frame = bigFrame;
-    _smallLabel.frame = smallFrame;
+    CGRect bigFrame         = _bigLabel.frame;
+    CGRect smallFrame       = _smallLabel.frame;
+    bigFrame.size.height    = bigSize *0.8;
+    smallFrame.size.height  = smallSize * 0.8;
+    _bigLabel.frame         = bigFrame;
+    _smallLabel.frame       = smallFrame;
 
-    _bigLabelHeight.constant = bigSize*0.8;
+    _bigLabelHeight.constant= bigSize*0.8;
 
 }
 
@@ -53,8 +58,8 @@
 
 -(CGFloat) contentWidth
 {
-    float bigLabelwidth = _bigLabel.frame.size.width;
-    float smallViewWidth = _smallView.frame.size.width+4;
+    float bigLabelwidth     = _bigLabel.frame.size.width;
+    float smallViewWidth    = _smallView.frame.size.width+4;
     return bigLabelwidth>smallViewWidth?bigLabelwidth:smallViewWidth;
 }
 -(CGFloat)contentHeight

@@ -26,21 +26,25 @@
     return self;
 }
 
--(instancetype) initWithHour:(NSString *)hour count:(int)count planCount:(int)planCount
-                    arrCount:(int)arrCount planArrCount:(int)planArrCount
-                    depCount:(int)depCount planDepCount:(int)planDepCount
+-(instancetype) initWithHour:(NSString *)hour
+                       count:(int)count
+                   planCount:(int)planCount
+                    arrCount:(int)arrCount
+                planArrCount:(int)planArrCount
+                    depCount:(int)depCount
+                planDepCount:(int)planDepCount
                       before:(BOOL)before
 {
     self = [super init];
     if(self){
-        _hour = hour;
+        _hour           = hour;
 //        _count = count;
 //        _planCount = planCount;
-        _arrCount = arrCount;
-        _planArrCount = planArrCount;
-        _depCount = depCount;
-        _planDepCount = planDepCount;
-        _before = before;
+        _arrCount       = arrCount;
+        _planArrCount   = planArrCount;
+        _depCount       = depCount;
+        _planDepCount   = planDepCount;
+        _before         = before;
     }
     return self;
 }

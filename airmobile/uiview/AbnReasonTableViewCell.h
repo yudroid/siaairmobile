@@ -11,6 +11,8 @@
 
 @interface AbnReasonTableViewCell : UITableViewCell
 
--(instancetype) initWithStyle: (UITableViewCellStyle)style reuseIdentifier: (NSString *)identifier abnReason: (AbnReasonModel *)abnReason;
+-(instancetype) initWithStyle: (UITableViewCellStyle)   style
+              reuseIdentifier: (NSString *)             identifier
+                    abnReason: (AbnReasonModel *)       abnReason;
 
 @end

@@ -19,7 +19,7 @@
 
     //titleView订制
     [self titleViewInitWithHight:64];
-    self.titleView.backgroundColor = [UIColor colorWithPatternImage:[UIImage                                  imageNamed:@"home_title_bg.png"]];
+    self.titleView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"home_title_bg.png"]];
     [self titleViewAddTitleText:@"当日值班表"];
     [self titleViewAddBackBtn];
     // Do any additional setup after loading the view from its nib.

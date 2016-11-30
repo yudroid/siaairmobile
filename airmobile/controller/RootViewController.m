@@ -32,7 +32,10 @@
 -(void)titleViewInitWithHight:(CGFloat)high
 {
     
-    self.titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, high)];
+    self.titleView = [[UIView alloc] initWithFrame:CGRectMake(0,
+                                                              0,
+                                                              kScreenWidth,
+                                                              high)];
     self.titleView.backgroundColor = [CommonFunction colorFromHex:0XFFFFFFFF];
     self.titleView.clipsToBounds = YES;
     [self.view insertSubview:self.titleView  aboveSubview:self.view];
@@ -40,7 +43,10 @@
 
 - (void)titleViewAddTitleText:(NSString *)titleText
 {
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, kScreenWidth, 44)];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
+                                                                    20,
+                                                                    kScreenWidth,
+                                                                    44)];
     titleLabel.text = titleText;
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.font = [UIFont systemFontOfSize:17];
@@ -51,13 +57,20 @@
 
 - (UIButton *)titleViewAddBackBtn
 {
-    UIButton *backBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 20, 51, 44)];
+    UIButton *backBtn = [[UIButton alloc]initWithFrame:CGRectMake(0,
+                                                                  20,
+                                                                  51,
+                                                                  44)];
     backBtn.backgroundColor = [UIColor clearColor];
     //    [backBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
-    [backBtn setImage:[UIImage imageNamed:@"back"] forState:(UIControlStateNormal)];
-    [backBtn setImage:[UIImage imageNamed:@"back"] forState:(UIControlStateSelected)];
+    [backBtn setImage:[UIImage imageNamed:@"back"]
+             forState:(UIControlStateNormal)];
+    [backBtn setImage:[UIImage imageNamed:@"back"]
+             forState:(UIControlStateSelected)];
     [self.titleView addSubview:backBtn];
-    [backBtn addTarget:self action:@selector(backButtonClick) forControlEvents:(UIControlEventTouchUpInside)];
+    [backBtn addTarget:self
+                action:@selector(backButtonClick)
+      forControlEvents:(UIControlEventTouchUpInside)];
     return backBtn;
 }
 - (void)backButtonClick{

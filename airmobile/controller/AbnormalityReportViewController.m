@@ -63,12 +63,14 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
     _tableView.delegate = self;
     _tableView.dataSource =self;
     _tableView.scrollEnabled = NO;
-    [_tableView registerNib:[UINib nibWithNibName:@"AbnormalityReportTableViewCell" bundle:nil] forCellReuseIdentifier:(NSString *)ABNORMALITYREPORT_TABLECELL_IDENTIFIER];
+    [_tableView registerNib:[UINib nibWithNibName:@"AbnormalityReportTableViewCell" bundle:nil]
+     forCellReuseIdentifier:(NSString *)ABNORMALITYREPORT_TABLECELL_IDENTIFIER];
     _tableViewArray = @[@"类型",@"事件",@"事件级别"];
 
     _abnormalityHistoryTableView.delegate = self;
     _abnormalityHistoryTableView.dataSource = self;
-    [_abnormalityHistoryTableView registerNib:[UINib nibWithNibName:@"AbnormalityReportHistoryTableViewCell" bundle:nil] forCellReuseIdentifier:(NSString *)ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER];
+    [_abnormalityHistoryTableView registerNib:[UINib nibWithNibName:@"AbnormalityReportHistoryTableViewCell" bundle:nil]
+                       forCellReuseIdentifier:(NSString *)ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER];
     _abnormalityHistoryArray = @[@"类型",@"事件"];
     _abnormalityHistoryViewHeight.constant = _abnormalityHistoryArray.count * 61 +51;
 
@@ -76,7 +78,8 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
     _photoCollectionView.delegate =self;
     _photoCollectionView.dataSource = self;
     
-    [_photoCollectionView registerNib:[UINib nibWithNibName:@"ImageViewCollectionViewCell"  bundle:nil]forCellWithReuseIdentifier:(NSString *)ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER];
+    [_photoCollectionView registerNib:[UINib nibWithNibName:@"ImageViewCollectionViewCell"  bundle:nil]
+           forCellWithReuseIdentifier:(NSString *)ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER];
     _collectionArray = [NSMutableArray array];
 
     _requireTextView.returnKeyType =UIReturnKeyDone;
@@ -153,7 +156,8 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 
 - (IBAction)phoneButttonClick:(id)sender
 {
-    UploadPhotoViewController *uploadPhotoVC = [[UploadPhotoViewController alloc]initWithNibName:@"UploadPhotoViewController" bundle:nil];
+    UploadPhotoViewController *uploadPhotoVC = [[UploadPhotoViewController alloc]initWithNibName:@"UploadPhotoViewController"
+                                                                                          bundle:nil];
     uploadPhotoVC.delegate = self;
     [self.navigationController pushViewController:uploadPhotoVC animated:YES];
 
@@ -263,7 +267,8 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    ImageViewCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:(NSString *)ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER forIndexPath:indexPath];
+    ImageViewCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:(NSString *)ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER
+                                                                                  forIndexPath:indexPath];
     cell.imageView.image = _collectionArray[indexPath.row];
     return cell;
 }

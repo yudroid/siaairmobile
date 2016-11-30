@@ -17,7 +17,10 @@ singleton_interface(MessageService);
 
 -(void)startService;
 
--(void)resetDialogParam: (long)clientId userId: (long)userId toId: (long)toId type: (BOOL)type;
+-(void)resetDialogParam:(long)clientId
+                 userId:(long)userId
+                   toId:(long)toId
+                   type:(BOOL)type;
 
 @property (nonatomic,weak) id<ChatViewDelegate> chatDelegate;
 

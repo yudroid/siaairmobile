@@ -17,8 +17,8 @@
 
 @interface FlightHourView : UIView<UITableViewDelegate,UITableViewDataSource>
 
--(instancetype) initWithFrame:(CGRect)frame
+-(instancetype) initWithFrame:(CGRect)                      frame
                     DataArray:(NSArray<FlightHourModel *> *)dataArray
-               flightHourType:(FlightHourType) type;
+               flightHourType:(FlightHourType)              type;
 
 @end

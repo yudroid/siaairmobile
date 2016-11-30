@@ -14,25 +14,25 @@
 @implementation EightMonthRatioView
 
 {
-    PNBarChart *barChart;
-    NSMutableArray<ReleasedRatioModel *> *eightMonthArray;
+    PNBarChart                              *barChart;
+    NSMutableArray<ReleasedRatioModel *>    *eightMonthArray;
 }
 
--(instancetype)initWithFrame:(CGRect)frame dataArray:(NSArray *)dataArray
+-(instancetype)initWithFrame:(CGRect)   frame
+                   dataArray:(NSArray *)dataArray
 {
     self = [super initWithFrame:frame];
 
     if(self){
-        //        backgroundColor = [UIColor lightGrayColor];
 
         eightMonthArray = [dataArray copy];
 
         CGFloat topBgViewWidth = kScreenWidth-2*px2(22);
-        UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, topBgViewWidth, topBgViewWidth *391/709)];
+        UIView  *topBgView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, topBgViewWidth, topBgViewWidth *391/709)];
         [self addSubview:topBgView];
 
-        UIImageView *topBgBackgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, viewWidth(topBgView), viewHeight(topBgView))];
-        topBgBackgroundImageView.image = [UIImage imageNamed:@"TenDayRatioChartBackground"];
+        UIImageView *topBgBackgroundImageView   = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, viewWidth(topBgView), viewHeight(topBgView))];
+        topBgBackgroundImageView.image          = [UIImage imageNamed:@"TenDayRatioChartBackground"];
         [topBgView addSubview:topBgBackgroundImageView];
 
         //        CAGradientLayer *gradient = [CAGradientLayer layer];
@@ -42,10 +42,10 @@
         //        [topBgView.layer setCornerRadius:8.0];// 将图层的边框设置为圆脚
         [topBgView.layer setMasksToBounds:YES];// 隐藏边界
 
-        UILabel *passengerTtitle = [[UILabel alloc] initWithFrame:CGRectMake(16, 8, viewWidth(topBgView)-100, 11)];
-        passengerTtitle.text = @"平均放行正常率";
-        passengerTtitle.font = [UIFont fontWithName:@"PingFangSC-Regular" size:27/2];
-        passengerTtitle.textColor = [UIColor whiteColor];
+        UILabel *passengerTtitle    = [[UILabel alloc] initWithFrame:CGRectMake(16, 8, viewWidth(topBgView)-100, 11)];
+        passengerTtitle.text        = @"平均放行正常率";
+        passengerTtitle.font        = [UIFont fontWithName:@"PingFangSC-Regular" size:27/2];
+        passengerTtitle.textColor   = [UIColor whiteColor];
         [topBgView addSubview:passengerTtitle];
 
         UILabel *ratioNum = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-100, 7.5, 80, 20)
@@ -57,66 +57,98 @@
 
 
 
-        UILabel *todayLabel = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-140, viewHeight(ratioNum)+viewY(ratioNum) , 120, 20) text:[NSString stringWithFormat:@"今日 %@",[CommonFunction dateFormat:nil format:@"MM月dd日"]] font:11 textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF];
+        UILabel *todayLabel = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-140, viewHeight(ratioNum)+viewY(ratioNum) , 120, 20)
+                                                       text:[NSString stringWithFormat:@"今日 %@",[CommonFunction dateFormat:nil format:@"MM月dd日"]]
+                                                       font:11
+                                              textAlignment:NSTextAlignmentRight
+                                               colorFromHex:0x75FFFFFF];
         [topBgView addSubview:todayLabel];
 
-        UILabel *circleLabel= [CommonFunction addLabelFrame:CGRectMake(viewX(passengerTtitle), viewY(todayLabel), 20, 20) text:@"●" font:11 textAlignment:NSTextAlignmentLeft colorFromHex:0xFFFFFFFF];
+        UILabel *circleLabel= [CommonFunction addLabelFrame:CGRectMake(viewX(passengerTtitle), viewY(todayLabel), 20, 20)
+                                                       text:@"●"
+                                                       font:11
+                                              textAlignment:NSTextAlignmentLeft
+                                               colorFromHex:0xFFFFFFFF];
         [topBgView addSubview:circleLabel];
 
-        UILabel *ratioChar = [CommonFunction addLabelFrame:CGRectMake(viewX(passengerTtitle)+20, viewY(todayLabel), 80, 20) text:@"放行率" font:11 textAlignment:NSTextAlignmentLeft colorFromHex:0x75FFFFFF];
+        UILabel *ratioChar = [CommonFunction addLabelFrame:CGRectMake(viewX(passengerTtitle)+20, viewY(todayLabel), 80, 20)
+                                                      text:@"放行率"
+                                                      font:11
+                                             textAlignment:NSTextAlignmentLeft
+                                              colorFromHex:0x75FFFFFF];
         [topBgView addSubview:ratioChar];
 
 
-        UIImageView *lineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(passengerTtitle), viewY(circleLabel)+viewHeight(circleLabel)+4, viewWidth(topBgView)-viewX(passengerTtitle)-18, 0.5)];
-        lineImageView.image = [UIImage imageNamed:@"hiddenLine"];
+        UIImageView *lineImageView  = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(passengerTtitle),
+                                                                                  viewY(circleLabel)+viewHeight(circleLabel)+4,
+                                                                                  viewWidth(topBgView)-viewX(passengerTtitle)-18,
+                                                                                  0.5)];
+        lineImageView.image         = [UIImage imageNamed:@"hiddenLine"];
         [topBgView addSubview:lineImageView];
 
 
-        UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(viewWidth(topBgView)-18-50,viewBotton(lineImageView)+4, 50, 12) text:@"120" font:11 textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF];
+        UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(viewWidth(topBgView)-18-50,viewBotton(lineImageView)+4, 50, 12)
+                                                     text:@"120"
+                                                     font:11
+                                            textAlignment:NSTextAlignmentRight
+                                             colorFromHex:0x75FFFFFF];
         [topBgView addSubview:maxLabel];
 
-        barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(viewX(passengerTtitle), viewBotton(maxLabel), viewWidth(topBgView)-viewX(passengerTtitle)-18, viewHeight(topBgView)-viewBotton(maxLabel))];//折线图
+        barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(viewX(passengerTtitle),
+                                                                viewBotton(maxLabel),
+                                                                viewWidth(topBgView)-viewX(passengerTtitle)-18,
+                                                                viewHeight(topBgView)-viewBotton(maxLabel))];//折线图
 
-        barChart.showXLabel = YES;
-        barChart.showYLabel = NO;
-        barChart.backgroundColor = [UIColor clearColor];
+        barChart.showXLabel         = YES;
+        barChart.showYLabel         = NO;
+        barChart.backgroundColor    = [UIColor clearColor];
 
-        barChart.yMaxValue = 120;
-        barChart.yMinValue = 30;
-        barChart.yChartLabelWidth = 20.0;
-        barChart.chartMarginTop = 5.0;
-        barChart.chartMarginBottom = 10.0;
-        barChart.labelTextColor = [CommonFunction colorFromHex:0xFFFFFFFF];
+        barChart.yMaxValue          = 120;
+        barChart.yMinValue          = 30;
+        barChart.yChartLabelWidth   = 20.0;
+        barChart.chartMarginTop     = 5.0;
+        barChart.chartMarginBottom  = 10.0;
+        barChart.labelTextColor     = [CommonFunction colorFromHex:0xFFFFFFFF];
 
 
-        barChart.labelMarginTop = 5.0;
-        barChart.showChartBorder = NO;
-        barChart.barRadius = 6.0f;
+        barChart.labelMarginTop     = 5.0;
+        barChart.showChartBorder    = NO;
+        barChart.barRadius          = 6.0f;
         [barChart setXLabels:[self getXLabels]];
         [barChart setYValues:[self getYLabels]];
 
-        barChart.isGradientShow = YES;
-        barChart.isShowNumbers = NO;
+        barChart.isGradientShow     = YES;
+        barChart.isShowNumbers      = NO;
         barChart.barBackgroundColor = [UIColor clearColor];
 
         [barChart strokeChart];
         [topBgView addSubview:barChart];
 
 
-        UIImageView *downlineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(passengerTtitle), topBgView.frame.size.height-10-15, viewWidth(topBgView)-viewX(passengerTtitle)-18, 0.5)];
+        UIImageView *downlineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(passengerTtitle),
+                                                                                      topBgView.frame.size.height-10-15,
+                                                                                      viewWidth(topBgView)-viewX(passengerTtitle)-18,
+                                                                                      0.5)];
         downlineImageView.image = [UIImage imageNamed:@"hiddenLine"];
         [topBgView addSubview:downlineImageView];
 
-        [topBgView addSubview:[CommonFunction addLabelFrame:CGRectMake(20, viewY(downlineImageView)-13-4, topBgView.frame.size.width-40, 13) text:@"0" font:11 textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF]];
+        [topBgView addSubview:[CommonFunction addLabelFrame:CGRectMake(20, viewY(downlineImageView)-13-4, topBgView.frame.size.width-40, 13)
+                                                       text:@"0"
+                                                       font:11
+                                              textAlignment:NSTextAlignmentRight
+                                               colorFromHex:0x75FFFFFF]];
 
 
         //小时分布表格
-         UITableView *tenDayTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, viewBotton(topBgView)+8, kScreenWidth, viewHeight(self)-viewBotton(topBgView)-8-10)];
-        tenDayTableView.delegate = self;
-        tenDayTableView.dataSource = self;
-        tenDayTableView.showsVerticalScrollIndicator = NO;
-        tenDayTableView.backgroundColor = [UIColor whiteColor];
-        tenDayTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+         UITableView *tenDayTableView = [[UITableView alloc]initWithFrame:CGRectMake(0,
+                                                                                     viewBotton(topBgView)+8,
+                                                                                     kScreenWidth,
+                                                                                     viewHeight(self)-viewBotton(topBgView)-8-10)];
+        tenDayTableView.delegate                        = self;
+        tenDayTableView.dataSource                      = self;
+        tenDayTableView.showsVerticalScrollIndicator    = NO;
+        tenDayTableView.backgroundColor                 = [UIColor whiteColor];
+        tenDayTableView.separatorStyle                  = UITableViewCellSeparatorStyleNone;
         [self addSubview:tenDayTableView];
     }
     
@@ -136,7 +168,8 @@
     RatioTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ratio.time];
     
     if (!cell) {
-        cell = [[RatioTableViewCell alloc]initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:ratio.time ratio:ratio];
+        cell = [[RatioTableViewCell alloc]initWithStyle:(UITableViewCellStyleDefault)
+                                        reuseIdentifier:ratio.time ratio:ratio];
     }
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -145,7 +178,7 @@
 
 -(NSArray *) getXLabels
 {
-    NSMutableArray *arr = [[NSMutableArray alloc] init];
+    NSMutableArray *arr     = [[NSMutableArray alloc] init];
     for(ReleasedRatioModel *model in eightMonthArray){
         [arr addObject:model.time];
     }
@@ -154,7 +187,7 @@
 
 -(NSArray *) getYLabels
 {
-    NSMutableArray *arr = [[NSMutableArray alloc] init];
+    NSMutableArray *arr     = [[NSMutableArray alloc] init];
     for(ReleasedRatioModel *model in eightMonthArray){
         [arr addObject:@((int)(model.ratio*100))];
     }

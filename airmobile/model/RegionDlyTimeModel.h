@@ -11,10 +11,12 @@
 
 @interface RegionDlyTimeModel : RootModel
 
-@property (nonatomic,copy) NSString *region;
-@property (nonatomic,assign) int count;
-@property (nonatomic,assign) int time;
+@property (nonatomic,copy)      NSString    *region;
+@property (nonatomic,assign)    int         count;
+@property (nonatomic,assign)    int         time;
 
--(instancetype)initWithRegion:(NSString *)region count:(int)count time:(CGFloat)time;
+-(instancetype)initWithRegion:(NSString *)  region
+                        count:(int)         count
+                         time:(CGFloat)     time;
 
 @end

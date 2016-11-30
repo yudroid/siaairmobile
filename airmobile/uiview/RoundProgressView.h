@@ -25,11 +25,22 @@ typedef enum
     CGFloat _abnormalProportion;
 }
 
--(id)initWithCenter:(CGPoint)center radius:(CGFloat)radius aboveColos:(NSArray *)aboveColos belowColos:(NSArray *)belowColos start:(CGFloat)start end:(CGFloat)end clockwise:(BOOL)clockwise;
+-(id)initWithCenter:(CGPoint)   center
+             radius:(CGFloat)   radius
+         aboveColos:(NSArray *) aboveColos
+         belowColos:(NSArray *) belowColos
+              start:(CGFloat)   start
+                end:(CGFloat)   end
+          clockwise:(BOOL)clockwise;
 
--(void)animationWithStrokeEnd:(CGFloat)strokeEnd withProgressType :(ProgreesType)type;
+-(void)animationWithStrokeEnd:(CGFloat)strokeEnd
+             withProgressType:(ProgreesType)type;
 
--(id)initWithCenter:(CGPoint)center radius:(CGFloat)radius bigRadius:(CGFloat)bigRadius shapeArray:(NSArray *)shapeArray clockwise:(BOOL)clockwise;
+-(id)initWithCenter:(CGPoint)   center
+             radius:(CGFloat)   radius
+          bigRadius:(CGFloat)   bigRadius
+         shapeArray:(NSArray *) shapeArray
+          clockwise:(BOOL)      clockwise;
 
 @property(nonatomic,strong)CAShapeLayer * abnormalLaber;
 @property(nonatomic,strong)CAShapeLayer * normalLaber;

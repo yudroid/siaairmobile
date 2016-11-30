@@ -30,6 +30,8 @@
 
 @interface PassengerContentView : UIView<UIScrollViewDelegate>
 
--(instancetype)initWithFrame:(CGRect)frame PassengerModel:(PassengerModel *)passengermodel delegate: (id<PassengerContentViewDelegate>)delegate;
+-(instancetype)initWithFrame:(CGRect)                           frame
+              PassengerModel:(PassengerModel *)                 passengermodel
+                    delegate: (id<PassengerContentViewDelegate>)delegate;
 
 @end

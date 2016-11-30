@@ -16,7 +16,12 @@
 @property (nonatomic, assign) CGFloat interval;
 @property (weak, nonatomic) IBOutlet UIView *smallView;
 
--(void)bigText:(NSString *)bigText bigFontSize:(CGFloat)bigSize smallText:(NSString *)smallText smallFontSize:(CGFloat)smallSize interval:(CGFloat)interval tagImage:(UIImage *)tagImage;
+-(void)bigText:(NSString *) bigText
+   bigFontSize:(CGFloat)    bigSize
+     smallText:(NSString *) smallText
+ smallFontSize:(CGFloat)    smallSize
+      interval:(CGFloat)    interval
+      tagImage:(UIImage *)  tagImage;
 
 -(CGFloat) contentWidth;
 -(CGFloat) contentHeight;

@@ -32,7 +32,9 @@ static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDEN
     [self initTitleView];
     [self initTable];
     //TabBer自定义
-    self.tabBarView = [[TabBarView alloc] initTabBarWithModel:TabBarBgModelHomePage selectedType:TabBarSelectedTypeFunction delegate:self];
+    self.tabBarView = [[TabBarView alloc] initTabBarWithModel:TabBarBgModelHomePage
+                                                 selectedType:TabBarSelectedTypeFunction
+                                                     delegate:self];
     [self.view insertSubview:self.tabBarView aboveSubview:self.view];
 }
 
@@ -45,12 +47,17 @@ static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDEN
 }
 -(void)initTable
 {
-    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, kScreenWidth, kScreenHeight-64-49)
+    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,
+                                                              64,
+                                                              kScreenWidth,
+                                                              kScreenHeight-64-49)
                                              style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.backgroundColor = [UIColor clearColor];
-    [_tableView registerNib:[UINib nibWithNibName:@"UserInfoTableViewCell" bundle:nil] forCellReuseIdentifier:(NSString *)FUNCTION_TABLECELL_IDENTIFIER];
+    [_tableView registerNib:[UINib nibWithNibName:@"UserInfoTableViewCell"
+                                           bundle:nil]
+     forCellReuseIdentifier:(NSString *)FUNCTION_TABLECELL_IDENTIFIER];
     _tableView.tableFooterView = [[UIView alloc]init];
     _tableArray= @[@{@"name":@"通讯录",@"image":@"AddressBook"},
                    @{@"name":@"值班表",@"image":@"WatchBill"}];
@@ -83,16 +90,20 @@ static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDEN
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath
+                             animated:YES];
     NSDictionary *rowDic = _tableArray[indexPath.row];
     NSString *name = [rowDic objectForKey:@"name"];
 
     if ([name isEqualToString:@"值班表"]){
-        NightShiftRoomViewController *nightShiftRoomVC = [[NightShiftRoomViewController alloc]initWithNibName:@"NightShiftRoomViewController" bundle:nil];
-        [self.navigationController pushViewController:nightShiftRoomVC animated:YES];
+        NightShiftRoomViewController *nightShiftRoomVC = [[NightShiftRoomViewController alloc] initWithNibName:@"NightShiftRoomViewController" bundle:nil];
+        [self.navigationController pushViewController:nightShiftRoomVC
+                                             animated:YES];
     }else if ([name isEqualToString:@"通讯录"]){
-        AddressBookViewController *addressBookVC = [[AddressBookViewController alloc]initWithNibName:@"AddressBookViewController" bundle:nil];
-        [self.navigationController pushViewController:addressBookVC animated:YES];
+        AddressBookViewController *addressBookVC = [[AddressBookViewController alloc] initWithNibName:@"AddressBookViewController"
+                                                                                               bundle:nil];
+        [self.navigationController pushViewController:addressBookVC
+                                             animated:YES];
     }
 }
 

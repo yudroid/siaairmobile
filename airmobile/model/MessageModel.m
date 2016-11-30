@@ -10,16 +10,21 @@
 
 @implementation MessageModel
 
--(instancetype) initWithId:(long)rid content:(NSString *)content fromId:(long)fromId toId:(long)toId type:(int)type status:(int)status
+-(instancetype) initWithId:(long)       rid
+                   content:(NSString *) content
+                    fromId:(long)       fromId
+                      toId:(long)       toId
+                      type:(int)        type
+                    status:(int)        status
 {
     self = [super init];
     if(self){
-        _id = rid;
-        _fromId = fromId;
-        _toId = toId;
-        _type = type;
-        _handleStatus = status;
-        _content = content;
+        _id             = rid;
+        _fromId         = fromId;
+        _toId           = toId;
+        _type           = type;
+        _handleStatus   = status;
+        _content        = content;
     }
     return self;
 }
@@ -28,11 +33,11 @@
 {
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     
-    [dic setObject:[NSNumber numberWithLong:_id] forKey:@"id"];
-    [dic setObject:[NSNumber numberWithLong:_fromId] forKey:@"fromId"];
-    [dic setObject:[NSNumber numberWithLong:_toId] forKey:@"toId"];
+    [dic setObject:[NSNumber numberWithLong:_id]        forKey:@"id"];
+    [dic setObject:[NSNumber numberWithLong:_fromId]    forKey:@"fromId"];
+    [dic setObject:[NSNumber numberWithLong:_toId]      forKey:@"toId"];
     [dic setObject:[NSNumber numberWithInt:_handleStatus] forKey:@"handleStatus"];
-    [dic setObject:[NSNumber numberWithInt:_type] forKey:@"type"];
+    [dic setObject:[NSNumber numberWithInt:_type]       forKey:@"type"];
     if(_content !=nil){
         [dic setObject:_content forKey:@"content"];
     }
@@ -43,9 +48,9 @@
 {
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     
-    [dic setObject:[NSNumber numberWithLong:_id] forKey:@"id"];
-    [dic setObject:[NSNumber numberWithLong:_fromId] forKey:@"sendUserId"];
-    [dic setObject:[NSNumber numberWithLong:_toId] forKey:@"workgroupId"];
+    [dic setObject:[NSNumber numberWithLong:_id]        forKey:@"id"];
+    [dic setObject:[NSNumber numberWithLong:_fromId]    forKey:@"sendUserId"];
+    [dic setObject:[NSNumber numberWithLong:_toId]      forKey:@"workgroupId"];
     if(_content !=nil){
         [dic setObject:_content forKey:@"content"];
     }

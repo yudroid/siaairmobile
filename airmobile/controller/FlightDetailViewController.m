@@ -38,6 +38,8 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 @property (nonatomic, copy) NSArray     *safeguardTableViewArray;
 @property (nonatomic, copy) NSArray     *airLineCollectionArray;
 @property (nonatomic, copy) NSArray     *tableArray;
+
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *safeguradViewHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *safeguardTableViewHeight;
 
@@ -65,6 +67,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
     FlightService *flightService = [[FlightService alloc]init];
     [flightService startService];
     flight = [flightService getFlightDetailModel];
+    _safeguardTableViewArray = [flightService getSpecialSafeguardArray];
 
     dispatches = [NSMutableArray array];
     specicals = [NSMutableArray array];
@@ -96,7 +99,8 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 
     _tableArray = [flightService getSafeguardArray];
 
-    [_AirlineCollectionView registerNib:[UINib nibWithNibName:@"FlightDetailAirLineCollectionViewCell" bundle:nil]
+    [_AirlineCollectionView registerNib:[UINib nibWithNibName:@"FlightDetailAirLineCollectionViewCell"
+                                                       bundle:nil]
              forCellWithReuseIdentifier:(NSString *)FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER];
 
     _tableViewHeight.constant = 103*_tableArray.count;
@@ -137,17 +141,20 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
     if (tableView == _safeguardTableView) {
         FlightDetailSafeguardTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)FLIGHTDETAIL_SAFEGUARDTABLECELL_IDENTIFIER];
         if (cell==nil) {
-            cell = [[NSBundle mainBundle] loadNibNamed:@"FlightDetailSafeguardTableViewCell" owner:nil options:nil][0];
-
+            cell = [[NSBundle mainBundle] loadNibNamed:@"FlightDetailSafeguardTableViewCell"
+                                                 owner:nil
+                                               options:nil][0];
         }
-
+        cell.safeguardModel = _safeguardTableViewArray[indexPath.row];
         cell.delegate = self;
         return  cell;
         
     }else{
         FlightDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)FLIGHTDETAIL_TABLECELL_IDENTIFIER];
         if (cell==nil) {
-            cell = [[NSBundle mainBundle] loadNibNamed:@"FlightDetailTableViewCell" owner:nil options:nil][0];
+            cell = [[NSBundle mainBundle] loadNibNamed:@"FlightDetailTableViewCell"
+                                                 owner:nil
+                                               options:nil][0];
         }
         cell.safeguardModel = _tableArray[indexPath.row];
         if (indexPath.row == 0) {
@@ -168,11 +175,12 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 #pragma mark - FlightDetailTableViewCellDelegate
 -(void)flightDetailTableViewCellUsualButtonClick
 {
-    CommonAbnormalityReportViewController *abnormalityReportVC=[[CommonAbnormalityReportViewController alloc]initWithNibName:@"AbnormalityReportViewController" bundle:nil];
+    CommonAbnormalityReportViewController *abnormalityReportVC=[[CommonAbnormalityReportViewController alloc] initWithNibName:@"AbnormalityReportViewController" bundle:nil];
     abnormalityReportVC.flightID = @"";
     abnormalityReportVC.SafeguardID = @"";
     abnormalityReportVC.isKeyFlight = YES;
-    [self.navigationController pushViewController:abnormalityReportVC animated:YES];
+    [self.navigationController pushViewController:abnormalityReportVC
+                                         animated:YES];
 }
 
 
@@ -183,7 +191,8 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake((kScreenWidth-50)/_airLineCollectionArray.count, collectionView.frame.size.height);
+    return CGSizeMake((kScreenWidth-50)/_airLineCollectionArray.count,
+                      collectionView.frame.size.height);
 }
 
 -(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
@@ -196,7 +205,8 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    FlightDetailAirLineCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:(NSString *)FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER forIndexPath:indexPath];
+    FlightDetailAirLineCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:(NSString *)FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER
+                                                                                            forIndexPath:indexPath];
     if (indexPath.row == 0) {
         cell.type = FlightDetailAirLineCollectionViewCellTypeFirst;
     }else if(indexPath.row == _airLineCollectionArray.count-1){
@@ -232,7 +242,8 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
     SpecialAbnormalityReportViewController *abnormalityReportVC=[[SpecialAbnormalityReportViewController alloc]initWithNibName:@"AbnormalityReportViewController" bundle:nil];
     abnormalityReportVC.flightID = @"";
     abnormalityReportVC.SafeguardID = @"";
-    [self.navigationController pushViewController:abnormalityReportVC animated:YES];
+    [self.navigationController pushViewController:abnormalityReportVC
+                                         animated:YES];
 }
 -(void)flightDetailSafeguardTableViewCellNormalButtonClick:(UIButton *)sender
 {

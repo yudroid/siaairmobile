@@ -11,12 +11,17 @@
 
 @interface ProgreesBarView : UIView
 {
-    UIView *progressView;
+    UIView      *progressView;
     UIImageView *bg;
 }
 
--(id)initWithCenter:(CGPoint)center size:(CGSize)size direction:(int)direction colors:(NSArray *)colors proportion:(CGFloat)proportion;
--(void)animationWithWidth:(CGFloat)width;
--(void)animationWithStrokeEnd:(CGFloat)strokeEnd;
+-(id)initWithCenter:(CGPoint)   center
+               size:(CGSize)    size
+          direction:(int)       direction
+             colors:(NSArray *) colors
+         proportion:(CGFloat)   proportion;
+
+-(void)animationWithWidth:(CGFloat)     width;
+-(void)animationWithStrokeEnd:(CGFloat) strokeEnd;
 
 @end

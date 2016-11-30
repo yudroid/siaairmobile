@@ -36,8 +36,12 @@
     
     [self initTitle];
     
-    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 65+10, kScreenWidth, kScreenHeight-(65+10)-40)];
-    scrollView.contentSize = CGSizeMake(scrollView.frame.size.width*2, scrollView.frame.size.height) ;
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,
+                                                                              65+10,
+                                                                              kScreenWidth,
+                                                                              kScreenHeight-(65+10)-40)];
+    scrollView.contentSize = CGSizeMake(scrollView.frame.size.width*2,
+                                        scrollView.frame.size.height) ;
     scrollView.delegate = self;
     scrollView.backgroundColor = [UIColor clearColor];
     scrollView.pagingEnabled = YES;
@@ -69,7 +73,11 @@
     [self.view addSubview:pageControl];
     
     if(DepFlightHour == _hourType){
-        [scrollView scrollRectToVisible:CGRectMake(scrollView.frame.size.width, 0, scrollView.frame.size.width, scrollView.frame.size.height) animated:YES];
+        [scrollView scrollRectToVisible:CGRectMake(scrollView.frame.size.width,
+                                                   0,
+                                                   scrollView.frame.size.width,
+                                                   scrollView.frame.size.height)
+                               animated:YES];
         NSInteger page = scrollView.contentOffset.x/kScreenWidth;
         [pageControl setCurrentPage:page];
     }

@@ -44,9 +44,14 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.tableFooterView = [[UIView alloc]init];
-    [_tableView registerNib:[UINib nibWithNibName:@"ContactPersonTableViewCell" bundle:nil] forCellReuseIdentifier:(NSString *)CONTACTPERSON_TABLECELL_IDENTIFIER];
-    [_tableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:(NSString *)CONTACTPERSON_TABLECELLHRADER_IDENTIFIER];
-    [_tableView registerNib:[UINib nibWithNibName:@"ContactPersonTableViewHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:(NSString *)CONTACTPERSON_TABLECELLHRADER_IDENTIFIER];
+    [_tableView registerNib:[UINib nibWithNibName:@"ContactPersonTableViewCell"
+                                           bundle:nil]
+     forCellReuseIdentifier:(NSString *)CONTACTPERSON_TABLECELL_IDENTIFIER];
+    [_tableView registerClass:[UITableViewHeaderFooterView class]
+forHeaderFooterViewReuseIdentifier:(NSString *)CONTACTPERSON_TABLECELLHRADER_IDENTIFIER];
+    [_tableView registerNib:[UINib nibWithNibName:@"ContactPersonTableViewHeaderView"
+                                           bundle:nil]
+forHeaderFooterViewReuseIdentifier:(NSString *)CONTACTPERSON_TABLECELLHRADER_IDENTIFIER];
     // Do any additional setup after loading the view from its nib.
     
     
@@ -60,14 +65,20 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
     [self titleViewAddTitleText:@"选择联系人"];
     [self titleViewAddBackBtn];
     
-    _sureButton = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-16-40, 33, 41, 18)];
+    _sureButton = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-16-40,
+                                                            33,
+                                                            41,
+                                                            18)];
     
     
-    _sureButton.titleLabel.font = [UIFont fontWithName:@"PingFang SC" size:10];
+    _sureButton.titleLabel.font = [UIFont fontWithName:@"PingFang SC"
+                                                  size:10];
     [_sureButton setTitle:@"确定(0)" forState:UIControlStateNormal];
-    [_sureButton addTarget:self action:@selector(sureButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    [_sureButton setBackgroundImage:[UIImage imageNamed:@"PersonSure"] forState:UIControlStateNormal];
-    
+    [_sureButton addTarget:self
+                    action:@selector(sureButtonClick:)
+          forControlEvents:UIControlEventTouchUpInside];
+    [_sureButton setBackgroundImage:[UIImage imageNamed:@"PersonSure"]
+                           forState:UIControlStateNormal];
     [self.titleView addSubview:_sureButton];
 }
 
@@ -76,7 +87,6 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
     if([_selectTableArray count] == 0){
         return;
     }
-    
     int chatType = 0;
     if([_selectTableArray count]>1){
         NSMutableArray *userIdsArray = [NSMutableArray array];
@@ -93,7 +103,8 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
         
         NSDictionary *dic = [[NSDictionary alloc] initWithObjectsAndKeys:[userIdsArray componentsJoinedByString:@","],@"groupusers",deptName,@"groupname", nil];
         
-        [HttpsUtils saveGroupInfo:dic success:^(id reponseObj) {
+        [HttpsUtils saveGroupInfo:dic
+                          success:^(id reponseObj) {
             if(reponseObj == nil){
                 return;
             }
@@ -103,11 +114,13 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
                 return;
             }
             
-            ChatViewController *chatVC = [[ChatViewController alloc]initWithNibName:@"ChatViewController" bundle:nil];
+            ChatViewController *chatVC = [[ChatViewController alloc]initWithNibName:@"ChatViewController"
+                                                                             bundle:nil];
             chatVC.chatId = [[chat objectForKey:@"chatid"] longLongValue];
             chatVC.chatTypeId = [[chat objectForKey:@"type"] intValue];
             chatVC.localChatId = [[chat objectForKey:@"id"] longLongValue];
-            [self.navigationController pushViewController:chatVC animated:YES];
+            [self.navigationController pushViewController:chatVC
+                                                 animated:YES];
         }];
     }else{
         UserInfoModel *item = [_selectTableArray objectAtIndex:0];
@@ -116,12 +129,13 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
         if(chat == nil){
             return;
         }
-
-        ChatViewController *chatVC = [[ChatViewController alloc]initWithNibName:@"ChatViewController" bundle:nil];
+        ChatViewController *chatVC = [[ChatViewController alloc]initWithNibName:@"ChatViewController"
+                                                                         bundle:nil];
         chatVC.chatId = [[chat objectForKey:@"chatid"] longLongValue];
         chatVC.chatTypeId = [[chat objectForKey:@"type"] intValue];
         chatVC.localChatId = [[chat objectForKey:@"id"] longLongValue];
-        [self.navigationController pushViewController:chatVC animated:YES];
+        [self.navigationController pushViewController:chatVC
+                                             animated:YES];
     }
 
 }
@@ -183,7 +197,8 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath
+                             animated:YES];
     ContactPersonTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.isSelected = !cell.isSelected;
     DeptInfoModel *depModel = [array objectAtIndex:indexPath.section];
@@ -192,7 +207,8 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
     }else{
         [_selectTableArray removeObject:[depModel.userArr objectAtIndex:indexPath.row]];
     }
-    [_sureButton setTitle:[NSString stringWithFormat:@"确定(%lu)",(unsigned long)_selectTableArray.count] forState:UIControlStateNormal];
+    [_sureButton setTitle:[NSString stringWithFormat:@"确定(%lu)",(unsigned long)_selectTableArray.count]
+                 forState:UIControlStateNormal];
 }
 
 
@@ -204,11 +220,13 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
     // 通过点击的段数，来获取数组里的bool（对应的展开状态）
     BOOL bo = [[_resultArry objectAtIndex:view.tag] boolValue];
     // 把点击段数的状态转换为相反的状态
-    [_resultArry replaceObjectAtIndex:view.tag withObject:[NSNumber numberWithBool:!bo]];
+    [_resultArry replaceObjectAtIndex:view.tag
+                           withObject:[NSNumber numberWithBool:!bo]];
     // 刷新某个分段（只有这一个刷新分组的方法，所以刷新一组，或者刷新全组都是这样写，NSIndexSet为一个集合）
     
     //刷新某个 section 里面的 cell 数据
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:view.tag] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:view.tag]
+                  withRowAnimation:UITableViewRowAnimationAutomatic];
     
     
 }
@@ -218,7 +236,6 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
 {
     NSLog(@"search -text %@",searchText);
 }
-
 -(void)initTableData
 {
     array = [PersistenceUtils loadUserListGroupByDept];

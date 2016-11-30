@@ -15,8 +15,7 @@
 
 -(void) awakeFromNib{
     [super awakeFromNib];
-    
-}
+    }
 -(void)setIsSelected:(Boolean)isSelected
 {
     _isSelected = isSelected;

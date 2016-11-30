@@ -107,7 +107,7 @@
                                                               titleLableHeight)];//整体概览
     overviewLabel.center = CGPointMake(kScreenWidth/8, 57);
     overviewLabel.textColor = [CommonFunction colorFromHex:0XFFFFFFFF];
-    overviewLabel.text = @"整体";
+    overviewLabel.text = @"总览";
     overviewLabel.font =  [UIFont fontWithName:@"PingFangSC-Regular"
                                           size:px2(37)];
     overviewLabel.textAlignment = NSTextAlignmentCenter;
@@ -144,7 +144,9 @@
                                                                      50)];
     flightBtn.center = CGPointMake(kScreenWidth*3/8, 57);
     flightBtn.tag = 1;
-    [flightBtn addTarget:self action:@selector(titleButtonClickedWithSender:) forControlEvents:UIControlEventTouchUpInside];
+    [flightBtn addTarget:self
+                  action:@selector(titleButtonClickedWithSender:)
+        forControlEvents:UIControlEventTouchUpInside];
     //    securityBtn.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.5];//显示按键范围
     [titleLabelView addSubview:flightBtn];
     

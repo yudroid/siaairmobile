@@ -10,6 +10,7 @@
 
 @interface PsnSafetyContentView : UIView
 
--(instancetype)initWithFrame:(CGRect)frame dataArray:(NSArray *)dataArray;
+-(instancetype)initWithFrame:(CGRect)   frame
+                   dataArray:(NSArray *)dataArray;
 
 @end

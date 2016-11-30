@@ -11,6 +11,7 @@
 #import "UILabel+Business.h"
 #import "TagView.h"
 #import "SummaryModel.h"
+#import "NightShiftRoomViewController.h"
 
 @implementation OverViewContentView
 {
@@ -18,7 +19,9 @@
 }
 
 
--(id)initWithFrame:(CGRect)frame summaryModel:(SummaryModel *)summaryModel delegate:(id<OverviewContentViewDelegate>)delegate
+-(id)initWithFrame:(CGRect)                         frame
+      summaryModel:(SummaryModel *)                 summaryModel
+          delegate:(id<OverviewContentViewDelegate>)delegate
 {
     self = [super initWithFrame:frame];
     
@@ -40,17 +43,17 @@
                                                                                                 px2(35))];
         [caleandarView addSubview:calendarImage];
         CGSize maxLabelSize = CGSizeMake(100, CGFLOAT_MAX);
-        calendarLabel = [[UILabel alloc] init];
-        calendarLabel.text = summaryModel.flightDate;
-        calendarLabel.font = [UIFont fontWithName:@"PingFangSC-Regular"
+        calendarLabel       = [[UILabel alloc] init];
+        calendarLabel.text  = summaryModel.flightDate;
+        calendarLabel.font  = [UIFont fontWithName:@"PingFangSC-Regular"
                                              size:px_px_2_3(36, 60)];
-        calendarLabel.textColor = [CommonFunction colorFromHex:0XFF3E3737];
+        calendarLabel.textColor     = [CommonFunction colorFromHex:0XFF3E3737];
         calendarLabel.textAlignment = NSTextAlignmentCenter;
-        CGSize expectSize = [calendarLabel sizeThatFits:maxLabelSize];
-        calendarLabel.frame = CGRectMake(viewWidth(calendarImage)+px_px_2_3(16, 27),
-                                         0,
-                                         expectSize.width,
-                                         px2(35));
+        CGSize expectSize           = [calendarLabel sizeThatFits:maxLabelSize];
+        calendarLabel.frame         = CGRectMake(viewWidth(calendarImage)+px_px_2_3(16, 27),
+                                                0,
+                                                 expectSize.width,
+                                                 px2(35));
         [caleandarView addSubview:calendarLabel];
         UIImageView *tagImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewTrailing(caleandarView)+px_px_2_3(15, 25),
                                                                                  px2((35-8)/2),
@@ -102,8 +105,8 @@
                                                                           clockwise:NO];
 
         
-        normalProportion =summaryModel.finishedCnt/ @(summaryModel.allCnt).floatValue;
-        abnormalProportion = normalProportion + (summaryModel.unfinishedCnt/ @(summaryModel.allCnt).floatValue);
+        normalProportion    =summaryModel.finishedCnt/ @(summaryModel.allCnt).floatValue;
+        abnormalProportion  = normalProportion + (summaryModel.unfinishedCnt/ @(summaryModel.allCnt).floatValue);
 //        cancleProportion = abnormalProportion + (summaryModel.unfinishedCnt/ @(summaryModel.allCnt).floatValue);
 
         //对数据进行动画
@@ -120,18 +123,18 @@
                                                                                          0,
                                                                                          viewWidth(progressRound)-7,
                                                                                          viewHeight(progressRound)-7)];
-        bottomRoundImageView.image = bottomRoundImage;
+        bottomRoundImageView.image  = bottomRoundImage;
         bottomRoundImageView.center = progressRound.center;
         [self addSubview:bottomRoundImageView];
         [self addSubview:progressRound];
         
-        UILabel *totalNumLabel = [[UILabel alloc] init ];
-        totalNumLabel.text =[NSString stringWithFormat:@"%d", summaryModel.allCnt];
+        UILabel *totalNumLabel      = [[UILabel alloc] init ];
+        totalNumLabel.text          = [NSString stringWithFormat:@"%d", summaryModel.allCnt];
         totalNumLabel.textAlignment = NSTextAlignmentCenter;
-        totalNumLabel.font =  [UIFont fontWithName:@"PingFangSC-Semibold"
+        totalNumLabel.font          = [UIFont fontWithName:@"PingFangSC-Semibold"
                                               size:px_px_2_2_3(100, 111, 55*3)];
-        maxLabelSize = CGSizeMake(100,50);
-        expectSize = [totalNumLabel sizeThatFits:maxLabelSize];
+        maxLabelSize        = CGSizeMake(100,50);
+        expectSize          = [totalNumLabel sizeThatFits:maxLabelSize];
         totalNumLabel.frame = CGRectMake((kScreenWidth - expectSize.width)/2,
                                          viewY(progressRound)+((viewHeight(progressRound)-45)/2)-45/4,
                                          expectSize.width,
@@ -145,17 +148,17 @@
               forControlEvents:(UIControlEventTouchUpInside)];
         [self addSubview:totalButton];
         
-        UILabel *totalLabel = [[UILabel alloc] init];
-        totalLabel.text = @"计划总数";
-        totalLabel.textAlignment = NSTextAlignmentCenter;
-        totalLabel.font =  [UIFont fontWithName:@"PingFangSC-Regular" size:px2(32)];
-        totalLabel.textColor = [CommonFunction colorFromHex:0XFF818181];
-        maxLabelSize = CGSizeMake(100, 35);
-        expectSize = [totalNumLabel sizeThatFits:maxLabelSize];
-        totalLabel.frame = CGRectMake((kScreenWidth-expectSize.width)/2,
-                                      viewY(totalNumLabel)+viewHeight(totalNumLabel)+px_px_2_3(17, 28),
-                                      expectSize.width,
-                                      15);
+        UILabel *totalLabel         = [[UILabel alloc] init];
+        totalLabel.text             = @"计划总数";
+        totalLabel.textAlignment    = NSTextAlignmentCenter;
+        totalLabel.font         =  [UIFont fontWithName:@"PingFangSC-Regular" size:px2(32)];
+        totalLabel.textColor    = [CommonFunction colorFromHex:0XFF818181];
+        maxLabelSize            = CGSizeMake(100, 35);
+        expectSize              = [totalNumLabel sizeThatFits:maxLabelSize];
+        totalLabel.frame        = CGRectMake((kScreenWidth-expectSize.width)/2,
+                                             viewY(totalNumLabel)+viewHeight(totalNumLabel)+px_px_2_3(17, 28),
+                                             expectSize.width,
+                                             15);
         [self addSubview:totalLabel];
 
         y = viewY(progressRound)+viewHeight(progressRound)+px_px_2_2_3(40,59, 99);
@@ -217,9 +220,9 @@
                                                                           y,
                                                                           px2(342),
                                                                           px_px_2_2_3(90, 114, 57*3) )];
-        currentStatus.text = @"小面积延误";
+        currentStatus.text          = @"小面积延误";
         currentStatus.textAlignment = NSTextAlignmentCenter;
-        currentStatus.font =  [UIFont fontWithName:@"PingFangSC-Regular" size:px2(32)];
+        currentStatus.font          =  [UIFont fontWithName:@"PingFangSC-Regular" size:px2(32)];
         if([summaryModel.warning isEqualToString:@"正常"]){
             currentStatus.textColor = [UIColor yellowColor];
         }else if([summaryModel.warning isEqualToString:@"重大"]){
@@ -237,14 +240,20 @@
         [self addSubview:indicateButton];
 
         y = viewY(currentStatus)+viewHeight(currentStatus)+px_px_2_3(10, 15);
-        UIImageView *lineImageView = [[UIImageView alloc]initWithFrame:CGRectMake((kScreenWidth-px_px_2_3(718, 1056))/2,y, px2(718), px2(3))];
-        lineImageView.image = [UIImage imageNamed:@"hiddenLine"];
+        UIImageView *lineImageView  = [[UIImageView alloc]initWithFrame:CGRectMake((kScreenWidth-px_px_2_3(718, 1056))/2,
+                                                                                   y,
+                                                                                   px2(718),
+                                                                                   px2(3))];
+        lineImageView.image         = [UIImage imageNamed:@"hiddenLine"];
         [self addSubview:lineImageView];
 
-        UITextView *noticeTextView = [[UITextView alloc] initWithFrame:CGRectMake(50,viewBotton(lineImageView)+5, kScreenWidth-100,kScreenHeight-viewBotton(lineImageView)-5-49-76)];
-        noticeTextView.text = summaryModel.aovTxt;
-        noticeTextView.textAlignment = NSTextAlignmentLeft;
-        noticeTextView.font = [UIFont systemFontOfSize:12];
+        UITextView *noticeTextView      = [[UITextView alloc] initWithFrame:CGRectMake(50,
+                                                                                       viewBotton(lineImageView)+5,
+                                                                                       kScreenWidth-100,
+                                                                                       kScreenHeight-viewBotton(lineImageView)-5-49-76)];
+        noticeTextView.text             = summaryModel.aovTxt;
+        noticeTextView.textAlignment    = NSTextAlignmentLeft;
+        noticeTextView.font             = [UIFont systemFontOfSize:12];
         noticeTextView.editable = NO;
         [self addSubview:noticeTextView];
         
@@ -272,7 +281,7 @@
 #pragma mark - EVENT
 -(void)chiefButtonClick:(UIButton *)sender
 {
-    DayOnDutyViewController *dayOnDutyVC = [[DayOnDutyViewController alloc]initWithNibName:@"DayOnDutyViewController"
+    NightShiftRoomViewController *dayOnDutyVC = [[NightShiftRoomViewController alloc]initWithNibName:@"NightShiftRoomViewController"
                                                                                     bundle:nil];
 
    [[self rootViewController].navigationController pushViewController:dayOnDutyVC

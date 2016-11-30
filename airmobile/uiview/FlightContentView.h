@@ -39,8 +39,8 @@
 }
 
 
--(instancetype)initWithFrame:(CGRect)frame
-             flightStusModel:(FlightStusModel *)flightStusModel
+-(instancetype)initWithFrame:(CGRect)                       frame
+             flightStusModel:(FlightStusModel *)            flightStusModel
                     delegate:(id<FlightContentViewDelegate>)delegate;
 
 @end

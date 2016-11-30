@@ -11,8 +11,10 @@
 
 @interface DeptInfoModel : NSObject
 
-@property (nonatomic,assign) long deptId;
-@property (nonatomic,copy) NSString *deptName;
-@property (nonatomic,strong) NSMutableArray<UserInfoModel *> *userArr;
+@property (nonatomic,assign)    long        deptId;
+@property (nonatomic,copy)      NSString    *deptName;
+
+@property (nonatomic,strong)    NSMutableArray<UserInfoModel *> *userArr;
+
 -(NSMutableArray *) userArray;
 @end

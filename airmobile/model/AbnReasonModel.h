@@ -11,10 +11,12 @@
 
 @interface AbnReasonModel : RootModel
 
-@property (nonatomic,copy) NSString *reason;
-@property (nonatomic,assign) int count;
-@property (nonatomic,assign) CGFloat percent;
+@property (nonatomic,copy)      NSString *reason;
+@property (nonatomic,assign)    int       count;
+@property (nonatomic,assign)    CGFloat   percent;
 
--(instancetype)initWithReason:(NSString *)reason count:(int)count percent:(CGFloat)percent;
+-(instancetype)initWithReason:(NSString *)reason
+                        count:(int)count
+                      percent:(CGFloat)percent;
 
 @end

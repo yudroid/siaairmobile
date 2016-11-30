@@ -11,6 +11,8 @@
 
 @interface DelayTimeTableViewCell : UITableViewCell
 
--(instancetype) initWithStyle: (UITableViewCellStyle)style reuseIdentifier: (NSString *)identifier delayTime: (RegionDlyTimeModel *)delayTime;
+-(instancetype) initWithStyle:(UITableViewCellStyle)    style
+              reuseIdentifier:(NSString *)              identifier
+                    delayTime:(RegionDlyTimeModel *)    delayTime;
 
 @end

@@ -30,10 +30,10 @@
     UILabel *abnormalNumLabel;
     UILabel *cancelNumLabel;
     
-    float _totalNum;
-    float _normalNum;
-    float _abnormalNum;
-    float _cancleNum;
+    float   _totalNum;
+    float   _normalNum;
+    float   _abnormalNum;
+    float   _cancleNum;
     
     CGFloat normalProportion;
     CGFloat abnormalProportion;
@@ -42,5 +42,7 @@
     id<ResourceContentViewDelegate> _delegate;
 }
 
--(id)initWithFrame:(CGRect)frame seatStatusModel:(SeatStatusModel *)seatStatusModel delegate:(id<ResourceContentViewDelegate>)delegate;
+-(id)initWithFrame:(CGRect)                         frame
+   seatStatusModel:(SeatStatusModel *)              seatStatusModel
+          delegate:(id<ResourceContentViewDelegate>)delegate;
 @end

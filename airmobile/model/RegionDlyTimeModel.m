@@ -10,14 +10,15 @@
 
 @implementation RegionDlyTimeModel
 
--(instancetype)initWithRegion:(NSString *)region count:(int)count time:(CGFloat)time
+-(instancetype)initWithRegion:(NSString *)  region
+                        count:(int)         count
+                         time:(CGFloat)     time
 {
     self = [super init];
     if(self){
-        
-        _region = region;
-        _count = count;
-        _time = time;
+        _region     = region;
+        _count      = count;
+        _time       = time;
     }
     return self;
 }

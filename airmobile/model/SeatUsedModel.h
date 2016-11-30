@@ -11,11 +11,13 @@
 
 @interface SeatUsedModel : RootModel
 
-@property(nonatomic,copy) NSString *type;
-@property(nonatomic,assign) int free;
-@property(nonatomic,assign) int used;
+@property(nonatomic,copy)   NSString    *type;
+@property(nonatomic,assign) int         free;
+@property(nonatomic,assign) int         used;
 
--(instancetype) initWithType:(NSString *)type free:(int)free used:(int)used;
+-(instancetype) initWithType:(NSString *)type
+                        free:(int)free
+                        used:(int)used;
 -(CGFloat) getPercent;
 
 @end

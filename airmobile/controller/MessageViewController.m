@@ -52,7 +52,9 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 //    [self initOptionView];
     
     //TabBer自定义
-    self.tabBarView = [[TabBarView alloc] initTabBarWithModel:TabBarBgModelHomePage selectedType:TabBarSelectedTypeMessage delegate:self];
+    self.tabBarView = [[TabBarView alloc] initTabBarWithModel:TabBarBgModelHomePage
+                                                 selectedType:TabBarSelectedTypeMessage
+                                                     delegate:self];
     [self.view insertSubview:self.tabBarView aboveSubview:self.view];
     
     
@@ -74,7 +76,9 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 //    [self.view addSubview:button];
     
     //TabBer自定义
-    self.tabBarView = [[TabBarView alloc] initTabBarWithModel:TabBarBgModelNormal selectedType:TabBarSelectedTypeMessage delegate:self];
+    self.tabBarView = [[TabBarView alloc] initTabBarWithModel:TabBarBgModelNormal
+                                                 selectedType:TabBarSelectedTypeMessage
+                                                     delegate:self];
     [self.view insertSubview:self.tabBarView aboveSubview:self.view];
 
 }
@@ -125,38 +129,65 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 //    _searBar.delegate = self;
 //    [self.view addSubview:_searBar];
 
-    UIView *searchView = [[UIView alloc]initWithFrame:CGRectMake(0, 64, kScreenWidth, 50)];
+    UIView *searchView = [[UIView alloc]initWithFrame:CGRectMake(0,
+                                                                 64,
+                                                                 kScreenWidth,
+                                                                 50)];
     searchView.backgroundColor = [CommonFunction colorFromHex:0XFFF1F1F1];
     [self.view addSubview:searchView];
-    UIView *contentView = [[UIView alloc]initWithFrame:CGRectMake(7, 11, kScreenWidth-8, 32)];
+    UIView *contentView = [[UIView alloc]initWithFrame:CGRectMake(7,
+                                                                  11,
+                                                                  kScreenWidth-8,
+                                                                  32)];
     contentView.backgroundColor = [UIColor whiteColor];
     contentView.layer.cornerRadius = 4.0;
     [searchView addSubview:contentView];
-    UIImageView *searchImageView = [[UIImageView alloc]initWithFrame:CGRectMake(6, 8, 15, 15)];
+    UIImageView *searchImageView = [[UIImageView alloc]initWithFrame:CGRectMake(6,
+                                                                                8,
+                                                                                15,
+                                                                                15)];
     searchImageView.image = [UIImage imageNamed:@"SearchIconBig"];
     [contentView addSubview:searchImageView];
 
-    UITextField *searchTextField = [[UITextField alloc]initWithFrame:CGRectMake(27, 0, kScreenWidth-50, 32)];
-    searchTextField.font = [UIFont fontWithName:@"PingFang SC" size:14];
+    UITextField *searchTextField = [[UITextField alloc]initWithFrame:CGRectMake(27,
+                                                                                0,
+                                                                                kScreenWidth-50,
+                                                                                32)];
+    searchTextField.font = [UIFont fontWithName:@"PingFang SC"
+                                           size:14];
     searchTextField.textColor = [CommonFunction colorFromHex:0XFFbbbbbb];
     searchTextField.placeholder = @"航班号、机号、机型";
     [contentView addSubview:searchTextField];
     if([DeviceInfoUtil isPlus]){
-        contentView.frame = CGRectMake(px_3(20), px_3(22), kScreenWidth-2*px_3(20), px_3(105));
-        searchImageView.frame = CGRectMake(px_3(21), 10, 15, 15);
-        searchTextField.frame = CGRectMake(px_3(21)+15+px_3(26), 0, viewWidth(contentView)-(px_3(21)+15+px_3(26)), px_3(105));
+        contentView.frame = CGRectMake(px_3(20),
+                                       px_3(22),
+                                       kScreenWidth-2*px_3(20),
+                                       px_3(105));
+        searchImageView.frame = CGRectMake(px_3(21),
+                                           10,
+                                           15,
+                                           15);
+        searchTextField.frame = CGRectMake(px_3(21)+15+px_3(26),
+                                           0,
+                                           viewWidth(contentView)-(px_3(21)+15+px_3(26)),
+                                           px_3(105));
     }
 }
 
 -(void)initTable
 {
-    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 114, kScreenWidth, kScreenHeight-114-48)];
+    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,
+                                                              114,
+                                                              kScreenWidth,
+                                                              kScreenHeight-114-48)];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.tableFooterView = [[UIView alloc]init];
     
-    [_tableView registerNib:[UINib nibWithNibName:@"MessageTableViewCell" bundle:nil] forCellReuseIdentifier:(NSString *)MESSAGE_TABLECELL_IDENTIFIER];
-    [_tableView registerNib:[UINib nibWithNibName:@"FixedMessageTableViewCell" bundle:nil] forCellReuseIdentifier:(NSString *)MESSAGE_FIXTABLECELL_IDENTIFIER];
+    [_tableView registerNib:[UINib nibWithNibName:@"MessageTableViewCell" bundle:nil]
+     forCellReuseIdentifier:(NSString *)MESSAGE_TABLECELL_IDENTIFIER];
+    [_tableView registerNib:[UINib nibWithNibName:@"FixedMessageTableViewCell" bundle:nil]
+     forCellReuseIdentifier:(NSString *)MESSAGE_FIXTABLECELL_IDENTIFIER];
     [self.view addSubview:_tableView];
 }
 
@@ -167,10 +198,16 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
     self.titleView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"home_title_bg.png"]];
     [self titleViewAddTitleText:@"消息"];
     
-    UIButton *chatButton = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-10-22, 33, 22, 20)];
+    UIButton *chatButton = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-10-22,
+                                                                     33,
+                                                                     22,
+                                                                     20)];
     
-    [chatButton setBackgroundImage:[UIImage imageNamed:@"message"] forState:UIControlStateNormal];
-    [chatButton addTarget:self action:@selector(chatButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [chatButton setBackgroundImage:[UIImage imageNamed:@"message"]
+                          forState:UIControlStateNormal];
+    [chatButton addTarget:self
+                   action:@selector(chatButtonClick:)
+         forControlEvents:UIControlEventTouchUpInside];
     
     [self.titleView addSubview:chatButton];
 }
@@ -179,7 +216,8 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 
 -(void)chatButtonClick:(UIButton *)sender
 {
-    ContactPersonViewController *contactPersonVC = [[ContactPersonViewController alloc]initWithNibName:@"ContactPersonViewController" bundle:nil];
+    ContactPersonViewController *contactPersonVC = [[ContactPersonViewController alloc]initWithNibName:@"ContactPersonViewController"
+                                                                                                bundle:nil];
     [self.navigationController  pushViewController:contactPersonVC animated:YES];
 }
 
@@ -211,10 +249,14 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 
 -(void)initSearchTableView
 {
-    _searchView = [[UIView alloc]initWithFrame:CGRectMake(0, 108, kScreenWidth, kScreenHeight-108)];
+    _searchView = [[UIView alloc]initWithFrame:CGRectMake(0,
+                                                          108,
+                                                          kScreenWidth,
+                                                          kScreenHeight-108)];
     _searchView.backgroundColor = [UIColor grayColor];
     _searchView.alpha = 0;
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(searchViewClick:)];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self
+                                                                         action:@selector(searchViewClick:)];
     [_searchView addGestureRecognizer:tap];
     [self.view addSubview:_searchView];
 }
@@ -269,7 +311,8 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
         }
         cell.nameLabel.text = [dic objectForKey:@"name"];
         cell.messageLabel.text = [dic objectForKey:@"describe"];
-        cell.timeLable.text = [[dic objectForKey:@"time"] stringByReplacingOccurrencesOfString:@" " withString:@"\n"];
+        cell.timeLable.text = [[dic objectForKey:@"time"] stringByReplacingOccurrencesOfString:@" "
+                                                                                    withString:@"\n"];
         return cell;
     }
     return  nil;
@@ -287,14 +330,18 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
         long chatId = [[dic objectForKey:@"chatid"]  longLongValue];
         long typeId = [[dic objectForKey:@"type"] longLongValue];
         long localChatId = [[dic objectForKey:@"id"] longLongValue];
-        [self showMessageDialog:chatId chatTypeId:typeId localChatId:localChatId];
+        [self showMessageDialog:chatId
+                     chatTypeId:typeId
+                    localChatId:localChatId];
     }
 }
 
 -(void) showFlightEventView
 {
-    FlightDelaysViewController *flightDelaysVC = [[FlightDelaysViewController alloc]initWithNibName:@"FlightDelaysViewController" bundle:nil];
-    [self.navigationController pushViewController:flightDelaysVC animated:YES];
+    FlightDelaysViewController *flightDelaysVC = [[FlightDelaysViewController alloc]initWithNibName:@"FlightDelaysViewController"
+                                                                                             bundle:nil];
+    [self.navigationController pushViewController:flightDelaysVC
+                                         animated:YES];
 
 }
 
@@ -305,11 +352,13 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 
 -(void) showMessageDialog:(long)chatId chatTypeId:(long)chatTypeId localChatId:(long)localChatId
 {
-    ChatViewController *chatVC = [[ChatViewController alloc]initWithNibName:@"ChatViewController" bundle:nil];
+    ChatViewController *chatVC = [[ChatViewController alloc]initWithNibName:@"ChatViewController"
+                                                                     bundle:nil];
     chatVC.chatId = chatId;
     chatVC.chatTypeId = (int)chatTypeId;
     chatVC.localChatId = localChatId;
-    [self.navigationController pushViewController:chatVC animated:YES];
+    [self.navigationController pushViewController:chatVC
+                                         animated:YES];
 }
 
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
@@ -319,7 +368,8 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 
 -(void)loadChatList:(int)num start:(int)start
 {
-    array = [PersistenceUtils findChatList:start num:num];
+    array = [PersistenceUtils findChatList:start
+                                       num:num];
     [_tableView reloadData];
 }
 

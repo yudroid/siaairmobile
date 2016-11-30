@@ -17,28 +17,26 @@
     NSMutableArray<ReleasedRatioModel *> *tenDayArray;
 }
 
--(instancetype)initWithFrame:(CGRect)frame dataArray:(NSArray *)dataArray
+-(instancetype)initWithFrame:(CGRect)frame
+                   dataArray:(NSArray *)dataArray
 {
     self = [super initWithFrame:frame];
     
     if(self){
-        //        backgroundColor = [UIColor lightGrayColor];
 
-        tenDayArray = [dataArray copy];
-//        [self initData];
-
-        CGFloat topBgViewWidth = kScreenWidth-2*px2(22);
-        UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(10,
+        tenDayArray             = [dataArray copy];
+        CGFloat topBgViewWidth  = kScreenWidth-2*px2(22);
+        UIView *topBgView       = [[UIView alloc] initWithFrame:CGRectMake(10,
                                                                      0,
                                                                      topBgViewWidth,
                                                                      topBgViewWidth *391/709)];
         [self addSubview:topBgView];
 
-        UIImageView *topBgBackgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0,
+        UIImageView *topBgBackgroundImageView   = [[UIImageView alloc]initWithFrame:CGRectMake(0,
                                                                                              0,
                                                                                              viewWidth(topBgView),
                                                                                              viewHeight(topBgView))];
-        topBgBackgroundImageView.image = [UIImage imageNamed:@"TenDayRatioChartBackground"];
+        topBgBackgroundImageView.image          = [UIImage imageNamed:@"TenDayRatioChartBackground"];
         [topBgView addSubview:topBgBackgroundImageView];
 
         

@@ -150,14 +150,14 @@
 {
     if([self isNull:data])
         return;
-    _flightDate = [data objectForKey:@"flightDate"];
-    _userName = [data objectForKey:@"userName"];
-    _allCnt = [[data objectForKey:@"allCnt"] intValue];
-    _finishedCnt = [[data objectForKey:@"finishedCnt"] intValue];
-    _unfinishedCnt = [[data objectForKey:@"unfinishedCnt"] intValue];
-    _releaseRatio = [data objectForKey:@"releaseRatio"];
-    _warning = [data objectForKey:@"warning"];
-    _aovTxt = [data objectForKey:@"aovTxt"];
+    _flightDate     =   [data objectForKey:@"flightDate"];
+    _userName       =   [data objectForKey:@"userName"];
+    _allCnt         =   [[data objectForKey:@"allCnt"] intValue];
+    _finishedCnt    =   [[data objectForKey:@"finishedCnt"] intValue];
+    _unfinishedCnt  =   [[data objectForKey:@"unfinishedCnt"] intValue];
+    _releaseRatio   =   [data objectForKey:@"releaseRatio"];
+    _warning        =   [data objectForKey:@"warning"];
+    _aovTxt         =   [data objectForKey:@"aovTxt"];
 }
 
 -(void)updateFlightDelayTarget:(NSDictionary *)data
@@ -166,19 +166,17 @@
         return;
     
     FlightLargeDelayModel *model = [self getFlightLargeDelayModel];
-    model.allOutCnt = [[data objectForKey:@"allOutCnt"] intValue];
-    model.delayOneHourCnt = [[data objectForKey:@"delayOneHourCnt"] intValue];
-    model.delayOneHourRatio = [[data objectForKey:@"delayOneHourRatio"] floatValue];
-    model.delayOneHourRatioThreshold = [[data objectForKey:@"delayOneHourRatioThreshold"] floatValue];
-    
-    model.executeRateThreshold = [[data objectForKey:@"executeRateThreshold"] floatValue];
-    [model updateHourExecuteRateList:[data objectForKey:@"hourExecuteRateList"]];
-    
-    model.glqPassenCnt = [[data objectForKey:@"glqPassenCnt"] intValue];
-    model.glqPassenThreshold = [[data objectForKey:@"glqPassenThreshold"] floatValue];
-    
-    model.noTakeoffAndLanding = [[data objectForKey:@"noTakeoffAndLanding"] intValue];
-    model.noTakeoffAndLandingThreshold = [[data objectForKey:@"noTakeoffAndLandingThreshold"] intValue];
+
+    model.allOutCnt                     = [[data objectForKey:@"allOutCnt"] intValue];
+    model.delayOneHourCnt               = [[data objectForKey:@"delayOneHourCnt"] intValue];
+    model.delayOneHourRatio             = [[data objectForKey:@"delayOneHourRatio"] floatValue];
+    model.delayOneHourRatioThreshold    = [[data objectForKey:@"delayOneHourRatioThreshold"] floatValue];
+    model.executeRateThreshold          = [[data objectForKey:@"executeRateThreshold"] floatValue];
+    [model updateHourExecuteRateList:      [data objectForKey:@"hourExecuteRateList"]];
+    model.glqPassenCnt                  = [[data objectForKey:@"glqPassenCnt"] intValue];
+    model.glqPassenThreshold            = [[data objectForKey:@"glqPassenThreshold"] floatValue];
+    model.noTakeoffAndLanding           = [[data objectForKey:@"noTakeoffAndLanding"] intValue];
+    model.noTakeoffAndLandingThreshold  = [[data objectForKey:@"noTakeoffAndLandingThreshold"] intValue];
 }
 
 

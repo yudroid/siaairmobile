@@ -10,7 +10,9 @@
 
 @implementation SeatUsedModel
 
--(instancetype) initWithType:(NSString *)type free:(int)free used:(int)used
+-(instancetype) initWithType:(NSString *)   type
+                        free:(int)          free
+                        used:(int)          used
 {
     self = [super init];
     if(self){

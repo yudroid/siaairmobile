@@ -11,10 +11,12 @@
 
 @interface PassengerAreaModel : RootModel
 
-@property (nonatomic,copy) NSString *region;
-@property (nonatomic,assign) int count;
-@property (nonatomic,assign) BOOL isFar;
+@property (nonatomic,copy)      NSString    *region;
+@property (nonatomic,assign)    int         count;
+@property (nonatomic,assign)    BOOL        isFar;
 
--(instancetype)initWithRegion:(NSString *)region count:(int)count isFar:(BOOL)isFar;
+-(instancetype)initWithRegion:(NSString *)  region
+                        count:(int)         count
+                        isFar:(BOOL)        isFar;
 
 @end

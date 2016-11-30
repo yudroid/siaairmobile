@@ -16,7 +16,8 @@
 
 - (void)startService:(void (^)(void))callBack
 {
-    [self performSelectorInBackground:@selector(startTimer:) withObject:callBack];
+    [self performSelectorInBackground:@selector(startTimer:)
+                           withObject:callBack];
 }
 
 - (void)stopService
@@ -30,7 +31,9 @@
 
 - (void)startTimer:(void (^)(void))callBack
 {
-    timer =  [NSTimer scheduledTimerWithTimeInterval:30 repeats:YES block:(^(NSTimer *timer){
+    timer =  [NSTimer scheduledTimerWithTimeInterval:30
+                                             repeats:YES
+                                               block:(^(NSTimer *timer){
         if(callBack){
             callBack();
         }

@@ -16,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleLabelTop;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleLabelbottom;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *authorLableBottom;
+@property (weak, nonatomic) IBOutlet UIImageView *readTagImageView;
+@property (weak, nonatomic) IBOutlet UILabel *readTagLabel;
 
 @end
 
@@ -45,6 +47,18 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+-(void)setRead:(BOOL)read
+{
+    _read = read;
+    if (read) {
+        _readTagLabel.text = @"已读";
+        _readTagImageView.image = [UIImage imageNamed:@"ReadTagGrey"];
+    }else{
+        _readTagLabel.text = @"未读";
+        _readTagImageView.image = [UIImage imageNamed:@"ReadTagRed"];
+
+    }
 }
 
 @end
