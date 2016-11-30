@@ -14,7 +14,7 @@
             <rect key="frame" x="0.0" y="0.0" width="384" height="93"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="384" height="93"/>
+                <rect key="frame" x="0.0" y="0.0" width="384" height="92"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZdR-zi-Lt0">
@@ -243,25 +243,26 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="FlightImageView" destination="PVa-RK-GXr" id="vzg-9n-M9V"/>
-                <outlet property="airlineImage" destination="PVa-RK-GXr" id="7qr-8m-VQc"/>
-                <outlet property="airportLable" destination="Vkn-Bv-u3M" id="D3O-48-PMX"/>
+                <outlet property="airlineImage" destination="PVa-RK-GXr" id="1cF-S1-H0Q"/>
+                <outlet property="airportLable" destination="AKH-1q-CB8" id="UJc-Fs-qtF"/>
                 <outlet property="backImageView" destination="fF0-Hz-JiH" id="GtU-Xm-u22"/>
-                <outlet property="carftModelLabel" destination="TyG-hl-pWH" id="ns1-zP-uKR"/>
-                <outlet property="craftModelLable" destination="TyG-hl-pWH" id="lMn-NK-0nK"/>
+                <outlet property="craftModelLable" destination="TyG-hl-pWH" id="pTX-rQ-vRW"/>
                 <outlet property="craftSeatLabel" destination="vc7-au-A5g" id="Y6Z-gq-1XM"/>
-                <outlet property="flightLabel" destination="8k7-fS-B8M" id="EeB-Fu-aXr"/>
-                <outlet property="flightNoLabel" destination="8k7-fS-B8M" id="qBo-xp-E0W"/>
+                <outlet property="flightNoLabel" destination="8k7-fS-B8M" id="zqd-j7-lnH"/>
                 <outlet property="flightStatus" destination="joe-aZ-w98" id="llx-gA-5nw"/>
                 <outlet property="insideView" destination="ZdR-zi-Lt0" id="Yca-Hg-Xvy"/>
-                <outlet property="landingLabel" destination="qfH-eO-yzU" id="4I9-t7-yIB"/>
+                <outlet property="landingLabel" destination="sff-Dk-srV" id="WIx-wW-AuQ"/>
                 <outlet property="leadingAlign" destination="to7-d7-E0p" id="0ub-vL-YUf"/>
                 <outlet property="middleView" destination="CeQ-eG-81E" id="EaZ-HG-dOC"/>
-                <outlet property="nextAirport" destination="fiO-Mo-F4h" id="xRS-eg-MeY"/>
-                <outlet property="nextLandingLabel" destination="ntx-LF-FXs" id="yI5-FI-dVB"/>
-                <outlet property="preAirportLabel" destination="uUl-42-To8" id="J3s-Mr-tIq"/>
-                <outlet property="preTakeOffLabel" destination="zmw-B4-yOQ" id="2rX-nA-ZZ2"/>
+                <outlet property="nextAirportLabel" destination="fiO-Mo-F4h" id="NXb-ff-n1K"/>
+                <outlet property="nextLandingLabel" destination="ntx-LF-FXs" id="2m2-Cq-fws"/>
+                <outlet property="preAirportLabel" destination="uUl-42-To8" id="Du4-rT-LNO"/>
+                <outlet property="preTakeOffLabel" destination="zmw-B4-yOQ" id="8wf-85-4O2"/>
                 <outlet property="regionLabel" destination="P2Z-0e-c7G" id="r5n-kP-gpP"/>
+                <outlet property="specialLabel" destination="WRs-Be-kis" id="G26-kp-wtR"/>
+                <outlet property="statusReasonLabel" destination="bGA-bm-EYC" id="t0S-lQ-LgS"/>
+                <outlet property="takeOffAirportLabel" destination="Vkn-Bv-u3M" id="g9K-Wu-3FR"/>
+                <outlet property="takeOffLabel" destination="qfH-eO-yzU" id="yNo-1F-c9W"/>
             </connections>
             <point key="canvasLocation" x="64" y="54.5"/>
         </tableViewCell>

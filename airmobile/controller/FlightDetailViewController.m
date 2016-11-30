@@ -16,6 +16,7 @@
 #import "HttpsUtils+Business.h"
 #import "FlightDetailModel.h"
 #import "SafeguardModel.h"
+#import "FlightService.h"
 
 static const NSString *FLIGHTDETAIL_TABLECELL_IDENTIFIER = @"FLIGHTDETAIL_TABLECELL_IDENTIFIER";
 static const NSString *FLIGHTDETAIL_SAFEGUARDTABLECELL_IDENTIFIER = @"FLIGHTDETAIL_SAFEGUARDTABLECELL_IDENTIFIER";
@@ -40,6 +41,15 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *safeguradViewHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *safeguardTableViewHeight;
 
+@property (weak, nonatomic) IBOutlet UILabel *flightDateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *terminalLabel;
+@property (weak, nonatomic) IBOutlet UILabel *gateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *baggagelabel;
+@property (weak, nonatomic) IBOutlet UILabel *modelLabel;
+@property (weak, nonatomic) IBOutlet UILabel *regionlabel;
+
+
+
 @end
 
 @implementation FlightDetailViewController
@@ -52,7 +62,10 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    flight = [FlightDetailModel new];
+    FlightService *flightService = [[FlightService alloc]init];
+    [flightService startService];
+    flight = [flightService getFlightDetailModel];
+
     dispatches = [NSMutableArray array];
     specicals = [NSMutableArray array];
     
@@ -77,17 +90,26 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
     _AirlineCollectionView.delegate     = self;
     _AirlineCollectionView.dataSource   = self;
     
-    _airLineCollectionArray     = @[@"上海虹桥",@"深圳宝安",@"北京首都"];
-    _safeguardTableViewArray    = @[@"1",@""];
+
+    _safeguardTableViewArray    = [flightService getSafeguardArray];
     _safeguradViewHeight.constant = _safeguardTableViewArray.count *45+36;
 
-    _tableArray = @[@"",@"",@"",@"",@""];
+    _tableArray = [flightService getSafeguardArray];
 
     [_AirlineCollectionView registerNib:[UINib nibWithNibName:@"FlightDetailAirLineCollectionViewCell" bundle:nil]
              forCellWithReuseIdentifier:(NSString *)FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER];
 
     _tableViewHeight.constant = 103*_tableArray.count;
     _safeguardTableViewHeight.constant = 45 * _safeguardTableViewArray.count +36;
+
+    _flightDateLabel.text = flight.fDate;
+    _terminalLabel.text = flight.terminal;
+    _gateLabel.text = flight.gate;
+    _baggagelabel.text = flight.baggage;
+    _modelLabel.text = flight.model;
+    _regionlabel.text = flight.region;
+
+    _airLineCollectionArray = [flight.airLine componentsSeparatedByString:@"-"];
     
 }
 
@@ -118,6 +140,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
             cell = [[NSBundle mainBundle] loadNibNamed:@"FlightDetailSafeguardTableViewCell" owner:nil options:nil][0];
 
         }
+
         cell.delegate = self;
         return  cell;
         
@@ -126,13 +149,14 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
         if (cell==nil) {
             cell = [[NSBundle mainBundle] loadNibNamed:@"FlightDetailTableViewCell" owner:nil options:nil][0];
         }
-    if (indexPath.row == 0) {
-        cell.type = FlightDetailTableViewCellTypeTypeFirst;
-    }
-    if (indexPath.row ==_tableArray.count-1 ) {
-        cell.type = FlightDetailTableViewCellTypeTypeLast;
-    }
-        cell.delegate = self;
+        cell.safeguardModel = _tableArray[indexPath.row];
+        if (indexPath.row == 0) {
+            cell.type = FlightDetailTableViewCellTypeTypeFirst;
+        }
+        if (indexPath.row ==_tableArray.count-1 ) {
+            cell.type = FlightDetailTableViewCellTypeTypeLast;
+        }
+            cell.delegate = self;
         return  cell;
     }
 }

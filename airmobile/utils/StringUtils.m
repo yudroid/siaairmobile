@@ -196,7 +196,11 @@ static NSMutableDictionary *ZHDIC;
         return @"";
     }
     else{
-        return [s stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+
+        s =[s stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+
+//        return [s stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        return s;
     }
 }
 @end

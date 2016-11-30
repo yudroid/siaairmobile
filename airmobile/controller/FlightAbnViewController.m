@@ -156,9 +156,9 @@
 /**
  *  滑动page时的回调
  *
- *  @param scrollView 滑动视图
+ *  @param scrollview 滑动视图
  */
--(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollview
 {
 //    NSInteger page = scrollView.contentOffset.x/kScreenWidth;
 //    NSLog(@"%ld",page);
@@ -171,7 +171,7 @@
 //    {
 //        
 //    }
-    if (scrollView.contentOffset.x==0) {
+    if (scrollview.contentOffset.x==0) {
         [self buttonClickedWithSender:abnsButton];
     }else{
         [self buttonClickedWithSender:delayButton];

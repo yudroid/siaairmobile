@@ -223,7 +223,7 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
 {
     array = [PersistenceUtils loadUserListGroupByDept];
     _resultArry = [NSMutableArray array];
-    for (NSDictionary *item in array) {
+    for (int i = 0; i<array.count; i++) {
         // 初始时都是折叠状态（bool不能直接放在数组里）
         [_resultArry addObject:[NSNumber numberWithBool:NO]];
     }

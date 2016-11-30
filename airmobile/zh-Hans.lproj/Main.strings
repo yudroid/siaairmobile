@@ -1,0 +1,21 @@
+
+/* Class = "UIViewController"; title = "航班"; ObjectID = "4fk-1E-DaW"; */
+"4fk-1E-DaW.title" = "航班";
+
+/* Class = "UIViewController"; title = "登录"; ObjectID = "IP2-Io-OXA"; */
+"IP2-Io-OXA.title" = "登录";
+
+/* Class = "UIViewController"; title = "我的"; ObjectID = "Ker-7w-qjX"; */
+"Ker-7w-qjX.title" = "我的";
+
+/* Class = "UIViewController"; title = "功能"; ObjectID = "MJ0-q5-oIc"; */
+"MJ0-q5-oIc.title" = "功能";
+
+/* Class = "UIViewController"; title = "首页"; ObjectID = "bNF-bL-RxD"; */
+"bNF-bL-RxD.title" = "首页";
+
+/* Class = "UINavigationController"; title = "导航"; ObjectID = "iQj-Hl-FVY"; */
+"iQj-Hl-FVY.title" = "导航";
+
+/* Class = "UIViewController"; title = "消息"; ObjectID = "yGk-is-lVa"; */
+"yGk-is-lVa.title" = "消息";

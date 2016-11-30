@@ -11,11 +11,17 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FlightDetailViewController">
             <connections>
                 <outlet property="AirlineCollectionView" destination="B8a-Po-Z4X" id="U8e-0m-Wgv"/>
+                <outlet property="baggagelabel" destination="skj-5p-NIm" id="WoY-3f-tFn"/>
+                <outlet property="flightDateLabel" destination="gJQ-Se-7jP" id="35W-W5-Of4"/>
+                <outlet property="gateLabel" destination="6ib-vS-8D8" id="fDE-Bd-7l5"/>
+                <outlet property="modelLabel" destination="Mud-6X-6Hi" id="KBd-ff-zcs"/>
+                <outlet property="regionlabel" destination="cBQ-EP-xnW" id="Oe3-Pk-9Xt"/>
                 <outlet property="safeguardTableView" destination="QBr-5b-hfX" id="A6c-ph-Yyv"/>
                 <outlet property="safeguardTableViewHeight" destination="OQS-aO-xUh" id="Jie-0N-9en"/>
                 <outlet property="safeguradViewHeight" destination="OQS-aO-xUh" id="LKP-r6-1kQ"/>
                 <outlet property="tableView" destination="jEj-kJ-Brb" id="zTz-5Q-EhX"/>
                 <outlet property="tableViewHeight" destination="fpP-bG-jAO" id="XDe-U7-kyo"/>
+                <outlet property="terminalLabel" destination="3FL-T6-vv0" id="MBf-sm-2Hs"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

@@ -7,7 +7,7 @@
 //
 
 #import "LoadingView.h"
-#import <ImageIO/ImageIO.h>
+#import <FLAnimatedImage.h>
 
 @implementation LoadingView
 
@@ -21,6 +21,12 @@
 
 -(void)awakeFromNib
 {
+    [super awakeFromNib];
+
+    FLAnimatedImage *image = [FLAnimatedImage animatedImageWithGIFData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"loading" ofType:@"gif"]]];
+    //    _imageView.animatedImage = image;
+    _contentImageView.image = image.posterImage;
+
 
 }
 

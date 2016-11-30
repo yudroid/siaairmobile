@@ -22,7 +22,10 @@ static const NSString *UPLOADPHOTO_COLLECTIONCELL_IDENTIFIER = @"UPLOADPHOTO_COL
 
 @implementation UploadPhotoViewController
 {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     ALAssetsLibrary *_assetsLibrary;
+#pragma clang diagnostic pop
     NSMutableArray *_groupArray;
 }
 
@@ -35,6 +38,13 @@ static const NSString *UPLOADPHOTO_COLLECTIONCELL_IDENTIFIER = @"UPLOADPHOTO_COL
     self.titleView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"home_title_bg.png"]];
     [self titleViewAddBackBtn];
 
+    UIButton *finshButton = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-10-40, 33, 40, 20)];
+
+    [finshButton setTitle:@"完成"  forState:UIControlStateNormal];
+    finshButton.titleLabel.font = [UIFont fontWithName:@"PingFang SC" size:10];
+    [finshButton addTarget:self action:@selector(finshButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.titleView addSubview:finshButton];
+
     
     // Do any additional setup after loading the view from its nib.
 
@@ -46,6 +56,13 @@ static const NSString *UPLOADPHOTO_COLLECTIONCELL_IDENTIFIER = @"UPLOADPHOTO_COL
     [self getAlbumList];
 }
 
+-(void)finshButtonClick:(UIButton *)sender
+{
+	if (_delegate && [_delegate respondsToSelector:@selector(UploadPhotoViewControllerFinished:)]) {
+		[_delegate UploadPhotoViewControllerFinished:_selectedArray];
+	}
+	[self.navigationController popViewControllerAnimated:YES];
+}
     
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {

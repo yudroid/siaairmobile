@@ -7,6 +7,7 @@
 //
 
 #import "FlightDetailSafeguardTableViewCell.h"
+#import "SafeguardModel.h"
 
 
 @interface FlightDetailSafeguardTableViewCell()
