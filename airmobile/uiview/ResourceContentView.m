@@ -173,8 +173,8 @@
         lessThanImageView.image         = lessImage;
         [lessView addSubview:lessThanImageView];
 
-        UIImage *arrImage           = [UIImage imageNamed:@"ArrFlight"];
-        UIImageView *arrImageView   = [[UIImageView alloc]initWithFrame:CGRectMake(px_px_2_2_3(20, 20, 30),
+        UIImage *arrImage               = [UIImage imageNamed:@"ArrFlight"];
+        UIImageView *arrImageView       = [[UIImageView alloc]initWithFrame:CGRectMake(px_px_2_2_3(20, 20, 30),
                                                                                    (viewHeight(lessView)-arrImage.size.height)/2,
                                                                                    arrImage.size.width,
                                                                                    arrImage.size.height)];
