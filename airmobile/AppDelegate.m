@@ -25,6 +25,7 @@
 //
 //    [UIViewController preferredStatusBarStyle];
 
+
     [PersistenceUtils initTable];
 
 //    self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];

@@ -80,25 +80,26 @@
         FlightHourModel *model = nil;
         if([[self getFlightHoursArray] count]<index+1){
             model = [FlightHourModel new];
-            [[self getTenDayReleasedArray] addObject:model];
+            [[self getFlightHoursArray] addObject:model];
         }else{
-            model = [[self getTenDayReleasedArray] objectAtIndex:index];
+            model = [[self getFlightHoursArray] objectAtIndex:index];
         }
+        model.hour = [item objectForKey:@"hour"];
         switch (flag) {
             case 1:
-                model.planArrCount = [[item objectForKey:@"count"] intValue];
+                model.planArrCount  = [[item objectForKey:@"count"] intValue];
                 break;
                 
             case 2:
-                model.arrCount = [[item objectForKey:@"count"] intValue];
+                model.arrCount      = [[item objectForKey:@"count"] intValue];
                 break;
                 
             case 3:
-                model.planDepCount = [[item objectForKey:@"count"] intValue];
+                model.planDepCount  = [[item objectForKey:@"count"] intValue];
                 break;
                 
             case 4:
-                model.depCount = [[item objectForKey:@"count"] intValue];
+                model.depCount      = [[item objectForKey:@"count"] intValue];
                 break;
                 
             default:
@@ -165,18 +166,21 @@
     if([self isNull:data])
         return;
     
-    FlightLargeDelayModel *model = [self getFlightLargeDelayModel];
+//    FlightLargeDelayModel *model = [self getFlightLargeDelayModel];
+    if(_delayTagart==nil){
+        _delayTagart = [[FlightLargeDelayModel alloc]init];
+    }
 
-    model.allOutCnt                     = [[data objectForKey:@"allOutCnt"] intValue];
-    model.delayOneHourCnt               = [[data objectForKey:@"delayOneHourCnt"] intValue];
-    model.delayOneHourRatio             = [[data objectForKey:@"delayOneHourRatio"] floatValue];
-    model.delayOneHourRatioThreshold    = [[data objectForKey:@"delayOneHourRatioThreshold"] floatValue];
-    model.executeRateThreshold          = [[data objectForKey:@"executeRateThreshold"] floatValue];
-    [model updateHourExecuteRateList:      [data objectForKey:@"hourExecuteRateList"]];
-    model.glqPassenCnt                  = [[data objectForKey:@"glqPassenCnt"] intValue];
-    model.glqPassenThreshold            = [[data objectForKey:@"glqPassenThreshold"] floatValue];
-    model.noTakeoffAndLanding           = [[data objectForKey:@"noTakeoffAndLanding"] intValue];
-    model.noTakeoffAndLandingThreshold  = [[data objectForKey:@"noTakeoffAndLandingThreshold"] intValue];
+    _delayTagart.allOutCnt                     = [[data objectForKey:@"allOutCnt"] intValue];
+    _delayTagart.delayOneHourCnt               = [[data objectForKey:@"delayOneHourCnt"] intValue];
+    _delayTagart.delayOneHourRatio             = [[data objectForKey:@"delayOneHourRatio"] floatValue];
+    _delayTagart.delayOneHourRatioThreshold    = [[data objectForKey:@"delayOneHourRatioThreshold"] floatValue];
+    _delayTagart.executeRateThreshold          = [[data objectForKey:@"executeRateThreshold"] floatValue];
+    [_delayTagart updateHourExecuteRateList:      [data objectForKey:@"hourExecuteRateList"]];
+    _delayTagart.glqPassenCnt                  = [[data objectForKey:@"glqPassenCnt"] intValue];
+    _delayTagart.glqPassenThreshold            = [[data objectForKey:@"glqPassenThreshold"] floatValue];
+    _delayTagart.noTakeoffAndLanding           = [[data objectForKey:@"noTakeoffAndLanding"] intValue];
+    _delayTagart.noTakeoffAndLandingThreshold  = [[data objectForKey:@"noTakeoffAndLandingThreshold"] intValue];
 }
 
 

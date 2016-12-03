@@ -20,6 +20,16 @@
 @implementation ResourceContentView
 {
     NSMutableArray<SeatUsedModel *> *array;
+
+    RoundProgressView *progressRound ;
+    UILabel *totalNumLabel;
+    UILabel *disable;
+    UILabel *percentLabel;
+    UILabel *longInSeat;
+    UILabel *disAbleLabel;
+    UILabel *longInSeatLabel;
+    UILabel *arrLabel;
+    UILabel *depLabel;
 }
 
 -(id)initWithFrame:(CGRect)                         frame
@@ -35,7 +45,7 @@
         CGFloat y = px_px_2_2_3(70,90, 131);
         
         //圆圈
-        RoundProgressView *progressRound = [[RoundProgressView alloc] initWithCenter:CGPointMake(kScreenWidth/2,
+        progressRound = [[RoundProgressView alloc] initWithCenter:CGPointMake(kScreenWidth/2,
                                                                                                  y+px_px_2_2_3(80*2,95*2, 575/2))
                                                                               radius:px_px_2_2_3(80*2,95*2, 575/2)
                                                                           aboveColos:@[(__bridge id)[CommonFunction colorFromHex:0XFF00aedd].CGColor,
@@ -69,7 +79,7 @@
         [button addTarget:self action:@selector(showSeatUsedDetail:) forControlEvents:(UIControlEventTouchUpInside)];
         [progressRound addSubview:button];
 
-        UILabel *totalNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(viewX(progressRound),
+        totalNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(viewX(progressRound),
                                                                            viewY(progressRound)+viewHeight(progressRound)/2-45+15,
                                                                            viewWidth(progressRound),
                                                                            45)];// 机位总数
@@ -91,7 +101,7 @@
 
         y=viewBotton(progressRound)+px_px_2_2_3(70,83, 135)+9.5;
 
-        UILabel *disable        = [[UILabel alloc] init];
+        disable        = [[UILabel alloc] init];
         disable.text            = @(_seatStatusModel.seatUsed).stringValue;
         disable.textAlignment   = NSTextAlignmentCenter;
         disable.font            = [UIFont fontWithName:@"PingFang SC" size:px2(75)];
@@ -100,7 +110,7 @@
         disable.frame           = CGRectMake(kScreenWidth/2-30-exportSize.width, y, exportSize.width, 30);
         [self addSubview:disable];
 
-        UILabel *percentLabel   = [[UILabel alloc]initWithFrame:CGRectMake(viewTrailing(disable), y-9.5, 50, 9.5)];
+        percentLabel   = [[UILabel alloc]initWithFrame:CGRectMake(viewTrailing(disable), y-9.5, 50, 9.5)];
         percentLabel.text       = [NSString stringWithFormat:@"%ld%%",(long)@(_seatStatusModel.seatUsed/@(_seatStatusModel.seatNum).floatValue*100).integerValue];
         percentLabel.font       = [UIFont fontWithName:@"PingFang SC" size:px2(23)];
         percentLabel.textColor  = [CommonFunction colorFromHex:0XFF2dce71];
@@ -108,7 +118,7 @@
 //        percentLabel.frame = CGRectMake(viewBotton(disable), viewY(disable)-15, exportSize.width, 15) ;
         [self addSubview:percentLabel];
 
-        UILabel *longInSeat         = [[UILabel alloc] init];
+        longInSeat                  = [[UILabel alloc] init];
         longInSeat.text             = @(_seatStatusModel.seatFree).stringValue;
         longInSeat.textAlignment    = NSTextAlignmentCenter;
         longInSeat.font             = [UIFont fontWithName:@"PingFang SC" size:px2(75)];
@@ -118,7 +128,7 @@
 
         y = viewY(disable)+viewHeight(disable)+px2(24);
 
-        UILabel *disAbleLabel= [[UILabel alloc] init];// 不可用
+        disAbleLabel= [[UILabel alloc] init];// 不可用
         disAbleLabel.text           = @"占用";
         disAbleLabel.textAlignment  = NSTextAlignmentCenter;
         disAbleLabel.font           = [UIFont fontWithName:@"PingFang SC" size:px2(30)];
@@ -131,7 +141,7 @@
         [self addSubview:disableImageView];
 
 
-        UILabel *longInSeatLabel = [[UILabel alloc] init];// 长期占用
+        longInSeatLabel = [[UILabel alloc] init];// 长期占用
         longInSeatLabel.text            = @"剩余";
         longInSeatLabel.textAlignment   = NSTextAlignmentCenter;
         longInSeatLabel.font            = [UIFont fontWithName:@"PingFang SC" size:px2(30)];
@@ -181,7 +191,7 @@
         arrImageView.image          = arrImage;
         [lessView addSubview:arrImageView];
 
-        UILabel *arrLabel   = [[UILabel alloc]initWithFrame:CGRectMake(viewTrailing(arrImageView)+px_px_2_2_3(5, 20, 30),
+        arrLabel   = [[UILabel alloc]initWithFrame:CGRectMake(viewTrailing(arrImageView)+px_px_2_2_3(5, 20, 30),
                                                                      viewHeight(lessView)/2-20,
                                                                      viewWidth(lessView)-viewTrailing(arrImageView),
                                                                      20)];
@@ -215,7 +225,7 @@
         depImageView.image = depImage;
         [moreView addSubview:depImageView];
 
-        UILabel *depLabel = [[UILabel alloc]initWithFrame:CGRectMake(viewTrailing(depImageView)+px_px_2_2_3(5, 20, 30),
+        depLabel = [[UILabel alloc]initWithFrame:CGRectMake(viewTrailing(depImageView)+px_px_2_2_3(5, 20, 30),
                                                                      viewHeight(lessView)/2-20,
                                                                      viewWidth(moreView)-viewTrailing(depImageView),
                                                                      20)];
@@ -237,8 +247,15 @@
         moreLabel.text = @">1小时出港";
         [moreView addSubview:moreLabel];
 
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadData:) name:@"" object:nil];
+
     }
     return self;
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"" object:nil];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -290,24 +307,35 @@
     return cell;
 }
 
--(void) initData
-{
-    if(array == nil){
-        array = [[NSMutableArray alloc] init];
-    }else{
-        [array removeAllObjects];
-    }
-    
-    [array addObject:[[SeatUsedModel alloc] initWithType:@"B" free:25 used:75]];
-    [array addObject:[[SeatUsedModel alloc] initWithType:@"C" free:35 used:40]];
-    [array addObject:[[SeatUsedModel alloc] initWithType:@"D" free:40 used:35]];
-    [array addObject:[[SeatUsedModel alloc] initWithType:@"E" free:25 used:15]];
-    [array addObject:[[SeatUsedModel alloc] initWithType:@"F" free:25 used:35]];
-}
-
 -(void)showSeatUsedDetail:(UIButton *)sender
 {
     [_delegate showSeatUsedDetailView];
+}
+
+-(void)loadData:(NSNotification *)notification
+{
+    if ([notification.object isKindOfClass:[SeatStatusModel class]]) {
+        _seatStatusModel = notification.object;
+        normalProportion    =_seatStatusModel.seatUsed/@(_seatStatusModel.seatNum).floatValue;
+        [progressRound animationWithStrokeEnd:normalProportion withProgressType:ProgreesTypeNormal];
+
+        totalNumLabel.text          = @(_seatStatusModel.seatNum).stringValue;
+        disable.text            = @(_seatStatusModel.seatUsed).stringValue;
+        percentLabel.text       = [NSString stringWithFormat:@"%ld%%",(long)@(_seatStatusModel.seatUsed/@(_seatStatusModel.seatNum).floatValue*100).integerValue];
+        longInSeat.text             = @(_seatStatusModel.seatFree).stringValue;
+
+        NSMutableAttributedString *arrAttributeString = [[NSMutableAttributedString alloc ] initWithString:[NSString stringWithFormat:@"%@机位占用",@(_seatStatusModel.nextIn).stringValue]];
+        [arrAttributeString addAttribute:NSFontAttributeName
+                                   value:[UIFont fontWithName:@"PingFangSC-Regular" size:8]
+                                   range:NSMakeRange(arrAttributeString.length-4, 4)];
+        arrLabel.attributedText = arrAttributeString;
+
+        NSMutableAttributedString *depAttributeString = [[NSMutableAttributedString alloc ] initWithString:[NSString stringWithFormat:@"%@机位占用",@(_seatStatusModel.nextOut).stringValue]];
+        [depAttributeString addAttribute:NSFontAttributeName
+                                   value:[UIFont fontWithName:@"PingFangSC-Regular" size:8]
+                                   range:NSMakeRange(depAttributeString.length-4, 4)];
+        depLabel.attributedText = depAttributeString;
+    }
 }
 
 @end

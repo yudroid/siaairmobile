@@ -16,6 +16,25 @@
 @end
 
 @implementation PsnSafetyContentView
+{
+    UIView *topBgView ;
+    ProgreesBarView *lqBarProgress;
+    ProgreesBarView *eqBarProgress;
+    ProgreesBarView *dqBarProgress;
+
+    UILabel *lessTagLabel;
+    UILabel *equalTagLabel;
+    UILabel *moreTagLabel;
+
+    UILabel *lessLabel;
+    UILabel *equalLabel;
+    UILabel *moreLabel;
+
+    UILabel *lessValueLabel;
+    UILabel *equalValueLabel;
+    UILabel *moreValueLabel;
+
+}
 
 -(instancetype)initWithFrame:(CGRect)frame
                    dataArray:(NSArray<NSDictionary *> *)dataArray
@@ -26,7 +45,7 @@
         _dataArray = dataArray;
 
         CGFloat topBgViewWidth  = kScreenWidth-2*px2(22);
-        UIView *topBgView       = [[UIView alloc] initWithFrame:CGRectMake(10, 0, topBgViewWidth, topBgViewWidth *391/709)];
+        topBgView       = [[UIView alloc] initWithFrame:CGRectMake(10, 0, topBgViewWidth, topBgViewWidth *391/709)];
         [self addSubview:topBgView];
 
         UIImageView *topBgBackgroundImageView   = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, viewWidth(topBgView), viewHeight(topBgView))];
@@ -54,7 +73,7 @@
                                                                       viewBotton(lineImageView)+px_px_2_3(9, 15),
                                                                       viewWidth(lineImageView),
                                                                       9)
-                                                      text:@"2500"
+                                                      text:@""
                                                       font:11
                                              textAlignment:NSTextAlignmentRight
                                               colorFromHex:0x75FFFFFF];
@@ -69,7 +88,7 @@
                                               textAlignment:NSTextAlignmentRight
                                                colorFromHex:0x75FFFFFF]];
         
-        ProgreesBarView *lqBarProgress = [[ProgreesBarView alloc] initWithCenter:CGPointMake(topBgView.frame.size.width/6,
+        lqBarProgress = [[ProgreesBarView alloc] initWithCenter:CGPointMake(topBgView.frame.size.width/6,
                                                                                              (60+topBgView.frame.size.height-35)/2)
                                                                             size:CGSizeMake(15, topBgView.frame.size.height-60-35)
                                                                        direction:4 colors:@[(__bridge id)[CommonFunction colorFromHex:0XFFFDD4C3].CGColor,
@@ -78,7 +97,7 @@
         
         [topBgView addSubview:lqBarProgress];
         
-        ProgreesBarView *eqBarProgress = [[ProgreesBarView alloc] initWithCenter:CGPointMake(topBgView.frame.size.width/2,
+        eqBarProgress = [[ProgreesBarView alloc] initWithCenter:CGPointMake(topBgView.frame.size.width/2,
                                                                                              (60+topBgView.frame.size.height-35)/2)
                                                                             size:CGSizeMake(15, topBgView.frame.size.height-60-35)
                                                                        direction:4
@@ -88,7 +107,7 @@
         
         [topBgView addSubview:eqBarProgress];
         
-        ProgreesBarView *dqBarProgress = [[ProgreesBarView alloc] initWithCenter:CGPointMake(topBgView.frame.size.width*5/6,
+        dqBarProgress = [[ProgreesBarView alloc] initWithCenter:CGPointMake(topBgView.frame.size.width*5/6,
                                                                                              (60+topBgView.frame.size.height-35)/2)
                                                                             size:CGSizeMake(15, topBgView.frame.size.height-60-35)
                                                                        direction:4
@@ -106,48 +125,39 @@
         [topBgView addSubview:downlineImageView];
         
     
-        
-        [topBgView addSubview:[CommonFunction addLabelFrame:CGRectMake(20,
-                                                                       topBgView.frame.size.height-35+5,
-                                                                       topBgView.frame.size.width/3-20,
-                                                                       15)
-                                                       text:[dataArray[0] objectForKey:@"hour"]
-                                                       font:29/2
-                                              textAlignment:NSTextAlignmentCenter
-                                               colorFromHex:0xFFFFFFFF]];
-        
-        [topBgView addSubview:[CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width/3,
-                                                                       topBgView.frame.size.height-35+5,
-                                                                       topBgView.frame.size.width/3,
-                                                                       29/2) text:[dataArray[1] objectForKey:@"hour"]
-                                                       font:15
-                                              textAlignment:NSTextAlignmentCenter
-                                               colorFromHex:0xFFFFFFFF]];
-        
-        [topBgView addSubview:[CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width*2/3,
-                                                                       topBgView.frame.size.height-35+5,
-                                                                       topBgView.frame.size.width/3-20,
-                                                                       29/2)
-                                                       text:[dataArray[2] objectForKey:@"hour"]
-                                                       font:15
-                                              textAlignment:NSTextAlignmentCenter
-                                               colorFromHex:0xFFFFFFFF]];
-        
-//        UILabel *lqLabel = [CommonFunction addLabelFrame:CGRectMake(20, 200+30, kScreenWidth/2-20, 30) text:@"小于1H" font:25 textAlignment:NSTextAlignmentLeft colorFromHex:0xFF000000];
-//        [self addSubview:lqLabel];
-//        
-//        [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, 200+30, kScreenWidth/2-20, 30) text:@"721" font:25 textAlignment:NSTextAlignmentRight colorFromHex:0xFF000000]];
-//        
-//        UILabel *eqLabel = [CommonFunction addLabelFrame:CGRectMake(20, 200+30+30+10, kScreenWidth/2-20, 30) text:@"1~2H" font:25 textAlignment:NSTextAlignmentLeft colorFromHex:0xFF000000];
-//        [self addSubview:eqLabel];
-//        
-//        [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, 200+30+30+10, kScreenWidth/2-20, 30) text:@"350" font:25 textAlignment:NSTextAlignmentRight colorFromHex:0xFF000000]];
-//        
-//        UILabel *dqLabel = [CommonFunction addLabelFrame:CGRectMake(20, 200+30+30+10+30+10, kScreenWidth/2-20, 30) text:@"大于2H" font:25 textAlignment:NSTextAlignmentLeft colorFromHex:0xFF000000];
-//        [self addSubview:dqLabel];
-//        
-//        [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, 200+30+30+10+30+10, kScreenWidth/2-20, 30) text:@"430" font:25 textAlignment:NSTextAlignmentRight colorFromHex:0xFF000000]];
-//        
+
+        lessTagLabel = [CommonFunction addLabelFrame:CGRectMake(20,
+                                                                           topBgView.frame.size.height-35+5,
+                                                                           topBgView.frame.size.width/3-20,
+                                                                           15)
+                                                           text:[dataArray[0] objectForKey:@"hour"]
+                                                           font:29/2
+                                                  textAlignment:NSTextAlignmentCenter
+                                                   colorFromHex:0xFFFFFFFF];
+        [topBgView addSubview:lessTagLabel];
+
+        equalTagLabel = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width/3,
+                                                                          topBgView.frame.size.height-35+5,
+                                                                          topBgView.frame.size.width/3,
+                                                                          29/2)
+                                                 text:[dataArray[1] objectForKey:@"hour"]
+                                                 font:15
+                                                 textAlignment:NSTextAlignmentCenter
+                                                  colorFromHex:0xFFFFFFFF];
+        [topBgView addSubview:equalTagLabel];
+
+        moreTagLabel = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width*2/3,
+                                                                topBgView.frame.size.height-35+5,
+                                                                topBgView.frame.size.width/3-20,
+                                                                29/2)
+                                                text:[dataArray[2] objectForKey:@"hour"]
+                                                font:15
+                                       textAlignment:NSTextAlignmentCenter
+                                        colorFromHex:0xFFFFFFFF];
+
+        [topBgView addSubview:moreTagLabel];
+
+
 
         //less
         UIImageView *lessImageView = [[UIImageView alloc]initWithFrame:CGRectMake(px_px_2_3(54, 89),
@@ -157,7 +167,7 @@
         lessImageView.image = [UIImage imageNamed:@"PsnSafetyLess"];
         //        arrImageView.backgroundColor = [UIColor redColor];
         [self addSubview:lessImageView];
-        UILabel *lessLabel = [CommonFunction addLabelFrame:CGRectMake(viewTrailing(lessImageView)+16,
+        lessLabel = [CommonFunction addLabelFrame:CGRectMake(viewTrailing(lessImageView)+16,
                                                                       viewY(lessImageView),
                                                                       150,
                                                                       viewHeight(lessImageView))
@@ -167,14 +177,16 @@
                                               colorFromHex:0xFF000000];
         [self addSubview:lessLabel];
 
-        [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2,
-                                                                  viewY(lessImageView),
-                                                                  kScreenWidth/2-20,
-                                                                  viewHeight(lessImageView))
-                                                  text:((NSNumber *)[dataArray[0] objectForKey:@"count"]).stringValue
-                                                  font:36/2
-                                         textAlignment:NSTextAlignmentRight
-                                          colorFromHex:0xFF000000]];
+
+        lessValueLabel = [CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2,
+                                                                           viewY(lessImageView),
+                                                                           kScreenWidth/2-20,
+                                                                           viewHeight(lessImageView))
+                                                           text:((NSNumber *)[dataArray[0] objectForKey:@"count"]).stringValue
+                                                           font:36/2
+                                                  textAlignment:NSTextAlignmentRight
+                                                   colorFromHex:0xFF000000];
+        [self addSubview:lessValueLabel];
 
         UIImageView *lesslineImageView  = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(lessLabel),
                                                                                       viewBotton(lessLabel)+px_px_2_2_3(30, 42, 63),
@@ -188,7 +200,7 @@
         equalImageView.image            = [UIImage imageNamed:@"PsnSafetyEqual"];
         [self addSubview:equalImageView];
 
-        UILabel *equalLabel             = [CommonFunction addLabelFrame:CGRectMake(viewTrailing(equalImageView)+16,
+        equalLabel             = [CommonFunction addLabelFrame:CGRectMake(viewTrailing(equalImageView)+16,
                                                                                    viewY(equalImageView)-7,
                                                                                    150,
                                                                                    viewHeight(lessImageView))
@@ -198,15 +210,15 @@
                                                            colorFromHex:0xFF000000];
         [self addSubview:equalLabel];
 
-
-        [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2,
-                                                                  viewY(equalLabel),
-                                                                  kScreenWidth/2-20,
-                                                                  20)
-                                                  text:((NSNumber *)[dataArray[1] objectForKey:@"count"]).stringValue
-                                                  font:36/2
-                                         textAlignment:NSTextAlignmentRight
-                                          colorFromHex:0xFF000000]];
+        equalValueLabel = [CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2,
+                                                                   viewY(equalLabel),
+                                                                   kScreenWidth/2-20,
+                                                                   20)
+                                                   text:((NSNumber *)[dataArray[1] objectForKey:@"count"]).stringValue
+                                                   font:36/2
+                                          textAlignment:NSTextAlignmentRight
+                                           colorFromHex:0xFF000000];
+        [self addSubview:equalValueLabel];
 
         UIImageView *equallineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(equalLabel),
                                                                                        viewBotton(equalLabel)+px_px_2_2_3(30, 42, 63),
@@ -224,7 +236,7 @@
         moreImageView.image             = [UIImage imageNamed:@"PsnSafetyMore"];
         [self addSubview:moreImageView];
 
-        UILabel *moreLabel              = [CommonFunction addLabelFrame:CGRectMake(viewTrailing(equalImageView)+16,
+        moreLabel              = [CommonFunction addLabelFrame:CGRectMake(viewTrailing(equalImageView)+16,
                                                                                    viewY(moreImageView),
                                                                                    150,
                                                                                    viewHeight(moreImageView))
@@ -235,13 +247,14 @@
         [self addSubview:moreLabel];
 
 
-        [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2,
+        moreValueLabel = [CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2,
                                                                   viewY(moreImageView),
                                                                   kScreenWidth/2-20, 20)
                                                   text:((NSNumber *)[dataArray[2] objectForKey:@"count"] ).stringValue
                                                   font:36/2
                                          textAlignment:NSTextAlignmentRight
-                                          colorFromHex:0xFF000000]];
+                                          colorFromHex:0xFF000000];
+        [self addSubview:moreValueLabel];
 
         UIImageView *morelineImageView  = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(moreLabel),
                                                                                       viewBotton(moreImageView)+px_px_2_2_3(30, 42, 63),
@@ -273,6 +286,10 @@
         [self addSubview:DMZNumButton];
 
 
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(loadData:)
+                                                     name:@""
+                                                   object:nil];
         
         //[self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, 200+30+30+10+30+10+90, kScreenWidth/2-20, 20) text:@"" font:25 textAlignment:NSTextAlignmentLeft colorFromHex:0xFF000000]];
         
@@ -281,11 +298,53 @@
     return self;
 }
 
+-(void)loadData:(NSNotification *)notification
+{
+    if ([notification.object isKindOfClass:[NSArray class]]) {
+        _dataArray = notification.object;
+
+        lqBarProgress = [[ProgreesBarView alloc] initWithCenter:CGPointMake(topBgView.frame.size.width/6,
+                                                                            (60+topBgView.frame.size.height-35)/2)
+                                                           size:CGSizeMake(15, topBgView.frame.size.height-60-35)
+                                                      direction:4 colors:@[(__bridge id)[CommonFunction colorFromHex:0XFFFDD4C3].CGColor,
+                                                                           (__bridge id)[CommonFunction colorFromHex:0XFFFDC4D5].CGColor ]
+                                                     proportion:((NSNumber *)[_dataArray[2] objectForKey:@"ratio"]).floatValue];
+
+        eqBarProgress = [[ProgreesBarView alloc] initWithCenter:CGPointMake(topBgView.frame.size.width/2,
+                                                                            (60+topBgView.frame.size.height-35)/2)
+                                                           size:CGSizeMake(15, topBgView.frame.size.height-60-35)
+                                                      direction:4
+                                                         colors:@[(__bridge id)[CommonFunction colorFromHex:0XFFFDD4C3].CGColor,
+                                                                  (__bridge id)[CommonFunction colorFromHex:0XFFFDC4D5].CGColor ]
+                                                     proportion:((NSNumber *)[_dataArray[2] objectForKey:@"ratio"]).floatValue];
+
+        dqBarProgress = [[ProgreesBarView alloc] initWithCenter:CGPointMake(topBgView.frame.size.width*5/6,
+                                                                            (60+topBgView.frame.size.height-35)/2)
+                                                           size:CGSizeMake(15, topBgView.frame.size.height-60-35)
+                                                      direction:4
+                                                         colors:@[(__bridge id)[CommonFunction colorFromHex:0XFFFDD4C3].CGColor,
+                                                                  (__bridge id)[CommonFunction colorFromHex:0XFFFDC4D5].CGColor ]
+                                                     proportion:((NSNumber *)[_dataArray[2] objectForKey:@"ratio"]).floatValue];
+
+        lessTagLabel.text   = [_dataArray[0] objectForKey:@"hour"];
+        equalTagLabel.text  = [_dataArray[1] objectForKey:@"hour"];
+        moreTagLabel.text   = [_dataArray[2] objectForKey:@"hour"];
+        lessLabel.text      = [_dataArray[0] objectForKey:@"hour"];
+        equalLabel.text     = [_dataArray[1] objectForKey:@"hour"];
+        moreLabel.text      = [_dataArray[2] objectForKey:@"hour"];
+        lessValueLabel.text = [_dataArray[0] objectForKey:@"count"];
+        equalValueLabel.text= [_dataArray[1] objectForKey:@"count"];
+        moreValueLabel.text = [_dataArray[2] objectForKey:@"count"];
+
+    }
+}
+
 -(void)showTop5DaysView:(NSNotification *)sender
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"showTop5DaysView"
                                                         object:nil];
 }
+
 
 
 @end

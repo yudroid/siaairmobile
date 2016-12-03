@@ -13,9 +13,11 @@
 
 @implementation PsnSafetyAreaView
 {
-    NSArray<PassengerAreaModel *> *farArray;
-    NSMutableArray<PassengerAreaModel *> *nearArray;
-    PNBarChart *barChart;
+    NSArray<PassengerAreaModel *>           *farArray;
+    NSMutableArray<PassengerAreaModel *>    *nearArray;
+    PNBarChart                              *barChart;
+    UITableView                             *flightHourTableView;
+
 }
 
 -(instancetype) initWithFrame:(CGRect)    frame
@@ -23,7 +25,7 @@
 {
     self = [super initWithFrame:frame];
     if(self){
-//        [self initData];
+
         farArray = dataArray;
         CGFloat topBgViewWidth = kScreenWidth-2*px2(22);
         UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(10,
@@ -151,7 +153,7 @@
         [topBgView addSubview:lowImageView];
         
         //小时分布表格
-        UITableView *flightHourTableView = [[UITableView alloc]initWithFrame:CGRectMake(20,
+        flightHourTableView = [[UITableView alloc]initWithFrame:CGRectMake(20,
                                                                                         viewBotton(topBgView)+20,
                                                                                         kScreenWidth-40,
                                                                                         viewHeight(self)-10-20-viewBotton(topBgView))];
@@ -161,11 +163,28 @@
         flightHourTableView.backgroundColor = [UIColor whiteColor];
         flightHourTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self addSubview:flightHourTableView];
+
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(loadData:)
+                                                     name:@"GlqNearPsn"
+                                                   object:nil];
         
     }
     return self;
 }
 
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"GlqNearPsn" object:nil];
+}
+
+-(void)loadData:(NSNotification *)notification
+{
+    if ([notification.object isKindOfClass:[NSArray class]]) {
+        nearArray  =  notification.object;
+    }
+
+}
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 2;
@@ -263,27 +282,27 @@ viewForHeaderInSection:(NSInteger)section
     return arr;
 }
 
--(void) initData
-{
-//    if(farArray == nil){
-//        farArray = [[NSMutableArray alloc] init];
+//-(void) initData
+//{
+////    if(farArray == nil){
+////        farArray = [[NSMutableArray alloc] init];
+////    }else{
+////        [farArray removeAllObjects];
+////    }
+////    [farArray addObject:[[PassengerAreaModel alloc] initWithRegion:@"北指廊" count:2512 isFar:NO]];
+////    [farArray addObject:[[PassengerAreaModel alloc] initWithRegion:@"东北"  count:2055 isFar:NO]];
+////    [farArray addObject:[[PassengerAreaModel alloc] initWithRegion:@"西北"  count:2315 isFar:NO]];
+////    [farArray addObject:[[PassengerAreaModel alloc] initWithRegion:@"东南"  count:1985 isFar:NO]];
+////    [farArray addObject:[[PassengerAreaModel alloc] initWithRegion:@"西南"  count:1205 isFar:NO]];
+//
+//    if(nearArray == nil){
+//        nearArray = [[NSMutableArray alloc] init];
 //    }else{
-//        [farArray removeAllObjects];
+//        [nearArray removeAllObjects];
 //    }
-//    [farArray addObject:[[PassengerAreaModel alloc] initWithRegion:@"北指廊" count:2512 isFar:NO]];
-//    [farArray addObject:[[PassengerAreaModel alloc] initWithRegion:@"东北"  count:2055 isFar:NO]];
-//    [farArray addObject:[[PassengerAreaModel alloc] initWithRegion:@"西北"  count:2315 isFar:NO]];
-//    [farArray addObject:[[PassengerAreaModel alloc] initWithRegion:@"东南"  count:1985 isFar:NO]];
-//    [farArray addObject:[[PassengerAreaModel alloc] initWithRegion:@"西南"  count:1205 isFar:NO]];
-
-    if(nearArray == nil){
-        nearArray = [[NSMutableArray alloc] init];
-    }else{
-        [nearArray removeAllObjects];
-    }
-    [nearArray addObject:[[PassengerAreaModel alloc] initWithRegion:@"国内远"  count:2503 isFar:YES]];
-    [nearArray addObject:[[PassengerAreaModel alloc] initWithRegion:@"国际远"  count:1025 isFar:YES]];
-}
+//    [nearArray addObject:[[PassengerAreaModel alloc] initWithRegion:@"国内远"  count:2503 isFar:YES]];
+//    [nearArray addObject:[[PassengerAreaModel alloc] initWithRegion:@"国际远"  count:1025 isFar:YES]];
+//}
 
 
 @end

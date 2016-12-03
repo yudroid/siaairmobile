@@ -38,26 +38,48 @@
     self = [super init];
     if(self){
         _hour           = hour;
-//        _count = count;
-//        _planCount = planCount;
         _arrCount       = arrCount;
         _planArrCount   = planArrCount;
         _depCount       = depCount;
         _planDepCount   = planDepCount;
         _before         = before;
+
+        //        _count = count;
+        //        _planCount = planCount;
     }
     return self;
 }
 
--(int) getCount
+-(instancetype)initWithDictionary:(NSDictionary *)dictionary
+{
+    self  = [super init];
+    if (self) {
+        [self setValuesForKeysWithDictionary:dictionary];
+    }
+    return self;
+}
+
+-(void)setValue:(id)value forUndefinedKey:(NSString *)key
+{
+
+}
+
+-(long) getCount
 {
     return _arrCount+_depCount;
 }
 
--(int) getPlanCount
+-(long) getPlanCount
 {
     return _planArrCount+_planDepCount;
 }
+
+-(NSString *)description
+{
+    return [NSString stringWithFormat:@"hour:%@",_hour];
+}
+
+
 
 
 @end

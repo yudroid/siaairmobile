@@ -16,18 +16,17 @@
 
 @implementation FlightAbnViewController
 {
-    UIPageControl *pageControl;
-    UIView *segmentedView;
-    UIView *abnormalView;
-    UIImageView *abnBackgroundImageView;
-    UILabel *abnLabel;
-    UIView *delayView;
-    UIImageView *delayBackgroundImageView;
-    UILabel *delayLabel;
-    UIScrollView *scrollView;
-
-    UIButton *abnsButton;
-    UIButton *delayButton;
+    UIPageControl   *pageControl;
+    UIView          *segmentedView;
+    UIView          *abnormalView;
+    UIImageView     *abnBackgroundImageView;
+    UILabel         *abnLabel;
+    UIView          *delayView;
+    UIImageView     *delayBackgroundImageView;
+    UILabel         *delayLabel;
+    UIScrollView    *scrollView;
+    UIButton        *abnsButton;
+    UIButton        *delayButton;
 }
 
 -(instancetype)initWithFlightStusModel:(FlightStusModel *)flightHourModel

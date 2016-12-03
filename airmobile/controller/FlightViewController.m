@@ -19,8 +19,8 @@
 #import <MJRefresh.h>
 #import "FlightService.h"
 
-static const CGFloat FLIGHTFILTERVIEW_HEIGHT = 365;
-static  NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_IDETIFIER";
+static const CGFloat FLIGHTFILTERVIEW_HEIGHT = 440.0;
+static const NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_IDETIFIER";
 
 @interface FlightViewController ()<TabBarViewDelegate,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 
@@ -31,28 +31,26 @@ static  NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_IDETIF
 
 @implementation FlightViewController
 {
-    FlightFilterView *filterView;
-    NSArray<FlightModel *> *dataArray;
+    FlightFilterView        *filterView;
+    NSMutableArray<FlightModel *>  *dataArray;
+
     int startIndex;
     int pagesize;
-    NSString *flightNo;//搜索的内容（模糊查询）
-    NSString *flightRegion;//区域筛选
-    NSString *flightType;//性质筛选
-    NSString *flightStatus;//状态筛选
+
+    NSString *flightNo;     //搜索的内容（模糊查询）
+    NSString *flightRegion; //区域筛选
+    NSString *flightType;   //性质筛选
+    NSString *flightStatus; //状态筛选
 }
 
 - (void)viewDidLoad {
 
     [super viewDidLoad];
 
-    FlightService *flightService = [[FlightService alloc]init];
-    [flightService startService];
-    dataArray = [flightService getFlightArray];
-    
     // 优先加载数据，存在网络延迟，认为会在视图加载完成后返回结果
     startIndex = 0;
     pagesize = 20;
-//    dataArray = [NSMutableArray array];
+    //dataArray = [NSMutableArray array];
 
     [self initTitleView];
     //TabBer自定义
@@ -81,10 +79,10 @@ static  NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_IDETIF
 
     //添加下拉刷新
     _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self
-                                                      refreshingAction:@selector(UpdateNetwork)];
+                                                      refreshingAction:@selector(loadMoreNetwork)];
     //添加上拉加载
     _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self
-                                                          refreshingAction:@selector(loadMoreNetwork)];
+                                                          refreshingAction:@selector(UpdateNetwork)];
 }
 
 
@@ -166,62 +164,61 @@ static  NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_IDETIF
 //                    forControlEvents:UIControlEventTouchUpInside];
 //    [_searBar addSubview:searchBarSearchButton];
 
+    dataArray = [NSMutableArray array];
 }
 
 -(void)UpdateNetwork
 {
-//    NSDictionary *conds = [[NSDictionary alloc] initWithObjectsAndKeys:flightNo,@"search_flightNO",flightRegion,@"search_region",flightType,@"search_model",flightStatus,@"search_state",startIndex,@"start",pagesize,@"length", nil];
-//    [HttpsUtils queryFlightList:conds success:^(id responseObj) {
-//        // 数据加载完成
-//        [_tableView.mj_header endRefreshing];
-//        if(![responseObj isKindOfClass:[NSDictionary class]]){
-//            return;
-//        }
-//        FlightModel *flight = nil;
-//        for(id item in responseObj){
-//            flight = [FlightModel new];
-//            [self copyToFlightModel:flight item:item];
-//            [dataArray addObject:flight];
-//        }
-//        [_tableView reloadData];
-//        startIndex +=pagesize;
-//        
-//    } failure:^(NSError *error) {
-//        NSLog(@"%@",error);
-//        [_tableView.mj_header endRefreshing];
-//    }];
+    NSDictionary *conds = [[NSDictionary alloc] initWithObjectsAndKeys:flightNo,@"search_flightNO",flightRegion,@"search_region",flightType,@"search_model",flightStatus,@"search_state",startIndex,@"start",pagesize,@"length", nil];
+    [HttpsUtils queryFlightList:conds success:^(id responseObj) {
+        // 数据加载完成
+
+        if(![responseObj isKindOfClass:[NSDictionary class]]){
+            return;
+        }
+        FlightModel *flight = nil;
+        for(id item in responseObj){
+            flight = [[FlightModel alloc]initWithDictionary:item];
+
+            [dataArray addObject:flight];
+        }
+
+        [_tableView.mj_footer endRefreshing];
+        [_tableView reloadData];
+        startIndex +=pagesize;
+        
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+        [_tableView.mj_footer endRefreshing];
+    }];
 }
 
 -(void)loadMoreNetwork
 {
-//    NSDictionary *conds = [[NSDictionary alloc] initWithObjectsAndKeys:flightNo,@"search_flightNO",flightRegion,@"search_region",flightType,@"search_model",flightStatus,@"search_state",startIndex,@"start",pagesize,@"length", nil];
-//    [HttpsUtils queryFlightList:conds success:^(id responseObj) {
-//        // 数据加载完成
-//        [_tableView.mj_footer endRefreshing];
-//        if(![responseObj isKindOfClass:[NSDictionary class]]){
-//            return;
-//        }
-//        FlightModel *flight = nil;
-//        for(id item in responseObj){
-//            flight = [FlightModel new];
-//            [self copyToFlightModel:flight item:item];
-//            [dataArray addObject:flight];
-//        }
-//        [_tableView reloadData];
-//        startIndex +=pagesize;
-//        
-//    } failure:^(NSError *error) {
-//        NSLog(@"%@",error);
-//        [_tableView.mj_footer endRefreshing];
-//    }];
+    NSDictionary *conds = [[NSDictionary alloc] initWithObjectsAndKeys:flightNo,@"search_flightNO",flightRegion,@"search_region",flightType,@"search_model",flightStatus,@"search_state",startIndex,@"start",pagesize,@"length", nil];
+    [HttpsUtils queryFlightList:conds success:^(id responseObj) {
+        // 数据加载完成
+
+        if(![responseObj isKindOfClass:[NSArray class]]){
+            return;
+        }
+        dataArray = [NSMutableArray array];
+        FlightModel *flight = nil;
+        for(id item in responseObj){
+            flight = [[FlightModel alloc]initWithDictionary:item];
+            [dataArray addObject:flight];
+        }
+        [_tableView.mj_header endRefreshing];
+        [_tableView reloadData];
+        startIndex =20;
+        
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+        [_tableView.mj_header endRefreshing];
+    }];
 }
 
--(void)copyToFlightModel:(FlightModel *)flight item:(id)item
-{
-    if([flight isNull:item])
-        return;
-    [flight setValuesForKeysWithDictionary:item];
-}
+
 
 #pragma mark - EVENT
 -(void)filterButtonClick:(UIButton *)button
@@ -266,7 +263,7 @@ static  NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_IDETIF
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FlightModel *flight = [dataArray objectAtIndex:indexPath.row];
-    FlightFilterTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TABLEVIEWCELL_IDETIFIER ];
+    FlightFilterTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)TABLEVIEWCELL_IDETIFIER ];
     if (cell==nil) {
         cell= [[NSBundle mainBundle] loadNibNamed:@"FlightFilterTableViewCell" owner:nil options:nil][0];
     }

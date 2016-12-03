@@ -28,6 +28,11 @@
 
 
     PNLineChart *lineChart;
+    UILabel     *ratioNum;
+    UILabel     *peopleLabel;
+    UILabel     *todayLabel;
+    UILabel     *arrRatioLabel;
+    UILabel     *addTimeLabel;
 
 
 }
@@ -73,7 +78,7 @@
     passengerTtitle.textColor = [UIColor whiteColor];
     [topBgView addSubview:passengerTtitle];
 
-    UILabel *ratioNum = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-100,
+    ratioNum = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-100,
                                                                  7.5,
                                                                  80,
                                                                  20)
@@ -85,7 +90,7 @@
 
 
 
-    UILabel *todayLabel = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-140,
+    todayLabel = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-140,
                                                                    viewBotton(ratioNum)+4 ,
                                                                    120,
                                                                    9)
@@ -189,15 +194,16 @@
                                                    font:px_px_2_2_3(25, 36, 48)
                                           textAlignment:(NSTextAlignmentLeft)
                                            colorFromHex:0xFF000000]];
+    peopleLabel = [CommonFunction addLabelFrame:CGRectMake(kScreenWidth-80-22,
+                                                                    viewY(buildingImageView),
+                                                                    80,
+                                                                    viewHeight(buildingImageView))
+                                                    text:@(_flightLargeDelayModel.glqPassenCnt).stringValue
+                                                    font:px_px_2_2_3(25, 36, 48)
+                                           textAlignment:(NSTextAlignmentRight)
+                                            colorFromHex:0xFF000000];
     
-    [self.view addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth-80-22,
-                                                                   viewY(buildingImageView),
-                                                                   80,
-                                                                   viewHeight(buildingImageView))
-                                                   text:@(_flightLargeDelayModel.glqPassenCnt).stringValue
-                                                   font:px_px_2_2_3(25, 36, 48)
-                                          textAlignment:(NSTextAlignmentRight)
-                                           colorFromHex:0xFF000000]];
+    [self.view addSubview:peopleLabel];
 
     UIImageView *lineImageView1= [[UIImageView alloc]initWithFrame:CGRectMake(viewTrailing(buildingImageView)+px_px_2_3(42, 63),
                                                                               viewBotton(buildingImageView)+18,
@@ -220,14 +226,16 @@
                                                    text:@"延误>1h航班出港率"
                                                    font:px_px_2_2_3(25, 36, 48)
                                           textAlignment:(NSTextAlignmentLeft) colorFromHex:0xFF000000]];
-    
-    [self.view addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth-80-43/2,
-                                                                   viewY(delayImageView),
-                                                                   80,
-                                                                   viewHeight(delayImageView))
-                                                   text:[NSString stringWithFormat:@"%ld%%",(long)@(_flightLargeDelayModel.delayOneHourRatio*100.0).integerValue]                                                   font:px_px_2_2_3(25, 36, 48)
-                                          textAlignment:(NSTextAlignmentRight)
-                                           colorFromHex:0xFF000000]];
+
+    arrRatioLabel = [CommonFunction addLabelFrame:CGRectMake(kScreenWidth-80-43/2,
+                                                                       viewY(delayImageView),
+                                                                       80,
+                                                                       viewHeight(delayImageView))
+                                                       text:[NSString stringWithFormat:@"%ld%%",(long)@(_flightLargeDelayModel.delayOneHourRatio*100.0).integerValue]
+                                                       font:px_px_2_2_3(25, 36, 48)
+                                              textAlignment:(NSTextAlignmentRight)
+                                               colorFromHex:0xFF000000];
+    [self.view addSubview:arrRatioLabel];
 
     UIImageView *lineImageView2= [[UIImageView alloc]initWithFrame:CGRectMake(viewTrailing(buildingImageView)+px_px_2_3(42, 63),
                                                                               viewBotton(delayImageView)+18,
@@ -250,15 +258,16 @@
                                                    font:px_px_2_2_3(25, 36, 48)
                                           textAlignment:(NSTextAlignmentLeft)
                                            colorFromHex:0xFF000000]];
-    
-    [self.view addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth-80-43/2,
-                                                                   viewY(noFlightImageView),
-                                                                   80,
-                                                                   viewHeight(noFlightImageView))
-                                                   text:[NSString stringWithFormat:@"%d min",_flightLargeDelayModel.noTakeoffAndLanding]
-                                                   font:px_px_2_2_3(25, 36, 48)
-                                          textAlignment:(NSTextAlignmentRight)
-                                           colorFromHex:0xFF000000]];
+
+    addTimeLabel = [CommonFunction addLabelFrame:CGRectMake(kScreenWidth-80-43/2,
+                                                                     viewY(noFlightImageView),
+                                                                     80,
+                                                                     viewHeight(noFlightImageView))
+                                                     text:[NSString stringWithFormat:@"%d min",_flightLargeDelayModel.noTakeoffAndLanding]
+                                                     font:px_px_2_2_3(25, 36, 48)
+                                            textAlignment:(NSTextAlignmentRight)
+                                             colorFromHex:0xFF000000];
+    [self.view addSubview:addTimeLabel];
 
     UIImageView *lineImageView3= [[UIImageView alloc]initWithFrame:CGRectMake(viewTrailing(buildingImageView)+px_px_2_3(42, 63),
                                                                               viewBotton(noFlightImageView)+16,
@@ -266,9 +275,19 @@
                                                                               1)];
     lineImageView3.image = [UIImage imageNamed:@"Line"];
     [self.view addSubview:lineImageView3];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(loadData:)
+                                                 name:@"FlightDelayTarget"
+                                               object:nil];
 
 }
 
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:@"FlightDelayTarget"
+                                                  object:nil];
+}
 -(void)initTitle
 {
     [self titleViewInitWithHight:65];
@@ -290,7 +309,11 @@
 {
     NSMutableArray *arr = [[NSMutableArray alloc] init];
     for(FlightHourModel *model in _flightLargeDelayModel.hourExecuteRateList){
-        [arr addObject:[model.hour componentsSeparatedByString:@":"][0]];
+        if(model.hour){
+            [arr addObject:[model.hour componentsSeparatedByString:@":"][0]];
+        }else{
+            [arr addObject:@""];
+        }
     }
     return arr;
 }
@@ -305,40 +328,35 @@
 }
 
 
+-(void)loadData:(NSNotification *)notification
+{
+    if ([notification.object isKindOfClass:[FlightLargeDelayModel class]]) {
+        _flightLargeDelayModel  = notification.object;
+        ratioNum.text           = @(_flightLargeDelayModel.delayOneHourRatio).stringValue;
+        peopleLabel.text        = @(_flightLargeDelayModel.glqPassenCnt).stringValue;
+        todayLabel.text         = [NSString stringWithFormat:@"当前 %@",[CommonFunction dateFormat:nil format:@"hh:mi"]];
+        arrRatioLabel.text      = [NSString stringWithFormat:@"%ld%%",(long)@(_flightLargeDelayModel.delayOneHourRatio*100.0).integerValue];
+        addTimeLabel.text       = [NSString stringWithFormat:@"%d min",_flightLargeDelayModel.noTakeoffAndLanding];
 
-//-(void) initData
-//{
-//    if(eightMonthArray == nil){
-//        eightMonthArray = [[NSMutableArray alloc] init];
-//    }else{
-//        [eightMonthArray removeAllObjects];
-//    }
-//
-//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"1:00" count:25]];
-//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"2:00" count:35]];
-//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"3:00" count:15]];
-//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"4:00" count:10]];
-//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"5:00" count:25]];
-//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"6:00" count:35]];
-//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"7:00" count:45]];
-//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"8:00" count:65]];
-//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"9:00" count:70]];
-//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"10:00" count:48]];
-//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"11:00" count:62]];
-//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"12:00" count:45]];
-//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"13:00" count:55]];
-//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"14:00" count:60]];
-//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"15:00" count:75]];
-//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"16:00" count:60]];
-//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"17:00" count:45]];
-//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"18:00" count:35]];
-//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"19:00" count:45]];
-//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"20:00" count:25]];
-//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"21:00" count:20]];
-//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"22:00" count:25]];
-//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"23:00" count:30]];
-//    [eightMonthArray addObject:[[FlightHourModel alloc] initWithHour:@"00:00" count:15]];
-//}
+        [lineChart setXLabels:[self getFlightHourXLabels]];
 
+        // Line Chart #2
+        NSArray * dataArray = [self getFlightHourYLabels];
+        PNLineChartData *data = [PNLineChartData new];
+        data.dataTitle = @"航班";
+        data.color = [UIColor whiteColor];
+        data.alpha = 0.5f;
+        data.itemCount = dataArray.count;
+        data.inflexionPointStyle = PNLineChartPointStyleCircle;
+        data.getData = ^(NSUInteger index) {
+            CGFloat yValue = [dataArray[index] floatValue];
+            return [PNLineChartDataItem dataItemWithY:yValue];
+        };
+
+        lineChart.chartData = @[data];
+        [lineChart strokeChart];
+
+    }
+}
 
 @end

@@ -13,8 +13,11 @@
 
 @implementation TenDayRatioView
 {
-    PNBarChart *barChart;
-    NSMutableArray<ReleasedRatioModel *> *tenDayArray;
+    PNBarChart                              *barChart;
+    NSMutableArray<ReleasedRatioModel *>    *tenDayArray;
+    UITableView                             *tenDayTableView;
+    UILabel                                 *ratioNum;
+    UILabel                                 *todayLabel;
 }
 
 -(instancetype)initWithFrame:(CGRect)frame
@@ -49,7 +52,7 @@
         passengerTtitle.textColor = [UIColor whiteColor];
         [topBgView addSubview:passengerTtitle];
         
-        UILabel *ratioNum = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-100,
+        ratioNum = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-100,
                                                                      7.5,
                                                                      80,
                                                                      20)
@@ -61,7 +64,7 @@
 
 
         
-        UILabel *todayLabel = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-140,
+        todayLabel = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-140,
                                                                        viewHeight(ratioNum)+viewY(ratioNum) ,
                                                                        120,
                                                                        20)
@@ -147,16 +150,28 @@
         [topBgView addSubview:[CommonFunction addLabelFrame:CGRectMake(20, viewY(downlineImageView)-13-4, topBgView.frame.size.width-40, 13) text:@"0" font:11 textAlignment:NSTextAlignmentRight colorFromHex:0x75FFFFFF]];
 
         //小时分布表格
-        UITableView *tenDayTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, viewBotton(topBgView)+8, kScreenWidth, viewHeight(self)-viewBotton(topBgView)-8-10)];
+        tenDayTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, viewBotton(topBgView)+8, kScreenWidth, viewHeight(self)-viewBotton(topBgView)-8-10)];
         tenDayTableView.delegate = self;
         tenDayTableView.dataSource = self;
         tenDayTableView.showsVerticalScrollIndicator = NO;
         tenDayTableView.backgroundColor = [UIColor whiteColor];
         tenDayTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self addSubview:tenDayTableView];
+
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(loadData:)
+                                                     name:@"FlightTenDayRatio"
+                                                   object:nil];
     }
     
     return self;
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:@"FlightTenDayRatio"
+                                                  object:nil];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -206,24 +221,20 @@
     return s;
 }
 
-//-(void) initData
-//{
-//    if(tenDayArray == nil){
-//        tenDayArray = [[NSMutableArray alloc] init];
-//    }else{
-//        [tenDayArray removeAllObjects];
-//    }
-//        
-//    [tenDayArray addObject:[[ReleasedRatioModel alloc] initWithTime:@"08-11" ratio:0.75f]];
-//    [tenDayArray addObject:[[ReleasedRatioModel alloc] initWithTime:@"08-12" ratio:0.85f]];
-//    [tenDayArray addObject:[[ReleasedRatioModel alloc] initWithTime:@"08-13" ratio:0.75f]];
-//    [tenDayArray addObject:[[ReleasedRatioModel alloc] initWithTime:@"08-14" ratio:0.75f]];
-//    [tenDayArray addObject:[[ReleasedRatioModel alloc] initWithTime:@"08-15" ratio:0.72f]];
-//    [tenDayArray addObject:[[ReleasedRatioModel alloc] initWithTime:@"08-16" ratio:0.75f]];
-//    [tenDayArray addObject:[[ReleasedRatioModel alloc] initWithTime:@"08-17" ratio:0.75f]];
-//    [tenDayArray addObject:[[ReleasedRatioModel alloc] initWithTime:@"08-18" ratio:0.80f]];
-//    [tenDayArray addObject:[[ReleasedRatioModel alloc] initWithTime:@"08-19" ratio:0.75f]];
-//    [tenDayArray addObject:[[ReleasedRatioModel alloc] initWithTime:@"08-20" ratio:0.75f]];
-//}
+-(void)loadData:(NSNotification *)notification
+{
+    if ([notification.object isKindOfClass:[NSArray class]]) {
+        tenDayArray     = notification.object;
+        ratioNum.text   = [NSString stringWithFormat:@"%ld%%",(long)@([self sum]*100.0).integerValue];
+        todayLabel.text = [NSString stringWithFormat:@"今日 %@",[CommonFunction dateFormat:nil format:@"MM月dd日"]];
+        [barChart setXLabels:[self getXLabels]];
+        [barChart setYValues:[self getYLabels]];
+        [barChart strokeChart];
+
+        [tenDayTableView reloadData];
+    }
+
+
+}
 
 @end

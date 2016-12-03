@@ -15,6 +15,9 @@
 
 {
     PNBarChart                              *barChart;
+    UILabel                                 *todayLabel;
+    UILabel                                 *ratioNum;
+    UITableView                            *tenDayTableView;
     NSMutableArray<ReleasedRatioModel *>    *eightMonthArray;
 }
 
@@ -48,7 +51,7 @@
         passengerTtitle.textColor   = [UIColor whiteColor];
         [topBgView addSubview:passengerTtitle];
 
-        UILabel *ratioNum = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-100, 7.5, 80, 20)
+        ratioNum = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-100, 7.5, 80, 20)
                                                      text:[NSString stringWithFormat:@"%ld%%",(long)@([self sum]*100.0).integerValue]
                                                      font:24
                                             textAlignment:NSTextAlignmentRight
@@ -57,7 +60,7 @@
 
 
 
-        UILabel *todayLabel = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-140, viewHeight(ratioNum)+viewY(ratioNum) , 120, 20)
+        todayLabel = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-140, viewHeight(ratioNum)+viewY(ratioNum) , 120, 20)
                                                        text:[NSString stringWithFormat:@"今日 %@",[CommonFunction dateFormat:nil format:@"MM月dd日"]]
                                                        font:11
                                               textAlignment:NSTextAlignmentRight
@@ -140,7 +143,7 @@
 
 
         //小时分布表格
-         UITableView *tenDayTableView = [[UITableView alloc]initWithFrame:CGRectMake(0,
+        tenDayTableView = [[UITableView alloc]initWithFrame:CGRectMake(0,
                                                                                      viewBotton(topBgView)+8,
                                                                                      kScreenWidth,
                                                                                      viewHeight(self)-viewBotton(topBgView)-8-10)];
@@ -150,11 +153,22 @@
         tenDayTableView.backgroundColor                 = [UIColor whiteColor];
         tenDayTableView.separatorStyle                  = UITableViewCellSeparatorStyleNone;
         [self addSubview:tenDayTableView];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(loadData:)
+                                                     name:@"FlightYearRatio"
+                                                   object:nil];
     }
-    
+
     return self;
 }
 
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:@"FlightYearRatio"
+                                                  object:nil];
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 54;
 }
@@ -203,23 +217,20 @@
     return s;
 }
 
+-(void)loadData:(NSNotification *)notification
+{
+    if ([notification.object isKindOfClass:[NSArray class]]) {
+        eightMonthArray = notification.object;
+        ratioNum.text   = [NSString stringWithFormat:@"%ld%%",(long)@([self sum]*100.0).integerValue];
+        todayLabel.text = [NSString stringWithFormat:@"今日 %@",[CommonFunction dateFormat:nil format:@"MM月dd日"]];
+        [barChart setXLabels:[self getXLabels]];
+        [barChart setYValues:[self getYLabels]];
+        [barChart strokeChart];
 
-//-(void) initData
-//{
-//    if(eightMonthArray == nil){
-//        eightMonthArray = [[NSMutableArray alloc] init];
-//    }else{
-//        [eightMonthArray removeAllObjects];
-//    }
-//    
-//    [eightMonthArray addObject:[[ReleasedRatioModel alloc] initWithTime:@"3月" ratio:0.8f]];
-//    [eightMonthArray addObject:[[ReleasedRatioModel alloc] initWithTime:@"4月" ratio:0.75f]];
-//    [eightMonthArray addObject:[[ReleasedRatioModel alloc] initWithTime:@"5月" ratio:0.85f]];
-//    [eightMonthArray addObject:[[ReleasedRatioModel alloc] initWithTime:@"6月" ratio:0.75f]];
-//    [eightMonthArray addObject:[[ReleasedRatioModel alloc] initWithTime:@"7月" ratio:0.75f]];
-//    [eightMonthArray addObject:[[ReleasedRatioModel alloc] initWithTime:@"8月" ratio:0.75f]];
-//    [eightMonthArray addObject:[[ReleasedRatioModel alloc] initWithTime:@"9月" ratio:0.75f]];
-//    [eightMonthArray addObject:[[ReleasedRatioModel alloc] initWithTime:@"10月" ratio:0.75f]];
-//}
+        [tenDayTableView reloadData];
+    }
+    
+    
+}
 
 @end

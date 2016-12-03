@@ -31,6 +31,15 @@
     UIScrollView    *scrollView ;
     UILabel         *delay;
     UILabel         *cancel;
+
+    UILabel         *arrInNum;
+    UILabel         *depOutNum;
+    UILabel         *totalNum;
+    UILabel         *arrNum;
+
+    PNPieChart      *arrRoundProgress;
+    PNPieChart      *depRoundProgress;
+
 }
 
 -(instancetype)initWithFrame:(CGRect)                       frame
@@ -155,7 +164,7 @@
         [self updateShapeArray:arrShapeArray];
         [self updateShapeArray:depShapeArray];
 
-        PNPieChart *arrRoundProgress = [[PNPieChart alloc] initWithFrame:CGRectMake(0,
+        arrRoundProgress = [[PNPieChart alloc] initWithFrame:CGRectMake(0,
                                                                                     0,
                                                                                     px_px_2_2_3(341,400, 664),
                                                                                     px_px_2_2_3(341,400, 664))
@@ -181,7 +190,7 @@
                                     legend.frame.size.height)];
         [self addSubview:legend];
         
-        UILabel *arrInNum = [CommonFunction addLabelFrame:CGRectMake(0,
+        arrInNum = [CommonFunction addLabelFrame:CGRectMake(0,
                                                                      (viewHeight(arrRoundProgress)-52)/2-px_px_2_2_3(30, 40, 60),
                                                                      viewWidth(arrRoundProgress),
                                                                      52)
@@ -212,7 +221,7 @@
         arrButton.center = arrRoundProgress.center;
         [scrollView addSubview:arrButton];
         
-        PNPieChart *depRoundProgress = [[PNPieChart alloc] initWithFrame:CGRectMake(0,
+        depRoundProgress = [[PNPieChart alloc] initWithFrame:CGRectMake(0,
                                                                                     0,
                                                                                     px_px_2_2_3(341,400, 664),
                                                                                     px_px_2_2_3(341,400, 664))
@@ -230,7 +239,7 @@
         depRoundProgress.legendFont                 = [UIFont fontWithName:@"PingFangSC-Regular" size:9];
         [scrollView addSubview:depRoundProgress];
         
-        UILabel *depOutNum = [CommonFunction addLabelFrame:CGRectMake(0,
+        depOutNum = [CommonFunction addLabelFrame:CGRectMake(0,
                                                                       (viewHeight(arrRoundProgress)-52)/2-px_px_2_2_3(30, 40, 60),
                                                                       viewWidth(arrRoundProgress),
                                                                       52)
@@ -332,7 +341,7 @@
 
         [self addSubview:uiview];
 
-        UILabel *totalNum = [CommonFunction addLabelFrame:CGRectMake((viewWidth(uiview)-302)/2,
+        totalNum = [CommonFunction addLabelFrame:CGRectMake((viewWidth(uiview)-302)/2,
                                                                      0,
                                                                      100,
                                                                      28)
@@ -363,7 +372,7 @@
         verticalLineImageView1.image = [UIImage imageNamed:@"VerticalLine"];
         [uiview addSubview:verticalLineImageView1];
 
-        UILabel *arrNum = [CommonFunction addLabelFrame:CGRectMake(viewTrailing(verticalLineImageView1),
+        arrNum = [CommonFunction addLabelFrame:CGRectMake(viewTrailing(verticalLineImageView1),
                                                                    0,
                                                                    100,
                                                                    28)
@@ -421,12 +430,22 @@
                                         size:31/2];
         [uiview addSubview:depLabel];
 
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(loadData:)
+                                                     name:@"FlightStatusInfo"
+                                                   object:nil];
         
 
     }
     return self;
 }
 
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:@"FlightStatusInfo"
+                                                  object:nil];
+}
 -(void) showArrFlightHourView:(UIButton *)sender
 {
     [_delegate showFlightHourView:(ArrFlightHour)];
@@ -554,22 +573,49 @@
  */
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollview
 {
-//    NSInteger page = scrollView.contentOffset.x/kScreenWidth;
-//    NSLog(@"%ld",page);
-//    [pageControl setCurrentPage:page];
-//    if (page == 0)
-//    {
-//        
-//    }
-//    else if (page == 1)
-//    {
-//        
-//    }
 
     if (scrollview.contentOffset.x== 0) {
         [self buttonClickedWithSender:depFlightButton];
     }else{
         [self buttonClickedWithSender:arrFlightButton];
+    }
+}
+
+-(void)loadData:(NSNotification *)notification
+{
+    if ([notification.object isKindOfClass:[FlightStusModel class]]) {
+        _flightStusModel = notification.object;
+        arrInNum.text    = @(_flightStusModel.arrCount).stringValue;
+        depOutNum.text   = @(_flightStusModel.depCount).stringValue;
+
+        NSInteger Delay = 0;
+        NSInteger Cancel = 0;
+        if (scrollView.contentOffset.x == 0) {
+            Delay = _flightStusModel.depDelay;
+            Cancel = _flightStusModel.depCancel;
+        }else{
+            Delay = _flightStusModel.arrDelay;
+            Cancel = _flightStusModel.arrCancel;
+
+        }
+        NSMutableAttributedString *delayAttributeString = [[NSMutableAttributedString alloc ] initWithString:[NSString stringWithFormat:@"延误 %ld",(long)Delay]];
+        [delayAttributeString addAttribute:NSFontAttributeName
+                                     value:[UIFont fontWithName:@"PingFangSC-Regular" size:13]
+                                     range:NSMakeRange(0, 2)];
+        delay.attributedText = delayAttributeString;
+
+        NSMutableAttributedString *cancelAttributeString = [[NSMutableAttributedString alloc ]
+                                                            initWithString:[NSString stringWithFormat:@"取消 %ld",(long)Cancel]];
+        [cancelAttributeString addAttribute:NSFontAttributeName
+                                      value:[UIFont fontWithName:@"PingFangSC-Regular" size:13]
+                                      range:NSMakeRange(0, 2)];
+        cancel.attributedText = cancelAttributeString;
+
+        totalNum.text = @(_flightStusModel.flightCount).stringValue;
+        arrNum.text = @(_flightStusModel.arrCount).stringValue;
+
+        [self updateShapeArray:arrShapeArray];
+        [self updateShapeArray:depShapeArray];
     }
 }
 @end

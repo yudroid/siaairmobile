@@ -35,10 +35,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 @property (weak, nonatomic) IBOutlet    UITableView         *safeguardTableView;
 @property (weak, nonatomic) IBOutlet    UICollectionView    *AirlineCollectionView;
 
-@property (nonatomic, copy) NSArray     *safeguardTableViewArray;
 @property (nonatomic, copy) NSArray     *airLineCollectionArray;
-@property (nonatomic, copy) NSArray     *tableArray;
-
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *safeguradViewHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *safeguardTableViewHeight;
@@ -63,11 +60,6 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    FlightService *flightService = [[FlightService alloc]init];
-    [flightService startService];
-    flight = [flightService getFlightDetailModel];
-    _safeguardTableViewArray = [flightService getSpecialSafeguardArray];
 
     dispatches = [NSMutableArray array];
     specicals = [NSMutableArray array];
@@ -94,39 +86,57 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
     _AirlineCollectionView.dataSource   = self;
     
 
-    _safeguardTableViewArray    = [flightService getSafeguardArray];
-    _safeguradViewHeight.constant = _safeguardTableViewArray.count *45+36;
 
-    _tableArray = [flightService getSafeguardArray];
 
     [_AirlineCollectionView registerNib:[UINib nibWithNibName:@"FlightDetailAirLineCollectionViewCell"
                                                        bundle:nil]
              forCellWithReuseIdentifier:(NSString *)FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER];
 
-    _tableViewHeight.constant = 103*_tableArray.count;
-    _safeguardTableViewHeight.constant = 45 * _safeguardTableViewArray.count +36;
+    _tableViewHeight.constant = 103*dispatches.count;
+    _safeguardTableViewHeight.constant = 45 * specicals.count +36;
 
-    _flightDateLabel.text = flight.fDate;
-    _terminalLabel.text = flight.terminal;
-    _gateLabel.text = flight.gate;
-    _baggagelabel.text = flight.baggage;
-    _modelLabel.text = flight.model;
-    _regionlabel.text = flight.region;
 
-    _airLineCollectionArray = [flight.airLine componentsSeparatedByString:@"-"];
+    [self basicInfo];
+
+
     
 }
 
+-(void)updateSpecialsTableView
+{
+    _safeguardTableViewHeight.constant = 45 * specicals.count +36;
+    [_safeguardTableView reloadData];
 
+}
+-(void)updateDispatchesTableView
+{
+    _tableViewHeight.constant = 103*dispatches.count;
+    [_tableView reloadData];
+
+}
+
+
+-(void)basicInfo
+{
+    _flightDateLabel.text   = flight.fDate;
+    _terminalLabel.text     = flight.terminal;
+    _gateLabel.text         = flight.gate;
+    _baggagelabel.text      = flight.baggage;
+    _modelLabel.text        = flight.model;
+    _regionlabel.text       = flight.region;
+    _airLineCollectionArray = [flight.airLine componentsSeparatedByString:@"-"];
+    [_AirlineCollectionView reloadData];
+
+}
 
 #pragma mark - UITableViewDelegate UITableViewDataSource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView == _safeguardTableView) {
-        return _safeguardTableViewArray.count;
+        return specicals.count;
     }
-    return _tableArray.count;
+    return dispatches.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -145,7 +155,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
                                                  owner:nil
                                                options:nil][0];
         }
-        cell.safeguardModel = _safeguardTableViewArray[indexPath.row];
+        cell.safeguardModel = specicals[indexPath.row];
         cell.delegate = self;
         return  cell;
         
@@ -156,11 +166,11 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
                                                  owner:nil
                                                options:nil][0];
         }
-        cell.safeguardModel = _tableArray[indexPath.row];
+        cell.safeguardModel = dispatches[indexPath.row];
         if (indexPath.row == 0) {
             cell.type = FlightDetailTableViewCellTypeTypeFirst;
         }
-        if (indexPath.row ==_tableArray.count-1 ) {
+        if (indexPath.row ==dispatches.count-1 ) {
             cell.type = FlightDetailTableViewCellTypeTypeLast;
         }
             cell.delegate = self;
@@ -230,7 +240,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
         sender.tag = 0;
         [UIView animateWithDuration:0.3 animations:^{
             sender.transform = CGAffineTransformMakeRotation(0);
-            _safeguradViewHeight.constant = _safeguardTableViewArray.count *45+36;
+            _safeguradViewHeight.constant = specicals.count *45+36;
             [self.view layoutIfNeeded];
         }];
     }
@@ -256,6 +266,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 {
     [HttpsUtils getFlightDetail:_flightId success:^(id responseObj) {
         [flight setValuesForKeysWithDictionary:responseObj];
+        [self basicInfo];
     } failure:nil];
     
     [HttpsUtils getDispatchDetail:_flightId success:^(id responseObj) {
@@ -267,6 +278,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
         for(id item in responseObj){
             [dispatches addObject:[[SafeguardModel alloc] initWithDictionary:item]];
         }
+        [self updateSpecialsTableView];
     } failure:nil];
     
     [HttpsUtils getSpecialDetail:_flightId success:^(id responseObj) {
@@ -278,6 +290,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
         for(id item in responseObj){
             [specicals addObject:[[SafeguardModel alloc] initWithDictionary:item]];
         }
+        [self updateSpecialsTableView];
     } failure:nil];
 }
 

@@ -15,7 +15,8 @@
 
 @implementation PassengerTopViewController
 {
-    NSArray<PassengerTopModel *> *array;
+    NSArray<PassengerTopModel *>    *array;
+    UITableView                     *flightHourTableView;
 }
 
 -(instancetype)initWithDataArray:(NSArray *)dataArray
@@ -77,7 +78,7 @@
 
 
     //小时分布表格
-    UITableView *flightHourTableView = [[UITableView alloc]initWithFrame:CGRectMake(0,
+    flightHourTableView = [[UITableView alloc]initWithFrame:CGRectMake(0,
                                                                                     viewBotton(topView)+8,
                                                                                     kScreenWidth,
                                                                                     kScreenHeight-viewBotton(topView)-49)];
@@ -103,6 +104,26 @@
     [self.titleView addSubview:titleLabelView];
     
     [self titleViewAddBackBtn];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(loadData:)
+                                                 name:@"PeakPnsDays"
+                                               object:nil];
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:@"PeakPnsDays"
+                                                  object:nil];
+}
+
+-(void)loadData:(NSNotification *)notification
+{
+    if ([notification.object isKindOfClass:[NSArray class]]) {
+        array = notification.object;
+        [flightHourTableView reloadData];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -147,31 +168,6 @@
     return cell;
 }
 
-//-(void) initData
-//{
-//    if(array == nil){
-//        array = [[NSMutableArray alloc] init];
-//    }else{
-//        [array removeAllObjects];
-//    }
-//    
-//    [array addObject:[[PassengerTopModel alloc] initWithDate:@"2016-5-25" count:5410 index:1]];
-//    [array addObject:[[PassengerTopModel alloc] initWithDate:@"2016-6-25" count:5230 index:2]];
-//    [array addObject:[[PassengerTopModel alloc] initWithDate:@"2016-7-25" count:5120 index:3]];
-//    [array addObject:[[PassengerTopModel alloc] initWithDate:@"2016-8-25" count:5048 index:4]];
-//    [array addObject:[[PassengerTopModel alloc] initWithDate:@"2016-9-25" count:5042 index:5]];
-//    [array addObject:[[PassengerTopModel alloc] initWithDate:@"2016-7-25" count:5120 index:6]];
-//    [array addObject:[[PassengerTopModel alloc] initWithDate:@"2016-8-25" count:5048 index:7]];
-//    [array addObject:[[PassengerTopModel alloc] initWithDate:@"2016-9-25" count:5042 index:8]];
-//    [array addObject:[[PassengerTopModel alloc] initWithDate:@"2016-7-25" count:5120 index:9]];
-//    [array addObject:[[PassengerTopModel alloc] initWithDate:@"2016-8-25" count:5048 index:10]];
-//    [array addObject:[[PassengerTopModel alloc] initWithDate:@"2016-9-25" count:5042 index:11]];
-//    
-//}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
 
 /*
 #pragma mark - Navigation

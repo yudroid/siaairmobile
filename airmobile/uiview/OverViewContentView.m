@@ -8,14 +8,20 @@
 
 #import "OverViewContentView.h"
 #import "DayOnDutyViewController.h"
-#import "UILabel+Business.h"
 #import "TagView.h"
 #import "SummaryModel.h"
 #import "NightShiftRoomViewController.h"
 
 @implementation OverViewContentView
 {
-    UILabel *calendarLabel;// 当天日期
+    UILabel *calendarLabel;     // 当天日期
+    UILabel *totalNumLabel;     // 圆图中间数字
+    TagView *planView;          // 未执行
+    TagView *finishView;        //已经执行
+    TagView *ratioView;         //放行率
+    UILabel *currentStatus;     //小面积延误
+    UITextView          *noticeTextView; //底部提示文字
+    RoundProgressView   *progressRound; //圆
 }
 
 
@@ -61,7 +67,7 @@
                                                                                  px2(8))];
         tagImageView.image = [UIImage imageNamed:@"CalendarTag"];
         [caleandarView addSubview:tagImageView];
-        float width = viewWidth(tagImageView)+viewWidth(calendarLabel);
+        float width         = viewWidth(tagImageView)+viewWidth(calendarLabel);
         caleandarView.frame = CGRectMake((viewWidth(self)-width)/2,
                                          viewY(caleandarView),
                                          width,
@@ -92,7 +98,7 @@
 
 
         //圆圈
-        RoundProgressView *progressRound = [[RoundProgressView alloc]initWithCenter:CGPointMake(kScreenWidth/2,
+        progressRound = [[RoundProgressView alloc]initWithCenter:CGPointMake(kScreenWidth/2,
                                                                                                 y+px_px_2_2_3(80*2,95*2, 680/2))
                                                                              radius:px_px_2_2_3(80*2,95*2,
                                                                                                 (680-61)/2)
@@ -106,8 +112,7 @@
 
         
         normalProportion    =summaryModel.finishedCnt/ @(summaryModel.allCnt).floatValue;
-        abnormalProportion  = normalProportion + (summaryModel.unfinishedCnt/ @(summaryModel.allCnt).floatValue);
-//        cancleProportion = abnormalProportion + (summaryModel.unfinishedCnt/ @(summaryModel.allCnt).floatValue);
+
 
         //对数据进行动画
         [progressRound animationWithStrokeEnd:normalProportion
@@ -128,7 +133,7 @@
         [self addSubview:bottomRoundImageView];
         [self addSubview:progressRound];
         
-        UILabel *totalNumLabel      = [[UILabel alloc] init ];
+        totalNumLabel      = [[UILabel alloc] init ];
         totalNumLabel.text          = [NSString stringWithFormat:@"%d", summaryModel.allCnt];
         totalNumLabel.textAlignment = NSTextAlignmentCenter;
         totalNumLabel.font          = [UIFont fontWithName:@"PingFangSC-Semibold"
@@ -139,7 +144,7 @@
                                          viewY(progressRound)+((viewHeight(progressRound)-45)/2)-45/4,
                                          expectSize.width,
                                          45);
-//        totalNumLabel.backgroundColor = [UIColor grayColor];
+        //totalNumLabel.backgroundColor = [UIColor grayColor];
         [self addSubview:totalNumLabel];
         
         UIButton *totalButton = [[UIButton alloc] initWithFrame:totalNumLabel.frame];
@@ -153,17 +158,15 @@
         totalLabel.textAlignment    = NSTextAlignmentCenter;
         totalLabel.font         =  [UIFont fontWithName:@"PingFangSC-Regular" size:px2(32)];
         totalLabel.textColor    = [CommonFunction colorFromHex:0XFF818181];
-        maxLabelSize            = CGSizeMake(100, 35);
-        expectSize              = [totalNumLabel sizeThatFits:maxLabelSize];
-        totalLabel.frame        = CGRectMake((kScreenWidth-expectSize.width)/2,
+        totalLabel.frame        = CGRectMake((kScreenWidth-80)/2,
                                              viewY(totalNumLabel)+viewHeight(totalNumLabel)+px_px_2_3(17, 28),
-                                             expectSize.width,
+                                             80,
                                              15);
         [self addSubview:totalLabel];
 
         y = viewY(progressRound)+viewHeight(progressRound)+px_px_2_2_3(40,59, 99);
         //未执行
-        TagView *planView = [[NSBundle mainBundle]loadNibNamed:@"TagView" owner:nil options:nil][0];
+        planView = [[NSBundle mainBundle]loadNibNamed:@"TagView" owner:nil options:nil][0];
         [planView bigText:[NSString stringWithFormat:@"%d",summaryModel.unfinishedCnt]
               bigFontSize:px_px_2_2_3(65,73, 123)
                 smallText:@"未执行"
@@ -176,7 +179,7 @@
                                     [planView contentHeight]);
         [self addSubview:planView];
 
-        TagView *finishView = [[NSBundle mainBundle]loadNibNamed:@"TagView"
+        finishView = [[NSBundle mainBundle]loadNibNamed:@"TagView"
                                                            owner:nil
                                                          options:nil][0];
         [finishView bigText:[NSString stringWithFormat:@"%d",summaryModel.finishedCnt]
@@ -193,10 +196,10 @@
 
 
 
-        TagView *ratioView = [[NSBundle mainBundle]loadNibNamed:@"TagView"
+        ratioView = [[NSBundle mainBundle]loadNibNamed:@"TagView"
                                                           owner:nil
                                                         options:nil][0];
-        [ratioView bigText:summaryModel.releaseRatio
+        [ratioView bigText:[NSString stringWithFormat:@"%.1f",[summaryModel.releaseRatio floatValue] *100]
                bigFontSize:px_px_2_2_3(65,73, 123)
                  smallText:@"放行率"
              smallFontSize:px_px_2_3(30, 50)
@@ -216,7 +219,7 @@
 
 
         y = viewY(ratioView)+viewHeight(ratioView)+px_px_2_2_3(10,20, 30);
-        UILabel *currentStatus = [[UILabel alloc]initWithFrame:CGRectMake((kScreenWidth-px2(342))/2,
+        currentStatus = [[UILabel alloc]initWithFrame:CGRectMake((kScreenWidth-px2(342))/2,
                                                                           y,
                                                                           px2(342),
                                                                           px_px_2_2_3(90, 114, 57*3) )];
@@ -247,22 +250,33 @@
         lineImageView.image         = [UIImage imageNamed:@"hiddenLine"];
         [self addSubview:lineImageView];
 
-        UITextView *noticeTextView      = [[UITextView alloc] initWithFrame:CGRectMake(50,
+        noticeTextView                  = [[UITextView alloc] initWithFrame:CGRectMake(50,
                                                                                        viewBotton(lineImageView)+5,
                                                                                        kScreenWidth-100,
                                                                                        kScreenHeight-viewBotton(lineImageView)-5-49-76)];
         noticeTextView.text             = summaryModel.aovTxt;
         noticeTextView.textAlignment    = NSTextAlignmentLeft;
         noticeTextView.font             = [UIFont systemFontOfSize:12];
-        noticeTextView.editable = NO;
+        noticeTextView.editable         = NO;
         [self addSubview:noticeTextView];
-        
-        [self loadData];
+
     }
+    //添加刷新通知
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(loadData:)
+                                                 name:@"SummaryInfo"
+                                               object:nil];
     return self;
 }
 
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:@"SummaryInfo"
+                                                  object:nil];
+}
 
+#pragma mark - 事件
 -(void) showFlightHourView:(UIButton *)sender
 {
     [_delegate showFlightHourView];
@@ -278,7 +292,7 @@
     [_delegate showReleasedRatioView];
 }
 
-#pragma mark - EVENT
+
 -(void)chiefButtonClick:(UIButton *)sender
 {
     NightShiftRoomViewController *dayOnDutyVC = [[NightShiftRoomViewController alloc]initWithNibName:@"NightShiftRoomViewController"
@@ -288,7 +302,7 @@
                                                              animated:YES];
 }
 
-#pragma mark - coustom function
+#pragma mark - 自定义方法
 // 获取视图所在的 viewcontroller
 -(UIViewController *)rootViewController
 {
@@ -301,9 +315,39 @@
     return nil;
 }
 
--(void) loadData
+-(void) loadData:(NSNotification *)notification
 {
-    
+    SummaryModel *summaryModel = notification.object;
+
+    calendarLabel.text  = summaryModel.flightDate;
+    totalNumLabel.text          = [NSString stringWithFormat:@"%d", summaryModel.allCnt];
+    CGSize maxLabelSize        = CGSizeMake(100,50);
+    CGSize expectSize          = [totalNumLabel sizeThatFits:maxLabelSize];
+    CGRect origleRect = totalNumLabel.frame;
+    totalNumLabel.frame = CGRectMake((kScreenWidth - expectSize.width)/2,
+                                     origleRect.origin.y,
+                                     expectSize.width,
+                                     45);
+    normalProportion    =summaryModel.finishedCnt/ @(summaryModel.allCnt).floatValue;
+    //对数据进行动画
+    [progressRound animationWithStrokeEnd:normalProportion
+                         withProgressType:ProgreesTypeNormal];
+
+
+    planView.bigLabel.text   = [NSString stringWithFormat:@"%d",  summaryModel.unfinishedCnt];      // 未执行
+    finishView.bigLabel.text = [NSString stringWithFormat:@"%d",  summaryModel.finishedCnt];        //已经执行
+    ratioView.bigLabel.text  = [NSString stringWithFormat:@"%.1f",[summaryModel.releaseRatio floatValue] *100];     //放行率
+
+    if([summaryModel.warning isEqualToString:@"正常"]){
+        currentStatus.textColor = [UIColor yellowColor];
+    }else if([summaryModel.warning isEqualToString:@"重大"]){
+        currentStatus.textColor = [CommonFunction colorFromHex:0XFFF46970];
+    }else{
+        currentStatus.textColor = [UIColor redColor];
+    }
+
+    noticeTextView.text         = summaryModel.aovTxt;
+
 }
 
 @end

@@ -23,6 +23,7 @@
 {
     PNLineChart *lineChart;
     NSArray<FlightHourModel *> *hourArray;
+    UITableView *flightHourTableView;
 }
 
 -(instancetype) initWithFrame:(CGRect)                      frame
@@ -31,11 +32,7 @@
     self = [super initWithFrame:frame];
     if(self){
 
-//        [self initData];
         hourArray = psnHours ;
-        for (FlightHourModel *model  in hourArray) {
-            NSLog(@"%d",model.count);
-        }
 
         CGFloat topBgViewWidth = kScreenWidth-2*px2(22);
         UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(10,
@@ -156,7 +153,7 @@
         [topBgView addSubview:lowImageView];
         
         //小时分布表格
-        UITableView *flightHourTableView = [[UITableView alloc]initWithFrame:CGRectMake(0,
+        flightHourTableView = [[UITableView alloc]initWithFrame:CGRectMake(0,
                                                                                         viewBotton(topBgView)+5,
                                                                                         kScreenWidth,
                                                                                         kScreenHeight-65-viewBotton(topBgView)-5-37)];
@@ -166,9 +163,21 @@
         flightHourTableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
         flightHourTableView.showsVerticalScrollIndicator = NO;
         [self addSubview:flightHourTableView];
+
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(loadData:)
+                                                     name:@"SafetyPsnHours"
+                                                   object:nil];
         
     }
     return self;
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:@"SafetyPsnHours"
+                                                  object:nil];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -196,7 +205,12 @@
 {
     NSMutableArray *arr = [[NSMutableArray alloc] init];
     for(FlightHourModel *model in hourArray){
-        [arr addObject:[model.hour componentsSeparatedByString:@":"][0]];
+        if (model.hour) {
+            [arr addObject:[model.hour componentsSeparatedByString:@":"][0]];
+        }else{
+            [arr addObject:@""];
+        }
+
     }
     return arr;
 }
@@ -227,38 +241,37 @@
     return s;
 }
 
-//-(void) initData
-//{
-//    if(hourArray == nil){
-//        hourArray = [[NSMutableArray alloc] init];
-//    }else{
-//        [hourArray removeAllObjects];
-//    }
-//    
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"1:00" count:25 planCount:25]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"2:00" count:35 planCount:35]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"3:00" count:15 planCount:15]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"4:00" count:10 planCount:10]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"5:00" count:25 planCount:25]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"6:00" count:35 planCount:35]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"7:00" count:45 planCount:50]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"8:00" count:55 planCount:65]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"9:00" count:50 planCount:50]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"10:00" count:48 planCount:48]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"11:00" count:50 planCount:62]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"12:00" count:45 planCount:45]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"13:00" count:55 planCount:55]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"14:00" count:60 planCount:60]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"15:00" count:50 planCount:50]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"16:00" count:60 planCount:60]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"17:00" count:45 planCount:45]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"18:00" count:35 planCount:35]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"19:00" count:45 planCount:45]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"20:00" count:25 planCount:25]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"21:00" count:20 planCount:20]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"22:00" count:25 planCount:25]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"23:00" count:30 planCount:30]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"00:00" count:15 planCount:15]];
-//}
+-(void)loadData:(NSNotification *)notification
+{
+    if ([notification.object isKindOfClass:[NSArray class]]) {
+        hourArray = notification.object;
+
+        [flightHourTableView reloadData];
+
+        [lineChart setXLabels:[self getFlightHourXLabels]];
+
+        // Line Chart #2
+        NSArray * dataArray         = [self getFlightHourYLabels];
+        PNLineChartData *data       = [PNLineChartData new];
+        data.dataTitle              = @"航班";
+        data.color                  = [UIColor whiteColor];
+        data.alpha                  = 0.5f;
+        data.inflexionPointWidth    = 2.0f;
+        data.itemCount              = dataArray.count;
+        data.inflexionPointStyle    = PNLineChartPointStyleCircle;
+        data.getData = ^(NSUInteger index) {
+            CGFloat yValue = [dataArray[index] floatValue];
+            return [PNLineChartDataItem dataItemWithY:yValue];
+        };
+
+        lineChart.chartData = @[data];
+
+        [lineChart strokeChart];
+
+    }
+
+}
+
+
 
 @end

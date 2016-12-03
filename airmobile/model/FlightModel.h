@@ -24,6 +24,10 @@
 @property (nonatomic, copy) NSString *rangeSate;
 @property (nonatomic, copy) NSString *region;   //区域属性
 @property (nonatomic, copy) NSString *fState;   //航班状态
-@property (nonatomic, copy) NSString *special;  //是否特殊航班 0:普通 1：特殊
+@property (nonatomic, copy) NSNumber *special;  //是否特殊航班 0:普通 1：特殊
+
+
+-(instancetype)initWithDictionary:(NSDictionary *)dictionary;
+
 
 @end

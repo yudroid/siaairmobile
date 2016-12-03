@@ -11,27 +11,43 @@
 
 @interface FlightHourModel : RootModel
 
-@property(nonatomic,copy) NSString *hour;
+#pragma mark - property
 
-@property(nonatomic,assign) int count;// 实际总数
-@property(nonatomic,assign) int planCount; // 计划总数
+@property(nonatomic,copy) NSString   *hour;
 
-@property(nonatomic,assign) int arrCount;// 实际总数
-@property(nonatomic,assign) int planArrCount; // 计划总数
+@property(nonatomic,assign) long     count;// 实际总数
+@property(nonatomic,assign) long     planCount; // 计划总数
 
-@property(nonatomic,assign) int depCount;// 实际总数
-@property(nonatomic,assign) int planDepCount; // 计划总数
+@property(nonatomic,assign) long     arrCount;// 实际总数
+@property(nonatomic,assign) long     planArrCount; // 计划总数
 
-@property(nonatomic,assign) BOOL before; // 当前时间之前
+@property(nonatomic,assign) long     depCount;// 实际总数
+@property(nonatomic,assign) long     planDepCount; // 计划总数
 
--(instancetype) initWithHour:(NSString *)hour count:(int)count;
+@property(nonatomic,assign) BOOL     before; // 当前时间之前
 
--(instancetype) initWithHour:(NSString *)hour count:(int)count planCount:(int)planCount;
+#pragma mark - method
 
--(instancetype) initWithHour:(NSString *)hour count:(int)count planCount:(int)planCount arrCount:(int)arrCount planArrCount:(int)planArrCount depCount:(int)depCount planDepCount:(int)planDepCount before:(BOOL)before;
+-(instancetype) initWithHour:(NSString *)   hour
+                       count:(int)          count;
 
--(int) getCount;
+-(instancetype) initWithHour:(NSString *)   hour
+                       count:(int)          count
+                   planCount:(int)          planCount;
 
--(int) getPlanCount;
+-(instancetype) initWithHour:(NSString *)   hour
+                       count:(int)          count
+                   planCount:(int)          planCount
+                    arrCount:(int)          arrCount
+                planArrCount:(int)          planArrCount
+                    depCount:(int)          depCount
+                planDepCount:(int)          planDepCount
+                      before:(BOOL)         before;
+
+-(instancetype)initWithDictionary:(NSDictionary *)dictionary;
+
+-(long) getCount;
+
+-(long) getPlanCount;
 
 @end

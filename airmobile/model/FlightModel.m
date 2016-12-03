@@ -10,4 +10,24 @@
 
 @implementation FlightModel
 
+-(instancetype)initWithDictionary:(NSDictionary *)dictionary
+{
+    self = [super init];
+    if (self) {
+
+        [self setValuesForKeysWithDictionary:dictionary];
+    }
+    return self;
+}
+
+-(void)setValue:(id)value forUndefinedKey:(NSString *)key
+{
+    if ([key isEqualToString:@"id"]) {
+        _id = ((NSNumber *)value).intValue;
+    }
+    return;
+}
+
+
+
 @end

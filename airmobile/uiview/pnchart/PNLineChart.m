@@ -193,7 +193,7 @@
         for (int index = 0; index < xLabels.count; index++) {
             labelText = xLabels[index];
 
-            NSInteger x = (index * _xLabelWidth  + _xLabelWidth / 2.0);
+            NSInteger x = (index * _xLabelWidth  + _xLabelWidth / 4.0);
             NSInteger y = _chartMarginTop + _chartCavanHeight+ _xLabelMarginTop;
             
             if(index%(_skipXPoints+1)==0){

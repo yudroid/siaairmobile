@@ -102,7 +102,7 @@ static NSTimeInterval timeInterval = 16;
     
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     
-    //manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.requestSerializer  = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     
     //请求超时时间

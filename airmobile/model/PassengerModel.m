@@ -46,10 +46,10 @@
 {
     if([self isNull:data])
         return;
-    _planInCount    = [[data objectForKey:@"planInCount"]   intValue];
-    _realInCount    = [[data objectForKey:@"realInCount"]   intValue];
-    _planOutCount   = [[data objectForKey:@"planOutCount"]  intValue];
-    _realOutCount   = [[data objectForKey:@"realOutCount"]  intValue];
+    _planInCount    = [[data objectForKey:@"planInPsn"]   intValue];
+    _realInCount    = [[data objectForKey:@"realInPsn"]   intValue];
+    _planOutCount   = [[data objectForKey:@"planOutPsn"]  intValue];
+    _realOutCount   = [[data objectForKey:@"realOutPsn"]  intValue];
 }
 
 -(void) updatePassengerForecast: (id)data

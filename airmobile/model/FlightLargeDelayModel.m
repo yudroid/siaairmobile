@@ -7,6 +7,7 @@
 //
 
 #import "FlightLargeDelayModel.h"
+#import "FlightHourModel.h"
 
 @implementation FlightLargeDelayModel
 
@@ -19,7 +20,8 @@
     // NSDictionary {"count":0,"hour":"23","ratio":0.8}
     [[self getHourExecuteRateList] removeAllObjects];
     for(NSDictionary *item in responesObj){
-        [[self getHourExecuteRateList] addObject:item];
+        FlightHourModel *model = [[FlightHourModel alloc]initWithDictionary:item];
+        [[self getHourExecuteRateList] addObject:model];
     }
 }
 

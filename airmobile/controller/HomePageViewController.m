@@ -24,10 +24,10 @@
 
 
 @interface HomePageViewController ()
-@property (nonatomic ,strong) SummaryModel *summaryModel;
-@property (nonatomic ,strong) FlightStusModel *flighStusModel;
-@property (nonatomic ,strong) PassengerModel *passengerModel;
-@property (nonatomic ,strong) SeatStatusModel *seatStatusModel;
+@property (nonatomic ,strong) SummaryModel      *summaryModel;
+@property (nonatomic ,strong) FlightStusModel   *flighStusModel;
+@property (nonatomic ,strong) PassengerModel    *passengerModel;
+@property (nonatomic ,strong) SeatStatusModel   *seatStatusModel;
 
 @end
 
@@ -54,10 +54,10 @@
     //获取数据
     HomePageService *homePageService = [[HomePageService alloc]init];
     [homePageService startService];
-    _summaryModel = [homePageService getSummaryModel];
+    _summaryModel   = [homePageService getSummaryModel];
     _flighStusModel = [homePageService getFlightStusModel];
     _passengerModel = [homePageService getPassengerTopModel];
-    _seatStatusModel = [homePageService getSeatStatusModel];
+    _seatStatusModel= [homePageService getSeatStatusModel];
 
 
     homePageType = HomePageTypeOverview;//设置当前页面为整体概览
@@ -98,17 +98,17 @@
                                                                 kScreenWidth/4-16,
                                                                 6)];
     selectedLine.center = CGPointMake(kScreenWidth/8, 74);
-    selectedLine.image = [UIImage imageNamed:@"SelectedLine"];
+    selectedLine.image  = [UIImage imageNamed:@"SelectedLine"];
     [titleLabelView addSubview:selectedLine];
 
     overviewLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
                                                               0,
                                                               kScreenWidth/4,
                                                               titleLableHeight)];//整体概览
-    overviewLabel.center = CGPointMake(kScreenWidth/8, 57);
+    overviewLabel.center    = CGPointMake(kScreenWidth/8, 57);
     overviewLabel.textColor = [CommonFunction colorFromHex:0XFFFFFFFF];
-    overviewLabel.text = @"总览";
-    overviewLabel.font =  [UIFont fontWithName:@"PingFangSC-Regular"
+    overviewLabel.text      = @"总览";
+    overviewLabel.font      =  [UIFont fontWithName:@"PingFangSC-Regular"
                                           size:px2(37)];
     overviewLabel.textAlignment = NSTextAlignmentCenter;
     [titleLabelView addSubview:overviewLabel];
@@ -117,8 +117,8 @@
                                                                        0,
                                                                        kScreenWidth/4,
                                                                        50)];
-    overviewBtn.center = CGPointMake(kScreenWidth/8, 57);
-    overviewBtn.tag = 0;
+    overviewBtn.center  = CGPointMake(kScreenWidth/8, 57);
+    overviewBtn.tag     = 0;
     [overviewBtn addTarget:self
                     action:@selector(titleButtonClickedWithSender:)
           forControlEvents:UIControlEventTouchUpInside];
@@ -130,11 +130,11 @@
                                                             0,
                                                             kScreenWidth/4,
                                                             titleLableHeight)];//航班
-    flightLabel.center = CGPointMake(kScreenWidth*3/8, 57);
-    flightLabel.textColor = [CommonFunction colorFromHex:0X7FFFFFFF];
-    flightLabel.text = @"航班";
-    flightLabel.textAlignment = NSTextAlignmentCenter;
-    flightLabel.font =  [UIFont fontWithName:@"PingFangSC-Regular"
+    flightLabel.center          = CGPointMake(kScreenWidth*3/8, 57);
+    flightLabel.textColor       = [CommonFunction colorFromHex:0X7FFFFFFF];
+    flightLabel.text            = @"航班";
+    flightLabel.textAlignment   = NSTextAlignmentCenter;
+    flightLabel.font            =  [UIFont fontWithName:@"PingFangSC-Regular"
                                         size:px2(37)];
     [titleLabelView addSubview:flightLabel];
     
@@ -142,8 +142,8 @@
                                                                      0,
                                                                      kScreenWidth/4,
                                                                      50)];
-    flightBtn.center = CGPointMake(kScreenWidth*3/8, 57);
-    flightBtn.tag = 1;
+    flightBtn.center    = CGPointMake(kScreenWidth*3/8, 57);
+    flightBtn.tag       = 1;
     [flightBtn addTarget:self
                   action:@selector(titleButtonClickedWithSender:)
         forControlEvents:UIControlEventTouchUpInside];
@@ -154,20 +154,20 @@
                                                                0,
                                                                kScreenWidth/4,
                                                                titleLableHeight)];//旅客
-    passengerLabel.center = CGPointMake(kScreenWidth*5/8, 57);
-    passengerLabel.textColor = [CommonFunction colorFromHex:0X7FFFFFFF];
-    passengerLabel.text = @"旅客";
-    passengerLabel.textAlignment = NSTextAlignmentCenter;
-    passengerLabel.font =  [UIFont fontWithName:@"PingFangSC-Regular"
+    passengerLabel.center       = CGPointMake(kScreenWidth*5/8, 57);
+    passengerLabel.textColor    = [CommonFunction colorFromHex:0X7FFFFFFF];
+    passengerLabel.text         = @"旅客";
+    passengerLabel.textAlignment= NSTextAlignmentCenter;
+    passengerLabel.font         =  [UIFont fontWithName:@"PingFangSC-Regular"
                                            size:px2(37)];
     [titleLabelView addSubview:passengerLabel];
     
-    UIButton *passengerBtn = [[UIButton alloc] initWithFrame:CGRectMake(0,
+    UIButton *passengerBtn      = [[UIButton alloc] initWithFrame:CGRectMake(0,
                                                                         0,
                                                                         kScreenWidth/4,
                                                                         50)];
     passengerBtn.center = CGPointMake(kScreenWidth*5/8, 57);
-    passengerBtn.tag = 2;
+    passengerBtn.tag    = 2;
     [passengerBtn addTarget:self
                      action:@selector(titleButtonClickedWithSender:)
            forControlEvents:UIControlEventTouchUpInside];
@@ -177,20 +177,20 @@
                                                               0,
                                                               kScreenWidth/4,
                                                               titleLableHeight)];//资源
-    resourceLabel.center = CGPointMake(kScreenWidth-kScreenWidth/8, 57);
-    resourceLabel.textColor = [CommonFunction colorFromHex:0X7FFFFFFF];
-    resourceLabel.text = @"资源";
+    resourceLabel.center        = CGPointMake(kScreenWidth-kScreenWidth/8, 57);
+    resourceLabel.textColor     = [CommonFunction colorFromHex:0X7FFFFFFF];
+    resourceLabel.text          = @"资源";
     resourceLabel.textAlignment = NSTextAlignmentCenter;
-    resourceLabel.font = [UIFont fontWithName:@"PingFangSC-Regular"
-                                         size:px2(37)];
+    resourceLabel.font          = [UIFont fontWithName:@"PingFangSC-Regular"
+                                                  size:px2(37)];
     [titleLabelView addSubview:resourceLabel];
     
-    UIButton *resourceBtn = [[UIButton alloc] initWithFrame:CGRectMake(0,
+    UIButton *resourceBtn   = [[UIButton alloc] initWithFrame:CGRectMake(0,
                                                                        0,
                                                                        kScreenWidth/4,
                                                                        50)];
-    resourceBtn.center = CGPointMake(kScreenWidth-kScreenWidth/8, 57);
-    resourceBtn.tag = 3;
+    resourceBtn.center      = CGPointMake(kScreenWidth-kScreenWidth/8, 57);
+    resourceBtn.tag         = 3;
     [resourceBtn addTarget:self
                     action:@selector(titleButtonClickedWithSender:)
           forControlEvents:UIControlEventTouchUpInside];
@@ -206,40 +206,40 @@
  */
 -(void) titleButtonClickedWithSender:(UIButton *)sender
 {
-    overviewLabel.textColor = [CommonFunction colorFromHex:0X7FFFFFFF];
-    flightLabel.textColor = [CommonFunction colorFromHex:0X7FFFFFFF];
-    passengerLabel.textColor = [CommonFunction colorFromHex:0x7FFFFFFF];
-    resourceLabel.textColor = [CommonFunction colorFromHex:0X7FFFFFFF];
+    overviewLabel.textColor     = [CommonFunction colorFromHex:0X7FFFFFFF];
+    flightLabel.textColor       = [CommonFunction colorFromHex:0X7FFFFFFF];
+    passengerLabel.textColor    = [CommonFunction colorFromHex:0x7FFFFFFF];
+    resourceLabel.textColor     = [CommonFunction colorFromHex:0X7FFFFFFF];
     
     [self removeAllView];
     
     switch (sender.tag)
     {
         case 0:
-            selectedLine.center = CGPointMake(kScreenWidth/8, 74);
+            selectedLine.center     = CGPointMake(kScreenWidth/8, 74);
             overviewLabel.textColor = [CommonFunction colorFromHex:0XFFFFFFFF];
-            homePageType = HomePageTypeOverview;
+            homePageType            = HomePageTypeOverview;
             [self showOverviewContentView];
             break;
             
         case 1:
-            selectedLine.center = CGPointMake(kScreenWidth*3/8, 74);
-            flightLabel.textColor = [CommonFunction colorFromHex:0XFFFFFFFF];
-            homePageType = HomePageTypeFlight;
+            selectedLine.center     = CGPointMake(kScreenWidth*3/8, 74);
+            flightLabel.textColor   = [CommonFunction colorFromHex:0XFFFFFFFF];
+            homePageType            = HomePageTypeFlight;
             [self showFlightContentView];
             break;
             
         case 2:
-            selectedLine.center = CGPointMake(kScreenWidth*5/8, 74);
-            passengerLabel.textColor = [CommonFunction colorFromHex:0XFFFFFFFF];
-            homePageType = HomePageTypePassenger;
+            selectedLine.center         = CGPointMake(kScreenWidth*5/8, 74);
+            passengerLabel.textColor    = [CommonFunction colorFromHex:0XFFFFFFFF];
+            homePageType                = HomePageTypePassenger;
             [self showPassengerContentView];
             break;
             
         case 3:
-            selectedLine.center = CGPointMake(kScreenWidth-kScreenWidth/8, 74);
-            resourceLabel.textColor = [CommonFunction colorFromHex:0XFFFFFFFF];
-            homePageType = HomePageTypeResource;
+            selectedLine.center         = CGPointMake(kScreenWidth-kScreenWidth/8, 74);
+            resourceLabel.textColor     = [CommonFunction colorFromHex:0XFFFFFFFF];
+            homePageType                = HomePageTypeResource;
             [self showResourceContentView];
             break;
             

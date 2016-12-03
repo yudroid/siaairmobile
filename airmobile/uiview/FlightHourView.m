@@ -212,9 +212,19 @@
         flightHourTableView.backgroundColor = [UIColor whiteColor];
         flightHourTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self addSubview:flightHourTableView];
+
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(loadData:)
+                                                     name:@""
+                                                   object:nil];
         
     }
     return self;
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"" object:nil];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -265,6 +275,11 @@
         [arr addObject:@((int)(model.planCount))];
     }
     return arr;
+}
+
+-(void)loadData:(NSNotification *)notification
+{
+
 }
 
 //-(void) initData

@@ -20,6 +20,7 @@
     PNLineChart *lineChart;
     NSArray<RegionDlyTimeModel *> *hourArray;
     PNBarChart *barChart;
+    UITableView *flightHourTableView;
 }
 
 -(instancetype) initWithFrame:(CGRect)                          frame
@@ -99,36 +100,6 @@
                                              colorFromHex:0x75FFFFFF];
         [topBgView addSubview:maxLabel];
 
-        
-//        UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(20, 20, kScreenWidth-40, 200)];
-//        [self addSubview:topBgView];
-//        
-//        CAGradientLayer *gradient = [CAGradientLayer layer];
-//        gradient.frame = topBgView.bounds;
-//        gradient.colors = [NSArray arrayWithObjects:(id)[[CommonFunction colorFromHex:0XFF3AB2F7] CGColor], (id)[[CommonFunction colorFromHex:0XFF936DF7] CGColor], nil];
-//        [topBgView.layer insertSublayer:gradient atIndex:0];
-//        [topBgView.layer setCornerRadius:8.0];// 将图层的边框设置为圆脚
-//        [topBgView.layer setMasksToBounds:YES];// 隐藏边界
-//        
-//        UILabel *passengerTtitle = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, topBgView.frame.size.width-100, 23)];
-//
-//        passengerTtitle.text = @"出港航班小时分布";
-//
-//        passengerTtitle.font = [UIFont systemFontOfSize:18];
-//        passengerTtitle.textColor = [UIColor whiteColor];
-//        [topBgView addSubview:passengerTtitle];
-//        
-//        UILabel *planLabel = [CommonFunction addLabelFrame:CGRectMake(20, 5+23 , 100, 15) text:@"平均延误时间" font:15 textAlignment:NSTextAlignmentLeft colorFromHex:0xFFFFFFFF];
-//        [topBgView addSubview:planLabel];
-//        
-//        UILabel *realLabel = [CommonFunction addLabelFrame:CGRectMake(20+100, 5+23 , 100, 15) text:@"延误架次" font:15 textAlignment:NSTextAlignmentLeft colorFromHex:0xFFFFFFFF];
-//        [topBgView addSubview:realLabel];
-//        
-//
-//        [topBgView addSubview:[CommonFunction addLine:CGRectMake(20, 5+23+15, topBgView.frame.size.width-40, 1) color:[CommonFunction colorFromHex:0XFF3FDFB7]]];
-
-//        UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(20, 5+23+15+2, topBgView.frame.size.width-40, 12) text:@"100" font:12 textAlignment:NSTextAlignmentRight colorFromHex:0xFFFFFFFF];
-//        [topBgView addSubview:maxLabel];
 
         
         // 计划的折线图
@@ -216,7 +187,7 @@
                                                colorFromHex:0x75FFFFFF]];
         
         //小时分布表格
-        UITableView *flightHourTableView = [[UITableView alloc]initWithFrame:CGRectMake(0,
+        flightHourTableView = [[UITableView alloc]initWithFrame:CGRectMake(0,
                                                                                         viewBotton(topBgView)+20,
                                                                                         kScreenWidth,
                                                                                         viewHeight(self)-25-viewBotton(topBgView))];
@@ -226,9 +197,19 @@
         flightHourTableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
         flightHourTableView.showsVerticalScrollIndicator = NO;
         [self addSubview:flightHourTableView];
+
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(loadData:)
+                                                     name:@"RegionDlyTime"
+                                                   object:nil];
         
     }
     return self;
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"RegionDlyTime" object:nil];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -256,7 +237,11 @@
 {
     NSMutableArray *arr = [[NSMutableArray alloc] init];
     for(RegionDlyTimeModel *model in hourArray){
-        [arr addObject:model.region];
+        if(model.region){
+            [arr addObject:model.region];
+        }else{
+            [arr addObject:@""];
+        }
     }
     return arr;
 }
@@ -279,23 +264,31 @@
     return arr;
 }
 
-//-(void) initData
-//{
-//    if(hourArray == nil){
-//        hourArray = [[NSMutableArray alloc] init];
-//    }else{
-//        [hourArray removeAllObjects];
-//    }
-//    
-//    [hourArray addObject:[[RegionDlyTimeModel alloc] initWithRegion:@"华东" count:25 time:45]];
-//    [hourArray addObject:[[RegionDlyTimeModel alloc] initWithRegion:@"华北" count:15 time:60]];
-//    [hourArray addObject:[[RegionDlyTimeModel alloc] initWithRegion:@"华中" count:35 time:70]];
-//    [hourArray addObject:[[RegionDlyTimeModel alloc] initWithRegion:@"华南" count:25 time:35]];
-//    [hourArray addObject:[[RegionDlyTimeModel alloc] initWithRegion:@"西南" count:15 time:55]];
-//    [hourArray addObject:[[RegionDlyTimeModel alloc] initWithRegion:@"西北" count:60 time:10]];
-//    [hourArray addObject:[[RegionDlyTimeModel alloc] initWithRegion:@"东北" count:70 time:12]];
-//    [hourArray addObject:[[RegionDlyTimeModel alloc] initWithRegion:@"地区" count:21 time:45]];
-//    [hourArray addObject:[[RegionDlyTimeModel alloc] initWithRegion:@"国际" count:25 time:16]];
-//}
+-(void)loadData:(NSNotification *)notification
+{
+    if ([notification.object isKindOfClass:[NSArray class]]) {
+        hourArray = notification.object;
+        [flightHourTableView reloadData];
+
+        // Line Chart #2
+        NSArray * dataArray         = [self getFlightHourYLabels];
+        PNLineChartData *data       = [PNLineChartData new];
+        data.dataTitle              = @"航班";
+        data.color                  = [UIColor whiteColor];
+        data.alpha                  = 0.5f;
+        data.inflexionPointWidth    = 2.0f;
+        data.itemCount              = dataArray.count;
+        data.inflexionPointStyle    = PNLineChartPointStyleCircle;
+        data.getData = ^(NSUInteger index) {
+            CGFloat yValue = [dataArray[index] floatValue];
+            return [PNLineChartDataItem dataItemWithY:yValue];
+        };
+
+        lineChart.chartData = @[data];
+
+        [lineChart strokeChart];
+    }
+}
+
 
 @end
