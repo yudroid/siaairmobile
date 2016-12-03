@@ -31,21 +31,24 @@
     if([self isNull:data])
         return;
     
-    _flightCount    = [[data objectForKey:@"planTotal"]     intValue];
-    _arrCount       = [[data objectForKey:@"planIn"]        intValue];
-    _depCount       = [[data objectForKey:@"planOut"]       intValue];
-    _arrDoneNormal  = [[data objectForKey:@"inFinished"]    intValue];
-    _arrDoneAbn     = [[data objectForKey:@"inFinishedDelay"]    intValue];
-    _arrPlanNormal  = [[data objectForKey:@"inNoFinished"]  intValue];
-    _arrPlanAbn     = [[data objectForKey:@"inNoFinishedDelay"]    intValue];
-    _arrDelay       = [[data objectForKey:@"arrDelay"]      intValue];
-    _arrCancel      = [[data objectForKey:@"inCancel"]      intValue];
-    _depDoneNormal  = [[data objectForKey:@"depDoneNormal"] intValue];
-    _depDoneAbn     = [[data objectForKey:@"ouFinsishedDelay"]    intValue];
-    _depPlanNormal  = [[data objectForKey:@"depPlanNormal"] intValue];
-    _depPlanAbn     = [[data objectForKey:@"depPlanAbn"]    intValue];
-    _depDelay       = [[data objectForKey:@"depDelay"]      intValue];
-    _depCancel      = [[data objectForKey:@"outCancel"]     intValue];
+
+    _flightCount = [[data objectForKey:@"planTotal"] intValue];
+    _arrCount = [[data objectForKey:@"planIn"] intValue];
+    _depCount = [[data objectForKey:@"planOut"] intValue];
+    
+    _arrDoneNormal = [[data objectForKey:@"inFinished"] intValue];
+    _arrDoneAbn = [[data objectForKey:@"inFinishedDelay"] intValue];
+    _arrPlanNormal = [[data objectForKey:@"inNoFinished"] intValue];
+    _arrPlanAbn = [[data objectForKey:@"inNoFinishedDelay"] intValue];
+    _arrDelay = [[data objectForKey:@"inDelay"] intValue];
+    _arrCancel = [[data objectForKey:@"inCancel"] intValue];
+    
+    _depDoneNormal = [[data objectForKey:@"outFinished"] intValue];
+    _depDoneAbn = [[data objectForKey:@"outFinishedDelay"] intValue];
+    _depPlanNormal = [[data objectForKey:@"outNoFinished"] intValue];
+    _depPlanAbn = [[data objectForKey:@"outNoFinishedDelay"] intValue];
+    _depDelay = [[data objectForKey:@"outDelay"] intValue];
+    _depCancel = [[data objectForKey:@"outCancel"] intValue];
 
 }
 
