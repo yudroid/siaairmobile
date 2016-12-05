@@ -50,16 +50,15 @@
                                                                               radius:px_px_2_2_3(80*2,95*2, 575/2)
                                                                           aboveColos:@[(__bridge id)[CommonFunction colorFromHex:0XFF00aedd].CGColor,
                                                                                        (__bridge id)[CommonFunction colorFromHex:0XFF00d6a0].CGColor ]
-                                                                          belowColos:@[(__bridge id)[CommonFunction colorFromHex:0XFFFF9F38].CGColor,
-                                                                                       (__bridge id)[CommonFunction colorFromHex:0XFFFFCD21].CGColor ]
+                                                                          belowColos:@[(__bridge id)[CommonFunction colorFromHex:0X00FF9F38].CGColor,
+                                                                                       (__bridge id)[CommonFunction colorFromHex:0X00FFCD21].CGColor ]
                                                                                start:270
                                                                                  end:271
                                                                            clockwise:NO];
 
         
         normalProportion    =_seatStatusModel.seatUsed/@(_seatStatusModel.seatNum).floatValue;
-        abnormalProportion  =_seatStatusModel.seatUsed/@(_seatStatusModel.seatNum).floatValue;
-        cancleProportion    = _seatStatusModel.seatUsed/@(_seatStatusModel.seatNum).floatValue;
+
         
         //对数据进行动画
         [progressRound animationWithStrokeEnd:normalProportion withProgressType:ProgreesTypeNormal];
@@ -247,7 +246,10 @@
         moreLabel.text = @">1小时出港";
         [moreView addSubview:moreLabel];
 
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadData:) name:@"" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(loadData:)
+                                                     name:@"CraftSeatTakeUpInfo"
+                                                   object:nil];
 
     }
     return self;
@@ -255,7 +257,9 @@
 
 -(void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:@"CraftSeatTakeUpInfo"
+                                                  object:nil];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -316,8 +320,10 @@
 {
     if ([notification.object isKindOfClass:[SeatStatusModel class]]) {
         _seatStatusModel = notification.object;
-        normalProportion    =_seatStatusModel.seatUsed/@(_seatStatusModel.seatNum).floatValue;
-        [progressRound animationWithStrokeEnd:normalProportion withProgressType:ProgreesTypeNormal];
+        if(normalProportion !=_seatStatusModel.seatUsed/@(_seatStatusModel.seatNum).floatValue){
+            normalProportion =_seatStatusModel.seatUsed/@(_seatStatusModel.seatNum).floatValue;
+            [progressRound animationWithStrokeEnd:normalProportion withProgressType:ProgreesTypeNormal];
+        }
 
         totalNumLabel.text          = @(_seatStatusModel.seatNum).stringValue;
         disable.text            = @(_seatStatusModel.seatUsed).stringValue;

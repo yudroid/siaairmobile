@@ -11,6 +11,7 @@
 @interface PsnSafetyAreaView : UIView<UITableViewDelegate,UITableViewDataSource>
 
 -(instancetype) initWithFrame:(CGRect)    frame
-                    dataArray:(NSArray *) dataArray;
+                    nearArray:(NSArray *) dataArray
+                     farArray:(NSArray *) farArray;
 
 @end

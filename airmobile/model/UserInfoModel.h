@@ -23,4 +23,7 @@
 @property(nonatomic,copy)   NSString    *post;
 @property(nonatomic,copy)   NSString    *rule;
 @property(nonatomic,copy)   NSString    *seat;
+
+
+-(instancetype)initWithDictionary:(NSDictionary *)dictionary ;
 @end

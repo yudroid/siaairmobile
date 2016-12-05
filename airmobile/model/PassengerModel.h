@@ -28,7 +28,8 @@
 
 @property (nonatomic,strong)    NSMutableArray<NSDictionary *>         *psnOnPlane;// 旅客机上等待时间
 @property (nonatomic,strong)    NSMutableArray<FlightHourModel *>      *psnHours;// 旅客小时分布：进港旅客、出港旅客、隔离区内
-@property (nonatomic,strong)    NSMutableArray<PassengerAreaModel *>   *psnAreas;
+@property (nonatomic,strong)    NSMutableArray<PassengerAreaModel *>   *psnNearAreas; //旅客区域分布 近机位
+@property (nonatomic,strong)    NSMutableArray<PassengerAreaModel *>   *psnFarAreas; //旅客区域分布 近机位
 @property (nonatomic,strong)    NSMutableArray<PassengerTopModel *>    *psnTops;// 旅客排名
 @property (nonatomic, strong)   NSArray                                *psnInOutHours;//旅客小时分布
 
@@ -42,5 +43,6 @@
 -(void) updatePeakPnsDays:          (id)data;
 
 -(void) updateGlqNearPsn:           (id)data;
+- (void)updateGlqFarPsn:            (id)data;
 
 @end

@@ -110,7 +110,7 @@
         lineChart.skipXPoints       = 1;
         lineChart.showCoordinateAxis= NO;
         lineChart.showGenYLabels    = NO;
-        lineChart.yFixedValueMax    = 120;
+        lineChart.yFixedValueMax    = [self maxValue];
         lineChart.yFixedValueMin    = 0;
         [lineChart setXLabels:[self getFlightHourXLabels]];
         
@@ -137,7 +137,7 @@
         [topBgView addSubview:lineChart];
         
         UILabel *zoreLabel  = [[UILabel alloc]initWithFrame:CGRectMake(viewWidth(topBgView)-6-px2(31),
-                                                                      topBgView.frame.size.height-(10+15+12+2),
+                                                                      topBgView.frame.size.height-(10+13+12+2),
                                                                       topBgView.frame.size.width-40,
                                                                       10)];
         zoreLabel.text      = @"0";
@@ -146,7 +146,7 @@
         [topBgView addSubview:zoreLabel];
 
         UIImageView *lowImageView   = [[UIImageView alloc]initWithFrame:CGRectMake(px2(31),
-                                                                                   topBgView.frame.size.height-10-15-2,
+                                                                                   topBgView.frame.size.height-10-13-2,
                                                                                    viewWidth(topBgView)-2*px2(31),
                                                                                    px2(2))];
         lowImageView.image          = [UIImage imageNamed:@"hiddenLine"];
@@ -196,7 +196,7 @@
         cell = [[FlightHourTableViewCell alloc]initWithStyle:(UITableViewCellStyleDefault)
                                              reuseIdentifier:flightHour.hour flightHour:flightHour];
     }
-    
+
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
@@ -219,7 +219,7 @@
 {
     NSMutableArray *arr = [[NSMutableArray alloc] init];
     for(FlightHourModel *model in hourArray){
-        [arr addObject:@((int)(model.count))];
+        [arr addObject:@((int)(model.planDepCount))];
     }
     return arr;
 }
@@ -236,9 +236,20 @@
 {
     NSInteger s = 0;
     for (FlightHourModel *model in hourArray) {
-        s +=model.count;
+        s +=model.planDepCount;
     }
     return s;
+}
+
+-(NSInteger)maxValue
+{
+    NSInteger max = 0;
+    for (FlightHourModel *model in hourArray) {
+        if (model.count>max) {
+            max = model.planDepCount;
+        }
+    }
+    return max;
 }
 
 -(void)loadData:(NSNotification *)notification

@@ -15,6 +15,8 @@
 #import "UserManagementViewController.h"
 #import "UploadPhotoViewController.h"
 #import "LoadingView.h"
+#import "MessageFilterViewController.h"
+#import "UIViewController+Reminder.h"
 
 
 
@@ -160,14 +162,25 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
         UserManagementViewController *userManagementVC = [[UserManagementViewController alloc]initWithNibName:@"UserManagementViewController" bundle:nil];
         [self.navigationController pushViewController:userManagementVC animated:YES];
     }else if ([name isEqualToString:@"消息过滤"]){
+        MessageFilterViewController *messageFilterVC = [[MessageFilterViewController alloc]initWithNibName:@"MessageFilterViewController" bundle:nil];
+        [self.navigationController pushViewController:messageFilterVC animated:YES];
 
     }else if ([name isEqualToString:@"版本检测"]){
-        LoadingView *loadingView = [[NSBundle mainBundle]loadNibNamed:@"LoadingView" owner:nil options:nil][0];
-        [self.view addSubview:loadingView];
+        [self showAnimationTitle:@"正在进行版本检测"];
 
     }else if ([name isEqualToString:@"更新基础数据"]){
-        UploadPhotoViewController *uploadPhotoVC = [[UploadPhotoViewController alloc]initWithNibName:@"UploadPhotoViewController" bundle:nil];
-        [self.navigationController pushViewController:uploadPhotoVC animated:YES];
+#if __IPHONE_OS_VERSION_MAX_ALLOWED == __IPHONE_8_3
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [alertView show];
+#else
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"确定要更新基础数据吗？" preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            //清除消息
+        }]];
+        [self presentViewController:alertController animated:YES completion:nil];
+#endif
+        
 
     }
     

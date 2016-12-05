@@ -306,10 +306,14 @@
                                                  colorFromHex:0xFF000000];
         [self addSubview:depValueLabel];
 
-        UIButton * depValueButton = [[UIButton alloc]initWithFrame:depValueLabel.frame];
+        UIButton * depValueButton = [[UIButton alloc]initWithFrame:CGRectMake(viewX(arrValueLabel),
+                                                                              viewY(arrImageView),
+                                                                              viewWidth(arrValueLabel),
+                                                                              viewBotton(depValueLabel)-viewY(arrValueLabel))];
         [depValueButton addTarget:self
                            action:@selector(showPassengerHourView:)
                  forControlEvents:UIControlEventTouchUpInside];
+//        depValueButton.backgroundColor = [UIColor redColor];
         [self addSubview:depValueButton];
 
         UIImageView *deplineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(arrLabel),

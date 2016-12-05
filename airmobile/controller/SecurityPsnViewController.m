@@ -60,7 +60,8 @@
                                                                                       0,
                                                                                       scrollView.frame.size.width,
                                                                                       scrollView.frame.size.height)
-                                                                 dataArray:_passengerModel.psnAreas];
+                                                                 nearArray:_passengerModel.psnNearAreas farArray:_passengerModel.psnFarAreas ];
+                                                                
     [scrollView addSubview:areaView];
     
     pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0,
@@ -78,7 +79,7 @@
 -(void)initTitle
 {
     [self titleViewInitWithHight:65];
-    [self titleViewAddTitleText:@"隔离区内"];
+    [self titleViewAddTitleText:@"隔离区分布图"];
     
     UIView *titleLabelView = [[UIView alloc] initWithFrame:CGRectMake(0,
                                                                       0,
@@ -98,7 +99,7 @@
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     NSInteger page = scrollView.contentOffset.x/kScreenWidth;
-    NSLog(@"%ld",page);
+    NSLog(@"%ld",(long)page);
     [pageControl setCurrentPage:page];
     if (page == 0)
     {

@@ -9,12 +9,13 @@
 #import "NightShiftRoomViewController.h"
 #import <DAYCalendarView.h>
 #import "NightShiftRoomTableViewCell.h"
-
+#import "DutyModel.h"
 static const NSString *NIGHTSHIFTROOM_TABLECELL_IDENTIFIER = @"NIGHTSHIFTROOM_TABLECELL_IDENTIFIER";
 
 @interface NightShiftRoomViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet DAYCalendarView *calendarView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, copy) NSArray *tableArray;
 
 @end
 
@@ -47,6 +48,13 @@ static const NSString *NIGHTSHIFTROOM_TABLECELL_IDENTIFIER = @"NIGHTSHIFTROOM_TA
     
 }
 
+-(void)loadData
+{
+    NSDictionary *dic = @{@"userName":@"通讯录",@"section":@"AddressBook",@"duty":@"duty",@"phone":@"AddressBook",@"date":@"date"};
+    DutyModel *dutuModel1 = [[DutyModel alloc]initWithDictionary:dic];
+    _tableArray= @[dutuModel1];
+}
+
 #pragma mark - EVENT
 -(void)leftSwipeGestureRecognizerEvent
 {
@@ -62,7 +70,7 @@ static const NSString *NIGHTSHIFTROOM_TABLECELL_IDENTIFIER = @"NIGHTSHIFTROOM_TA
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return _tableArray.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -72,6 +80,7 @@ static const NSString *NIGHTSHIFTROOM_TABLECELL_IDENTIFIER = @"NIGHTSHIFTROOM_TA
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NightShiftRoomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)NIGHTSHIFTROOM_TABLECELL_IDENTIFIER];
+    cell.dutyModel = _tableArray[indexPath.row];
     return cell;
 }
 

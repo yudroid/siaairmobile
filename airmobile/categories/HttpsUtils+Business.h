@@ -320,6 +320,7 @@
  @param failure <#failure description#>
  */
 +(void)getGlqNearPsn:(NSString *)date success:(void (^)(id))success failure:(void (^)(id))failure;
++(void)getGlqFarPsn:(NSString *)date success:(void (^)(id))success failure:(void (^)(id))failure;
 
 /**
  高峰旅客日排名 /psn/peakPnsDays

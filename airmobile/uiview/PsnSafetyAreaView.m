@@ -14,19 +14,20 @@
 @implementation PsnSafetyAreaView
 {
     NSArray<PassengerAreaModel *>           *farArray;
-    NSMutableArray<PassengerAreaModel *>    *nearArray;
+    NSArray<PassengerAreaModel *>           *nearArray;
     PNBarChart                              *barChart;
     UITableView                             *flightHourTableView;
 
 }
 
 -(instancetype) initWithFrame:(CGRect)    frame
-                    dataArray:(NSArray *) dataArray
+                    nearArray:(NSArray *) _nearArray
+                     farArray:(NSArray *) _farArray
 {
     self = [super initWithFrame:frame];
     if(self){
-
-        farArray = dataArray;
+        nearArray = [_nearArray copy];
+        farArray = [_farArray copy];
         CGFloat topBgViewWidth = kScreenWidth-2*px2(22);
         UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(10,
                                                                      0,
@@ -99,7 +100,7 @@
         UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(20,
                                                                      viewBotton(upImageView)+px2(7),
                                                                      topBgView.frame.size.width-40, 12)
-                                                     text:@"100"
+                                                     text:[NSString stringWithFormat:@"%ld",(long)[self maxValue]]
                                                      font:11
                                             textAlignment:NSTextAlignmentRight
                                              colorFromHex:0x75FFFFFF];
@@ -110,7 +111,7 @@
                                                                 topBgView.frame.size.width-40,
                                                                 topBgView.frame.size.height-(5+23+15+2)-5)];//折线图
         
-        barChart.yMaxValue = 120;
+        barChart.yMaxValue = [self maxValue];
         barChart.yMinValue = 0;
         barChart.showXLabel = YES;
         barChart.showYLabel = NO;
@@ -130,7 +131,15 @@
         barChart.isGradientShow = YES;
         barChart.isShowNumbers = NO;
         barChart.barBackgroundColor = [UIColor clearColor];
-        
+        NSMutableArray *colors = [NSMutableArray array];
+        for (int i = 0; i<farArray.count + nearArray.count; i++) {
+            if (i<nearArray.count) {
+                [colors addObject:[CommonFunction colorFromHex:0x99ffffff]];
+            }else{
+                [colors addObject:[CommonFunction colorFromHex:0xffBBE32E]];
+            }
+        }
+        barChart.strokeColors = [colors copy];
         [barChart strokeChart];
         
         [topBgView addSubview:barChart];
@@ -168,7 +177,12 @@
                                                  selector:@selector(loadData:)
                                                      name:@"GlqNearPsn"
                                                    object:nil];
-        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(loadData:)
+                                                     name:@"GlqFarPsn"
+                                                   object:nil];
+
+
     }
     return self;
 }
@@ -176,12 +190,25 @@
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"GlqNearPsn" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"GlqFarPsn" object:nil];
 }
 
 -(void)loadData:(NSNotification *)notification
 {
+    NSLog(@"%@",notification.name);
     if ([notification.object isKindOfClass:[NSArray class]]) {
-        nearArray  =  notification.object;
+        if ([notification.name isEqualToString:@"GlqFarPsn"]) {
+            farArray = notification.object;
+        }else{
+            nearArray  =  notification.object;
+        }
+        [barChart setXLabels:[self getFlightHourXLabels]];
+        [barChart setYValues:[self getFlightHourYLabels]];
+        barChart.yMaxValue = [self maxValue];
+        [barChart strokeChart];
+        
+        [flightHourTableView reloadData];
+
     }
 
 }
@@ -282,27 +309,21 @@ viewForHeaderInSection:(NSInteger)section
     return arr;
 }
 
-//-(void) initData
-//{
-////    if(farArray == nil){
-////        farArray = [[NSMutableArray alloc] init];
-////    }else{
-////        [farArray removeAllObjects];
-////    }
-////    [farArray addObject:[[PassengerAreaModel alloc] initWithRegion:@"北指廊" count:2512 isFar:NO]];
-////    [farArray addObject:[[PassengerAreaModel alloc] initWithRegion:@"东北"  count:2055 isFar:NO]];
-////    [farArray addObject:[[PassengerAreaModel alloc] initWithRegion:@"西北"  count:2315 isFar:NO]];
-////    [farArray addObject:[[PassengerAreaModel alloc] initWithRegion:@"东南"  count:1985 isFar:NO]];
-////    [farArray addObject:[[PassengerAreaModel alloc] initWithRegion:@"西南"  count:1205 isFar:NO]];
-//
-//    if(nearArray == nil){
-//        nearArray = [[NSMutableArray alloc] init];
-//    }else{
-//        [nearArray removeAllObjects];
-//    }
-//    [nearArray addObject:[[PassengerAreaModel alloc] initWithRegion:@"国内远"  count:2503 isFar:YES]];
-//    [nearArray addObject:[[PassengerAreaModel alloc] initWithRegion:@"国际远"  count:1025 isFar:YES]];
-//}
+-(NSInteger)maxValue
+{
+    NSInteger max = 0;
+    for(PassengerAreaModel *model in nearArray){
+        if(model.count > max){
+            max = model.count;
+        }
+    }
+    for(PassengerAreaModel *model in farArray){
+        if(model.count > max){
+            max = model.count;
+        }
+    }
+    return max;
+}
 
 
 @end

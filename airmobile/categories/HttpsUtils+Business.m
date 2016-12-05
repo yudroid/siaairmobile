@@ -23,39 +23,40 @@ static NSString* __userName = @"";
 static NSString* __password = @"";
 
 
-NSString * const base = @"http://192.168.163.29";
-NSString * const loginUrl = @"/acs/login/mobile";
-NSString * const logoutUrl = @"/acs/login/logout";
-NSString * const userMsgSendUrl = @"/acs/um/m";
-NSString * const groupMsgSendUrl = @"/acs/wm/m";
-NSString * const userlistUrl = @"/acs/wacs/user/SelectAllDeptListForIphone";
-NSString * const groupSaveUrl = @"/acs/wacs/group/save";
-NSString * const flightListUrl = @"/acs/m/flightList";
-NSString * const flightDetailUrl = @"/acs/m/flightDetail";
-NSString * const dispatchDetailUrl = @"/acs/m/getDispatchsByFlightId";
-NSString * const specialDetailUrl = @"/acs/wacs/flightDetail/queryFlightDispatchDetailForIphone";
-NSString * const ovSummaryUrl = @"/acs/ov/summary";
-NSString * const ovFltFDRlUrl = @"/acs/ov/fltFDR";
-NSString * const ovFltFMRUrl = @"/acs/ov/fltFMR";
-NSString * const ovFltLDUrl = @"/acs/ov/fltLD";
-NSString * const planArrFltPerHourUrl = @"/acs/bmap/flt/arrFltPerHour";
-NSString * const realArrFltPerHourUrl = @"/acs/bmap/flt/arrFltPerHour";
-NSString * const depFltPerHourUrl = @"/acs/bmap/flt/depFltPerHour";
-NSString * const realDepFltPerHourUrl = @"/acs/bmap/flt/depFltPerHour";
-NSString * const ovFltCntUrl = @"/acs/ov/fltCnt";
-NSString * const delayReasonSortUrl = @"/acs/bmap/flt/delayReasonSort";
-NSString * const delayAreaSortUrl = @"/acs/bmap/flt/delayAreaSort";
-NSString * const inOutPsnUrl = @"/acs/bmap/psn/inOutPsn";
-NSString * const willInOutPsnUrl = @"/acs/bmap/psn/willInOutPsn";
-NSString * const glqRelatedPsnUrl = @"/acs/bmap/psn/glqRelatedPsn";
-NSString * const planeWaitSortUrl = @"/acs/bmap/psn/planeWaitSort";
-NSString * const arrPsnPerHourUrl = @"/acs/bmap/psn/arrPsnPerHour";
-NSString * const depPsnPerHourUrl = @"/acs/bmap/psn/depPsnPerHour";
-NSString * const glqPsnPerHourUrl = @"/acs/bmap/psn/glqPsnPerHour";
-NSString * const glqNearPsnUrl = @"/acs/bmap/psn/glqNearPsn";
-NSString * const peakPnsDaysUrl = @"/acs/bmap/psn/peakPnsDays";
-NSString * const craftSeatTakeUpInfoUrl = @"/acs/bmap/rs/craftSeatTakeUpInfo";
-NSString * const willCraftSeatTakeUpUrl = @"/acs/bmap/rs/willCraftSeatTakeUp";
+NSString * const base                       = @"http://192.168.163.29";
+NSString * const loginUrl                   = @"/acs/login/mobile";
+NSString * const logoutUrl                  = @"/acs/login/logout";
+NSString * const userMsgSendUrl             = @"/acs/um/m";
+NSString * const groupMsgSendUrl            = @"/acs/wm/m";
+NSString * const userlistUrl                = @"/acs/wacs/user/SelectAllDeptListForIphone";
+NSString * const groupSaveUrl               = @"/acs/wacs/group/save";
+NSString * const flightListUrl              = @"/acs/m/flightList";
+NSString * const flightDetailUrl            = @"/acs/m/flightDetail";
+NSString * const dispatchDetailUrl          = @"/acs/m/getDispatchsByFlightId";
+NSString * const specialDetailUrl           = @"/acs/wacs/flightDetail/queryFlightDispatchDetailForIphone";
+NSString * const ovSummaryUrl               = @"/acs/ov/summary";
+NSString * const ovFltFDRlUrl               = @"/acs/ov/fltFDR";
+NSString * const ovFltFMRUrl                = @"/acs/ov/fltFMR";
+NSString * const ovFltLDUrl                 = @"/acs/ov/fltLD";
+NSString * const planArrFltPerHourUrl       = @"/acs/bmap/flt/arrFltPerHour";
+NSString * const realArrFltPerHourUrl       = @"/acs/bmap/flt/arrFltPerHour";
+NSString * const depFltPerHourUrl           = @"/acs/bmap/flt/depFltPerHour";
+NSString * const realDepFltPerHourUrl       = @"/acs/bmap/flt/depFltPerHour";
+NSString * const ovFltCntUrl                = @"/acs/ov/fltCnt";
+NSString * const delayReasonSortUrl         = @"/acs/bmap/flt/delayReasonSort";
+NSString * const delayAreaSortUrl           = @"/acs/bmap/flt/delayAreaSort";
+NSString * const inOutPsnUrl                = @"/acs/bmap/psn/inOutPsn";
+NSString * const willInOutPsnUrl            = @"/acs/bmap/psn/willInOutPsn";
+NSString * const glqRelatedPsnUrl           = @"/acs/bmap/psn/glqRelatedPsn";
+NSString * const planeWaitSortUrl           = @"/acs/bmap/psn/planeWaitSort";
+NSString * const arrPsnPerHourUrl           = @"/acs/bmap/psn/arrPsnPerHour";
+NSString * const depPsnPerHourUrl           = @"/acs/bmap/psn/depPsnPerHour";
+NSString * const glqPsnPerHourUrl           = @"/acs/bmap/psn/glqPsnPerHour";
+NSString * const glqNearPsnUrl              = @"/acs/bmap/psn/glqNearPsn";
+NSString * const glqFarPsnUrl              = @"/acs/bmap/psn/glqFarPsn";
+NSString * const peakPnsDaysUrl             = @"/acs/bmap/psn/peakPnsDays";
+NSString * const craftSeatTakeUpInfoUrl     = @"/acs/bmap/rs/craftSeatTakeUpInfo";
+NSString * const willCraftSeatTakeUpUrl     = @"/acs/bmap/rs/willCraftSeatTakeUp";
 NSString * const craftSeatTypeTakeUpSortUrl = @"/acs/bmap/rs/craftSeatTypeTakeUpSort";
 
 @implementation HttpsUtils (Business)
@@ -65,18 +66,18 @@ NSString * const craftSeatTypeTakeUpSortUrl = @"/acs/bmap/rs/craftSeatTypeTakeUp
  *  当deviceInfo="0"时不进行多设备登录限制，格式-　设备ID：MAC地址：系统：手机号
  *  返回 1 登录成功  2 登录失败，用户名不存在 3登录失败，密码输入错误 4 用户被禁用 5已在其他设备登录，登录失败 6 账号已过期 7 MAC地址不匹配
  *
- *  @param userName <#userName description#>
- *  @param pwd      <#pwd description#>
- *  @param success  <#success description#>
- *  @param failure  <#failure description#>
+ *  @param userName userName description
+ *  @param pwd      pwd description
+ *  @param success  success description
+ *  @param failure  failure description
  */
 +(void) loginUser:(NSString*) userName pwd: (NSString*) pwd deviceInfo:(NSString*) deviceInfo success:(void (^) (id)) success failure:(void (^) (NSError*)) failure{
 
     NSDictionary *params = [NSDictionary dictionaryWithObjects:@[userName,pwd] forKeys:@[@"username",@"password"]];
     
     [HttpsUtils post:loginUrl params:params success:^(id responseObj) {
-        UserInfoModel *user = [UserInfoModel new];
-        [user setValuesForKeysWithDictionary:responseObj];
+        UserInfoModel *user = [[UserInfoModel alloc]initWithDictionary:responseObj];
+//        [user setValuesForKeysWithDictionary:responseObj];
         success(user);
     }  failure:failure];
 }
@@ -583,6 +584,15 @@ NSString * const craftSeatTypeTakeUpSortUrl = @"/acs/bmap/rs/craftSeatTypeTakeUp
         }
     } failure:failure];
 }
++(void)getGlqFarPsn:(NSString *)date success:(void (^)(id))success failure:(void (^)(id))failure
+{
+    [HttpsUtils get:glqFarPsnUrl params:nil success:^(id responseObj) {
+        if(success){
+            success(responseObj);
+        }
+    } failure:failure];
+}
+
 
 /**
  高峰旅客日排名 /psn/peakPnsDays

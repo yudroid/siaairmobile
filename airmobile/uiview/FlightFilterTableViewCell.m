@@ -22,7 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *nextLandingLabel;//下一站到达时间
 @property (weak, nonatomic) IBOutlet UILabel *flightStatus;
 @property (weak, nonatomic) IBOutlet UILabel *preAirportLabel;//前站起飞城市
-@property (weak, nonatomic) IBOutlet UILabel *airportLable;//本站到达城市
+
 @property (weak, nonatomic) IBOutlet UILabel *takeOffAirportLabel;//本站起飞城市
 @property (weak, nonatomic) IBOutlet UILabel *nextAirportLabel;//下站到达城市
 @property (weak, nonatomic) IBOutlet UIImageView *backImageView;
@@ -63,23 +63,19 @@
     _craftModelLable.text = flight.model;
     _regionLabel.text = flight.region;
     _craftSeatLabel.text = flight.seat;
-    _preTakeOffLabel.text = flight.sTime;
-    _preAirportLabel.text = flight.sCity;
-    _takeOffLabel.text = flight.mTime;
-    _takeOffAirportLabel.text = flight.mCity;
-    _landingLabel.text = flight.mTime;
-    _airportLable.text = flight.mCity;
-    _nextLandingLabel.text = flight.eTime;
-    _nextAirportLabel.text = flight.eCity;
+
+
+
+
     _flightStatus.text = flight.fState;
     if(flight.special.integerValue == 0){
         _backImageView.image = [UIImage imageNamed:@"FlightNormal"];
         _specialLabel.text = @"普";
-        _statusReasonLabel.text = @"";
+//        _statusReasonLabel.text = @"";
     }else{
         _backImageView.image = [UIImage imageNamed:@"FlightSpecial"];
         _specialLabel.text = @"特";
-        _statusReasonLabel.text = @"天气原因";
+//        _statusReasonLabel.text = @"天气原因";
     }
 
     if([flight.fState isEqualToString:@"正常"]){
@@ -88,9 +84,20 @@
         _flightStatus.textColor = [CommonFunction colorFromHex:0Xffff7c36];
     }
 
-    if(!flight.mCity||[flight.mCity isEqualToString:@""]){
+    if(!flight.sCity||[flight.sCity isEqualToString:@""]){
         _middleView.hidden = YES;
+        _preTakeOffLabel.text = flight.mOutTime;
+        _preAirportLabel.text = flight.mOutCity;
+    }else{
+        _middleView.hidden = NO;
+        _preTakeOffLabel.text = flight.sTime;
+        _preAirportLabel.text = flight.sCity;
+        _takeOffLabel.text = flight.mOutTime;
+        _takeOffAirportLabel.text = flight.mInCity;
+        _landingLabel.text = flight.mInTime;
     }
+    _nextLandingLabel.text = flight.eTime;
+    _nextAirportLabel.text = flight.eCity;
     
 }
 

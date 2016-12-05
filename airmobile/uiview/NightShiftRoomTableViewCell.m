@@ -7,8 +7,11 @@
 //
 
 #import "NightShiftRoomTableViewCell.h"
+#import "DutyModel.h"
 
 @implementation NightShiftRoomTableViewCell
+
+
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -23,4 +26,16 @@
     // Configure the view for the selected state
 }
 
+
+-(void)setDutyModel:(DutyModel *)dutyModel
+{
+    if (dutyModel == nil) {
+        return;
+    }
+    _dutyModel = dutyModel;
+    _dptLabel.text = dutyModel.section;
+    _nameLabel.text = dutyModel.userName;
+    _phoneLabel.text = dutyModel.phone;
+    _titleLabel.text = dutyModel.duty;
+}
 @end
