@@ -27,7 +27,7 @@ typedef NS_ENUM(NSUInteger, PNLegendItemStyle) {
 @property (assign, nonatomic) PNLegendItemStyle legendStyle;
 
 @property (assign, nonatomic) UIFont *legendFont;
-@property (assign, nonatomic) UIColor *legendFontColor;
+@property (copy, nonatomic) UIColor *legendFontColor;
 @property (assign, nonatomic) NSUInteger labelRowsInSerialMode;
 
 /** Display the chart with or without animation. Default is YES. **/

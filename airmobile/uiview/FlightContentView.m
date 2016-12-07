@@ -36,9 +36,11 @@
     UILabel         *depOutNum;
     UILabel         *totalNum;
     UILabel         *arrNum;
-
     PNPieChart      *arrRoundProgress;
     PNPieChart      *depRoundProgress;
+
+    NSMutableArray *arrShapeArray;
+    NSMutableArray *depShapeArray;
 
 }
 
@@ -434,8 +436,6 @@
                                                  selector:@selector(loadData:)
                                                      name:@"FlightStatusInfo"
                                                    object:nil];
-        
-
     }
     return self;
 }
@@ -517,8 +517,8 @@
     {
         case 0:
         {
-            depFlightBackgroundImageView.image = [UIImage imageNamed:@"SegmentedLeft"];
-            arrFlightLabel.textColor = [CommonFunction colorFromHex:0xFF17B9E8];
+            depFlightBackgroundImageView.image  = [UIImage imageNamed:@"SegmentedLeft"];
+            arrFlightLabel.textColor            = [CommonFunction colorFromHex:0xFF17B9E8];
             depFlightLabel.textColor = [CommonFunction colorFromHex:0xFFFFFFFF];
             [scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
             NSMutableAttributedString *delayAttributeString = [[NSMutableAttributedString alloc ] initWithString:[NSString stringWithFormat:@"延误 %d",_flightStusModel.depDelay]];

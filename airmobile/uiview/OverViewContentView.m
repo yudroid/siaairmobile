@@ -12,6 +12,12 @@
 #import "SummaryModel.h"
 #import "NightShiftRoomViewController.h"
 
+@interface OverViewContentView ()
+
+@property (nonatomic, strong) UITextView  *noticeTextView; //底部提示文字
+
+@end
+
 @implementation OverViewContentView
 {
     UILabel *calendarLabel;     // 当天日期
@@ -20,7 +26,6 @@
     TagView *finishView;        //已经执行
     TagView *ratioView;         //放行率
     UILabel *currentStatus;     //小面积延误
-    UITextView          *noticeTextView; //底部提示文字
     RoundProgressView   *progressRound; //圆
 }
 
@@ -250,15 +255,15 @@
         lineImageView.image         = [UIImage imageNamed:@"hiddenLine"];
         [self addSubview:lineImageView];
 
-        noticeTextView                  = [[UITextView alloc] initWithFrame:CGRectMake(50,
-                                                                                       viewBotton(lineImageView)+5,
-                                                                                       kScreenWidth-100,
-                                                                                       kScreenHeight-viewBotton(lineImageView)-5-49-76)];
-        noticeTextView.text             = summaryModel.aovTxt;
-        noticeTextView.textAlignment    = NSTextAlignmentLeft;
-        noticeTextView.font             = [UIFont systemFontOfSize:12];
-        noticeTextView.editable         = NO;
-        [self addSubview:noticeTextView];
+//        _noticeTextView                  = [[UITextView alloc] initWithFrame:CGRectMake(50,
+//                                                                                       viewBotton(lineImageView)+5,
+//                                                                                       kScreenWidth-100,
+//                                                                                       kScreenHeight-viewBotton(lineImageView)-5-49-76)];
+//        _noticeTextView.text             = summaryModel.aovTxt;
+//        _noticeTextView.textAlignment    = NSTextAlignmentLeft;
+//        _noticeTextView.font             = [UIFont systemFontOfSize:12];
+//        _noticeTextView.editable         = NO;
+//        [self addSubview:_noticeTextView];
 
     }
     //添加刷新通知
@@ -346,7 +351,7 @@
         currentStatus.textColor = [UIColor redColor];
     }
 
-    noticeTextView.text         = summaryModel.aovTxt;
+//    noticeTextView.text         = summaryModel.aovTxt;
 
 }
 

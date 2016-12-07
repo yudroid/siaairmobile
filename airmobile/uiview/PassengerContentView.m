@@ -12,6 +12,7 @@
 @interface  PassengerContentView()
 
 @property (nonatomic ,strong) PassengerModel *passengermodel;
+@property (nonatomic ,weak) id<PassengerContentViewDelegate>    delegate;
 
 @end
 
@@ -19,7 +20,7 @@
     UIPageControl                       *pageControl;
     PsnGeneralContentView               *psnGeneral;
     PsnSafetyContentView                *psnSafety;
-    id<PassengerContentViewDelegate>    _delegate;
+
 }
 
 
