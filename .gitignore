@@ -9,8 +9,6 @@ Podfile.lock
 
 *.lock
 
-
-
 Pods/Target Support Files/Toast/Toast.xcconfig
 
 Pods/Target Support Files/Pods-airmobileUITests/Pods-airmobileUITests.debug.xcconfig
@@ -64,4 +62,14 @@ airmobile.xcworkspace/xcuserdata/yangquanlinyanfabu.xcuserdatad/UserInterfaceSta
 airmobile.xcodeproj/project.xcworkspace/xcuserdata/yangquanlinyanfabu.xcuserdatad/UserInterfaceState.xcuserstate
 
 
-Podfile
+Pods/JTCalendar/JTCalendar/Views/JTHorizontalCalendarView.m
+
+airmobile.xcodeproj/project.pbxproj
+
+Pods/JTCalendar/JTCalendar/Views/JTVerticalCalendarView.m
+
+Pods/JTCalendar/JTCalendar/Views/JTHorizontalCalendarView.m
+
+Pods/JTCalendar/JTCalendar/Views/JTVerticalCalendarView.m
+
+Pods/JTCalendar/JTCalendar/Views/JTHorizontalCalendarView.m
