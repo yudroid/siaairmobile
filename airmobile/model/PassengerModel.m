@@ -26,12 +26,19 @@
     return _psnHours;
 }
 
--(NSMutableArray *)getPsnAreasArray
+-(NSMutableArray *)getPsnNearAreasArray
 {
-    if(_psnAreas == nil){
-        _psnAreas = [NSMutableArray array];
+    if(_psnNearAreas == nil){
+        _psnNearAreas = [NSMutableArray array];
     }
-    return _psnAreas;
+    return _psnNearAreas;
+}
+-(NSMutableArray *)getPsnFarAreasArray
+{
+    if(_psnFarAreas == nil){
+        _psnFarAreas = [NSMutableArray array];
+    }
+    return _psnFarAreas;
 }
 
 -(NSMutableArray *)getPsnTopsArray
@@ -99,6 +106,7 @@
         }else{
             model = [[self getPsnHoursArray] objectAtIndex:index];
         }
+        model.hour = [item objectForKey:@"hour"];
         switch (flag) {
 
             case 1:
@@ -151,11 +159,11 @@
     int index = 0;
     for(NSDictionary *item in data){
         PassengerAreaModel *model = nil;
-        if([[self getPsnAreasArray] count]<index+1){
+        if([[self getPsnNearAreasArray] count]<index+1){
             model = [PassengerAreaModel new];
-            [[self getPsnAreasArray] addObject:model];
+            [[self getPsnNearAreasArray] addObject:model];
         }else{
-            model = [[self getPsnAreasArray] objectAtIndex:index];
+            model = [[self getPsnNearAreasArray] objectAtIndex:index];
         }
 //        hour：指廊名称 count：指廊旅客数 近机位数=所有count数加起来
 //        hour：INT（国际）或者DOM（国内） count：国际或者国内旅客数 远机位数=国际+国内旅客数
@@ -174,5 +182,37 @@
         index ++;
     }
 }
+
+- (void)updateGlqFarPsn:(id)data
+{
+    if([self isNull:data])
+        return;
+    int index = 0;
+    for(NSDictionary *item in data){
+        PassengerAreaModel *model = nil;
+        if([[self getPsnFarAreasArray] count]<index+1){
+            model = [PassengerAreaModel new];
+            [[self getPsnFarAreasArray] addObject:model];
+        }else{
+            model = [[self getPsnFarAreasArray] objectAtIndex:index];
+        }
+        //        hour：指廊名称 count：指廊旅客数 近机位数=所有count数加起来
+        //        hour：INT（国际）或者DOM（国内） count：国际或者国内旅客数 远机位数=国际+国内旅客数
+        NSString *region = [item objectForKey:@"hour"];
+        if(region == nil)
+            continue;
+        if([region isEqualToString:@"INT"] ||
+           [region isEqualToString:@"DOM"])
+        {
+            model.isFar = YES;
+        }else{
+            model.isFar = NO;
+        }
+        model.region =  [item objectForKey:@"hour"];
+        model.count  = [[item objectForKey:@"count"] floatValue];
+        index ++;
+    }
+}
+
 
 @end

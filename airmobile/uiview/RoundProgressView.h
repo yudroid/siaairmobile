@@ -46,4 +46,12 @@ typedef enum
 @property(nonatomic,strong)CAShapeLayer * normalLaber;
 @property(nonatomic,strong)CAShapeLayer * cancelLaber;
 
+
+@end
+
+
+@interface SeatUsedRoundProgressView : RoundProgressView
+
+@property(nonatomic,strong)CAShapeLayer * unusedLaber;
+
 @end

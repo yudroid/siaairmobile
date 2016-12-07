@@ -9,6 +9,7 @@
 #import "UserManagementViewController.h"
 #import "UIViewController+Reminder.h"
 #import "UserManagermentTableViewCell.h"
+#import "ModifyPwdView.h"
 
 static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TABLECELL_IDENTIFIER";
 
@@ -35,7 +36,7 @@ static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TA
     _tableView.delegate = self;
     _tableView.dataSource = self;
     
-    _tableviewArray = @[@"原密码",@"新密码",@"确认密码"];
+    _tableviewArray = @[@"修改密码"];
     [_tableView registerNib:[UINib nibWithNibName:@"UserManagermentTableViewCell" bundle:nil] forCellReuseIdentifier:(NSString *)USERMANAGEMENT_TABLECELL_IDENTIFIER];
     // Do any additional setup after loading the view from its nib.
 }
@@ -108,6 +109,19 @@ static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TA
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    if([_tableviewArray[indexPath.row] isEqualToString:@"修改密码"]){
+        ModifyPwdView *view = [[NSBundle mainBundle]loadNibNamed:@"ModifyPwd" owner:nil options:nil][0];
+
+        view.frame = self.view.frame;
+
+        [view createBlurBackgroundWithImage:[self jt_imageWithView:self.view] tintColor:[[UIColor blackColor] colorWithAlphaComponent:0.35] blurRadius:60.0];
+
+
+        [self.view addSubview:view];
+
+    }
+
 }
 #pragma mark - UIAlertViewDelegate
 #if __IPHONE_OS_VERSION_MAX_ALLOWED <= __IPHONE_8_3
@@ -151,6 +165,18 @@ static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TA
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+- (UIImage *)jt_imageWithView:(UIView *)view {
+
+    CGFloat scale = [[UIScreen mainScreen] scale];
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, scale);
+    [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:true];
+    UIImage * image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+
+    return image;
 }
 
 /*

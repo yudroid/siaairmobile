@@ -36,9 +36,11 @@
     UILabel         *depOutNum;
     UILabel         *totalNum;
     UILabel         *arrNum;
-
     PNPieChart      *arrRoundProgress;
     PNPieChart      *depRoundProgress;
+
+    NSMutableArray *arrShapeArray;
+    NSMutableArray *depShapeArray;
 
 }
 
@@ -434,8 +436,6 @@
                                                  selector:@selector(loadData:)
                                                      name:@"FlightStatusInfo"
                                                    object:nil];
-        
-
     }
     return self;
 }
@@ -470,6 +470,8 @@
         [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.arrDelay
                                                           color:[CommonFunction colorFromHex:0xFFFFCD21]
                                                     description:@"延误"]];
+        [array addObject: [PNPieChartDataItem dataItemWithValue:2
+                                                          color:[UIColor clearColor]]];
         [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.arrDoneNormal
                                                           color:[CommonFunction colorFromHex:0xFF00B0D8]
                                                     description:@"已执行"]];
@@ -481,8 +483,6 @@
         [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.arrDoneAbn
                                                           color:[CommonFunction colorFromHex:0xFFC8C8C8]
                                                     description:@"未执行"]];
-        [array addObject: [PNPieChartDataItem dataItemWithValue:10
-                                                          color:[CommonFunction colorFromHex:0xFFFFCD21]]];
 
     }else{
         [array removeAllObjects];
@@ -491,6 +491,7 @@
         [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.depDelay
                                                           color:[CommonFunction colorFromHex:0xFFFFCD21]
                                                     description:@"延误"]];
+        [array addObject: [PNPieChartDataItem dataItemWithValue:2 color:[UIColor clearColor]]];
         [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.depDoneNormal
                                                           color:[CommonFunction colorFromHex:0xFF00B0D8]
                                                     description:@"已执行"]];
@@ -502,8 +503,6 @@
         [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.depDoneAbn
                                                           color:[CommonFunction colorFromHex:0xFFC8C8C8]
                                                     description:@"未执行"]];
-        [array addObject: [PNPieChartDataItem dataItemWithValue:10
-                                                          color:[CommonFunction colorFromHex:0xFFFFCD21]]];
 
     }
 
@@ -518,8 +517,8 @@
     {
         case 0:
         {
-            depFlightBackgroundImageView.image = [UIImage imageNamed:@"SegmentedLeft"];
-            arrFlightLabel.textColor = [CommonFunction colorFromHex:0xFF17B9E8];
+            depFlightBackgroundImageView.image  = [UIImage imageNamed:@"SegmentedLeft"];
+            arrFlightLabel.textColor            = [CommonFunction colorFromHex:0xFF17B9E8];
             depFlightLabel.textColor = [CommonFunction colorFromHex:0xFFFFFFFF];
             [scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
             NSMutableAttributedString *delayAttributeString = [[NSMutableAttributedString alloc ] initWithString:[NSString stringWithFormat:@"延误 %d",_flightStusModel.depDelay]];

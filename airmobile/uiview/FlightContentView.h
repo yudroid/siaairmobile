@@ -30,13 +30,9 @@
 @end
 
 @interface FlightContentView : UIView<UIScrollViewDelegate>
-{
-    UIPageControl *pageControl;
-    NSMutableArray *arrShapeArray;
-    NSMutableArray *depShapeArray;
-    
-    id<FlightContentViewDelegate> _delegate;
-}
+
+
+@property (nonatomic, weak) id<FlightContentViewDelegate> delegate;
 
 
 -(instancetype)initWithFrame:(CGRect)                       frame

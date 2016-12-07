@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class DutyModel;
 
 @interface NightShiftRoomTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *dptLabel;
@@ -14,5 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *tagLabel;
+
+@property (nonatomic, strong) DutyModel *dutyModel;
 
 @end

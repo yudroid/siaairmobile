@@ -39,7 +39,7 @@
         NSMutableAttributedString *numAttributedString = [[NSMutableAttributedString alloc]initWithString:numLabel.text];
         [numAttributedString addAttribute:NSForegroundColorAttributeName value:[CommonFunction colorFromHex:0xFFFF7c36]
                                     range:NSMakeRange(0, location)];
-        [numAttributedString addAttribute:NSForegroundColorAttributeName value:[CommonFunction colorFromHex:0xFFF17b9e8]
+        [numAttributedString addAttribute:NSForegroundColorAttributeName value:[CommonFunction colorFromHex:0xFF17b9e8]
                                     range:NSMakeRange(location+1, numAttributedString.length-location-1)];
         numLabel.attributedText = numAttributedString;
         [self.contentView addSubview:numLabel];

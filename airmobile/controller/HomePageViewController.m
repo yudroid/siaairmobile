@@ -440,7 +440,7 @@
 -(void) showFlightHourView:(FlightHourType) type
 {
 //    ArrDepFlightHourViewController *arrDepController = [[ArrDepFlightHourViewController alloc]initWithDataArray:_flighStusModel.flightHours];
-    ArrDepFlightHourViewController *arrDepController = [[ArrDepFlightHourViewController alloc]init];
+    ArrDepFlightHourViewController *arrDepController = [[ArrDepFlightHourViewController alloc]initWithDataArray:_summaryModel.flightHours];
     arrDepController.hourType = type;
     [self.navigationController pushViewController:arrDepController
                                          animated:YES];

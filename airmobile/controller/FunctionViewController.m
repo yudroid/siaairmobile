@@ -14,13 +14,14 @@
 #import "UserInfoTableViewCell.h"
 #import "NightShiftRoomViewController.h"
 #import "AddressBookViewController.h"
+#import "DutyModel.h"
 
 static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDENTIFIER";
 
 @interface FunctionViewController ()<UITableViewDelegate,UITableViewDataSource>
 
-@property (nonatomic,strong) UITableView *tableView;
-    @property (nonatomic,strong) NSArray *tableArray;
+@property (nonatomic,strong) UITableView    *tableView;
+@property (nonatomic,strong) NSArray        *tableArray;
 
 @end
 
@@ -61,9 +62,10 @@ static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDEN
     _tableView.tableFooterView = [[UIView alloc]init];
     _tableArray= @[@{@"name":@"通讯录",@"image":@"AddressBook"},
                    @{@"name":@"值班表",@"image":@"WatchBill"}];
-
     [self.view addSubview:_tableView];
 }
+
+
 
 
 #pragma mark - UITableViewDelegate UITableViewDataSource

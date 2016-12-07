@@ -12,6 +12,7 @@
 @interface  PassengerContentView()
 
 @property (nonatomic ,strong) PassengerModel *passengermodel;
+@property (nonatomic ,weak) id<PassengerContentViewDelegate>    delegate;
 
 @end
 
@@ -19,7 +20,7 @@
     UIPageControl                       *pageControl;
     PsnGeneralContentView               *psnGeneral;
     PsnSafetyContentView                *psnSafety;
-    id<PassengerContentViewDelegate>    _delegate;
+
 }
 
 
@@ -48,12 +49,12 @@
                                                    passengerModel:_passengermodel];
         [scrollView addSubview:psnGeneral];
 
-        UIButton *psnHourBtn = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth/2, 200+30, kScreenWidth/2-20, 90)];
-        [psnHourBtn addTarget:self
-                       action:@selector(showPassengerHourView:)
-             forControlEvents:(UIControlEventTouchUpInside)];
-        [scrollView addSubview:psnHourBtn];
-//        
+//        UIButton *psnHourBtn = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth/2, 200+30, kScreenWidth/2-20, 90)];
+//        [psnHourBtn addTarget:self
+//                       action:@selector(showPassengerHourView:)
+//             forControlEvents:(UIControlEventTouchUpInside)];
+//        [scrollView addSubview:psnHourBtn];
+//
 //        UIButton *showSafeBtn = [[UIButton alloc] initWithFrame:CGRectMake(20, 200+30+30+30+90, kScreenWidth-40, 30)];
 //        showSafeBtn.backgroundColor = [UIColor blackColor];
 //        [showSafeBtn addTarget:self action:@selector(showSafetyPassenger:) forControlEvents:UIControlEventTouchUpInside];
@@ -84,6 +85,10 @@
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(showTop5DaysView:)
                                                      name:@"showTop5DaysView"
+                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(showPassengerHourView:)
+                                                     name:@"showPassengerHourView"
                                                    object:nil];
     }
     

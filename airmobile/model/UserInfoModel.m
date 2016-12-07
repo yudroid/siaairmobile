@@ -10,4 +10,18 @@
 
 @implementation UserInfoModel
 
+-(instancetype)initWithDictionary:(NSDictionary *)dictionary
+{
+    self = [super init];
+    if (self) {
+        [self setValuesForKeysWithDictionary:dictionary];
+    }
+    return self;
+}
+
+-(void)setValue:(id)value forUndefinedKey:(NSString *)key
+{
+    return;
+}
+
 @end

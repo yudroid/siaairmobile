@@ -1,4 +1,4 @@
-//
+ //
 //  HomePageService.m
 //  airmobile
 //
@@ -86,25 +86,25 @@ singleton_implementation(HomePageService);
     // 计划进港航班小时分布 /flt/planArrFltPerHour
     [HttpsUtils getPlanArrHours:nil success:^(id responesObj) {
         [summaryModel updateFlightHourModel:responesObj flag:1];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"PlanArrHours" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"PlanArrHours" object:summaryModel.flightHours];
     } failure:nil];
     
     // 实际进港航班小时分布 /flt/realArrFltPerHour
     [HttpsUtils getRealArrHours:nil success:^(id responesObj) {
         [summaryModel updateFlightHourModel:responesObj flag:2];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"RealArrHours" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"RealArrHours" object:summaryModel.flightHours];
     } failure:nil];
     
     // 计划出港航班小时分布 /flt/depFltPerHour
     [HttpsUtils getPlanDepHours:nil success:^(id responesObj) {
         [summaryModel updateFlightHourModel:responesObj flag:3];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"PlanDepHours" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"PlanDepHours" object:summaryModel.flightHours];
     } failure:nil];
     
     // 实际出港航班小时分布 /flt/realDepFltPerHour
     [HttpsUtils getRealDepHours:nil success:^(id responesObj) {
         [summaryModel updateFlightHourModel:responesObj flag:4];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"RealDepHours" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"RealDepHours" object:summaryModel.flightHours];
     } failure:nil];
 }
 
@@ -206,10 +206,14 @@ singleton_implementation(HomePageService);
     [HttpsUtils getGlqNearPsn:nil success:^(id responseObj) {
         [psnModel updateGlqNearPsn:responseObj];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"GlqNearPsn"
-                                                            object:psnModel];
+                                                            object:psnModel.psnNearAreas];
     } failure:nil];
 
-    //高峰旅客日排名
+    [HttpsUtils getGlqFarPsn:nil success:^(id responseObj) {
+        [psnModel updateGlqFarPsn:responseObj];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"GlqFarPsn"
+                                                            object:psnModel.psnFarAreas];
+    } failure:nil];    //高峰旅客日排名
     [HttpsUtils getPeakPnsDays:nil success:^(id responseObj) {
         [psnModel updatePeakPnsDays:responseObj];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"PeakPnsDays"
@@ -219,99 +223,6 @@ singleton_implementation(HomePageService);
 
 -(PassengerModel *)getPassengerTopModel
 {
-//    psnModel.hourInCount = 300;
-//    psnModel.hourOutCount = 500;
-//    psnModel.maxCount = 1000;
-//    psnModel.minCount = 00;
-//
-//    psnModel.planInCount = 1000;
-//    psnModel.realInCount = 900;
-//    psnModel.planOutCount = 800;
-//    psnModel.realOutCount = 700;
-//    psnModel.safeCount = 578;
-//
-//    NSMutableArray *hourArray = [NSMutableArray array];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"1:00" count:25 planCount:25]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"2:00" count:35 planCount:35]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"3:00" count:15 planCount:15]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"4:00" count:10 planCount:10]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"5:00" count:25 planCount:25]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"6:00" count:35 planCount:35]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"7:00" count:45 planCount:50]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"8:00" count:55 planCount:65]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"9:00" count:50 planCount:50]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"10:00" count:48 planCount:48]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"11:00" count:50 planCount:62]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"12:00" count:45 planCount:45]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"13:00" count:55 planCount:55]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"14:00" count:60 planCount:60]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"15:00" count:50 planCount:50]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"16:00" count:60 planCount:60]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"17:00" count:45 planCount:45]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"18:00" count:35 planCount:35]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"19:00" count:45 planCount:45]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"20:00" count:25 planCount:25]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"21:00" count:20 planCount:20]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"22:00" count:25 planCount:25]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"23:00" count:30 planCount:30]];
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"00:00" count:15 planCount:15]];
-//    psnModel.psnHours = hourArray;
-//
-//    NSMutableArray *farArray = [NSMutableArray array];
-//    [farArray addObject:[[PassengerAreaModel alloc] initWithRegion:@"北指廊" count:2512 isFar:NO]];
-//    [farArray addObject:[[PassengerAreaModel alloc] initWithRegion:@"东北"  count:2055 isFar:NO]];
-//    [farArray addObject:[[PassengerAreaModel alloc] initWithRegion:@"西北"  count:2315 isFar:NO]];
-//    [farArray addObject:[[PassengerAreaModel alloc] initWithRegion:@"东南"  count:1985 isFar:NO]];
-//    [farArray addObject:[[PassengerAreaModel alloc] initWithRegion:@"西南"  count:1205 isFar:NO]];
-//    psnModel.psnAreas = farArray;
-//
-//    NSMutableArray *array = [NSMutableArray array];
-//    [array addObject:[[PassengerTopModel alloc] initWithDate:@"2016-5-25" count:5410 index:1]];
-//    [array addObject:[[PassengerTopModel alloc] initWithDate:@"2016-6-25" count:5230 index:2]];
-//    [array addObject:[[PassengerTopModel alloc] initWithDate:@"2016-7-25" count:5120 index:3]];
-//    [array addObject:[[PassengerTopModel alloc] initWithDate:@"2016-8-25" count:5048 index:4]];
-//    [array addObject:[[PassengerTopModel alloc] initWithDate:@"2016-9-25" count:5042 index:5]];
-//    [array addObject:[[PassengerTopModel alloc] initWithDate:@"2016-7-25" count:5120 index:6]];
-//    [array addObject:[[PassengerTopModel alloc] initWithDate:@"2016-8-25" count:5048 index:7]];
-//    [array addObject:[[PassengerTopModel alloc] initWithDate:@"2016-9-25" count:5042 index:8]];
-//    [array addObject:[[PassengerTopModel alloc] initWithDate:@"2016-7-25" count:5120 index:9]];
-//    [array addObject:[[PassengerTopModel alloc] initWithDate:@"2016-8-25" count:5048 index:10]];
-//    [array addObject:[[PassengerTopModel alloc] initWithDate:@"2016-9-25" count:5042 index:11]];
-//    psnModel.psnTops = array;
-//
-//
-//    NSMutableArray *array2 = [NSMutableArray array];
-//
-//    [hourArray addObject:[[FlightHourModel alloc] initWithHour:@"1:00" count:0 planCount:0 arrCount:250 planArrCount:250 depCount:260 planDepCount:260 before:YES]];
-//    [array2 addObject:[[FlightHourModel alloc] initWithHour:@"2:00" count:0 planCount:0 arrCount:260 planArrCount:250 depCount:260 planDepCount:260 before:YES]];
-//    [array2 addObject:[[FlightHourModel alloc] initWithHour:@"3:00" count:0 planCount:0 arrCount:241 planArrCount:250 depCount:210 planDepCount:210 before:YES]];
-//    [array2 addObject:[[FlightHourModel alloc] initWithHour:@"4:00" count:0 planCount:0 arrCount:264 planArrCount:250 depCount:260 planDepCount:260 before:YES]];
-//    [array2 addObject:[[FlightHourModel alloc] initWithHour:@"5:00" count:0 planCount:0 arrCount:281 planArrCount:250 depCount:260 planDepCount:178 before:YES]];
-//    [array2 addObject:[[FlightHourModel alloc] initWithHour:@"6:00" count:0 planCount:0 arrCount:250 planArrCount:250 depCount:260 planDepCount:260 before:YES]];
-//    [array2 addObject:[[FlightHourModel alloc] initWithHour:@"7:00" count:0 planCount:0 arrCount:250 planArrCount:250 depCount:260 planDepCount:260 before:YES]];
-//    [array2 addObject:[[FlightHourModel alloc] initWithHour:@"8:00" count:0 planCount:0 arrCount:231 planArrCount:250 depCount:260 planDepCount:260 before:YES]];
-//    [array2 addObject:[[FlightHourModel alloc] initWithHour:@"9:00" count:0 planCount:0 arrCount:250 planArrCount:250 depCount:260 planDepCount:230 before:YES]];
-//    [array2 addObject:[[FlightHourModel alloc] initWithHour:@"10:00" count:0 planCount:0 arrCount:250 planArrCount:250 depCount:260 planDepCount:260 before:YES]];
-//    [array2 addObject:[[FlightHourModel alloc] initWithHour:@"11:00" count:0 planCount:0 arrCount:150 planArrCount:250 depCount:260 planDepCount:260 before:YES]];
-//    [array2 addObject:[[FlightHourModel alloc] initWithHour:@"12:00" count:0 planCount:0 arrCount:250 planArrCount:250 depCount:260 planDepCount:260 before:YES]];
-//    [array2 addObject:[[FlightHourModel alloc] initWithHour:@"13:00" count:0 planCount:0 arrCount:170 planArrCount:250 depCount:220 planDepCount:220 before:YES]];
-//    [array2 addObject:[[FlightHourModel alloc] initWithHour:@"14:00" count:0 planCount:0 arrCount:270 planArrCount:250 depCount:280 planDepCount:240 before:NO]];
-//    [array2 addObject:[[FlightHourModel alloc] initWithHour:@"15:00" count:0 planCount:0 arrCount:250 planArrCount:250 depCount:260 planDepCount:260 before:NO]];
-//    [array2 addObject:[[FlightHourModel alloc] initWithHour:@"16:00" count:0 planCount:0 arrCount:250 planArrCount:250 depCount:260 planDepCount:350 before:NO]];
-//    [array2 addObject:[[FlightHourModel alloc] initWithHour:@"17:00" count:0 planCount:0 arrCount:260 planArrCount:250 depCount:350 planDepCount:350 before:NO]];
-//    [array2 addObject:[[FlightHourModel alloc] initWithHour:@"18:00" count:0 planCount:0 arrCount:250 planArrCount:250 depCount:350 planDepCount:260 before:NO]];
-//    [array2 addObject:[[FlightHourModel alloc] initWithHour:@"19:00" count:0 planCount:0 arrCount:250 planArrCount:250 depCount:260 planDepCount:213 before:NO]];
-//    [array2 addObject:[[FlightHourModel alloc] initWithHour:@"20:00" count:0 planCount:0 arrCount:250 planArrCount:250 depCount:260 planDepCount:245 before:NO]];
-//    [array2 addObject:[[FlightHourModel alloc] initWithHour:@"21:00" count:0 planCount:0 arrCount:230 planArrCount:254 depCount:260 planDepCount:260 before:NO]];
-//    [array2 addObject:[[FlightHourModel alloc] initWithHour:@"22:00" count:0 planCount:0 arrCount:250 planArrCount:250 depCount:260 planDepCount:260 before:NO]];
-//    [array2 addObject:[[FlightHourModel alloc] initWithHour:@"23:00" count:0 planCount:0 arrCount:280 planArrCount:250 depCount:260 planDepCount:206 before:NO]];
-//    [array2 addObject:[[FlightHourModel alloc] initWithHour:@"00:00" count:0 planCount:0 arrCount:250 planArrCount:250 depCount:260 planDepCount:260 before:NO]];
-//
-//    psnModel.psnInOutHours = array2;
-//
-//    psnModel.psnOnPlane =[NSMutableArray arrayWithArray: @[@{@"count":@(10),@"ratio":@(0.5),@"hour":@"45min以下"},
-//                            @{@"count":@(10),@"ratio":@(0.5),@"hour":@"45min一下"},
-//                            @{@"count":@(10),@"ratio":@(0.5),@"hour":@"45min一下"}]];
 
     return  psnModel;
 }
@@ -323,16 +234,22 @@ singleton_implementation(HomePageService);
     // 机位占用信息
     [HttpsUtils getCraftSeatTakeUpInfo:nil success:^(id responseObj) {
         [seatModel updateCraftSeatTakeUpInfo:responseObj];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"CraftSeatTakeUpInfo"
+                                                            object:seatModel];
     } failure:nil];
 
     // 机位占用预测
     [HttpsUtils getWillCraftSeatTakeUp:nil success:^(id responseObj) {
         [seatModel updateWillCraftSeatTakeUp:responseObj];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"WillCraftSeatTakeUp"
+                                                            object:seatModel];
     } failure:nil];
     
     // 机位类型占用详情
     [HttpsUtils getCraftSeatTypeTakeUpSort:nil success:^(id responseObj) {
         [seatModel updateCraftSeatTypeTakeUp:responseObj];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"CraftSeatTypeTakeUpSort"
+                                                            object:seatModel.usedDetail];
     } failure:nil];
 }
 

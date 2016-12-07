@@ -97,7 +97,7 @@ static NSString *ID_SJPhotoAlbumCell = @"sJPhotoAlbumCell";
     
     SJAlbumModel *model = self.albumArray[indexPath.row];
     
-    cell.title = [NSString stringWithFormat:@"%@（%lu）",model.title,model.assetResult.count];
+    cell.title = [NSString stringWithFormat:@"%@（%lu）",model.title,(unsigned long)model.assetResult.count];
     [[SJPhotoPickerManager shareSJPhotoPickerManager] requestImageForPHAsset:model.assetResult[0] targetSize:CGSizeMake(55, 55) imageResult:^(UIImage *image) {
         cell.img = image;
     }];
