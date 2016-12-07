@@ -9,8 +9,6 @@ Podfile.lock
 
 *.lock
 
-Pods/Pods.xcodeproj/project.pbxproj
-
 Pods/Target Support Files/Toast/Toast.xcconfig
 
 Pods/Target Support Files/Pods-airmobileUITests/Pods-airmobileUITests.debug.xcconfig
