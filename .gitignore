@@ -9,7 +9,7 @@ Podfile.lock
 
 *.lock
 
-Pods/Pods.xcodeproj/project.pbxproj
+
 
 Pods/Target Support Files/Toast/Toast.xcconfig
 
@@ -55,7 +55,7 @@ Pods/Manifest.lock
 
 Podfile.lock
 
-Pods/Pods.xcodeproj/project.pbxproj
+
 
 airmobile.xcworkspace/xcuserdata/yangquanlinyanfabu.xcuserdatad/UserInterfaceState.xcuserstate
 
