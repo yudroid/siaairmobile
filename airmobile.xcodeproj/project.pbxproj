@@ -144,6 +144,15 @@
 		F758C9941DC3634D00556120 /* AlertIndicateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84183A141DBDDDBE00D7DD86 /* AlertIndicateViewController.m */; };
 		F758C9C01DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F758C9BE1DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.m */; };
 		F758C9C11DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F758C9BF1DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.xib */; };
+		F78B13B01DF47938000A6833 /* ModifyPwd.xib in Resources */ = {isa = PBXBuildFile; fileRef = F78B13AD1DF47937000A6833 /* ModifyPwd.xib */; };
+		F78B13B11DF47938000A6833 /* ModifyPwdView.m in Sources */ = {isa = PBXBuildFile; fileRef = F78B13AF1DF47938000A6833 /* ModifyPwdView.m */; };
+		F78B13B41DF47946000A6833 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = F78B13B31DF47946000A6833 /* UIImage+ImageEffects.m */; };
+		F78B13B81DF47B4C000A6833 /* MessageFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F78B13B61DF47B4C000A6833 /* MessageFilterViewController.m */; };
+		F78B13B91DF47B4C000A6833 /* MessageFilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F78B13B71DF47B4C000A6833 /* MessageFilterViewController.xib */; };
+		F78B13BE1DF481DA000A6833 /* MessageFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = F78B13BB1DF481DA000A6833 /* MessageFilterView.m */; };
+		F78B13C01DF482EB000A6833 /* MessageFilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F78B13BF1DF482EB000A6833 /* MessageFilterView.xib */; };
+		F78B13C41DF51056000A6833 /* MessageFilterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F78B13C21DF51056000A6833 /* MessageFilterTableViewCell.m */; };
+		F78B13C51DF51056000A6833 /* MessageFilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F78B13C31DF51056000A6833 /* MessageFilterTableViewCell.xib */; };
 		F79251371DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F79251351DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.m */; };
 		F79251381DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F79251361DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.xib */; };
 		F792513B1DB5CBE3006AA119 /* UIViewController+Reminder.m in Sources */ = {isa = PBXBuildFile; fileRef = F792513A1DB5CBE3006AA119 /* UIViewController+Reminder.m */; };
@@ -489,6 +498,20 @@
 		F758C9BD1DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbnormalityReportHistoryTableViewCell.h; sourceTree = "<group>"; };
 		F758C9BE1DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbnormalityReportHistoryTableViewCell.m; sourceTree = "<group>"; };
 		F758C9BF1DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AbnormalityReportHistoryTableViewCell.xib; sourceTree = "<group>"; };
+		F78B13AD1DF47937000A6833 /* ModifyPwd.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ModifyPwd.xib; sourceTree = "<group>"; };
+		F78B13AE1DF47937000A6833 /* ModifyPwdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyPwdView.h; sourceTree = "<group>"; };
+		F78B13AF1DF47938000A6833 /* ModifyPwdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyPwdView.m; sourceTree = "<group>"; };
+		F78B13B21DF47946000A6833 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		F78B13B31DF47946000A6833 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		F78B13B51DF47B4C000A6833 /* MessageFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageFilterViewController.h; sourceTree = "<group>"; };
+		F78B13B61DF47B4C000A6833 /* MessageFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageFilterViewController.m; sourceTree = "<group>"; };
+		F78B13B71DF47B4C000A6833 /* MessageFilterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageFilterViewController.xib; sourceTree = "<group>"; };
+		F78B13BB1DF481DA000A6833 /* MessageFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageFilterView.m; sourceTree = "<group>"; };
+		F78B13BC1DF481DA000A6833 /* MessageFilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageFilterView.h; sourceTree = "<group>"; };
+		F78B13BF1DF482EB000A6833 /* MessageFilterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageFilterView.xib; sourceTree = "<group>"; };
+		F78B13C11DF51056000A6833 /* MessageFilterTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageFilterTableViewCell.h; sourceTree = "<group>"; };
+		F78B13C21DF51056000A6833 /* MessageFilterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageFilterTableViewCell.m; sourceTree = "<group>"; };
+		F78B13C31DF51056000A6833 /* MessageFilterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageFilterTableViewCell.xib; sourceTree = "<group>"; };
 		F79251341DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightDetailAirLineCollectionViewCell.h; sourceTree = "<group>"; };
 		F79251351DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightDetailAirLineCollectionViewCell.m; sourceTree = "<group>"; };
 		F79251361DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightDetailAirLineCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -1127,6 +1150,9 @@
 				F79251781DB7431D006AA119 /* UserManagementViewController.h */,
 				F79251791DB7431D006AA119 /* UserManagementViewController.m */,
 				F792517A1DB7431D006AA119 /* UserManagementViewController.xib */,
+				F78B13B51DF47B4C000A6833 /* MessageFilterViewController.h */,
+				F78B13B61DF47B4C000A6833 /* MessageFilterViewController.m */,
+				F78B13B71DF47B4C000A6833 /* MessageFilterViewController.xib */,
 			);
 			name = UserInfo;
 			sourceTree = "<group>";
@@ -1235,6 +1261,17 @@
 		F79251721DB73DD3006AA119 /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
+				F78B13B21DF47946000A6833 /* UIImage+ImageEffects.h */,
+				F78B13B31DF47946000A6833 /* UIImage+ImageEffects.m */,
+				F78B13BC1DF481DA000A6833 /* MessageFilterView.h */,
+				F78B13BB1DF481DA000A6833 /* MessageFilterView.m */,
+				F78B13BF1DF482EB000A6833 /* MessageFilterView.xib */,
+				F78B13AE1DF47937000A6833 /* ModifyPwdView.h */,
+				F78B13AF1DF47938000A6833 /* ModifyPwdView.m */,
+				F78B13AD1DF47937000A6833 /* ModifyPwd.xib */,
+				F78B13C11DF51056000A6833 /* MessageFilterTableViewCell.h */,
+				F78B13C21DF51056000A6833 /* MessageFilterTableViewCell.m */,
+				F78B13C31DF51056000A6833 /* MessageFilterTableViewCell.xib */,
 				F79251731DB73E2C006AA119 /* UserInfoTableViewCell.h */,
 				F79251741DB73E2C006AA119 /* UserInfoTableViewCell.m */,
 				F79251751DB73E2C006AA119 /* UserInfoTableViewCell.xib */,
@@ -1474,7 +1511,7 @@
 				TargetAttributes = {
 					84BA54DB1DA256940037198F = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 4B8FH7JQ2N;
+						DevelopmentTeam = 9R73LBY7Z3;
 						ProvisioningStyle = Automatic;
 					};
 					84BA54F71DA256940037198F = {
@@ -1542,12 +1579,14 @@
 				F792516E1DB63D62006AA119 /* ChatTimeTableViewCell.xib in Resources */,
 				F7EEEF221DB3A580004AF0AE /* FlightDetailTableViewCell.xib in Resources */,
 				F7D38D801DE6CE9A001110AF /* ImageViewCollectionViewCell.xib in Resources */,
+				F78B13B91DF47B4C000A6833 /* MessageFilterViewController.xib in Resources */,
 				845055B31DAE3F1A00400EBF /* home_title_bg@2x.png in Resources */,
 				846F1DC31DAA2E3B00C8920B /* launchScreen@3x.png in Resources */,
 				F758C9C11DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.xib in Resources */,
 				F79251551DB610D6006AA119 /* FixedMessageTableViewCell.xib in Resources */,
 				F7003E4E1DDC38540056F3DA /* TakePhotoCollectionViewCell.xib in Resources */,
 				8450555F1DACF65200400EBF /* login_icon_invisible@2x.png in Resources */,
+				F78B13B01DF47938000A6833 /* ModifyPwd.xib in Resources */,
 				84BA54EF1DA256940037198F /* Assets.xcassets in Resources */,
 				8473A5241DB4DAE800A8DCE2 /* calendar.png in Resources */,
 				F7EE87871DB371CA006473F5 /* FlightFilterTableViewCell.xib in Resources */,
@@ -1555,6 +1594,7 @@
 				84BA54EA1DA256940037198F /* Main.storyboard in Resources */,
 				F7A25D931DBEF34800F36C32 /* OptionsViewController.xib in Resources */,
 				845055731DACF65200400EBF /* splash_3@3x.png in Resources */,
+				F78B13C51DF51056000A6833 /* MessageFilterTableViewCell.xib in Resources */,
 				8450555D1DACF65200400EBF /* login_btn_pre@2x.png in Resources */,
 				845055591DACF65200400EBF /* login_bg@2x.png in Resources */,
 				F792517C1DB7431D006AA119 /* UserManagementViewController.xib in Resources */,
@@ -1571,6 +1611,7 @@
 				F7A25D1B1DBDA6B400F36C32 /* ChatViewController.xib in Resources */,
 				F79251381DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.xib in Resources */,
 				845055B41DAE3F1A00400EBF /* home_title_bg@3x.png in Resources */,
+				F78B13C01DF482EB000A6833 /* MessageFilterView.xib in Resources */,
 				845055621DACF65200400EBF /* login_icon_lock@3x.png in Resources */,
 				F79251891DB781AB006AA119 /* NightShiftRoomViewController.xib in Resources */,
 				F7A25D861DBE277500F36C32 /* photopicker_back.png in Resources */,
@@ -1756,6 +1797,7 @@
 				846F1DB11DAA22E800C8920B /* GlobalHelper.m in Sources */,
 				F7A25D831DBE277500F36C32 /* SJAlbumModel.m in Sources */,
 				F792516D1DB63D62006AA119 /* ChatTimeTableViewCell.m in Sources */,
+				F78B13BE1DF481DA000A6833 /* MessageFilterView.m in Sources */,
 				846F1D951DA8F8F700C8920B /* DeviceInfoUtil.m in Sources */,
 				F79251971DB85D78006AA119 /* AddressBookTableViewCell.m in Sources */,
 				840D15DD1DC1D6E0005FA910 /* PsnHourTableViewCell.m in Sources */,
@@ -1827,6 +1869,7 @@
 				840D15ED1DC2FC67005FA910 /* PassengerTopViewController.m in Sources */,
 				840A4D111DD85DE200C39A79 /* PassengerModel.m in Sources */,
 				84183A091DBDDBD600D7DD86 /* FlightHourViewController.m in Sources */,
+				F78B13B81DF47B4C000A6833 /* MessageFilterViewController.m in Sources */,
 				F70893EB1DD2F66700135540 /* FlightDelaysTableViewCell.m in Sources */,
 				F79251371DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.m in Sources */,
 				F7A25D051DB9E6C900F36C32 /* PsnSafetyContentView.m in Sources */,
@@ -1837,6 +1880,7 @@
 				84ADE6D81DCC8E8700F58A46 /* PersistenceUtils+Business.m in Sources */,
 				F7A2A0661DB8D0EE0023F228 /* TabBarView.m in Sources */,
 				F7A25D801DBE277500F36C32 /* SJPickPhotoController.m in Sources */,
+				F78B13B41DF47946000A6833 /* UIImage+ImageEffects.m in Sources */,
 				F7A2A0541DB8D0590023F228 /* LoginViewController.m in Sources */,
 				F758C9C01DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.m in Sources */,
 				84183A061DBDB6DF00D7DD86 /* PNBarChart.m in Sources */,
@@ -1849,6 +1893,7 @@
 				F79251881DB781AB006AA119 /* NightShiftRoomViewController.m in Sources */,
 				841839F11DBCB87600D7DD86 /* PNPieChartDataItem.m in Sources */,
 				84183A311DBF8E6700D7DD86 /* FlightHourModel.m in Sources */,
+				F78B13C41DF51056000A6833 /* MessageFilterTableViewCell.m in Sources */,
 				F7003E481DDC30CE0056F3DA /* OptionCollectionViewCell.m in Sources */,
 				F7EAE19D1DB4B0680060626F /* AbnormalityReportCollectionViewCell.m in Sources */,
 				84BA54E41DA256940037198F /* AppDelegate.m in Sources */,
@@ -1857,6 +1902,7 @@
 				843DF1E71DE5BBE100B247B0 /* FlightDetailModel.m in Sources */,
 				F7A2A0511DB8D0590023F228 /* FlightViewController.m in Sources */,
 				F7A2A0641DB8D0EE0023F228 /* PassengerContentView.m in Sources */,
+				F78B13B11DF47938000A6833 /* ModifyPwdView.m in Sources */,
 				840D15CB1DC0B6DB005FA910 /* AbnormalReasonView.m in Sources */,
 				F7A25D8D1DBE277500F36C32 /* SJPickPhotoCell.m in Sources */,
 				F70893F21DD492AD00135540 /* TagView.m in Sources */,
@@ -2038,13 +2084,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 4B8FH7JQ2N;
+				DEVELOPMENT_TEAM = 9R73LBY7Z3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/airmobile/airmobile-Prefix.pch";
 				INFOPLIST_FILE = airmobile/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.taocares.sia.airmobile;
+				PRODUCT_BUNDLE_IDENTIFIER = com.taocares.sia.airmobileNewTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2057,14 +2103,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 4B8FH7JQ2N;
+				DEVELOPMENT_TEAM = 9R73LBY7Z3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/airmobile/airmobile-Prefix.pch";
 				INFOPLIST_FILE = airmobile/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.taocares.sia.airmobile;
+				PRODUCT_BUNDLE_IDENTIFIER = com.taocares.sia.airmobileNewTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2135,7 +2181,7 @@
 				84BA550B1DA256950037198F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 		84BA550C1DA256950037198F /* Build configuration list for PBXNativeTarget "airmobile" */ = {
 			isa = XCConfigurationList;
@@ -2144,7 +2190,7 @@
 				84BA550E1DA256950037198F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 		84BA550F1DA256950037198F /* Build configuration list for PBXNativeTarget "airmobileTests" */ = {
 			isa = XCConfigurationList;
@@ -2153,7 +2199,7 @@
 				84BA55111DA256950037198F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 		84BA55121DA256950037198F /* Build configuration list for PBXNativeTarget "airmobileUITests" */ = {
 			isa = XCConfigurationList;
@@ -2162,7 +2208,7 @@
 				84BA55141DA256950037198F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
