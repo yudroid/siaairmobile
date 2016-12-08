@@ -78,7 +78,6 @@ forHeaderFooterViewReuseIdentifier:(NSString *)ADDRESSBOOK_TABLEGROUPHEAER_IDENT
 
 -(void)UpdateNetwork
 {
-
     [HttpsUtils getContactList:^(NSArray *responseObj) {
         if ([responseObj isKindOfClass:[NSArray class]]) {
             NSMutableArray *depMutableArray = [NSMutableArray array];
@@ -94,7 +93,6 @@ forHeaderFooterViewReuseIdentifier:(NSString *)ADDRESSBOOK_TABLEGROUPHEAER_IDENT
             }
             [_tableView reloadData];
         }
-
     } failure:^(NSError *error) {
 
     }];

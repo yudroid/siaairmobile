@@ -1,27 +1,27 @@
 //
-//  SpecialAbnormalityReportViewController.m
+//  NormalAbnormalityReportViewController.m
 //  airmobile
 //
-//  Created by xuesong on 16/11/1.
+//  Created by xuesong on 16/12/8.
 //  Copyright © 2016年 杨泉林. All rights reserved.
 //
 
-#import "SpecialAbnormalityReportViewController.h"
+#import "NormalAbnormalityReportViewController.h"
 #import "HttpsUtils+Business.h"
-#import "SpecialModel.h"
 #import "AppDelegate.h"
+#import "SafeguardModel.h"
 #import "UIViewController+Reminder.h"
 
-@interface SpecialAbnormalityReportViewController ()
+@interface NormalAbnormalityReportViewController ()
 
 @end
 
-@implementation SpecialAbnormalityReportViewController
+@implementation NormalAbnormalityReportViewController
 
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    [HttpsUtils getDispatchAbns:_specialModel.id
+    [HttpsUtils getDispatchAbns:(int)_safefuardModel.id
                            type:1
                         success:^(id response) {
                             if ([response isKindOfClass:[NSArray class]]) {
@@ -44,12 +44,12 @@
 
     AppDelegate *appdelete = (AppDelegate*)[[UIApplication sharedApplication] delegate];
 
-    [HttpsUtils saveDispatchAbnStart:_specialModel.fid
-                          dispatchId:_specialModel.id
+    [HttpsUtils saveDispatchAbnStart:(int)_safefuardModel.fid
+                          dispatchId:(int)_safefuardModel.id
                               userId:(int)appdelete.userInfoModel.id
                              eventId:0
                                 memo:@""
-                                flag:_specialModel.tag
+                                flag:0
                              imgPath:@""
                              success:^(id response) {
                                  [self showAnimationTitle:@"上报成功"];
@@ -63,7 +63,7 @@
 
 - (IBAction)endReportDate:(id)sender {
     AppDelegate *appdelete = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    [HttpsUtils saveDispatchAbnEnd:_specialModel.id
+    [HttpsUtils saveDispatchAbnEnd:(int)_safefuardModel.id
                             userId:(int)appdelete.userInfoModel.id
                            success:^(id response) {
                                [self showAnimationTitle:@"上报成功"];
@@ -71,6 +71,7 @@
                            failure:^(NSError *error) {
                                [self showAnimationTitle:@"上报失败"];
                            }];
-
 }
+
+
 @end

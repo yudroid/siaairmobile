@@ -8,13 +8,27 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol ModifyPwdViewDelegate <NSObject>
+
+-(void)modifyPwdView:(UIView *)modifyPwdView CancelButtonClick:(UIButton *)sender;
+-(void)modifyPwdView:(UIView *)modifyPwdView sureButtonClick:(UIButton *)sender;
+
+@end
+
 @interface ModifyPwdView : UIView
 @property (weak, nonatomic) IBOutlet UIButton *backgroundButton;
 @property (nonatomic, strong) UIDynamicAnimator *animator;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentCentre;
+@property (weak, nonatomic) IBOutlet UITextField *originalLabel;
+@property (weak, nonatomic) IBOutlet UITextField *newpwdLabel;
+
+@property (weak, nonatomic) IBOutlet UITextField *confirmPwdLabel;
+
+@property (nonatomic, weak) id<ModifyPwdViewDelegate> delegate;
 
 
 - (void)createBlurBackgroundWithImage:(UIImage *)backgroundImage tintColor:(UIColor *)tintColor blurRadius:(CGFloat)blurRadius;
 
+- (IBAction)cancelButtonClick:(id)sender;
 
 @end

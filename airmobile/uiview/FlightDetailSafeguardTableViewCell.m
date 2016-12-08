@@ -7,7 +7,7 @@
 //
 
 #import "FlightDetailSafeguardTableViewCell.h"
-#import "SafeguardModel.h"
+#import "SpecialModel.h"
 
 
 @interface FlightDetailSafeguardTableViewCell()
@@ -34,11 +34,10 @@
     // Configure the view for the selected state
 }
 
--(void)setSafeguardModel:(SafeguardModel *)safeguardModel
+-(void)setSpecialModel:(SpecialModel *)specialModel
 {
-    _safeguardModel = safeguardModel;
-    _nameLabel.text = safeguardModel.name;
-    
+    _specialModel = specialModel;
+    _nameLabel.text = specialModel.safeName;
 }
 
 - (IBAction)normalButtonClick:(UIButton *)sender {

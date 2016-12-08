@@ -35,9 +35,9 @@ NSString * const flightDetailUrl            = @"/acs/m/flightDetail";// 航班�
 NSString * const dispatchDetailsUrl         = @"/acs/m/getDispatchsByFlightId";// 航班保障环节列表
 NSString * const specialDetailsUrl          = @"/acs/wacs/MobileSpecial/queryMobileSpecialList";// 特殊保障列表
 NSString * const dispatchAbnsUrl            = @"/acs/m/getExceptionByFlightDispatchId";//获取异常历史列表
-NSString * const saveDispatchAbnStart = @"/acs/wacs/MobileSpecial/MobileSaveSpecialABNDispatch";//上报开始(航班ID/环节ID/用户ID/事件ID/要求/是否是特殊航班);
-NSString * const saveDispatchAbnEnd = @"/acs/wacs/MobileSpecial/MobileUpdateSpecialABNDispatchCompelete";//上报结束(异常ID/用户ID);
-NSString * const saveDispatchNormal = @"/acs/wacs/MobileSpecial/MobileSaveSpecialNormalDispatch";//特殊保障上报正常(航班id/环节ID/用户ID),返回结果是时间（时：分）
+NSString * const saveDispatchAbnStart       = @"/acs/wacs/MobileSpecial/MobileSaveSpecialABNDispatch";//上报开始(航班ID/环节ID/用户ID/事件ID/要求/是否是特殊航班);
+NSString * const saveDispatchAbnEnd         = @"/acs/wacs/MobileSpecial/MobileUpdateSpecialABNDispatchCompelete";//上报结束(异常ID/用户ID);
+NSString * const saveDispatchNormal         = @"/acs/wacs/MobileSpecial/MobileSaveSpecialNormalDispatch";//特殊保障上报正常(航班id/环节ID/用户ID),返回结果是时间（时：分）
 // 首页
 NSString * const ovSummaryUrl               = @"/acs/ov/summary";
 NSString * const ovFltFDRlUrl               = @"/acs/ov/fltFDR";
@@ -879,7 +879,7 @@ NSString * const updatePwdUrl = @"/acs/login/updatePwd";//修改密码
  */
 +(void)updatePwd:(NSString *)jobno pwd:(NSString *)pwd newpwd:(NSString *)newpwd success:(void (^)(id))success failure:(void (^)(id))failure
 {
-    NSString *temp = [NSString stringWithFormat:@"%@?username=%@&password=%@&newpassword=%@",isSignedUrl,jobno,pwd,newpwd];
+    NSString *temp = [NSString stringWithFormat:@"%@?username=%@&password=%@&newpassword=%@",updatePwdUrl,jobno,pwd,newpwd];
     [HttpsUtils get:temp params:nil success:^(id responseObj) {
         if(success){
             success(responseObj);
@@ -917,5 +917,6 @@ NSString * const updatePwdUrl = @"/acs/login/updatePwd";//修改密码
         }
     } failure:failure];
 }
+
 
 @end

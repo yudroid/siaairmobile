@@ -10,15 +10,20 @@
 #import "UIViewController+Reminder.h"
 #import "UserManagermentTableViewCell.h"
 #import "ModifyPwdView.h"
+#import "HttpsUtils+Business.h"
+#import "AppDelegate.h"
 
 static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TABLECELL_IDENTIFIER";
 
-@interface UserManagementViewController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIAlertViewDelegate>
+@interface UserManagementViewController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIAlertViewDelegate,ModifyPwdViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, copy) NSArray *tableviewArray;
 @end
 
 @implementation UserManagementViewController
+{
+    ModifyPwdView *modifyPwdView;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -111,14 +116,13 @@ static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TA
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     if([_tableviewArray[indexPath.row] isEqualToString:@"修改密码"]){
-        ModifyPwdView *view = [[NSBundle mainBundle]loadNibNamed:@"ModifyPwd" owner:nil options:nil][0];
 
-        view.frame = self.view.frame;
+        modifyPwdView = [[NSBundle mainBundle]loadNibNamed:@"ModifyPwd" owner:nil options:nil][0];
+        modifyPwdView.frame = self.view.frame;
+        [modifyPwdView createBlurBackgroundWithImage:[self jt_imageWithView:self.view] tintColor:[[UIColor blackColor] colorWithAlphaComponent:0.35] blurRadius:60.0];
+        modifyPwdView.delegate = self;
+        [self.view addSubview:modifyPwdView];
 
-        [view createBlurBackgroundWithImage:[self jt_imageWithView:self.view] tintColor:[[UIColor blackColor] colorWithAlphaComponent:0.35] blurRadius:60.0];
-
-
-        [self.view addSubview:view];
 
     }
 
@@ -177,6 +181,22 @@ static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TA
     UIGraphicsEndImageContext();
 
     return image;
+}
+
+-(void)modifyPwdView:(ModifyPwdView *)_modifyPwdView sureButtonClick:(UIButton *)sender
+{
+    AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [HttpsUtils updatePwd:appdelegate.userInfoModel.jobNumber
+                      pwd:_modifyPwdView.originalLabel.text
+                   newpwd:_modifyPwdView.newpwdLabel.text
+                  success:^(id response) {
+                      [self showAnimationTitle:@"修改成功"];
+                      [_modifyPwdView cancelButtonClick:nil];
+
+                  } failure:^(NSError *error) {
+                      [self showAnimationTitle:@"修改失败"];
+
+                  }];
 }
 
 /*

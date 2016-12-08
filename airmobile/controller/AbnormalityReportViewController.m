@@ -34,7 +34,6 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 //控件
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UICollectionView *photoCollectionView;
-@property (weak, nonatomic) IBOutlet UITableView *abnormalityHistoryTableView;
 @property (nonatomic, strong) TimePickerView * timePickerView;
 //约束
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *abnormalityHistoryViewHeight;
@@ -42,7 +41,6 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 //自定义变量
 @property (nonatomic, copy) NSArray *tableViewArray;
 @property (nonatomic ,strong) NSMutableArray *collectionArray;
-@property (nonatomic, copy) NSArray *abnormalityHistoryArray;
 @property (nonatomic, strong) AbnormalModel *abnormalModel ;
 @end
 
@@ -114,6 +112,14 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 }
 
 
+-(void)setAbnormalityHistoryArray:(NSArray *)abnormalityHistoryArray
+{
+    _abnormalityHistoryArray = abnormalityHistoryArray;
+    _abnormalityHistoryViewHeight.constant = _abnormalityHistoryArray.count * 61 +51;
+
+}
+
+
 
 -(void)dealloc
 {
@@ -149,10 +155,11 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 #pragma mark - EVENT
 
 - (IBAction)startReportDatClick:(id)sender {
-    [self setupDateView];
+    
+//    [self setupDateView];
 }
 - (IBAction)endReportDate:(id)sender {
-    [self setupDateView];
+//    [self setupDateView];
 }
 
 - (IBAction)phoneButttonClick:(id)sender

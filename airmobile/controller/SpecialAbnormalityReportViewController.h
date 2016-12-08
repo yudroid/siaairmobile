@@ -7,10 +7,10 @@
 //
 
 #import "AbnormalityReportViewController.h"
+@class SpecialModel;
 
 @interface SpecialAbnormalityReportViewController : AbnormalityReportViewController
 
-@property (nonatomic, copy) NSString *flightID;
-@property (nonatomic, copy) NSString *SafeguardID;
+@property (nonatomic, strong) SpecialModel *specialModel;
 
 @end

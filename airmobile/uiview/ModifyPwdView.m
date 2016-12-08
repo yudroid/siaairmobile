@@ -19,7 +19,7 @@
 
 
 -(void)awakeFromNib
-{
+{ 
     [super awakeFromNib];
 
 
@@ -115,9 +115,10 @@
 }
 
 - (IBAction)backgroundClick:(id)sender {
-
-    NSLog(@"点击");
     [self endEditing:YES];
+    if ([_delegate respondsToSelector:@selector(modifyPwdView:sureButtonClick:)]) {
+        [_delegate modifyPwdView:self sureButtonClick:sender];
+    }
 }
 
 

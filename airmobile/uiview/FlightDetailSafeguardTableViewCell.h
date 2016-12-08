@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class SafeguardModel;
+@class SpecialModel;
 
 @protocol  FlightDetailSafeguardTableViewCellDelegate <NSObject>
 
@@ -19,7 +19,7 @@
 @interface FlightDetailSafeguardTableViewCell : UITableViewCell
 
 @property (nonatomic,weak) id<FlightDetailSafeguardTableViewCellDelegate> delegate;
-@property (nonatomic, strong) SafeguardModel *safeguardModel;
+@property (nonatomic, strong) SpecialModel *specialModel;
 @property (nonatomic, assign) NSInteger indexRow;
 
 @end

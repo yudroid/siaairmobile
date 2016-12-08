@@ -246,6 +246,8 @@
 		F7EEEF1D1DB396E0004AF0AE /* FlightDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7EEEF1B1DB396E0004AF0AE /* FlightDetailViewController.xib */; };
 		F7EEEF211DB3A580004AF0AE /* FlightDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EEEF1F1DB3A580004AF0AE /* FlightDetailTableViewCell.m */; };
 		F7EEEF221DB3A580004AF0AE /* FlightDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7EEEF201DB3A580004AF0AE /* FlightDetailTableViewCell.xib */; };
+		F7F057171DF9730C006BCD67 /* SpecialModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F057161DF9730C006BCD67 /* SpecialModel.m */; };
+		F7F0571A1DF985EC006BCD67 /* NormalAbnormalityReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F057191DF985EC006BCD67 /* NormalAbnormalityReportViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -668,6 +670,10 @@
 		F7EEEF1E1DB3A580004AF0AE /* FlightDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = FlightDetailTableViewCell.h; sourceTree = "<group>"; };
 		F7EEEF1F1DB3A580004AF0AE /* FlightDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = FlightDetailTableViewCell.m; sourceTree = "<group>"; };
 		F7EEEF201DB3A580004AF0AE /* FlightDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightDetailTableViewCell.xib; sourceTree = "<group>"; };
+		F7F057151DF9730C006BCD67 /* SpecialModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecialModel.h; sourceTree = "<group>"; };
+		F7F057161DF9730C006BCD67 /* SpecialModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecialModel.m; sourceTree = "<group>"; };
+		F7F057181DF985EC006BCD67 /* NormalAbnormalityReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NormalAbnormalityReportViewController.h; sourceTree = "<group>"; };
+		F7F057191DF985EC006BCD67 /* NormalAbnormalityReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NormalAbnormalityReportViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1022,6 +1028,8 @@
 				84163BEB1DD1E73700DD9163 /* DeptInfoModel.m */,
 				F74902A91DC868AC005B193D /* DutyModel.h */,
 				F74902AA1DC868AC005B193D /* DutyModel.m */,
+				F7F057151DF9730C006BCD67 /* SpecialModel.h */,
+				F7F057161DF9730C006BCD67 /* SpecialModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1211,6 +1219,8 @@
 				F74902921DC82B1F005B193D /* CommonAbnormalityReportViewController.m */,
 				F74902941DC82B42005B193D /* SpecialAbnormalityReportViewController.h */,
 				F74902951DC82B42005B193D /* SpecialAbnormalityReportViewController.m */,
+				F7F057181DF985EC006BCD67 /* NormalAbnormalityReportViewController.h */,
+				F7F057191DF985EC006BCD67 /* NormalAbnormalityReportViewController.m */,
 				F7A25D8F1DBEF34800F36C32 /* OptionsViewController.h */,
 				F7A25D901DBEF34800F36C32 /* OptionsViewController.m */,
 				F7A25D911DBEF34800F36C32 /* OptionsViewController.xib */,
@@ -1822,6 +1832,7 @@
 				840D15F31DC31F9E005FA910 /* SeatUsedModel.m in Sources */,
 				84ADE6D51DCC7B9300F58A46 /* PersistenceUtils.m in Sources */,
 				84183A1C1DBDDE4F00D7DD86 /* PassengerHourViewController.m in Sources */,
+				F7F0571A1DF985EC006BCD67 /* NormalAbnormalityReportViewController.m in Sources */,
 				F7D38D701DE3D1D4001110AF /* LoadingView.m in Sources */,
 				843F4CF51DACC70F00D73D56 /* HttpsUtils.m in Sources */,
 				840D15D71DC0C478005FA910 /* RegionDlyTimeModel.m in Sources */,
@@ -1894,6 +1905,7 @@
 				841839F11DBCB87600D7DD86 /* PNPieChartDataItem.m in Sources */,
 				84183A311DBF8E6700D7DD86 /* FlightHourModel.m in Sources */,
 				F78B13C41DF51056000A6833 /* MessageFilterTableViewCell.m in Sources */,
+				F7F057171DF9730C006BCD67 /* SpecialModel.m in Sources */,
 				F7003E481DDC30CE0056F3DA /* OptionCollectionViewCell.m in Sources */,
 				F7EAE19D1DB4B0680060626F /* AbnormalityReportCollectionViewCell.m in Sources */,
 				84BA54E41DA256940037198F /* AppDelegate.m in Sources */,

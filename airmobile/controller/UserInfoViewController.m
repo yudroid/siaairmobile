@@ -17,24 +17,29 @@
 #import "LoadingView.h"
 #import "MessageFilterViewController.h"
 #import "UIViewController+Reminder.h"
+#import "HttpsUtils+Business.h"
+#import "AppDelegate.h"
 
 
 
 static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDENTIFIER";
 
-@interface UserInfoViewController ()<TabBarViewDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface UserInfoViewController ()<TabBarViewDelegate,UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIImageView *headImageView ;
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UILabel *dptLabel;
 @property (nonatomic, strong) UILabel *phoneLabel;
-
 @property (nonatomic, copy) NSArray *tableArray;
 
 @end
 
 @implementation UserInfoViewController
+{
+
+    UIButton *cardButton;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -60,6 +65,7 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
 }
 -(void) initUserInfoView
 {
+    AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     UIView *userInfo = [[UIView alloc] initWithFrame:CGRectMake(0, 70, kScreenWidth, 82)];
     userInfo.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:userInfo];
@@ -73,11 +79,11 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(74, 16, 100, 20)];
     _nameLabel.textColor = [CommonFunction colorFromHex:0XFF1b1b1b];
     _nameLabel.font = [UIFont fontWithName:@"PingFang SC" size:18];
-    _nameLabel.text = @"寇雪松";
+    _nameLabel.text = appdelegate.userInfoModel.name;
     [userInfo addSubview:_nameLabel];
     
     _dptLabel = [[UILabel alloc] initWithFrame:CGRectMake(74, 36, 100, 15)];
-    _dptLabel.text = @"研发部";
+    _dptLabel.text = appdelegate.userInfoModel.deptName;
     _dptLabel.textColor = [CommonFunction colorFromHex:0XFF9d9d9d];
     _dptLabel.font = [UIFont fontWithName:@"PingFang SC" size:13];
     [userInfo addSubview:_dptLabel];
@@ -88,18 +94,35 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     [userInfo addSubview:phoneImageView];
 
     _phoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(82, 51, 100, 15)];
-    _phoneLabel.text = @"13210150408";
+    _phoneLabel.text = appdelegate.userInfoModel.phone;
     _phoneLabel.textColor = [CommonFunction colorFromHex:0XFF9d9d9d];
     _phoneLabel.font = [UIFont fontWithName:@"PingFang SC" size:13];
     [userInfo addSubview:_phoneLabel];
     
-    UIButton *cardButton = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-16-60, 26, 65, 31)];
-    [cardButton setTitle:@"打卡" forState:UIControlStateNormal];
+    cardButton = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-16-60, 26, 65, 31)];
+    [cardButton setTitle:@"签到" forState:UIControlStateNormal];
     cardButton.titleLabel.font = [UIFont fontWithName:@"PingFang SC" size:17];
     cardButton.layer.cornerRadius = 5.0;
     [cardButton setBackgroundImage:[UIImage imageNamed:@"PlayCard"] forState:UIControlStateNormal];
     [cardButton addTarget:self action:@selector(cardButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [userInfo addSubview:cardButton];
+
+
+    [HttpsUtils isSigned:(int)appdelegate.userInfoModel.id
+                 success:^(NSNumber *response) {
+                     if (response.integerValue == 3) {
+                         [cardButton setTitle:@"签到" forState:UIControlStateNormal];
+                     }else if(response.integerValue == 2){
+                         [cardButton setTitle:@"签退" forState:UIControlStateNormal];
+                     }else{
+                         [cardButton setTitle:@"已签退" forState:UIControlStateNormal];
+                     }
+                     cardButton.enabled = YES;
+
+                 }
+                 failure:^(NSError *error) {
+                     cardButton.enabled = NO;
+                 }];
 
 }
 
@@ -122,6 +145,26 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
 
 -(void)cardButtonClick:(UIButton *)sender
 {
+    NSString *title = sender.titleLabel.text;
+    AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    if ([title isEqualToString:@"签到"]) {
+        [HttpsUtils signIn:(int)appdelegate.userInfoModel.id
+                   success:^(NSNumber *response) {
+                        [cardButton setTitle:@"签退" forState:UIControlStateNormal];
+                   }
+                   failure:^(NSError *error) {
+                       [self showAnimationTitle:@"签到失败"];
+                   }];
+
+    }else if ([title isEqualToString:@"签退"]){
+        [HttpsUtils signOut:(int)appdelegate.userInfoModel.id
+                    success:^(NSNumber *response) {
+                        [cardButton setTitle:@"已签退" forState:UIControlStateNormal];
+                    }
+                    failure:^(NSError *error) {
+                        [self showAnimationTitle:@"签退失败"];
+                    }];
+    }
     
 }
 
@@ -171,12 +214,18 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     }else if ([name isEqualToString:@"更新基础数据"]){
 #if __IPHONE_OS_VERSION_MAX_ALLOWED == __IPHONE_8_3
         UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        alertView.tag = 1;
         [alertView show];
 #else
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"确定要更新基础数据吗？" preferredStyle:UIAlertControllerStyleAlert];
         [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
         [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            //清除消息
+            [HttpsUtils loadEventsSuccess:^(id response) {
+                [self showAnimationTitle:@"更新成功"];
+            } failure:^(NSError *error) {
+                [self showAnimationTitle:@"更新失败"];
+            }];
+
         }]];
         [self presentViewController:alertController animated:YES completion:nil];
 #endif
@@ -187,36 +236,49 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
 }
 #pragma mark - 切换底部主功能页面
 -(void)selectWithType:(TabBarSelectedType)type
-    {
-        switch (type) {
-            case TabBarSelectedTypeHomePage:
-            {
-                HomePageViewController *homepage = [[HomePageViewController alloc] init];
-                [self.navigationController pushViewController:homepage animated:NO];
-                break;
-            }
-            case TabBarSelectedTypeFlight:
-            {
-                FlightViewController *flightpage = [[FlightViewController alloc] init];
-                [self.navigationController pushViewController:flightpage animated:NO];
-                break;
-            }
-            case TabBarSelectedTypeMessage:
-            {
-                MessageViewController *messagepage = [[MessageViewController alloc] init];
-                [self.navigationController pushViewController:messagepage animated:NO];
-                break;
-            }
-            case TabBarSelectedTypeFunction:
-            {
-                FunctionViewController *function = [[FunctionViewController alloc] init];
-                [self.navigationController pushViewController:function animated:NO];
-                break;
-            }
-            default:
+{
+    switch (type) {
+        case TabBarSelectedTypeHomePage:
+        {
+            HomePageViewController *homepage = [[HomePageViewController alloc] init];
+            [self.navigationController pushViewController:homepage animated:NO];
             break;
         }
+        case TabBarSelectedTypeFlight:
+        {
+            FlightViewController *flightpage = [[FlightViewController alloc] init];
+            [self.navigationController pushViewController:flightpage animated:NO];
+            break;
+        }
+        case TabBarSelectedTypeMessage:
+        {
+            MessageViewController *messagepage = [[MessageViewController alloc] init];
+            [self.navigationController pushViewController:messagepage animated:NO];
+            break;
+        }
+        case TabBarSelectedTypeFunction:
+        {
+            FunctionViewController *function = [[FunctionViewController alloc] init];
+            [self.navigationController pushViewController:function animated:NO];
+            break;
+        }
+        default:
+        break;
     }
+}
+
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == 1 && buttonIndex == 1) {
+        [HttpsUtils loadEventsSuccess:^(id response) {
+            [self showAnimationTitle:@"更新成功"];
+        } failure:^(NSError *error) {
+            [self showAnimationTitle:@"更新失败"];
+        }];
+    }
+}
+
 
 
 /*

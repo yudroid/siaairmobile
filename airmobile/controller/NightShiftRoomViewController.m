@@ -12,6 +12,7 @@
 #import "DutyModel.h"
 #import "HttpsUtils+Business.h"
 
+static void *CapturingStillImageContext = &CapturingStillImageContext;
 static const NSString *NIGHTSHIFTROOM_TABLECELL_IDENTIFIER = @"NIGHTSHIFTROOM_TABLECELL_IDENTIFIER";
 
 @interface NightShiftRoomViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -47,12 +48,38 @@ static const NSString *NIGHTSHIFTROOM_TABLECELL_IDENTIFIER = @"NIGHTSHIFTROOM_TA
                                                                                                      action:@selector(rightSwipeGestureRecognizerEvent)];
     rightSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
     [_calendarView addGestureRecognizer:rightSwipeGestureRecognizer];
-    
+
+
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(selectDate:)
+                                                 name:@"SelectedDate"
+                                               object:nil];
+
+
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"SelectedDate" object:nil];
+}
+
+-(void)selectDate:(NSNotification *)notification
+{
+    [self UpdateNetwork];
 }
 
 -(void)UpdateNetwork
 {
-    [HttpsUtils getDutyTableByDay:@"" success:^(NSArray *responseObj) {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //设定时间格式,这里可以设置成自己需要的格式
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    //用[NSDate date]可以获取系统当前时间
+    NSString *currentDateStr = [dateFormatter stringFromDate:_calendarView.selectedDate];
+    NSLog(@"%@",currentDateStr);
+
+
+    [HttpsUtils getDutyTableByDay:currentDateStr success:^(NSArray *responseObj) {
         if ([responseObj isKindOfClass:[NSArray class]]) {
             NSMutableArray *depMutableArray = [NSMutableArray array];
             //            for (NSDictionary *depDic in responseObj) {

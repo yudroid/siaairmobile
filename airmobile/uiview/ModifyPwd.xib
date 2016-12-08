@@ -160,9 +160,12 @@
             </constraints>
             <connections>
                 <outlet property="backgroundButton" destination="TnE-Ua-vEt" id="ubI-Lh-doL"/>
+                <outlet property="confirmPwdLabel" destination="4fo-tg-yfC" id="f13-43-dd8"/>
                 <outlet property="contentCentre" destination="Pei-f3-a9y" id="t1h-BW-5Ny"/>
                 <outlet property="contentView" destination="ooy-sb-Uke" id="aCb-q1-ZJF"/>
                 <outlet property="mainContentView" destination="bv0-Td-6t5" id="f7H-OD-vFV"/>
+                <outlet property="newpwdLabel" destination="RXY-99-IQz" id="CdL-37-B4b"/>
+                <outlet property="originalLabel" destination="5dj-8g-u5B" id="SOX-H1-Y2F"/>
             </connections>
             <point key="canvasLocation" x="24.5" y="52.5"/>
         </view>

@@ -83,6 +83,8 @@ static const NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_I
     //添加上拉加载
     _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self
                                                           refreshingAction:@selector(UpdateNetwork)];
+
+    [_tableView.mj_header beginRefreshing];
 }
 
 

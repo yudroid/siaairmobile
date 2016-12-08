@@ -17,6 +17,8 @@
 #import "FlightDetailModel.h"
 #import "SafeguardModel.h"
 #import "FlightService.h"
+#import "SpecialModel.h"
+#import "AppDelegate.h"
 
 static const NSString *FLIGHTDETAIL_TABLECELL_IDENTIFIER = @"FLIGHTDETAIL_TABLECELL_IDENTIFIER";
 static const NSString *FLIGHTDETAIL_SAFEGUARDTABLECELL_IDENTIFIER = @"FLIGHTDETAIL_SAFEGUARDTABLECELL_IDENTIFIER";
@@ -55,7 +57,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 {
     FlightDetailModel *flight;
     NSMutableArray<SafeguardModel *> *dispatches;
-    NSMutableArray<SafeguardModel *> *specicals;
+    NSMutableArray<SpecialModel *> *specicals;
 }
 
 - (void)viewDidLoad {
@@ -158,7 +160,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
                                                options:nil][0];
         }
         cell.indexRow = indexPath.row;
-        cell.safeguardModel = specicals[indexPath.row];
+        cell.specialModel = specicals[indexPath.row];
         cell.delegate = self;
         return  cell;
         
@@ -254,16 +256,27 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 -(void)flightDetailSafeguardTableViewCellAbnormalButtonClick:(UIButton *)sender
 {
     SpecialAbnormalityReportViewController *abnormalityReportVC=[[SpecialAbnormalityReportViewController alloc]initWithNibName:@"AbnormalityReportViewController" bundle:nil];
-    abnormalityReportVC.flightID = @"";
-    abnormalityReportVC.SafeguardID = @"";
+    abnormalityReportVC.specialModel = specicals[sender.tag];
     [self.navigationController pushViewController:abnormalityReportVC
                                          animated:YES];
 }
 -(void)flightDetailSafeguardTableViewCellNormalButtonClick:(UIButton *)sender
 {
-    [self showAnimationTitle:@"已上报"];
-    sender.enabled = NO;
-    sender.backgroundColor = [UIColor grayColor];
+    AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [HttpsUtils saveDispatchNormal:flight.id
+                        dispatchId:specicals[sender.tag].id
+                            userId:(int)delegate.userInfoModel.id
+                           success:^(id responseObj) {
+                               [self showAnimationTitle:@"已上报"];
+                               sender.enabled = NO;
+                               sender.backgroundColor = [UIColor grayColor];
+    
+    } failure:^(NSError *error) {
+        [self showAnimationTitle:@"上报失败"];
+
+    }];
+
+
 }
 
 -(void)loadData
@@ -292,7 +305,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
         }
         
         for(id item in responseObj){
-            [specicals addObject:[[SafeguardModel alloc] initWithDictionary:item]];
+            [specicals addObject:[[SpecialModel alloc] initWithDictionary:item]];
         }
         [self updateSpecialsTableView];
     } failure:nil];

@@ -9,10 +9,14 @@
 #import "RootViewController.h"
 
 @interface AbnormalityReportViewController : RootViewController
-@property (weak, nonatomic) IBOutlet UIButton *startReportButton;
-@property (weak, nonatomic) IBOutlet UIButton *endReportButton;
-@property (weak, nonatomic) IBOutlet UIButton *iphoneButton;
-@property (weak, nonatomic) IBOutlet UITextView *requireTextView;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UITextView *explainTextView;
+@property (weak, nonatomic) IBOutlet UIButton       *startReportButton;
+@property (weak, nonatomic) IBOutlet UIButton       *endReportButton;
+@property (weak, nonatomic) IBOutlet UIButton       *iphoneButton;
+@property (weak, nonatomic) IBOutlet UITextView     *requireTextView;
+@property (weak, nonatomic) IBOutlet UITableView    *tableView;
+@property (weak, nonatomic) IBOutlet UITextView     *explainTextView;
+
+@property (nonatomic, copy)          NSArray        *abnormalityHistoryArray;
+@property (weak, nonatomic) IBOutlet UITableView    *abnormalityHistoryTableView;
+
 @end
