@@ -134,7 +134,7 @@
  获取保障环节的异常上班记录
 
  @param dispatchId 保障环节的异常ID
- @param type 保障环节、勤务环节类型
+ @param type 保障环节、勤务环节类型 1是关键 0是普通
  @param success <#success description#>
  @param failure <#failure description#>
  */
