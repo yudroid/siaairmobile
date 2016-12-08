@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RootModel.h"
 
-@interface UserInfoModel : NSObject
+@interface UserInfoModel : RootModel
 
 @property(nonatomic,copy)   NSString    *aptitude;
 @property(nonatomic,copy)   NSString    *className;

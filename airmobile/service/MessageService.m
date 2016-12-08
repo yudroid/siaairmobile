@@ -141,7 +141,24 @@ singleton_implementation(MessageService);
             }
         }];
     }else if([urlString isEqualToString:wssysurl]){
-//        2016-11-10 18:34:21.459 airmobile[15371:1493091] Received "{"content":"33333333","createTime":"2016-04-10 18:33:46","id":766,"title":"www"}"
+        
+        if(![[dic allKeys] containsObject:@"createTime"]){
+            return;
+        }
+        long msgId = [[dic objectForKey:@"id"] longLongValue];
+        long todept = [[dic objectForKey:@"toDept"] longLongValue];
+        NSMutableDictionary *msgDict = [NSMutableDictionary dictionary];
+        [msgDict setValue:[NSNumber numberWithLong:msgId]        forKey:@"id"];// 主键
+        [msgDict setValue:[dic objectForKey:@"type"]         forKey:@"type"];
+        [msgDict setValue:[dic objectForKey:@"content"]    forKey:@"content"];
+        [msgDict setValue:[dic objectForKey:@"title"]    forKey:@"title"];
+        [msgDict setValue:[dic objectForKey:@"createTime"]    forKey:@"createtime"];
+        [msgDict setValue:[dic objectForKey:@"status"]    forKey:@"status"];
+        [msgDict setValue:[dic objectForKey:@"toDeptIds"]        forKey:@"todeptids"];
+        [msgDict setValue:[NSNumber numberWithLong:todept]      forKey:@"todept"];
+        
+        [PersistenceUtils insertNewSysMessage:msgDict];
+
     }
  
 }

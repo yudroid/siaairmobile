@@ -340,6 +340,7 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 {
     FlightDelaysViewController *flightDelaysVC = [[FlightDelaysViewController alloc]initWithNibName:@"FlightDelaysViewController"
                                                                                              bundle:nil];
+    flightDelaysVC.type = @"FLIGHT";
     [self.navigationController pushViewController:flightDelaysVC
                                          animated:YES];
 
@@ -347,7 +348,11 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 
 -(void) showCommendMsgView
 {
-    
+    FlightDelaysViewController *flightDelaysVC = [[FlightDelaysViewController alloc]initWithNibName:@"FlightDelaysViewController"
+                                                                                             bundle:nil];
+    flightDelaysVC.type = @"COMMAND";
+    [self.navigationController pushViewController:flightDelaysVC
+                                         animated:YES];
 }
 
 -(void) showMessageDialog:(long)chatId chatTypeId:(long)chatTypeId localChatId:(long)localChatId

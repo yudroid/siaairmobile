@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RootModel.h"
 
-@interface MessageModel : NSObject
+@interface MessageModel : RootModel
 
 @property (nonatomic,assign)    long        id;
 @property (nonatomic,assign)    int         type;

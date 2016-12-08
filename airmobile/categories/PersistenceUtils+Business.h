@@ -108,4 +108,35 @@
  */
 +(void)insertNewChatMessage:(NSDictionary *)message needid:(BOOL)need success:(void (^)())success;
 
+
+/**
+ 插入系统消息
+
+ @param message <#message description#>
+ */
++(void)insertNewSysMessage:(NSDictionary *)message;
+
+
+/**
+ 查询系统消息列表，根据type
+
+ @param type <#type description#>
+ @param start <#start description#>
+ @return <#return value description#>
+ */
++(NSArray<NSDictionary *> *)findSysMsgListByType:(NSString *)type start:(long)start;
+
+
+/**
+ 查询系统消息列表，根据type
+
+ @param type <#type description#>
+ @param start <#start description#>
+ @param num <#num description#>
+ @return <#return value description#>
+ */
++(NSArray<NSDictionary *> *)findSysMsgListByType:(NSString *)type start:(int)start num:(int)num;
+
+
+
 @end
