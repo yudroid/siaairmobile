@@ -741,6 +741,11 @@ NSString * const updatePwdUrl = @"/acs/login/updatePwd";//修改密码
  */
 +(void)getDutyTableByDay:(NSString *)day success:(void (^)(id))success failure:(void (^)(id))failure
 {
+    [HttpsUtils get:dutyTableByDayUrl params:@{@"":day} success:^(id responseObj) {
+        if(success){
+            success(responseObj);
+        }
+    } failure:failure];
     
 }
 

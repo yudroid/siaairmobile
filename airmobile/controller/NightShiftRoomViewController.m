@@ -10,6 +10,8 @@
 #import <DAYCalendarView.h>
 #import "NightShiftRoomTableViewCell.h"
 #import "DutyModel.h"
+#import "HttpsUtils+Business.h"
+
 static const NSString *NIGHTSHIFTROOM_TABLECELL_IDENTIFIER = @"NIGHTSHIFTROOM_TABLECELL_IDENTIFIER";
 
 @interface NightShiftRoomViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -47,6 +49,30 @@ static const NSString *NIGHTSHIFTROOM_TABLECELL_IDENTIFIER = @"NIGHTSHIFTROOM_TA
     [_calendarView addGestureRecognizer:rightSwipeGestureRecognizer];
     
 }
+
+-(void)UpdateNetwork
+{
+    [HttpsUtils getDutyTableByDay:@"" success:^(NSArray *responseObj) {
+        if ([responseObj isKindOfClass:[NSArray class]]) {
+            NSMutableArray *depMutableArray = [NSMutableArray array];
+            //            for (NSDictionary *depDic in responseObj) {
+            //                DeptInfoModel *deptModel = [[DeptInfoModel alloc]initWithDictionary:depDic];
+            //                [depMutableArray addObject:deptModel];
+            //            }
+            //            array = [depMutableArray copy];
+            //            _resultArry = [NSMutableArray array];
+            //            for (int i = 0; i<array.count; i++) {
+            //                // 初始时都是折叠状态（bool不能直接放在数组里）
+            //                [_resultArry addObject:[NSNumber numberWithBool:NO]];
+            //            }
+            [_tableView reloadData];
+        }
+        
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
 
 -(void)loadData
 {
