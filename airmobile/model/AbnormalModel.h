@@ -14,6 +14,7 @@
 @property (nonatomic ,assign)   NSInteger   id;
 @property (nonatomic ,copy)     NSString    *model;         //异常类型
 @property (nonatomic ,copy)     NSString    *event;         //异常事件
+@property (nonatomic ,copy)     NSString    *level;         //事件级别
 @property (nonatomic ,copy)     NSString    *ask;           // 要求
 @property (nonatomic ,assign)   NSInteger   userID;         //上报人员ID
 @property (nonatomic ,assign)   NSInteger   flightID;       //异常发生所在航班ID

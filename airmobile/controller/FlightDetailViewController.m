@@ -61,10 +61,11 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    flight = [[FlightDetailModel alloc]init];
     dispatches = [NSMutableArray array];
     specicals = [NSMutableArray array];
     
-    [self loadData];
+
     
     //titleView订制
     [self titleViewInitWithHight:64];
@@ -98,6 +99,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 
     [self basicInfo];
 
+    [self loadData];
 
     
 }
@@ -155,6 +157,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
                                                  owner:nil
                                                options:nil][0];
         }
+        cell.indexRow = indexPath.row;
         cell.safeguardModel = specicals[indexPath.row];
         cell.delegate = self;
         return  cell;
@@ -167,6 +170,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
                                                options:nil][0];
         }
         cell.safeguardModel = dispatches[indexPath.row];
+        cell.indexRow = indexPath.row;
         if (indexPath.row == 0) {
             cell.type = FlightDetailTableViewCellTypeTypeFirst;
         }
@@ -183,11 +187,11 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
     
 }
 #pragma mark - FlightDetailTableViewCellDelegate
--(void)flightDetailTableViewCellUsualButtonClick
+-(void)flightDetailTableViewCellUsualButtonClick:(UIButton *)sender
 {
     CommonAbnormalityReportViewController *abnormalityReportVC=[[CommonAbnormalityReportViewController alloc] initWithNibName:@"AbnormalityReportViewController" bundle:nil];
-    abnormalityReportVC.flightID = @"";
-    abnormalityReportVC.SafeguardID = @"";
+    abnormalityReportVC.flightID = flight.id;
+    abnormalityReportVC.SafeguardID = (int )dispatches[sender.tag].id;
     abnormalityReportVC.isKeyFlight = YES;
     [self.navigationController pushViewController:abnormalityReportVC
                                          animated:YES];

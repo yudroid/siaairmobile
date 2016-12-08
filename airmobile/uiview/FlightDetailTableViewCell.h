@@ -17,7 +17,7 @@ typedef NS_ENUM(NSUInteger, FlightDetailTableViewCellType) {
 
 @protocol FlightDetailTableViewCellDelegate <NSObject>
 
--(void)flightDetailTableViewCellUsualButtonClick;
+-(void)flightDetailTableViewCellUsualButtonClick:(UIButton *)sender;
 
 @end
 
@@ -25,8 +25,8 @@ typedef NS_ENUM(NSUInteger, FlightDetailTableViewCellType) {
 
 @property (weak, nonatomic) IBOutlet UIButton *unusualButton;
 @property (nonatomic ,assign) FlightDetailTableViewCellType type;
-
 @property (nonatomic, strong)SafeguardModel *safeguardModel;
+@property (nonatomic, assign) NSInteger indexRow;
 
 @property (weak, nonatomic) id<FlightDetailTableViewCellDelegate> delegate;
 

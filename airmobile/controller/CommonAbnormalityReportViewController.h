@@ -10,8 +10,8 @@
 
 @interface CommonAbnormalityReportViewController : AbnormalityReportViewController
 
-@property (nonatomic, copy) NSString *flightID;
-@property (nonatomic, copy) NSString *SafeguardID;
-@property (nonatomic, assign) Boolean isKeyFlight;
+@property (nonatomic, assign)   int         flightID;
+@property (nonatomic, assign)   int         SafeguardID;
+@property (nonatomic, assign)   Boolean     isKeyFlight;
 
 @end

@@ -10,4 +10,13 @@
 
 @implementation SafeguardModel
 
+-(void)setValue:(id)value forUndefinedKey:(NSString *)key
+{
+
+    if ([key isEqualToString:@"safeName"]) {
+        _name = value;
+    }
+    return;
+}
+
 @end

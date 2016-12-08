@@ -18,9 +18,10 @@
     return self;
 }
 
--(id)valueForUndefinedKey:(NSString *)key
+-(void)setValue:(id)value forUndefinedKey:(NSString *)key
 {
-    return nil;
+    
+    return;
 }
 
 -(BOOL)isNull:(NSDictionary *)data

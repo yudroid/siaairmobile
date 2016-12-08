@@ -41,15 +41,17 @@
     
 }
 
-- (IBAction)normalButtonClick:(id)sender {
+- (IBAction)normalButtonClick:(UIButton *)sender {
 
     if ([_delegate respondsToSelector:@selector(flightDetailSafeguardTableViewCellNormalButtonClick:)]) {
+        sender.tag = self.indexRow;
         [_delegate flightDetailSafeguardTableViewCellNormalButtonClick:sender];
     }
 
 }
-- (IBAction)abnormalButtonClick:(id)sender {
+- (IBAction)abnormalButtonClick:(UIButton *)sender {
     if ([_delegate respondsToSelector:@selector(flightDetailSafeguardTableViewCellAbnormalButtonClick:)]) {
+        sender.tag = self.indexRow;
         [_delegate flightDetailSafeguardTableViewCellAbnormalButtonClick:sender];
     }
 }

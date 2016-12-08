@@ -21,6 +21,7 @@
 #import "AbnormalModel.h"
 #import "FlightService.h"
 #import "ImageViewCollectionViewCell.h"
+#import "HttpsUtils+Business.h"
 
 
 static const NSString *ABNORMALITYREPORT_TABLECELL_IDENTIFIER =@"ABNORMALITYREPORT_TABLECELL_IDENTIFIER";
@@ -191,6 +192,11 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
     }
 }
 
+
+-(void)updateData
+{
+//    [HttpsUtils getDispatchAbns:<#(int)#> type:<#(int)#> success:<#^(id)success#> failure:<#^(id)failure#>]
+}
 #pragma mark - UITableViewDelegate UITableViewDataSource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -221,7 +227,7 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
         }else if([name isEqualToString:@"事件"]){
             cell.valueLabel.text = _abnormalModel.event;
         }else if ([name isEqualToString:@"事件级别"]){
-            cell.valueLabel.text = _abnormalModel.event;
+            cell.valueLabel.text = _abnormalModel.level;
         }
         return  cell;
     }else
@@ -323,7 +329,7 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
             _abnormalModel.event = value;
             break;
         case OptionsTypeEventLevel:
-//            _abnormalModel
+            _abnormalModel.level = value;
             break;
         default:
 

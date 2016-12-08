@@ -44,10 +44,10 @@ static const NSString *OPTIONS_COLLECTIONVIEW_INDETIFIER = @"OPTIONS_COLLECTIONV
 	switch (_optionsType) {
 
 		case OptionsTypeType:
-			_collectionArray = @[@"类型1",@"类型2",@"类型3",@"类型4"];
+			_collectionArray = @[@"保障准备",@"保障过程",@"保障评价"];
 			break;
 		case OptionsTypeEvent:
-			_collectionArray = @[@"事件1",@"事件2",@"事件3",@"事件4"];
+			_collectionArray = @[@"运行差错",@"一般差错",@"运行异常"];
 			break;
 		case OptionsTypeEventLevel:
 			_collectionArray = @[@"事件级别1",@"事件级别2",@"事件级别3",@"事件级别4"];

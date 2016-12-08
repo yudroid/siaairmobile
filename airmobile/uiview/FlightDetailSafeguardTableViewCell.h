@@ -20,5 +20,6 @@
 
 @property (nonatomic,weak) id<FlightDetailSafeguardTableViewCellDelegate> delegate;
 @property (nonatomic, strong) SafeguardModel *safeguardModel;
+@property (nonatomic, assign) NSInteger indexRow;
 
 @end

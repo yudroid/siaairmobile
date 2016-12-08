@@ -255,7 +255,8 @@ NSString * const updatePwdUrl = @"/acs/login/updatePwd";//修改密码
 
 +(void)getFlightDetail:(int)flightId success:(void (^)(id))success failure:(void (^)(id))failure
 {
-    [HttpsUtils get:flightDetailUrl params:nil success:^(id responseObj) {
+    NSString *temp = [NSString stringWithFormat:@"%@?flightId=%i",flightDetailUrl,flightId];
+    [HttpsUtils get:temp params:nil success:^(id responseObj) {
         if(success){
             success(responseObj);
         }

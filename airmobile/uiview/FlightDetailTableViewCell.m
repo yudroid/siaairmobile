@@ -51,9 +51,10 @@
 }
 
 
-- (IBAction)unusualButtonClikc:(id)sender {
-    if ([_delegate respondsToSelector:@selector(flightDetailTableViewCellUsualButtonClick)]) {
-        [_delegate flightDetailTableViewCellUsualButtonClick];
+- (IBAction)unusualButtonClikc:(UIButton *)sender {
+    if ([_delegate respondsToSelector:@selector(flightDetailTableViewCellUsualButtonClick:)]) {
+        sender.tag = self.indexRow;
+        [_delegate flightDetailTableViewCellUsualButtonClick:sender];
     }
 }
 

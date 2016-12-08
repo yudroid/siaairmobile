@@ -14,7 +14,7 @@
 static const NSString *UPLOADPHOTO_COLLECTIONCELL_IDENTIFIER = @"UPLOADPHOTO_COLLECTIONCELL_IDENTIFIER";
 
 @interface UploadPhotoViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
-    @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic ,strong) NSMutableArray *selectedArray;
 @property (nonatomic, strong) NSMutableArray *collectionArray;
 
