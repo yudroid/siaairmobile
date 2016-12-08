@@ -264,7 +264,8 @@ NSString * const updatePwdUrl = @"/acs/login/updatePwd";//修改密码
 
 +(void)getDispatchDetail:(int)flightId success:(void (^)(id))success failure:(void (^)(id))failure
 {
-    [HttpsUtils get:dispatchDetailsUrl params:nil success:^(id responseObj) {
+    NSString *temp = [NSString stringWithFormat:@"%@?flightId=%i",dispatchDetailsUrl,flightId];
+    [HttpsUtils get:temp params:nil success:^(id responseObj) {
         if(success){
             success(responseObj);
         }
@@ -285,49 +286,74 @@ NSString * const updatePwdUrl = @"/acs/login/updatePwd";//修改密码
  获取保障环节的异常上班记录
  
  @param dispatchId 保障环节的异常ID
- @param type 保障环节、勤务环节类型
+ @param type 保障环节、勤务环节类型 1是关键 0是普通
  @param success <#success description#>
  @param failure <#failure description#>
  */
 +(void)getDispatchAbns:(int)dispatchId type:(int)type success:(void (^)(id))success failure:(void (^)(id))failure
 {
-    
+    NSString *temp = [NSString stringWithFormat:@"%@?flightDispatchId=%i&isKey=%i",dispatchAbnsUrl,dispatchId,type];
+    [HttpsUtils get:temp params:nil success:^(id responseObj) {
+        if(success){
+            success(responseObj);
+        }
+    } failure:failure];
 }
 
 /**
- 航班特殊保障环节的详情
+ 航班特殊保障环节的详情 /MobileSaveSpecialNormalDispatch/{flightId}/{dispatchId}/{userID}
  
  @param flightId <#flightId description#>
  @param success <#success description#>
  @param failure <#failure description#>
  */
-+(void)saveDispatchNormal:(int)flightId success:(void (^)(id))success failure:(void (^)(id))failure
++(void)saveDispatchNormal:(int)flightId dispatchId:(int)dispatchId userId:(int)userId success:(void (^)(id))success failure:(void (^)(id))failure
 {
-    
+    NSString *temp = [NSString stringWithFormat:@"%@/%i/%i/%i",saveDispatchNormal,flightId,dispatchId,userId];
+    [HttpsUtils get:temp params:nil success:^(id responseObj) {
+        if(success){
+            success(responseObj);
+        }
+    } failure:failure];
 }
 
 /**
- 航班特殊保障环节的详情
- 
+ 航班特殊保障环节的详情 /MobileSaveSpecialABNDispatch/{flightId}/{dispatchId}/{userID}/{evnetID}/{memo}/{flag}/{imagePath}
+
  @param flightId <#flightId description#>
+ @param dispatchId <#dispatchId description#>
+ @param userId <#userId description#>
+ @param eventId <#eventId description#>
+ @param memo <#memo description#>
+ @param flag <#flag description#>
+ @param imgPath <#imgPath description#>
  @param success <#success description#>
  @param failure <#failure description#>
  */
-+(void)saveDispatchAbnStart:(int)flightId success:(void (^)(id))success failure:(void (^)(id))failure
++(void)saveDispatchAbnStart:(int)flightId dispatchId:(int)dispatchId userId:(int)userId eventId:(int)eventId memo:(NSString *)memo flag:(int)flag imgPath:(NSString *)imgPath success:(void (^)(id))success failure:(void (^)(id))failure
 {
-    
+    NSString *temp = [NSString stringWithFormat:@"%@/%i/%i/%i/%i/%@/%i/%@",saveDispatchAbnStart,flightId,dispatchId,userId,eventId,memo,flag,imgPath];
+    [HttpsUtils get:temp params:nil success:^(id responseObj) {
+        if(success){
+            success(responseObj);
+        }
+    } failure:failure];
 }
 
 /**
- 航班特殊保障环节的详情
+ 航班特殊保障环节的详情 /{ABNID}/{userID}
  
- @param flightId <#flightId description#>
  @param success <#success description#>
  @param failure <#failure description#>
  */
-+(void)saveDispatchAbnEnd:(int)flightId success:(void (^)(id))success failure:(void (^)(id))failure
++(void)saveDispatchAbnEnd:(int)dispatchAbnId userId:(int)userId success:(void (^)(id))success failure:(void (^)(id))failure
 {
-    
+    NSString *temp = [NSString stringWithFormat:@"%@/%i/%i",saveDispatchAbnEnd,dispatchAbnId,userId];
+    [HttpsUtils get:temp params:nil success:^(id responseObj) {
+        if(success){
+            success(responseObj);
+        }
+    } failure:failure];
 }
 
 #pragma mark 首页摘要信息、小时分布、放行正常率、航延关键指标
