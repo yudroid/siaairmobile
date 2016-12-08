@@ -25,7 +25,6 @@ static NSString* __password = @"";
 
 NSString * const base                       = @"http://192.168.163.29";
 NSString * const loginUrl                   = @"/acs/login/mobile";
-NSString * const logoutUrl                  = @"/acs/login/logout";
 NSString * const userMsgSendUrl             = @"/acs/um/m";// 发送用户消息
 NSString * const groupMsgSendUrl            = @"/acs/wm/m";// 发送工作组消息
 //NSString * const 
@@ -788,7 +787,7 @@ NSString * const updatePwdUrl = @"/acs/login/updatePwd";//修改密码
 }
 
 
-#pragma mark 我的 签到 签退 修改密码 同步基础数据 同步异常事件 退出 更新密码
+#pragma mark 我的 签到 签退 修改密码 同步基础数据 同步异常事件 退出
 
 
 /**
@@ -800,7 +799,12 @@ NSString * const updatePwdUrl = @"/acs/login/updatePwd";//修改密码
  */
 +(void)signIn:(int)userId success:(void (^)(id))success failure:(void (^)(id))failure
 {
-    
+    NSString *temp = [NSString stringWithFormat:@"%@?userId=%i",signInUrl,userId];
+    [HttpsUtils get:temp params:nil success:^(id responseObj) {
+        if(success){
+            success(responseObj);
+        }
+    } failure:failure];
 }
 
 
@@ -813,7 +817,12 @@ NSString * const updatePwdUrl = @"/acs/login/updatePwd";//修改密码
  */
 +(void)signOut:(int)userId success:(void (^)(id))success failure:(void (^)(id))failure
 {
-    
+    NSString *temp = [NSString stringWithFormat:@"%@?userId=%i",signOutUrl,userId];
+    [HttpsUtils get:temp params:nil success:^(id responseObj) {
+        if(success){
+            success(responseObj);
+        }
+    } failure:failure];
 }
 
 
@@ -826,7 +835,12 @@ NSString * const updatePwdUrl = @"/acs/login/updatePwd";//修改密码
  */
 +(void)isSigned:(int)userId success:(void (^)(id))success failure:(void (^)(id))failure
 {
-    
+    NSString *temp = [NSString stringWithFormat:@"%@?userId=%i",isSignedUrl,userId];
+    [HttpsUtils get:temp params:nil success:^(id responseObj) {
+        if(success){
+            success(responseObj);
+        }
+    } failure:failure];
 }
 
 
@@ -839,21 +853,30 @@ NSString * const updatePwdUrl = @"/acs/login/updatePwd";//修改密码
  */
 +(void)logOut:(int)userId success:(void (^)(id))success failure:(void (^)(id))failure
 {
-    
+    [HttpsUtils get:logOutUrl params:nil success:^(id responseObj) {
+        if(success){
+            success(responseObj);
+        }
+    } failure:failure];
 }
 
-
 /**
- 更新密码
- 
- @param userId <#userId description#>
+  更新密码
+
+ @param jobno <#jobno description#>
  @param pwd <#pwd description#>
+ @param newpwd <#newpwd description#>
  @param success <#success description#>
  @param failure <#failure description#>
  */
-+(void)updatePwd:(int)userId pwd:(NSString *)pwd success:(void (^)(id))success failure:(void (^)(id))failure
++(void)updatePwd:(NSString *)jobno pwd:(NSString *)pwd newpwd:(NSString *)newpwd success:(void (^)(id))success failure:(void (^)(id))failure
 {
-    
+    NSString *temp = [NSString stringWithFormat:@"%@?username=%@&password=%@&newpassword=%@",isSignedUrl,jobno,pwd,newpwd];
+    [HttpsUtils get:temp params:nil success:^(id responseObj) {
+        if(success){
+            success(responseObj);
+        }
+    } failure:failure];
 }
 
 /**
@@ -864,7 +887,11 @@ NSString * const updatePwdUrl = @"/acs/login/updatePwd";//修改密码
  */
 +(void)loadEventsSuccess:(void (^)(id))success failure:(void (^)(id))failure
 {
-    
+    [HttpsUtils get:loadDictDataUrl params:nil success:^(id responseObj) {
+        if(success){
+            success(responseObj);
+        }
+    } failure:failure];
 }
 
 
@@ -876,7 +903,11 @@ NSString * const updatePwdUrl = @"/acs/login/updatePwd";//修改密码
  */
 +(void)loadDictDatasSuccess:(void (^)(id))success failure:(void (^)(id))failure
 {
-    
+    [HttpsUtils get:loadEventUrl params:nil success:^(id responseObj) {
+        if(success){
+            success(responseObj);
+        }
+    } failure:failure];
 }
 
 @end

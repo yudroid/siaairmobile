@@ -242,12 +242,13 @@
 /**
  更新密码
 
- @param userId <#userId description#>
+ @param jobno <#jobno description#>
  @param pwd <#pwd description#>
+ @param newpwd <#newpwd description#>
  @param success <#success description#>
  @param failure <#failure description#>
  */
-+(void)updatePwd:(int)userId pwd:(NSString *)pwd success:(void (^)(id))success failure:(void (^)(id))failure;
++(void)updatePwd:(NSString *)jobno pwd:(NSString *)pwd newpwd:(NSString *)newpwd success:(void (^)(id))success failure:(void (^)(id))failure;
 
 /**
  加载事件数据
