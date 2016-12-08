@@ -27,6 +27,9 @@ NSString * const base                       = @"http://192.168.163.29";
 NSString * const loginUrl                   = @"/acs/login/mobile";
 NSString * const userMsgSendUrl             = @"/acs/um/m";// 发送用户消息
 NSString * const groupMsgSendUrl            = @"/acs/wm/m";// 发送工作组消息
+NSString * const userMsgListUrl             = @"/acs/um/sl";// 用户消息列表
+NSString * const groupMsgListUrl            = @"/acs/wm/chatlst";// 工作组消息
+NSString * const alertMsgListUrl            = @"/acs/am/lst";// 系统消息
 //NSString * const 
 NSString * const userlistUrl                = @"/acs/wacs/user/SelectAllDeptListForIphone";
 NSString * const groupSaveUrl               = @"/acs/wacs/group/save";
@@ -35,9 +38,9 @@ NSString * const flightDetailUrl            = @"/acs/m/flightDetail";// 航班�
 NSString * const dispatchDetailsUrl         = @"/acs/m/getDispatchsByFlightId";// 航班保障环节列表
 NSString * const specialDetailsUrl          = @"/acs/wacs/MobileSpecial/queryMobileSpecialList";// 特殊保障列表
 NSString * const dispatchAbnsUrl            = @"/acs/m/getExceptionByFlightDispatchId";//获取异常历史列表
-NSString * const saveDispatchAbnStart = @"/acs/wacs/MobileSpecial/MobileSaveSpecialABNDispatch";//上报开始(航班ID/环节ID/用户ID/事件ID/要求/是否是特殊航班);
-NSString * const saveDispatchAbnEnd = @"/acs/wacs/MobileSpecial/MobileUpdateSpecialABNDispatchCompelete";//上报结束(异常ID/用户ID);
-NSString * const saveDispatchNormal = @"/acs/wacs/MobileSpecial/MobileSaveSpecialNormalDispatch";//特殊保障上报正常(航班id/环节ID/用户ID),返回结果是时间（时：分）
+NSString * const saveDispatchAbnStart       = @"/acs/wacs/MobileSpecial/MobileSaveSpecialABNDispatch";//上报开始(航班ID/环节ID/用户ID/事件ID/要求/是否是特殊航班);
+NSString * const saveDispatchAbnEnd         = @"/acs/wacs/MobileSpecial/MobileUpdateSpecialABNDispatchCompelete";//上报结束(异常ID/用户ID);
+NSString * const saveDispatchNormal         = @"/acs/wacs/MobileSpecial/MobileSaveSpecialNormalDispatch";//特殊保障上报正常(航班id/环节ID/用户ID),返回结果是时间（时：分）
 // 首页
 NSString * const ovSummaryUrl               = @"/acs/ov/summary";
 NSString * const ovFltFDRlUrl               = @"/acs/ov/fltFDR";
@@ -58,22 +61,22 @@ NSString * const arrPsnPerHourUrl           = @"/acs/bmap/psn/arrPsnPerHour";
 NSString * const depPsnPerHourUrl           = @"/acs/bmap/psn/depPsnPerHour";
 NSString * const glqPsnPerHourUrl           = @"/acs/bmap/psn/glqPsnPerHour";
 NSString * const glqNearPsnUrl              = @"/acs/bmap/psn/glqNearPsn";
-NSString * const glqFarPsnUrl              = @"/acs/bmap/psn/glqFarPsn";
+NSString * const glqFarPsnUrl               = @"/acs/bmap/psn/glqFarPsn";
 NSString * const peakPnsDaysUrl             = @"/acs/bmap/psn/peakPnsDays";
 NSString * const craftSeatTakeUpInfoUrl     = @"/acs/bmap/rs/craftSeatTakeUpInfo";
 NSString * const willCraftSeatTakeUpUrl     = @"/acs/bmap/rs/willCraftSeatTakeUp";
 NSString * const craftSeatTypeTakeUpSortUrl = @"/acs/bmap/rs/craftSeatTypeTakeUpSort";
 // 功能
-NSString * const dutyTableByDayUrl = @"/acs/dms/airportScheduling/getDutyBySpeDay";// 员工值班表，按天的
-NSString * const phoneRecordUrl = @"/acs/wacs/user/SelectAllDeptListForIphone";// 通讯录
+NSString * const dutyTableByDayUrl          = @"/acs/dms/airportScheduling/getDutyBySpeDay";// 员工值班表，按天的
+NSString * const phoneRecordUrl             = @"/acs/wacs/user/SelectAllDeptListForIphone";// 通讯录
 // 我的
-NSString * const signInUrl= @"/acs/m/signIn";//签到
-NSString * const signOutUrl = @"/acs/m/signOut";//签退
-NSString * const isSignedUrl = @"/acs/m/signStatus";//获取签到状态 1已经签退 2签到未签退 3未签到
-NSString * const logOutUrl = @"/acs/login/mobileLogout";//注销
-NSString * const loadDictDataUrl = @"/acs/wacs/MobileFirstLoading/queryMobileDict";//获取基础字典数据
-NSString * const loadEventUrl = @"/acs/wacs/MobileFirstLoading/queryMobileEvent";//获取事件数据
-NSString * const updatePwdUrl = @"/acs/login/updatePwd";//修改密码
+NSString * const signInUrl                  = @"/acs/m/signIn";//签到
+NSString * const signOutUrl                 = @"/acs/m/signOut";//签退
+NSString * const isSignedUrl                = @"/acs/m/signStatus";//获取签到状态 1已经签退 2签到未签退 3未签到
+NSString * const logOutUrl                  = @"/acs/login/mobileLogout";//注销
+NSString * const loadDictDataUrl            = @"/acs/wacs/MobileFirstLoading/queryMobileDict";//获取基础字典数据
+NSString * const loadEventUrl               = @"/acs/wacs/MobileFirstLoading/queryMobileEvent";//获取事件数据
+NSString * const updatePwdUrl               = @"/acs/login/updatePwd";//修改密码
 
 @implementation HttpsUtils (Business)
 
@@ -200,7 +203,7 @@ NSString * const updatePwdUrl = @"/acs/login/updatePwd";//修改密码
 +(void) setPassword:(NSString*) password{
     __password = password;
 }
-
+#pragma mark 消息部分 发送消息 发送群组消息 加载用户 保存工作组信息 获取工作组信息
 
 +(void)sendUserMessage:(MessageModel *)message success: (void (^)(id))success failure:(void (^)(id))failure
 {
@@ -239,6 +242,35 @@ NSString * const updatePwdUrl = @"/acs/login/updatePwd";//修改密码
 +(void)getGroupInfo:(long)groupId
 {
     
+}
+
++(void)getUserMsgList:(int)userId success:(void(^)(id))success failure:(void (^)(NSError *))failure
+{
+    NSString *temp = [NSString stringWithFormat:@"%@/%i",userMsgListUrl,userId];
+    [HttpsUtils get:temp params:nil success:^(id responseObj) {
+        if(success){
+            success(responseObj);
+        }
+    } failure:failure];
+}
+
++(void)getGroupMsgListSuccess:(void(^)(id))success failure:(void (^)(NSError *))failure
+{
+    [HttpsUtils get:groupMsgListUrl params:nil success:^(id responseObj) {
+        if(success){
+            success(responseObj);
+        }
+    } failure:failure];
+}
+
++(void)getAlertMsgListSuccess:(void(^)(id))success failure:(void (^)(NSError *))failure
+{
+
+    [HttpsUtils get:alertMsgListUrl params:nil success:^(id responseObj) {
+        if(success){
+            success(responseObj);
+        }
+    } failure:failure];
 }
 
 #pragma mark 航班 列表查询 航班明细 保障环节列表 重点保障环节列表 环节异常记录列表 报告正常 报告异常开始结束
