@@ -26,14 +26,20 @@ static NSString* __password = @"";
 NSString * const base                       = @"http://192.168.163.29";
 NSString * const loginUrl                   = @"/acs/login/mobile";
 NSString * const logoutUrl                  = @"/acs/login/logout";
-NSString * const userMsgSendUrl             = @"/acs/um/m";
-NSString * const groupMsgSendUrl            = @"/acs/wm/m";
+NSString * const userMsgSendUrl             = @"/acs/um/m";// 发送用户消息
+NSString * const groupMsgSendUrl            = @"/acs/wm/m";// 发送工作组消息
+//NSString * const 
 NSString * const userlistUrl                = @"/acs/wacs/user/SelectAllDeptListForIphone";
 NSString * const groupSaveUrl               = @"/acs/wacs/group/save";
-NSString * const flightListUrl              = @"/acs/m/flightList";
-NSString * const flightDetailUrl            = @"/acs/m/flightDetail";
-NSString * const dispatchDetailUrl          = @"/acs/m/getDispatchsByFlightId";
-NSString * const specialDetailUrl           = @"/acs/wacs/flightDetail/queryFlightDispatchDetailForIphone";
+NSString * const flightListUrl              = @"/acs/m/flightList";// 航班列表
+NSString * const flightDetailUrl            = @"/acs/m/flightDetail";// 航班详情列表
+NSString * const dispatchDetailsUrl         = @"/acs/m/getDispatchsByFlightId";// 航班保障环节列表
+NSString * const specialDetailsUrl          = @"/acs/wacs/MobileSpecial/queryMobileSpecialList";// 特殊保障列表
+NSString * const dispatchAbnsUrl            = @"/acs/m/getExceptionByFlightDispatchId";//获取异常历史列表
+NSString * const saveDispatchAbnStart = @"/acs/wacs/MobileSpecial/MobileSaveSpecialABNDispatch";//上报开始(航班ID/环节ID/用户ID/事件ID/要求/是否是特殊航班);
+NSString * const saveDispatchAbnEnd = @"/acs/wacs/MobileSpecial/MobileUpdateSpecialABNDispatchCompelete";//上报结束(异常ID/用户ID);
+NSString * const saveDispatchNormal = @"/acs/wacs/MobileSpecial/MobileSaveSpecialNormalDispatch";//特殊保障上报正常(航班id/环节ID/用户ID),返回结果是时间（时：分）
+// 首页
 NSString * const ovSummaryUrl               = @"/acs/ov/summary";
 NSString * const ovFltFDRlUrl               = @"/acs/ov/fltFDR";
 NSString * const ovFltFMRUrl                = @"/acs/ov/fltFMR";
@@ -58,6 +64,17 @@ NSString * const peakPnsDaysUrl             = @"/acs/bmap/psn/peakPnsDays";
 NSString * const craftSeatTakeUpInfoUrl     = @"/acs/bmap/rs/craftSeatTakeUpInfo";
 NSString * const willCraftSeatTakeUpUrl     = @"/acs/bmap/rs/willCraftSeatTakeUp";
 NSString * const craftSeatTypeTakeUpSortUrl = @"/acs/bmap/rs/craftSeatTypeTakeUpSort";
+// 功能
+NSString * const dutyTableByDayUrl = @"/acs/dms/airportScheduling/getDutyBySpeDay";// 员工值班表，按天的
+NSString * const phoneRecordUrl = @"/acs/wacs/user/SelectAllDeptListForIphone";// 通讯录
+// 我的
+NSString * const signInUrl= @"/acs/m/signIn";//签到
+NSString * const signOutUrl = @"/acs/m/signOut";//签退
+NSString * const isSignedUrl = @"/acs/m/signStatus";//获取签到状态 1已经签退 2签到未签退 3未签到
+NSString * const logOutUrl = @"/acs/login/mobileLogout";//注销
+NSString * const loadDictDataUrl = @"/acs/wacs/MobileFirstLoading/queryMobileDict";//获取基础字典数据
+NSString * const loadEventUrl = @"/acs/wacs/MobileFirstLoading/queryMobileEvent";//获取事件数据
+NSString * const updatePwdUrl = @"/acs/login/updatePwd";//修改密码
 
 @implementation HttpsUtils (Business)
 
@@ -225,6 +242,8 @@ NSString * const craftSeatTypeTakeUpSortUrl = @"/acs/bmap/rs/craftSeatTypeTakeUp
     
 }
 
+#pragma mark 航班 列表查询 航班明细 保障环节列表 重点保障环节列表 环节异常记录列表 报告正常 报告异常开始结束
+
 +(void)queryFlightList:(NSDictionary *)conditions success:(void(^)(id))success failure:(void (^)(NSError *))failue
 {
     [HttpsUtils get:flightListUrl params:conditions success:^(id responseObj) {
@@ -245,7 +264,7 @@ NSString * const craftSeatTypeTakeUpSortUrl = @"/acs/bmap/rs/craftSeatTypeTakeUp
 
 +(void)getDispatchDetail:(int)flightId success:(void (^)(id))success failure:(void (^)(id))failure
 {
-    [HttpsUtils get:dispatchDetailUrl params:nil success:^(id responseObj) {
+    [HttpsUtils get:dispatchDetailsUrl params:nil success:^(id responseObj) {
         if(success){
             success(responseObj);
         }
@@ -254,12 +273,61 @@ NSString * const craftSeatTypeTakeUpSortUrl = @"/acs/bmap/rs/craftSeatTypeTakeUp
 
 +(void)getSpecialDetail:(int)flightId success:(void (^)(id))success failure:(void (^)(id))failure
 {
-    NSString *temp = [NSString stringWithFormat:@"%@/%i",specialDetailUrl,flightId];
+    NSString *temp = [NSString stringWithFormat:@"%@/%i",specialDetailsUrl,flightId];
     [HttpsUtils get:temp params:nil success:^(id responseObj) {
         if(success){
             success(responseObj);
         }
     } failure:failure];
+}
+
+/**
+ 获取保障环节的异常上班记录
+ 
+ @param dispatchId 保障环节的异常ID
+ @param type 保障环节、勤务环节类型
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)getDispatchAbns:(int)dispatchId type:(int)type success:(void (^)(id))success failure:(void (^)(id))failure
+{
+    
+}
+
+/**
+ 航班特殊保障环节的详情
+ 
+ @param flightId <#flightId description#>
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)saveDispatchNormal:(int)flightId success:(void (^)(id))success failure:(void (^)(id))failure
+{
+    
+}
+
+/**
+ 航班特殊保障环节的详情
+ 
+ @param flightId <#flightId description#>
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)saveDispatchAbnStart:(int)flightId success:(void (^)(id))success failure:(void (^)(id))failure
+{
+    
+}
+
+/**
+ 航班特殊保障环节的详情
+ 
+ @param flightId <#flightId description#>
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)saveDispatchAbnEnd:(int)flightId success:(void (^)(id))success failure:(void (^)(id))failure
+{
+    
 }
 
 #pragma mark 首页摘要信息、小时分布、放行正常率、航延关键指标
@@ -660,6 +728,124 @@ NSString * const craftSeatTypeTakeUpSortUrl = @"/acs/bmap/rs/craftSeatTypeTakeUp
             success(responseObj);
         }
     } failure:failure];
+}
+
+#pragma mark 功能页面 值班表 通讯录
+
+/**
+ 获取当日保障列表
+ 
+ @param day <#day description#>
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)getDutyTableByDay:(NSString *)day success:(void (^)(id))success failure:(void (^)(id))failure
+{
+    
+}
+
+
+/**
+ 获取通讯录列表
+ 
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)getContactList:(void (^)(id))success failure:(void (^)(id))failure
+{
+    
+}
+
+
+#pragma mark 我的 签到 签退 修改密码 同步基础数据 同步异常事件 退出 更新密码
+
+
+/**
+ 签到
+ 
+ @param userId <#userId description#>
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)signIn:(int)userId success:(void (^)(id))success failure:(void (^)(id))failure
+{
+    
+}
+
+
+/**
+ 签退
+ 
+ @param userId <#userId description#>
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)signOut:(int)userId success:(void (^)(id))success failure:(void (^)(id))failure
+{
+    
+}
+
+
+/**
+ 签到状态
+ 
+ @param userId <#userId description#>
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)isSigned:(int)userId success:(void (^)(id))success failure:(void (^)(id))failure
+{
+    
+}
+
+
+/**
+ 退出登录
+ 
+ @param userId <#userId description#>
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)logOut:(int)userId success:(void (^)(id))success failure:(void (^)(id))failure
+{
+    
+}
+
+
+/**
+ 更新密码
+ 
+ @param userId <#userId description#>
+ @param pwd <#pwd description#>
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)updatePwd:(int)userId pwd:(NSString *)pwd success:(void (^)(id))success failure:(void (^)(id))failure
+{
+    
+}
+
+/**
+ 加载事件数据
+ 
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)loadEventsSuccess:(void (^)(id))success failure:(void (^)(id))failure
+{
+    
+}
+
+
+/**
+ 加载基础数据
+ 
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)loadDictDatasSuccess:(void (^)(id))success failure:(void (^)(id))failure
+{
+    
 }
 
 @end

@@ -129,6 +129,135 @@
  */
 +(void)getSpecialDetail:(int)flightId success:(void (^)(id))success failure:(void (^)(id))failure;
 
+
+/**
+ 获取保障环节的异常上班记录
+
+ @param dispatchId 保障环节的异常ID
+ @param type 保障环节、勤务环节类型
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)getDispatchAbns:(int)dispatchId type:(int)type success:(void (^)(id))success failure:(void (^)(id))failure;
+
+/**
+ 航班特殊保障环节的详情
+ 
+ @param flightId <#flightId description#>
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)saveDispatchNormal:(int)flightId success:(void (^)(id))success failure:(void (^)(id))failure;
+
+/**
+ 航班特殊保障环节的详情
+ 
+ @param flightId <#flightId description#>
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)saveDispatchAbnStart:(int)flightId success:(void (^)(id))success failure:(void (^)(id))failure;
+
+/**
+ 航班特殊保障环节的详情
+ 
+ @param flightId <#flightId description#>
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)saveDispatchAbnEnd:(int)flightId success:(void (^)(id))success failure:(void (^)(id))failure;
+
+#pragma mark 功能页面 值班表 通讯录
+
+/**
+ 获取当日保障列表
+
+ @param day <#day description#>
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)getDutyTableByDay:(NSString *)day success:(void (^)(id))success failure:(void (^)(id))failure;
+
+
+/**
+ 获取通讯录列表
+
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)getContactList:(void (^)(id))success failure:(void (^)(id))failure;
+
+
+#pragma mark 我的 签到 签退 修改密码 同步基础数据 同步异常事件 退出 更新密码
+
+
+/**
+ 签到
+
+ @param userId <#userId description#>
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)signIn:(int)userId success:(void (^)(id))success failure:(void (^)(id))failure;
+
+
+/**
+ 签退
+
+ @param userId <#userId description#>
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)signOut:(int)userId success:(void (^)(id))success failure:(void (^)(id))failure;
+
+
+/**
+ 签到状态
+
+ @param userId <#userId description#>
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)isSigned:(int)userId success:(void (^)(id))success failure:(void (^)(id))failure;
+
+
+/**
+ 退出登录
+
+ @param userId <#userId description#>
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)logOut:(int)userId success:(void (^)(id))success failure:(void (^)(id))failure;
+
+
+/**
+ 更新密码
+
+ @param userId <#userId description#>
+ @param pwd <#pwd description#>
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)updatePwd:(int)userId pwd:(NSString *)pwd success:(void (^)(id))success failure:(void (^)(id))failure;
+
+/**
+ 加载事件数据
+
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)loadEventsSuccess:(void (^)(id))success failure:(void (^)(id))failure;
+
+
+/**
+ 加载基础数据
+
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)loadDictDatasSuccess:(void (^)(id))success failure:(void (^)(id))failure;
+
 #pragma mark 首页摘要信息、小时分布、放行正常率、航延关键指标
 /**
  获取首页的摘要信息 /ov/summary

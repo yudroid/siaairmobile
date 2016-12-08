@@ -1511,7 +1511,7 @@
 				TargetAttributes = {
 					84BA54DB1DA256940037198F = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 9R73LBY7Z3;
+						DevelopmentTeam = 4B8FH7JQ2N;
 						ProvisioningStyle = Automatic;
 					};
 					84BA54F71DA256940037198F = {
@@ -2084,13 +2084,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 9R73LBY7Z3;
+				DEVELOPMENT_TEAM = 4B8FH7JQ2N;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/airmobile/airmobile-Prefix.pch";
 				INFOPLIST_FILE = airmobile/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.taocares.sia.airmobileNewTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.taocares.sia.airmobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2103,14 +2103,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 9R73LBY7Z3;
+				DEVELOPMENT_TEAM = 4B8FH7JQ2N;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/airmobile/airmobile-Prefix.pch";
 				INFOPLIST_FILE = airmobile/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.taocares.sia.airmobileNewTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.taocares.sia.airmobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
