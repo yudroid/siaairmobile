@@ -156,7 +156,7 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
     searchTextField.font = [UIFont fontWithName:@"PingFang SC"
                                            size:14];
     searchTextField.textColor = [CommonFunction colorFromHex:0XFFbbbbbb];
-    searchTextField.placeholder = @"航班号、机号、机型";
+    searchTextField.placeholder = @"会话名称";
     [contentView addSubview:searchTextField];
     if([DeviceInfoUtil isPlus]){
         contentView.frame = CGRectMake(px_3(20),
@@ -322,9 +322,9 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if(indexPath.row == 0){
-        [self showFlightEventView];
-    }else if(indexPath.row ==1){
         [self showCommendMsgView];
+    }else if(indexPath.row ==1){
+        [self showFlightEventView];
     }else{
         NSDictionary *dic = [array objectAtIndex:indexPath.row-2];
         long chatId = [[dic objectForKey:@"chatid"]  longLongValue];
@@ -340,6 +340,7 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 {
     FlightDelaysViewController *flightDelaysVC = [[FlightDelaysViewController alloc]initWithNibName:@"FlightDelaysViewController"
                                                                                              bundle:nil];
+    flightDelaysVC.type = @"FLIGHT";
     [self.navigationController pushViewController:flightDelaysVC
                                          animated:YES];
 
@@ -347,7 +348,11 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 
 -(void) showCommendMsgView
 {
-    
+    FlightDelaysViewController *flightDelaysVC = [[FlightDelaysViewController alloc]initWithNibName:@"FlightDelaysViewController"
+                                                                                             bundle:nil];
+    flightDelaysVC.type = @"COMMAND";
+    [self.navigationController pushViewController:flightDelaysVC
+                                         animated:YES];
 }
 
 -(void) showMessageDialog:(long)chatId chatTypeId:(long)chatTypeId localChatId:(long)localChatId

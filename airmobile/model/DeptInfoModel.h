@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "UserInfoModel.h"
 
-@interface DeptInfoModel : NSObject
+@interface DeptInfoModel : RootModel
 
 @property (nonatomic,assign)    long        deptId;
 @property (nonatomic,copy)      NSString    *deptName;

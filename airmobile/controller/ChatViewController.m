@@ -14,6 +14,7 @@
 #import "AppDelegate.h"
 #import "MessageService.h"
 #import "PersistenceUtils+Business.h"
+#import "ContactPersonViewController.h"
 
 
 static const NSString *CHAT_LEFTTABLECELL_IDENTIFIER = @"CHAT_LEFTTABLECELL_IDENTIFIER";
@@ -313,12 +314,16 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
 }
 
 - (void)backButtonClick{
-    UIViewController *viewCtl = self.navigationController.viewControllers[2];
-    if(viewCtl !=nil)
-        [self.navigationController popToViewController:viewCtl
-                                              animated:YES];
-    else
+    long size = [self.navigationController.viewControllers count];
+    UIViewController *viewCtl = self.navigationController.viewControllers[size-2];
+    if(viewCtl !=nil && [viewCtl isKindOfClass:[ContactPersonViewController class]]){
+        viewCtl = self.navigationController.viewControllers[size-3];
+        if(viewCtl !=nil)
+            [self.navigationController popToViewController:viewCtl
+                                                  animated:YES];
+    }else{
         [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 @end

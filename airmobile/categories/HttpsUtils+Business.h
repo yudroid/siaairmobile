@@ -90,6 +90,41 @@
  */
 +(void)getGroupInfo:(long)groupId;
 
+
+/**
+ 获取用户最近的聊天消息
+
+ @param userId <#userId description#>
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)getUserMsgList:(int)userId success:(void(^)(id))success failure:(void (^)(NSError *))failure;
+
+
+/**
+ 获取用户组消息
+
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)getGroupMsgListSuccess:(void(^)(id))success failure:(void (^)(NSError *))failure;
+
+
+/**
+ 返回的消息类型
+
+     DELAY_HEAVY   航班大面积延误
+     WARNING    航班预警
+     FLIGHT    航班信息
+     GUARD_1     一级警备
+     GUARD_2     二级警备
+     GUARD_3     三级警备
+     COMMAND    指令
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)getAlertMsgListSuccess:(void(^)(id))success failure:(void (^)(NSError *))failure;
+
 #pragma mark 航班列表 航班详情 航班保障详情 航班特殊详情
 
 /**

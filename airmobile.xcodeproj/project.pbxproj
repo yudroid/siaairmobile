@@ -54,6 +54,7 @@
 		843F4CF51DACC70F00D73D56 /* HttpsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 843F4CF41DACC70F00D73D56 /* HttpsUtils.m */; };
 		843F4CF81DACCA6D00D73D56 /* HttpsUtils+Business.m in Sources */ = {isa = PBXBuildFile; fileRef = 843F4CF71DACCA6D00D73D56 /* HttpsUtils+Business.m */; };
 		843F4CFB1DACCF2500D73D56 /* ThreadUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 843F4CFA1DACCF2500D73D56 /* ThreadUtils.m */; };
+		844CBD2E1DF992D2008DAFAF /* SysMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 844CBD2D1DF992D2008DAFAF /* SysMessageModel.m */; };
 		845055571DACF65200400EBF /* login_accounts@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 845055381DACF65200400EBF /* login_accounts@2x.png */; };
 		845055581DACF65200400EBF /* login_accounts@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 845055391DACF65200400EBF /* login_accounts@3x.png */; };
 		845055591DACF65200400EBF /* login_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8450553A1DACF65200400EBF /* login_bg@2x.png */; };
@@ -367,6 +368,8 @@
 		843F4CF71DACCA6D00D73D56 /* HttpsUtils+Business.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "HttpsUtils+Business.m"; path = "categories/HttpsUtils+Business.m"; sourceTree = "<group>"; };
 		843F4CF91DACCF2500D73D56 /* ThreadUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThreadUtils.h; path = utils/ThreadUtils.h; sourceTree = "<group>"; };
 		843F4CFA1DACCF2500D73D56 /* ThreadUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThreadUtils.m; path = utils/ThreadUtils.m; sourceTree = "<group>"; };
+		844CBD2C1DF992D2008DAFAF /* SysMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SysMessageModel.h; sourceTree = "<group>"; };
+		844CBD2D1DF992D2008DAFAF /* SysMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SysMessageModel.m; sourceTree = "<group>"; };
 		845055381DACF65200400EBF /* login_accounts@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_accounts@2x.png"; sourceTree = "<group>"; };
 		845055391DACF65200400EBF /* login_accounts@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_accounts@3x.png"; sourceTree = "<group>"; };
 		8450553A1DACF65200400EBF /* login_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_bg@2x.png"; sourceTree = "<group>"; };
@@ -1028,8 +1031,13 @@
 				84163BEB1DD1E73700DD9163 /* DeptInfoModel.m */,
 				F74902A91DC868AC005B193D /* DutyModel.h */,
 				F74902AA1DC868AC005B193D /* DutyModel.m */,
+<<<<<<< HEAD
 				F7F057151DF9730C006BCD67 /* SpecialModel.h */,
 				F7F057161DF9730C006BCD67 /* SpecialModel.m */,
+=======
+				844CBD2C1DF992D2008DAFAF /* SysMessageModel.h */,
+				844CBD2D1DF992D2008DAFAF /* SysMessageModel.m */,
+>>>>>>> 8625fb9682ffdfc6fbe88624de85b8903e2d514e
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1847,6 +1855,7 @@
 				F70893FC1DD5952F00135540 /* ContactPersonTableViewHeaderView.m in Sources */,
 				840D15C11DC044DA005FA910 /* ArrDepFlightHourViewController.m in Sources */,
 				F74902C01DC878C0005B193D /* SummaryModel.m in Sources */,
+				844CBD2E1DF992D2008DAFAF /* SysMessageModel.m in Sources */,
 				84183A251DBE14A800D7DD86 /* TenDayRatioView.m in Sources */,
 				84183A1F1DBDDEA300D7DD86 /* SecurityPsnViewController.m in Sources */,
 				84183A121DBDDD3B00D7DD86 /* ReleasedRatioViewController.m in Sources */,

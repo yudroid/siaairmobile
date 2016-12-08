@@ -9,5 +9,5 @@
 #import "RootViewController.h"
 
 @interface FlightDelaysViewController : RootViewController
-
+@property (copy, nonatomic) NSString *type;
 @end
