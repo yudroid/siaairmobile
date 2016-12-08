@@ -24,6 +24,10 @@
 @property (nonatomic, copy) NSString *aovTxt;//aov输入的自由文本
 
 @property (nonatomic, strong) NSMutableArray<FlightHourModel *> *flightHours;// 航班小时分布
+//@property (nonatomic, strong) NSMutableArray<FlightHourModel *> *planArrFlightHours;//计划进港 航班小时分布
+//@property (nonatomic, strong) NSMutableArray<FlightHourModel *> *realArrFlightHours;//计划进港 航班小时分布
+//@property (nonatomic, strong) NSMutableArray<FlightHourModel *> *planDepFlightHours;//计划进港 航班小时分布
+//@property (nonatomic, strong) NSMutableArray<FlightHourModel *> *realDepFlightHours;//计划进港 航班小时分布
 @property (nonatomic, strong) FlightLargeDelayModel *delayTagart;// 判断是否大面积航延指标
 @property (nonatomic, strong) NSMutableArray<ReleasedRatioModel *> *tenDayReleased;// 近10的放行正常率
 @property (nonatomic, strong) NSMutableArray<ReleasedRatioModel *> *yearReleased;// 今年放行正常率

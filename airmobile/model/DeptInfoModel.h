@@ -16,5 +16,7 @@
 
 @property (nonatomic,strong)    NSMutableArray<UserInfoModel *> *userArr;
 
+-(instancetype)initWithDictionary:(NSDictionary *)dictionary;
+
 -(NSMutableArray *) userArray;
 @end

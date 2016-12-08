@@ -20,6 +20,8 @@
 
 @implementation OverViewContentView
 {
+    UIView *caleandarView;
+    UIImageView *tagImageView;
     UILabel *calendarLabel;     // 当天日期
     UILabel *totalNumLabel;     // 圆图中间数字
     TagView *planView;          // 未执行
@@ -27,6 +29,7 @@
     TagView *ratioView;         //放行率
     UILabel *currentStatus;     //小面积延误
     RoundProgressView   *progressRound; //圆
+    UILabel *lowTimelabel;
 }
 
 
@@ -42,7 +45,7 @@
         _delegate = delegate;
 
         y+=px_px_2_2_3(60,77, 141);
-        UIView *caleandarView = [[UIView alloc] initWithFrame:CGRectMake(kScreenWidth/2-190/2,
+        caleandarView = [[UIView alloc] initWithFrame:CGRectMake(kScreenWidth/2-190/2,
                                                                          y,
                                                                          190,
                                                                          px2(35))];
@@ -66,7 +69,7 @@
                                                  expectSize.width,
                                                  px2(35));
         [caleandarView addSubview:calendarLabel];
-        UIImageView *tagImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewTrailing(caleandarView)+px_px_2_3(15, 25),
+        tagImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewTrailing(caleandarView)+px_px_2_3(15, 25),
                                                                                  px2((35-8)/2),
                                                                                  px2(16),
                                                                                  px2(8))];
@@ -228,7 +231,7 @@
                                                                           y,
                                                                           px2(342),
                                                                           px_px_2_2_3(90, 114, 57*3) )];
-        currentStatus.text          = @"小面积延误";
+        currentStatus.text = summaryModel.warning;
         currentStatus.textAlignment = NSTextAlignmentCenter;
         currentStatus.font          =  [UIFont fontWithName:@"PingFangSC-Regular" size:px2(32)];
         if([summaryModel.warning isEqualToString:@"正常"]){
@@ -255,16 +258,35 @@
         lineImageView.image         = [UIImage imageNamed:@"hiddenLine"];
         [self addSubview:lineImageView];
 
-//        _noticeTextView                  = [[UITextView alloc] initWithFrame:CGRectMake(50,
-//                                                                                       viewBotton(lineImageView)+5,
-//                                                                                       kScreenWidth-100,
-//                                                                                       kScreenHeight-viewBotton(lineImageView)-5-49-76)];
-//        _noticeTextView.text             = summaryModel.aovTxt;
-//        _noticeTextView.textAlignment    = NSTextAlignmentLeft;
-//        _noticeTextView.font             = [UIFont systemFontOfSize:12];
-//        _noticeTextView.editable         = NO;
-//        [self addSubview:_noticeTextView];
 
+        UIView *lowView = [[UIView alloc]initWithFrame:CGRectMake(viewX(lineImageView),
+                                                                 viewBotton(lineImageView),
+                                                                 viewWidth(lineImageView),
+                                                                 kScreenHeight-viewBotton(lineImageView)-5-49-76 )];
+
+        [self addSubview:lowView];
+
+        lowTimelabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 75, viewHeight(lowView))];
+        lowTimelabel.text = summaryModel.flightDate;
+//        lowTimelabel.backgroundColor = [UIColor blackColor];
+        lowTimelabel.adjustsFontSizeToFitWidth = YES;
+
+        [lowView addSubview:lowTimelabel];
+
+        _noticeTextView                  = [[UITextView alloc] initWithFrame:CGRectMake(viewTrailing(lowTimelabel),
+                                                                                       5,
+                                                                                       viewWidth(lowView)-150,
+                                                                                       viewHeight(lowView)-10)];
+        _noticeTextView.text             = summaryModel.aovTxt;
+        _noticeTextView.textAlignment    = NSTextAlignmentCenter;
+        _noticeTextView.font             = [UIFont systemFontOfSize:12];
+        _noticeTextView.editable         = NO;
+        [lowView addSubview:_noticeTextView];
+
+        UIImageView *lowImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+        lowImageView.image = [UIImage imageNamed:@"Completed"];
+        lowImageView.center = CGPointMake(viewTrailing(_noticeTextView)+75/2, viewHeight(lowView)/2);
+        [lowView addSubview:lowImageView];
     }
     //添加刷新通知
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -325,9 +347,20 @@
     SummaryModel *summaryModel = notification.object;
 
     calendarLabel.text  = summaryModel.flightDate;
+    CGSize maxLabelSize = CGSizeMake(100, CGFLOAT_MAX);
+    CGSize expectSize           = [calendarLabel sizeThatFits:maxLabelSize];
+    calendarLabel.frame         = CGRectMake(viewX(calendarLabel),
+                                             0,
+                                             expectSize.width,
+                                             px2(35));
+     float width         = viewWidth(tagImageView)+viewWidth(calendarLabel);
+    caleandarView.frame = CGRectMake((viewWidth(self)-width)/2,
+                                     viewY(caleandarView),
+                                     width,
+                                     viewHeight(caleandarView));
+
     totalNumLabel.text          = [NSString stringWithFormat:@"%d", summaryModel.allCnt];
-    CGSize maxLabelSize        = CGSizeMake(100,50);
-    CGSize expectSize          = [totalNumLabel sizeThatFits:maxLabelSize];
+
     CGRect origleRect = totalNumLabel.frame;
     totalNumLabel.frame = CGRectMake((kScreenWidth - expectSize.width)/2,
                                      origleRect.origin.y,
@@ -343,6 +376,7 @@
     finishView.bigLabel.text = [NSString stringWithFormat:@"%d",  summaryModel.finishedCnt];        //已经执行
     ratioView.bigLabel.text  = [NSString stringWithFormat:@"%.1f",[summaryModel.releaseRatio floatValue] *100];     //放行率
 
+    currentStatus.text = summaryModel.warning;
     if([summaryModel.warning isEqualToString:@"正常"]){
         currentStatus.textColor = [UIColor yellowColor];
     }else if([summaryModel.warning isEqualToString:@"重大"]){
@@ -350,8 +384,9 @@
     }else{
         currentStatus.textColor = [UIColor redColor];
     }
+    lowTimelabel.text = summaryModel.flightDate;
 
-//    noticeTextView.text         = summaryModel.aovTxt;
+    _noticeTextView.text         = summaryModel.aovTxt;
 
 }
 

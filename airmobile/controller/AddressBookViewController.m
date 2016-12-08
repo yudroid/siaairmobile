@@ -13,6 +13,8 @@
 #import "ContactPersonTableViewCell.h"
 #import "UserInfoModel.h"
 #import "DeptInfoModel.h"
+#import "HttpsUtils+Business.h"
+#import "DeptInfoModel.h"
 
 const char * ALERTVIEW_BLOCK = "ALERTVIEW_BLOCK";
 static const NSString *ADDRESSBOOK_TABLEGROUPHEAER_IDENTIFIER = @"ADDRESSBOOK_TABLEGROUPHEADER_IDENTIFIER";
@@ -47,27 +49,55 @@ static const NSString *ADDRESSBOOK_TABLECELL_IDENTIFIER = @"ADDRESSBOOK_TABLECEL
      forCellReuseIdentifier:(NSString *)ADDRESSBOOK_TABLECELL_IDENTIFIER];
     [_tableView registerNib:[UINib nibWithNibName:@"ContactPersonTableViewHeaderView" bundle:nil]
 forHeaderFooterViewReuseIdentifier:(NSString *)ADDRESSBOOK_TABLEGROUPHEAER_IDENTIFIER];
+//
+//    DeptInfoModel *dep = [[DeptInfoModel alloc]init];
+//
+//
+//    UserInfoModel *user1 = [[UserInfoModel alloc]init];
+//    user1.name = @"寇雪松";
+//    UserInfoModel *user2 = [[UserInfoModel alloc]init];
+//    user2.name = @"寇雪松";
+//    UserInfoModel *user3 = [[UserInfoModel alloc]init];
+//    user3.name = @"寇雪松";
+//    UserInfoModel *user4 = [[UserInfoModel alloc]init];
+//    user4.name = @"寇雪松";
+//
+//    dep.userArr =[NSMutableArray arrayWithArray:@[user1,user2,user3,user4]];
+//
+//    array = @[dep];
+//    _resultArry = [NSMutableArray array];
+//    for (int i = 0; i<array.count; i++) {
+//        // 初始时都是折叠状态（bool不能直接放在数组里）
+//        [_resultArry addObject:[NSNumber numberWithBool:NO]];
+//    }
 
-    DeptInfoModel *dep = [[DeptInfoModel alloc]init];
-
-
-    UserInfoModel *user1 = [[UserInfoModel alloc]init];
-    user1.name = @"寇雪松";
-    UserInfoModel *user2 = [[UserInfoModel alloc]init];
-    user2.name = @"寇雪松";
-    UserInfoModel *user3 = [[UserInfoModel alloc]init];
-    user3.name = @"寇雪松";
-    UserInfoModel *user4 = [[UserInfoModel alloc]init];
-    user4.name = @"寇雪松";
-
-    dep.userArr =[NSMutableArray arrayWithArray:@[user1,user2,user3,user4]];
-
-    array = @[dep];
     _resultArry = [NSMutableArray array];
-    for (int i = 0; i<array.count; i++) {
-        // 初始时都是折叠状态（bool不能直接放在数组里）
-        [_resultArry addObject:[NSNumber numberWithBool:NO]];
-    }
+    array = [NSArray array];
+    [self UpdateNetwork];
+}
+
+-(void)UpdateNetwork
+{
+
+    [HttpsUtils getContactList:^(NSArray *responseObj) {
+        if ([responseObj isKindOfClass:[NSArray class]]) {
+            NSMutableArray *depMutableArray = [NSMutableArray array];
+            for (NSDictionary *depDic in responseObj) {
+                DeptInfoModel *deptModel = [[DeptInfoModel alloc]initWithDictionary:depDic];
+                [depMutableArray addObject:deptModel];
+            }
+            array = [depMutableArray copy];
+            _resultArry = [NSMutableArray array];
+            for (int i = 0; i<array.count; i++) {
+                // 初始时都是折叠状态（bool不能直接放在数组里）
+                [_resultArry addObject:[NSNumber numberWithBool:NO]];
+            }
+            [_tableView reloadData];
+        }
+
+    } failure:^(NSError *error) {
+
+    }];
 }
 
 
@@ -108,7 +138,8 @@ forHeaderFooterViewReuseIdentifier:(NSString *)ADDRESSBOOK_TABLEGROUPHEAER_IDENT
     ContactPersonTableViewHeaderView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:(NSString *)ADDRESSBOOK_TABLEGROUPHEAER_IDENTIFIER];
     view.tag = section;
     view.delegate = self;
-    view.open = [[_resultArry objectAtIndex:view.tag] boolValue];;
+    view.open = [[_resultArry objectAtIndex:view.tag] boolValue];
+    view.nameLabel.text = array[section].deptName;
     return view;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -125,7 +156,7 @@ forHeaderFooterViewReuseIdentifier:(NSString *)ADDRESSBOOK_TABLEGROUPHEAER_IDENT
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",@"10086"];
+    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",array[indexPath.section].userArr[indexPath.row].phone];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
 
 }

@@ -172,7 +172,7 @@
                                                                                     px_px_2_2_3(341,400, 664))
                                                                    items:arrShapeArray];
         arrRoundProgress.center                     = CGPointMake(frame.size.width+frame.size.width/2, px_px_2_2_3(400, 500, 750)/2.0);
-        arrRoundProgress.descriptionTextColor       = [UIColor whiteColor];
+        arrRoundProgress.descriptionTextColor       = [UIColor clearColor];
         arrRoundProgress.descriptionTextFont        = [UIFont fontWithName:@"PingFangSC-Regular" size:29/2];
         arrRoundProgress.descriptionTextShadowColor = [UIColor clearColor];
         arrRoundProgress.showAbsoluteValues         = YES;
@@ -231,7 +231,7 @@
 
         depRoundProgress.center                     = CGPointMake(frame.size.width/2,
                                                                   px_px_2_2_3(400, 500, 750)/2.0);
-        depRoundProgress.descriptionTextColor       = [UIColor whiteColor];
+        depRoundProgress.descriptionTextColor       = [UIColor clearColor];
         depRoundProgress.descriptionTextFont        = [UIFont fontWithName:@"PingFangSC-Regular" size:29/2];
         depRoundProgress.descriptionTextShadowColor = [UIColor clearColor];
         depRoundProgress.showAbsoluteValues         = YES;

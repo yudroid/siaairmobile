@@ -10,7 +10,6 @@ target 'airmobile' do
   # Pods for airmobile
   pod "AFNetworking", "~> 3.0"
   pod 'Toast', '~> 3.0'
-  pod 'JTCalendar', '~> 2.0'
   pod 'KSCrash', '~>1.1.1'
   pod 'ATAppUpdater', '~>1.7'
   pod 'pop', '~> 1.0'

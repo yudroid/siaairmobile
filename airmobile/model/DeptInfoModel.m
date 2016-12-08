@@ -17,4 +17,31 @@
     }
     return _userArr;
 }
+
+-(instancetype)initWithDictionary:(NSDictionary *)dictionary
+{
+    self = [super init];
+    if (self) {
+        [self setValuesForKeysWithDictionary:dictionary];
+    }
+    return self;
+}
+
+-(void)setValue:(id)value forUndefinedKey:(NSString *)key
+{
+
+    if ([key isEqualToString:@"users"]) {
+        if ([value isKindOfClass:[NSArray class]]) {
+            NSMutableArray *models = [NSMutableArray array];
+            for (NSDictionary *dic in value) {
+                UserInfoModel *model = [[UserInfoModel alloc]initWithDictionary:dic];
+                [models addObject:model];
+            }
+            _userArr = models;
+        }
+    }else if([key isEqualToString:@"departmentName"]){
+        _deptName = value;
+    }
+    return;
+}
 @end

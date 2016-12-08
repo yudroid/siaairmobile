@@ -52,7 +52,7 @@
                                                                              7,
                                                                              viewWidth(topBgView)-100,
                                                                              11)];
-        passengerTtitle.text        = @"隔离区内旅客小时分布";
+        passengerTtitle.text        = @"隔离区内旅客时间分布";
         passengerTtitle.font        = [UIFont fontWithName:@"PingFangSC-Regular" size:27/2];
         passengerTtitle.textColor   = [UIColor whiteColor];
         [topBgView addSubview:passengerTtitle];
@@ -163,12 +163,12 @@
         flightHourTableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
         flightHourTableView.showsVerticalScrollIndicator = NO;
         [self addSubview:flightHourTableView];
-
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(loadData:)
-                                                     name:@"SafetyPsnHours"
-                                                   object:nil];
-        
+//
+//        [[NSNotificationCenter defaultCenter] addObserver:self
+//                                                 selector:@selector(loadData:)
+//                                                     name:@"SafetyPsnHours"
+//                                                   object:nil];
+//        
     }
     return self;
 }

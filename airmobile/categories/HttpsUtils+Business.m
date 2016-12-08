@@ -753,7 +753,11 @@ NSString * const updatePwdUrl = @"/acs/login/updatePwd";//修改密码
  */
 +(void)getContactList:(void (^)(id))success failure:(void (^)(id))failure
 {
-    
+    [HttpsUtils get:phoneRecordUrl params:nil success:^(id responseObj) {
+        if(success){
+            success(responseObj);
+        }
+    } failure:failure];
 }
 
 

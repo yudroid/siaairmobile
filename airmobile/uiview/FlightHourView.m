@@ -117,7 +117,7 @@
         [lineChart setXLabels:[self getFlightHourXLabels]];
         lineChart.showCoordinateAxis= NO;
         lineChart.showGenYLabels    =NO;
-        lineChart.yFixedValueMax    = 120;
+        lineChart.yFixedValueMax    = [self maxValue];
         lineChart.yFixedValueMin    = 0;
         
         // added an examle to show how yGridLines can be enabled
@@ -150,7 +150,7 @@
                                                                 topBgView.frame.size.width-40,
                                                                 topBgView.frame.size.height-(5+23+15+2)-5)];//折线图
         
-        barChart.yMaxValue          = 120;
+        barChart.yMaxValue          = [self maxValue];
         barChart.yMinValue          = 0;
         barChart.showXLabel         = NO;
         barChart.showYLabel         = NO;
@@ -158,7 +158,8 @@
 
         barChart.yChartLabelWidth   = 20.0;
         barChart.labelTextColor     = [CommonFunction colorFromHex:0xFFFFFFFF];
-        
+
+
         barChart.labelMarginTop     = 5.0;
         barChart.showChartBorder    = NO;
         barChart.barRadius          = 6.0f;
@@ -268,7 +269,11 @@
 {
     NSMutableArray *arr = [[NSMutableArray alloc] init];
     for(FlightHourModel *model in hourArray){
-        [arr addObject:@((int)(model.count))];
+        if (_flightHourType ==ArrFlightHour) {
+            [arr addObject:@(model.arrCount)];
+        }else if(_flightHourType ==DepFlightHour){
+        [arr addObject:@((int)(model.depCount))];
+        }
     }
     return arr;
 }
@@ -277,7 +282,12 @@
 {
     NSMutableArray *arr = [[NSMutableArray alloc] init];
     for(FlightHourModel *model in hourArray){
-        [arr addObject:@((int)(model.planCount))];
+        if (_flightHourType ==ArrFlightHour) {
+            [arr addObject:@(model.planArrCount)];
+        }else if(_flightHourType ==DepFlightHour){
+            [arr addObject:@((int)(model.planDepCount))];
+        }
+//        [arr addObject:@((int)(model.planCount))];
     }
     return arr;
 }
@@ -285,11 +295,41 @@
 -(void)loadData:(NSNotification *)notification
 {
     if ([notification.object isKindOfClass:[NSArray class]]) {
+        if([notification.name isEqualToString:@"PlanArrHours"]){
+
+        }else if ([notification.name isEqualToString:@"RealArrHours"]){
+
+        }
 
     }
 
 }
 
+-(NSInteger)maxValue
+{
+    NSInteger max = 0;
+    if (_flightHourType ==ArrFlightHour) {
+        for (FlightHourModel *model in hourArray) {
+            if (model.arrCount>max) {
+                max = model.arrCount;
+            }
+            if (model.planArrCount>max) {
+                max = model.planArrCount;
+            }
+        }
+
+    }else if(_flightHourType ==DepFlightHour){
+        for (FlightHourModel *model in hourArray) {
+            if (model.depCount>max) {
+                max = model.depCount;
+            }
+            if (model.planDepCount>max) {
+                max = model.planDepCount;
+            }
+        }
+    }
+    return max;
+}
 
 
 @end
