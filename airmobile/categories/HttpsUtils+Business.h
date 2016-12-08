@@ -147,25 +147,33 @@
  @param success <#success description#>
  @param failure <#failure description#>
  */
-+(void)saveDispatchNormal:(int)flightId success:(void (^)(id))success failure:(void (^)(id))failure;
++(void)saveDispatchNormal:(int)flightId dispatchId:(int)dispatchId userId:(int)userId success:(void (^)(id))success failure:(void (^)(id))failure;
 
 /**
  航班特殊保障环节的详情
- 
+
  @param flightId <#flightId description#>
+ @param dispatchId <#dispatchId description#>
+ @param userId <#userId description#>
+ @param eventId <#eventId description#>
+ @param memo <#memo description#>
+ @param flag <#flag description#>
+ @param imgPath <#imgPath description#>
  @param success <#success description#>
  @param failure <#failure description#>
  */
-+(void)saveDispatchAbnStart:(int)flightId success:(void (^)(id))success failure:(void (^)(id))failure;
++(void)saveDispatchAbnStart:(int)flightId dispatchId:(int)dispatchId userId:(int)userId eventId:(int)eventId memo:(NSString *)memo
+                       flag:(int)flag imgPath:(NSString *)imgPath success:(void (^)(id))success failure:(void (^)(id))failure;
 
 /**
  航班特殊保障环节的详情
- 
- @param flightId <#flightId description#>
+
+ @param dispatchAbnId <#dispatchAbnId description#>
+ @param userId <#userId description#>
  @param success <#success description#>
  @param failure <#failure description#>
  */
-+(void)saveDispatchAbnEnd:(int)flightId success:(void (^)(id))success failure:(void (^)(id))failure;
++(void)saveDispatchAbnEnd:(int)dispatchAbnId userId:(int)userId success:(void (^)(id))success failure:(void (^)(id))failure;
 
 #pragma mark 功能页面 值班表 通讯录
 

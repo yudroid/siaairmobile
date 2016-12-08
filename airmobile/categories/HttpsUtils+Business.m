@@ -761,13 +761,18 @@ NSString * const updatePwdUrl = @"/acs/login/updatePwd";//修改密码
 /**
  获取当日保障列表
  
- @param day <#day description#>
+ @param day day 2016-7-11 格式
  @param success <#success description#>
  @param failure <#failure description#>
  */
 +(void)getDutyTableByDay:(NSString *)day success:(void (^)(id))success failure:(void (^)(id))failure
 {
-    
+    NSString *temp = [NSString stringWithFormat:@"%@?date=%@",dutyTableByDayUrl,day];
+    [HttpsUtils get:temp params:nil success:^(id responseObj) {
+        if(success){
+            success(responseObj);
+        }
+    } failure:failure];
 }
 
 
