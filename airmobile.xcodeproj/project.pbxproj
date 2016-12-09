@@ -1031,13 +1031,10 @@
 				84163BEB1DD1E73700DD9163 /* DeptInfoModel.m */,
 				F74902A91DC868AC005B193D /* DutyModel.h */,
 				F74902AA1DC868AC005B193D /* DutyModel.m */,
-<<<<<<< HEAD
 				F7F057151DF9730C006BCD67 /* SpecialModel.h */,
 				F7F057161DF9730C006BCD67 /* SpecialModel.m */,
-=======
 				844CBD2C1DF992D2008DAFAF /* SysMessageModel.h */,
 				844CBD2D1DF992D2008DAFAF /* SysMessageModel.m */,
->>>>>>> 8625fb9682ffdfc6fbe88624de85b8903e2d514e
 			);
 			path = model;
 			sourceTree = "<group>";
