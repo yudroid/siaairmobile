@@ -37,6 +37,8 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
     SRWebSocket *srWebSocket;
     UITextField *textfield;
     NSArray<NSDictionary *> *array;
+    NSMutableArray<NSDictionary *> *filterArray;
+    UITextField *searchTextField;
 }
 
 
@@ -75,6 +77,8 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 //    [button addTarget:self action:@selector(sendMessage:) forControlEvents:UIControlEventTouchUpInside];
 //    [self.view addSubview:button];
     
+    
+    filterArray = [NSMutableArray array];
     //TabBer自定义
     self.tabBarView = [[TabBarView alloc] initTabBarWithModel:TabBarBgModelNormal
                                                  selectedType:TabBarSelectedTypeMessage
@@ -149,7 +153,7 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
     searchImageView.image = [UIImage imageNamed:@"SearchIconBig"];
     [contentView addSubview:searchImageView];
 
-    UITextField *searchTextField = [[UITextField alloc]initWithFrame:CGRectMake(27,
+    searchTextField = [[UITextField alloc]initWithFrame:CGRectMake(27,
                                                                                 0,
                                                                                 kScreenWidth-50,
                                                                                 32)];
@@ -157,6 +161,8 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
                                            size:14];
     searchTextField.textColor = [CommonFunction colorFromHex:0XFFbbbbbb];
     searchTextField.placeholder = @"会话名称";
+    [searchTextField addTarget:self action:@selector(filterDialogList:) forControlEvents:UIControlEventEditingChanged];
+    
     [contentView addSubview:searchTextField];
     if([DeviceInfoUtil isPlus]){
         contentView.frame = CGRectMake(px_3(20),
@@ -261,6 +267,26 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
     [self.view addSubview:_searchView];
 }
 
+-(void)filterDialogList:(id)sender
+{
+    if(array==nil || [array count]<5)
+        return;
+    NSString *search = searchTextField.text;
+    [filterArray removeAllObjects];
+    if([search isEqualToString:@""]){
+        [filterArray addObjectsFromArray:array];
+        [_tableView reloadData];
+        return;
+    }
+    
+    for(NSDictionary *dic in array){
+        NSString *name = [dic objectForKey:@"name"];
+        if([name containsString:search]){
+            [filterArray addObject:dic];
+        }
+    }
+    [_tableView reloadData];
+}
 
 #pragma mark - EVENT
 
@@ -283,7 +309,7 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [array count]+2;
+    return [filterArray count]+2;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -305,7 +331,7 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
         return cell;
     }else{
         MessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)MESSAGE_TABLECELL_IDENTIFIER];
-        NSDictionary *dic = [array objectAtIndex:indexPath.row-2];
+        NSDictionary *dic = [filterArray objectAtIndex:indexPath.row-2];
         if(dic == nil){
             return nil;
         }
@@ -326,7 +352,7 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
     }else if(indexPath.row ==1){
         [self showFlightEventView];
     }else{
-        NSDictionary *dic = [array objectAtIndex:indexPath.row-2];
+        NSDictionary *dic = [filterArray objectAtIndex:indexPath.row-2];
         long chatId = [[dic objectForKey:@"chatid"]  longLongValue];
         long typeId = [[dic objectForKey:@"type"] longLongValue];
         long localChatId = [[dic objectForKey:@"id"] longLongValue];
@@ -375,6 +401,8 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 {
     array = [PersistenceUtils findChatList:start
                                        num:num];
+    [filterArray removeAllObjects];
+    [filterArray addObjectsFromArray:array];
     [_tableView reloadData];
 }
 

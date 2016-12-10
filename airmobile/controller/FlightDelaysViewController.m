@@ -11,6 +11,7 @@
 #import "FlightDelaysDetailViewController.h"
 #import "PersistenceUtils+Business.h"
 #import <MJRefresh.h>
+#import "SysMessageModel.h"
 
 static const NSString *FLGHTDELAYS_TABLECELL_IDENTIFIER = @"FLGHTDELAYS_TABLECELL_IDENTIFIER";
 
@@ -37,7 +38,7 @@ static const NSString *FLGHTDELAYS_TABLECELL_IDENTIFIER = @"FLGHTDELAYS_TABLECEL
     startIndex = 0;
     pagesize = 20;
     data = [NSMutableArray array];
-    [self refreshData];
+    
     // Do any additional setup after loading the view from its nib.
     //添加下拉刷新
     _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self
@@ -45,6 +46,8 @@ static const NSString *FLGHTDELAYS_TABLECELL_IDENTIFIER = @"FLGHTDELAYS_TABLECEL
     //添加上拉加载
     _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self
                                                                 refreshingAction:@selector(loadMoreNetwork)];
+    
+    [self refreshData];
 }
 
 -(void)initTitle
@@ -83,21 +86,39 @@ static const NSString *FLGHTDELAYS_TABLECELL_IDENTIFIER = @"FLGHTDELAYS_TABLECEL
                                              owner:nil
                                            options:nil][0];
     }
+    
+    SysMessageModel *model = [[SysMessageModel alloc] initWithDictionary:[data objectAtIndex:indexPath.row]];
+    
+    cell.authorLabel.text = [NSString stringWithFormat:@"%@", model.createtime];
+    cell.titleLabel.text = model.title;
+    cell.read = (![model.readtime isEqualToString:@"<null>"]);
     return  cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    FlightDelaysDetailViewController *FlightDelaysDetailVC = [[FlightDelaysDetailViewController alloc]initWithNibName:@"FlightDelaysDetailViewController" bundle:nil];
-    [self.navigationController pushViewController:FlightDelaysDetailVC
+    
+    NSDictionary *dic = [data objectAtIndex:indexPath.row];
+    SysMessageModel *model = [[SysMessageModel alloc] initWithDictionary:dic];
+    [PersistenceUtils updateSysMessageRead:model.msgid];
+    
+    FlightDelaysDetailViewController *flightDelaysDetailVC = [[FlightDelaysDetailViewController alloc]initWithNibName:@"FlightDelaysDetailViewController" bundle:nil];
+    flightDelaysDetailVC.titleText = model.title;
+    flightDelaysDetailVC.contentText = model.content;
+    [self.navigationController pushViewController:flightDelaysDetailVC
                                          animated:YES];
-
+    [dic setValue:[CommonFunction nowDate] forKey:@"readtime"];
+    [data setObject:dic atIndexedSubscript:indexPath.row];
+    [_tableView reloadData];
 }
 
 -(void)refreshData
 {
-    [PersistenceUtils findMsgListByChatId:0 start:0];
+    [data removeAllObjects];
+    startIndex = 0;
+    [data addObjectsFromArray:[PersistenceUtils findSysMsgListByType:_type start:startIndex num:pagesize]];
+    [_tableView reloadData];
 }
 
 -(void)updateNetwork

@@ -253,6 +253,15 @@
     [self updateUnReadCountAndTime:1 chatid:localid];
 }
 
+
+/**
+ 获取本地的聊天记录ID，如果没有新建一条聊天记录id
+
+ @param name <#name description#>
+ @param type <#type description#>
+ @param chatId <#chatId description#>
+ @return <#return value description#>
+ */
 +(NSDictionary *)getLocalChatIdByName:(NSString *)name type:(int)type chatId:(int)chatId
 {
     // 查询判断语句
@@ -284,18 +293,85 @@
     return dic;
 }
 
+/**
+ 首次登陆的时候同步用户消息
+ 
+ @param messages <#messages description#>
+ */
++(void)syncUserMessages:(NSArray<NSDictionary *> *)messages
+{
+    
+}
+
+/**
+ 首次登陆的时候工作组消息
+ 
+ @param messages <#messages description#>
+ */
++(void)syncGroupMessages:(NSArray<NSDictionary *> *)messages
+{
+    
+}
+
+/**
+ 首次登陆的时候同步系统消息
+ 
+ @param messages <#messages description#>
+ */
++(void)syncSysMessages:(NSArray<NSDictionary *> *)messages
+{
+    if(messages ==nil || [messages count]==0){
+        return;
+    }
+    NSString *ids = nil;
+    NSMutableArray *array = [NSMutableArray array];
+    for(NSDictionary *message in messages){
+        if(ids==nil){
+            ids = [message objectForKey:@"id"];
+        }else{
+            ids = [NSString stringWithFormat:@"%@,%@",ids,[message objectForKey:@"id"]];
+        }
+    }
+    
+    NSString *querysql = @"select msgid from SysMessage t where msgid in (%@)";
+    NSArray *exists = [self executeQuery:[NSString stringWithFormat:querysql, ids]];
+    ids = nil;
+    if(exists!=nil && [exists count]>0){
+        for(NSDictionary * msg in exists){
+            if(ids==nil){
+                ids = [msg objectForKey:@"msgid"];
+            }else{
+                ids = [NSString stringWithFormat:@"%@,%@",ids,[msg objectForKey:@"msgid"]];
+            }
+        }
+    }
+    
+    for(NSDictionary *message in messages){
+        if(ids!=nil && [ids containsString:[NSString stringWithFormat:@"%@",[message objectForKey:@"id"]]])
+            continue;
+        [array addObject:[self getInsertSysMessageSql:message]];
+    }
+    // 批量插入
+    [self executeInsertBatch:array];
+}
+
 +(void)insertNewSysMessage:(NSDictionary *)message
 {
+    [self executeNoQuery:[self getInsertSysMessageSql:message]];
+}
+
++(NSString *)getInsertSysMessageSql:(NSDictionary *)message
+{
     int msgid = [[message objectForKey:@"id"] intValue];
-    int toDept = [[message objectForKey:@"todept"] intValue];
+    int toDept = [[message objectForKey:@"toDept"] isEqual:[NSNull null]]?0:[[message objectForKey:@"toDept"] intValue];
     NSString *type = [message objectForKey:@"type"];
     NSString *content = [message objectForKey:@"content"];
     NSString *title = [message objectForKey:@"title"];
-    NSString *createTime = [message objectForKey:@"createtime"];
+    NSString *createTime = [message objectForKey:@"createTime"];
     NSString *status = [message objectForKey:@"status"];
-    NSString *todeptIds = [message objectForKey:@"todeptids"];
-    NSString *insertSql = @"INSERT INTO ChatMessage VALUES (%i, '%@', '%@', '%@', '%@', '%@', '%@', %i, null);";
-    [self executeNoQuery:[NSString stringWithFormat:insertSql,msgid,type,content,title,createTime,status,todeptIds,toDept]];
+    NSString *todeptIds = [message objectForKey:@"toDeptIds"];
+    NSString *insertSql = @"INSERT INTO SysMessage VALUES (%i, '%@', '%@', '%@', '%@', '%@', '%@', %i, null);";
+    return [NSString stringWithFormat:insertSql,msgid,type,content,title,createTime,status,todeptIds,toDept];
 }
 
 +(NSArray<NSDictionary *> *)findSysMsgListByType:(NSString *)type start:(long)start
@@ -314,12 +390,23 @@
 {
     NSString *sql = nil;
     if([type isEqualToString:@"FLIGHT"]){
-        sql = [NSString stringWithFormat:@"select * from (select * from SysMessage t where t.type='%@' order by t.createtime desc limit %i offset %i) order by time",type,num,start];
+        sql = [NSString stringWithFormat:@"select * from SysMessage t where t.type='%@' order by t.createtime desc limit %i offset %i",type,num,start];
     }else{
-        sql = [NSString stringWithFormat:@"select * from (select * from SysMessage t where t.type!='%@' order by t.createtime desc limit %i offset %i) order by time",type,num,start];
+        sql = [NSString stringWithFormat:@"select * from SysMessage t where t.type!='%@' order by t.createtime desc limit %i offset %i",type,num,start];
     }
     NSArray *result = [self executeQuery:sql];
     return result;
+}
+
+
+/**
+ 更新消息状态
+
+ @param msgId <#msgId description#>
+ */
++(void)updateSysMessageRead:(long)msgId
+{
+    [self executeNoQuery:[NSString stringWithFormat:@"update SysMessage set readtime=CURRENT_TIMESTAMP where msgid=%li",msgId]];
 }
 
 //+(void) updateAllMessage:(NSArray*) array{

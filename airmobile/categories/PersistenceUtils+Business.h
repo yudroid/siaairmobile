@@ -110,11 +110,34 @@
 
 
 /**
+ 首次登陆的时候同步用户消息
+
+ @param messages <#messages description#>
+ */
++(void)syncUserMessages:(NSArray<NSDictionary *> *)messages;
+
+/**
+ 首次登陆的时候工作组消息
+ 
+ @param messages <#messages description#>
+ */
++(void)syncGroupMessages:(NSArray<NSDictionary *> *)messages;
+
+/**
  插入系统消息
 
  @param message <#message description#>
  */
 +(void)insertNewSysMessage:(NSDictionary *)message;
+
+/**
+ 首次登陆的时候同步系统消息
+ 
+ @param messages <#messages description#>
+ */
++(void)syncSysMessages:(NSArray<NSDictionary *> *)messages;
+
+
 
 
 /**
@@ -138,5 +161,11 @@
 +(NSArray<NSDictionary *> *)findSysMsgListByType:(NSString *)type start:(int)start num:(int)num;
 
 
+/**
+ 更新消息状态
+ 
+ @param msgId <#msgId description#>
+ */
++(void)updateSysMessageRead:(long)msgId;
 
 @end
