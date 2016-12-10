@@ -15,6 +15,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *starReportButton;
 @property (weak, nonatomic) IBOutlet UIButton *delayReportButton;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *inOutImageView;
+@property (weak, nonatomic) IBOutlet UILabel *inOutLabel;
 
 @end
 
@@ -38,6 +41,25 @@
 {
     _specialModel = specialModel;
     _nameLabel.text = specialModel.safeName;
+    if (specialModel.isAD) {
+        _inOutLabel.text = @"出";
+        _inOutImageView.image = [UIImage imageNamed:@"icon_keysafe_out"];
+    }else{
+        _inOutLabel.text = @"进";
+        _inOutImageView.image = [UIImage imageNamed:@"icon_keysafe_in"];
+
+    }
+
+    if(specialModel.tag == 0 || !specialModel.normalTime || [specialModel.normalTime isEqualToString:@""]){
+        _statusLabel.text = @"--未开始--";
+        _statusLabel.textColor = [CommonFunction colorFromHex:0xffff7c36];
+    }else if (specialModel.tag == 1){
+        _statusLabel.text = @"--正常--";
+        _statusLabel.textColor = [CommonFunction colorFromHex:0xff2dce70];
+    }else{
+        _statusLabel.text = @"--异常--";
+        _statusLabel.textColor = [CommonFunction colorFromHex:0xfff46970];
+    }
 }
 
 - (IBAction)normalButtonClick:(UIButton *)sender {

@@ -10,6 +10,7 @@
 
 @protocol ModifyPwdViewDelegate <NSObject>
 
+@optional
 -(void)modifyPwdView:(UIView *)modifyPwdView CancelButtonClick:(UIButton *)sender;
 -(void)modifyPwdView:(UIView *)modifyPwdView sureButtonClick:(UIButton *)sender;
 

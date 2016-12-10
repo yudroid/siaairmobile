@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "RootViewController.h"
+#import "BasisInfoDictionaryModel.h"
+@class BasisInfoEventModel;
 
 typedef NS_ENUM(NSUInteger, OptionsType) {
     OptionsTypeEvent,//事件
@@ -17,7 +19,7 @@ typedef NS_ENUM(NSUInteger, OptionsType) {
 
 @protocol OptionsViewControllerDelegate <NSObject>
 
--(void) optionsViewControllerFinshedOptionType:(OptionsType)optionType Value:(NSString *)value;
+-(void) optionsViewControllerFinshedOptionType:(OptionsType)optionType Value:(BasisInfoDictionaryModel *)value;
 
 @end
 
@@ -28,5 +30,9 @@ typedef NS_ENUM(NSUInteger, OptionsType) {
 @property (nonatomic ,weak) id<OptionsViewControllerDelegate> delegate;
 
 -(instancetype) initWithOptionType:(OptionsType)optionsType;
+
+@property (nonatomic, assign) int event_type;
+@property (nonatomic, strong) NSString *dispatchType;
+@property (nonatomic, assign) int event_level;
 
 @end

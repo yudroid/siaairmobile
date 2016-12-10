@@ -325,10 +325,15 @@
             [progressRound animationWithStrokeEnd:normalProportion withProgressType:ProgreesTypeNormal];
         }
 
-        totalNumLabel.text          = @(_seatStatusModel.seatNum).stringValue;
+        totalNumLabel.text      = @(_seatStatusModel.seatNum).stringValue;
         disable.text            = @(_seatStatusModel.seatUsed).stringValue;
+        CGSize maxSize          = CGSizeMake(100, 100);
+        CGSize exportSize       = [disable sizeThatFits:maxSize];
+        disable.frame           = CGRectMake(kScreenWidth/2-30-exportSize.width, viewY(disable), exportSize.width, 30);
         percentLabel.text       = [NSString stringWithFormat:@"%ld%%",(long)@(_seatStatusModel.seatUsed/@(_seatStatusModel.seatNum).floatValue*100).integerValue];
         longInSeat.text             = @(_seatStatusModel.seatFree).stringValue;
+        exportSize                  = [longInSeat sizeThatFits:maxSize];
+        longInSeat.frame            = CGRectMake(kScreenWidth/2+30, viewY(longInSeat), exportSize.width, 30);
 
         NSMutableAttributedString *arrAttributeString = [[NSMutableAttributedString alloc ] initWithString:[NSString stringWithFormat:@"%@机位占用",@(_seatStatusModel.nextIn).stringValue]];
         [arrAttributeString addAttribute:NSFontAttributeName

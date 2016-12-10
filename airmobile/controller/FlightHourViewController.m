@@ -24,6 +24,7 @@
     PNLineChart *lineChart;
     UITableView *flightHourTableView;
     UILabel     *ratioNum;
+    UILabel     *maxLabel ;
 
 }
 
@@ -31,7 +32,9 @@
 {
     self = [super init];
     if (self) {
+
         self.flightArray = flighthours;
+
     }
     return self;
 }
@@ -114,11 +117,11 @@
     upImageView.image = [UIImage imageNamed:@"hiddenLine"];
     [topBgView addSubview:upImageView];
     
-    UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(px2(33),
+    maxLabel = [CommonFunction addLabelFrame:CGRectMake(px2(33),
                                                                  viewBotton(upImageView)+px_px_2_3(10, 15),
                                                                  viewWidth(topBgView)-2*px2(33),
                                                                  12)
-                                                 text:@"120"
+                                                 text:@([self maxValue]*1.2).stringValue
                                                  font:px_px_2_3(22, 36)
                                         textAlignment:NSTextAlignmentRight
                                          colorFromHex:0x75FFFFFF];
@@ -142,7 +145,7 @@
     
     //Use yFixedValueMax and yFixedValueMin to Fix the Max and Min Y Value
     //Only if you needed
-    lineChart.yFixedValueMax = 120;
+    lineChart.yFixedValueMax = [self maxValue]*1.2;
     lineChart.yFixedValueMin = 0;
     
     
@@ -198,14 +201,14 @@
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(loadData:)
-                                                 name:@"RealArrHours"
+                                                 name:@"PlanArrHours"
                                                object:nil];
 }
 
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:@"RealArrHours"
+                                                    name:@"PlanArrHours"
                                                   object:nil];
 }
 
@@ -258,7 +261,10 @@
 {
     NSMutableArray *arr = [[NSMutableArray alloc] init];
     for(FlightHourModel *model in _flightArray){
-        [arr addObject:@((int)(model.count))];
+        if (model.hour) {
+            [arr addObject:@(model.planDepCount+model.planArrCount)];
+        }
+
     }
     return arr;
 }
@@ -266,9 +272,21 @@
 {
     int s = 0;
     for (FlightHourModel *model in _flightArray) {
-        s+=model.count;
+        s+=(model.planArrCount+model.planDepCount);
     }
     return s;
+}
+
+-(int)maxValue
+{
+    int max = 0;
+    for (FlightHourModel *model in _flightArray) {
+        if (max<model.planDepCount+model.planArrCount) {
+            max =(int)(model.planDepCount+model.planArrCount);
+        }
+    }
+    return max;
+
 }
 
 -(void)loadData:(NSNotification *)notification
@@ -280,18 +298,22 @@
 
 
         // Line Chart #2
-        NSArray * dataArray = [self getFlightHourYLabels];
+
         PNLineChartData *data = [PNLineChartData new];
+        lineChart.yFixedValueMax = [self maxValue]*1.2;
         data.dataTitle = @"航班";
         data.color = [UIColor whiteColor];
         data.alpha = 0.5f;
-        data.itemCount = dataArray.count;
         data.inflexionPointStyle = PNLineChartPointStyleCircle;
+
+        NSArray * dataArray = [self getFlightHourYLabels];
+        data.itemCount = dataArray.count;
         data.getData = ^(NSUInteger index) {
             CGFloat yValue = [dataArray[index] floatValue];
             return [PNLineChartDataItem dataItemWithY:yValue];
         };
 
+        maxLabel.text = @([self maxValue]).stringValue;
         lineChart.chartData = @[data];
         [lineChart strokeChart];
 

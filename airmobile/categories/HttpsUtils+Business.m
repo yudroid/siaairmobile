@@ -927,7 +927,7 @@ NSString * const updatePwdUrl               = @"/acs/login/updatePwd";//修改�
  */
 +(void)loadEventsSuccess:(void (^)(id))success failure:(void (^)(id))failure
 {
-    [HttpsUtils get:loadDictDataUrl params:nil success:^(id responseObj) {
+    [HttpsUtils get:loadEventUrl params:nil success:^(id responseObj) {
         if(success){
             success(responseObj);
         }
@@ -943,7 +943,7 @@ NSString * const updatePwdUrl               = @"/acs/login/updatePwd";//修改�
  */
 +(void)loadDictDatasSuccess:(void (^)(id))success failure:(void (^)(id))failure
 {
-    [HttpsUtils get:loadEventUrl params:nil success:^(id responseObj) {
+    [HttpsUtils get:loadDictDataUrl params:nil success:^(id responseObj) {
         if(success){
             success(responseObj);
         }

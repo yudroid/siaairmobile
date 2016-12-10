@@ -5,11 +5,33 @@
       "scale" : "1x"
     },
     {
+      "resizing" : {
+        "mode" : "3-part-horizontal",
+        "center" : {
+          "mode" : "tile",
+          "width" : 52
+        },
+        "cap-insets" : {
+          "right" : 47,
+          "left" : 44
+        }
+      },
       "idiom" : "universal",
       "filename" : "button1.png",
       "scale" : "2x"
     },
     {
+      "resizing" : {
+        "mode" : "3-part-horizontal",
+        "center" : {
+          "mode" : "tile",
+          "width" : 59
+        },
+        "cap-insets" : {
+          "right" : 96,
+          "left" : 54
+        }
+      },
       "idiom" : "universal",
       "filename" : "button1-1.png",
       "scale" : "3x"

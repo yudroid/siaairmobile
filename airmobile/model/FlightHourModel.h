@@ -26,6 +26,8 @@
 
 @property(nonatomic,assign) BOOL     before; // 当前时间之前
 
+@property(nonatomic,assign) float   radio;
+
 #pragma mark - method
 
 -(instancetype) initWithHour:(NSString *)   hour

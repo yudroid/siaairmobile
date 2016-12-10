@@ -89,23 +89,23 @@ singleton_implementation(HomePageService);
         [[NSNotificationCenter defaultCenter] postNotificationName:@"PlanArrHours" object:summaryModel.flightHours];
     } failure:nil];
     
-    // 实际进港航班小时分布 /flt/realArrFltPerHour
-    [HttpsUtils getRealArrHours:nil success:^(id responesObj) {
-        [summaryModel updateFlightHourModel:responesObj flag:2];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"RealArrHours" object:summaryModel.flightHours];
-    } failure:nil];
-    
+//    // 实际进港航班小时分布 /flt/realArrFltPerHour
+//    [HttpsUtils getRealArrHours:nil success:^(id responesObj) {
+//        [summaryModel updateFlightHourModel:responesObj flag:2];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"RealArrHours" object:summaryModel.flightHours];
+//    } failure:nil];
+//    
     // 计划出港航班小时分布 /flt/depFltPerHour
     [HttpsUtils getPlanDepHours:nil success:^(id responesObj) {
-        [summaryModel updateFlightHourModel:responesObj flag:3];
+        [summaryModel updateFlightHourModel:responesObj flag:2];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"PlanDepHours" object:summaryModel.flightHours];
     } failure:nil];
     
-    // 实际出港航班小时分布 /flt/realDepFltPerHour
-    [HttpsUtils getRealDepHours:nil success:^(id responesObj) {
-        [summaryModel updateFlightHourModel:responesObj flag:4];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"RealDepHours" object:summaryModel.flightHours];
-    } failure:nil];
+//    // 实际出港航班小时分布 /flt/realDepFltPerHour
+//    [HttpsUtils getRealDepHours:nil success:^(id responesObj) {
+//        [summaryModel updateFlightHourModel:responesObj flag:4];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"RealDepHours" object:summaryModel.flightHours];
+//    } failure:nil];
 }
 
 -(SummaryModel *)getSummaryModel
@@ -253,33 +253,5 @@ singleton_implementation(HomePageService);
     } failure:nil];
 }
 
--(SeatStatusModel *)getSeatStatusModel
-{
-    seatModel.seatNum = 325;
-    seatModel.seatUsed = 301;
-    seatModel.seatFree = 24;
-    seatModel.nextIn = 150;
-    seatModel.nextOut = 30;
-
-    CraftseatCntModel *craftSeatCntModel = [[CraftseatCntModel alloc]init];
-    craftSeatCntModel.allCount = 900;
-    craftSeatCntModel.currentTakeUp = 800;
-    craftSeatCntModel.unusable = 50;
-    craftSeatCntModel.longTakeUp = 50;
-    craftSeatCntModel.todayFltTakeUp = 500;
-    craftSeatCntModel.idle = 7;
-    craftSeatCntModel.passNight = 10;
-    craftSeatCntModel.takeUpRatio = 8/9.0;
-
-    NSMutableArray *array = [[NSMutableArray alloc]init];
-    [array addObject:[[SeatUsedModel alloc] initWithType:@"B" free:25 used:75]];
-    [array addObject:[[SeatUsedModel alloc] initWithType:@"C" free:35 used:40]];
-    [array addObject:[[SeatUsedModel alloc] initWithType:@"D" free:40 used:35]];
-    [array addObject:[[SeatUsedModel alloc] initWithType:@"E" free:25 used:15]];
-    [array addObject:[[SeatUsedModel alloc] initWithType:@"F" free:25 used:35]];
-    craftSeatCntModel.seatUsed = array;
-    seatModel.usedDetail = craftSeatCntModel;
-    return seatModel;
-}
 
 @end

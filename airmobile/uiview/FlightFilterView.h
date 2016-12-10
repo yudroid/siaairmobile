@@ -17,9 +17,16 @@
 
 @end
 
+@class FlightFilterView;
 
+@protocol FlightFilterViewDelegate <NSObject>
 
+-(void)flightFilterView:(FlightFilterView *)view SureButtonClickArea:(NSString *)area property:(NSString *)property status:(NSString *)status;
+
+@end
 @interface FlightFilterView : UIView
+
+@property (nonatomic, weak) id<FlightFilterViewDelegate> delegate;
 
 
 

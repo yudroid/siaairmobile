@@ -46,37 +46,32 @@
     return _delayTagart;
 }
 
+
+
 -(void)updateFlightHourModel:(NSDictionary *)data flag:(int)flag
 {
     if([self isNull:data])
         return;
     int index = 0;
-    NSDictionary *dic = nil;
+    NSDictionary *planDic = nil;
+    NSDictionary *realDic = nil;
     switch (flag) {
         case 1:
-            dic = [data objectForKey:@"planArrFltH"];
+            planDic = [data objectForKey:@"planArrFltH"];
+            realDic = [data objectForKey:@"realArrFltH"];
             break;
-            
         case 2:
-            dic = [data objectForKey:@"realArrFltH"];
-            break;
-            
-        case 3:
-            dic = [data objectForKey:@"planDepFltH"];
-            break;
-            
-        case 4:
-            dic = [data objectForKey:@"realDepFltH"];
+            planDic = [data objectForKey:@"planDepFltH"];
+            realDic = [data objectForKey:@"realDepFltH"];
             break;
             
         default:
             break;
     }
     
-    if([self isNull:dic])
-        return;
+
     
-    for(NSDictionary *item in dic){
+    for(NSDictionary *item in planDic){
         FlightHourModel *model = nil;
         if([[self getFlightHoursArray] count]<index+1){
             model = [FlightHourModel new];
@@ -89,24 +84,37 @@
             case 1:
                 model.planArrCount  = [[item objectForKey:@"count"] intValue];
                 break;
-                
             case 2:
-                model.arrCount      = [[item objectForKey:@"count"] intValue];
-                break;
-                
-            case 3:
                 model.planDepCount  = [[item objectForKey:@"count"] intValue];
                 break;
-                
-            case 4:
-                model.depCount      = [[item objectForKey:@"count"] intValue];
-                break;
-                
             default:
                 break;
         }
         index ++;
     }
+    index = 0;
+    for(NSDictionary *item in realDic){
+        FlightHourModel *model = nil;
+        if([[self getFlightHoursArray] count]<index+1){
+            model = [FlightHourModel new];
+            [[self getFlightHoursArray] addObject:model];
+        }else{
+            model = [[self getFlightHoursArray] objectAtIndex:index];
+        }
+        model.hour = [item objectForKey:@"hour"];
+        switch (flag) {
+            case 1:
+                model.arrCount  = [[item objectForKey:@"count"] intValue];
+                break;
+            case 2:
+                model.depCount  = [[item objectForKey:@"count"] intValue];
+                break;
+            default:
+                break;
+        }
+        index ++;
+    }
+
 }
 
 -(void)updateTenDayReleased:(NSDictionary *)data

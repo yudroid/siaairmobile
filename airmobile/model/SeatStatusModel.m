@@ -14,8 +14,9 @@
 {
     if([self isNull:data])
         return;
+    NSLog(@"%@",data);
     _seatNum  = [[data objectForKey:@"allCount"]  intValue];// 机位总数
-    _seatUsed = [[data objectForKey:@"longTakeUp"] intValue];// 机位使用数
+    _seatUsed = [[data objectForKey:@"currentTakeUp"] intValue];// 机位使用数
     _seatFree = [[data objectForKey:@"idle"] intValue];// 机位空闲数
     _nextIn = [[data objectForKey:@"willOnehourInFlt"] intValue];// 机位使用数
     _nextOut = [[data objectForKey:@"willOnehourOutFlt"] intValue];// 机位空闲数

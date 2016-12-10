@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class BasisInfoDictionaryModel;
 
 @interface OptionCollectionViewCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (nonatomic ,strong) BasisInfoDictionaryModel *basisInfoDictionaryModel;
 
 @end

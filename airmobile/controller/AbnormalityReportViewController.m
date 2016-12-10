@@ -22,6 +22,8 @@
 #import "FlightService.h"
 #import "ImageViewCollectionViewCell.h"
 #import "HttpsUtils+Business.h"
+#import "BasisInfoDictionaryModel.h"
+#import "BasisInfoEventModel.h"
 
 
 static const NSString *ABNORMALITYREPORT_TABLECELL_IDENTIFIER =@"ABNORMALITYREPORT_TABLECELL_IDENTIFIER";
@@ -42,6 +44,8 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 @property (nonatomic, copy) NSArray *tableViewArray;
 @property (nonatomic ,strong) NSMutableArray *collectionArray;
 @property (nonatomic, strong) AbnormalModel *abnormalModel ;
+@property (nonatomic, strong) BasisInfoDictionaryModel *eventType;
+@property (nonatomic, strong) BasisInfoDictionaryModel *eventLevel;
 @end
 
 @implementation AbnormalityReportViewController
@@ -64,7 +68,7 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
     _tableView.scrollEnabled = NO;
     [_tableView registerNib:[UINib nibWithNibName:@"AbnormalityReportTableViewCell" bundle:nil]
      forCellReuseIdentifier:(NSString *)ABNORMALITYREPORT_TABLECELL_IDENTIFIER];
-    _tableViewArray = @[@"类型",@"事件",@"事件级别"];
+    _tableViewArray = @[@"事件类别",@"事件级别",@"事件"];
 
     _abnormalityHistoryTableView.delegate = self;
     _abnormalityHistoryTableView.dataSource = self;
@@ -229,12 +233,12 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
         AbnormalityReportTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString*)ABNORMALITYREPORT_TABLECELL_IDENTIFIER];
         NSString *name =_tableViewArray[indexPath.row];
         cell.nameLabel.text =name;
-        if ([name isEqualToString:@"类型"]) {
-            cell.valueLabel.text = _abnormalModel.model;
+        if ([name isEqualToString:@"事件类别"]) {
+            cell.valueLabel.text = _eventType.content;
         }else if([name isEqualToString:@"事件"]){
-            cell.valueLabel.text = _abnormalModel.event;
+
         }else if ([name isEqualToString:@"事件级别"]){
-            cell.valueLabel.text = _abnormalModel.level;
+            cell.valueLabel.text = _eventLevel.content;
         }
         return  cell;
     }else
@@ -258,10 +262,13 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
     OptionsViewController *optionsVC ;
 
     NSString *name =_tableViewArray[indexPath.row];
-    if ([name isEqualToString:@"类型"]) {
+    if ([name isEqualToString:@"事件类别"]) {
         optionsVC = [[OptionsViewController alloc]initWithOptionType:OptionsTypeType];
     }else if([name isEqualToString:@"事件"]){
        optionsVC = [[OptionsViewController alloc]initWithOptionType:OptionsTypeEvent];
+        optionsVC.event_type = _eventType.id;
+        optionsVC.event_level = _eventLevel.id;
+        optionsVC.dispatchType = _DispatchType;
     }else if ([name isEqualToString:@"事件级别"]){
         optionsVC = [[OptionsViewController alloc]initWithOptionType:OptionsTypeEventLevel];
     }else{
@@ -326,17 +333,17 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 
 }
 
--(void)optionsViewControllerFinshedOptionType:(OptionsType)optionType Value:(NSString *)value
+-(void)optionsViewControllerFinshedOptionType:(OptionsType)optionType Value:(id)value
 {
     switch (optionType) {
         case OptionsTypeType:
-            _abnormalModel.model =value;
+            _eventType =value;
             break;
         case OptionsTypeEvent:
             _abnormalModel.event = value;
             break;
         case OptionsTypeEventLevel:
-            _abnormalModel.level = value;
+            _eventLevel = value;
             break;
         default:
 

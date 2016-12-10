@@ -16,8 +16,11 @@
 static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TABLECELL_IDENTIFIER";
 
 @interface UserManagementViewController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIAlertViewDelegate,ModifyPwdViewDelegate>
+
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, copy) NSArray *tableviewArray;
+
 @end
 
 @implementation UserManagementViewController
@@ -185,12 +188,28 @@ static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TA
 
 -(void)modifyPwdView:(ModifyPwdView *)_modifyPwdView sureButtonClick:(UIButton *)sender
 {
+    if (_modifyPwdView.originalLabel.text.length == 0 ||
+       _modifyPwdView.newpwdLabel.text.length == 0 ||
+       _modifyPwdView.confirmPwdLabel.text.length == 0) {
+        [self showAnimationTitle:@"请输入完整"];
+        return;
+    }
+    if (![_modifyPwdView.newpwdLabel.text isEqualToString:_modifyPwdView.confirmPwdLabel.text]) {
+        [self showAnimationTitle:@"两个密码不同，请重新输入"];
+        return;
+    }
+
     AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [HttpsUtils updatePwd:appdelegate.userInfoModel.jobNumber
                       pwd:_modifyPwdView.originalLabel.text
                    newpwd:_modifyPwdView.newpwdLabel.text
                   success:^(id response) {
-                      [self showAnimationTitle:@"修改成功"];
+                      if ([[response objectForKey:@"result"] isEqualToString:@"fail"]) {
+                          [self showAnimationTitle:[response objectForKey:@"reason"]];
+                      }else{
+                          [self showAnimationTitle:@"修改成功"];
+                      }
+
                       [_modifyPwdView cancelButtonClick:nil];
 
                   } failure:^(NSError *error) {

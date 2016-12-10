@@ -15,216 +15,17 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="状态" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="53m-cR-E58">
-                    <rect key="frame" x="35" y="199" width="34" height="24"/>
+                    <rect key="frame" x="35" y="187" width="34" height="24"/>
                     <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
                     <color key="textColor" red="0.16470588235294117" green="0.1764705882352941" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="区域" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K9R-Pu-fjL">
-                    <rect key="frame" x="35" y="17" width="34" height="24"/>
+                    <rect key="frame" x="35" y="12" width="34" height="24"/>
                     <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
                     <color key="textColor" red="0.16470588235294117" green="0.1764705882352941" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LOC-BB-Ehr" customClass="FilghtFilterButton">
-                    <rect key="frame" x="109" y="54" width="63" height="26"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="63" id="CUO-qj-5Tu"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="13"/>
-                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="国内" backgroundImage="FlightFilterbuttonNoSelected">
-                        <color key="titleColor" red="0.1647058824" green="0.1764705882" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="国际"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="value" value=""/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="group" value="Area"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="selectButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="xQo-Dl-ITf"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e01-Fm-WP4" customClass="FilghtFilterButton">
-                    <rect key="frame" x="35" y="270" width="63" height="26"/>
-                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="13"/>
-                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="前方起飞" backgroundImage="FlightFilterbuttonNoSelected">
-                        <color key="titleColor" red="0.1647058824" green="0.1764705882" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="前方起飞"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="value" value=""/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="group" value="Status"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="selectButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="GIj-gq-Myf"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q5r-Ta-knm" customClass="FilghtFilterButton">
-                    <rect key="frame" x="35" y="236" width="63" height="26"/>
-                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="13"/>
-                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="起飞" backgroundImage="FlightFilterbuttonNoSelected">
-                        <color key="titleColor" red="0.1647058824" green="0.1764705882" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="起飞"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="value" value=""/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="group" value="Status"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="selectButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="mZf-ID-0gO"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L1k-Vv-QsP" customClass="FilghtFilterButton">
-                    <rect key="frame" x="35" y="54" width="63" height="26"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="63" id="PXR-vX-60Z"/>
-                        <constraint firstAttribute="height" constant="26" id="aiO-h5-DBt"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="13"/>
-                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="国际" backgroundImage="FlightFilterbuttonNoSelected">
-                        <color key="titleColor" red="0.1647058824" green="0.1764705882" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="国内"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="value" value=""/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="group" value="Area"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="selectButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="Txt-0n-61D"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O3n-WN-789" customClass="FilghtFilterButton">
-                    <rect key="frame" x="257" y="270" width="63" height="26"/>
-                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
-                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="到下站" backgroundImage="FlightFilterbuttonNoSelected">
-                        <color key="titleColor" red="0.1647058824" green="0.1764705882" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="到下站"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="value" value=""/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="group" value="Status"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="selectButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="hDF-cU-HEt"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Knd-gV-GsA" customClass="FilghtFilterButton">
-                    <rect key="frame" x="109" y="236" width="63" height="26"/>
-                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="13"/>
-                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="延误" backgroundImage="FlightFilterbuttonNoSelected">
-                        <color key="titleColor" red="0.1647058824" green="0.1764705882" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="延误"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="value" value=""/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="group" value="Status"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="selectButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="Iih-Lx-Hc1"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FCW-HO-9l5" customClass="FilghtFilterButton">
-                    <rect key="frame" x="109" y="270" width="63" height="26"/>
-                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="13"/>
-                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="过站登机" backgroundImage="FlightFilterbuttonNoSelected">
-                        <color key="titleColor" red="0.1647058824" green="0.1764705882" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="过站登机"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="value" value=""/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="group" value="Status"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="selectButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="Qe9-Z4-Htu"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zfk-wa-ZTH" customClass="FilghtFilterButton">
-                    <rect key="frame" x="35" y="145" width="63" height="26"/>
-                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="13"/>
-                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="普通" backgroundImage="FlightFilterbuttonNoSelected">
-                        <color key="titleColor" red="0.1647058824" green="0.1764705882" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="普通"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="value" value=""/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="group" value="property"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="selectButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="MBq-7m-fi4"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NsM-KH-VQl" customClass="FilghtFilterButton">
-                    <rect key="frame" x="183" y="270" width="63" height="26"/>
-                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="13"/>
-                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="催促登机" backgroundImage="FlightFilterbuttonNoSelected">
-                        <color key="titleColor" red="0.1647058824" green="0.1764705882" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="催促登机"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="value" value=""/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="group" value="Status"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="selectButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="bE8-nH-ENj"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l1h-7u-5Vb" customClass="FilghtFilterButton">
-                    <rect key="frame" x="106" y="145" width="63" height="26"/>
-                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="13"/>
-                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="特殊" backgroundImage="FlightFilterbuttonNoSelected">
-                        <color key="titleColor" red="0.1647058824" green="0.1764705882" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="特殊"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="value" value=""/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="group" value="property"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="selectButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="Jd3-36-fBX"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="05v-Bs-Vsh" customClass="FilghtFilterButton">
-                    <rect key="frame" x="257" y="236" width="63" height="26"/>
-                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="13"/>
-                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="值机截止" backgroundImage="FlightFilterbuttonNoSelected">
-                        <color key="titleColor" red="0.1647058824" green="0.1764705882" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="值机截止"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="value" value=""/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="group" value="Status"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="selectButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="HHH-0w-9AT"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vxg-G2-DMt" customClass="FilghtFilterButton">
-                    <rect key="frame" x="183" y="236" width="63" height="26"/>
-                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="13"/>
-                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="正在值机" backgroundImage="FlightFilterbuttonNoSelected">
-                        <color key="titleColor" red="0.1647058824" green="0.1764705882" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="正在值机"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="value" value=""/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="group" value="Status"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="selectButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="qiO-DQ-oCw"/>
-                    </connections>
-                </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xn3-kM-Tui">
                     <rect key="frame" x="0.0" y="401" width="340" height="40"/>
                     <subviews>
@@ -261,14 +62,14 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZhZ-F6-0XX">
-                    <rect key="frame" x="35" y="94" width="270" height="1"/>
+                    <rect key="frame" x="35" y="92" width="270" height="1"/>
                     <color key="backgroundColor" red="0.90980392160000001" green="0.90980392160000001" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="nF4-eO-JhQ"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jah-eT-aCO">
-                    <rect key="frame" x="35" y="185" width="270" height="1"/>
+                    <rect key="frame" x="35" y="173" width="270" height="1"/>
                     <color key="backgroundColor" red="0.90980392156862744" green="0.90980392156862744" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="YlQ-pM-ll6"/>
@@ -276,259 +77,90 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="性质" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t3k-2o-OPh">
-                    <rect key="frame" x="35" y="108" width="34" height="24"/>
+                    <rect key="frame" x="35" y="101" width="34" height="24"/>
                     <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
                     <color key="textColor" red="0.16470588235294117" green="0.1764705882352941" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MJL-RB-14C" customClass="FilghtFilterButton">
-                    <rect key="frame" x="183" y="54" width="63" height="26"/>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Y30-2u-AJn">
+                    <rect key="frame" x="35" y="44" width="281" height="40"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="63" id="YhK-xP-fDr"/>
+                        <constraint firstAttribute="height" constant="40" id="yI7-SS-ys2"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="13"/>
-                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="混合" backgroundImage="FlightFilterbuttonNoSelected">
-                        <color key="titleColor" red="0.1647058824" green="0.1764705882" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="混合"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="value" value=""/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="group" value="Area"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="selectButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="tg4-Xm-7e4"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="goN-cD-a24" customClass="FilghtFilterButton">
-                    <rect key="frame" x="257" y="54" width="63" height="26"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Mbi-Rj-OeT">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="fp5-H2-ERn">
+                    <rect key="frame" x="35" y="219" width="281" height="128"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="63" id="r9R-1m-ZPD"/>
+                        <constraint firstAttribute="height" constant="128" id="3Hd-cr-Zwb"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="13"/>
-                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="地区" backgroundImage="FlightFilterbuttonNoSelected">
-                        <color key="titleColor" red="0.1647058824" green="0.1764705882" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="地区"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="value" value=""/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="group" value="Area"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="selectButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="YLV-oM-TjX"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ana-do-Bi7" customClass="FilghtFilterButton">
-                    <rect key="frame" x="35" y="304" width="62" height="26"/>
-                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="13"/>
-                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="滑回" backgroundImage="FlightFilterbuttonNoSelected">
-                        <color key="titleColor" red="0.1647058824" green="0.1764705882" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="滑回"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="value" value=""/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="group" value="Status"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="selectButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="s0l-fH-O6R"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e46-gs-Ffd" customClass="FilghtFilterButton">
-                    <rect key="frame" x="254" y="304" width="62" height="26"/>
-                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
-                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="备降" backgroundImage="FlightFilterbuttonNoSelected">
-                        <color key="titleColor" red="0.1647058824" green="0.1764705882" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="备降"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="value" value=""/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="group" value="Status"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="selectButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="mKS-3U-hL3"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dD2-pV-qLu" customClass="FilghtFilterButton">
-                    <rect key="frame" x="108" y="304" width="62" height="26"/>
-                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="13"/>
-                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="返航" backgroundImage="FlightFilterbuttonNoSelected">
-                        <color key="titleColor" red="0.1647058824" green="0.1764705882" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="返航"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="value" value=""/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="group" value="Status"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="selectButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="YdI-mt-Ctu"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tl2-v2-3x9" customClass="FilghtFilterButton">
-                    <rect key="frame" x="181" y="304" width="62" height="26"/>
-                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="13"/>
-                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="登机结束" backgroundImage="FlightFilterbuttonNoSelected">
-                        <color key="titleColor" red="0.1647058824" green="0.1764705882" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="登机结束"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="value" value=""/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="group" value="Status"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="selectButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="eeN-LM-6Nd"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W4Y-Ly-bzh" customClass="FilghtFilterButton">
-                    <rect key="frame" x="35" y="338" width="62" height="26"/>
-                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="13"/>
-                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="取消" backgroundImage="FlightFilterbuttonNoSelected">
-                        <color key="titleColor" red="0.1647058824" green="0.1764705882" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="取消"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="value" value=""/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="group" value="Status"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="selectButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="IvG-4b-8E6"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xHY-sc-g7i" customClass="FilghtFilterButton">
-                    <rect key="frame" x="108" y="338" width="62" height="26"/>
-                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="13"/>
-                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="登机" backgroundImage="FlightFilterbuttonNoSelected">
-                        <color key="titleColor" red="0.1647058824" green="0.1764705882" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="登机"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="value" value=""/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="group" value="Status"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="selectButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="Ess-dU-p3j"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fz2-UD-kh1" customClass="FilghtFilterButton">
-                    <rect key="frame" x="181" y="338" width="62" height="26"/>
-                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="13"/>
-                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="到达" backgroundImage="FlightFilterbuttonNoSelected">
-                        <color key="titleColor" red="0.1647058824" green="0.1764705882" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="到达"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="value" value=""/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="group" value="Status"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="selectButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="37f-Bf-oRi"/>
-                    </connections>
-                </button>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bhv-94-GAd">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="24D-PX-cJf">
+                    <rect key="frame" x="35" y="133" width="281" height="32"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="32" id="1J5-Co-cyH"/>
+                    </constraints>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="MYF-VU-Djw">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="Knd-gV-GsA" firstAttribute="height" secondItem="Q5r-Ta-knm" secondAttribute="height" id="0Nt-je-DgA"/>
-                <constraint firstItem="Q5r-Ta-knm" firstAttribute="top" secondItem="53m-cR-E58" secondAttribute="bottom" constant="13" id="1dh-kT-80T"/>
-                <constraint firstItem="NsM-KH-VQl" firstAttribute="width" secondItem="Q5r-Ta-knm" secondAttribute="width" id="1yv-0S-HH3"/>
-                <constraint firstItem="l1h-7u-5Vb" firstAttribute="leading" secondItem="Zfk-wa-ZTH" secondAttribute="trailing" constant="8" id="214-HI-RxJ"/>
-                <constraint firstItem="xHY-sc-g7i" firstAttribute="top" secondItem="W4Y-Ly-bzh" secondAttribute="top" id="2d5-fp-iBv"/>
-                <constraint firstItem="05v-Bs-Vsh" firstAttribute="height" secondItem="Q5r-Ta-knm" secondAttribute="height" id="3BP-g6-iVb"/>
                 <constraint firstAttribute="trailing" secondItem="Jah-eT-aCO" secondAttribute="trailing" constant="35" id="3lj-S8-s7W"/>
-                <constraint firstItem="Vxg-G2-DMt" firstAttribute="width" secondItem="Q5r-Ta-knm" secondAttribute="width" id="4S9-wx-2a5"/>
-                <constraint firstItem="L1k-Vv-QsP" firstAttribute="top" secondItem="K9R-Pu-fjL" secondAttribute="bottom" constant="13" id="5Rh-sD-7Pv"/>
-                <constraint firstItem="W4Y-Ly-bzh" firstAttribute="top" secondItem="Ana-do-Bi7" secondAttribute="bottom" constant="8" id="5fd-O7-DLd"/>
-                <constraint firstItem="FCW-HO-9l5" firstAttribute="width" secondItem="Q5r-Ta-knm" secondAttribute="width" id="7EI-Wg-ab0"/>
-                <constraint firstItem="dD2-pV-qLu" firstAttribute="top" secondItem="Ana-do-Bi7" secondAttribute="top" id="8fg-DY-zv8"/>
-                <constraint firstItem="NsM-KH-VQl" firstAttribute="top" secondItem="e01-Fm-WP4" secondAttribute="top" id="9TL-nD-x5o"/>
-                <constraint firstItem="e46-gs-Ffd" firstAttribute="top" secondItem="Ana-do-Bi7" secondAttribute="top" id="9cd-IU-qjF"/>
-                <constraint firstItem="NsM-KH-VQl" firstAttribute="leading" secondItem="FCW-HO-9l5" secondAttribute="trailing" constant="11" id="Apd-GF-iuX"/>
+                <constraint firstAttribute="trailing" secondItem="fp5-H2-ERn" secondAttribute="trailing" constant="24" id="3uW-Yk-L62"/>
+                <constraint firstItem="Y30-2u-AJn" firstAttribute="leading" secondItem="K9R-Pu-fjL" secondAttribute="leading" id="8tm-Sp-N6f"/>
                 <constraint firstAttribute="bottom" secondItem="xn3-kM-Tui" secondAttribute="bottom" id="B45-i5-uLp"/>
-                <constraint firstItem="FCW-HO-9l5" firstAttribute="leading" secondItem="e01-Fm-WP4" secondAttribute="trailing" constant="11" id="BIS-z0-l3M"/>
-                <constraint firstItem="Zfk-wa-ZTH" firstAttribute="top" secondItem="t3k-2o-OPh" secondAttribute="bottom" constant="13" id="BW9-Ib-EwR"/>
-                <constraint firstItem="MJL-RB-14C" firstAttribute="bottom" secondItem="LOC-BB-Ehr" secondAttribute="bottom" id="Ddy-tw-tzI"/>
-                <constraint firstItem="l1h-7u-5Vb" firstAttribute="width" secondItem="Zfk-wa-ZTH" secondAttribute="width" id="Dk1-bm-fkV"/>
+                <constraint firstItem="Jah-eT-aCO" firstAttribute="top" secondItem="24D-PX-cJf" secondAttribute="bottom" constant="8" id="BV6-FX-qkf"/>
                 <constraint firstItem="53m-cR-E58" firstAttribute="leading" secondItem="K9R-Pu-fjL" secondAttribute="leading" id="Dol-jh-Hea"/>
-                <constraint firstItem="NsM-KH-VQl" firstAttribute="height" secondItem="Q5r-Ta-knm" secondAttribute="height" id="Egb-BS-DBi"/>
-                <constraint firstItem="e01-Fm-WP4" firstAttribute="leading" secondItem="L1k-Vv-QsP" secondAttribute="leading" id="G8d-FR-KTK"/>
-                <constraint firstItem="O3n-WN-789" firstAttribute="top" secondItem="FCW-HO-9l5" secondAttribute="top" id="GEE-fZ-dy0"/>
-                <constraint firstItem="e01-Fm-WP4" firstAttribute="height" secondItem="L1k-Vv-QsP" secondAttribute="height" id="Gca-R9-oST"/>
-                <constraint firstItem="Jah-eT-aCO" firstAttribute="top" secondItem="l1h-7u-5Vb" secondAttribute="bottom" constant="14" id="Gnt-59-cG0"/>
-                <constraint firstItem="goN-cD-a24" firstAttribute="bottom" secondItem="LOC-BB-Ehr" secondAttribute="bottom" id="ISo-I2-wj7"/>
-                <constraint firstItem="LOC-BB-Ehr" firstAttribute="leading" secondItem="L1k-Vv-QsP" secondAttribute="trailing" constant="11" id="J6O-Kb-ChU"/>
-                <constraint firstItem="fz2-UD-kh1" firstAttribute="leading" secondItem="xHY-sc-g7i" secondAttribute="trailing" constant="11" id="LgL-XZ-pXk"/>
+                <constraint firstItem="fp5-H2-ERn" firstAttribute="top" secondItem="53m-cR-E58" secondAttribute="bottom" constant="8" id="J90-IW-lmd"/>
                 <constraint firstItem="53m-cR-E58" firstAttribute="top" secondItem="Jah-eT-aCO" secondAttribute="bottom" constant="13" id="Lzb-Kb-NLl"/>
-                <constraint firstItem="LOC-BB-Ehr" firstAttribute="top" secondItem="L1k-Vv-QsP" secondAttribute="top" id="NaS-fB-Eay"/>
-                <constraint firstItem="FCW-HO-9l5" firstAttribute="top" secondItem="e01-Fm-WP4" secondAttribute="top" id="O2u-Iq-tMi"/>
+                <constraint firstItem="24D-PX-cJf" firstAttribute="leading" secondItem="t3k-2o-OPh" secondAttribute="leading" id="MNb-Uy-pRZ"/>
                 <constraint firstAttribute="trailing" secondItem="xn3-kM-Tui" secondAttribute="trailing" id="O4b-U8-jOK"/>
-                <constraint firstItem="xHY-sc-g7i" firstAttribute="leading" secondItem="W4Y-Ly-bzh" secondAttribute="trailing" constant="11" id="OYa-Vc-WZV"/>
                 <constraint firstItem="K9R-Pu-fjL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="35" id="OnF-A1-Iwx"/>
-                <constraint firstItem="l1h-7u-5Vb" firstAttribute="height" secondItem="Zfk-wa-ZTH" secondAttribute="height" id="Oo4-6H-gSA"/>
-                <constraint firstItem="Zfk-wa-ZTH" firstAttribute="height" secondItem="L1k-Vv-QsP" secondAttribute="height" id="Pd0-Ge-Lbo"/>
-                <constraint firstItem="O3n-WN-789" firstAttribute="top" secondItem="e01-Fm-WP4" secondAttribute="top" id="Pet-SK-o3m"/>
-                <constraint firstItem="goN-cD-a24" firstAttribute="top" secondItem="LOC-BB-Ehr" secondAttribute="top" id="Q0l-hw-eBw"/>
-                <constraint firstItem="ZhZ-F6-0XX" firstAttribute="top" secondItem="L1k-Vv-QsP" secondAttribute="bottom" constant="14" id="QKM-oA-DEa"/>
-                <constraint firstItem="Q5r-Ta-knm" firstAttribute="height" secondItem="L1k-Vv-QsP" secondAttribute="height" id="R0q-3O-7gV"/>
-                <constraint firstItem="O3n-WN-789" firstAttribute="width" secondItem="Q5r-Ta-knm" secondAttribute="width" id="R2E-nb-E7d"/>
-                <constraint firstItem="Zfk-wa-ZTH" firstAttribute="leading" secondItem="L1k-Vv-QsP" secondAttribute="leading" id="RKY-Vc-xUc"/>
-                <constraint firstItem="05v-Bs-Vsh" firstAttribute="leading" secondItem="Vxg-G2-DMt" secondAttribute="trailing" constant="11" id="Rve-du-QQr"/>
-                <constraint firstItem="Q5r-Ta-knm" firstAttribute="width" secondItem="L1k-Vv-QsP" secondAttribute="width" id="TLY-RE-KXC"/>
-                <constraint firstItem="Ana-do-Bi7" firstAttribute="top" secondItem="e01-Fm-WP4" secondAttribute="bottom" constant="8" id="U15-GY-Srt"/>
+                <constraint firstItem="Y30-2u-AJn" firstAttribute="top" secondItem="K9R-Pu-fjL" secondAttribute="bottom" constant="8" id="S3v-8z-Ph8"/>
                 <constraint firstItem="ZhZ-F6-0XX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="35" id="UJ4-6E-SIg"/>
-                <constraint firstItem="L1k-Vv-QsP" firstAttribute="leading" secondItem="K9R-Pu-fjL" secondAttribute="leading" id="UYq-iF-stZ"/>
-                <constraint firstItem="Knd-gV-GsA" firstAttribute="top" secondItem="Q5r-Ta-knm" secondAttribute="top" id="UmQ-4p-dtI"/>
-                <constraint firstItem="MJL-RB-14C" firstAttribute="top" secondItem="LOC-BB-Ehr" secondAttribute="top" id="XJN-hf-MTv"/>
-                <constraint firstItem="Knd-gV-GsA" firstAttribute="width" secondItem="Q5r-Ta-knm" secondAttribute="width" id="Y1U-N8-BJv"/>
-                <constraint firstItem="Ana-do-Bi7" firstAttribute="leading" secondItem="e01-Fm-WP4" secondAttribute="leading" id="YaW-NE-t2O"/>
-                <constraint firstItem="LOC-BB-Ehr" firstAttribute="bottom" secondItem="L1k-Vv-QsP" secondAttribute="bottom" id="aje-Mt-73h"/>
-                <constraint firstItem="Tl2-v2-3x9" firstAttribute="top" secondItem="dD2-pV-qLu" secondAttribute="top" id="arh-3d-r0K"/>
-                <constraint firstItem="W4Y-Ly-bzh" firstAttribute="leading" secondItem="Ana-do-Bi7" secondAttribute="leading" id="b41-MN-gQs"/>
-                <constraint firstItem="Vxg-G2-DMt" firstAttribute="leading" secondItem="Knd-gV-GsA" secondAttribute="trailing" constant="11" id="cP9-lU-uhZ"/>
-                <constraint firstItem="Q5r-Ta-knm" firstAttribute="leading" secondItem="L1k-Vv-QsP" secondAttribute="leading" id="cdQ-uT-aip"/>
-                <constraint firstItem="Knd-gV-GsA" firstAttribute="leading" secondItem="Q5r-Ta-knm" secondAttribute="trailing" constant="11" id="dE5-wT-NmC"/>
-                <constraint firstItem="t3k-2o-OPh" firstAttribute="top" secondItem="ZhZ-F6-0XX" secondAttribute="bottom" constant="13" id="dfE-Aa-eQr"/>
-                <constraint firstItem="fz2-UD-kh1" firstAttribute="top" secondItem="xHY-sc-g7i" secondAttribute="top" id="fbr-69-eSs"/>
-                <constraint firstItem="NsM-KH-VQl" firstAttribute="top" secondItem="FCW-HO-9l5" secondAttribute="top" id="gIa-17-y5X"/>
+                <constraint firstAttribute="trailing" secondItem="24D-PX-cJf" secondAttribute="trailing" constant="24" id="ZOX-gR-vNi"/>
+                <constraint firstAttribute="trailing" secondItem="Y30-2u-AJn" secondAttribute="trailing" constant="24" id="b8G-sj-GQI"/>
+                <constraint firstItem="ZhZ-F6-0XX" firstAttribute="top" secondItem="Y30-2u-AJn" secondAttribute="bottom" constant="8" id="bJ3-Pe-QKX"/>
+                <constraint firstItem="t3k-2o-OPh" firstAttribute="top" secondItem="ZhZ-F6-0XX" secondAttribute="bottom" constant="8" id="dfE-Aa-eQr"/>
                 <constraint firstItem="Jah-eT-aCO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="35" id="h3Y-Ke-a79"/>
-                <constraint firstItem="05v-Bs-Vsh" firstAttribute="width" secondItem="Q5r-Ta-knm" secondAttribute="width" id="hKT-rc-dsb"/>
-                <constraint firstItem="goN-cD-a24" firstAttribute="leading" secondItem="MJL-RB-14C" secondAttribute="trailing" constant="11" id="ljS-YF-fnH"/>
-                <constraint firstItem="O3n-WN-789" firstAttribute="height" secondItem="Q5r-Ta-knm" secondAttribute="height" id="mQ3-Oz-siT"/>
-                <constraint firstItem="l1h-7u-5Vb" firstAttribute="top" secondItem="Zfk-wa-ZTH" secondAttribute="top" id="nRR-Z9-PrA"/>
-                <constraint firstItem="e01-Fm-WP4" firstAttribute="top" secondItem="Q5r-Ta-knm" secondAttribute="bottom" constant="8" id="nfG-fC-ET2"/>
-                <constraint firstItem="Zfk-wa-ZTH" firstAttribute="width" secondItem="L1k-Vv-QsP" secondAttribute="width" id="noN-He-udm"/>
                 <constraint firstItem="t3k-2o-OPh" firstAttribute="leading" secondItem="K9R-Pu-fjL" secondAttribute="leading" id="pIB-mJ-sKg"/>
-                <constraint firstItem="fz2-UD-kh1" firstAttribute="top" secondItem="W4Y-Ly-bzh" secondAttribute="top" id="qiX-6p-Tmq"/>
-                <constraint firstItem="MJL-RB-14C" firstAttribute="leading" secondItem="LOC-BB-Ehr" secondAttribute="trailing" constant="11" id="qvr-Z4-JUq"/>
                 <constraint firstItem="xn3-kM-Tui" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="r7K-3X-vtV"/>
-                <constraint firstItem="dD2-pV-qLu" firstAttribute="leading" secondItem="Ana-do-Bi7" secondAttribute="trailing" constant="11" id="sK9-64-Adr"/>
-                <constraint firstItem="Tl2-v2-3x9" firstAttribute="top" secondItem="Ana-do-Bi7" secondAttribute="top" id="sjK-8b-rXb"/>
-                <constraint firstItem="FCW-HO-9l5" firstAttribute="height" secondItem="Q5r-Ta-knm" secondAttribute="height" id="t8J-oz-nhD"/>
-                <constraint firstItem="O3n-WN-789" firstAttribute="leading" secondItem="NsM-KH-VQl" secondAttribute="trailing" constant="11" id="tlo-0r-qhE"/>
-                <constraint firstItem="e01-Fm-WP4" firstAttribute="width" secondItem="L1k-Vv-QsP" secondAttribute="width" id="ttK-PE-sQ6"/>
-                <constraint firstItem="05v-Bs-Vsh" firstAttribute="top" secondItem="Q5r-Ta-knm" secondAttribute="top" id="u5K-rU-z0B"/>
-                <constraint firstItem="Vxg-G2-DMt" firstAttribute="top" secondItem="Q5r-Ta-knm" secondAttribute="top" id="ves-rn-XmF"/>
-                <constraint firstItem="e46-gs-Ffd" firstAttribute="leading" secondItem="Tl2-v2-3x9" secondAttribute="trailing" constant="11" id="vjv-68-ZtW"/>
+                <constraint firstItem="24D-PX-cJf" firstAttribute="top" secondItem="t3k-2o-OPh" secondAttribute="bottom" constant="8" id="vWN-cd-LZZ"/>
                 <constraint firstAttribute="trailing" secondItem="ZhZ-F6-0XX" secondAttribute="trailing" constant="35" id="vxR-es-S9V"/>
-                <constraint firstItem="e46-gs-Ffd" firstAttribute="top" secondItem="dD2-pV-qLu" secondAttribute="top" id="wwF-2Y-j4d"/>
-                <constraint firstItem="Tl2-v2-3x9" firstAttribute="leading" secondItem="dD2-pV-qLu" secondAttribute="trailing" constant="11" id="yT4-Rj-lC3"/>
-                <constraint firstItem="K9R-Pu-fjL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="17" id="zIq-aL-9rO"/>
-                <constraint firstItem="Vxg-G2-DMt" firstAttribute="height" secondItem="Q5r-Ta-knm" secondAttribute="height" id="zg3-1Q-je1"/>
+                <constraint firstItem="K9R-Pu-fjL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="zIq-aL-9rO"/>
+                <constraint firstItem="fp5-H2-ERn" firstAttribute="leading" secondItem="53m-cR-E58" secondAttribute="leading" id="zvW-E0-IYc"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="areaCollectionView" destination="Y30-2u-AJn" id="F6M-de-f1u"/>
+                <outlet property="areaCollectionViewHeight" destination="yI7-SS-ys2" id="s0E-um-LJn"/>
                 <outlet property="areaLabelLeading" destination="OnF-A1-Iwx" id="DpD-u7-hTr"/>
                 <outlet property="areaLabelTop" destination="zIq-aL-9rO" id="fjC-79-adE"/>
+                <outlet property="propertyCollectionView" destination="24D-PX-cJf" id="WrH-BL-Tae"/>
+                <outlet property="propertyCollectionViewHeight" destination="1J5-Co-cyH" id="3hV-9k-Leu"/>
+                <outlet property="statusCollectionView" destination="fp5-H2-ERn" id="ZcX-1Y-UiX"/>
+                <outlet property="statusCollectionViewHeight" destination="3Hd-cr-Zwb" id="2V0-o1-5D5"/>
             </connections>
             <point key="canvasLocation" x="36" y="122.5"/>
         </view>
     </objects>
-    <resources>
-        <image name="FlightFilterbuttonNoSelected" width="62" height="26"/>
-    </resources>
 </document>

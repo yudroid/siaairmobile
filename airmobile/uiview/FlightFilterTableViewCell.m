@@ -62,7 +62,17 @@
     _flightNoLabel.text = [NSString stringWithFormat:@"%@%@",flight.fName,flight.fNum];
     _craftModelLable.text = flight.model;
     _regionLabel.text = flight.region;
-    _craftSeatLabel.text = flight.seat;
+    if ([flight.region isEqualToString:@"国内"]||[flight.region isEqualToString:@"地区"]) {
+        _regionLabel.textColor = [CommonFunction colorFromHex:0xFF2dce70];
+    }else{
+        _regionLabel.textColor = [CommonFunction colorFromHex:0xFFf46970] ;
+    }
+    _craftSeatLabel.text = [NSString stringWithFormat:@"%@%@",flight.seat,flight.seatRange];
+    if ([flight.seatRange isEqualToString:@"(近)"]) {
+        _craftSeatLabel.textColor = [CommonFunction colorFromHex:0xFF17b9e8] ;
+    }else{
+        _craftSeatLabel.textColor = [CommonFunction colorFromHex:0xFF4484f6] ;
+    }
 
 
 
@@ -78,10 +88,18 @@
 //        _statusReasonLabel.text = @"天气原因";
     }
 
-    if([flight.fState isEqualToString:@"正常"]){
-        _flightStatus.textColor = [CommonFunction colorFromHex:0Xff2DCE70];
-    }else{
+    if(
+       [flight.fState isEqualToString:@"起飞"]||
+       [flight.fState isEqualToString:@"到达"]||
+       [flight.fState isEqualToString:@"登机"]){
         _flightStatus.textColor = [CommonFunction colorFromHex:0Xffff7c36];
+    }else if([flight.fState isEqualToString:@"计划"]){
+        _flightStatus.textColor = [CommonFunction colorFromHex:0Xff2dce70];
+    }else if ([flight.fState isEqualToString:@"延误"]||
+              [flight.fState isEqualToString:@"取消"]||
+              [flight.fState isEqualToString:@"返航"]||
+              [flight.fState isEqualToString:@"备降"]){
+        _flightStatus.textColor = [CommonFunction colorFromHex:0Xfff46970];
     }
 
     if(!flight.sCity||[flight.sCity isEqualToString:@""]){

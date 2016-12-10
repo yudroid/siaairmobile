@@ -19,8 +19,5 @@ singleton_interface(HomePageService);
 
 -(void)startService;
 
--(SummaryModel *)   getSummaryModel;
--(FlightStusModel *)getFlightStusModel;
--(PassengerModel *) getPassengerTopModel;
--(SeatStatusModel *)getSeatStatusModel;
+
 @end

@@ -25,6 +25,8 @@
 //
 //    [UIViewController preferredStatusBarStyle];
 
+    NSString *path = NSHomeDirectory();//主目录
+    NSLog(@"NSHomeDirectory:%@",path);
 
     [PersistenceUtils initTable];
 

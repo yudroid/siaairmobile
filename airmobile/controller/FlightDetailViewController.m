@@ -51,6 +51,8 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 
 
 
+
+
 @end
 
 @implementation FlightDetailViewController
@@ -58,6 +60,8 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
     FlightDetailModel *flight;
     NSMutableArray<SafeguardModel *> *dispatches;
     NSMutableArray<SpecialModel *> *specicals;
+
+    NSString *DispatchType;
 }
 
 - (void)viewDidLoad {
@@ -129,6 +133,14 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
     _modelLabel.text        = flight.model;
     _regionlabel.text       = flight.region;
     _airLineCollectionArray = [flight.airLine componentsSeparatedByString:@"-"];
+
+    if ([_airLineCollectionArray[0] isEqualToString:@"SZX"]) {
+        DispatchType = @"始发保障";
+    }else if([_airLineCollectionArray[_airLineCollectionArray.count-1] isEqualToString:@"SZX"]){
+        DispatchType = @"过站保障";
+    }else{
+        DispatchType = @"航后保障";
+    }
     [_AirlineCollectionView reloadData];
 
 }
@@ -146,7 +158,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView == _safeguardTableView) {
-        return 45;
+        return 90;
     }
     return 103;
 }
@@ -257,6 +269,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 {
     SpecialAbnormalityReportViewController *abnormalityReportVC=[[SpecialAbnormalityReportViewController alloc]initWithNibName:@"AbnormalityReportViewController" bundle:nil];
     abnormalityReportVC.specialModel = specicals[sender.tag];
+    abnormalityReportVC.DispatchType = DispatchType;
     [self.navigationController pushViewController:abnormalityReportVC
                                          animated:YES];
 }

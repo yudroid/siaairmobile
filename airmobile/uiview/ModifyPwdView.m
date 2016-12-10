@@ -116,6 +116,11 @@
 
 - (IBAction)backgroundClick:(id)sender {
     [self endEditing:YES];
+
+}
+- (IBAction)sureButtonClick:(id)sender {
+
+    
     if ([_delegate respondsToSelector:@selector(modifyPwdView:sureButtonClick:)]) {
         [_delegate modifyPwdView:self sureButtonClick:sender];
     }

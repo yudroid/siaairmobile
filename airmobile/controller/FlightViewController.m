@@ -22,7 +22,7 @@
 static const CGFloat FLIGHTFILTERVIEW_HEIGHT = 440.0;
 static const NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_IDETIFIER";
 
-@interface FlightViewController ()<TabBarViewDelegate,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
+@interface FlightViewController ()<TabBarViewDelegate,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,FlightFilterViewDelegate>
 
 @property (nonatomic, strong) UIView *searBar;
 @property (nonatomic, strong) UITableView *tableView ;
@@ -74,15 +74,16 @@ static const NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_I
                                               options:nil] lastObject];
     filterView.frame = CGRectMake(0, 64, kScreenWidth, FLIGHTFILTERVIEW_HEIGHT);
     filterView.alpha = 0;
+    filterView.delegate = self;
 
     [self.view addSubview:filterView];
 
     //添加下拉刷新
     _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self
-                                                      refreshingAction:@selector(loadMoreNetwork)];
+                                                      refreshingAction:@selector(UpdateNetwork)];
     //添加上拉加载
     _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self
-                                                          refreshingAction:@selector(UpdateNetwork)];
+                                                          refreshingAction:@selector(loadMoreNetwork)];
 
     [_tableView.mj_header beginRefreshing];
 }
@@ -175,7 +176,8 @@ static const NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_I
     [HttpsUtils queryFlightList:conds success:^(id responseObj) {
         // 数据加载完成
 
-        if(![responseObj isKindOfClass:[NSDictionary class]]){
+        [_tableView.mj_header endRefreshing];
+        if(![responseObj isKindOfClass:[NSArray class]]){
             return;
         }
         FlightModel *flight = nil;
@@ -184,14 +186,12 @@ static const NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_I
 
             [dataArray addObject:flight];
         }
-
-        [_tableView.mj_footer endRefreshing];
         [_tableView reloadData];
-        startIndex +=pagesize;
-        
+        startIndex =20;
+
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
-        [_tableView.mj_footer endRefreshing];
+        [_tableView.mj_header endRefreshing];
     }];
 }
 
@@ -210,13 +210,15 @@ static const NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_I
             flight = [[FlightModel alloc]initWithDictionary:item];
             [dataArray addObject:flight];
         }
-        [_tableView.mj_header endRefreshing];
+        [_tableView.mj_footer endRefreshing];
         [_tableView reloadData];
-        startIndex =20;
+
+        startIndex +=pagesize;
+
         
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
-        [_tableView.mj_header endRefreshing];
+        [_tableView.mj_footer endRefreshing];
     }];
 }
 
@@ -287,43 +289,59 @@ static const NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_I
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    if (textField.text.length != 0) {
+        flightNo = textField.text;
+    }
     [self.view endEditing:YES];
+
+    [_tableView.mj_header beginRefreshing];
     return YES;
 }
 
 #pragma mark - 切换底部主功能页面
 -(void)selectWithType:(TabBarSelectedType)type
-    {
-        switch (type) {
-            case TabBarSelectedTypeHomePage:
-            {
-                HomePageViewController *homepage = [[HomePageViewController alloc] init];
-                [self.navigationController pushViewController:homepage animated:NO];
-                break;
-            }
-            case TabBarSelectedTypeMessage:
-            {
-                MessageViewController *messagepage = [[MessageViewController alloc] init];
-                [self.navigationController pushViewController:messagepage animated:NO];
-                break;
-            }
-            case TabBarSelectedTypeFunction:
-            {
-                FunctionViewController *function = [[FunctionViewController alloc] init];
-                [self.navigationController pushViewController:function animated:NO];
-                break;
-            }
-            case TabBarSelectedTypeUserInfo:
-            {
-                UserInfoViewController *userInfo = [[UserInfoViewController alloc] init];
-                [self.navigationController pushViewController:userInfo animated:NO];
-                break;
-            }
-            default:
+{
+    switch (type) {
+        case TabBarSelectedTypeHomePage:
+        {
+            HomePageViewController *homepage = [[HomePageViewController alloc] init];
+            [self.navigationController pushViewController:homepage animated:NO];
             break;
         }
+        case TabBarSelectedTypeMessage:
+        {
+            MessageViewController *messagepage = [[MessageViewController alloc] init];
+            [self.navigationController pushViewController:messagepage animated:NO];
+            break;
+        }
+        case TabBarSelectedTypeFunction:
+        {
+            FunctionViewController *function = [[FunctionViewController alloc] init];
+            [self.navigationController pushViewController:function animated:NO];
+            break;
+        }
+        case TabBarSelectedTypeUserInfo:
+        {
+            UserInfoViewController *userInfo = [[UserInfoViewController alloc] init];
+            [self.navigationController pushViewController:userInfo animated:NO];
+            break;
+        }
+        default:
+        break;
     }
+}
 
+
+-(void)flightFilterView:(FlightFilterView *)view SureButtonClickArea:(NSString *)area property:(NSString *)property status:(NSString *)status
+{
+
+    flightRegion = area ;
+    flightType = property ;
+    flightStatus = status ;
+
+    [_tableView.mj_header beginRefreshing];
+
+}
 /*
 #pragma mark - Navigation
 

@@ -54,11 +54,7 @@
     //获取数据
     HomePageService *homePageService = [[HomePageService alloc]init];
     [homePageService startService];
-    _summaryModel   = [homePageService getSummaryModel];
-    _flighStusModel = [homePageService getFlightStusModel];
-    _passengerModel = [homePageService getPassengerTopModel];
-    _seatStatusModel= [homePageService getSeatStatusModel];
-
+   
 
     homePageType = HomePageTypeOverview;//设置当前页面为整体概览
     [self showOverviewContentView];//根据显示类型显示页面

@@ -14,7 +14,8 @@
 @property (nonatomic, copy) NSString *fNum;     //航班号
 @property (nonatomic, copy) NSString *fName;    //航班名称
 @property (nonatomic, copy) NSString *model;    //机型
-@property (nonatomic, copy) NSString *seat;     //机位
+@property (nonatomic, copy) NSString *seat;     //机位号
+@property (nonatomic, copy) NSString *seatRange;//机位（远、近）
 @property (nonatomic, copy) NSString *sTime;    //前序航班城市时间
 @property (nonatomic, copy) NSString *mInTime;  //本站到达时间
 @property (nonatomic, copy) NSString *mOutTime; //本站起飞时间

@@ -78,27 +78,27 @@
     passengerTtitle.textColor = [UIColor whiteColor];
     [topBgView addSubview:passengerTtitle];
 
-    ratioNum = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-100,
-                                                                 7.5,
-                                                                 80,
-                                                                 20)
-                                                 text:@(_flightLargeDelayModel.delayOneHourRatio).stringValue
-                                                 font:24
-                                        textAlignment:NSTextAlignmentRight
-                                         colorFromHex:0xFFFFFFFF];
-    [topBgView addSubview:ratioNum];
+//    ratioNum = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-100,
+//                                                                 7.5,
+//                                                                 80,
+//                                                                 20)
+//                                                 text:@(_flightLargeDelayModel.delayOneHourRatio).stringValue
+//                                                 font:24
+//                                        textAlignment:NSTextAlignmentRight
+//                                         colorFromHex:0xFFFFFFFF];
+//    [topBgView addSubview:ratioNum];
 
 
 
-    todayLabel = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-140,
-                                                                   viewBotton(ratioNum)+4 ,
-                                                                   120,
-                                                                   9)
-                                                   text:[NSString stringWithFormat:@"当前 %@",[CommonFunction dateFormat:nil format:@"hh:mi"]]
-                                                   font:11
-                                          textAlignment:NSTextAlignmentRight
-                                           colorFromHex:0x75FFFFFF];
-    [topBgView addSubview:todayLabel];
+//    todayLabel = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-140,
+//                                                                   viewBotton(ratioNum)+4 ,
+//                                                                   120,
+//                                                                   9)
+//                                                   text:[NSString stringWithFormat:@"当前 %@",[CommonFunction dateFormat:nil format:@"hh:mi"]]
+//                                                   font:11
+//                                          textAlignment:NSTextAlignmentRight
+//                                           colorFromHex:0x75FFFFFF];
+//    [topBgView addSubview:todayLabel];
 
 //    UILabel *circleLabel= [CommonFunction addLabelFrame:CGRectMake(viewX(passengerTtitle), viewY(todayLabel), 20, 20) text:@"●" font:11 textAlignment:NSTextAlignmentLeft colorFromHex:0xFFFFFFFF];
 //    [topBgView addSubview:circleLabel];
@@ -322,7 +322,7 @@
 {
     NSMutableArray *arr = [[NSMutableArray alloc] init];
     for(FlightHourModel *model in _flightLargeDelayModel.hourExecuteRateList){
-        [arr addObject:@((int)(model.count))];
+        [arr addObject:@((int)(model.radio))];
     }
     return arr;
 }
@@ -332,9 +332,9 @@
 {
     if ([notification.object isKindOfClass:[FlightLargeDelayModel class]]) {
         _flightLargeDelayModel  = notification.object;
-        ratioNum.text           = @(_flightLargeDelayModel.delayOneHourRatio).stringValue;
+//        ratioNum.text           = @(_flightLargeDelayModel.delayOneHourRatio).stringValue;
         peopleLabel.text        = @(_flightLargeDelayModel.glqPassenCnt).stringValue;
-        todayLabel.text         = [NSString stringWithFormat:@"当前 %@",[CommonFunction dateFormat:nil format:@"hh:mi"]];
+//        todayLabel.text         = [NSString stringWithFormat:@"当前 %@",[CommonFunction dateFormat:nil format:@"hh:mi"]];
         arrRatioLabel.text      = [NSString stringWithFormat:@"%ld%%",(long)@(_flightLargeDelayModel.delayOneHourRatio*100.0).integerValue];
         addTimeLabel.text       = [NSString stringWithFormat:@"%d min",_flightLargeDelayModel.noTakeoffAndLanding];
 

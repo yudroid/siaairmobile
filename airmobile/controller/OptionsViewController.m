@@ -8,6 +8,8 @@
 
 #import "OptionsViewController.h"
 #import "OptionCollectionViewCell.h"
+#import "PersistenceUtils+Business.h"
+
 
 static const NSString *OPTIONS_COLLECTIONVIEW_INDETIFIER = @"OPTIONS_COLLECTIONVIEW_INDETIFIER";
 
@@ -44,18 +46,39 @@ static const NSString *OPTIONS_COLLECTIONVIEW_INDETIFIER = @"OPTIONS_COLLECTIONV
 	switch (_optionsType) {
 
 		case OptionsTypeType:
-			_collectionArray = @[@"保障准备",@"保障过程",@"保障评价"];
+		{
+			NSMutableArray *mutableArray = [NSMutableArray  array];
+			NSArray *findArray = [PersistenceUtils findBasisInfoDictionaryWithType:@"EventType"];
+			for (NSDictionary *dic  in findArray) {
+				BasisInfoDictionaryModel *model = [[BasisInfoDictionaryModel alloc]initWithDictionary:dic];
+				[mutableArray addObject:model];
+			}
+			_collectionArray = [mutableArray copy];
 			break;
+		}
 		case OptionsTypeEvent:
-			_collectionArray = @[@"运行差错",@"一般差错",@"运行异常"];
-			break;
+		{
+			NSMutableArray *mutableArray = [NSMutableArray  array];
+			NSArray *findArray = [PersistenceUtils findBasisInfoDictionaryWithType:@"EventType"];
+
+
+		}
 		case OptionsTypeEventLevel:
-			_collectionArray = @[@"事件级别1",@"事件级别2",@"事件级别3",@"事件级别4"];
+		{
+			NSMutableArray *mutableArray = [NSMutableArray  array];
+			NSArray *findArray = [PersistenceUtils findBasisInfoDictionaryWithType:@"EventLevel"];
+			for (NSDictionary *dic  in findArray) {
+				BasisInfoDictionaryModel *model = [[BasisInfoDictionaryModel alloc]initWithDictionary:dic];
+				[mutableArray addObject:model];
+			}
+			_collectionArray = [mutableArray copy];
 			break;
+		}
 		default:
-			_collectionArray = @[@"类型",@"类型",@"类型",@"类型"];
+
 			break;
 	}
+
 
 	[_collectionView registerNib:[UINib nibWithNibName:@"OptionCollectionViewCell" bundle:nil]
 	  forCellWithReuseIdentifier:(NSString *)OPTIONS_COLLECTIONVIEW_INDETIFIER];
@@ -91,7 +114,7 @@ static const NSString *OPTIONS_COLLECTIONVIEW_INDETIFIER = @"OPTIONS_COLLECTIONV
 	OptionCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:(NSString *)OPTIONS_COLLECTIONVIEW_INDETIFIER
 																			   forIndexPath:indexPath];
 	cell.contentView.backgroundColor = [UIColor grayColor];
-	cell.nameLabel.text = _collectionArray[indexPath.row];
+	cell.basisInfoDictionaryModel = _collectionArray[indexPath.row];
 	return cell;
 
 }

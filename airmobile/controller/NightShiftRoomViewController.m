@@ -11,6 +11,7 @@
 #import "NightShiftRoomTableViewCell.h"
 #import "DutyModel.h"
 #import "HttpsUtils+Business.h"
+#import "DutyModel.h"
 
 static void *CapturingStillImageContext = &CapturingStillImageContext;
 static const NSString *NIGHTSHIFTROOM_TABLECELL_IDENTIFIER = @"NIGHTSHIFTROOM_TABLECELL_IDENTIFIER";
@@ -82,16 +83,11 @@ static const NSString *NIGHTSHIFTROOM_TABLECELL_IDENTIFIER = @"NIGHTSHIFTROOM_TA
     [HttpsUtils getDutyTableByDay:currentDateStr success:^(NSArray *responseObj) {
         if ([responseObj isKindOfClass:[NSArray class]]) {
             NSMutableArray *depMutableArray = [NSMutableArray array];
-            //            for (NSDictionary *depDic in responseObj) {
-            //                DeptInfoModel *deptModel = [[DeptInfoModel alloc]initWithDictionary:depDic];
-            //                [depMutableArray addObject:deptModel];
-            //            }
-            //            array = [depMutableArray copy];
-            //            _resultArry = [NSMutableArray array];
-            //            for (int i = 0; i<array.count; i++) {
-            //                // 初始时都是折叠状态（bool不能直接放在数组里）
-            //                [_resultArry addObject:[NSNumber numberWithBool:NO]];
-            //            }
+            for (NSDictionary *depDic in responseObj) {
+                DutyModel *du = [[DutyModel alloc]initWithDictionary:depDic];
+                [depMutableArray addObject:du];
+            }
+            _tableArray = [depMutableArray copy];
             [_tableView reloadData];
         }
         
@@ -101,12 +97,6 @@ static const NSString *NIGHTSHIFTROOM_TABLECELL_IDENTIFIER = @"NIGHTSHIFTROOM_TA
 }
 
 
--(void)loadData
-{
-    NSDictionary *dic = @{@"userName":@"通讯录",@"section":@"AddressBook",@"duty":@"duty",@"phone":@"AddressBook",@"date":@"date"};
-    DutyModel *dutuModel1 = [[DutyModel alloc]initWithDictionary:dic];
-    _tableArray= @[dutuModel1];
-}
 
 #pragma mark - EVENT
 -(void)leftSwipeGestureRecognizerEvent

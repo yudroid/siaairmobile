@@ -138,5 +138,37 @@
 +(NSArray<NSDictionary *> *)findSysMsgListByType:(NSString *)type start:(int)start num:(int)num;
 
 
+/**
+ 插入基础数据字典
 
+ @param dictionary <#dictionary description#>
+ */
++(void)insertBasisInfoDictionaryWithDictionary:(NSDictionary *)dictionary;
+
+/**
+ 查询基础数据字典
+
+ @param type <#type description#>
+ @return <#return value description#>
+ */
++(NSArray *)findBasisInfoDictionaryWithType:(NSString *)type;
+
+
+/**
+ 插入基础数据字典-事件
+
+ @param dictionary <#dictionary description#>
+ */
++(void)insertBasisInfoEventWithDictionary:(NSDictionary *)dictionary;
+
+
+/**
+ 查询基础数据字典-事件
+
+ @param eventId <#eventId description#>
+ @param dispatchId <#dispatchId description#>
+ @param eventLevel <#eventLevel description#>
+ @return <#return value description#>
+ */
++(NSArray *)findBasisInfoEventWithEventId:(int)eventId dispatchId:(int)dispatchId eventLevel:(int)eventLevel;
 @end

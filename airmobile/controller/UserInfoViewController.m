@@ -19,6 +19,7 @@
 #import "UIViewController+Reminder.h"
 #import "HttpsUtils+Business.h"
 #import "AppDelegate.h"
+#import "PersistenceUtils+Business.h"
 
 
 
@@ -76,7 +77,7 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     _headImageView.layer.masksToBounds = YES;
     [userInfo addSubview:_headImageView];
     
-    _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(74, 16, 100, 20)];
+    _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(74, 16, 150, 20)];
     _nameLabel.textColor = [CommonFunction colorFromHex:0XFF1b1b1b];
     _nameLabel.font = [UIFont fontWithName:@"PingFang SC" size:18];
     _nameLabel.text = appdelegate.userInfoModel.name;
@@ -115,13 +116,12 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
                      }else if(response.integerValue == 2){
                          [cardButton setTitle:@"签退" forState:UIControlStateNormal];
                      }else{
-                         [cardButton setTitle:@"已签退" forState:UIControlStateNormal];
+                         [cardButton setTitle:@"完成" forState:UIControlStateNormal];
                      }
                      cardButton.enabled = YES;
-
                  }
                  failure:^(NSError *error) {
-                     cardButton.enabled = NO;
+
                  }];
 
 }
@@ -219,14 +219,30 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
 #else
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"确定要更新基础数据吗？" preferredStyle:UIAlertControllerStyleAlert];
         [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
-        [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){
             [HttpsUtils loadEventsSuccess:^(id response) {
                 [self showAnimationTitle:@"更新成功"];
+
+                for(NSDictionary *dic in response){
+                    [PersistenceUtils insertBasisInfoEventWithDictionary:dic];
+                }
+
+            } failure:^(NSError *error) {
+                [self showAnimationTitle:@"更新失败"];
+            }];
+
+            [HttpsUtils loadDictDatasSuccess:^(id response) {
+                [self showAnimationTitle:@"更新成功"];
+                for(NSDictionary *dic in response){
+                    [PersistenceUtils insertBasisInfoDictionaryWithDictionary:dic];
+                }
+
             } failure:^(NSError *error) {
                 [self showAnimationTitle:@"更新失败"];
             }];
 
         }]];
+
         [self presentViewController:alertController animated:YES completion:nil];
 #endif
         

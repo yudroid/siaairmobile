@@ -57,6 +57,18 @@
 //            private String toDeptIds;
 //            private Long toDept;
         }
+
+        NSString *basisInfoEventTable = @"CREATE TABLE IF NOT EXISTS BasisInfoEvent (basisid integer PRIMARY KEY AUTOINCREMENT NOT NULL,username nvarchar(50),event_type long,dispatch_type long,event_level long,event text,content text);";
+        result = sqlite3_exec(database, [basisInfoEventTable UTF8String], NULL, NULL, NULL);
+        if (result == SQLITE_OK) {
+            NSLog(@"成功创建表   #基础数据事件表#   %@",@"userInfoTable");
+        }
+
+        NSString *basisInfoDictionaryTable = @"CREATE TABLE IF NOT EXISTS BasisInfoDictionary (basisidid integer PRIMARY KEY AUTOINCREMENT NOT NULL,type text,code text,content text)";
+        result = sqlite3_exec(database, [basisInfoDictionaryTable UTF8String], NULL, NULL, NULL);
+        if (result == SQLITE_OK) {
+            NSLog(@"成功创建表   #基础数据字典表#   %@",@"userInfoTable");
+        }
         
     }];
 
@@ -318,6 +330,44 @@
     }else{
         sql = [NSString stringWithFormat:@"select * from (select * from SysMessage t where t.type!='%@' order by t.createtime desc limit %i offset %i) order by time",type,num,start];
     }
+    NSArray *result = [self executeQuery:sql];
+    return result;
+}
+
++(void)insertBasisInfoDictionaryWithDictionary:(NSDictionary *)dictionary
+{
+    int id = [[dictionary objectForKey:@"id"] intValue];
+    NSString *code = [dictionary objectForKey:@"code"];
+    NSString *content = [dictionary objectForKey:@"content"];
+    NSString *type = [dictionary objectForKey:@"type"];
+    NSString *insertSql = @"INSERT INTO BasisInfoDictionary VALUES (%i, '%@', '%@', '%@');";
+    [self executeNoQuery:[NSString stringWithFormat:insertSql,id,type,code,content]];
+    
+}
+
++(NSArray *)findBasisInfoDictionaryWithType:(NSString *)type
+{
+    NSString *sql = [NSString stringWithFormat:@"select * from BasisInfoDictionary where type = '%@';",type];
+    NSArray *result = [self executeQuery:sql];
+    return result;
+}
++(void)insertBasisInfoEventWithDictionary:(NSDictionary *)dictionary
+{
+    int id = [[dictionary objectForKey:@"id"] intValue];
+    NSString *username = [dictionary objectForKey:@"username"];
+    int event_type = [[dictionary objectForKey:@"event_type"] intValue];
+    int dispatch_type = [[dictionary objectForKey:@"dispatch_type"] intValue];
+    int event_level = [[dictionary objectForKey:@"event_level"] intValue];
+    NSString *event = [dictionary objectForKey:@"event"];
+    NSString *content = [dictionary objectForKey:@"content"];
+    NSString *insertSql = @"INSERT INTO BasisInfoEvent VALUES (%i, '%@', %i, %i, %i, '%@','%@');";
+    [self executeNoQuery:[NSString stringWithFormat:insertSql,id,username,event_type,dispatch_type,event_level,event,content]];
+
+}
+
++(NSArray *)findBasisInfoEventWithEventId:(int)eventId dispatchId:(int)dispatchId eventLevel:(int)eventLevel
+{
+    NSString *sql = [NSString stringWithFormat:@"select * from BasisInfoEvent where event_type = %i and dispatch_type = %i and event_level = %i",eventId,dispatchId,eventLevel];
     NSArray *result = [self executeQuery:sql];
     return result;
 }

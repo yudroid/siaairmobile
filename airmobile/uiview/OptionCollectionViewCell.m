@@ -7,6 +7,7 @@
 //
 
 #import "OptionCollectionViewCell.h"
+#import "BasisInfoDictionaryModel.h"
 
 @interface OptionCollectionViewCell()
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
@@ -29,5 +30,11 @@
         _backgroundImageView.image = [UIImage imageNamed:@"OptionCellNotSelected"];
     }
 
+}
+
+-(void)setBasisInfoDictionaryModel:(BasisInfoDictionaryModel *)basisInfoDictionaryModel
+{
+    _basisInfoDictionaryModel = basisInfoDictionaryModel;
+    _nameLabel.text = basisInfoDictionaryModel.content;
 }
 @end

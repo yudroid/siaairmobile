@@ -18,5 +18,7 @@
 
 @property (nonatomic, copy)          NSArray        *abnormalityHistoryArray;
 @property (weak, nonatomic) IBOutlet UITableView    *abnormalityHistoryTableView;
+@property (nonatomic, strong) NSString *DispatchType;
+
 
 @end
