@@ -12,6 +12,7 @@
 #import "ChatViewController.h"
 #import "PersistenceUtils+Business.h"
 #import "HttpsUtils+Business.h"
+#import "ThreadUtils.h"
 
 static const NSString *CONTACTPERSON_TABLECELL_IDENTIFIER = @"CONTACTPERSON_TABLECELL_IDENTIFIER";
 static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSON_TABLECELLHEADER_IDENTIFIER";
@@ -21,11 +22,13 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
 @property (nonatomic, strong) NSMutableArray<UserInfoModel *> *selectTableArray;
 @property (nonatomic, strong) NSMutableArray *tableArray;
 @property (nonatomic, strong) UIButton *sureButton;
+@property (weak, nonatomic) IBOutlet UITextField *searchTextField;
 @end
 
 @implementation ContactPersonViewController
 {
     NSArray<DeptInfoModel *> *array;
+    NSMutableArray<DeptInfoModel *> *filterArray;
     
     NSMutableArray *_resultArry;// 保存数据的展开状态(因为分组很多，所以不能设置一个bool类型记录)
     
@@ -35,6 +38,9 @@ static const NSString *CONTACTPERSON_TABLECELLHRADER_IDENTIFIER = @"CONTACTPERSO
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    filterArray = [NSMutableArray array];
+    _resultArry = [NSMutableArray array];
     
     [self initTitleView];
     
@@ -54,7 +60,7 @@ forHeaderFooterViewReuseIdentifier:(NSString *)CONTACTPERSON_TABLECELLHRADER_IDE
 forHeaderFooterViewReuseIdentifier:(NSString *)CONTACTPERSON_TABLECELLHRADER_IDENTIFIER];
     // Do any additional setup after loading the view from its nib.
     
-    
+    [_searchTextField addTarget:self action:@selector(filterDialogList:) forControlEvents:UIControlEventEditingChanged];
 }
 
 -(void)initTitleView
@@ -113,14 +119,15 @@ forHeaderFooterViewReuseIdentifier:(NSString *)CONTACTPERSON_TABLECELLHRADER_IDE
             if(chat == nil){
                 return;
             }
-            
-            ChatViewController *chatVC = [[ChatViewController alloc]initWithNibName:@"ChatViewController"
-                                                                             bundle:nil];
-            chatVC.chatId = [[chat objectForKey:@"chatid"] longLongValue];
-            chatVC.chatTypeId = [[chat objectForKey:@"type"] intValue];
-            chatVC.localChatId = [[chat objectForKey:@"id"] longLongValue];
-            [self.navigationController pushViewController:chatVC
-                                                 animated:YES];
+            [ThreadUtils dispatchMain:^{
+                ChatViewController *chatVC = [[ChatViewController alloc]initWithNibName:@"ChatViewController"
+                                                                                 bundle:nil];
+                chatVC.chatId = [[chat objectForKey:@"chatid"] longLongValue];
+                chatVC.chatTypeId = [[chat objectForKey:@"type"] intValue];
+                chatVC.localChatId = [[chat objectForKey:@"id"] longLongValue];
+                [self.navigationController pushViewController:chatVC
+                                                     animated:YES];
+            }];
         }];
     }else{
         UserInfoModel *item = [_selectTableArray objectAtIndex:0];
@@ -143,17 +150,50 @@ forHeaderFooterViewReuseIdentifier:(NSString *)CONTACTPERSON_TABLECELLHRADER_IDE
 
 #pragma mark - UITableViewDelegate UITableViewDataSource
 
+-(void)filterDialogList:(id)sender
+{
+    if(array==nil)
+        return;
+    NSString *search = _searchTextField.text;
+    [filterArray removeAllObjects];
+    [_resultArry removeAllObjects];
+    if([search isEqualToString:@""]){
+        [filterArray addObjectsFromArray:array];
+        for (int i = 0; i<array.count; i++) {
+            // 初始时都是折叠状态（bool不能直接放在数组里）
+            [_resultArry addObject:[NSNumber numberWithBool:NO]];
+        }
+        [_tableView reloadData];
+        return;
+    }
+    
+    DeptInfoModel *depModel = [DeptInfoModel new];
+    depModel.deptName = @"过滤结果";
+    for(DeptInfoModel *dic in array){
+        if([dic userArr]==nil){
+            continue;
+        }
+        for(UserInfoModel *user in dic.userArr){
+            if([user.name containsString:search]){
+                [[depModel userArray] addObject:user];
+            }
+        }
+    }
+    [filterArray addObject:depModel];
+    [_resultArry addObject:[NSNumber numberWithBool:YES]];
 
+    [_tableView reloadData];
+}
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [array count];
+    return [filterArray count];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if ([[_resultArry objectAtIndex:section] boolValue]) {
-        NSArray *tempArr = [array objectAtIndex:section].userArr;
+        NSArray *tempArr = [filterArray objectAtIndex:section].userArr;
         if(tempArr==nil)
             return 0;
         return [tempArr count];
@@ -179,7 +219,7 @@ forHeaderFooterViewReuseIdentifier:(NSString *)CONTACTPERSON_TABLECELLHRADER_IDE
     ContactPersonTableViewHeaderView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:(NSString *)CONTACTPERSON_TABLECELLHRADER_IDENTIFIER];
     view.delegate =self;
     view.tag = section;
-    view.nameLabel.text = [array objectAtIndex:section].deptName;
+    view.nameLabel.text = [filterArray objectAtIndex:section].deptName;
     view.open = [[_resultArry objectAtIndex:view.tag] boolValue];;
     return view;
 }
@@ -188,7 +228,7 @@ forHeaderFooterViewReuseIdentifier:(NSString *)CONTACTPERSON_TABLECELLHRADER_IDE
     
     
     ContactPersonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)CONTACTPERSON_TABLECELL_IDENTIFIER];
-    UserInfoModel *userInfo = [[array objectAtIndex:indexPath.section].userArr objectAtIndex:indexPath.row];
+    UserInfoModel *userInfo = [[filterArray objectAtIndex:indexPath.section].userArr objectAtIndex:indexPath.row];
     cell.nameLabel.text = userInfo.name;
     cell.userId = userInfo.id;
     
@@ -201,7 +241,7 @@ forHeaderFooterViewReuseIdentifier:(NSString *)CONTACTPERSON_TABLECELLHRADER_IDE
                              animated:YES];
     ContactPersonTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.isSelected = !cell.isSelected;
-    DeptInfoModel *depModel = [array objectAtIndex:indexPath.section];
+    DeptInfoModel *depModel = [filterArray objectAtIndex:indexPath.section];
     if(cell.isSelected){
         [_selectTableArray addObject: [depModel.userArr  objectAtIndex:indexPath.row]];
     }else{
@@ -239,7 +279,9 @@ forHeaderFooterViewReuseIdentifier:(NSString *)CONTACTPERSON_TABLECELLHRADER_IDE
 -(void)initTableData
 {
     array = [PersistenceUtils loadUserListGroupByDept];
-    _resultArry = [NSMutableArray array];
+    [filterArray removeAllObjects];
+    [filterArray addObjectsFromArray:array];
+    
     for (int i = 0; i<array.count; i++) {
         // 初始时都是折叠状态（bool不能直接放在数组里）
         [_resultArry addObject:[NSNumber numberWithBool:NO]];

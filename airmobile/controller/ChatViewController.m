@@ -95,8 +95,8 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
     [sureButton setBackgroundImage:[UIImage imageNamed:@"PersonSure"]
                           forState:UIControlStateNormal];
     sureButton.layer.cornerRadius = 5.0;
-    if(_chatTypeId==1)
-        [self.titleView addSubview:sureButton];
+//    if(_chatTypeId==1)
+//        [self.titleView addSubview:sureButton];
 
 }
 

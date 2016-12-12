@@ -8,9 +8,13 @@
 
 #import "MessageService.h"
 #import "PersistenceUtils+Business.h"
-#define wsuserurl @"ws://219.134.93.113:808/acs/usermsg"
-#define wsgroupurl @"ws://219.134.93.113:8087/acs/workgroupmsg"
-#define wssysurl @"ws://219.134.93.113:8087/acs/alertmsg"
+//#define wsuserurl @"ws://219.134.93.113:8087/acs/usermsg"
+//#define wsgroupurl @"ws://219.134.93.113:8087/acs/workgroupmsg"
+//#define wssysurl @"ws://219.134.93.113:8087/acs/alertmsg"
+
+#define wsuserurl @"ws://192.168.163.132:8080/acs/usermsg"
+#define wsgroupurl @"ws://192.168.163.132:8080/acs/workgroupmsg"
+#define wssysurl @"ws://192.168.163.132:8080/acs/alertmsg"
 
 @implementation MessageService
 {
@@ -146,16 +150,16 @@ singleton_implementation(MessageService);
             return;
         }
         long msgId = [[dic objectForKey:@"id"] longLongValue];
-        long todept = [[dic objectForKey:@"toDept"] longLongValue];
+        long todept = [[dic objectForKey:@"toDept"] isEqual:[NSNull null]]?0:[[dic objectForKey:@"toDept"] longLongValue];
         NSMutableDictionary *msgDict = [NSMutableDictionary dictionary];
         [msgDict setValue:[NSNumber numberWithLong:msgId]        forKey:@"id"];// 主键
         [msgDict setValue:[dic objectForKey:@"type"]         forKey:@"type"];
         [msgDict setValue:[dic objectForKey:@"content"]    forKey:@"content"];
         [msgDict setValue:[dic objectForKey:@"title"]    forKey:@"title"];
-        [msgDict setValue:[dic objectForKey:@"createTime"]    forKey:@"createtime"];
+        [msgDict setValue:[dic objectForKey:@"createTime"]    forKey:@"createTime"];
         [msgDict setValue:[dic objectForKey:@"status"]    forKey:@"status"];
-        [msgDict setValue:[dic objectForKey:@"toDeptIds"]        forKey:@"todeptids"];
-        [msgDict setValue:[NSNumber numberWithLong:todept]      forKey:@"todept"];
+        [msgDict setValue:[dic objectForKey:@"toDeptIds"]        forKey:@"toDeptIds"];
+        [msgDict setValue:[NSNumber numberWithLong:todept]      forKey:@"toDept"];
         
         [PersistenceUtils insertNewSysMessage:msgDict];
 

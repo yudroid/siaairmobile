@@ -184,7 +184,7 @@
                                         <constraint firstAttribute="height" constant="39" id="aoA-1K-V1g"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="15"/>
-                                    <state key="normal" title="开始上报时间" backgroundImage="AbnormalityRequestStarButton">
+                                    <state key="normal" title="开始上报" backgroundImage="AbnormalityRequestStarButton">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
@@ -198,7 +198,7 @@
                                         <constraint firstAttribute="height" constant="39" id="t9J-gF-y4S"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="15"/>
-                                    <state key="normal" title="结束上报时间" backgroundImage="AbnormalityRequestEndButton">
+                                    <state key="normal" title="结束上报" backgroundImage="AbnormalityRequestEndButton">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
@@ -296,7 +296,7 @@
     </objects>
     <resources>
         <image name="AbnormalityRequestEndButton" width="180" height="40"/>
-        <image name="AbnormalityRequestStarButton" width="180" height="40"/>
+        <image name="AbnormalityRequestStarButton" width="156" height="31"/>
         <image name="iphoneBackground" width="69" height="69"/>
         <image name="相机" width="50" height="41"/>
     </resources>

@@ -11,6 +11,11 @@
 #import "AppDelegate.h"
 #import "SafeguardModel.h"
 #import "UIViewController+Reminder.h"
+#import "BasisInfoEventModel.h"
+#import "AbnormalModel.h"
+#import "PersistenceUtils+Business.h"
+#import "BasisInfoDictionaryModel.h"
+#import "BasisInfoEventModel.h"
 
 @interface NormalAbnormalityReportViewController ()
 
@@ -26,13 +31,39 @@
                         success:^(id response) {
                             if ([response isKindOfClass:[NSArray class]]) {
                                 self.abnormalityHistoryArray = response;
-                                [self.abnormalityHistoryTableView reloadData];
+
+                                if ([response isKindOfClass:[NSArray class]]) {
+                                    NSMutableArray *mutableArray = [NSMutableArray array];
+                                    for (NSDictionary *dic in response) {
+                                        AbnormalModel *model = [[AbnormalModel alloc]initWithDictionary:dic];
+                                        [mutableArray addObject:model];
+                                    }
+                                    self.abnormalityHistoryArray = [mutableArray copy];
+                                    for (AbnormalModel *model in self.abnormalityHistoryArray) {
+                                        if (model.startTime &&![model.startTime isEqualToString:@""]&&(!model.endTime||[model.endTime isEqualToString:@""])) {
+                                            NSDictionary * dic = [[PersistenceUtils findBasisInfoEventWithEventId:model.event.intValue] lastObject];
+                                            self.event = [[BasisInfoEventModel alloc]initWithDictionary:dic];
+                                            NSDictionary *dic1= [[PersistenceUtils findBasisInfoDictionaryWithid:self.event.event_type] lastObject];
+                                            self.eventType = [[BasisInfoDictionaryModel alloc] initWithDictionary:dic1];
+                                            NSDictionary *dic2 = [[PersistenceUtils findBasisInfoDictionaryWithid:self.event.event_level] lastObject];
+                                            self.eventLevel = [[BasisInfoDictionaryModel alloc]initWithDictionary:dic2];
+
+                                            [self.tableView reloadData];
+                                            self.tableView.allowsSelection = NO;
+                                            self.startReportButton.enabled = NO;
+
+                                        }
+
+                                    }
+                                    [self.abnormalityHistoryTableView reloadData];
+                                }
+
+
                             }
                         }
                         failure:^(NSError *error) {
                             [self showAnimationTitle:@"获取历史列表失败"];
                         }];
-
 }
 
 
@@ -47,8 +78,8 @@
     [HttpsUtils saveDispatchAbnStart:(int)_safefuardModel.fid
                           dispatchId:(int)_safefuardModel.id
                               userId:(int)appdelete.userInfoModel.id
-                             eventId:0
-                                memo:@""
+                             eventId:self.event.id
+                                memo:self.explainTextView.text
                                 flag:0
                              imgPath:@""
                              success:^(id response) {

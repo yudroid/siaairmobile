@@ -17,6 +17,11 @@
 
 singleton_interface(HomePageService);
 
+
+@property (nonatomic, strong) SummaryModel    *summaryModel;  // 首页概览数据
+@property (nonatomic, strong) FlightStusModel *flightModel;   // 航班数据
+@property (nonatomic, strong) PassengerModel  *psnModel;      // 旅客数据
+@property (nonatomic, strong) SeatStatusModel *seatModel;     // 机位数据
 -(void)startService;
 
 

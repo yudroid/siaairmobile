@@ -13,15 +13,18 @@
 #import "SeatStatusModel.h"
 #import "HttpsUtils+Business.h"
 
+
+
 @implementation HomePageService
-{
-    SummaryModel    *summaryModel;  // 首页概览数据
-    FlightStusModel *flightModel;   // 航班数据
-    PassengerModel  *psnModel;      // 旅客数据
-    SeatStatusModel *seatModel;     // 机位数据
-    
-}
+
+
 singleton_implementation(HomePageService);
+
+@synthesize summaryModel    = summaryModel;
+@synthesize flightModel     = flightModel;
+@synthesize psnModel        = psnModel;
+@synthesize seatModel       = seatModel;
+
 
 -(void)startService
 {
@@ -125,21 +128,21 @@ singleton_implementation(HomePageService);
     [HttpsUtils getFlightStatusInfo:nil success:^(id responesObj) {
         [flightModel updateFlightStatusInfo:responesObj];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"FlightStatusInfo"
-                                                            object:flightModel];
+                                                            object:[HomePageService sharedHomePageService].flightModel];
     } failure:nil];
     
     // 航班异常原因分类 /flt/delayReasonSort
     [HttpsUtils getFlightAbnReason:nil success:^(id responesObj) {
         [flightModel updateFlightAbnReason:responesObj];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"FlightAbnReason"
-                                                            object:flightModel];
+                                                            object:[HomePageService sharedHomePageService].flightModel];
     } failure:nil];
     
     // 航班区域延误时间 /flt/delayAreaSort
     [HttpsUtils getRegionDlyTime:nil success:^(id responesObj) {
         [flightModel updateRegionDlyTime:responesObj];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"RegionDlyTime"
-                                                            object:flightModel.regionDlyTimes];
+                                                            object:[HomePageService sharedHomePageService].flightModel.regionDlyTimes];
     } failure:nil];
 
 }

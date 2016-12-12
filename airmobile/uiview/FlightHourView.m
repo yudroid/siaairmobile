@@ -100,7 +100,7 @@
         UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(20,
                                                                      viewBotton(lineImageView)+4,
                                                                      topBgView.frame.size.width-40, 12)
-                                                     text:@"120"
+                                                     text:[NSString stringWithFormat:@"%d",(int)([self maxValue]*1.2)]
                                                      font:11
                                             textAlignment:NSTextAlignmentRight
                                              colorFromHex:0x75FFFFFF];
@@ -117,7 +117,7 @@
         [lineChart setXLabels:[self getFlightHourXLabels]];
         lineChart.showCoordinateAxis= NO;
         lineChart.showGenYLabels    =NO;
-        lineChart.yFixedValueMax    = [self maxValue];
+        lineChart.yFixedValueMax    = [self maxValue]*1.2;
         lineChart.yFixedValueMin    = 0;
         
         // added an examle to show how yGridLines can be enabled
@@ -150,7 +150,7 @@
                                                                 topBgView.frame.size.width-40,
                                                                 topBgView.frame.size.height-(5+23+15+2)-5)];//折线图
         
-        barChart.yMaxValue          = [self maxValue];
+        barChart.yMaxValue          = [self maxValue]*1.2;
         barChart.yMinValue          = 0;
         barChart.showXLabel         = NO;
         barChart.showYLabel         = NO;

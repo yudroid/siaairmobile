@@ -480,7 +480,7 @@
                                                           color:[CommonFunction colorFromHex:0xFFFF4D62]
                                                     description:@"取消"]];
         [array addObject: [PNPieChartDataItem dataItemWithValue:2 color:[UIColor clearColor]]];
-        [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.arrDoneAbn
+        [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.arrPlanNormal
                                                           color:[CommonFunction colorFromHex:0xFFC8C8C8]
                                                     description:@"未执行"]];
 
@@ -500,7 +500,7 @@
                                                           color:[CommonFunction colorFromHex:0xFFFF4D62]
                                                     description:@"取消"]];
         [array addObject: [PNPieChartDataItem dataItemWithValue:2 color:[UIColor clearColor]]];
-        [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.depDoneAbn
+        [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.depPlanNormal
                                                           color:[CommonFunction colorFromHex:0xFFC8C8C8]
                                                     description:@"未执行"]];
 

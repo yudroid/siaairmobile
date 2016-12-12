@@ -108,7 +108,7 @@
 
 
     UIImageView *lineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(passengerTtitle),
-                                                                              viewBotton(todayLabel)+4,
+                                                                              viewBotton(passengerTtitle)+4,
                                                                               viewWidth(topBgView)-viewX(passengerTtitle)-18,
                                                                               0.5)];
     lineImageView.image = [UIImage imageNamed:@"hiddenLine"];
@@ -119,7 +119,7 @@
                                                                  viewBotton(lineImageView)+4,
                                                                  50,
                                                                  9)
-                                                 text:@"120"
+                                                 text:[NSString stringWithFormat:@"%0.2lf",[self maxValue]]
                                                  font:11
                                         textAlignment:NSTextAlignmentRight
                                          colorFromHex:0x75FFFFFF];
@@ -141,7 +141,7 @@
 
     //Use yFixedValueMax and yFixedValueMin to Fix the Max and Min Y Value
     //Only if you needed
-    lineChart.yFixedValueMax = 120;
+    lineChart.yFixedValueMax = [self maxValue]*1000;
     lineChart.yFixedValueMin = 0;
 
 
@@ -322,7 +322,7 @@
 {
     NSMutableArray *arr = [[NSMutableArray alloc] init];
     for(FlightHourModel *model in _flightLargeDelayModel.hourExecuteRateList){
-        [arr addObject:@((int)(model.radio))];
+        [arr addObject:@((model.ratio*1000))];
     }
     return arr;
 }
@@ -357,6 +357,19 @@
         [lineChart strokeChart];
 
     }
+}
+
+-(CGFloat)maxValue
+{
+    CGFloat max = 0.0;
+    for(FlightHourModel *model in _flightLargeDelayModel.hourExecuteRateList){
+
+        if (model.ratio >max) {
+            max = model.ratio;
+        }
+    }
+    return max;
+
 }
 
 @end

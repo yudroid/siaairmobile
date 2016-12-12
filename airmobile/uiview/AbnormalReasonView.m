@@ -128,11 +128,11 @@
 
 -(void) updateShapeArray
 {
-    NSDictionary *colorDic = @{@"天气原因"  :[CommonFunction colorFromHex:0xFFFF7C36] ,
-                               @"军事控制"  :[CommonFunction colorFromHex:0xFF17B9E8] ,
-                               @"航空公司"  :[CommonFunction colorFromHex:0xFFFF7C36] ,
+    NSDictionary *colorDic = @{@"天气"  :[CommonFunction colorFromHex:0xFFFF7C36] ,
+                               @"军事活动"  :[CommonFunction colorFromHex:0xFF17B9E8] ,
+                               @"航空公司"  :[CommonFunction colorFromHex:0xFFFFc0000] ,
                                @"空管"     :[CommonFunction colorFromHex:0xFFFF2F57] ,
-                               @"机场"     :[CommonFunction colorFromHex:0xFF2FEE65] ,
+                               @"旅客"     :[CommonFunction colorFromHex:0xFF2FEE65] ,
                                @"其他"     :[CommonFunction colorFromHex:0xFF5A57D8]
                                };
     shapeArray = [NSMutableArray new];

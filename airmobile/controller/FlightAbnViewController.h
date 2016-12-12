@@ -13,6 +13,6 @@
 
 @interface FlightAbnViewController : RootViewController<UIScrollViewDelegate>
 
--(instancetype)initWithFlightStusModel:(FlightStusModel *)flightHourModel;
+
 
 @end

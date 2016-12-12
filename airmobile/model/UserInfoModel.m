@@ -14,14 +14,19 @@
 {
     self = [super init];
     if (self) {
+
         [self setValuesForKeysWithDictionary:dictionary];
     }
     return self;
 }
-
--(void)setValue:(id)value forUndefinedKey:(NSString *)key
-{
-    return;
+-(void)setNilValueForKey:(NSString *)key{
+    if ([key isEqualToString:@"id"]) {
+        _id = 0;
+    }else if([key isEqualToString:@"deptId"]){
+        _deptId = 0;
+    }
 }
+
+
 
 @end

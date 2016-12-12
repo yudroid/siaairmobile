@@ -8,6 +8,7 @@
 
 #import "OptionCollectionViewCell.h"
 #import "BasisInfoDictionaryModel.h"
+#import "BasisInfoEventModel.h"
 
 @interface OptionCollectionViewCell()
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
@@ -18,6 +19,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    _nameLabel.adjustsFontSizeToFitWidth = YES;
 }
 
 
@@ -36,5 +38,12 @@
 {
     _basisInfoDictionaryModel = basisInfoDictionaryModel;
     _nameLabel.text = basisInfoDictionaryModel.content;
+}
+
+-(void)setBasisInfoEventModel:(BasisInfoEventModel *)basisInfoEventModel
+{
+    _basisInfoEventModel = basisInfoEventModel;
+    _nameLabel.text = basisInfoEventModel.event;
+
 }
 @end

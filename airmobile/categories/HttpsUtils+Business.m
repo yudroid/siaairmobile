@@ -231,9 +231,11 @@ NSString * const updatePwdUrl               = @"/acs/login/updatePwd";//修改�
 {
     [HttpsUtils post:groupSaveUrl params:groupInfo success:^(id responseObj) {
         NSLog(@"%@",responseObj);
-        if(success){
-            success(responseObj);
-        }
+        [ThreadUtils dispatch:^{
+            if(success){
+                success(responseObj);
+            }
+        }];
     } failure:^(NSError * error) {
         
     }];
@@ -248,18 +250,18 @@ NSString * const updatePwdUrl               = @"/acs/login/updatePwd";//修改�
 {
     NSString *temp = [NSString stringWithFormat:@"%@/%i",userMsgListUrl,userId];
     [HttpsUtils get:temp params:nil success:^(id responseObj) {
-        if(success){
-            success(responseObj);
-        }
+        [ThreadUtils dispatch:^{
+            [PersistenceUtils syncUserMessages:responseObj];
+        }];
     } failure:failure];
 }
 
 +(void)getGroupMsgListSuccess:(void(^)(id))success failure:(void (^)(NSError *))failure
 {
     [HttpsUtils get:groupMsgListUrl params:nil success:^(id responseObj) {
-        if(success){
-            success(responseObj);
-        }
+        [ThreadUtils dispatch:^{
+            [PersistenceUtils syncGroupMessages:responseObj];
+        }];
     } failure:failure];
 }
 
@@ -267,9 +269,9 @@ NSString * const updatePwdUrl               = @"/acs/login/updatePwd";//修改�
 {
 
     [HttpsUtils get:alertMsgListUrl params:nil success:^(id responseObj) {
-        if(success){
-            success(responseObj);
-        }
+        [ThreadUtils dispatch:^{
+            [PersistenceUtils syncSysMessages:responseObj];
+        }];
     } failure:failure];
 }
 

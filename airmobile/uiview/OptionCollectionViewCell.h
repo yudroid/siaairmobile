@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 @class BasisInfoDictionaryModel;
+@class BasisInfoEventModel;
 
 @interface OptionCollectionViewCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (nonatomic ,strong) BasisInfoDictionaryModel *basisInfoDictionaryModel;
+@property (nonatomic, strong) BasisInfoEventModel *basisInfoEventModel;
 
 @end

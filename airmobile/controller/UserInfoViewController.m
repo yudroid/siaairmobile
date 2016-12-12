@@ -20,6 +20,7 @@
 #import "HttpsUtils+Business.h"
 #import "AppDelegate.h"
 #import "PersistenceUtils+Business.h"
+#import "LoginViewController.h"
 
 
 
@@ -40,6 +41,7 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
 {
 
     UIButton *cardButton;
+    UIButton *logoffButton;
 }
 
 - (void)viewDidLoad {
@@ -55,6 +57,17 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     
     self.view.backgroundColor =  [CommonFunction colorFromHex:0XFFEBEBF1];
     // Do any additional setup after loading the view.
+
+    logoffButton = [[UIButton alloc]initWithFrame:CGRectMake((kScreenWidth-50)/2,
+                                                             viewBotton(_tableView)+5,
+                                                             50,
+                                                             30)];
+
+    [logoffButton setTitle:@"注销" forState:UIControlStateNormal];
+    [logoffButton addTarget:self action:@selector(logoffButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [logoffButton setBackgroundImage:[UIImage imageNamed:@"AbnormalityRequestStarButton"] forState:UIControlStateNormal];
+    logoffButton.titleLabel.font = [UIFont fontWithName:@"PingFang SC" size:18];
+    [self.view addSubview:logoffButton];
 }
 
 -(void)initTitleView
@@ -128,7 +141,7 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
 
 -(void)initTable
 {
-    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 157, kScreenWidth, kScreenHeight-157-49) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 157, kScreenWidth, kScreenHeight-157-49-40) style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.backgroundColor = [UIColor clearColor];
@@ -166,6 +179,27 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
                     }];
     }
     
+}
+-(void)logoffButtonClick:(UIButton *)sender
+{
+    AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [HttpsUtils logOut:(int)appdelegate.userInfoModel.id
+               success:^(NSNumber *response) {
+                   LoginViewController *homepage = [[LoginViewController alloc] init];
+                   UINavigationController *nv = [[UINavigationController alloc]initWithRootViewController:homepage];
+                   nv.navigationBarHidden= YES;
+                   appdelegate.window.rootViewController = nv;
+                   [appdelegate.window makeKeyWindow];
+               }
+               failure:^(NSError *error) {
+//                   [self showAnimationTitle:@"注销失败"];
+                   LoginViewController *homepage = [[LoginViewController alloc] init];
+                   UINavigationController *nv = [[UINavigationController alloc]initWithRootViewController:homepage];
+                   nv.navigationBarHidden= YES;
+                   appdelegate.window.rootViewController = nv;
+                   [appdelegate.window makeKeyWindow];
+               }];
+
 }
 
 

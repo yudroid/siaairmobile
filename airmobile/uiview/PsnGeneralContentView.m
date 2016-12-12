@@ -166,7 +166,7 @@
                                                                       size:CGSizeMake(15, arrBarView.frame.size.height)
                                                                  direction:4 colors:@[(__bridge id)[CommonFunction colorFromHex:0XFF9BEEDA].CGColor,
                                                                                       (__bridge id)[CommonFunction colorFromHex:0XFF94E1EB].CGColor ]
-                                               proportion:_passengerModel.planInCount/@(_passengerModel.maxCount!=0?:1).floatValue];
+                                               proportion:_passengerModel.planInCount];
         [arrBarView addSubview:arrPlan];
         
         arrReal = [[ProgreesBarView alloc] initWithCenter:CGPointMake(arrBarView.frame.size.width*3/4,
@@ -175,7 +175,7 @@
                                                                  direction:4
                                                                     colors:@[(__bridge id)[CommonFunction colorFromHex:0XFF4A9EB8].CGColor,
                                                                              (__bridge id)[CommonFunction colorFromHex:0XFF4991CB].CGColor ]
-                                                                proportion:_passengerModel.realInCount/@(_passengerModel.maxCount!=0?:1).floatValue];
+                                                                proportion:_passengerModel.realInCount];
         [arrBarView addSubview:arrReal];
         
         
@@ -189,7 +189,7 @@
                                                                  direction:4
                                                                     colors:@[(__bridge id)[CommonFunction colorFromHex:0XFF9BEEDA].CGColor,
                                                                              (__bridge id)[CommonFunction colorFromHex:0XFF94E1EB].CGColor ]
-                                                                proportion:_passengerModel.planOutCount/@(_passengerModel.maxCount!=0?:1).floatValue];
+                                                                proportion:_passengerModel.planOutCount];
         [depBarView addSubview:depPlan];
         
         depReal = [[ProgreesBarView alloc] initWithCenter:CGPointMake(depBarView.frame.size.width*3/4,
@@ -197,7 +197,7 @@
                                                                       size:CGSizeMake(15, depBarView.frame.size.height)
                                                                  direction:4 colors:@[(__bridge id)[CommonFunction colorFromHex:0XFF4A9EB8].CGColor,
                                                                                       (__bridge id)[CommonFunction colorFromHex:0XFF4991CB].CGColor ]
-                                                                proportion:_passengerModel.realOutCount/@(_passengerModel.maxCount!=0?:1).floatValue];
+                                                                proportion:_passengerModel.realOutCount];
         
         [depBarView addSubview:depReal];
 
@@ -424,6 +424,12 @@
         depValueLabel.text = [NSString stringWithFormat:@"%d/%d",_passengerModel.planOutCount,_passengerModel.realOutCount];
         DMZPeopleLabel.text = [NSString stringWithFormat:@"隔离区%@人",@(_passengerModel.safeCount)];
     }
+}
+
+-(int)maxValue
+{
+    int max = 0;
+    return max;
 }
 
 @end

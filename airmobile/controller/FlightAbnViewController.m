@@ -8,9 +8,10 @@
 
 #import "FlightAbnViewController.h"
 #import "FlightStusModel.h"
+#import "HomePageService.h"
 
 @interface FlightAbnViewController ()
-@property (nonatomic, strong) FlightStusModel *flightHourModel;
+//@property (nonatomic, strong) FlightStusModel *flightHourModel;
 
 @end
 
@@ -29,14 +30,7 @@
     UIButton        *delayButton;
 }
 
--(instancetype)initWithFlightStusModel:(FlightStusModel *)flightHourModel
-{
-    self = [super init];
-    if (self) {
-        _flightHourModel = flightHourModel;
-    }
-    return self;
-}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -135,14 +129,14 @@
                                                                                        0,
                                                                                        scrollView.frame.size.width,
                                                                                        scrollView.frame.size.height)
-                                                                  dataArray:_flightHourModel.abnReasons];
+                                                                  dataArray:[HomePageService sharedHomePageService].flightModel.abnReasons];
     [scrollView addSubview:abnView];
     
     AreaDelayTimeView *dlyView = [[AreaDelayTimeView alloc] initWithFrame:CGRectMake(scrollView.frame.size.width,
                                                                                      0,
                                                                                      scrollView.frame.size.width,
                                                                                      scrollView.frame.size.height)
-                                                                dataArray:_flightHourModel.regionDlyTimes];
+                                                                dataArray:[HomePageService sharedHomePageService].flightModel.regionDlyTimes];
     [scrollView addSubview:dlyView];
     
 //    pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, kScreenHeight-40, kScreenWidth, 40)];
@@ -219,6 +213,8 @@
         [self buttonClickedWithSender:delayButton];
     }
 }
+
+
 
 
 @end

@@ -100,7 +100,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
              forCellWithReuseIdentifier:(NSString *)FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER];
 
     _tableViewHeight.constant = 103*dispatches.count;
-    _safeguardTableViewHeight.constant = 45 * specicals.count +36;
+    _safeguardTableViewHeight.constant = 90 * specicals.count +36;
 
 
     [self basicInfo];
@@ -112,7 +112,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 
 -(void)updateSpecialsTableView
 {
-    _safeguardTableViewHeight.constant = 45 * specicals.count +36;
+    _safeguardTableViewHeight.constant = 90 * specicals.count +36;
     [_safeguardTableView reloadData];
 
 }
@@ -258,7 +258,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
         sender.tag = 0;
         [UIView animateWithDuration:0.3 animations:^{
             sender.transform = CGAffineTransformMakeRotation(0);
-            _safeguradViewHeight.constant = specicals.count *45+36;
+            _safeguradViewHeight.constant = specicals.count *90+36;
             [self.view layoutIfNeeded];
         }];
     }

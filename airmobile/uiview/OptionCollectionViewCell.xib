@@ -21,10 +21,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="169" height="50"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OptionCellNotSelected" translatesAutoresizingMaskIntoConstraints="NO" id="Zif-ra-IRi">
-                                <rect key="frame" x="42.5" y="7" width="84" height="36"/>
+                                <rect key="frame" x="2" y="0.0" width="165" height="50"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="安监部" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Odv-ay-8NH">
-                                <rect key="frame" x="61.5" y="15" width="45" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="安监部" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Odv-ay-8NH">
+                                <rect key="frame" x="2" y="0.0" width="165" height="50"/>
                                 <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="15"/>
                                 <color key="textColor" red="0.090196078431372548" green="0.72549019607843135" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -32,19 +32,23 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Odv-ay-8NH" firstAttribute="centerX" secondItem="vcK-3F-Xb8" secondAttribute="centerX" id="5Vg-Zt-t2i"/>
-                            <constraint firstItem="Zif-ra-IRi" firstAttribute="centerY" secondItem="vcK-3F-Xb8" secondAttribute="centerY" id="hlC-OY-2XE"/>
-                            <constraint firstItem="Odv-ay-8NH" firstAttribute="centerY" secondItem="vcK-3F-Xb8" secondAttribute="centerY" id="vSq-Hw-pVQ"/>
-                            <constraint firstItem="Zif-ra-IRi" firstAttribute="centerX" secondItem="vcK-3F-Xb8" secondAttribute="centerX" id="zTb-2l-f74"/>
+                            <constraint firstItem="Zif-ra-IRi" firstAttribute="leading" secondItem="Odv-ay-8NH" secondAttribute="leading" id="AYg-9E-feL"/>
+                            <constraint firstAttribute="bottom" secondItem="Zif-ra-IRi" secondAttribute="bottom" id="C9Q-tb-E3G"/>
+                            <constraint firstItem="Zif-ra-IRi" firstAttribute="bottom" secondItem="Odv-ay-8NH" secondAttribute="bottom" id="DlX-PJ-pcM"/>
+                            <constraint firstAttribute="trailing" secondItem="Zif-ra-IRi" secondAttribute="trailing" constant="2" id="Kvq-KN-hkj"/>
+                            <constraint firstItem="Zif-ra-IRi" firstAttribute="top" secondItem="vcK-3F-Xb8" secondAttribute="top" id="O4e-v3-dx6"/>
+                            <constraint firstItem="Zif-ra-IRi" firstAttribute="top" secondItem="Odv-ay-8NH" secondAttribute="top" id="bU7-4J-rSS"/>
+                            <constraint firstItem="Zif-ra-IRi" firstAttribute="leading" secondItem="vcK-3F-Xb8" secondAttribute="leading" constant="2" id="eH0-Od-3NX"/>
+                            <constraint firstItem="Zif-ra-IRi" firstAttribute="trailing" secondItem="Odv-ay-8NH" secondAttribute="trailing" id="zcu-3O-KmY"/>
                         </constraints>
                     </view>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="vcK-3F-Xb8" secondAttribute="trailing" id="38X-kE-sQl"/>
-                <constraint firstItem="vcK-3F-Xb8" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="UgO-2k-a9N"/>
-                <constraint firstAttribute="bottom" secondItem="vcK-3F-Xb8" secondAttribute="bottom" id="dXh-6P-PYG"/>
-                <constraint firstItem="vcK-3F-Xb8" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="vak-g1-zVW"/>
+                <constraint firstAttribute="bottom" secondItem="vcK-3F-Xb8" secondAttribute="bottom" id="6ck-0p-Jbk"/>
+                <constraint firstAttribute="trailing" secondItem="vcK-3F-Xb8" secondAttribute="trailing" id="RqK-dq-jzL"/>
+                <constraint firstItem="vcK-3F-Xb8" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="b3a-MU-sqp"/>
+                <constraint firstItem="vcK-3F-Xb8" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="rlh-kG-E5y"/>
             </constraints>
             <size key="customSize" width="169" height="50"/>
             <connections>
@@ -55,6 +59,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="OptionCellNotSelected" width="84" height="36"/>
+        <image name="OptionCellNotSelected" width="62" height="26"/>
     </resources>
 </document>

@@ -44,8 +44,7 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 @property (nonatomic, copy) NSArray *tableViewArray;
 @property (nonatomic ,strong) NSMutableArray *collectionArray;
 @property (nonatomic, strong) AbnormalModel *abnormalModel ;
-@property (nonatomic, strong) BasisInfoDictionaryModel *eventType;
-@property (nonatomic, strong) BasisInfoDictionaryModel *eventLevel;
+
 @end
 
 @implementation AbnormalityReportViewController
@@ -74,7 +73,7 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
     _abnormalityHistoryTableView.dataSource = self;
     [_abnormalityHistoryTableView registerNib:[UINib nibWithNibName:@"AbnormalityReportHistoryTableViewCell" bundle:nil]
                        forCellReuseIdentifier:(NSString *)ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER];
-    _abnormalityHistoryArray = @[@"类型",@"事件"];
+
     _abnormalityHistoryViewHeight.constant = _abnormalityHistoryArray.count * 61 +51;
 
 
@@ -113,6 +112,8 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
                            forKeyPath:@"enabled"
                               options:NSKeyValueObservingOptionNew
                               context:nil];
+
+    
 }
 
 
@@ -120,10 +121,7 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 {
     _abnormalityHistoryArray = abnormalityHistoryArray;
     _abnormalityHistoryViewHeight.constant = _abnormalityHistoryArray.count * 61 +51;
-
 }
-
-
 
 -(void)dealloc
 {
@@ -206,7 +204,10 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 
 -(void)updateData
 {
-//    [HttpsUtils getDispatchAbns:<#(int)#> type:<#(int)#> success:<#^(id)success#> failure:<#^(id)failure#>]
+    [_tableView reloadData];
+    [_abnormalityHistoryTableView reloadData];
+    _explainTextView.text = @"";
+    _requireTextView.text = @"";
 }
 #pragma mark - UITableViewDelegate UITableViewDataSource
 
@@ -236,7 +237,7 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
         if ([name isEqualToString:@"事件类别"]) {
             cell.valueLabel.text = _eventType.content;
         }else if([name isEqualToString:@"事件"]){
-
+            cell.valueLabel.text = _event.event;
         }else if ([name isEqualToString:@"事件级别"]){
             cell.valueLabel.text = _eventLevel.content;
         }
@@ -244,7 +245,7 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
     }else
     {
         AbnormalityReportHistoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString*)ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER];
-        cell.nameLabel.text =_tableViewArray[indexPath.row];
+        cell.abnormalModel = self.abnormalityHistoryArray[indexPath.row];
         return  cell;
     }
 
@@ -340,7 +341,7 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
             _eventType =value;
             break;
         case OptionsTypeEvent:
-            _abnormalModel.event = value;
+            _event = value;
             break;
         case OptionsTypeEventLevel:
             _eventLevel = value;

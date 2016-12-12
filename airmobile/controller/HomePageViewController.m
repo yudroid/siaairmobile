@@ -24,10 +24,10 @@
 
 
 @interface HomePageViewController ()
-@property (nonatomic ,strong) SummaryModel      *summaryModel;
-@property (nonatomic ,strong) FlightStusModel   *flighStusModel;
-@property (nonatomic ,strong) PassengerModel    *passengerModel;
-@property (nonatomic ,strong) SeatStatusModel   *seatStatusModel;
+//@property (nonatomic ,strong) SummaryModel      *summaryModel;
+//@property (nonatomic ,strong) FlightStusModel   *flighStusModel;
+//@property (nonatomic ,strong) PassengerModel    *passengerModel;
+//@property (nonatomic ,strong) SeatStatusModel   *seatStatusModel;
 
 @end
 
@@ -262,7 +262,7 @@
                                                                                     self.titleView.frame.size.height,
                                                                                     kScreenWidth,
                                                                                     kScreenHeight-viewHeight(self.titleView)-viewHeight(self.tabBarView))
-                                                           summaryModel:_summaryModel
+                                                           summaryModel:[HomePageService sharedHomePageService].summaryModel
                                                                delegate:self];
         [self.view addSubview:overviewContentView];
     }
@@ -283,7 +283,7 @@
                                                                                 100,
                                                                                 kScreenWidth,
                                                                                 kScreenHeight-100-49)
-                                                     flightStusModel:_flighStusModel
+                                                     flightStusModel:[HomePageService sharedHomePageService].flightModel
                                                             delegate:self];
         [self.view addSubview:flightContentView];
     }
@@ -304,7 +304,7 @@
                                                                                       100,
                                                                                       kScreenWidth,
                                                                                       kScreenHeight-100-49)
-                                                            PassengerModel:_passengerModel
+                                                            PassengerModel:[HomePageService sharedHomePageService].psnModel
                                                                   delegate:self];
         [self.view addSubview:passengerContentView];
     }
@@ -325,7 +325,7 @@
                                                                                     80,
                                                                                     kScreenWidth,
                                                                                     kScreenHeight-80-49)
-                                                         seatStatusModel:_seatStatusModel
+                                                         seatStatusModel:[HomePageService sharedHomePageService].seatModel
                                                                 delegate:self];
         [self.view addSubview:resourceContentView];
     }
@@ -405,8 +405,8 @@
  */
 -(void) showReleasedRatioView
 {
-    ReleasedRatioViewController *ratio = [[ReleasedRatioViewController alloc] initWithTenDayDataArray:_summaryModel.tenDayReleased
-                                                                                        yearDataArray:_summaryModel.yearReleased];
+    ReleasedRatioViewController *ratio = [[ReleasedRatioViewController alloc] initWithTenDayDataArray:[HomePageService sharedHomePageService].summaryModel.tenDayReleased
+                                                                                        yearDataArray:[HomePageService sharedHomePageService].summaryModel.yearReleased];
     [self.navigationController pushViewController:ratio
                                          animated:YES];
 }
@@ -415,7 +415,9 @@
  展示航班小时分布视图
  */
 -(void) showFlightHourView{
-    FlightHourViewController *flightHour = [[FlightHourViewController alloc] initWithFlightHours:_summaryModel.flightHours];
+
+
+    FlightHourViewController *flightHour = [[FlightHourViewController alloc] initWithFlightHours:[HomePageService sharedHomePageService].summaryModel.flightHours];
     [self.navigationController pushViewController:flightHour
                                          animated:YES];
 }
@@ -424,7 +426,7 @@
  展示小面积延误视图
  */
 -(void) showWorningIndicatorView{
-    AlertIndicateViewController *alert = [[AlertIndicateViewController alloc] initWithDalayTagart:_summaryModel.delayTagart];
+    AlertIndicateViewController *alert = [[AlertIndicateViewController alloc] initWithDalayTagart:[HomePageService sharedHomePageService].summaryModel.delayTagart];
     [self.navigationController pushViewController:alert
                                          animated:YES];
 }
@@ -436,7 +438,7 @@
 -(void) showFlightHourView:(FlightHourType) type
 {
 //    ArrDepFlightHourViewController *arrDepController = [[ArrDepFlightHourViewController alloc]initWithDataArray:_flighStusModel.flightHours];
-    ArrDepFlightHourViewController *arrDepController = [[ArrDepFlightHourViewController alloc]initWithDataArray:_summaryModel.flightHours];
+    ArrDepFlightHourViewController *arrDepController = [[ArrDepFlightHourViewController alloc]initWithDataArray:[HomePageService sharedHomePageService].summaryModel.flightHours];
     arrDepController.hourType = type;
     [self.navigationController pushViewController:arrDepController
                                          animated:YES];
@@ -446,7 +448,7 @@
  展示航班异常原因分类、各地区平均延误时间图
  */
 -(void) showFlightAbnnormalView{
-    FlightAbnViewController *abn = [[FlightAbnViewController alloc] initWithFlightStusModel:_flighStusModel];
+    FlightAbnViewController *abn = [[FlightAbnViewController alloc] init];
     [self.navigationController pushViewController:abn
                                          animated:YES];
 }
@@ -457,7 +459,7 @@
  展示旅客小时分布
  */
 -(void) showPassengerHourView{
-    PassengerHourViewController *psnHour = [[PassengerHourViewController alloc] initWithDataArray:_passengerModel.psnInOutHours];
+    PassengerHourViewController *psnHour = [[PassengerHourViewController alloc] initWithDataArray:[HomePageService sharedHomePageService].psnModel.psnInOutHours];
     [self.navigationController pushViewController:psnHour
                                          animated:YES];
 }
@@ -466,13 +468,13 @@
  展示隔离区内旅客小时分布、当前隔离区内各区域旅客分布
  */
 -(void) showSecurityPassengerView{
-    SecurityPsnViewController *security = [[SecurityPsnViewController alloc] initWithPassengerModel:_passengerModel];
+    SecurityPsnViewController *security = [[SecurityPsnViewController alloc] initWithPassengerModel:[HomePageService sharedHomePageService].psnModel];
     [self.navigationController pushViewController:security
                                          animated:YES];
 }
 
 -(void)showTop5DaysView{
-    PassengerTopViewController *security = [[PassengerTopViewController alloc] initWithDataArray:_passengerModel.psnTops];
+    PassengerTopViewController *security = [[PassengerTopViewController alloc] initWithDataArray:[HomePageService sharedHomePageService].psnModel.psnTops];
     [self.navigationController pushViewController:security
                                          animated:YES];
 }
@@ -484,7 +486,7 @@
  展示机位的使用详细信息
  */
 -(void) showSeatUsedDetailView{
-    SeatUsedViewController *seatUsed = [[SeatUsedViewController alloc]initWithCraftseatCntModel:_seatStatusModel.usedDetail];
+    SeatUsedViewController *seatUsed = [[SeatUsedViewController alloc]initWithCraftseatCntModel:[HomePageService sharedHomePageService].seatModel.usedDetail];
     [self.navigationController pushViewController:seatUsed
                                          animated:YES];
 }

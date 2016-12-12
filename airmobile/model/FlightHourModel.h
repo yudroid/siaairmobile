@@ -26,7 +26,7 @@
 
 @property(nonatomic,assign) BOOL     before; // 当前时间之前
 
-@property(nonatomic,assign) float   radio;
+@property(nonatomic,assign) double   ratio;
 
 #pragma mark - method
 

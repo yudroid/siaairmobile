@@ -25,6 +25,8 @@
     [self initTitie];
     _textFieldWidth.constant = kScreenWidth-62;
 
+    _titleLabel.text = _titleText;
+    _contentLabel.text = _contentText;
     if ([DeviceInfoUtil isPlus]) {
         [self adjustPLUS];
     }
@@ -40,6 +42,7 @@
 
 -(void)setContentText:(NSString *)contentText
 {
+    _contentText = [contentText copy];
     _contentLabel.text = [contentText copy];
 }
 
@@ -59,8 +62,8 @@
 }
 -(void)setTitleText:(NSString *)titleText
 {
-    _titleText = titleText;
-    _titleLabel.text = titleText;
+    _titleText = [titleText copy];
+    _titleLabel.text = [titleText copy];
 
     CGSize maxSize = CGSizeMake(kScreenWidth - 31*2, CGFLOAT_MAX);
     CGSize exportSize = [_titleLabel sizeThatFits:maxSize];

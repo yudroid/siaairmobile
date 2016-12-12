@@ -7,6 +7,9 @@
 //
 
 #import "AbnormalityReportHistoryTableViewCell.h"
+#import "AbnormalModel.h"
+#import "PersistenceUtils+Business.h"
+#import "BasisInfoEventModel.h"
 
 @interface AbnormalityReportHistoryTableViewCell ()
 
@@ -27,5 +30,22 @@
 }
 
 
+-(void)setAbnormalModel:(AbnormalModel *)abnormalModel
+{
+    _abnormalModel = abnormalModel;
+    _starLabel.text = [NSString stringWithFormat:@"开始:%@",abnormalModel.startTime];
+    _endLabel.text =  [NSString stringWithFormat:@"结束:%@",abnormalModel.endTime];
+
+    NSDictionary *dic = [[PersistenceUtils findBasisInfoEventWithEventId:(int)abnormalModel.id] lastObject];
+
+    BasisInfoEventModel *eventModel = [[BasisInfoEventModel alloc]initWithDictionary:dic];
+    _nameLabel.text = eventModel.event;
+    if (abnormalModel.endTime && ![abnormalModel.endTime isEqualToString:@""]) {
+        _statusLabel.text = @"上报完成";
+    }else{
+        _statusLabel.text = @"上报开始";
+    }
+
+}
 
 @end

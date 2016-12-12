@@ -5,11 +5,39 @@
       "scale" : "1x"
     },
     {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "tile",
+          "width" : 185,
+          "height" : 17
+        },
+        "cap-insets" : {
+          "bottom" : 22,
+          "top" : 23,
+          "right" : 81,
+          "left" : 47
+        }
+      },
       "idiom" : "universal",
       "filename" : "button2.png",
       "scale" : "2x"
     },
     {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "tile",
+          "width" : 198,
+          "height" : 23
+        },
+        "cap-insets" : {
+          "bottom" : 24,
+          "top" : 34,
+          "right" : 97,
+          "left" : 82
+        }
+      },
       "idiom" : "universal",
       "filename" : "button1.png",
       "scale" : "3x"

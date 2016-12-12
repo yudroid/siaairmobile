@@ -10,4 +10,12 @@
 
 @implementation BasisInfoDictionaryModel
 
+
+-(void)setValue:(id)value forUndefinedKey:(NSString *)key
+{
+    if ([key isEqualToString:@"basisidid"]) {
+        _id = [value intValue];
+    }
+}
+
 @end

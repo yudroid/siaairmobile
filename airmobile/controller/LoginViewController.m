@@ -284,6 +284,7 @@
         
         [[HomePageService sharedHomePageService] startService];
         [[MessageService sharedMessageService] startService];
+        [HttpsUtils getAlertMsgListSuccess:nil failure:nil];// 同步最近的异常消息
         
         /*
          返回 1 登录成功  2 登录失败，用户名\密码为空 3登录失败，用户名或密码输入错误 4 用户被禁用 5已在其他设备登录，登录失败 6 账号已过期 7 MAC地址不匹配

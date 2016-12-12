@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ContactPersonViewController">
             <connections>
+                <outlet property="searchTextField" destination="pkS-kc-eLP" id="S1e-Ma-z6N"/>
                 <outlet property="tableView" destination="IW1-4q-KFj" id="Wc4-jj-IVa"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -67,6 +68,6 @@
         </view>
     </objects>
     <resources>
-        <image name="SearchIconBig" width="15" height="15"/>
+        <image name="SearchIconBig" width="14" height="14"/>
     </resources>
 </document>

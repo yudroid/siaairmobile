@@ -9,6 +9,7 @@
 #import "OptionsViewController.h"
 #import "OptionCollectionViewCell.h"
 #import "PersistenceUtils+Business.h"
+#import "BasisInfoEventModel.h"
 
 
 static const NSString *OPTIONS_COLLECTIONVIEW_INDETIFIER = @"OPTIONS_COLLECTIONVIEW_INDETIFIER";
@@ -59,9 +60,27 @@ static const NSString *OPTIONS_COLLECTIONVIEW_INDETIFIER = @"OPTIONS_COLLECTIONV
 		case OptionsTypeEvent:
 		{
 			NSMutableArray *mutableArray = [NSMutableArray  array];
-			NSArray *findArray = [PersistenceUtils findBasisInfoDictionaryWithType:@"EventType"];
+			NSArray *findArray = [PersistenceUtils findBasisInfoDictionaryWithType:@"DispatchType"];
+			int Id = -1;
+			for (NSDictionary *dic in findArray) {
+				if ([[dic objectForKey:@"content"] isEqualToString:_dispatchType]) {
+					Id = [[dic objectForKey:@"basisidid"] intValue];
+				}
+			}
+			[mutableArray removeAllObjects];
+			if (Id != -1) {
+				NSArray *findEventArray = [PersistenceUtils findBasisInfoEventWithEventId:_event_type
+																			   dispatchId:Id
+																			   eventLevel:_event_level];
+				for (NSDictionary *dic in findEventArray) {
+					BasisInfoEventModel *model = [[BasisInfoEventModel alloc]initWithDictionary:dic];
+					[mutableArray addObject:model];
+				}
+				_collectionArray = [mutableArray copy];
 
-
+			}
+			break;
+			
 		}
 		case OptionsTypeEventLevel:
 		{
@@ -114,7 +133,14 @@ static const NSString *OPTIONS_COLLECTIONVIEW_INDETIFIER = @"OPTIONS_COLLECTIONV
 	OptionCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:(NSString *)OPTIONS_COLLECTIONVIEW_INDETIFIER
 																			   forIndexPath:indexPath];
 	cell.contentView.backgroundColor = [UIColor grayColor];
-	cell.basisInfoDictionaryModel = _collectionArray[indexPath.row];
+	if (_optionsType == OptionsTypeEvent) {
+		cell.basisInfoEventModel = _collectionArray[indexPath.row];
+
+	}else{
+		cell.basisInfoDictionaryModel = _collectionArray[indexPath.row];
+
+	}
+
 	return cell;
 
 }
@@ -125,7 +151,7 @@ static const NSString *OPTIONS_COLLECTIONVIEW_INDETIFIER = @"OPTIONS_COLLECTIONV
 }
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	return CGSizeMake((kScreenWidth-32)/4, 50);
+	return CGSizeMake((kScreenWidth-32)/4, 40);
 }
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
@@ -133,7 +159,7 @@ static const NSString *OPTIONS_COLLECTIONVIEW_INDETIFIER = @"OPTIONS_COLLECTIONV
 }
 -(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-	return 0;
+	return 8;
 }
 
 -(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section

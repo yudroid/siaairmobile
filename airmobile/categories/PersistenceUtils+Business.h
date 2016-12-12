@@ -110,11 +110,34 @@
 
 
 /**
+ 首次登陆的时候同步用户消息
+
+ @param messages <#messages description#>
+ */
++(void)syncUserMessages:(NSArray<NSDictionary *> *)messages;
+
+/**
+ 首次登陆的时候工作组消息
+ 
+ @param messages <#messages description#>
+ */
++(void)syncGroupMessages:(NSArray<NSDictionary *> *)messages;
+
+/**
  插入系统消息
 
  @param message <#message description#>
  */
 +(void)insertNewSysMessage:(NSDictionary *)message;
+
+/**
+ 首次登陆的时候同步系统消息
+ 
+ @param messages <#messages description#>
+ */
++(void)syncSysMessages:(NSArray<NSDictionary *> *)messages;
+
+
 
 
 /**
@@ -139,6 +162,7 @@
 
 
 /**
+
  插入基础数据字典
 
  @param dictionary <#dictionary description#>
@@ -153,6 +177,22 @@
  */
 +(NSArray *)findBasisInfoDictionaryWithType:(NSString *)type;
 
+/**
+ 查询基础数据
+
+ @param Id <#Id description#>
+ @return <#return value description#>
+ */
++(NSArray *)findBasisInfoDictionaryWithid:(int)Id;
+
+
+/**
+ 更新消息状态
+ 
+ @param msgId <#msgId description#>
+ */
++(void)updateSysMessageRead:(long)msgId;
+
 
 /**
  插入基础数据字典-事件
@@ -160,6 +200,8 @@
  @param dictionary <#dictionary description#>
  */
 +(void)insertBasisInfoEventWithDictionary:(NSDictionary *)dictionary;
+
+
 
 
 /**
@@ -171,4 +213,14 @@
  @return <#return value description#>
  */
 +(NSArray *)findBasisInfoEventWithEventId:(int)eventId dispatchId:(int)dispatchId eventLevel:(int)eventLevel;
+
+
+
+/**
+ 查询事件
+
+ @param eventId 事件id
+ @return <#return value description#>
+ */
++(NSArray *)findBasisInfoEventWithEventId:(int)eventId;
 @end

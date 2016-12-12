@@ -80,21 +80,22 @@
         lineImageView.image = [UIImage imageNamed:@"hiddenLine"];
         [topBgView addSubview:lineImageView];
 
-        UILabel *timeLabel = [CommonFunction addLabelFrame:CGRectMake(viewX(passengerTtitle),
-                                                                      viewBotton(lineImageView)+4,
-                                                                      topBgView.frame.size.width/2-20,
-                                                                      12)
-                                                      text:@"120 min"
-                                                      font:11
-                                             textAlignment:NSTextAlignmentLeft
-                                              colorFromHex:0x75FFFFFF];
-        [topBgView addSubview:timeLabel];
+//        UILabel *timeLabel = [CommonFunction addLabelFrame:CGRectMake(viewX(passengerTtitle),
+//                                                                      viewBotton(lineImageView)+4,
+//                                                                      topBgView.frame.size.width/2-20,
+//                                                                      12)
+//                                                      text:@"120 min"
+//                                                      font:11
+//                                             textAlignment:NSTextAlignmentLeft
+//                                              colorFromHex:0x75FFFFFF];
+//        [topBgView addSubview:timeLabel];
 
         UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(viewWidth(topBgView)/2,
                                                                      viewBotton(lineImageView)+4,
                                                                      topBgView.frame.size.width/2-20,
                                                                      12)
-                                                     text:@"120 架"
+                                                     text:[NSString stringWithFormat:@"%d",(int)([self maxValue
+                                                                                            ]*1.2)]
                                                      font:11
                                             textAlignment:NSTextAlignmentRight
                                              colorFromHex:0x75FFFFFF];
@@ -112,7 +113,7 @@
         [lineChart setXLabels:[self getFlightHourXLabels]];
         lineChart.showCoordinateAxis    = NO;
         lineChart.showGenYLabels        =NO;
-        lineChart.yFixedValueMax        = 90;
+        lineChart.yFixedValueMax        = [self maxValue]*1.2;
         lineChart.yFixedValueMin        = 0;
         
         // added an examle to show how yGridLines can be enabled
@@ -145,7 +146,7 @@
                                                                 topBgView.frame.size.width-40,
                                                                 topBgView.frame.size.height-(5+23+15+2)-5)];//折线图
         
-        barChart.yMaxValue      = 120;
+        barChart.yMaxValue      = [self maxTimeValue]*1.2;
         barChart.yMinValue      = 0;
         barChart.showXLabel     = NO;
         barChart.showYLabel     = NO;
@@ -288,6 +289,29 @@
 
         [lineChart strokeChart];
     }
+}
+
+-(int)maxValue
+{
+    int maxValue = 0;
+    for(RegionDlyTimeModel *model in hourArray){
+        if (model.count > maxValue) {
+            maxValue = model.count;
+        }
+    }
+    return maxValue;
+}
+
+-(int)maxTimeValue
+{
+    int max = 0;
+    for(RegionDlyTimeModel *model in hourArray){
+        if (model.time>max) {
+            max = model.time;
+        }
+    }
+
+    return max;
 }
 
 
