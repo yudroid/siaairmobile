@@ -69,7 +69,7 @@
                                                                   viewBotton(TopImageView)+10,
                                                                   300,
                                                                   9)];
-    timeLabel.text = [NSString stringWithFormat:@"时间范围:%@",@"2016年11月13日-2016年11月13日"];
+    timeLabel.text = [NSString stringWithFormat:@"时间范围:%@",@"今年"];
     timeLabel.font = [UIFont fontWithName:@"PingFangSC-Regular"
                                      size:21/2];
     timeLabel.textColor = [CommonFunction colorFromHex:0XFFefeff0];

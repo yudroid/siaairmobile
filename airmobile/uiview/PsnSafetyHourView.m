@@ -95,7 +95,7 @@
         UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(20,
                                                                      viewBotton(upImageView)+px2(8),
                                                                      topBgView.frame.size.width-40, 12)
-                                                     text:@"120"
+                                                     text:@([self maxValue]*1.2).stringValue
                                                      font:11
                                             textAlignment:NSTextAlignmentRight
                                              colorFromHex:0x75FFFFFF];
@@ -110,7 +110,7 @@
         lineChart.skipXPoints       = 1;
         lineChart.showCoordinateAxis= NO;
         lineChart.showGenYLabels    = NO;
-        lineChart.yFixedValueMax    = [self maxValue];
+        lineChart.yFixedValueMax    = [self maxValue]*1.2;
         lineChart.yFixedValueMin    = 0;
         [lineChart setXLabels:[self getFlightHourXLabels]];
         
@@ -219,7 +219,7 @@
 {
     NSMutableArray *arr = [[NSMutableArray alloc] init];
     for(FlightHourModel *model in hourArray){
-        [arr addObject:@((int)(model.planDepCount))];
+        [arr addObject:@((int)(model.planDepCount+model.planArrCount))];
     }
     return arr;
 }
@@ -228,7 +228,7 @@
 {
     NSMutableArray *arr = [[NSMutableArray alloc] init];
     for(FlightHourModel *model in hourArray){
-        [arr addObject:@((int)(model.planCount))];
+        [arr addObject:@((int)(model.planDepCount+model.planArrCount))];
     }
     return arr;
 }
@@ -245,8 +245,8 @@
 {
     NSInteger max = 0;
     for (FlightHourModel *model in hourArray) {
-        if (model.count>max) {
-            max = model.planDepCount;
+        if ( model.planDepCount+model.planArrCount>max) {
+            max = model.planDepCount+model.planArrCount;
         }
     }
     return max;
@@ -254,32 +254,32 @@
 
 -(void)loadData:(NSNotification *)notification
 {
-    if ([notification.object isKindOfClass:[NSArray class]]) {
-        hourArray = notification.object;
-
-        [flightHourTableView reloadData];
-
-        [lineChart setXLabels:[self getFlightHourXLabels]];
-
-        // Line Chart #2
-        NSArray * dataArray         = [self getFlightHourYLabels];
-        PNLineChartData *data       = [PNLineChartData new];
-        data.dataTitle              = @"航班";
-        data.color                  = [UIColor whiteColor];
-        data.alpha                  = 0.5f;
-        data.inflexionPointWidth    = 2.0f;
-        data.itemCount              = dataArray.count;
-        data.inflexionPointStyle    = PNLineChartPointStyleCircle;
-        data.getData = ^(NSUInteger index) {
-            CGFloat yValue = [dataArray[index] floatValue];
-            return [PNLineChartDataItem dataItemWithY:yValue];
-        };
-
-        lineChart.chartData = @[data];
-
-        [lineChart strokeChart];
-
-    }
+//    if ([notification.object isKindOfClass:[NSArray class]]) {
+//        hourArray = notification.object;
+//
+//        [flightHourTableView reloadData];
+//
+//        [lineChart setXLabels:[self getFlightHourXLabels]];
+//
+//        // Line Chart #2
+//        NSArray * dataArray         = [self getFlightHourYLabels];
+//        PNLineChartData *data       = [PNLineChartData new];
+//        data.dataTitle              = @"航班";
+//        data.color                  = [UIColor whiteColor];
+//        data.alpha                  = 0.5f;
+//        data.inflexionPointWidth    = 2.0f;
+//        data.itemCount              = dataArray.count;
+//        data.inflexionPointStyle    = PNLineChartPointStyleCircle;
+//        data.getData = ^(NSUInteger index) {
+//            CGFloat yValue = [dataArray[index] floatValue];
+//            return [PNLineChartDataItem dataItemWithY:yValue];
+//        };
+//
+//        lineChart.chartData = @[data];
+//
+//        [lineChart strokeChart];
+//
+//    }
 
 }
 

@@ -238,6 +238,8 @@
 		F7D47FE71DFA8D7F0050B293 /* BasisInfoDictionaryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D47FE61DFA8D7F0050B293 /* BasisInfoDictionaryModel.m */; };
 		F7D47FEB1DFB15720050B293 /* FlightFilterCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D47FE91DFB15720050B293 /* FlightFilterCollectionViewCell.m */; };
 		F7D47FEC1DFB15720050B293 /* FlightFilterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7D47FEA1DFB15720050B293 /* FlightFilterCollectionViewCell.xib */; };
+		F7D47FF01DFEC7400050B293 /* PsnSafetyContentViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D47FEE1DFEC7400050B293 /* PsnSafetyContentViewTableViewCell.m */; };
+		F7D47FF11DFEC7400050B293 /* PsnSafetyContentViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7D47FEF1DFEC7400050B293 /* PsnSafetyContentViewTableViewCell.xib */; };
 		F7EAE1961DB4776C0060626F /* AbnormalityReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EAE1941DB4776C0060626F /* AbnormalityReportViewController.m */; };
 		F7EAE1971DB4776C0060626F /* AbnormalityReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7EAE1951DB4776C0060626F /* AbnormalityReportViewController.xib */; };
 		F7EAE19D1DB4B0680060626F /* AbnormalityReportCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EAE19B1DB4B0680060626F /* AbnormalityReportCollectionViewCell.m */; };
@@ -666,6 +668,9 @@
 		F7D47FE81DFB15720050B293 /* FlightFilterCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightFilterCollectionViewCell.h; sourceTree = "<group>"; };
 		F7D47FE91DFB15720050B293 /* FlightFilterCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightFilterCollectionViewCell.m; sourceTree = "<group>"; };
 		F7D47FEA1DFB15720050B293 /* FlightFilterCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightFilterCollectionViewCell.xib; sourceTree = "<group>"; };
+		F7D47FED1DFEC7400050B293 /* PsnSafetyContentViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PsnSafetyContentViewTableViewCell.h; sourceTree = "<group>"; };
+		F7D47FEE1DFEC7400050B293 /* PsnSafetyContentViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PsnSafetyContentViewTableViewCell.m; sourceTree = "<group>"; };
+		F7D47FEF1DFEC7400050B293 /* PsnSafetyContentViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PsnSafetyContentViewTableViewCell.xib; sourceTree = "<group>"; };
 		F7EAE1931DB4776C0060626F /* AbnormalityReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbnormalityReportViewController.h; sourceTree = "<group>"; };
 		F7EAE1941DB4776C0060626F /* AbnormalityReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = AbnormalityReportViewController.m; sourceTree = "<group>"; };
 		F7EAE1951DB4776C0060626F /* AbnormalityReportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AbnormalityReportViewController.xib; sourceTree = "<group>"; };
@@ -792,6 +797,9 @@
 				F70893F01DD492AD00135540 /* TagView.h */,
 				F70893F11DD492AD00135540 /* TagView.m */,
 				F70893F31DD492BD00135540 /* TagView.xib */,
+				F7D47FED1DFEC7400050B293 /* PsnSafetyContentViewTableViewCell.h */,
+				F7D47FEE1DFEC7400050B293 /* PsnSafetyContentViewTableViewCell.m */,
+				F7D47FEF1DFEC7400050B293 /* PsnSafetyContentViewTableViewCell.xib */,
 			);
 			name = "首页";
 			sourceTree = "<group>";
@@ -1638,6 +1646,7 @@
 				F792517C1DB7431D006AA119 /* UserManagementViewController.xib in Resources */,
 				F79251771DB73E2C006AA119 /* UserInfoTableViewCell.xib in Resources */,
 				845055641DACF65200400EBF /* login_input_field@3x.png in Resources */,
+				F7D47FF11DFEC7400050B293 /* PsnSafetyContentViewTableViewCell.xib in Resources */,
 				8450556F1DACF65200400EBF /* splash_1@3x.png in Resources */,
 				845055721DACF65200400EBF /* splash_3@2x.png in Resources */,
 				845055691DACF65200400EBF /* logo_flight@2x.png in Resources */,
@@ -1909,6 +1918,7 @@
 				F7A25D141DBA106300F36C32 /* UploadPhotoViewController.m in Sources */,
 				840D15E01DC20C2D005FA910 /* PsnSafetyHourView.m in Sources */,
 				840D15D41DC0C3E8005FA910 /* AbnReasonModel.m in Sources */,
+				F7D47FF01DFEC7400050B293 /* PsnSafetyContentViewTableViewCell.m in Sources */,
 				840D15ED1DC2FC67005FA910 /* PassengerTopViewController.m in Sources */,
 				840A4D111DD85DE200C39A79 /* PassengerModel.m in Sources */,
 				84183A091DBDDBD600D7DD86 /* FlightHourViewController.m in Sources */,
