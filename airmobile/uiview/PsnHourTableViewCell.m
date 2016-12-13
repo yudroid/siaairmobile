@@ -22,8 +22,8 @@
                                                      textAlignment:(NSTextAlignmentLeft)
                                                       colorFromHex:0xFF000000]];
         
-        int arrCount = flightHour.before?flightHour.arrCount:flightHour.planArrCount;
-        int depCount = flightHour.before?flightHour.depCount:flightHour.planDepCount;
+        int arrCount = (int)flightHour.arrCount;
+        int depCount = (int)flightHour.depCount;
 
         UILabel *valueLable =[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2,
                                                                       0,

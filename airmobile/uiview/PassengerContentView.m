@@ -9,6 +9,7 @@
 #import "PassengerContentView.h"
 #import "UIView+Toast.h"
 #import "PassengerModel.h"
+#import "HomePageService.h"
 @interface  PassengerContentView()
 
 @property (nonatomic ,strong) PassengerModel *passengermodel;
@@ -46,7 +47,7 @@
         [self addSubview:scrollView];
 
         psnGeneral = [[PsnGeneralContentView alloc] initWithFrame:CGRectMake(0, 0, width, height)
-                                                   passengerModel:_passengermodel];
+                                                   passengerModel:[HomePageService sharedHomePageService].psnModel];
         [scrollView addSubview:psnGeneral];
 
 //        UIButton *psnHourBtn = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth/2, 200+30, kScreenWidth/2-20, 90)];

@@ -33,9 +33,9 @@
         return;
     }
     _dutyModel = dutyModel;
-    _dptLabel.text = dutyModel.section;
+    _dptLabel.text = dutyModel.duty;
     _nameLabel.text = dutyModel.userName;
     _phoneLabel.text = dutyModel.phone;
-    _titleLabel.text = dutyModel.duty;
+    _titleLabel.text = dutyModel.section;
 }
 @end

@@ -170,6 +170,7 @@
         barChart.isGradientShow     = YES;
         barChart.isShowNumbers      = NO;
         barChart.barBackgroundColor = [UIColor clearColor];
+        barChart.strokeColor = [CommonFunction colorFromHex:0xff6AF9DF];
         
         [barChart strokeChart];
 

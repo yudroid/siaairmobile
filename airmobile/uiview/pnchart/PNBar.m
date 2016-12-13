@@ -109,10 +109,10 @@
             gradientLayer.startPoint = CGPointMake(0.0,0.0);
             gradientLayer.endPoint = CGPointMake(1.0 ,0.0);
             gradientLayer.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
-            UIColor *middleColor = [UIColor colorWithWhite:255/255 alpha:0.8];
+//            UIColor *middleColor = [UIColor colorWithWhite:255/255 alpha:0.8];
             NSArray *colors = @[
                                 (__bridge id)self.barColor.CGColor,
-                                (__bridge id)middleColor.CGColor,
+//                                (__bridge id)middleColor.CGColor,
                                 (__bridge id)self.barColor.CGColor
                                 ];
             gradientLayer.colors = colors;

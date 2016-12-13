@@ -459,7 +459,7 @@
  展示旅客小时分布
  */
 -(void) showPassengerHourView{
-    PassengerHourViewController *psnHour = [[PassengerHourViewController alloc] initWithDataArray:[HomePageService sharedHomePageService].psnModel.psnInOutHours];
+    PassengerHourViewController *psnHour = [[PassengerHourViewController alloc] initWithDataArray:[HomePageService sharedHomePageService].psnModel.psnHours];
     [self.navigationController pushViewController:psnHour
                                          animated:YES];
 }

@@ -346,6 +346,11 @@
 {
     SummaryModel *summaryModel = notification.object;
 
+    if (![totalNumLabel.text isEqualToString:@"0"]) {
+        return;
+    }
+
+
     calendarLabel.text  = summaryModel.flightDate;
     CGSize maxLabelSize = CGSizeMake(100, CGFLOAT_MAX);
     CGSize expectSize           = [calendarLabel sizeThatFits:maxLabelSize];

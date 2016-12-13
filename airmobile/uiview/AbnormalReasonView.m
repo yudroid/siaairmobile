@@ -128,12 +128,12 @@
 
 -(void) updateShapeArray
 {
-    NSDictionary *colorDic = @{@"天气"  :[CommonFunction colorFromHex:0xFFFF7C36] ,
-                               @"军事活动"  :[CommonFunction colorFromHex:0xFF17B9E8] ,
-                               @"航空公司"  :[CommonFunction colorFromHex:0xFFFFc0000] ,
-                               @"空管"     :[CommonFunction colorFromHex:0xFFFF2F57] ,
-                               @"旅客"     :[CommonFunction colorFromHex:0xFF2FEE65] ,
-                               @"其他"     :[CommonFunction colorFromHex:0xFF5A57D8]
+    NSDictionary *colorDic = @{@"天气"  :[CommonFunction colorFromHex:0xFFFFB6C1] ,
+                               @"军事活动"  :[CommonFunction colorFromHex:0xFFADD8E6] ,
+                               @"航空公司"  :[CommonFunction colorFromHex:0xFF87CEFA] ,
+                               @"空管"     :[CommonFunction colorFromHex:0xFFFFA07A] ,
+                               @"旅客"     :[CommonFunction colorFromHex:0xFFF08080] ,
+                               @"其他"     :[CommonFunction colorFromHex:0xFF90EE90]
                                };
     shapeArray = [NSMutableArray new];
     for (AbnReasonModel *model in array) {

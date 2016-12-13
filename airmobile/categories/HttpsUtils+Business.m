@@ -279,7 +279,8 @@ NSString * const updatePwdUrl               = @"/acs/login/updatePwd";//修改�
 
 +(void)queryFlightList:(NSDictionary *)conditions success:(void(^)(id))success failure:(void (^)(NSError *))failue
 {
-    [HttpsUtils get:flightListUrl params:conditions success:^(id responseObj) {
+
+    [HttpsUtils post:flightListUrl params:conditions success:^(id responseObj) {
         if(success){
             success(responseObj);
         }

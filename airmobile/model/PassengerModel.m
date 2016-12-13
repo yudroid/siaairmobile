@@ -71,7 +71,7 @@
 {
     if([self isNull:data])
         return;
-    _safeCount = [[data objectForKey:@"safeCount"] intValue];
+    _safeCount = [[data objectForKey:@"glqInPsnCnt"] intValue];
 }
 
 -(void) updatePassengerOnboard: (id)data
@@ -110,11 +110,11 @@
         switch (flag) {
 
             case 1:
-                model.planArrCount =    [[item objectForKey:@"count"] intValue];
+                model.arrCount =    [[item objectForKey:@"count"] intValue];
                 break;
                 
             case 2:
-                model.arrCount =        [[item objectForKey:@"count"] intValue];
+                model.depCount =        [[item objectForKey:@"count"] intValue];
                 break;
                 
             case 3:

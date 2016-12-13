@@ -111,6 +111,7 @@
     [UIView animateWithDuration:0.2 animations:^{
         weakSelf.alpha = 0.0;
     }];
+    [self endEditing:YES];
 
 }
 
@@ -120,7 +121,8 @@
 }
 - (IBAction)sureButtonClick:(id)sender {
 
-    
+    [self endEditing:YES];
+
     if ([_delegate respondsToSelector:@selector(modifyPwdView:sureButtonClick:)]) {
         [_delegate modifyPwdView:self sureButtonClick:sender];
     }

@@ -442,7 +442,7 @@
     if (_passengerModel.planInCount>max) {
         max = _passengerModel.planInCount;
     }
-    return max;
+    return max==0?1:max;
 }
 
 @end

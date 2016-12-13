@@ -110,7 +110,7 @@
                                                                  viewBotton(lineImageView)+4,
                                                                  50,
                                                                  12)
-                                                 text:@"400"
+                                                 text:@((int)([self maxValue] *1.2)).stringValue
                                                  font:11
                                         textAlignment:NSTextAlignmentRight
                                          colorFromHex:0x75FFFFFF];
@@ -132,7 +132,7 @@
     
     //Use yFixedValueMax and yFixedValueMin to Fix the Max and Min Y Value
     //Only if you needed
-    arrLineChart.yFixedValueMax = 400;
+    arrLineChart.yFixedValueMax = (int)([self maxValue] *1.2);
     arrLineChart.yFixedValueMin = 0;
     
     
@@ -167,7 +167,7 @@
     [topBgView addSubview:arrLineChart];
     
     UIImageView *downlineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(passengerTtitle),
-                                                                                  topBgView.frame.size.height-10-15,
+                                                                                  topBgView.frame.size.height-10-10,
                                                                                   viewWidth(topBgView)-viewX(passengerTtitle)-18,
                                                                                   0.5)];
     downlineImageView.image = [UIImage imageNamed:@"hiddenLine"];
@@ -230,7 +230,7 @@
         NSArray * arrArray = [self getFlightHourYLabels];
         PNLineChartData *data = [PNLineChartData new];
         data.dataTitle = @"航班";
-        data.color = [UIColor greenColor];
+        data.color = [UIColor whiteColor];
         data.alpha = 0.5f;
         data.itemCount = arrArray.count;
         data.inflexionPointStyle = PNLineChartPointStyleCircle;
@@ -318,6 +318,25 @@
         [arr addObject:@((int)(model.depCount))];
     }
     return arr;
+}
+
+-(int)maxValue
+{
+    int max = 0;
+    for(FlightHourModel *model in hourArray){
+
+        if (max<model.arrCount) {
+            max =(int) model.arrCount;
+        }
+    }
+
+    for(FlightHourModel *model in hourArray){
+        if (max<model.depCount) {
+            max = (int)model.depCount;
+        }
+    }
+    return max;
+
 }
 
 /*

@@ -121,7 +121,7 @@
         }else{
             [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth-232,
                                                                       (viewHeight(self)-8)/2+3, 40, 8)
-                                                      text:@"计划进"
+                                                      text:@"计划出"
                                                       font:17/2
                                              textAlignment:(NSTextAlignmentRight)
                                               colorFromHex:0xFF000000]];
@@ -129,7 +129,7 @@
                                                                       (viewHeight(self)-8)/2+3,
                                                                       40,
                                                                       8)
-                                                      text:@"实际进"
+                                                      text:@"实际出"
                                                       font:17/2
                                              textAlignment:(NSTextAlignmentRight)
                                               colorFromHex:0xFF000000]];
