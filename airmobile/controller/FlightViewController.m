@@ -172,14 +172,22 @@ static const NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_I
 
 -(void)UpdateNetwork
 {
-    NSDictionary *conds = [[NSDictionary alloc] initWithObjectsAndKeys:flightNo,@"search_flightNO",flightRegion,@"search_region",flightType,@"search_model",flightStatus,@"search_state",startIndex,@"start",pagesize,@"length", nil];
+    NSDictionary *conds =@{@"search_flightNO":flightNo?:@"",
+                           @"search_region":flightRegion?:@"",
+                           @"search_model":flightType?:@"",
+                           @"search_state":flightStatus?:@"",
+                           @"start":@(startIndex).stringValue,
+                           @"length":@(pagesize).stringValue};
+
     [HttpsUtils queryFlightList:conds success:^(id responseObj) {
         // 数据加载完成
+
 
         [_tableView.mj_header endRefreshing];
         if(![responseObj isKindOfClass:[NSArray class]]){
             return;
         }
+        dataArray = [NSMutableArray array];
         FlightModel *flight = nil;
         for(id item in responseObj){
             flight = [[FlightModel alloc]initWithDictionary:item];
@@ -197,7 +205,13 @@ static const NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_I
 
 -(void)loadMoreNetwork
 {
-    NSDictionary *conds = [[NSDictionary alloc] initWithObjectsAndKeys:flightNo,@"search_flightNO",flightRegion,@"search_region",flightType,@"search_model",flightStatus,@"search_state",startIndex,@"start",pagesize,@"length", nil];
+    NSDictionary *conds =@{@"search_flightNO":flightNo?:@"",
+                           @"search_region":flightRegion?:@"",
+                           @"search_model":flightType?:@"",
+                           @"search_state":flightStatus?:@"",
+                           @"start":@(startIndex).stringValue,
+                           @"length":@(pagesize).stringValue};
+
     [HttpsUtils queryFlightList:conds success:^(id responseObj) {
         // 数据加载完成
 

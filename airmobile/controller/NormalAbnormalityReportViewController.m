@@ -98,6 +98,12 @@
                             userId:(int)appdelete.userInfoModel.id
                            success:^(id response) {
                                [self showAnimationTitle:@"上报成功"];
+                               self.event = nil;
+                               self.eventType = nil;
+                               self.eventLevel = nil;
+                               [self.tableView reloadData];
+                               self.tableView.allowsSelection = YES;
+                               self.startReportButton.enabled = YES;
                            }
                            failure:^(NSError *error) {
                                [self showAnimationTitle:@"上报失败"];
