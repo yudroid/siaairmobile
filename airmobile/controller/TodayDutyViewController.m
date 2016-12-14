@@ -1,47 +1,43 @@
 //
-//  AddressBookViewController.m
+//  TodayDutyViewController.m
 //  airmobile
 //
-//  Created by xuesong on 16/10/20.
+//  Created by xuesong on 16/12/13.
 //  Copyright © 2016年 杨泉林. All rights reserved.
 //
 
-#import "AddressBookViewController.h"
+#import "TodayDutyViewController.h"
 #import "AddressBookTableViewCell.h"
-#import <objc/runtime.h>
 #import "ContactPersonTableViewHeaderView.h"
-#import "ContactPersonTableViewCell.h"
-#import "UserInfoModel.h"
-#import "DeptInfoModel.h"
+#import "DutyModel.h"
 #import "HttpsUtils+Business.h"
 #import "DeptInfoModel.h"
 
-const char * ALERTVIEW_BLOCK = "ALERTVIEW_BLOCK";
-static const NSString *ADDRESSBOOK_TABLEGROUPHEAER_IDENTIFIER = @"ADDRESSBOOK_TABLEGROUPHEADER_IDENTIFIER";
-static const NSString *ADDRESSBOOK_TABLECELL_IDENTIFIER = @"ADDRESSBOOK_TABLECELL_IDENTIFIER";
 
-@interface AddressBookViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate,ContactPersonTableViewHeaderViewDelegate>
+static const NSString *ADDRESSBOOK_TABLEGROUPHEAER_IDENTIFIER   = @"ADDRESSBOOK_TABLEGROUPHEADER_IDENTIFIER";
+static const NSString *ADDRESSBOOK_TABLECELL_IDENTIFIER         = @"ADDRESSBOOK_TABLECELL_IDENTIFIER";
 
-@property (nonatomic, strong) NSMutableArray *tableArray;
+@interface TodayDutyViewController ()<UITableViewDelegate,UITableViewDataSource,ContactPersonTableViewHeaderViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray *tableArray;
 
 @end
 
-@implementation AddressBookViewController
+@implementation TodayDutyViewController
 {
-    NSArray<DeptInfoModel *> *array;
+    NSArray *array;
 
     NSMutableArray *_resultArry;// 保存数据的展开状态(因为分组很多，所以不能设置一个bool类型记录)
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //titleView订制
+
     [self titleViewInitWithHight:64];
     self.titleView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"home_title_bg.png"]];
     [self titleViewAddTitleText:@"通讯录"];
     [self titleViewAddBackBtn];
-    
+
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.tableFooterView = [[UIView alloc]init];
@@ -50,21 +46,45 @@ static const NSString *ADDRESSBOOK_TABLECELL_IDENTIFIER = @"ADDRESSBOOK_TABLECEL
     [_tableView registerNib:[UINib nibWithNibName:@"ContactPersonTableViewHeaderView" bundle:nil]
 forHeaderFooterViewReuseIdentifier:(NSString *)ADDRESSBOOK_TABLEGROUPHEAER_IDENTIFIER];
 
-    _resultArry = [NSMutableArray array];
-    array = [NSArray array];
-    [self UpdateNetwork];
-}
+    _tableArray = [NSMutableArray array];
+    
 
+    [self UpdateNetwork];
+    
+
+}
 -(void)UpdateNetwork
 {
-    [HttpsUtils getContactList:^(NSArray *responseObj) {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //设定时间格式,这里可以设置成自己需要的格式
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    //用[NSDate date]可以获取系统当前时间
+    NSString *currentDateStr = [dateFormatter stringFromDate:[NSDate date]];
+    NSLog(@"%@",currentDateStr);
+    
+    [HttpsUtils getDutyTableByDay:currentDateStr success:^(NSArray *responseObj) {
         if ([responseObj isKindOfClass:[NSArray class]]) {
             NSMutableArray *depMutableArray = [NSMutableArray array];
+            NSMutableSet *mutableSet = [NSMutableSet set];
             for (NSDictionary *depDic in responseObj) {
-                DeptInfoModel *deptModel = [[DeptInfoModel alloc]initWithDictionary:depDic];
-                [depMutableArray addObject:deptModel];
+                DutyModel *du = [[DutyModel alloc]initWithDictionary:depDic];
+                [depMutableArray addObject:du];
+                [mutableSet addObject:[depDic objectForKey:@"section"]];
             }
-            array = [depMutableArray copy];
+
+            NSMutableArray *mutableArray = [NSMutableArray array];
+            for (NSString *section in mutableSet) {
+                NSMutableArray *peoples = [NSMutableArray array];
+                for (DutyModel *model in depMutableArray) {
+                    if ([section isEqualToString:model.section]) {
+                        [peoples addObject:model];
+                    }
+                }
+                NSDictionary *dic = @{@"name":section,@"value":[peoples copy]};
+                [mutableArray addObject:dic];
+            }
+            
+            array = [mutableArray copy];
             _resultArry = [NSMutableArray array];
             for (int i = 0; i<array.count; i++) {
                 // 初始时都是折叠状态（bool不能直接放在数组里）
@@ -72,6 +92,7 @@ forHeaderFooterViewReuseIdentifier:(NSString *)ADDRESSBOOK_TABLEGROUPHEAER_IDENT
             }
             [_tableView reloadData];
         }
+
     } failure:^(NSError *error) {
 
     }];
@@ -90,7 +111,7 @@ forHeaderFooterViewReuseIdentifier:(NSString *)ADDRESSBOOK_TABLEGROUPHEAER_IDENT
 numberOfRowsInSection:(NSInteger)section
 {
     if ([[_resultArry objectAtIndex:section] boolValue]) {
-        NSArray *tempArr = [array objectAtIndex:section].userArr;
+        NSArray *tempArr = [[array objectAtIndex:section] objectForKey:@"value"];
         if(tempArr==nil)
             return 0;
         return [tempArr count];
@@ -117,20 +138,18 @@ heightForHeaderInSection:(NSInteger)section
 viewForHeaderInSection:(NSInteger)section
 {
     ContactPersonTableViewHeaderView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:(NSString *)ADDRESSBOOK_TABLEGROUPHEAER_IDENTIFIER];
-    view.tag = section;
-    view.delegate = self;
-    view.open = [[_resultArry objectAtIndex:view.tag] boolValue];
-    view.nameLabel.text = array[section].deptName;
+    view.tag            = section;
+    view.delegate       = self;
+    view.open           = [[_resultArry objectAtIndex:view.tag] boolValue];
+    view.nameLabel.text = [array[section] objectForKey:@"name"];
     return view;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView
         cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-
     AddressBookTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)ADDRESSBOOK_TABLECELL_IDENTIFIER];
-    UserInfoModel *userInfo = [[array objectAtIndex:indexPath.section].userArr objectAtIndex:indexPath.row];
-    cell.nameLabel.text = userInfo.name;
+//    UserInfoModel *userInfo = [[array objectAtIndex:indexPath.section].userArr objectAtIndex:indexPath.row];
+    cell.nameLabel.text = ((DutyModel *)[array[indexPath.section] objectForKey:@"value"][indexPath.row]).userName;
 
     return cell;
 }
@@ -138,7 +157,7 @@ viewForHeaderInSection:(NSInteger)section
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",array[indexPath.section].userArr[indexPath.row].phone];
+    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",((DutyModel *)[array[indexPath.section] objectForKey:@"value"][indexPath.row]).phone];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
 
 }
@@ -158,23 +177,4 @@ viewForHeaderInSection:(NSInteger)section
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:view.tag]
                   withRowAnimation:UITableViewRowAnimationAutomatic];
 }
-
-
-//-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-//{
-//    NSLog(@"%ld",(long)buttonIndex);
-//    void (^block)(NSInteger) = objc_getAssociatedObject(alertView, ALERTVIEW_BLOCK);
-//    block(buttonIndex);
-//}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end

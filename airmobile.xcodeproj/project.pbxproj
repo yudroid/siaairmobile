@@ -125,6 +125,8 @@
 		F70893F41DD492BD00135540 /* TagView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F70893F31DD492BD00135540 /* TagView.xib */; };
 		F70893FC1DD5952F00135540 /* ContactPersonTableViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F70893FB1DD5952F00135540 /* ContactPersonTableViewHeaderView.m */; };
 		F70893FE1DD5955200135540 /* ContactPersonTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F70893FD1DD5955200135540 /* ContactPersonTableViewHeaderView.xib */; };
+		F74289CF1E00DF7C00AC00D4 /* loadingPage@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F74289CE1E00DF7C00AC00D4 /* loadingPage@2x.jpg */; };
+		F74289D11E00DFCA00AC00D4 /* loadingPage@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F74289D01E00DFCA00AC00D4 /* loadingPage@3x.jpg */; };
 		F747F9361DD2B3B90099E7AF /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F747F9351DD2B3B90099E7AF /* libsqlite3.0.tbd */; };
 		F74902621DC71202005B193D /* DayOnDutyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902601DC71202005B193D /* DayOnDutyViewController.m */; };
 		F74902631DC71202005B193D /* DayOnDutyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F74902611DC71202005B193D /* DayOnDutyViewController.xib */; };
@@ -250,6 +252,8 @@
 		F7EE87811DB3635F006473F5 /* FlightFilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7EE87801DB3635F006473F5 /* FlightFilterView.xib */; };
 		F7EE87861DB371CA006473F5 /* FlightFilterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EE87841DB371CA006473F5 /* FlightFilterTableViewCell.m */; };
 		F7EE87871DB371CA006473F5 /* FlightFilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7EE87851DB371CA006473F5 /* FlightFilterTableViewCell.xib */; };
+		F7EEEC5E1E00396C000D3056 /* TodayDutyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EEEC5C1E00396C000D3056 /* TodayDutyViewController.m */; };
+		F7EEEC5F1E00396C000D3056 /* TodayDutyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7EEEC5D1E00396C000D3056 /* TodayDutyViewController.xib */; };
 		F7EEEF1C1DB396E0004AF0AE /* FlightDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EEEF1A1DB396E0004AF0AE /* FlightDetailViewController.m */; };
 		F7EEEF1D1DB396E0004AF0AE /* FlightDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7EEEF1B1DB396E0004AF0AE /* FlightDetailViewController.xib */; };
 		F7EEEF211DB3A580004AF0AE /* FlightDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EEEF1F1DB3A580004AF0AE /* FlightDetailTableViewCell.m */; };
@@ -479,6 +483,8 @@
 		F70893FA1DD5952F00135540 /* ContactPersonTableViewHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactPersonTableViewHeaderView.h; sourceTree = "<group>"; };
 		F70893FB1DD5952F00135540 /* ContactPersonTableViewHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactPersonTableViewHeaderView.m; sourceTree = "<group>"; };
 		F70893FD1DD5955200135540 /* ContactPersonTableViewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactPersonTableViewHeaderView.xib; sourceTree = "<group>"; };
+		F74289CE1E00DF7C00AC00D4 /* loadingPage@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "loadingPage@2x.jpg"; sourceTree = "<group>"; };
+		F74289D01E00DFCA00AC00D4 /* loadingPage@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "loadingPage@3x.jpg"; sourceTree = "<group>"; };
 		F747F9351DD2B3B90099E7AF /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		F749025F1DC71202005B193D /* DayOnDutyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayOnDutyViewController.h; sourceTree = "<group>"; };
 		F74902601DC71202005B193D /* DayOnDutyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = DayOnDutyViewController.m; sourceTree = "<group>"; };
@@ -686,6 +692,9 @@
 		F7EE87831DB371CA006473F5 /* FlightFilterTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightFilterTableViewCell.h; sourceTree = "<group>"; };
 		F7EE87841DB371CA006473F5 /* FlightFilterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightFilterTableViewCell.m; sourceTree = "<group>"; };
 		F7EE87851DB371CA006473F5 /* FlightFilterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightFilterTableViewCell.xib; sourceTree = "<group>"; };
+		F7EEEC5B1E00396C000D3056 /* TodayDutyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayDutyViewController.h; sourceTree = "<group>"; };
+		F7EEEC5C1E00396C000D3056 /* TodayDutyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayDutyViewController.m; sourceTree = "<group>"; };
+		F7EEEC5D1E00396C000D3056 /* TodayDutyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TodayDutyViewController.xib; sourceTree = "<group>"; };
 		F7EEEF191DB396E0004AF0AE /* FlightDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightDetailViewController.h; sourceTree = "<group>"; };
 		F7EEEF1A1DB396E0004AF0AE /* FlightDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = FlightDetailViewController.m; sourceTree = "<group>"; };
 		F7EEEF1B1DB396E0004AF0AE /* FlightDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightDetailViewController.xib; sourceTree = "<group>"; };
@@ -995,6 +1004,8 @@
 		846F1D8D1DA89E4700C8920B /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				F74289CE1E00DF7C00AC00D4 /* loadingPage@2x.jpg */,
+				F74289D01E00DFCA00AC00D4 /* loadingPage@3x.jpg */,
 				F7D38D751DE3E05F001110AF /* Loading.gif */,
 				8473A5221DB4DAE800A8DCE2 /* home */,
 				845055821DAE3F1A00400EBF /* tabbar */,
@@ -1203,6 +1214,9 @@
 			children = (
 				F7A2A0451DB8D0590023F228 /* FunctionViewController.h */,
 				F7A2A0461DB8D0590023F228 /* FunctionViewController.m */,
+				F7EEEC5B1E00396C000D3056 /* TodayDutyViewController.h */,
+				F7EEEC5C1E00396C000D3056 /* TodayDutyViewController.m */,
+				F7EEEC5D1E00396C000D3056 /* TodayDutyViewController.xib */,
 				F79251851DB781AB006AA119 /* NightShiftRoomViewController.h */,
 				F79251861DB781AB006AA119 /* NightShiftRoomViewController.m */,
 				F79251871DB781AB006AA119 /* NightShiftRoomViewController.xib */,
@@ -1604,6 +1618,7 @@
 				8450556A1DACF65200400EBF /* logo_flight@3x.png in Resources */,
 				845055601DACF65200400EBF /* login_icon_invisible@3x.png in Resources */,
 				F7EAE1971DB4776C0060626F /* AbnormalityReportViewController.xib in Resources */,
+				F74289CF1E00DF7C00AC00D4 /* loadingPage@2x.jpg in Resources */,
 				8450556D1DACF65200400EBF /* splash@3x.png in Resources */,
 				F70893F41DD492BD00135540 /* TagView.xib in Resources */,
 				845055681DACF65200400EBF /* login_visible@3x.png in Resources */,
@@ -1620,6 +1635,7 @@
 				8450555C1DACF65200400EBF /* login_btn@3x.png in Resources */,
 				F70893E21DD2EC1B00135540 /* FlightDelaysViewController.xib in Resources */,
 				8450556C1DACF65200400EBF /* splash@2x.png in Resources */,
+				F7EEEC5F1E00396C000D3056 /* TodayDutyViewController.xib in Resources */,
 				F792515A1DB61D9C006AA119 /* ContactPersonTableViewCell.xib in Resources */,
 				845055711DACF65200400EBF /* splash_2@3x.png in Resources */,
 				F792516E1DB63D62006AA119 /* ChatTimeTableViewCell.xib in Resources */,
@@ -1681,6 +1697,7 @@
 				F79251691DB63BB7006AA119 /* ChatRightTableViewCell.xib in Resources */,
 				F79251641DB63A10006AA119 /* ChatLeftTableViewCell.xib in Resources */,
 				8450555E1DACF65200400EBF /* login_btn_pre@3x.png in Resources */,
+				F74289D11E00DFCA00AC00D4 /* loadingPage@3x.jpg in Resources */,
 				F7EAE1A31DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.xib in Resources */,
 				F7A25D101DBA059800F36C32 /* AbnormalityReportTableViewCell.xib in Resources */,
 				F7A25D871DBE277500F36C32 /* photopicker_back@2x.png in Resources */,
@@ -1951,6 +1968,7 @@
 				F7003E481DDC30CE0056F3DA /* OptionCollectionViewCell.m in Sources */,
 				F7EAE19D1DB4B0680060626F /* AbnormalityReportCollectionViewCell.m in Sources */,
 				84BA54E41DA256940037198F /* AppDelegate.m in Sources */,
+				F7EEEC5E1E00396C000D3056 /* TodayDutyViewController.m in Sources */,
 				841839F01DBCB87600D7DD86 /* PNPieChart.m in Sources */,
 				F74902961DC82B42005B193D /* SpecialAbnormalityReportViewController.m in Sources */,
 				843DF1E71DE5BBE100B247B0 /* FlightDetailModel.m in Sources */,

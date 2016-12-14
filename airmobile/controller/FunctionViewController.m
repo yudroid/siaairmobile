@@ -14,6 +14,7 @@
 #import "UserInfoTableViewCell.h"
 #import "NightShiftRoomViewController.h"
 #import "AddressBookViewController.h"
+#import "TodayDutyViewController.h"
 #import "DutyModel.h"
 
 static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDENTIFIER";
@@ -61,7 +62,8 @@ static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDEN
      forCellReuseIdentifier:(NSString *)FUNCTION_TABLECELL_IDENTIFIER];
     _tableView.tableFooterView = [[UIView alloc]init];
     _tableArray= @[@{@"name":@"通讯录",@"image":@"AddressBook"},
-                   @{@"name":@"值班表",@"image":@"WatchBill"}];
+                   @{@"name":@"值班表",@"image":@"WatchBill"},
+                   @{@"name":@"当日值班表",@"image":@"WatchBill"}];
     [self.view addSubview:_tableView];
 }
 
@@ -105,6 +107,11 @@ static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDEN
         AddressBookViewController *addressBookVC = [[AddressBookViewController alloc] initWithNibName:@"AddressBookViewController"
                                                                                                bundle:nil];
         [self.navigationController pushViewController:addressBookVC
+                                             animated:YES];
+    }else if ([name isEqualToString:@"当日值班表"]){
+        TodayDutyViewController *todayDutyVC = [[TodayDutyViewController alloc] initWithNibName:@"TodayDutyViewController"
+                                                                                               bundle:nil];
+        [self.navigationController pushViewController:todayDutyVC
                                              animated:YES];
     }
 }

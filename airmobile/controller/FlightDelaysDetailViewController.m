@@ -65,9 +65,8 @@
     _titleText = [titleText copy];
     _titleLabel.text = [titleText copy];
 
-    CGSize maxSize = CGSizeMake(kScreenWidth - 31*2, CGFLOAT_MAX);
-    CGSize exportSize = [_titleLabel sizeThatFits:maxSize];
-    
+
+
 }
 
 /*

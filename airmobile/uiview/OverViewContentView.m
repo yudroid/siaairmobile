@@ -152,6 +152,7 @@
                                          viewY(progressRound)+((viewHeight(progressRound)-45)/2)-45/4,
                                          expectSize.width,
                                          45);
+        totalNumLabel.adjustsFontSizeToFitWidth = YES;
         //totalNumLabel.backgroundColor = [UIColor grayColor];
         [self addSubview:totalNumLabel];
         
