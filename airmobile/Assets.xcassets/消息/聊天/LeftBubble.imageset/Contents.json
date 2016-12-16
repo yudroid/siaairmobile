@@ -24,6 +24,20 @@
       "scale" : "2x"
     },
     {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "tile",
+          "width" : 1,
+          "height" : 1
+        },
+        "cap-insets" : {
+          "bottom" : 17,
+          "top" : 58,
+          "right" : 16,
+          "left" : 39
+        }
+      },
       "idiom" : "universal",
       "filename" : "多边形1.png",
       "scale" : "3x"

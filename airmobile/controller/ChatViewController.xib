@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -31,7 +31,7 @@
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="20" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="GbR-pv-xdw">
                     <rect key="frame" x="0.0" y="64" width="375" height="555"/>
-                    <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mLS-fV-QfB">
                     <rect key="frame" x="0.0" y="619" width="375" height="48"/>
@@ -47,10 +47,10 @@
                             </state>
                         </button>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ChatTextBackground" translatesAutoresizingMaskIntoConstraints="NO" id="0hA-to-yaZ">
-                            <rect key="frame" x="24" y="8.5" width="310" height="31"/>
+                            <rect key="frame" x="16" y="8.5" width="318" height="31"/>
                         </imageView>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1kA-DM-sJE">
-                            <rect key="frame" x="24" y="8" width="310" height="31.5"/>
+                            <rect key="frame" x="16" y="8" width="318" height="32"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="send"/>
@@ -60,7 +60,7 @@
                     <constraints>
                         <constraint firstItem="0hA-to-yaZ" firstAttribute="top" secondItem="1kA-DM-sJE" secondAttribute="top" id="Cf3-UB-7w7"/>
                         <constraint firstItem="0hA-to-yaZ" firstAttribute="leading" secondItem="1kA-DM-sJE" secondAttribute="leading" id="Vyq-gG-Xe3"/>
-                        <constraint firstItem="0hA-to-yaZ" firstAttribute="leading" secondItem="mLS-fV-QfB" secondAttribute="leading" constant="24" id="aNB-FX-dmG"/>
+                        <constraint firstItem="0hA-to-yaZ" firstAttribute="leading" secondItem="mLS-fV-QfB" secondAttribute="leading" constant="16" id="aNB-FX-dmG"/>
                         <constraint firstItem="0hA-to-yaZ" firstAttribute="centerY" secondItem="mLS-fV-QfB" secondAttribute="centerY" id="box-i2-eDU"/>
                         <constraint firstAttribute="height" constant="48" id="dEN-1z-cyt"/>
                         <constraint firstItem="0hA-to-yaZ" firstAttribute="bottom" secondItem="1kA-DM-sJE" secondAttribute="bottom" id="fSA-kc-PsU"/>

@@ -29,7 +29,7 @@
                                                                               0,
                                                                               kScreenWidth/2-px2(32),
                                                                               viewHeight(self.contentView))
-                                                              text:[NSString stringWithFormat:@"%i",(int)(ratio.ratio*100)]
+                                                              text:[NSString stringWithFormat:@"%.1f",(float)(ratio.ratio*100)]
                                                               font:18
                                                      textAlignment:(NSTextAlignmentRight)
                                                       colorFromHex:0xFF000000]];

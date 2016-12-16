@@ -9,8 +9,8 @@
         "mode" : "9-part",
         "center" : {
           "mode" : "tile",
-          "width" : 11,
-          "height" : 12
+          "width" : 1,
+          "height" : 1
         },
         "cap-insets" : {
           "bottom" : 16,
@@ -24,6 +24,20 @@
       "scale" : "2x"
     },
     {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "tile",
+          "width" : 1,
+          "height" : 1
+        },
+        "cap-insets" : {
+          "bottom" : 16,
+          "top" : 58,
+          "right" : 41,
+          "left" : 16
+        }
+      },
       "idiom" : "universal",
       "filename" : "多边形11.png",
       "scale" : "3x"

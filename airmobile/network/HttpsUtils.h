@@ -38,6 +38,21 @@
 
 
 /**
+ *  get 请求 返回结果为json格式 加进度
+ *
+ *  @param segment     指定除主网站地址以外的其它部分 如 form/1
+ *  @param requestData request数据，如果没有传nil
+ *  @param success     success回调
+ *  @param failure     failure回调
+ */
++(void) get:(NSString*) segment
+     params:(NSDictionary*) requestData
+   progress:(void (^)(float progress))progress
+    success:(void (^) (id)) success
+    failure:(void (^) (NSError*)) failure;
+
+
+/**
  *  post请求 返回结果为string格式
  *
  *  @param segment  指定除主网站地址以外的其它部分 如 form/1

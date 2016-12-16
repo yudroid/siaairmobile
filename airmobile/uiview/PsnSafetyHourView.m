@@ -95,7 +95,7 @@
         UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(20,
                                                                      viewBotton(upImageView)+px2(8),
                                                                      topBgView.frame.size.width-40, 12)
-                                                     text:@([self maxValue]*1.2).stringValue
+                                                     text:@([self chartMaxValue]).stringValue
                                                      font:11
                                             textAlignment:NSTextAlignmentRight
                                              colorFromHex:0x75FFFFFF];
@@ -110,7 +110,7 @@
         lineChart.skipXPoints       = 1;
         lineChart.showCoordinateAxis= NO;
         lineChart.showGenYLabels    = NO;
-        lineChart.yFixedValueMax    = [self maxValue]*1.2;
+        lineChart.yFixedValueMax    = [self chartMaxValue];
         lineChart.yFixedValueMin    = 0;
         [lineChart setXLabels:[self getFlightHourXLabels]];
         
@@ -250,6 +250,11 @@
         }
     }
     return max;
+}
+-(NSInteger)chartMaxValue
+{
+    NSInteger max = [self maxValue]*1.2;
+    return  max/10*10;
 }
 
 -(void)loadData:(NSNotification *)notification

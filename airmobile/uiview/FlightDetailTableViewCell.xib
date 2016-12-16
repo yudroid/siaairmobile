@@ -39,16 +39,17 @@
                             <constraint firstAttribute="width" constant="1" id="sgY-uy-cEB"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FlightDetailState" translatesAutoresizingMaskIntoConstraints="NO" id="nCI-L0-wVw">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kLp-Rt-2a6">
                         <rect key="frame" x="50" y="41" width="35" height="35"/>
-                    </imageView>
+                        <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="完成" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ybW-db-YHu">
                         <rect key="frame" x="50" y="41" width="35" height="35"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="35" id="h9n-lu-zxt"/>
                             <constraint firstAttribute="height" constant="35" id="zUz-UT-7nz"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -101,13 +102,13 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="tQp-oK-jOg" firstAttribute="leading" secondItem="CEL-JF-4D9" secondAttribute="trailing" constant="2" id="0a4-jB-DoN"/>
-                    <constraint firstItem="ybW-db-YHu" firstAttribute="top" secondItem="nCI-L0-wVw" secondAttribute="top" id="1Os-CA-BEd"/>
                     <constraint firstItem="ybW-db-YHu" firstAttribute="top" secondItem="qbG-Es-wsC" secondAttribute="top" id="1or-gK-oL5"/>
+                    <constraint firstItem="ybW-db-YHu" firstAttribute="trailing" secondItem="kLp-Rt-2a6" secondAttribute="trailing" id="2bG-HK-Cui"/>
                     <constraint firstItem="Qpc-cf-7Cm" firstAttribute="bottom" secondItem="5Py-pW-6n5" secondAttribute="bottom" constant="-4" id="61E-T1-qCr"/>
+                    <constraint firstItem="ybW-db-YHu" firstAttribute="leading" secondItem="kLp-Rt-2a6" secondAttribute="leading" id="6LX-Dm-wjr"/>
                     <constraint firstItem="qbG-Es-wsC" firstAttribute="top" secondItem="RMS-SO-0JS" secondAttribute="bottom" id="BjU-wY-UCl"/>
                     <constraint firstItem="5Py-pW-6n5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="29" id="EbX-lU-8b1"/>
                     <constraint firstItem="6wK-Aq-fSg" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="GGn-EO-QhE"/>
-                    <constraint firstItem="ybW-db-YHu" firstAttribute="leading" secondItem="nCI-L0-wVw" secondAttribute="leading" id="LLv-lB-lr9"/>
                     <constraint firstItem="CEL-JF-4D9" firstAttribute="leading" secondItem="ybW-db-YHu" secondAttribute="trailing" constant="12" id="LNb-s9-oaI"/>
                     <constraint firstAttribute="trailingMargin" secondItem="6wK-Aq-fSg" secondAttribute="trailing" constant="8" id="Pgn-Rh-SfQ"/>
                     <constraint firstItem="qbG-Es-wsC" firstAttribute="centerX" secondItem="RMS-SO-0JS" secondAttribute="centerX" id="QBO-v0-d0i"/>
@@ -119,12 +120,12 @@
                     <constraint firstItem="RMS-SO-0JS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="25" id="iB4-hG-aY3"/>
                     <constraint firstItem="zov-88-MCN" firstAttribute="top" secondItem="qbG-Es-wsC" secondAttribute="bottom" id="jXq-d0-CV6"/>
                     <constraint firstItem="ybW-db-YHu" firstAttribute="leading" secondItem="zov-88-MCN" secondAttribute="trailing" constant="24" id="mTD-rQ-Qic"/>
-                    <constraint firstItem="ybW-db-YHu" firstAttribute="trailing" secondItem="nCI-L0-wVw" secondAttribute="trailing" id="mlv-Ml-jim"/>
                     <constraint firstAttribute="bottomMargin" secondItem="zov-88-MCN" secondAttribute="bottom" constant="-8" id="nKU-E5-XWs"/>
                     <constraint firstItem="zov-88-MCN" firstAttribute="centerX" secondItem="qbG-Es-wsC" secondAttribute="centerX" id="oyg-NF-F9B"/>
-                    <constraint firstItem="ybW-db-YHu" firstAttribute="bottom" secondItem="nCI-L0-wVw" secondAttribute="bottom" id="pmq-MZ-zae"/>
+                    <constraint firstItem="ybW-db-YHu" firstAttribute="top" secondItem="kLp-Rt-2a6" secondAttribute="top" id="qEa-Y0-BnA"/>
                     <constraint firstItem="RMS-SO-0JS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="tKE-Ph-Dzj"/>
                     <constraint firstItem="ybW-db-YHu" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="tOG-dK-nxe"/>
+                    <constraint firstItem="ybW-db-YHu" firstAttribute="bottom" secondItem="kLp-Rt-2a6" secondAttribute="bottom" id="uyg-3M-mTC"/>
                     <constraint firstItem="qMW-gr-sSG" firstAttribute="leading" secondItem="Qpc-cf-7Cm" secondAttribute="trailing" constant="5" id="vn1-PP-qB2"/>
                     <constraint firstItem="6wK-Aq-fSg" firstAttribute="leading" secondItem="tQp-oK-jOg" secondAttribute="trailing" constant="8" id="z0w-fb-Ow1"/>
                 </constraints>
@@ -134,7 +135,7 @@
                 <outlet property="bottomLineView" destination="zov-88-MCN" id="41Y-io-B0l"/>
                 <outlet property="nameLabel" destination="5Py-pW-6n5" id="dcr-bN-WW6"/>
                 <outlet property="peopleLabel" destination="tQp-oK-jOg" id="fK1-gt-YBe"/>
-                <outlet property="stateImageView" destination="nCI-L0-wVw" id="f7T-wP-s0i"/>
+                <outlet property="statusBackView" destination="kLp-Rt-2a6" id="WYh-Mz-aXH"/>
                 <outlet property="statusLabel" destination="ybW-db-YHu" id="dVL-1g-daK"/>
                 <outlet property="timeLabel" destination="qMW-gr-sSG" id="8qv-Z9-dAw"/>
                 <outlet property="topLineView" destination="RMS-SO-0JS" id="e89-nW-hGN"/>
@@ -152,7 +153,6 @@
         <image name="FlightDetailNormal" width="10" height="10"/>
         <image name="FlightDetailPerson" width="15" height="12"/>
         <image name="FlightDetailSpecialReport" width="47" height="22"/>
-        <image name="FlightDetailState" width="50" height="50"/>
         <image name="FlightDetailTime" width="15" height="15"/>
     </resources>
 </document>

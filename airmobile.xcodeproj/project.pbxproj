@@ -127,6 +127,9 @@
 		F70893FE1DD5955200135540 /* ContactPersonTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F70893FD1DD5955200135540 /* ContactPersonTableViewHeaderView.xib */; };
 		F74289CF1E00DF7C00AC00D4 /* loadingPage@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F74289CE1E00DF7C00AC00D4 /* loadingPage@2x.jpg */; };
 		F74289D11E00DFCA00AC00D4 /* loadingPage@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F74289D01E00DFCA00AC00D4 /* loadingPage@3x.jpg */; };
+		F74289D41E00E7A200AC00D4 /* LinkPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = F74289D31E00E7A200AC00D4 /* LinkPageView.m */; };
+		F74289D61E00E7BB00AC00D4 /* LinkPageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F74289D51E00E7BB00AC00D4 /* LinkPageView.xib */; };
+		F74289D81E01118200AC00D4 /* loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = F74289D71E01118200AC00D4 /* loading.gif */; };
 		F747F9361DD2B3B90099E7AF /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F747F9351DD2B3B90099E7AF /* libsqlite3.0.tbd */; };
 		F74902621DC71202005B193D /* DayOnDutyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902601DC71202005B193D /* DayOnDutyViewController.m */; };
 		F74902631DC71202005B193D /* DayOnDutyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F74902611DC71202005B193D /* DayOnDutyViewController.xib */; };
@@ -231,8 +234,6 @@
 		F7A2A0661DB8D0EE0023F228 /* TabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A0611DB8D0EE0023F228 /* TabBarView.m */; };
 		F7D38D701DE3D1D4001110AF /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D38D6F1DE3D1D4001110AF /* LoadingView.m */; };
 		F7D38D721DE3D1E5001110AF /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7D38D711DE3D1E5001110AF /* LoadingView.xib */; };
-		F7D38D761DE3E05F001110AF /* Loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = F7D38D751DE3E05F001110AF /* Loading.gif */; };
-		F7D38D7B1DE67741001110AF /* FlightService.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D38D7A1DE67741001110AF /* FlightService.m */; };
 		F7D38D7F1DE6CE9A001110AF /* ImageViewCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D38D7D1DE6CE9A001110AF /* ImageViewCollectionViewCell.m */; };
 		F7D38D801DE6CE9A001110AF /* ImageViewCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7D38D7E1DE6CE9A001110AF /* ImageViewCollectionViewCell.xib */; };
 		F7D47FE11DFA732C0050B293 /* FlightHourInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D47FE01DFA732C0050B293 /* FlightHourInfoModel.m */; };
@@ -485,6 +486,10 @@
 		F70893FD1DD5955200135540 /* ContactPersonTableViewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactPersonTableViewHeaderView.xib; sourceTree = "<group>"; };
 		F74289CE1E00DF7C00AC00D4 /* loadingPage@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "loadingPage@2x.jpg"; sourceTree = "<group>"; };
 		F74289D01E00DFCA00AC00D4 /* loadingPage@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "loadingPage@3x.jpg"; sourceTree = "<group>"; };
+		F74289D21E00E7A200AC00D4 /* LinkPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkPageView.h; sourceTree = "<group>"; };
+		F74289D31E00E7A200AC00D4 /* LinkPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkPageView.m; sourceTree = "<group>"; };
+		F74289D51E00E7BB00AC00D4 /* LinkPageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LinkPageView.xib; sourceTree = "<group>"; };
+		F74289D71E01118200AC00D4 /* loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loading.gif; sourceTree = "<group>"; };
 		F747F9351DD2B3B90099E7AF /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		F749025F1DC71202005B193D /* DayOnDutyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayOnDutyViewController.h; sourceTree = "<group>"; };
 		F74902601DC71202005B193D /* DayOnDutyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = DayOnDutyViewController.m; sourceTree = "<group>"; };
@@ -657,9 +662,6 @@
 		F7D38D6E1DE3D1D4001110AF /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
 		F7D38D6F1DE3D1D4001110AF /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
 		F7D38D711DE3D1E5001110AF /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
-		F7D38D751DE3E05F001110AF /* Loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Loading.gif; sourceTree = "<group>"; };
-		F7D38D791DE67741001110AF /* FlightService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightService.h; sourceTree = "<group>"; };
-		F7D38D7A1DE67741001110AF /* FlightService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightService.m; sourceTree = "<group>"; };
 		F7D38D7C1DE6CE9A001110AF /* ImageViewCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewCollectionViewCell.h; sourceTree = "<group>"; };
 		F7D38D7D1DE6CE9A001110AF /* ImageViewCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewCollectionViewCell.m; sourceTree = "<group>"; };
 		F7D38D7E1DE6CE9A001110AF /* ImageViewCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageViewCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -969,6 +971,9 @@
 				F7A25D1C1DBDB5C000F36C32 /* TimePickerView.h */,
 				F7A25D1D1DBDB5C000F36C32 /* TimePickerView.m */,
 				F7A25D1F1DBDB5D000F36C32 /* TimePickerView.xib */,
+				F74289D21E00E7A200AC00D4 /* LinkPageView.h */,
+				F74289D31E00E7A200AC00D4 /* LinkPageView.m */,
+				F74289D51E00E7BB00AC00D4 /* LinkPageView.xib */,
 			);
 			path = uiview;
 			sourceTree = "<group>";
@@ -1006,7 +1011,7 @@
 			children = (
 				F74289CE1E00DF7C00AC00D4 /* loadingPage@2x.jpg */,
 				F74289D01E00DFCA00AC00D4 /* loadingPage@3x.jpg */,
-				F7D38D751DE3E05F001110AF /* Loading.gif */,
+				F74289D71E01118200AC00D4 /* loading.gif */,
 				8473A5221DB4DAE800A8DCE2 /* home */,
 				845055821DAE3F1A00400EBF /* tabbar */,
 				845055371DACF65200400EBF /* login */,
@@ -1096,8 +1101,6 @@
 				84919D751DC9FD7B00C6F5DE /* MessageService.m */,
 				84919D771DC9FDFA00C6F5DE /* BaseService.h */,
 				84919D781DC9FDFA00C6F5DE /* BaseService.m */,
-				F7D38D791DE67741001110AF /* FlightService.h */,
-				F7D38D7A1DE67741001110AF /* FlightService.m */,
 			);
 			name = service;
 			sourceTree = "<group>";
@@ -1622,7 +1625,6 @@
 				8450556D1DACF65200400EBF /* splash@3x.png in Resources */,
 				F70893F41DD492BD00135540 /* TagView.xib in Resources */,
 				845055681DACF65200400EBF /* login_visible@3x.png in Resources */,
-				F7D38D761DE3E05F001110AF /* Loading.gif in Resources */,
 				845055571DACF65200400EBF /* login_accounts@2x.png in Resources */,
 				840D15E91DC2FBCE005FA910 /* overview_toppsn@2x.png in Resources */,
 				840D15EA1DC2FBCE005FA910 /* overview_toppsn@3x.png in Resources */,
@@ -1648,6 +1650,7 @@
 				F79251551DB610D6006AA119 /* FixedMessageTableViewCell.xib in Resources */,
 				F7003E4E1DDC38540056F3DA /* TakePhotoCollectionViewCell.xib in Resources */,
 				8450555F1DACF65200400EBF /* login_icon_invisible@2x.png in Resources */,
+				F74289D81E01118200AC00D4 /* loading.gif in Resources */,
 				F78B13B01DF47938000A6833 /* ModifyPwd.xib in Resources */,
 				84BA54EF1DA256940037198F /* Assets.xcassets in Resources */,
 				8473A5241DB4DAE800A8DCE2 /* calendar.png in Resources */,
@@ -1671,6 +1674,7 @@
 				845055631DACF65200400EBF /* login_input_field@2x.png in Resources */,
 				F7D47FEC1DFB15720050B293 /* FlightFilterCollectionViewCell.xib in Resources */,
 				845055661DACF65200400EBF /* login_logo@3x.png in Resources */,
+				F74289D61E00E7BB00AC00D4 /* LinkPageView.xib in Resources */,
 				F792518E1DB7890E006AA119 /* NightShiftRoomTableViewCell.xib in Resources */,
 				F7A25D1B1DBDA6B400F36C32 /* ChatViewController.xib in Resources */,
 				F79251381DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.xib in Resources */,
@@ -1882,6 +1886,7 @@
 				F7A25D7E1DBE277500F36C32 /* SJPhotoAlbumsController.m in Sources */,
 				F70893E61DD2ECAD00135540 /* FlightDelaysDetailViewController.m in Sources */,
 				F758C9911DC360BD00556120 /* HomePageViewController.m in Sources */,
+				F74289D41E00E7A200AC00D4 /* LinkPageView.m in Sources */,
 				84183A051DBDB6DF00D7DD86 /* PNBar.m in Sources */,
 				84183A281DBE150E00D7DD86 /* EightMonthRatioView.m in Sources */,
 				840D15C71DC0557F005FA910 /* FlightHourView.m in Sources */,
@@ -2003,7 +2008,6 @@
 				F758C9931DC3632800556120 /* DelayTimeTableViewCell.m in Sources */,
 				F749029C1DC86302005B193D /* AbnormalModel.m in Sources */,
 				841839F91DBCC10200D7DD86 /* PNLineChartData.m in Sources */,
-				F7D38D7B1DE67741001110AF /* FlightService.m in Sources */,
 				84183A2B1DBF5DE900D7DD86 /* ReleasedRatioModel.m in Sources */,
 				845E643E1DAB980C0072360D /* CommonFunction.m in Sources */,
 			);

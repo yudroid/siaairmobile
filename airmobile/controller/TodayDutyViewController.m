@@ -35,7 +35,7 @@ static const NSString *ADDRESSBOOK_TABLECELL_IDENTIFIER         = @"ADDRESSBOOK_
 
     [self titleViewInitWithHight:64];
     self.titleView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"home_title_bg.png"]];
-    [self titleViewAddTitleText:@"通讯录"];
+    [self titleViewAddTitleText:@"今日值班表"];
     [self titleViewAddBackBtn];
 
     _tableView.delegate = self;

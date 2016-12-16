@@ -15,11 +15,9 @@
     if([self isNull:data])
         return;
     NSLog(@"%@",data);
-    _seatNum  = [[data objectForKey:@"allCount"]  intValue];// 机位总数
-    _seatUsed = [[data objectForKey:@"currentTakeUp"] intValue];// 机位使用数
-    _seatFree = [[data objectForKey:@"idle"] intValue];// 机位空闲数
-    _nextIn = [[data objectForKey:@"willOnehourInFlt"] intValue];// 机位使用数
-    _nextOut = [[data objectForKey:@"willOnehourOutFlt"] intValue];// 机位空闲数
+    _seatNum  = [[data objectForKey:@"parentCnt"]  intValue]+[[data objectForKey:@"normalCnt"]  intValue];// 机位总数
+    _seatUsed = [[data objectForKey:@"normalTakeUpCnt"] intValue]+[[data objectForKey:@"parentTakeUpCnt"] intValue];// 机位使用数
+    _seatFree = _seatNum-_seatUsed;// 机位空闲数
     if(_usedDetail == nil)
         _usedDetail = [CraftseatCntModel new];
     [_usedDetail updateCraftSeatTakeUpInfo:data];
@@ -29,8 +27,8 @@
 {
     if([self isNull:data])
         return;
-    _nextIn  = [[data objectForKey:@"nextIn"]  intValue];// 下小时进港
-    _nextOut = [[data objectForKey:@"nextOut"] intValue];// 下小时出港
+    _nextIn  = [[data objectForKey:@"willOnehourInFlt"]  intValue];// 下小时进港
+    _nextOut = [[data objectForKey:@"willOnehourOutFlt"] intValue];// 下小时出港
 }
 
 -(void) updateCraftSeatTypeTakeUp:(id)data

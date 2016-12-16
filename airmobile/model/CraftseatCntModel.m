@@ -26,25 +26,15 @@
 
 -(void) updateCraftSeatTypeTakeUp:(id)data
 {
-    if(_seatUsed==nil)
-        _seatUsed = [NSMutableArray array];
-    if([self isNull:data])
+    if(![data isKindOfClass:[NSArray class]])
         return;
-    int index = 0;
-    for(NSDictionary *item in data){
-        SeatUsedModel *model = nil;
-        if([_seatUsed count]<index+1){
-            model = [SeatUsedModel new];
-            [_seatUsed addObject:model];
-        }else{
-            model = [_seatUsed objectAtIndex:index];
-        }
-        // hour:类别名称 count:占用数 ratio：剩余数
-        model.type =  [item objectForKey:@"hour"];
-        model.free = [[item objectForKey:@"ratio"] intValue];
-        model.used = [[item objectForKey:@"count"] intValue];
-        index ++;
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    for (NSDictionary *dic in data) {
+        SeatUsedModel *model = [[SeatUsedModel alloc]initWithDictionary:dic];
+        [mutableArray addObject:model];
     }
+    _seatUsed = [mutableArray copy];
+
 }
 
 @end

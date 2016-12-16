@@ -103,7 +103,7 @@
                                                               titleLableHeight)];//整体概览
     overviewLabel.center    = CGPointMake(kScreenWidth/8, 57);
     overviewLabel.textColor = [CommonFunction colorFromHex:0XFFFFFFFF];
-    overviewLabel.text      = @"总览";
+    overviewLabel.text      = @"总体";
     overviewLabel.font      =  [UIFont fontWithName:@"PingFangSC-Regular"
                                           size:px2(37)];
     overviewLabel.textAlignment = NSTextAlignmentCenter;
@@ -175,7 +175,7 @@
                                                               titleLableHeight)];//资源
     resourceLabel.center        = CGPointMake(kScreenWidth-kScreenWidth/8, 57);
     resourceLabel.textColor     = [CommonFunction colorFromHex:0X7FFFFFFF];
-    resourceLabel.text          = @"资源";
+    resourceLabel.text          = @"机位";
     resourceLabel.textAlignment = NSTextAlignmentCenter;
     resourceLabel.font          = [UIFont fontWithName:@"PingFangSC-Regular"
                                                   size:px2(37)];

@@ -23,12 +23,9 @@
 {
     [super awakeFromNib];
 
-    FLAnimatedImage *image = [FLAnimatedImage animatedImageWithGIFData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle]
-                                                                                                       pathForResource:@"loading"
-                                                                                                       ofType:@"gif"]]];
-    //    _imageView.animatedImage = image;
-    _contentImageView.image = image.posterImage;
+    FLAnimatedImage *image = [FLAnimatedImage animatedImageWithGIFData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"loading" ofType:@"gif"]]];
 
+    _contentImageView.animatedImage = image;
 
 }
 

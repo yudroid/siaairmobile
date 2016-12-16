@@ -21,7 +21,7 @@
             [self addSubview:icon];
             
             titleLabel                  = [[UILabel alloc] initWithFrame:CGRectMake(0, 27, 24, 10)];
-            titleLabel.text             = @"首页";
+            titleLabel.text             = @"态势";
             titleLabel.textAlignment    = NSTextAlignmentCenter;
             titleLabel.textColor        = [CommonFunction colorFromHex:0XFF7599C8];
             titleLabel.font             = [UIFont systemFontOfSize:10];
@@ -70,7 +70,7 @@
             
             TabBarIteam *homePage   = [[TabBarIteam alloc] initWithCenter:CGPointMake(kScreenWidth/10, 49/2)];
             homePage.image          = [UIImage imageNamed:@"icon_home.png"];
-            homePage.text           = @"首页";
+            homePage.text           = @"态势";
             [self addSubview:homePage];
             
             UIButton *homePageBtn   = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 49, 49)];
@@ -84,7 +84,7 @@
             
             TabBarIteam *flightPage     = [[TabBarIteam alloc] initWithCenter:CGPointMake(kScreenWidth*3/10, 49/2)];
             flightPage.image            = [UIImage imageNamed:@"icon_flight.png"];
-            flightPage.text             = @"航班";
+            flightPage.text             = @"详情";
             [self addSubview:flightPage];
             
             UIButton *flightPageBtn     = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 49, 49)];
@@ -119,7 +119,7 @@
             
             TabBarIteam *function   = [[TabBarIteam alloc] initWithCenter:CGPointMake(kScreenWidth*7/10, 49/2)];
             function.image          = [UIImage imageNamed:@"icon_function.png"];
-            function.text           = @"功能";
+            function.text           = @"值班";
             [self addSubview:function];
             
             UIButton *functionBtn   = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 49, 49)];
@@ -132,7 +132,7 @@
             
             TabBarIteam *userInfo   = [[TabBarIteam alloc] initWithCenter:CGPointMake(kScreenWidth-kScreenWidth/10, 49/2)];
             userInfo.image          = [UIImage imageNamed:@"icon_userinfo.png"];
-            userInfo.text           = @"我的";
+            userInfo.text           = @"设置";
             [self addSubview:userInfo];
             
             UIButton *userInfoBtn   = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 49, 49)];

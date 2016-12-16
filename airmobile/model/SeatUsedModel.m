@@ -10,23 +10,5 @@
 
 @implementation SeatUsedModel
 
--(instancetype) initWithType:(NSString *)   type
-                        free:(int)          free
-                        used:(int)          used
-{
-    self = [super init];
-    if(self){
-        _type = type;
-        _free = free;
-        _used = used;
-    }
-    return self;
-}
 
-- (CGFloat)getPercent
-{
-    if(_free+_used==0)
-        return 0;
-    return 1.0f*_used/(_free+_used);
-}
 @end

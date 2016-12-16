@@ -292,6 +292,10 @@
  @param failure <#failure description#>
  */
 +(void)loadEventsSuccess:(void (^)(id))success failure:(void (^)(id))failure;
+//进度条
++(void)loadEventsProgress:(void (^) (float))progress
+                  Success:(void (^)(id))success
+                  failure:(void (^)(id))failure;
 
 
 /**
@@ -301,6 +305,10 @@
  @param failure <#failure description#>
  */
 +(void)loadDictDatasSuccess:(void (^)(id))success failure:(void (^)(id))failure;
+
++(void)loadDictDatasProgress:(void (^) (float))progress
+                     Success:(void (^)(id))success
+                     failure:(void (^)(id))failure;
 
 #pragma mark 首页摘要信息、小时分布、放行正常率、航延关键指标
 /**

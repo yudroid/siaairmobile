@@ -122,20 +122,14 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     [userInfo addSubview:cardButton];
 
 
-    [HttpsUtils isSigned:(int)appdelegate.userInfoModel.id
-                 success:^(NSNumber *response) {
-                     if (response.integerValue == 3) {
-                         [cardButton setTitle:@"签到" forState:UIControlStateNormal];
-                     }else if(response.integerValue == 2){
-                         [cardButton setTitle:@"签退" forState:UIControlStateNormal];
-                     }else{
-                         [cardButton setTitle:@"完成" forState:UIControlStateNormal];
-                     }
-                     cardButton.enabled = YES;
-                 }
-                 failure:^(NSError *error) {
-
-                 }];
+    if ([appdelegate.userInfoModel.signStatus isEqualToString:@"未签到"]) {
+        [cardButton setTitle:@"签到" forState:UIControlStateNormal];
+    }else if([appdelegate.userInfoModel.signStatus isEqualToString:@"已签到"]){
+        [cardButton setTitle:@"签退" forState:UIControlStateNormal];
+    }else if([appdelegate.userInfoModel.signStatus isEqualToString:@"已签退"]){
+        [cardButton setTitle:@"完成" forState:UIControlStateNormal];
+    }
+    cardButton.enabled = YES;
 
 }
 
@@ -172,7 +166,7 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     }else if ([title isEqualToString:@"签退"]){
         [HttpsUtils signOut:(int)appdelegate.userInfoModel.id
                     success:^(NSNumber *response) {
-                        [cardButton setTitle:@"已签退" forState:UIControlStateNormal];
+                        [cardButton setTitle:@"完成" forState:UIControlStateNormal];
                     }
                     failure:^(NSError *error) {
                         [self showAnimationTitle:@"签退失败"];

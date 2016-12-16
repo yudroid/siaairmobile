@@ -22,6 +22,8 @@
 @protocol FlightFilterViewDelegate <NSObject>
 
 -(void)flightFilterView:(FlightFilterView *)view SureButtonClickArea:(NSString *)area property:(NSString *)property status:(NSString *)status;
+-(void)flightFilterView:(FlightFilterView *)view filghtFilterCleanButton:(UIButton *)button;
+
 
 @end
 @interface FlightFilterView : UIView

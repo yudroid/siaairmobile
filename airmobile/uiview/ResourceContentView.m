@@ -11,6 +11,9 @@
 #import "TagView.h"
 #import "SeatStatusModel.h"
 
+
+const NSString *RESOURCECONTENT_TABLECELL_IDENTIFIER = @"RESOURCECONTENT_TABLECELL_IDENTIFIER";
+
 @interface ResourceContentView()
 
 @property (nonatomic, strong) SeatStatusModel *seatStatusModel;
@@ -127,7 +130,7 @@
 
         y = viewY(disable)+viewHeight(disable)+px2(24);
 
-        disAbleLabel= [[UILabel alloc] init];// 不可用
+        disAbleLabel= [[UILabel alloc] init];//
         disAbleLabel.text           = @"占用";
         disAbleLabel.textAlignment  = NSTextAlignmentCenter;
         disAbleLabel.font           = [UIFont fontWithName:@"PingFang SC" size:px2(30)];
@@ -140,7 +143,7 @@
         [self addSubview:disableImageView];
 
 
-        longInSeatLabel = [[UILabel alloc] init];// 长期占用
+        longInSeatLabel = [[UILabel alloc] init];
         longInSeatLabel.text            = @"剩余";
         longInSeatLabel.textAlignment   = NSTextAlignmentCenter;
         longInSeatLabel.font            = [UIFont fontWithName:@"PingFang SC" size:px2(30)];
@@ -243,7 +246,7 @@
                                                                       13)];
         moreLabel.font = [UIFont fontWithName:@"PingFangSC-Regular"
                                          size:px_px_2_2_3(25, 32, 48)];
-        moreLabel.text = @">1小时出港";
+        moreLabel.text = @"<1小时出港";
         [moreView addSubview:moreLabel];
 
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -272,40 +275,40 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SeatUsedModel *model    = array[indexPath.row];
-    UITableViewCell *cell   = [tableView dequeueReusableCellWithIdentifier:model.type];
+    UITableViewCell *cell   = [tableView dequeueReusableCellWithIdentifier:(NSString *)RESOURCECONTENT_TABLECELL_IDENTIFIER];
     
     if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:(UITableViewCellStyleDefault)
-                                     reuseIdentifier:model.type];
-        
-        [cell addSubview:[CommonFunction addLabelFrame:CGRectMake(20, 0, 30, 30)
-                                                  text:model.type
-                                                  font:30
-                                         textAlignment:(NSTextAlignmentLeft)
-                                          colorFromHex:0xFF1B1B1B]];
-        [cell addSubview:[CommonFunction addLabelFrame:CGRectMake(50, 0, kScreenWidth/2-50-30, 13)
-                                                  text:[NSString stringWithFormat:@"占用 %i",model.used]
-                                                  font:12
-                                         textAlignment:(NSTextAlignmentLeft)
-                                          colorFromHex:0xFF1B1B1B]];
-        [cell addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, 0, kScreenWidth/2-50, 12)
-                                                  text:[NSString stringWithFormat:@"空余 %i",model.free]
-                                                  font:12
-                                         textAlignment:(NSTextAlignmentRight)
-                                          colorFromHex:0xFF1B1B1B]];
-        
-        LDProgressView *progressF   = [[LDProgressView alloc] initWithFrame:CGRectMake(50, 12+3, kScreenWidth-100, 10)];
-        progressF.color             = [CommonFunction colorFromHex:0XFF05CA6E];
-        progressF.progress          = [model getPercent];
-        progressF.showText          = @NO;
-        progressF.animate           = @YES;
-        progressF.showBackgroundInnerShadow = @NO;
-        progressF.type              = LDProgressSolid;
-        progressF.outerStrokeWidth  = @NO;
-        progressF.showStroke        = @NO;
-        progressF.background        = [CommonFunction colorFromHex:0XFFE9EDF1];
-        [cell addSubview:progressF];
-        
+//        cell = [[UITableViewCell alloc]initWithStyle:(UITableViewCellStyleDefault)
+//                                     reuseIdentifier:model.type];
+//        
+//        [cell addSubview:[CommonFunction addLabelFrame:CGRectMake(20, 0, 30, 30)
+//                                                  text:model.type
+//                                                  font:30
+//                                         textAlignment:(NSTextAlignmentLeft)
+//                                          colorFromHex:0xFF1B1B1B]];
+//        [cell addSubview:[CommonFunction addLabelFrame:CGRectMake(50, 0, kScreenWidth/2-50-30, 13)
+//                                                  text:[NSString stringWithFormat:@"占用 %i",model.used]
+//                                                  font:12
+//                                         textAlignment:(NSTextAlignmentLeft)
+//                                          colorFromHex:0xFF1B1B1B]];
+//        [cell addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, 0, kScreenWidth/2-50, 12)
+//                                                  text:[NSString stringWithFormat:@"空余 %i",model.free]
+//                                                  font:12
+//                                         textAlignment:(NSTextAlignmentRight)
+//                                          colorFromHex:0xFF1B1B1B]];
+//        
+//        LDProgressView *progressF   = [[LDProgressView alloc] initWithFrame:CGRectMake(50, 12+3, kScreenWidth-100, 10)];
+//        progressF.color             = [CommonFunction colorFromHex:0XFF05CA6E];
+//        progressF.progress          = [model getPercent];
+//        progressF.showText          = @NO;
+//        progressF.animate           = @YES;
+//        progressF.showBackgroundInnerShadow = @NO;
+//        progressF.type              = LDProgressSolid;
+//        progressF.outerStrokeWidth  = @NO;
+//        progressF.showStroke        = @NO;
+//        progressF.background        = [CommonFunction colorFromHex:0XFFE9EDF1];
+//        [cell addSubview:progressF];
+
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;

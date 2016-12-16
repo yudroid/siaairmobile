@@ -121,7 +121,7 @@
                                                                  viewBotton(upImageView)+px_px_2_3(10, 15),
                                                                  viewWidth(topBgView)-2*px2(33),
                                                                  12)
-                                                 text:@([self maxValue]*1.2).stringValue
+                                                 text:@((int)([self maxValue]*1.2)).stringValue
                                                  font:px_px_2_3(22, 36)
                                         textAlignment:NSTextAlignmentRight
                                          colorFromHex:0x75FFFFFF];
@@ -145,7 +145,7 @@
     
     //Use yFixedValueMax and yFixedValueMin to Fix the Max and Min Y Value
     //Only if you needed
-    lineChart.yFixedValueMax = [self maxValue]*1.2;
+    lineChart.yFixedValueMax = (int)([self maxValue]*1.2);
     lineChart.yFixedValueMin = 0;
     
     
@@ -300,7 +300,7 @@
         // Line Chart #2
 
         PNLineChartData *data = [PNLineChartData new];
-        lineChart.yFixedValueMax = [self maxValue]*1.2;
+        lineChart.yFixedValueMax = (int)([self maxValue]*1.2);
         data.dataTitle = @"航班";
         data.color = [UIColor whiteColor];
         data.alpha = 0.5f;
@@ -313,7 +313,7 @@
             return [PNLineChartDataItem dataItemWithY:yValue];
         };
 
-        maxLabel.text = @([self maxValue]).stringValue;
+        maxLabel.text = @((int)([self maxValue]*1.2)).stringValue;
         lineChart.chartData = @[data];
         [lineChart strokeChart];
 

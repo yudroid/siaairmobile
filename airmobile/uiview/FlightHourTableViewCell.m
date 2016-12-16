@@ -62,7 +62,8 @@
                                                                                0,
                                                                                (kScreenWidth-2*px2(32))/2,
                                                                                viewHeight(self.contentView))];
-        countLabel.text             =[NSString stringWithFormat:@"%ld", flightHour.planDepCount+flightHour.planArrCount];
+        countLabel.text             =[NSString stringWithFormat:@"%d", (int)flightHour.planDepCount+(int)flightHour.planArrCount];
+    
         countLabel.font             = [UIFont fontWithName:@"PingFang SC" size:px2(36)];
         countLabel.textAlignment    = NSTextAlignmentRight;
         [self.contentView addSubview:countLabel];

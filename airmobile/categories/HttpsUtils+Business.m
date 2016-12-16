@@ -64,7 +64,7 @@ NSString * const glqNearPsnUrl              = @"/acs/bmap/psn/glqNearPsn";
 NSString * const glqFarPsnUrl               = @"/acs/bmap/psn/glqFarPsn";
 NSString * const peakPnsDaysUrl             = @"/acs/bmap/psn/peakPnsDays";
 NSString * const craftSeatTakeUpInfoUrl     = @"/acs/bmap/rs/craftSeatTakeUpInfo";
-NSString * const willCraftSeatTakeUpUrl     = @"/acs/bmap/rs/willCraftSeatTakeUp";
+NSString * const willCraftSeatTakeUpUrl     = @"/acs/bmap//rs/willCraftSeatTakeUp";
 NSString * const craftSeatTypeTakeUpSortUrl = @"/acs/bmap/rs/craftSeatTypeTakeUpSort";
 // 功能
 NSString * const dutyTableByDayUrl          = @"/acs/dms/airportScheduling/getDutyBySpeDay";// 员工值班表，按天的
@@ -935,7 +935,33 @@ NSString * const updatePwdUrl               = @"/acs/login/updatePwd";//修改�
             success(responseObj);
         }
     } failure:failure];
+    
 }
+
+/**
+ 加载事件数据
+
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)loadEventsProgress:(void (^) (float))progress
+                  Success:(void (^)(id))success
+                  failure:(void (^)(id))failure
+{
+    [HttpsUtils get:loadEventUrl params:nil
+           progress:^(float rate){
+               progress(rate);
+           }
+            success:^(id responseObj) {
+                if(success){
+                    success(responseObj);
+                }
+            } failure:failure];
+}
+
+
+
+
 
 
 /**
@@ -953,5 +979,20 @@ NSString * const updatePwdUrl               = @"/acs/login/updatePwd";//修改�
     } failure:failure];
 }
 
+
++(void)loadDictDatasProgress:(void (^) (float))progress
+                  Success:(void (^)(id))success
+                  failure:(void (^)(id))failure
+{
+    [HttpsUtils get:loadDictDataUrl params:nil
+           progress:^(float rate){
+               progress(rate);
+           }
+            success:^(id responseObj) {
+                if(success){
+                    success(responseObj);
+                }
+            } failure:failure];
+}
 
 @end

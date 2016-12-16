@@ -12,6 +12,8 @@
 #import "LDProgressView.H"
 #import "CraftseatCntModel.h"
 
+const NSString *SEATUSED_TABLEVIEW_IDENTIFIER = @"SEATUSED_TABLEVIEW_IDENTIFIER";
+
 @interface SeatUsedViewController ()
 
 @property (nonatomic ,strong) CraftseatCntModel *craftseatCntModel ;
@@ -20,7 +22,7 @@
 
 @implementation SeatUsedViewController
 {
-    NSMutableArray<SeatUsedModel *> *array;
+    NSArray<SeatUsedModel *> *array;
     CGFloat normalProportion;
     CGFloat abnormalProportion;
     CGFloat cancleProportion;
@@ -362,78 +364,79 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SeatUsedModel *model = array[indexPath.row];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:model.type];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)SEATUSED_TABLEVIEW_IDENTIFIER];
     
     if (!cell) {
 
 
-        cell = [[UITableViewCell alloc]initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:model.type];
+        cell = [[UITableViewCell alloc]initWithStyle:(UITableViewCellStyleDefault)
+                                     reuseIdentifier:(NSString *)SEATUSED_TABLEVIEW_IDENTIFIER];
 
 //        UIImageView *backgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(5, 3,kScreenWidth-10, 125/2-6)];
 //        backgroundImageView.image = [UIImage imageNamed:@"FlightFilterbuttonNoSelected"];
 //        [cell addSubview:backgroundImageView];
 
-        UIView *contentView = [[UIView alloc]initWithFrame:CGRectMake(16,
-                                                                      5,
-                                                                      kScreenWidth-32,
-                                                                      150/2-10)];
-        contentView.layer.cornerRadius = 8.0;
-        contentView.layer.borderColor = [CommonFunction colorFromHex:0xFFf0f0f0].CGColor;
-        contentView.layer.borderWidth = 1.0;
-        [cell addSubview:contentView];
-        [contentView addSubview:[CommonFunction addLabelFrame:CGRectMake(10, 0, 30, 30)
-                                                         text:model.type
-                                                         font:25/2
-                                                textAlignment:(NSTextAlignmentLeft)
-                                                 colorFromHex:0xFF000000]];
-        UILabel *notUseLabel = [[UILabel alloc]init];
-        CGSize maxSize = CGSizeMake(100, 100);
-        notUseLabel.font = [UIFont fontWithName:@"PingFangSC-Regular"
-                                           size:25/2];
-        notUseLabel.text = [NSString stringWithFormat:@"空余 %i",model.free];
-        CGSize exportSize = [notUseLabel sizeThatFits:maxSize];
-        notUseLabel.frame = CGRectMake(viewWidth(contentView)-10-exportSize.width,
-                                       0,
-                                       exportSize.width,
-                                       30);
-        [contentView addSubview:notUseLabel];
-
-        UILabel *useLabel = [[UILabel alloc]init];
-        maxSize = CGSizeMake(100, 100);
-        useLabel.font = [UIFont fontWithName:@"PingFangSC-Regular"
-                                        size:25/2];
-        useLabel.text = [NSString stringWithFormat:@"占用 %i",model.used];
-        exportSize = [useLabel sizeThatFits:maxSize];
-        useLabel.frame = CGRectMake(viewX(notUseLabel)-10-exportSize.width,
-                                    0,
-                                    exportSize.width,
-                                    30);
-        [contentView addSubview:useLabel];
-
-        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(1,
-                                                                   viewBotton(useLabel),
-                                                                   viewWidth(contentView),
-                                                                   0.5)];
-        lineView.backgroundColor = [CommonFunction colorFromHex:0xFFf0f0f0];
-        [contentView addSubview:lineView];
-
-//        [contentView addSubview:[CommonFunction addLabelFrame:CGRectMake(50, 0, kScreenWidth/2-50-30, 13) text:[NSString stringWithFormat:@"占用 %i",model.used] font:12 textAlignment:(NSTextAlignmentLeft) colorFromHex:0xFF1B1B1B]];
-//        [contentView addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, 0, kScreenWidth/2-50, 12) text:[NSString stringWithFormat:@"空余 %i",model.free] font:12 textAlignment:(NSTextAlignmentRight) colorFromHex:0xFF1B1B1B]];
-//        
-        LDProgressView *progressF= [[LDProgressView alloc] initWithFrame:CGRectMake(7,
-                                                                                    viewBotton(lineView)+9,
-                                                                                    viewWidth(contentView)-14,
-                                                                                    15)];
-        progressF.color = [CommonFunction colorFromHex:0XFF05CA6E];
-        progressF.progress = [model getPercent];
-        progressF.showText = @NO;
-        progressF.animate = @YES;
-        progressF.showBackgroundInnerShadow = @NO;
-        progressF.type = LDProgressSolid;
-        progressF.outerStrokeWidth = @NO;
-        progressF.showStroke = @NO;
-        progressF.background = [CommonFunction colorFromHex:0XFFE9EDF1];
-        [contentView addSubview:progressF];
+//        UIView *contentView = [[UIView alloc]initWithFrame:CGRectMake(16,
+//                                                                      5,
+//                                                                      kScreenWidth-32,
+//                                                                      150/2-10)];
+//        contentView.layer.cornerRadius = 8.0;
+//        contentView.layer.borderColor = [CommonFunction colorFromHex:0xFFf0f0f0].CGColor;
+//        contentView.layer.borderWidth = 1.0;
+//        [cell addSubview:contentView];
+//        [contentView addSubview:[CommonFunction addLabelFrame:CGRectMake(10, 0, 30, 30)
+//                                                         text:model.sizetype
+//                                                         font:25/2
+//                                                textAlignment:(NSTextAlignmentLeft)
+//                                                 colorFromHex:0xFF000000]];
+//        UILabel *notUseLabel = [[UILabel alloc]init];
+//        CGSize maxSize = CGSizeMake(100, 100);
+//        notUseLabel.font = [UIFont fontWithName:@"PingFangSC-Regular"
+//                                           size:25/2];
+//        notUseLabel.text = [NSString stringWithFormat:@"空余 %ld",model.normalCnt+model.parentCnt];
+//        CGSize exportSize = [notUseLabel sizeThatFits:maxSize];
+//        notUseLabel.frame = CGRectMake(viewWidth(contentView)-10-exportSize.width,
+//                                       0,
+//                                       exportSize.width,
+//                                       30);
+//        [contentView addSubview:notUseLabel];
+//
+//        UILabel *useLabel = [[UILabel alloc]init];
+//        maxSize = CGSizeMake(100, 100);
+//        useLabel.font = [UIFont fontWithName:@"PingFangSC-Regular"
+//                                        size:25/2];
+//        useLabel.text = [NSString stringWithFormat:@"占用 %ld",model.normalTakeUpCnt+model.parentTakeUpCnt];
+//        exportSize = [useLabel sizeThatFits:maxSize];
+//        useLabel.frame = CGRectMake(viewX(notUseLabel)-10-exportSize.width,
+//                                    0,
+//                                    exportSize.width,
+//                                    30);
+//        [contentView addSubview:useLabel];
+//
+//        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(1,
+//                                                                   viewBotton(useLabel),
+//                                                                   viewWidth(contentView),
+//                                                                   0.5)];
+//        lineView.backgroundColor = [CommonFunction colorFromHex:0xFFf0f0f0];
+//        [contentView addSubview:lineView];
+//
+////        [contentView addSubview:[CommonFunction addLabelFrame:CGRectMake(50, 0, kScreenWidth/2-50-30, 13) text:[NSString stringWithFormat:@"占用 %i",model.used] font:12 textAlignment:(NSTextAlignmentLeft) colorFromHex:0xFF1B1B1B]];
+////        [contentView addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, 0, kScreenWidth/2-50, 12) text:[NSString stringWithFormat:@"空余 %i",model.free] font:12 textAlignment:(NSTextAlignmentRight) colorFromHex:0xFF1B1B1B]];
+////        
+//        LDProgressView *progressF= [[LDProgressView alloc] initWithFrame:CGRectMake(7,
+//                                                                                    viewBotton(lineView)+9,
+//                                                                                    viewWidth(contentView)-14,
+//                                                                                    15)];
+//        progressF.color = [CommonFunction colorFromHex:0XFF05CA6E];
+//        progressF.progress = 0.5;
+//        progressF.showText = @NO;
+//        progressF.animate = @YES;
+//        progressF.showBackgroundInnerShadow = @NO;
+//        progressF.type = LDProgressSolid;
+//        progressF.outerStrokeWidth = @NO;
+//        progressF.showStroke = @NO;
+//        progressF.background = [CommonFunction colorFromHex:0XFFE9EDF1];
+//        [contentView addSubview:progressF];
         
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

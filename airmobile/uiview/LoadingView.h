@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+@class FLAnimatedImageView;
 
 @interface LoadingView : UIView
 
-@property (weak, nonatomic) IBOutlet UIImageView *contentImageView;
+@property (weak, nonatomic) IBOutlet FLAnimatedImageView *contentImageView;
+@property (weak, nonatomic) IBOutlet UILabel *loadingLabel;
 
 @end

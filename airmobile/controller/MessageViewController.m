@@ -20,11 +20,12 @@
 #import "FlightDelaysViewController.h"
 
 
+
 static const NSString *MESSAGE_TABLECELL_IDENTIFIER = @"MESSAGE_TABLECELL_IDENTIFIER";
 static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_IDENTIFIER";
 
 
-@interface MessageViewController ()<TabBarViewDelegate,UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
+@interface MessageViewController ()<TabBarViewDelegate,UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate,UITextFieldDelegate>
 
 
 @property (nonatomic, strong) UISearchBar *searBar;
@@ -161,6 +162,8 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
                                            size:14];
     searchTextField.textColor = [CommonFunction colorFromHex:0XFFbbbbbb];
     searchTextField.placeholder = @"会话名称";
+    searchTextField.returnKeyType = UIReturnKeyDone;
+    searchTextField.delegate = self;
     [searchTextField addTarget:self action:@selector(filterDialogList:) forControlEvents:UIControlEventEditingChanged];
     
     [contentView addSubview:searchTextField];
@@ -208,7 +211,6 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
                                                                      33,
                                                                      22,
                                                                      20)];
-    
     [chatButton setBackgroundImage:[UIImage imageNamed:@"message"]
                           forState:UIControlStateNormal];
     [chatButton addTarget:self
@@ -361,6 +363,32 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
                     localChatId:localChatId];
     }
 }
+///左滑动删除
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row==0||indexPath.row==1) {
+        return NO;
+    }
+    return YES;
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"删除";
+}
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
+    [filterArray removeObjectAtIndex:indexPath.row-2];
+
+    [_tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+}
+
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self.view endEditing:YES];
+
+}
+
 
 -(void) showFlightEventView
 {
@@ -411,6 +439,12 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
     [super viewWillAppear:animated];
     NSLog(@"%s",__func__);
     [self loadChatList:100 start:0];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self.view endEditing:YES];
+    return YES;
 }
 
 @end

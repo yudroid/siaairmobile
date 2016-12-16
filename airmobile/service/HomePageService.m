@@ -12,6 +12,7 @@
 #import "PassengerModel.h"
 #import "SeatStatusModel.h"
 #import "HttpsUtils+Business.h"
+#import "AppDelegate.h"
 
 
 
@@ -256,5 +257,22 @@ singleton_implementation(HomePageService);
     } failure:nil];
 }
 
+#pragma mark - 获取用户签到信息
 
+-(void)getUserSignStatus
+{
+    AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication];
+    [HttpsUtils isSigned:(int)appdelegate.userInfoModel.id
+                 success:^(NSNumber *response) {
+                     if (response.integerValue == 3) {
+                         appdelegate.userInfoModel.signStatus =  @"未签到" ;
+                     }else if(response.integerValue == 2){
+                         appdelegate.userInfoModel.signStatus =  @"已签到" ;
+                     }else{
+                         appdelegate.userInfoModel.signStatus =  @"已签退" ;
+                     }
+                 }
+                 failure:^(NSError *error) {
+                 }];
+}
 @end

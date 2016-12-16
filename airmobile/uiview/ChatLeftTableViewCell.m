@@ -27,6 +27,7 @@
     if ([DeviceInfoUtil isPlus]) {
         [self adjustPLUS];
     }
+    _contentLabel.adjustsFontForContentSizeCategory = YES;
 
 }
 
@@ -48,7 +49,7 @@
 -(void)setContentText:(NSString *)contentText
 {
     UIFont *textFont =[UIFont fontWithName:@"PingFang SC" size:13];
-    CGSize size = ([contentText boundingRectWithSize:CGSizeMake(kScreenWidth-150, CGFLOAT_MAX)
+    CGSize size = ([contentText boundingRectWithSize:CGSizeMake(kScreenWidth-140, CGFLOAT_MAX)
                                             options:NSStringDrawingUsesLineFragmentOrigin
                                          attributes:@{NSFontAttributeName:textFont}
                                             context:nil]).size;

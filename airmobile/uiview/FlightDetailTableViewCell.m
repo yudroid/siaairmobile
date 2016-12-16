@@ -17,7 +17,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *peopleLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *stateImageView;
+
+@property (weak, nonatomic) IBOutlet UIView *statusBackView;
 
 @end
 
@@ -25,6 +26,11 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+
+
+    _statusLabel.adjustsFontSizeToFitWidth = YES;
+    _statusBackView.layer.cornerRadius = viewWidth(_statusBackView)/2.0;
+    _statusBackView.layer.masksToBounds = YES;
 
     // Initialization code
 }
@@ -63,9 +69,13 @@
     _nameLabel.text = safeguardModel.name;
     _statusLabel.text = safeguardModel.status;
     if([safeguardModel.status isEqualToString:@"正常"]){
-        _stateImageView.image = [UIImage imageNamed:@"FlightDetailState1"];
-    }else{
-        _stateImageView.image = [UIImage imageNamed:@"FlightDetailState"];
+        _statusBackView.backgroundColor = [CommonFunction colorFromHex:0Xff2dce70];
+    }else if([safeguardModel.status isEqualToString:@"延误"]){
+        _statusBackView.backgroundColor = [CommonFunction colorFromHex:0Xfff46970];
+    }else if([safeguardModel.status isEqualToString:@"进行中"]){
+        _statusBackView.backgroundColor = [CommonFunction colorFromHex:0Xff17b9e8];
+    }else if([safeguardModel.status isEqualToString:@"未开始"]){
+        _statusBackView.backgroundColor = [CommonFunction colorFromHex:0Xffff7c36];
     }
     _peopleLabel.text = safeguardModel.dispatchPeople;
     _timeLabel.text = [NSString stringWithFormat:@"%@-%@",safeguardModel.realStartTime,safeguardModel.endTime];

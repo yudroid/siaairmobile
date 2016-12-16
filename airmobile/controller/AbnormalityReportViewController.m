@@ -19,7 +19,6 @@
 #import "OptionsViewController.h"
 #import "AbnormalityReportHistoryTableViewCell.h"
 #import "AbnormalModel.h"
-#import "FlightService.h"
 #import "ImageViewCollectionViewCell.h"
 #import "HttpsUtils+Business.h"
 #import "BasisInfoDictionaryModel.h"
@@ -31,7 +30,6 @@ static const NSString *ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER = @"ABNORMALI
 static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER";
 
 @interface AbnormalityReportViewController ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UITextViewDelegate,TimePickerViewDelegate,OptionsViewControllerDelegate,UploadPhotoViewControllerDelegate>
-
 
 //控件
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -51,10 +49,6 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    FlightService *flightService = [[FlightService alloc]init];
-    [flightService startService];
-    _abnormalModel = [flightService getAbnormalModel];
 
     //titleView订制
     [self titleViewInitWithHight:64];

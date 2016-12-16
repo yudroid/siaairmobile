@@ -11,13 +11,22 @@
 
 @interface SeatUsedModel : RootModel
 
-@property(nonatomic,copy)   NSString    *type;
-@property(nonatomic,assign) int         free;
-@property(nonatomic,assign) int         used;
+/*
+类别=sizetype;
+正常机位个数=normalCnt;
+主机位个数=parentCnt;
+子机位个数=childCnt;
+正常机位占用个数=normalTakeUpCnt;
+父机位占用个数=parentTakeUpCnt;
+子机位占用个数=childTakeUpCnt;
+ */
 
--(instancetype) initWithType:(NSString *)type
-                        free:(int)free
-                        used:(int)used;
--(CGFloat) getPercent;
+@property (nonatomic, strong) NSString *sizetype; 
+@property (nonatomic, assign) NSInteger normalCnt;
+@property (nonatomic, assign) NSInteger parentCnt;
+@property (nonatomic, assign) NSInteger childCnt;
+@property (nonatomic, assign) NSInteger normalTakeUpCnt;
+@property (nonatomic, assign) NSInteger parentTakeUpCnt;
+@property (nonatomic, assign) NSInteger childTakeUpCnt;
 
 @end

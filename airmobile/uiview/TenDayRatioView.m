@@ -56,7 +56,7 @@
                                                                      7.5,
                                                                      80,
                                                                      20)
-                                                     text:[NSString stringWithFormat:@"%ld%%",(long)@([self sum]*100.0).integerValue]
+                                                     text:[NSString stringWithFormat:@"%.1f%%",(float)@([self sum]*100.0).floatValue]
                                                      font:24
                                             textAlignment:NSTextAlignmentRight
                                              colorFromHex:0xFFFFFFFF];

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="LinkPageView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1wf-qV-51b">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </scrollView>
+                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="PYV-nc-dSf">
+                    <rect key="frame" x="168" y="600" width="39" height="37"/>
+                    <color key="pageIndicatorTintColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="currentPageIndicatorTintColor" red="0.090196078430000007" green="0.72549019609999998" blue="0.90980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </pageControl>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="PYV-nc-dSf" secondAttribute="bottom" constant="30" id="3tP-nm-vbe"/>
+                <constraint firstItem="PYV-nc-dSf" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Fcb-jp-l3R"/>
+                <constraint firstAttribute="bottom" secondItem="1wf-qV-51b" secondAttribute="bottom" id="UsC-m3-2Fp"/>
+                <constraint firstItem="1wf-qV-51b" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="fiO-KS-xJZ"/>
+                <constraint firstAttribute="trailing" secondItem="1wf-qV-51b" secondAttribute="trailing" id="jDc-vo-Rba"/>
+                <constraint firstItem="1wf-qV-51b" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="y8O-Vh-rYU"/>
+            </constraints>
+            <connections>
+                <outlet property="pageControl" destination="PYV-nc-dSf" id="fNR-su-TdP"/>
+                <outlet property="scrollView" destination="1wf-qV-51b" id="zGZ-mw-QQo"/>
+            </connections>
+            <point key="canvasLocation" x="26.5" y="52.5"/>
+        </view>
+    </objects>
+</document>

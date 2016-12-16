@@ -11,8 +11,8 @@
 #import "StringUtils.h"
 
 // 生产网络IP地址
-//static NSString* baseUri = @"http://192.168.163.132:8080";
-static NSString* baseUri = @"http://219.134.93.113:8087";
+static NSString* baseUri = @"http://192.168.163.132:8080";
+//static NSString* baseUri = @"http://219.134.93.113:8087";
 
 /**
  *  请求响应超时时间间隔 以秒为单位  NSTimeInterval = double
@@ -149,6 +149,71 @@ static NSTimeInterval timeInterval = 16;
     }];
     
 }
+
+/**
+ *  get 请求
+ *
+ *  @param segment     指定除主网站地址以外的其它部分 如 form/1
+ *  @param requestData request数据，如果没有传nil
+ *  @param success     success回调
+ *  @param failure     failure回调
+ */
++(void) get:(NSString*) segment params:(NSDictionary*) requestData
+   progress:(void (^)(float progress))progress
+    success:(void (^) (id)) success failure:(void (^) (NSError*)) failure {
+
+    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
+
+    manager.requestSerializer  = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+
+    //请求超时时间
+    [manager.requestSerializer setTimeoutInterval: timeInterval];
+
+    //设置请求编码格式
+    [manager.requestSerializer setStringEncoding:NSUTF8StringEncoding];
+
+    //设置响应编码格式
+    [manager.responseSerializer setStringEncoding:NSUTF8StringEncoding];
+
+    //加上 https ssl验证
+    [manager setSecurityPolicy:[self customSecurityPolicy]];
+
+
+    //构建url
+    NSURL* url = [NSURL URLWithString:baseUri];
+
+    if (![StringUtils isNullOrWhiteSpace:segment]) {
+        url = [NSURL URLWithString:segment
+                     relativeToURL: [NSURL URLWithString:baseUri]];
+    }
+
+    NSString* absoluteUrl = [StringUtils trim:[url absoluteString]];
+
+    //absoluteUrl = [NSString stringWithFormat:@"%@?uid=%@",absoluteUrl,[GuidUtils GuidString]];
+    NSLog(@"Get调用地址 %@",absoluteUrl);
+    //注：该方法是异步调用的
+    [manager GET:absoluteUrl
+      parameters:requestData
+        progress:^(NSProgress * _Nonnull downloadProgress) {
+            progress(downloadProgress.fractionCompleted);
+        }
+         success:^(NSURLSessionTask* task, id responseObject){
+             //NSLog(@"success ----  %@",responseObject);
+             if(success){
+                 //回调
+                 success(responseObject);
+             }
+         }failure:^(NSURLSessionTask* operation, NSError* error){
+             NSLog(@"falied ---- %@",error);
+             if(failure){
+                 //回调
+                 failure(error);
+             }
+         }];
+    
+}
+
 
 
 /**

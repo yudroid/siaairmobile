@@ -101,7 +101,8 @@ const NSString *FLIGHTFILTERVIEW_PROPERTYCOLLECTION_IDENTIFIER = @"FLIGHTFILTERV
     _areaCollectionViewHeight.constant = ((int)(_areaCollectionArray.count/4.0 +0.75))*38-8+ +10;
     [_areaCollectionView reloadData];
 
-    findArray = [PersistenceUtils findBasisInfoDictionaryWithType:@"SignType"];
+    [mutableArray removeAllObjects];
+    findArray = [PersistenceUtils findBasisInfoDictionaryWithType:@"FlightStatus"];
     for (NSDictionary *dic  in findArray) {
         BasisInfoDictionaryModel *model = [[BasisInfoDictionaryModel alloc]init];
         [model setValuesForKeysWithDictionary:dic];
@@ -113,9 +114,9 @@ const NSString *FLIGHTFILTERVIEW_PROPERTYCOLLECTION_IDENTIFIER = @"FLIGHTFILTERV
 
 
     BasisInfoDictionaryModel *propertyTomMoldel = [[BasisInfoDictionaryModel alloc]init];
-    propertyTomMoldel.content = @"国内";
+    propertyTomMoldel.content = @"普通";
     BasisInfoDictionaryModel *propertyInlModel = [[BasisInfoDictionaryModel alloc]init];
-    propertyInlModel.content = @"国际";
+    propertyInlModel.content = @"特殊";
     _propertyCollectionArray = @[propertyTomMoldel,propertyInlModel];
     _propertyCollectionViewHeight.constant = ((int)(_propertyCollectionArray.count/4.0 +0.75))*38-8+ +10;
     [_propertyCollectionView reloadData];
@@ -235,6 +236,22 @@ const NSString *FLIGHTFILTERVIEW_PROPERTYCOLLECTION_IDENTIFIER = @"FLIGHTFILTERV
         _propertySelectCell.isSelected = YES;
 
     }
+
+}
+- (IBAction)flightFilterButtonClick:(id)sender {
+
+    _areaSelectCell.isSelected = NO;
+    _statusSelectCell.isSelected = NO;
+    _propertySelectCell.isSelected = NO;
+
+    _areaSelectCell = nil;
+    _statusSelectCell = nil;
+    _propertySelectCell = nil;
+
+    if ([_delegate respondsToSelector:@selector(flightFilterView:filghtFilterCleanButton:)] ) {
+        [_delegate flightFilterView:self filghtFilterCleanButton:sender];
+    }
+    [self cancelButtonClick:nil];
 
 }
 

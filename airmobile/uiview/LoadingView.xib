@@ -14,21 +14,33 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9c2-uf-Uws" customClass="FLAnimatedImageView">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loading.gif" translatesAutoresizingMaskIntoConstraints="NO" id="9c2-uf-Uws" customClass="FLAnimatedImageView">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="正在加载数据..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NPL-mc-9GI">
+                    <rect key="frame" x="140.5" y="423.5" width="95.5" height="20"/>
+                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="9c2-uf-Uws" secondAttribute="bottom" id="Cw7-TO-g2E"/>
+                <constraint firstItem="NPL-mc-9GI" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="IkS-Dh-e4D"/>
                 <constraint firstItem="9c2-uf-Uws" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Kci-hd-21N"/>
+                <constraint firstItem="NPL-mc-9GI" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="100" id="dwP-2f-NrA"/>
                 <constraint firstAttribute="trailing" secondItem="9c2-uf-Uws" secondAttribute="trailing" id="vdC-St-BCa"/>
                 <constraint firstItem="9c2-uf-Uws" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="vev-E1-UwU"/>
             </constraints>
             <connections>
                 <outlet property="contentImageView" destination="9c2-uf-Uws" id="Srq-Ri-n5s"/>
+                <outlet property="loadingLabel" destination="NPL-mc-9GI" id="uwd-G9-m20"/>
             </connections>
             <point key="canvasLocation" x="25.5" y="51.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="loading.gif" width="960" height="1707"/>
+    </resources>
 </document>

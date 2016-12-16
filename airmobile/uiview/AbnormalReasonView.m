@@ -89,11 +89,11 @@
         flightHourTableView.tableFooterView                 = [[UIView alloc]init];
         [self addSubview:flightHourTableView];
 
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(loadData:)
-                                                     name:@""
-                                                   object:nil];
-        
+//        [[NSNotificationCenter defaultCenter] addObserver:self
+//                                                 selector:@selector(loadData:)
+//                                                     name:@""
+//                                                   object:nil];
+
     }
     
     return self;
@@ -101,7 +101,7 @@
 
 -(void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"" object:nil];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"" object:nil];
 }
 
 

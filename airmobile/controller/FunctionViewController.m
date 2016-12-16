@@ -63,7 +63,7 @@ static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDEN
     _tableView.tableFooterView = [[UIView alloc]init];
     _tableArray= @[@{@"name":@"通讯录",@"image":@"AddressBook"},
                    @{@"name":@"值班表",@"image":@"WatchBill"},
-                   @{@"name":@"当日值班表",@"image":@"WatchBill"}];
+                   @{@"name":@"当日值班表",@"image":@"TodayDuty"}];
     [self.view addSubview:_tableView];
 }
 

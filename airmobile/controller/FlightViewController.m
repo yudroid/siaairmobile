@@ -17,7 +17,7 @@
 #import "FlightModel.h"
 #import "HttpsUtils+Business.h"
 #import <MJRefresh.h>
-#import "FlightService.h"
+
 
 static const CGFloat FLIGHTFILTERVIEW_HEIGHT = 440.0;
 static const NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_IDETIFIER";
@@ -26,6 +26,7 @@ static const NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_I
 
 @property (nonatomic, strong) UIView *searBar;
 @property (nonatomic, strong) UITableView *tableView ;
+@property (nonatomic, strong) UITextField *searContentTextField;
 
 @end
 
@@ -149,13 +150,13 @@ static const NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_I
 //    searchTagImageView.backgroundColor = [UIColor redColor];
     [_searBar addSubview:searchTagImageView];
     
-    UITextField *searContentTextField = [[UITextField alloc]
+    _searContentTextField = [[UITextField alloc]
                                          initWithFrame:CGRectMake(px_px_2_3(14, 22)+viewTrailing(searchTagImageView), viewY(searchTextBackgroundImageView), viewWidth(searchTextBackgroundImageView)-viewTrailing(searchTagImageView)-px_px_2_3(14, 22), viewHeight(searchTextBackgroundImageView))];
-    searContentTextField.placeholder = @"请输入查询内容";
-    searContentTextField.delegate = self;
-    searContentTextField.returnKeyType = UIReturnKeySearch;
-    searContentTextField.font = [UIFont fontWithName:@"PingFangSC-Regular" size:px_px_2_3(26, 40)];
-    [_searBar addSubview:searContentTextField];
+    _searContentTextField.placeholder = @"请输入查询内容";
+    _searContentTextField.delegate = self;
+    _searContentTextField.returnKeyType = UIReturnKeySearch;
+    _searContentTextField.font = [UIFont fontWithName:@"PingFangSC-Regular" size:px_px_2_3(26, 40)];
+    [_searBar addSubview:_searContentTextField];
 
     //搜索按钮
 //    UIButton *searchBarSearchButton = [[UIButton alloc]
@@ -221,12 +222,13 @@ static const NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_I
         if(![responseObj isKindOfClass:[NSArray class]]){
             return;
         }
-        dataArray = [NSMutableArray array];
+        NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:dataArray];
         FlightModel *flight = nil;
         for(id item in responseObj){
             flight = [[FlightModel alloc]initWithDictionary:item];
-            [dataArray addObject:flight];
+            [mutableArray addObject:flight];
         }
+        dataArray = [mutableArray copy];
         [_tableView.mj_footer endRefreshing];
         [_tableView reloadData];
 
@@ -261,6 +263,8 @@ static const NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_I
     [UIView animateWithDuration:0.3 animations:^{
         _searBar.frame = CGRectMake(kScreenWidth, 0, kScreenWidth, 64);
     }];
+    flightNo = _searContentTextField.text;
+    [_tableView.mj_header beginRefreshing];
 
 }
 -(void)searchBarSearchButtonClick:(UIButton *)sender
@@ -306,9 +310,9 @@ static const NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_I
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    if (textField.text.length != 0) {
+
         flightNo = textField.text;
-    }
+
     [self.view endEditing:YES];
 
     [_tableView.mj_header beginRefreshing];
@@ -357,6 +361,19 @@ static const NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_I
     flightStatus = status ;
 
     [_tableView.mj_header beginRefreshing];
+
+}
+
+-(void)flightFilterView:(FlightFilterView *)view filghtFilterCleanButton:(UIButton *)button
+{
+
+    flightNo =@"";
+    flightType = @"";
+    flightRegion = @"";
+    flightStatus = @"";
+    _searContentTextField.text = @"";
+    [_tableView.mj_header beginRefreshing];
+
 
 }
 /*

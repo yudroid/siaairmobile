@@ -74,6 +74,16 @@
         _craftSeatLabel.textColor = [CommonFunction colorFromHex:0xFF4484f6] ;
     }
 
+    //航空公司logo
+    NSString *imageName = [flight.fName lowercaseString];
+    if ([imageName characterAtIndex:0]>=48&& [imageName characterAtIndex:0]<=57&& imageName.length >=2) {
+        imageName = [NSString stringWithFormat:@"%c%c",[imageName characterAtIndex:1],[imageName characterAtIndex:0]];
+
+    }
+    UIImage *image = [UIImage imageNamed:imageName];
+    if (image) {
+        _airlineImage.image = image;
+    }
 
 
 
@@ -117,6 +127,16 @@
     _nextLandingLabel.text = flight.eTime;
     _nextAirportLabel.text = flight.eCity;
     
+}
+
+//判断为数字
+- (BOOL)isPureInt:(NSString*)string{
+
+    NSScanner* scan = [NSScanner scannerWithString:string];
+
+    int val;
+
+    return[scan scanInt:&val] && [scan isAtEnd];
 }
 
 @end

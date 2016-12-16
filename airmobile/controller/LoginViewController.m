@@ -18,6 +18,10 @@
 #import "DeviceInfoUtil.h"
 #import "HomePageService.h"
 #import "MessageService.h"
+#import "LinkPageView.h"
+#import "LoadingView.h"
+#import "PersistenceUtils+Business.h"
+#import "UIViewController+Reminder.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
 
@@ -47,6 +51,14 @@
     
     [self createLogoView];
     [self createInputView];
+
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"NotFirst"]) {
+        LinkPageView *linkView = [[NSBundle mainBundle] loadNibNamed:@"LinkPageView" owner:nil options:nil][0];
+        linkView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
+        [self.view addSubview:linkView];
+
+    }
+
     
 }
 
@@ -302,11 +314,75 @@
                 [DefaultHelper setString:password forKey:pwdKey];
                 AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
                 delegate.userInfoModel = user;
-                
-                [ThreadUtils dispatchMain:^{
-                    HomePageViewController *homepage = [[HomePageViewController alloc] init];
-                    [self.navigationController pushViewController:homepage animated:YES];
-                }];
+
+                if (![[NSUserDefaults standardUserDefaults] boolForKey:@"NotFirst"]) {
+                    LoadingView *loadingView = [[NSBundle mainBundle]loadNibNamed:@"LoadingView" owner:nil options:nil][0];
+                    loadingView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
+                    [self.view addSubview:loadingView];
+
+                    __block NSInteger eventTag = 0;
+                    __block NSInteger dicTag = 0;
+
+                    [HttpsUtils loadEventsProgress:^(float rate) {
+
+                    } Success:^(id response) {
+                        for(NSDictionary *dic in response){
+                            [PersistenceUtils insertBasisInfoEventWithDictionary:dic];
+                        }
+                        eventTag = 1;
+
+                        if (dicTag == 1 && eventTag == 1) {
+                             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NotFirst"];
+                            [ThreadUtils dispatchMain:^{
+                                HomePageViewController *homepage = [[HomePageViewController alloc] init];
+                                [self.navigationController pushViewController:homepage animated:YES];
+                            }];
+                        }
+                    } failure:^(NSError *error) {
+                        [self showAnimationTitle:@"数据加载失败"];
+                        loadingView.hidden = YES;
+                        [loadingView removeFromSuperview];
+
+                    }];
+
+                    [HttpsUtils loadDictDatasProgress:^(float rate) {
+
+                    } Success:^(id response) {
+
+                        for(NSDictionary *dic in response){
+                            [PersistenceUtils insertBasisInfoDictionaryWithDictionary:dic];
+                        }
+
+                        dicTag = 1;
+
+                        if (dicTag == 1 && eventTag == 1) {
+                             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NotFirst"];
+                            [ThreadUtils dispatchMain:^{
+                                HomePageViewController *homepage = [[HomePageViewController alloc] init];
+                                [self.navigationController pushViewController:homepage animated:YES];
+                            }];
+                        }
+                        
+                    } failure:^(NSError *error) {
+                        [self showAnimationTitle:@"数据加载失败"];
+                        loadingView.hidden = YES;
+                        [loadingView removeFromSuperview];
+                        
+                    }];
+
+                }else{
+                    [ThreadUtils dispatchMain:^{
+                        HomePageViewController *homepage = [[HomePageViewController alloc] init];
+                        [self.navigationController pushViewController:homepage animated:YES];
+                    }];
+
+                }
+
+
+
+
+
+
                 BOOL isFirstTime = [StringUtils isNullOrWhiteSpace:[DefaultHelper getStringForKey:@"SIAAIRMOBILE.LOGINFIRSTTIME"]];
                 if (isFirstTime) {
                     //绑定MAC地址

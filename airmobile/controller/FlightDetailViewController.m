@@ -16,7 +16,7 @@
 #import "HttpsUtils+Business.h"
 #import "FlightDetailModel.h"
 #import "SafeguardModel.h"
-#import "FlightService.h"
+
 #import "SpecialModel.h"
 #import "AppDelegate.h"
 
@@ -308,7 +308,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
         for(id item in responseObj){
             [dispatches addObject:[[SafeguardModel alloc] initWithDictionary:item]];
         }
-        [self updateSpecialsTableView];
+        [self updateDispatchesTableView];
     } failure:nil];
     
     [HttpsUtils getSpecialDetail:_flightId success:^(id responseObj) {

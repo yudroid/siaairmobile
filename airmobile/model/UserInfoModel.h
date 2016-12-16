@@ -11,20 +11,22 @@
 
 @interface UserInfoModel : RootModel
 
-@property(nonatomic,copy)   NSString    *aptitude;
-@property(nonatomic,copy)   NSString    *className;
-@property(nonatomic,assign) long        deptId;
-@property(nonatomic,copy)   NSString    *deptName;
-@property(nonatomic,assign) int         flag;
-@property(nonatomic,assign) long        id;
-@property(nonatomic,copy)   NSString    *jobNumber;
-@property(nonatomic,copy)   NSString    *name;
-@property(nonatomic,copy)   NSString    *password;
-@property(nonatomic,copy)   NSString    *phone;
-@property(nonatomic,copy)   NSString    *post;
-@property(nonatomic,copy)   NSString    *rule;
-@property(nonatomic,copy)   NSString    *seat;
+@property (nonatomic ,copy)   NSString    *aptitude;
+@property (nonatomic ,copy)   NSString    *className;
+@property (nonatomic ,assign) long        deptId;
+@property (nonatomic ,copy)   NSString    *deptName;
+@property (nonatomic ,assign) int         flag;
+@property (nonatomic ,assign) long        id;
+@property (nonatomic ,copy)   NSString    *jobNumber;
+@property (nonatomic ,copy)   NSString    *name;
+@property (nonatomic ,copy)   NSString    *password;
+@property (nonatomic ,copy)   NSString    *phone;
+@property (nonatomic ,copy)   NSString    *post;
+@property (nonatomic ,copy)   NSString    *rule;
+@property (nonatomic ,copy)   NSString    *seat;
+@property (nonatomic ,copy)   NSString    *signStatus; // “” “未签到” "已签到" “已签退”
 
 
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary ;
+
 @end
