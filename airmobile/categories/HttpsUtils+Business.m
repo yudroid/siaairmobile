@@ -35,7 +35,7 @@ NSString * const userlistUrl                = @"/acs/wacs/user/SelectAllDeptList
 NSString * const groupSaveUrl               = @"/acs/wacs/group/save";
 NSString * const flightListUrl              = @"/acs/m/flightList";// 航班列表
 NSString * const flightDetailUrl            = @"/acs/m/flightDetail";// 航班详情列表
-NSString * const dispatchDetailsUrl         = @"/acs/m/getDispatchsByFlightId";// 航班保障环节列表
+NSString * const dispatchDetailsUrl         = @"/acs/wacs/flightDetail/queryFlightDispatchDetailForIphone";// 航班保障环节列表
 NSString * const specialDetailsUrl          = @"/acs/wacs/MobileSpecial/queryMobileSpecialList";// 特殊保障列表
 NSString * const dispatchAbnsUrl            = @"/acs/m/getExceptionByFlightDispatchId";//获取异常历史列表
 NSString * const saveDispatchAbnStart       = @"/acs/wacs/MobileSpecial/MobileSaveSpecialABNDispatch";//上报开始(航班ID/环节ID/用户ID/事件ID/要求/是否是特殊航班);
@@ -301,7 +301,8 @@ NSString * const headImageUpload            = @"/acs/m/upload";//头像上传
 
 +(void)getDispatchDetail:(int)flightId success:(void (^)(id))success failure:(void (^)(id))failure
 {
-    NSString *temp = [NSString stringWithFormat:@"%@?flightId=%i",dispatchDetailsUrl,flightId];
+//    NSString *temp = [NSString stringWithFormat:@"%@?flightId=%i",dispatchDetailsUrl,flightId];
+    NSString *temp = [NSString stringWithFormat:@"%@/%i",dispatchDetailsUrl,flightId];
     [HttpsUtils get:temp params:nil success:^(id responseObj) {
         if(success){
             success(responseObj);
