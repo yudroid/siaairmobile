@@ -30,7 +30,7 @@ typedef enum
 
 //titleView相关设置
 -(void)titleViewInitWithHight:(CGFloat)high;
-- (void)titleViewAddTitleText:(NSString *)titleText;
+-(void)titleViewAddTitleText:(NSString *)titleText;
 -(UIButton *)titleViewAddBackBtn;
 
 @end

@@ -12,6 +12,7 @@
 #import "MessageViewController.h"
 #import "FunctionViewController.h"
 #import "UserInfoViewController.h"
+#import "SingleMessageViewController.h"
 #import "ContactPersonViewController.h"
 #import "MessageTableViewCell.h"
 #import "FixedMessageTableViewCell.h"
@@ -54,15 +55,6 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
     
 //    [self initOptionView];
     
-    //TabBer自定义
-    self.tabBarView = [[TabBarView alloc] initTabBarWithModel:TabBarBgModelHomePage
-                                                 selectedType:TabBarSelectedTypeMessage
-                                                     delegate:self];
-    [self.view insertSubview:self.tabBarView aboveSubview:self.view];
-    
-    
-    // Do any additional setup after loading the view.
-    
     //titleView订制
 //    [self titleViewInitWithHight:64];
 //    [self titleViewAddTitleText:@"消息"];
@@ -81,7 +73,7 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
     
     filterArray = [NSMutableArray array];
     //TabBer自定义
-    self.tabBarView = [[TabBarView alloc] initTabBarWithModel:TabBarBgModelNormal
+    self.tabBarView = [[TabBarView alloc] initTabBarWithModel:TabBarBgModelHomePage
                                                  selectedType:TabBarSelectedTypeMessage
                                                      delegate:self];
     [self.view insertSubview:self.tabBarView aboveSubview:self.view];
@@ -106,8 +98,7 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
         }
         case TabBarSelectedTypeMessage:
         {
-            MessageViewController *messagepage = [[MessageViewController alloc] init];
-            [self.navigationController pushViewController:messagepage animated:NO];
+            [self showMessageViewController];
             break;
         }
         case TabBarSelectedTypeFunction:
@@ -127,6 +118,21 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
     }
 }
 
+-(void)showMessageViewController
+{
+    if([CommonFunction hasFunction:MSG_WORNING] && ![CommonFunction hasFunction:MSG_FLIGHT] && ![CommonFunction hasFunction:MSG_DIALOG]){
+        SingleMessageViewController *message = [[SingleMessageViewController alloc] init];
+        message.type = @"COMMAND";
+        [self.navigationController pushViewController:message animated:NO];
+    }else if(![CommonFunction hasFunction:MSG_WORNING] && [CommonFunction hasFunction:MSG_FLIGHT] && ![CommonFunction hasFunction:MSG_DIALOG]){
+        SingleMessageViewController *message = [[SingleMessageViewController alloc] init];
+        message.type = @"FLIGHT";
+        [self.navigationController pushViewController:message animated:NO];
+    }else{
+        MessageViewController *message = [[MessageViewController alloc] init];
+        [self.navigationController pushViewController:message animated:NO];
+    }
+}
 
 -(void)initSearBar
 {

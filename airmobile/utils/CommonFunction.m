@@ -7,6 +7,7 @@
 //
 
 #import "CommonFunction.h"
+#import "AppDelegate.h"
 
 @implementation CommonFunction
 
@@ -228,6 +229,16 @@
 +(BOOL) iOSVersion10
 {
     return __IPHONE_10_0>=100000;
+}
+
++(BOOL) hasFunction:(long)functionId
+{
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSString *functions = delegate.userInfoModel.functions;
+    if(functions==nil || [functions length]==0 || functionId==0){
+        return true;
+    }
+    return [functions containsString:[NSString stringWithFormat:@"%li",functionId]];
 }
 
 @end

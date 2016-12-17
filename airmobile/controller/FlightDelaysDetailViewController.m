@@ -65,8 +65,6 @@
     _titleText = [titleText copy];
     _titleLabel.text = [titleText copy];
 
-
-
 }
 
 /*

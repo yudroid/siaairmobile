@@ -22,6 +22,7 @@
 #import "PersistenceUtils+Business.h"
 #import "LoginViewController.h"
 #import <FlyImage.h>
+#import "SingleMessageViewController.h"
 
 
 
@@ -298,8 +299,7 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
         }
         case TabBarSelectedTypeMessage:
         {
-            MessageViewController *messagepage = [[MessageViewController alloc] init];
-            [self.navigationController pushViewController:messagepage animated:NO];
+            [self showMessageViewController];
             break;
         }
         case TabBarSelectedTypeFunction:
@@ -313,6 +313,21 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     }
 }
 
+-(void)showMessageViewController
+{
+    if([CommonFunction hasFunction:MSG_WORNING] && ![CommonFunction hasFunction:MSG_FLIGHT] && ![CommonFunction hasFunction:MSG_DIALOG]){
+        SingleMessageViewController *message = [[SingleMessageViewController alloc] init];
+        message.type = @"COMMAND";
+        [self.navigationController pushViewController:message animated:NO];
+    }else if(![CommonFunction hasFunction:MSG_WORNING] && [CommonFunction hasFunction:MSG_FLIGHT] && ![CommonFunction hasFunction:MSG_DIALOG]){
+        SingleMessageViewController *message = [[SingleMessageViewController alloc] init];
+        message.type = @"FLIGHT";
+        [self.navigationController pushViewController:message animated:NO];
+    }else{
+        MessageViewController *message = [[MessageViewController alloc] init];
+        [self.navigationController pushViewController:message animated:NO];
+    }
+}
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {

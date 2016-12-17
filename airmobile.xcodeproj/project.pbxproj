@@ -93,6 +93,8 @@
 		846F1DAE1DAA229600C8920B /* DefaultHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 846F1DAD1DAA229600C8920B /* DefaultHelper.m */; };
 		846F1DC11DAA2E3400C8920B /* launchScreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 846F1DC01DAA2E3400C8920B /* launchScreen@2x.png */; };
 		846F1DC31DAA2E3B00C8920B /* launchScreen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 846F1DC21DAA2E3B00C8920B /* launchScreen@3x.png */; };
+		8471FBCB1E055BEC0037F9F5 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8471FBCA1E055BEC0037F9F5 /* Constants.m */; };
+		8471FBCE1E056F6F0037F9F5 /* SingleMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8471FBCD1E056F6F0037F9F5 /* SingleMessageViewController.m */; };
 		8473A5241DB4DAE800A8DCE2 /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8473A5231DB4DAE800A8DCE2 /* calendar.png */; };
 		84919D731DC9FD6500C6F5DE /* HomePageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 84919D721DC9FD6500C6F5DE /* HomePageService.m */; };
 		84919D761DC9FD7B00C6F5DE /* MessageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 84919D751DC9FD7B00C6F5DE /* MessageService.m */; };
@@ -438,6 +440,10 @@
 		846F1DAD1DAA229600C8920B /* DefaultHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DefaultHelper.m; path = utils/DefaultHelper.m; sourceTree = "<group>"; };
 		846F1DC01DAA2E3400C8920B /* launchScreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "launchScreen@2x.png"; path = "resources/launchScreen@2x.png"; sourceTree = "<group>"; };
 		846F1DC21DAA2E3B00C8920B /* launchScreen@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "launchScreen@3x.png"; path = "resources/launchScreen@3x.png"; sourceTree = "<group>"; };
+		8471FBC91E055BEC0037F9F5 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = utils/Constants.h; sourceTree = "<group>"; };
+		8471FBCA1E055BEC0037F9F5 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Constants.m; path = utils/Constants.m; sourceTree = "<group>"; };
+		8471FBCC1E056F6F0037F9F5 /* SingleMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleMessageViewController.h; sourceTree = "<group>"; };
+		8471FBCD1E056F6F0037F9F5 /* SingleMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleMessageViewController.m; sourceTree = "<group>"; };
 		8473A5231DB4DAE800A8DCE2 /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar.png; sourceTree = "<group>"; };
 		84919D711DC9FD6500C6F5DE /* HomePageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomePageService.h; path = service/HomePageService.h; sourceTree = "<group>"; };
 		84919D721DC9FD6500C6F5DE /* HomePageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomePageService.m; path = service/HomePageService.m; sourceTree = "<group>"; };
@@ -994,6 +1000,8 @@
 				843F4CFA1DACCF2500D73D56 /* ThreadUtils.m */,
 				84ADE6D31DCC7B9300F58A46 /* PersistenceUtils.h */,
 				84ADE6D41DCC7B9300F58A46 /* PersistenceUtils.m */,
+				8471FBC91E055BEC0037F9F5 /* Constants.h */,
+				8471FBCA1E055BEC0037F9F5 /* Constants.m */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -1340,6 +1348,8 @@
 				F70893E31DD2ECAD00135540 /* FlightDelaysDetailViewController.h */,
 				F70893E41DD2ECAD00135540 /* FlightDelaysDetailViewController.m */,
 				F70893E51DD2ECAD00135540 /* FlightDelaysDetailViewController.xib */,
+				8471FBCC1E056F6F0037F9F5 /* SingleMessageViewController.h */,
+				8471FBCD1E056F6F0037F9F5 /* SingleMessageViewController.m */,
 			);
 			name = Message;
 			sourceTree = "<group>";
@@ -1990,6 +2000,7 @@
 				F74289E31E04D4FD00AC00D4 /* MonthlyTargetView.m in Sources */,
 				F7D38D701DE3D1D4001110AF /* LoadingView.m in Sources */,
 				843F4CF51DACC70F00D73D56 /* HttpsUtils.m in Sources */,
+				8471FBCE1E056F6F0037F9F5 /* SingleMessageViewController.m in Sources */,
 				840D15D71DC0C478005FA910 /* RegionDlyTimeModel.m in Sources */,
 				F74289EE1E04D77800AC00D4 /* FunctionService.m in Sources */,
 				84183A181DBDDDDE00D7DD86 /* FlightAbnViewController.m in Sources */,
@@ -2072,6 +2083,7 @@
 				84183A311DBF8E6700D7DD86 /* FlightHourModel.m in Sources */,
 				F78B13C41DF51056000A6833 /* MessageFilterTableViewCell.m in Sources */,
 				F7F057171DF9730C006BCD67 /* SpecialModel.m in Sources */,
+				8471FBCB1E055BEC0037F9F5 /* Constants.m in Sources */,
 				F7003E481DDC30CE0056F3DA /* OptionCollectionViewCell.m in Sources */,
 				F7EAE19D1DB4B0680060626F /* AbnormalityReportCollectionViewCell.m in Sources */,
 				84BA54E41DA256940037198F /* AppDelegate.m in Sources */,

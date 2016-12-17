@@ -21,6 +21,7 @@
 #import "PassengerTopViewController.h"
 #import "SeatUsedViewController.h"
 #import "HomePageService.h"
+#import "SingleMessageViewController.h"
 
 
 @interface HomePageViewController ()
@@ -369,9 +370,7 @@
         }
         case TabBarSelectedTypeMessage:
         {
-            MessageViewController *messagepage = [[MessageViewController alloc] init];
-            [self.navigationController pushViewController:messagepage
-                                                 animated:NO];
+            [self showMessageViewController];
             break;
         }
         case TabBarSelectedTypeFunction:
@@ -390,6 +389,22 @@
         }
         default:
             break;
+    }
+}
+
+-(void)showMessageViewController
+{
+    if([CommonFunction hasFunction:MSG_WORNING] && ![CommonFunction hasFunction:MSG_FLIGHT] && ![CommonFunction hasFunction:MSG_DIALOG]){
+        SingleMessageViewController *message = [[SingleMessageViewController alloc] init];
+        message.type = @"COMMAND";
+        [self.navigationController pushViewController:message animated:NO];
+    }else if(![CommonFunction hasFunction:MSG_WORNING] && [CommonFunction hasFunction:MSG_FLIGHT] && ![CommonFunction hasFunction:MSG_DIALOG]){
+        SingleMessageViewController *message = [[SingleMessageViewController alloc] init];
+        message.type = @"FLIGHT";
+        [self.navigationController pushViewController:message animated:NO];
+    }else{
+        MessageViewController *message = [[MessageViewController alloc] init];
+        [self.navigationController pushViewController:message animated:NO];
     }
 }
 

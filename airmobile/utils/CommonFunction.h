@@ -25,7 +25,7 @@
 +(BOOL) ImageHasAlpha:(UIImage *)image;
 +(NSString *) ImageToBase64String:(UIImage *) image;
 +(UILabel *)addLabelFrame:(CGRect)rect text:(NSString *)text font:(CGFloat)font textAlignment:(NSTextAlignment)textAlignment colorFromHex:(long)hexColor;
-
++(BOOL) hasFunction:(long)functionId;
 
 //判断是否为ios10以上版本
 +(BOOL) iOSVersion10;
