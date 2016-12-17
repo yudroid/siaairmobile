@@ -547,4 +547,80 @@
 //
 //+(void)getSummaryInfo:(NSString *)date success:(void (^)(id))success failure:(void (^)(id))failure;
 
+#pragma mark -生产指标
+
+/**
+ *  年度航班指标
+ *
+ *  @param success <#success description#>
+ *  @param failure <#failure description#>
+ */
++(void) yearFltSuccess:(void (^) (id)) success failure:(void (^) (NSError*)) failure;
+
+/**
+ *  年度货邮指标
+ *
+ *  @param success <#success description#>
+ *  @param failure <#failure description#>
+ */
++(void) yearCmSuccess:(void (^) (id)) success failure:(void (^) (NSError*)) failure;
+
+
+/**
+ *  年度旅客指标
+ *
+ *  @param success <#success description#>
+ *  @param failure <#failure description#>
+ */
++(void) yearPsnSuccess:(void (^) (id)) success failure:(void (^) (NSError*)) failure;
+
+/**
+ *  月度航班指标
+ *
+ *  @param success <#success description#>
+ *  @param failure <#failure description#>
+ */
++(void) monthFltSuccess:(void (^) (id)) success failure:(void (^) (NSError*)) failure;
+
+/**
+ *  月度货邮指标
+ *
+ *  @param success <#success description#>
+ *  @param failure <#failure description#>
+ */
++(void) monthCmSuccess:(void (^) (id)) success failure:(void (^) (NSError*)) failure;
+
+
+/**
+ *  月度旅客指标
+ *
+ *  @param success <#success description#>
+ *  @param failure <#failure description#>
+ */
+
+
+/**
+ *  @author yangql, 16-03-07 20:03:59
+ *
+ *  @brief 功能页面-航班查询-查询航班列表
+ *
+ *  @param url     按照航班号或航站查询列表
+ *  @param success 成功返回航班列表
+ *  @param failure <#failure description#>
+ */
++ (void)seekFlightList:(NSString *)url success:(void (^)(id))success failure:(void (^)(NSError *))failure;
+
+
+
++(void) monthPsnSuccess:(void (^) (id)) success failure:(void (^) (NSError*)) failure;
+
+/**
+ 头像上传
+ */
++(void)headImageUploadSuccess:(void (^)(id))success
+                      failure:(void (^)(id))failure;
+
+
+
+
 @end

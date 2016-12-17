@@ -505,7 +505,6 @@
 }
 
 - (void)componentDidTap:(DAYComponentView *)sender {
-
     NSDateComponents *comps = sender.representedObject;
     
     if (comps.year != self->_visibleYear || comps.month != self->_visibleMonth) {
@@ -539,7 +538,6 @@
     
     self->_selectedDate = [DAYUtils dateFromDateComponents:comps];
     [self sendActionsForControlEvents:UIControlEventValueChanged];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"SelectedDate" object:self.selectedDate];
 }
 
 - (void)updateCurrentVisibleRow {

@@ -95,7 +95,6 @@
     if (selected) {
         self.textLabel.textColor = self.highlightTextColor;
         self.dotLayer.fillColor = self.highlightTextColor.CGColor;
-
     }
     else {
         self.textLabel.textColor = self.textColor;

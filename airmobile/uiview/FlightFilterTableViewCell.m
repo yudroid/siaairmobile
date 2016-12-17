@@ -59,7 +59,8 @@
     if (_airlineImage.image == nil) {
         _airlineImage.image = [UIImage imageNamed:@"logo_flight"];
     }
-    _flightNoLabel.text = [NSString stringWithFormat:@"%@%@",flight.fName,flight.fNum];
+//    _flightNoLabel.text = [NSString stringWithFormat:@"%@%@",flight.fName,flight.fNum];
+    _flightNoLabel.text = [NSString stringWithFormat:@"%@",flight.fNum];
     _craftModelLable.text = flight.model;
     _regionLabel.text = flight.region;
     if ([flight.region isEqualToString:@"国内"]||[flight.region isEqualToString:@"地区"]) {

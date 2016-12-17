@@ -82,27 +82,27 @@
                                          viewHeight(caleandarView));
 
 
-        y=viewY(caleandarView)+viewHeight(caleandarView)+ px_px_2_3(19, 34);
-        UIButton *chiefButton = [[UIButton alloc]init];
-        [chiefButton setTitle:@"当日值班表"
-                     forState:UIControlStateNormal];
-        chiefButton.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular"
-                                                      size:px_px_2_3(29, 49)];
-        chiefButton.titleLabel.textColor = [UIColor blackColor];
-        [chiefButton setTitleColor:[UIColor blackColor]
-                          forState:UIControlStateNormal];
-        [chiefButton addTarget:self
-                        action:@selector(chiefButtonClick:)
-              forControlEvents:UIControlEventTouchUpInside];
-        maxLabelSize = CGSizeMake(154, 20);
-        expectSize = [chiefButton sizeThatFits:maxLabelSize];
-        chiefButton.frame = CGRectMake((kScreenWidth-expectSize.width)/2,
-                                       y,
-                                       expectSize.width,
-                                       px2(29));
-        [self addSubview:chiefButton];
+        y=viewY(caleandarView)+viewHeight(caleandarView)+ px_px_2_3(19, 34)+px_px_2_2_3(40,52, 89);
+//        UIButton *chiefButton = [[UIButton alloc]init];
+//        [chiefButton setTitle:@"当日值班表"
+//                     forState:UIControlStateNormal];
+//        chiefButton.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular"
+//                                                      size:px_px_2_3(29, 49)];
+//        chiefButton.titleLabel.textColor = [UIColor blackColor];
+//        [chiefButton setTitleColor:[UIColor blackColor]
+//                          forState:UIControlStateNormal];
+//        [chiefButton addTarget:self
+//                        action:@selector(chiefButtonClick:)
+//              forControlEvents:UIControlEventTouchUpInside];
+//        maxLabelSize = CGSizeMake(154, 20);
+//        expectSize = [chiefButton sizeThatFits:maxLabelSize];
+//        chiefButton.frame = CGRectMake((kScreenWidth-expectSize.width)/2,
+//                                       y,
+//                                       expectSize.width,
+//                                       px2(29));
+//        [self addSubview:chiefButton];
 
-        y= viewHeight(chiefButton)+viewY(chiefButton)+px_px_2_2_3(40,52, 89);
+//        y= viewHeight(chiefButton)+viewY(chiefButton)+px_px_2_2_3(40,52, 89);
 
 
         //圆圈

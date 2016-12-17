@@ -16,6 +16,7 @@
 #import "AddressBookViewController.h"
 #import "TodayDutyViewController.h"
 #import "DutyModel.h"
+#import "ProductionTargetViewController.h"
 
 static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDENTIFIER";
 
@@ -63,7 +64,9 @@ static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDEN
     _tableView.tableFooterView = [[UIView alloc]init];
     _tableArray= @[@{@"name":@"通讯录",@"image":@"AddressBook"},
                    @{@"name":@"值班表",@"image":@"WatchBill"},
-                   @{@"name":@"当日值班表",@"image":@"TodayDuty"}];
+                   @{@"name":@"当日值班表",@"image":@"TodayDuty"}
+//                   @{@"name":@"生产指标",@"image":@"TodayDuty"}
+                   ];
     [self.view addSubview:_tableView];
 }
 
@@ -112,6 +115,10 @@ static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDEN
         TodayDutyViewController *todayDutyVC = [[TodayDutyViewController alloc] initWithNibName:@"TodayDutyViewController"
                                                                                                bundle:nil];
         [self.navigationController pushViewController:todayDutyVC
+                                             animated:YES];
+    }else if ([name isEqualToString:@"生产指标"]){
+        ProductionTargetViewController *productionTargetVC = [[ProductionTargetViewController alloc] init];
+        [self.navigationController pushViewController:productionTargetVC
                                              animated:YES];
     }
 }

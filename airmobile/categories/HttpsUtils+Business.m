@@ -78,6 +78,8 @@ NSString * const loadDictDataUrl            = @"/acs/wacs/MobileFirstLoading/que
 NSString * const loadEventUrl               = @"/acs/wacs/MobileFirstLoading/queryMobileEvent";//获取事件数据
 NSString * const updatePwdUrl               = @"/acs/login/updatePwd";//修改密码
 
+NSString * const headImageUpload            = @"/acs/m/upload";//头像上传
+
 @implementation HttpsUtils (Business)
 
 /**
@@ -829,6 +831,137 @@ NSString * const updatePwdUrl               = @"/acs/login/updatePwd";//修改�
     } failure:failure];
 }
 
+#pragma mark -生产指标
+
+/**
+ *  年度航班指标
+ *
+ *  @param success <#success description#>
+ *  @param failure <#failure description#>
+ */
++(void) yearFltSuccess:(void (^) (id)) success failure:(void (^) (NSError*)) failure{
+    NSString* segment = @"geese/tgt/yearFlt";
+
+    [HttpsUtils get:segment params:nil success:^(id responseObj){
+        if (success) {
+            success(responseObj);
+        }
+    }failure:failure];
+}
+
+/**
+ *  年度货邮指标
+ *
+ *  @param success <#success description#>
+ *  @param failure <#failure description#>
+ */
++(void) yearCmSuccess:(void (^) (id)) success failure:(void (^) (NSError*)) failure{
+    NSString* segment = @"geese/tgt/yearCm";
+
+    [HttpsUtils get:segment params:nil success:^(id responseObj){
+
+        if (success) {
+            success(responseObj);
+        }
+
+
+    }failure:failure];
+}
+
+
+/**
+ *  年度旅客指标
+ *
+ *  @param success <#success description#>
+ *  @param failure <#failure description#>
+ */
++(void) yearPsnSuccess:(void (^) (id)) success failure:(void (^) (NSError*)) failure{
+    NSString* segment = @"geese/tgt/yearPsn";
+
+    [HttpsUtils get:segment params:nil success:^(id responseObj){
+
+        if (success) {
+            success(responseObj);
+        }
+
+
+    }failure:failure];
+}
+
+/**
+ *  月度航班指标
+ *
+ *  @param success <#success description#>
+ *  @param failure <#failure description#>
+ */
++(void) monthFltSuccess:(void (^) (id)) success failure:(void (^) (NSError*)) failure{
+    NSString* segment = @"geese/tgt/monthFlt";
+
+    [HttpsUtils get:segment params:nil success:^(id responseObj){
+
+        if (success) {
+            success(responseObj);
+        }
+
+
+    }failure:failure];
+}
+
+/**
+ *  月度货邮指标
+ *
+ *  @param success <#success description#>
+ *  @param failure <#failure description#>
+ */
++(void) monthCmSuccess:(void (^) (id)) success failure:(void (^) (NSError*)) failure{
+    NSString* segment = @"geese/tgt/monthCm";
+
+    [HttpsUtils get:segment params:nil success:^(id responseObj){
+
+        if (success) {
+            success(responseObj);
+        }
+
+
+    }failure:failure];
+}
+
+
+/**
+ *  月度旅客指标
+ *
+ *  @param success <#success description#>
+ *  @param failure <#failure description#>
+ */
++(void) monthPsnSuccess:(void (^) (id)) success failure:(void (^) (NSError*)) failure{
+    NSString* segment = @"geese/tgt/monthPsn";
+
+    [HttpsUtils get:segment params:nil success:^(id responseObj){
+
+        if (success) {
+            success(responseObj);
+        }
+
+
+    }failure:failure];
+}
+
++ (void)seekFlightList:(NSString *)url success:(void (^)(id))success failure:(void (^)(NSError *))failure
+{
+    [HttpsUtils get:url params:nil success:^(id responseObj){
+        if(success){
+            success(responseObj);
+        }
+    } failure:^(NSError* error){
+        [self addLog:[NSString stringWithFormat: @"error:%@",error] type:@"Error"];
+        if(failure){
+            failure(error);
+        }
+    }];
+}
+
+
+
 
 #pragma mark 我的 签到 签退 修改密码 同步基础数据 同步异常事件 退出
 
@@ -994,5 +1127,26 @@ NSString * const updatePwdUrl               = @"/acs/login/updatePwd";//修改�
                 }
             } failure:failure];
 }
+
+
++(void)headImageUploadSuccess:(void (^)(id))success
+                      failure:(void (^)(id))failure
+
+{
+
+    NSArray *domains = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+    NSString *filePath = [[domains objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"headimage.png"]];
+    [HttpsUtils post:headImageUpload
+            filePath:filePath
+             success:^(id response) {
+                 success(response);
+
+             } failure:^(NSError *error) {
+                 failure(error);
+             }];
+
+}
+
+
 
 @end

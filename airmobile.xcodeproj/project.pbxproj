@@ -91,7 +91,6 @@
 		845E643E1DAB980C0072360D /* CommonFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 845E643D1DAB980C0072360D /* CommonFunction.m */; };
 		846F1D951DA8F8F700C8920B /* DeviceInfoUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 846F1D941DA8F8F700C8920B /* DeviceInfoUtil.m */; };
 		846F1DAE1DAA229600C8920B /* DefaultHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 846F1DAD1DAA229600C8920B /* DefaultHelper.m */; };
-		846F1DB11DAA22E800C8920B /* GlobalHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 846F1DB01DAA22E800C8920B /* GlobalHelper.m */; };
 		846F1DC11DAA2E3400C8920B /* launchScreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 846F1DC01DAA2E3400C8920B /* launchScreen@2x.png */; };
 		846F1DC31DAA2E3B00C8920B /* launchScreen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 846F1DC21DAA2E3B00C8920B /* launchScreen@3x.png */; };
 		8473A5241DB4DAE800A8DCE2 /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8473A5231DB4DAE800A8DCE2 /* calendar.png */; };
@@ -130,6 +129,20 @@
 		F74289D41E00E7A200AC00D4 /* LinkPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = F74289D31E00E7A200AC00D4 /* LinkPageView.m */; };
 		F74289D61E00E7BB00AC00D4 /* LinkPageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F74289D51E00E7BB00AC00D4 /* LinkPageView.xib */; };
 		F74289D81E01118200AC00D4 /* loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = F74289D71E01118200AC00D4 /* loading.gif */; };
+		F74289DB1E04D42400AC00D4 /* ProductionTargetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F74289DA1E04D42400AC00D4 /* ProductionTargetViewController.m */; };
+		F74289E01E04D4EA00AC00D4 /* AnnualTargetView.m in Sources */ = {isa = PBXBuildFile; fileRef = F74289DE1E04D4EA00AC00D4 /* AnnualTargetView.m */; };
+		F74289E31E04D4FD00AC00D4 /* MonthlyTargetView.m in Sources */ = {isa = PBXBuildFile; fileRef = F74289E21E04D4FD00AC00D4 /* MonthlyTargetView.m */; };
+		F74289E71E04D58400AC00D4 /* ProductionProgressRound.m in Sources */ = {isa = PBXBuildFile; fileRef = F74289E51E04D58400AC00D4 /* ProductionProgressRound.m */; };
+		F74289EB1E04D60300AC00D4 /* MonthlyProgressRound.m in Sources */ = {isa = PBXBuildFile; fileRef = F74289EA1E04D60300AC00D4 /* MonthlyProgressRound.m */; };
+		F74289EE1E04D77800AC00D4 /* FunctionService.m in Sources */ = {isa = PBXBuildFile; fileRef = F74289ED1E04D77800AC00D4 /* FunctionService.m */; };
+		F74289F11E04D7AD00AC00D4 /* ProductionKpi.m in Sources */ = {isa = PBXBuildFile; fileRef = F74289F01E04D7AD00AC00D4 /* ProductionKpi.m */; };
+		F74289FA1E04D7CA00AC00D4 /* MonthKpi.m in Sources */ = {isa = PBXBuildFile; fileRef = F74289F31E04D7CA00AC00D4 /* MonthKpi.m */; };
+		F74289FB1E04D7CA00AC00D4 /* YearKpi.m in Sources */ = {isa = PBXBuildFile; fileRef = F74289F51E04D7CA00AC00D4 /* YearKpi.m */; };
+		F74289FC1E04D7CA00AC00D4 /* SimpleFlight.m in Sources */ = {isa = PBXBuildFile; fileRef = F74289F71E04D7CA00AC00D4 /* SimpleFlight.m */; };
+		F74289FD1E04D7CA00AC00D4 /* AppVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = F74289F91E04D7CA00AC00D4 /* AppVersion.m */; };
+		F7428A011E04DA9200AC00D4 /* GlobalHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F7428A001E04DA9200AC00D4 /* GlobalHelper.m */; };
+		F7428A041E04DAC900AC00D4 /* Airport.m in Sources */ = {isa = PBXBuildFile; fileRef = F7428A031E04DAC900AC00D4 /* Airport.m */; };
+		F7428A0B1E04DECE00AC00D4 /* DateUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F7428A0A1E04DECE00AC00D4 /* DateUtils.m */; };
 		F747F9361DD2B3B90099E7AF /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F747F9351DD2B3B90099E7AF /* libsqlite3.0.tbd */; };
 		F74902621DC71202005B193D /* DayOnDutyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902601DC71202005B193D /* DayOnDutyViewController.m */; };
 		F74902631DC71202005B193D /* DayOnDutyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F74902611DC71202005B193D /* DayOnDutyViewController.xib */; };
@@ -423,8 +436,6 @@
 		846F1D991DAA1D3200C8920B /* SingletonUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SingletonUtil.h; path = utils/SingletonUtil.h; sourceTree = "<group>"; };
 		846F1DAC1DAA229600C8920B /* DefaultHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DefaultHelper.h; path = utils/DefaultHelper.h; sourceTree = "<group>"; };
 		846F1DAD1DAA229600C8920B /* DefaultHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DefaultHelper.m; path = utils/DefaultHelper.m; sourceTree = "<group>"; };
-		846F1DAF1DAA22E800C8920B /* GlobalHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GlobalHelper.h; path = utils/GlobalHelper.h; sourceTree = "<group>"; };
-		846F1DB01DAA22E800C8920B /* GlobalHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GlobalHelper.m; path = utils/GlobalHelper.m; sourceTree = "<group>"; };
 		846F1DC01DAA2E3400C8920B /* launchScreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "launchScreen@2x.png"; path = "resources/launchScreen@2x.png"; sourceTree = "<group>"; };
 		846F1DC21DAA2E3B00C8920B /* launchScreen@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "launchScreen@3x.png"; path = "resources/launchScreen@3x.png"; sourceTree = "<group>"; };
 		8473A5231DB4DAE800A8DCE2 /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar.png; sourceTree = "<group>"; };
@@ -490,6 +501,36 @@
 		F74289D31E00E7A200AC00D4 /* LinkPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkPageView.m; sourceTree = "<group>"; };
 		F74289D51E00E7BB00AC00D4 /* LinkPageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LinkPageView.xib; sourceTree = "<group>"; };
 		F74289D71E01118200AC00D4 /* loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loading.gif; sourceTree = "<group>"; };
+		F74289D91E04D42400AC00D4 /* ProductionTargetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductionTargetViewController.h; sourceTree = "<group>"; };
+		F74289DA1E04D42400AC00D4 /* ProductionTargetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductionTargetViewController.m; sourceTree = "<group>"; };
+		F74289DD1E04D4EA00AC00D4 /* AnnualTargetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnualTargetView.h; sourceTree = "<group>"; };
+		F74289DE1E04D4EA00AC00D4 /* AnnualTargetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnualTargetView.m; sourceTree = "<group>"; };
+		F74289E11E04D4FD00AC00D4 /* MonthlyTargetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthlyTargetView.h; sourceTree = "<group>"; };
+		F74289E21E04D4FD00AC00D4 /* MonthlyTargetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthlyTargetView.m; sourceTree = "<group>"; };
+		F74289E41E04D58400AC00D4 /* ProductionProgressRound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductionProgressRound.h; sourceTree = "<group>"; };
+		F74289E51E04D58400AC00D4 /* ProductionProgressRound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductionProgressRound.m; sourceTree = "<group>"; };
+		F74289E61E04D58400AC00D4 /* ProductionTargetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductionTargetViewController.h; sourceTree = "<group>"; };
+		F74289E91E04D60300AC00D4 /* MonthlyProgressRound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthlyProgressRound.h; sourceTree = "<group>"; };
+		F74289EA1E04D60300AC00D4 /* MonthlyProgressRound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthlyProgressRound.m; sourceTree = "<group>"; };
+		F74289EC1E04D77800AC00D4 /* FunctionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FunctionService.h; sourceTree = "<group>"; };
+		F74289ED1E04D77800AC00D4 /* FunctionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FunctionService.m; sourceTree = "<group>"; };
+		F74289EF1E04D7AD00AC00D4 /* ProductionKpi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductionKpi.h; sourceTree = "<group>"; };
+		F74289F01E04D7AD00AC00D4 /* ProductionKpi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductionKpi.m; sourceTree = "<group>"; };
+		F74289F21E04D7CA00AC00D4 /* MonthKpi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthKpi.h; sourceTree = "<group>"; };
+		F74289F31E04D7CA00AC00D4 /* MonthKpi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthKpi.m; sourceTree = "<group>"; };
+		F74289F41E04D7CA00AC00D4 /* YearKpi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YearKpi.h; sourceTree = "<group>"; };
+		F74289F51E04D7CA00AC00D4 /* YearKpi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YearKpi.m; sourceTree = "<group>"; };
+		F74289F61E04D7CA00AC00D4 /* SimpleFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleFlight.h; sourceTree = "<group>"; };
+		F74289F71E04D7CA00AC00D4 /* SimpleFlight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleFlight.m; sourceTree = "<group>"; };
+		F74289F81E04D7CA00AC00D4 /* AppVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppVersion.h; sourceTree = "<group>"; };
+		F74289F91E04D7CA00AC00D4 /* AppVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppVersion.m; sourceTree = "<group>"; };
+		F74289FF1E04DA9200AC00D4 /* GlobalHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalHelper.h; sourceTree = "<group>"; };
+		F7428A001E04DA9200AC00D4 /* GlobalHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalHelper.m; sourceTree = "<group>"; };
+		F7428A021E04DAC900AC00D4 /* Airport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Airport.h; sourceTree = "<group>"; };
+		F7428A031E04DAC900AC00D4 /* Airport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Airport.m; sourceTree = "<group>"; };
+		F7428A081E04DBA000AC00D4 /* TypeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeModel.h; sourceTree = "<group>"; };
+		F7428A091E04DECE00AC00D4 /* DateUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateUtils.h; sourceTree = "<group>"; };
+		F7428A0A1E04DECE00AC00D4 /* DateUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtils.m; sourceTree = "<group>"; };
 		F747F9351DD2B3B90099E7AF /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		F749025F1DC71202005B193D /* DayOnDutyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayOnDutyViewController.h; sourceTree = "<group>"; };
 		F74902601DC71202005B193D /* DayOnDutyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = DayOnDutyViewController.m; sourceTree = "<group>"; };
@@ -938,13 +979,13 @@
 		846F1D891DA89E1500C8920B /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				F7428A091E04DECE00AC00D4 /* DateUtils.h */,
+				F7428A0A1E04DECE00AC00D4 /* DateUtils.m */,
 				846F1D931DA8F8F700C8920B /* DeviceInfoUtil.h */,
 				846F1D941DA8F8F700C8920B /* DeviceInfoUtil.m */,
 				846F1D991DAA1D3200C8920B /* SingletonUtil.h */,
 				846F1DAC1DAA229600C8920B /* DefaultHelper.h */,
 				846F1DAD1DAA229600C8920B /* DefaultHelper.m */,
-				846F1DAF1DAA22E800C8920B /* GlobalHelper.h */,
-				846F1DB01DAA22E800C8920B /* GlobalHelper.m */,
 				845E643C1DAB980C0072360D /* CommonFunction.h */,
 				845E643D1DAB980C0072360D /* CommonFunction.m */,
 				843F4CF01DACC3FD00D73D56 /* StringUtils.h */,
@@ -1024,6 +1065,7 @@
 		846F1D8E1DA89E5200C8920B /* model */ = {
 			isa = PBXGroup;
 			children = (
+				F74289E81E04D5F300AC00D4 /* 生产指标 */,
 				F74902BE1DC878C0005B193D /* SummaryModel.h */,
 				F74902BF1DC878C0005B193D /* SummaryModel.m */,
 				84183A2F1DBF8E6700D7DD86 /* FlightHourModel.h */,
@@ -1101,6 +1143,8 @@
 				84919D751DC9FD7B00C6F5DE /* MessageService.m */,
 				84919D771DC9FDFA00C6F5DE /* BaseService.h */,
 				84919D781DC9FDFA00C6F5DE /* BaseService.m */,
+				F74289EC1E04D77800AC00D4 /* FunctionService.h */,
+				F74289ED1E04D77800AC00D4 /* FunctionService.m */,
 			);
 			name = service;
 			sourceTree = "<group>";
@@ -1149,6 +1193,7 @@
 				846F1D921DA89EA100C8920B /* service */,
 				846F1D861DA8955400C8920B /* start */,
 				846F1D8A1DA89E2600C8920B /* uiview */,
+				F74289FE1E04DA8000AC00D4 /* Persistence */,
 				846F1D891DA89E1500C8920B /* utils */,
 				84BA54DF1DA256940037198F /* Supporting Files */,
 				F7A25D561DBE274D00F36C32 /* lib */,
@@ -1187,6 +1232,7 @@
 		F7003E4F1DDC4EED0056F3DA /* 功能 */ = {
 			isa = PBXGroup;
 			children = (
+				F74289DC1E04D4BD00AC00D4 /* 生产指标 */,
 				F792518A1DB7890E006AA119 /* NightShiftRoomTableViewCell.h */,
 				F792518B1DB7890E006AA119 /* NightShiftRoomTableViewCell.m */,
 				F792518C1DB7890E006AA119 /* NightShiftRoomTableViewCell.xib */,
@@ -1195,6 +1241,51 @@
 				F79251961DB85D78006AA119 /* AddressBookTableViewCell.xib */,
 			);
 			name = "功能";
+			sourceTree = "<group>";
+		};
+		F74289DC1E04D4BD00AC00D4 /* 生产指标 */ = {
+			isa = PBXGroup;
+			children = (
+				F74289E11E04D4FD00AC00D4 /* MonthlyTargetView.h */,
+				F74289E21E04D4FD00AC00D4 /* MonthlyTargetView.m */,
+				F74289DD1E04D4EA00AC00D4 /* AnnualTargetView.h */,
+				F74289DE1E04D4EA00AC00D4 /* AnnualTargetView.m */,
+				F74289E41E04D58400AC00D4 /* ProductionProgressRound.h */,
+				F74289E51E04D58400AC00D4 /* ProductionProgressRound.m */,
+				F74289E61E04D58400AC00D4 /* ProductionTargetViewController.h */,
+			);
+			name = "生产指标";
+			sourceTree = "<group>";
+		};
+		F74289E81E04D5F300AC00D4 /* 生产指标 */ = {
+			isa = PBXGroup;
+			children = (
+				F7428A081E04DBA000AC00D4 /* TypeModel.h */,
+				F7428A021E04DAC900AC00D4 /* Airport.h */,
+				F7428A031E04DAC900AC00D4 /* Airport.m */,
+				F74289EF1E04D7AD00AC00D4 /* ProductionKpi.h */,
+				F74289F01E04D7AD00AC00D4 /* ProductionKpi.m */,
+				F74289E91E04D60300AC00D4 /* MonthlyProgressRound.h */,
+				F74289EA1E04D60300AC00D4 /* MonthlyProgressRound.m */,
+				F74289F21E04D7CA00AC00D4 /* MonthKpi.h */,
+				F74289F31E04D7CA00AC00D4 /* MonthKpi.m */,
+				F74289F41E04D7CA00AC00D4 /* YearKpi.h */,
+				F74289F51E04D7CA00AC00D4 /* YearKpi.m */,
+				F74289F61E04D7CA00AC00D4 /* SimpleFlight.h */,
+				F74289F71E04D7CA00AC00D4 /* SimpleFlight.m */,
+				F74289F81E04D7CA00AC00D4 /* AppVersion.h */,
+				F74289F91E04D7CA00AC00D4 /* AppVersion.m */,
+			);
+			name = "生产指标";
+			sourceTree = "<group>";
+		};
+		F74289FE1E04DA8000AC00D4 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				F74289FF1E04DA9200AC00D4 /* GlobalHelper.h */,
+				F7428A001E04DA9200AC00D4 /* GlobalHelper.m */,
+			);
+			name = Persistence;
 			sourceTree = "<group>";
 		};
 		F758C9B51DC4373F00556120 /* UserInfo */ = {
@@ -1226,6 +1317,8 @@
 				F792518F1DB858D9006AA119 /* AddressBookViewController.h */,
 				F79251901DB858D9006AA119 /* AddressBookViewController.m */,
 				F79251911DB858D9006AA119 /* AddressBookViewController.xib */,
+				F74289D91E04D42400AC00D4 /* ProductionTargetViewController.h */,
+				F74289DA1E04D42400AC00D4 /* ProductionTargetViewController.m */,
 			);
 			name = Function;
 			sourceTree = "<group>";
@@ -1864,7 +1957,6 @@
 				843F4CF21DACC3FD00D73D56 /* StringUtils.m in Sources */,
 				840A4D141DD99EB900C39A79 /* SeatStatusModel.m in Sources */,
 				843F4CF81DACCA6D00D73D56 /* HttpsUtils+Business.m in Sources */,
-				846F1DB11DAA22E800C8920B /* GlobalHelper.m in Sources */,
 				F7A25D831DBE277500F36C32 /* SJAlbumModel.m in Sources */,
 				F792516D1DB63D62006AA119 /* ChatTimeTableViewCell.m in Sources */,
 				F78B13BE1DF481DA000A6833 /* MessageFilterView.m in Sources */,
@@ -1874,6 +1966,7 @@
 				F758C9921DC362E700556120 /* PassengerTopModel.m in Sources */,
 				F749029F1DC865D1005B193D /* FlightModel.m in Sources */,
 				843F4CFB1DACCF2500D73D56 /* ThreadUtils.m in Sources */,
+				F74289FC1E04D7CA00AC00D4 /* SimpleFlight.m in Sources */,
 				F79251591DB61D9C006AA119 /* ContactPersonTableViewCell.m in Sources */,
 				840D15E31DC20C4F005FA910 /* PsnSafetyAreaView.m in Sources */,
 				840D15E61DC2E99A005FA910 /* PassengerAreaModel.m in Sources */,
@@ -1894,9 +1987,11 @@
 				84ADE6D51DCC7B9300F58A46 /* PersistenceUtils.m in Sources */,
 				84183A1C1DBDDE4F00D7DD86 /* PassengerHourViewController.m in Sources */,
 				F7F0571A1DF985EC006BCD67 /* NormalAbnormalityReportViewController.m in Sources */,
+				F74289E31E04D4FD00AC00D4 /* MonthlyTargetView.m in Sources */,
 				F7D38D701DE3D1D4001110AF /* LoadingView.m in Sources */,
 				843F4CF51DACC70F00D73D56 /* HttpsUtils.m in Sources */,
 				840D15D71DC0C478005FA910 /* RegionDlyTimeModel.m in Sources */,
+				F74289EE1E04D77800AC00D4 /* FunctionService.m in Sources */,
 				84183A181DBDDDDE00D7DD86 /* FlightAbnViewController.m in Sources */,
 				F7A25D851DBE277500F36C32 /* SJPhotoPicker.m in Sources */,
 				84919D791DC9FDFA00C6F5DE /* BaseService.m in Sources */,
@@ -1907,9 +2002,11 @@
 				841839EF1DBCB87600D7DD86 /* PNGenericChart.m in Sources */,
 				F70893FC1DD5952F00135540 /* ContactPersonTableViewHeaderView.m in Sources */,
 				840D15C11DC044DA005FA910 /* ArrDepFlightHourViewController.m in Sources */,
+				F74289E71E04D58400AC00D4 /* ProductionProgressRound.m in Sources */,
 				F74902C01DC878C0005B193D /* SummaryModel.m in Sources */,
 				844CBD2E1DF992D2008DAFAF /* SysMessageModel.m in Sources */,
 				84183A251DBE14A800D7DD86 /* TenDayRatioView.m in Sources */,
+				F74289EB1E04D60300AC00D4 /* MonthlyProgressRound.m in Sources */,
 				84183A1F1DBDDEA300D7DD86 /* SecurityPsnViewController.m in Sources */,
 				84183A121DBDDD3B00D7DD86 /* ReleasedRatioViewController.m in Sources */,
 				F7A25D7F1DBE277500F36C32 /* SJPhotoPickerNavController.m in Sources */,
@@ -1920,6 +2017,7 @@
 				F7EEEF1C1DB396E0004AF0AE /* FlightDetailViewController.m in Sources */,
 				F7EAE1961DB4776C0060626F /* AbnormalityReportViewController.m in Sources */,
 				F7D38D7F1DE6CE9A001110AF /* ImageViewCollectionViewCell.m in Sources */,
+				F74289FB1E04D7CA00AC00D4 /* YearKpi.m in Sources */,
 				840D15CE1DC0B709005FA910 /* AreaDelayTimeView.m in Sources */,
 				F74902C31DC879C2005B193D /* SafeguardModel.m in Sources */,
 				F7003E4D1DDC38540056F3DA /* TakePhotoCollectionViewCell.m in Sources */,
@@ -1933,6 +2031,7 @@
 				F79251801DB74576006AA119 /* UserManagermentTableViewCell.m in Sources */,
 				841839FD1DBCC12E00D7DD86 /* PNColor.m in Sources */,
 				F7A2A0571DB8D0590023F228 /* UserInfoViewController.m in Sources */,
+				F74289FD1E04D7CA00AC00D4 /* AppVersion.m in Sources */,
 				F792518D1DB7890E006AA119 /* NightShiftRoomTableViewCell.m in Sources */,
 				84919D731DC9FD6500C6F5DE /* HomePageService.m in Sources */,
 				84B941C41DCC63570001F402 /* UserInfoModel.m in Sources */,
@@ -1940,6 +2039,8 @@
 				F7A25D141DBA106300F36C32 /* UploadPhotoViewController.m in Sources */,
 				840D15E01DC20C2D005FA910 /* PsnSafetyHourView.m in Sources */,
 				840D15D41DC0C3E8005FA910 /* AbnReasonModel.m in Sources */,
+				F74289FA1E04D7CA00AC00D4 /* MonthKpi.m in Sources */,
+				F7428A041E04DAC900AC00D4 /* Airport.m in Sources */,
 				F7D47FF01DFEC7400050B293 /* PsnSafetyContentViewTableViewCell.m in Sources */,
 				840D15ED1DC2FC67005FA910 /* PassengerTopViewController.m in Sources */,
 				840A4D111DD85DE200C39A79 /* PassengerModel.m in Sources */,
@@ -1956,6 +2057,7 @@
 				F7A2A0661DB8D0EE0023F228 /* TabBarView.m in Sources */,
 				F7A25D801DBE277500F36C32 /* SJPickPhotoController.m in Sources */,
 				F78B13B41DF47946000A6833 /* UIImage+ImageEffects.m in Sources */,
+				F7428A0B1E04DECE00AC00D4 /* DateUtils.m in Sources */,
 				F7A2A0541DB8D0590023F228 /* LoginViewController.m in Sources */,
 				F758C9C01DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.m in Sources */,
 				84183A061DBDB6DF00D7DD86 /* PNBarChart.m in Sources */,
@@ -1985,11 +2087,13 @@
 				F70893F21DD492AD00135540 /* TagView.m in Sources */,
 				F79251921DB858D9006AA119 /* AddressBookViewController.m in Sources */,
 				84BA54ED1DA256940037198F /* airmobile.xcdatamodeld in Sources */,
+				F7428A011E04DA9200AC00D4 /* GlobalHelper.m in Sources */,
 				F7A25D021DB9E6C000F36C32 /* PsnGeneralContentView.m in Sources */,
 				F7D47FE41DFA8D580050B293 /* BasisInfoEventModel.m in Sources */,
 				F79251541DB610D6006AA119 /* FixedMessageTableViewCell.m in Sources */,
 				F7A2A0521DB8D0590023F228 /* FunctionViewController.m in Sources */,
 				F792517B1DB7431D006AA119 /* UserManagementViewController.m in Sources */,
+				F74289F11E04D7AD00AC00D4 /* ProductionKpi.m in Sources */,
 				F7A25D821DBE277500F36C32 /* SJPhotoPickerManager.m in Sources */,
 				84BA54E11DA256940037198F /* main.m in Sources */,
 				F74902A51DC86735005B193D /* FlightLargeDelayModel.m in Sources */,
@@ -1999,6 +2103,8 @@
 				F7A25D081DB9E6EE00F36C32 /* ProgreesBarView.m in Sources */,
 				F7EE87791DB3285B006473F5 /* FlightFilterView.m in Sources */,
 				F74902DB1DC881E9005B193D /* CraftseatCntModel.m in Sources */,
+				F74289E01E04D4EA00AC00D4 /* AnnualTargetView.m in Sources */,
+				F74289DB1E04D42400AC00D4 /* ProductionTargetViewController.m in Sources */,
 				F7A25D0F1DBA059800F36C32 /* AbnormalityReportTableViewCell.m in Sources */,
 				84183A341DBF8F2B00D7DD86 /* FlightHourTableViewCell.m in Sources */,
 				F70893E11DD2EC1B00135540 /* FlightDelaysViewController.m in Sources */,

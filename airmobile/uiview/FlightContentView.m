@@ -477,41 +477,61 @@
 {
     if (array == arrShapeArray) {
         [array removeAllObjects];
-        [array addObject: [PNPieChartDataItem dataItemWithValue:2
+        if(_flightStusModel.arrDelay>0){
+            [array addObject: [PNPieChartDataItem dataItemWithValue:2
                                                           color:[UIColor clearColor]]];
+        }
         [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.arrDelay
                                                           color:[CommonFunction colorFromHex:0xFFFFCD21]
                                                     description:[NSString stringWithFormat:@"%@   :%d",@"延误",_flightStusModel.arrDelay]]];
-        [array addObject: [PNPieChartDataItem dataItemWithValue:2
-                                                          color:[UIColor clearColor]]];
+        if (_flightStusModel.arrDoneNormal>0) {
+            [array addObject: [PNPieChartDataItem dataItemWithValue:2
+                                                              color:[UIColor clearColor]]];
+        }
+
         [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.arrDoneNormal
                                                           color:[CommonFunction colorFromHex:0xFF00B0D8]
                                                     description:[NSString stringWithFormat:@"%@:%d",@"已执行",_flightStusModel.arrDoneNormal]]];
-        [array addObject: [PNPieChartDataItem dataItemWithValue:2 color:[UIColor clearColor]]];
+        if (_flightStusModel.arrCancel>0) {
+            [array addObject: [PNPieChartDataItem dataItemWithValue:2 color:[UIColor clearColor]]];
+        }
+
         [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.arrCancel
                                                           color:[CommonFunction colorFromHex:0xFFFF4D62]
                                                     description:[NSString stringWithFormat:@"%@   :%d",@"取消",_flightStusModel.arrCancel]]];
-        [array addObject: [PNPieChartDataItem dataItemWithValue:2 color:[UIColor clearColor]]];
+        if (_flightStusModel.arrPlanNormal>0) {
+            [array addObject: [PNPieChartDataItem dataItemWithValue:2 color:[UIColor clearColor]]];
+        }
         [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.arrPlanNormal
                                                           color:[CommonFunction colorFromHex:0xFFC8C8C8]
                                                     description:[NSString stringWithFormat:@"%@:%d",@"未执行",_flightStusModel.arrPlanNormal]]];
 
     }else{
         [array removeAllObjects];
-        [array addObject: [PNPieChartDataItem dataItemWithValue:2
-                                                          color:[UIColor clearColor]]];
+        if (_flightStusModel.depDelay>0) {
+            [array addObject: [PNPieChartDataItem dataItemWithValue:2
+                                                              color:[UIColor clearColor]]];
+        }
+
         [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.depDelay
                                                           color:[CommonFunction colorFromHex:0xFFFFCD21]
                                                     description:[NSString stringWithFormat:@"%@   :%d",@"延误",_flightStusModel.depDelay]]];
-        [array addObject: [PNPieChartDataItem dataItemWithValue:2 color:[UIColor clearColor]]];
+        if (_flightStusModel.depDoneNormal>0) {
+            [array addObject: [PNPieChartDataItem dataItemWithValue:2 color:[UIColor clearColor]]];
+        }
+
         [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.depDoneNormal
                                                           color:[CommonFunction colorFromHex:0xFF00B0D8]
                                                     description:[NSString stringWithFormat:@"%@:%d",@"已执行",_flightStusModel.depDoneNormal]]];
-        [array addObject: [PNPieChartDataItem dataItemWithValue:2 color:[UIColor clearColor]]];
+        if (_flightStusModel.depCancel>0) {
+            [array addObject: [PNPieChartDataItem dataItemWithValue:2 color:[UIColor clearColor]]];
+        }
         [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.depCancel
                                                           color:[CommonFunction colorFromHex:0xFFFF4D62]
                                                     description:[NSString stringWithFormat:@"%@   :%d",@"取消",_flightStusModel.depCancel]]];
-        [array addObject: [PNPieChartDataItem dataItemWithValue:2 color:[UIColor clearColor]]];
+        if (_flightStusModel.depPlanNormal>0) {
+            [array addObject: [PNPieChartDataItem dataItemWithValue:2 color:[UIColor clearColor]]];
+        }
         [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.depPlanNormal
                                                           color:[CommonFunction colorFromHex:0xFFC8C8C8]
                                                     description:[NSString stringWithFormat:@"%@:%d",@"未执行",_flightStusModel.depPlanNormal]]];

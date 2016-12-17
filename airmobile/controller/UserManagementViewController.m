@@ -11,7 +11,10 @@
 #import "UserManagermentTableViewCell.h"
 #import "ModifyPwdView.h"
 #import "HttpsUtils+Business.h"
+#import "HttpsUtils.h"
 #import "AppDelegate.h"
+#import <FlyImage.h>
+
 
 static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TABLECELL_IDENTIFIER";
 
@@ -47,6 +50,8 @@ static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TA
     _tableviewArray = @[@"修改密码"];
     [_tableView registerNib:[UINib nibWithNibName:@"UserManagermentTableViewCell" bundle:nil] forCellReuseIdentifier:(NSString *)USERMANAGEMENT_TABLECELL_IDENTIFIER];
     // Do any additional setup after loading the view from its nib.
+
+    [_headImageView setIconURL:[HttpsUtils imageDownloadURLWithString:@"1481161300838/2345.png"]];
 }
 - (IBAction)messageClearButtonClick:(id)sender {
 #if __IPHONE_OS_VERSION_MAX_ALLOWED == __IPHONE_8_3
@@ -70,6 +75,7 @@ static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TA
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     [alertController addAction:[UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         UIImagePickerController *picker = [[UIImagePickerController alloc]init];
+        picker.allowsEditing = YES;
         picker.delegate = self;
         if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
             [self showAnimationTitle:@"设备不支持拍照"];
@@ -82,6 +88,7 @@ static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TA
     [alertController addAction:[UIAlertAction actionWithTitle:@"图片" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         UIImagePickerController *picker = [[UIImagePickerController alloc]init];
         picker.delegate = self;
+        picker.allowsEditing = YES;
         picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         [self presentViewController:picker animated:YES completion:nil];
 
@@ -153,6 +160,7 @@ static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TA
             [self showAnimationTitle:@"设备不支持拍照"];
             return;
         }
+        picker.allowsEditing = YES;
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
     }else if (buttonIndex == 1){
         picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
@@ -163,10 +171,42 @@ static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TA
 #pragma mark -  UIImagePickerControllerDelegate
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
-    [self dismissViewControllerAnimated:YES completion:^{
-        _headImageView.image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    }];
+
+    [self starNetWorking];
     
+    [self dismissViewControllerAnimated:YES completion:^{
+//        _headImageView.image = [info objectForKey:UIImagePickerControllerEditedImage];
+        UIImage  *image = [info objectForKey:UIImagePickerControllerEditedImage];
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+        NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"headimage.png"]];
+        BOOL result = [UIImagePNGRepresentation(image)writeToFile: filePath atomically:YES];
+
+        if (result) {
+
+            [HttpsUtils headImageUploadSuccess:^(NSData *response) {
+                [self showAnimationTitle:@"上传成功"];
+                 NSString *imageName = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
+
+                NSLog(@"%@",[HttpsUtils imageDownloadURLWithString:imageName]);
+//                [_headImageView sd_setImageWithURL:[HttpsUtils imageDownloadURLWithString:imageName]];
+                [_headImageView setIconURL:[HttpsUtils imageDownloadURLWithString:imageName]];
+
+                _headImageView.backgroundColor = [UIColor redColor];
+               
+                [self stopNetWorking];
+
+            } failure:^(id error) {
+                [self stopNetWorking];
+                [self showAnimationTitle:@"上传失败"];
+
+
+            }];
+        }else{
+            [self stopNetWorking];
+            [self showAnimationTitle:@"上传失败"];
+
+        }
+    }];
 }
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -209,12 +249,9 @@ static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TA
                       }else{
                           [self showAnimationTitle:@"修改成功"];
                       }
-
                       [_modifyPwdView cancelButtonClick:nil];
-
                   } failure:^(NSError *error) {
                       [self showAnimationTitle:@"修改失败"];
-
                   }];
 }
 

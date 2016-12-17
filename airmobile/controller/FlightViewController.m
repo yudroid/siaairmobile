@@ -208,12 +208,12 @@ static const NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_I
 
 -(void)loadMoreNetwork
 {
-    NSDictionary *conds =@{@"search_flightNO":flightNo?:@"",
-                           @"search_region":flightRegion?:@"",
-                           @"search_model":flightType?:@"",
-                           @"search_state":flightStatus?:@"",
-                           @"start":@(startIndex).stringValue,
-                           @"length":@(pagesize).stringValue};
+    NSDictionary *conds =@{@"search_flightNO"   :flightNo?      :@"",
+                           @"search_region"     :flightRegion?  :@"",
+                           @"search_model"      :flightType?    :@"",
+                           @"search_state"      :flightStatus?  :@"",
+                           @"start"             :@(startIndex).stringValue,
+                           @"length"            :@(pagesize).stringValue};
 
 
     [HttpsUtils queryFlightList:conds success:^(id responseObj) {

@@ -98,4 +98,12 @@
  */
 +(NSString*) getBaseUri;
 
+
++ (void)post:(NSString *)           segment
+    filePath:(NSString *)           filePath
+     success:(void (^) (id))        success
+     failure:(void (^) (NSError*))  failure ;
+
+
++(NSURL *)imageDownloadURLWithString:(NSString *)path;
 @end

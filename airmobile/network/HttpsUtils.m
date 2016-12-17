@@ -460,4 +460,86 @@ static NSTimeInterval timeInterval = 16;
     return nil;
 }
 
+
++(void)postImage {
+
+
+
+    
+}
+
++ (void)post:(NSString *)           segment
+    filePath:(NSString *)           filePath
+     success:(void (^) (id))        success
+     failure:(void (^) (NSError*))  failure
+{
+
+    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
+
+    //构建url
+    NSURL* url = [NSURL URLWithString:baseUri];
+
+    if (![StringUtils isNullOrWhiteSpace:segment]) {
+        url = [NSURL URLWithString:segment
+                     relativeToURL: [NSURL URLWithString:baseUri]];
+    }
+
+
+    NSLog(@"Get调用地址 %@",[url absoluteString]);
+
+    //设置响应编码格式
+    [manager.responseSerializer setStringEncoding:NSUTF8StringEncoding];
+
+
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+
+    [manager POST:[url absoluteString]
+       parameters:nil
+constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+
+    /*
+
+     第一个参数：将要上传的数据的原始路径
+
+     第二个参数：要上传的路径的key
+
+     第三个参数：上传后文件的别名
+
+     第四个参数：原始图片的格式
+
+     */
+
+    [formData appendPartWithFileURL:[NSURL fileURLWithPath:filePath]
+                               name:@"file"
+                           fileName:@"2345.png"
+                           mimeType:@"image.jpg"
+                              error:nil];
+
+} progress:^(NSProgress * _Nonnull uploadProgress) {
+
+} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    success(responseObject);
+
+} failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    failure(error);
+    
+}];
+
+
+}
+
+
++(NSURL *)imageDownloadURLWithString:(NSString *)path
+{
+    //
+    NSString *urlstring = [NSString stringWithFormat:@"%@%@%@",baseUri,@"/acs/m/download?fileName=",path];
+    
+    //构建url
+    NSURL* url = [NSURL URLWithString:urlstring];
+
+    return url;
+}
+
+
+
 @end

@@ -223,4 +223,11 @@
     label.textColor = [CommonFunction colorFromHex:hexColor];
     return label;
 }
+
+
++(BOOL) iOSVersion10
+{
+    return __IPHONE_10_0>=100000;
+}
+
 @end
