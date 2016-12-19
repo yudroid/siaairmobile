@@ -11,6 +11,7 @@
 #import "FlightContentView.h"
 #import "PassengerContentView.h"
 #import "ResourceContentView.h"
+@class ResourceOverview;
 
 typedef enum
 {
@@ -41,7 +42,7 @@ typedef enum
     OverViewContentView  *overviewContentView; // 总览
     FlightContentView    *flightContentView; // 航班
     PassengerContentView *passengerContentView; // 旅客
-    ResourceContentView  *resourceContentView; // 资源
+    ResourceOverview  *resourceContentView; // 资源
     
     HomePageType homePageType;
 }

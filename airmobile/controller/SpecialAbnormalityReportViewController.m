@@ -25,6 +25,7 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+
     [HttpsUtils getDispatchAbns:_specialModel.id
                            type:1
                         success:^(id response) {
@@ -47,6 +48,7 @@
                                             NSDictionary *dic2 = [[PersistenceUtils findBasisInfoDictionaryWithid:self.event.event_level] lastObject];
                                             self.eventLevel = [[BasisInfoDictionaryModel alloc]initWithDictionary:dic2];
 
+                                            self.explainTextView.text = self.event.content;
                                             [self.tableView reloadData];
                                             self.tableView.allowsSelection = NO;
                                             self.startReportButton.enabled = NO;
@@ -79,11 +81,12 @@
                           dispatchId:_specialModel.id
                               userId:(int)appdelete.userInfoModel.id
                              eventId:self.event.id
-                                memo:self.explainTextView.text
-                                flag:_specialModel.tag
+                                memo:self.requireTextView.text
+                                flag:self.isSpecial
                              imgPath:@""
                              success:^(id response) {
                                  [self showAnimationTitle:@"上报成功"];
+                                 _specialModel.tag = 2;
                              }
                              failure:^(NSError *error) {
                                  [self showAnimationTitle:@"上报失败"];

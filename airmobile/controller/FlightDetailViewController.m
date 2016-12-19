@@ -34,7 +34,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 
 @property (weak, nonatomic) IBOutlet    UITableView         *tableView;
 @property (weak, nonatomic) IBOutlet    NSLayoutConstraint  *tableViewHeight;
-@property (weak, nonatomic) IBOutlet    UITableView         *safeguardTableView;
+@property (weak, nonatomic) IBOutlet    UITableView         *safeguardTableView;//特殊保障 tableview
 @property (weak, nonatomic) IBOutlet    UICollectionView    *AirlineCollectionView;
 
 @property (nonatomic, copy) NSArray     *airLineCollectionArray;
@@ -108,6 +108,9 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
     [self loadData];
 
     
+}
+-(void)viewDidAppear:(BOOL)animated{
+    [_safeguardTableView reloadData];
 }
 
 -(void)updateSpecialsTableView
@@ -270,6 +273,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
     SpecialAbnormalityReportViewController *abnormalityReportVC=[[SpecialAbnormalityReportViewController alloc]initWithNibName:@"AbnormalityReportViewController" bundle:nil];
     abnormalityReportVC.specialModel = specicals[sender.tag];
     abnormalityReportVC.DispatchType = DispatchType;
+    abnormalityReportVC.isSpecial = self.isSpecial;
     [self.navigationController pushViewController:abnormalityReportVC
                                          animated:YES];
 }
@@ -280,10 +284,12 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
                         dispatchId:specicals[sender.tag].id
                             userId:(int)delegate.userInfoModel.id
                            success:^(id responseObj) {
-                               [self showAnimationTitle:@"已上报"];
-                               sender.enabled = NO;
-                               sender.backgroundColor = [UIColor grayColor];
-    
+                               [self showAnimationTitle:@"上报成功"];
+                               if (responseObj && [responseObj isKindOfClass:[NSString class]]) {
+                                   specicals[sender.tag].normalTime = responseObj;
+                                   specicals[sender.tag].tag = 1;
+                                   [_safeguardTableView reloadData];
+                               }
     } failure:^(NSError *error) {
         [self showAnimationTitle:@"上报失败"];
 

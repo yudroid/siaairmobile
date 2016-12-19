@@ -371,12 +371,7 @@
 
 -(void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:@"showPassengerHourView"
-                                                  object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:@"showSafetyPassenger"
-                                                  object:nil];
+
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:@"PassengerSummary"
                                                   object:nil];

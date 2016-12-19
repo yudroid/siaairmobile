@@ -27,4 +27,6 @@
 @property (nonatomic, strong) BasisInfoEventModel *event;
 
 
+@property (nonatomic, assign) BOOL isSpecial;//是否特殊航班
+
 @end

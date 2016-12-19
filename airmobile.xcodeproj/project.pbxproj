@@ -143,6 +143,7 @@
 		F7428A011E04DA9200AC00D4 /* GlobalHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F7428A001E04DA9200AC00D4 /* GlobalHelper.m */; };
 		F7428A041E04DAC900AC00D4 /* Airport.m in Sources */ = {isa = PBXBuildFile; fileRef = F7428A031E04DAC900AC00D4 /* Airport.m */; };
 		F7428A0B1E04DECE00AC00D4 /* DateUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F7428A0A1E04DECE00AC00D4 /* DateUtils.m */; };
+		F7428A0E1E05593700AC00D4 /* ResourceOverview.m in Sources */ = {isa = PBXBuildFile; fileRef = F7428A0D1E05593700AC00D4 /* ResourceOverview.m */; };
 		F747F9361DD2B3B90099E7AF /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F747F9351DD2B3B90099E7AF /* libsqlite3.0.tbd */; };
 		F74902621DC71202005B193D /* DayOnDutyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902601DC71202005B193D /* DayOnDutyViewController.m */; };
 		F74902631DC71202005B193D /* DayOnDutyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F74902611DC71202005B193D /* DayOnDutyViewController.xib */; };
@@ -273,7 +274,6 @@
 		F7EEEF211DB3A580004AF0AE /* FlightDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EEEF1F1DB3A580004AF0AE /* FlightDetailTableViewCell.m */; };
 		F7EEEF221DB3A580004AF0AE /* FlightDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7EEEF201DB3A580004AF0AE /* FlightDetailTableViewCell.xib */; };
 		F7F057171DF9730C006BCD67 /* SpecialModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F057161DF9730C006BCD67 /* SpecialModel.m */; };
-		F7F0571A1DF985EC006BCD67 /* NormalAbnormalityReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F057191DF985EC006BCD67 /* NormalAbnormalityReportViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -531,6 +531,8 @@
 		F7428A081E04DBA000AC00D4 /* TypeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeModel.h; sourceTree = "<group>"; };
 		F7428A091E04DECE00AC00D4 /* DateUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateUtils.h; sourceTree = "<group>"; };
 		F7428A0A1E04DECE00AC00D4 /* DateUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtils.m; sourceTree = "<group>"; };
+		F7428A0C1E05593700AC00D4 /* ResourceOverview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResourceOverview.h; path = ../../ResourceOverview.h; sourceTree = "<group>"; };
+		F7428A0D1E05593700AC00D4 /* ResourceOverview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResourceOverview.m; path = ../../ResourceOverview.m; sourceTree = "<group>"; };
 		F747F9351DD2B3B90099E7AF /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		F749025F1DC71202005B193D /* DayOnDutyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayOnDutyViewController.h; sourceTree = "<group>"; };
 		F74902601DC71202005B193D /* DayOnDutyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = DayOnDutyViewController.m; sourceTree = "<group>"; };
@@ -746,8 +748,6 @@
 		F7EEEF201DB3A580004AF0AE /* FlightDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightDetailTableViewCell.xib; sourceTree = "<group>"; };
 		F7F057151DF9730C006BCD67 /* SpecialModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecialModel.h; sourceTree = "<group>"; };
 		F7F057161DF9730C006BCD67 /* SpecialModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecialModel.m; sourceTree = "<group>"; };
-		F7F057181DF985EC006BCD67 /* NormalAbnormalityReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NormalAbnormalityReportViewController.h; sourceTree = "<group>"; };
-		F7F057191DF985EC006BCD67 /* NormalAbnormalityReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NormalAbnormalityReportViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -806,6 +806,8 @@
 		841839E61DBC87DD00D7DD86 /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
+				F7428A0C1E05593700AC00D4 /* ResourceOverview.h */,
+				F7428A0D1E05593700AC00D4 /* ResourceOverview.m */,
 				840D15E11DC20C4F005FA910 /* PsnSafetyAreaView.h */,
 				840D15E21DC20C4F005FA910 /* PsnSafetyAreaView.m */,
 				840D15DE1DC20C2D005FA910 /* PsnSafetyHourView.h */,
@@ -1352,9 +1354,6 @@
 				F7EEEF191DB396E0004AF0AE /* FlightDetailViewController.h */,
 				F7EEEF1A1DB396E0004AF0AE /* FlightDetailViewController.m */,
 				F7EEEF1B1DB396E0004AF0AE /* FlightDetailViewController.xib */,
-				F7A25D111DBA106300F36C32 /* UploadPhotoViewController.h */,
-				F7A25D121DBA106300F36C32 /* UploadPhotoViewController.m */,
-				F7A25D131DBA106300F36C32 /* UploadPhotoViewController.xib */,
 				F7EAE1931DB4776C0060626F /* AbnormalityReportViewController.h */,
 				F7EAE1941DB4776C0060626F /* AbnormalityReportViewController.m */,
 				F7EAE1951DB4776C0060626F /* AbnormalityReportViewController.xib */,
@@ -1362,8 +1361,9 @@
 				F74902921DC82B1F005B193D /* CommonAbnormalityReportViewController.m */,
 				F74902941DC82B42005B193D /* SpecialAbnormalityReportViewController.h */,
 				F74902951DC82B42005B193D /* SpecialAbnormalityReportViewController.m */,
-				F7F057181DF985EC006BCD67 /* NormalAbnormalityReportViewController.h */,
-				F7F057191DF985EC006BCD67 /* NormalAbnormalityReportViewController.m */,
+				F7A25D111DBA106300F36C32 /* UploadPhotoViewController.h */,
+				F7A25D121DBA106300F36C32 /* UploadPhotoViewController.m */,
+				F7A25D131DBA106300F36C32 /* UploadPhotoViewController.xib */,
 				F7A25D8F1DBEF34800F36C32 /* OptionsViewController.h */,
 				F7A25D901DBEF34800F36C32 /* OptionsViewController.m */,
 				F7A25D911DBEF34800F36C32 /* OptionsViewController.xib */,
@@ -1984,9 +1984,9 @@
 				84183A281DBE150E00D7DD86 /* EightMonthRatioView.m in Sources */,
 				840D15C71DC0557F005FA910 /* FlightHourView.m in Sources */,
 				840D15F31DC31F9E005FA910 /* SeatUsedModel.m in Sources */,
+				F7428A0E1E05593700AC00D4 /* ResourceOverview.m in Sources */,
 				84ADE6D51DCC7B9300F58A46 /* PersistenceUtils.m in Sources */,
 				84183A1C1DBDDE4F00D7DD86 /* PassengerHourViewController.m in Sources */,
-				F7F0571A1DF985EC006BCD67 /* NormalAbnormalityReportViewController.m in Sources */,
 				F74289E31E04D4FD00AC00D4 /* MonthlyTargetView.m in Sources */,
 				F7D38D701DE3D1D4001110AF /* LoadingView.m in Sources */,
 				843F4CF51DACC70F00D73D56 /* HttpsUtils.m in Sources */,

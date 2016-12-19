@@ -43,6 +43,8 @@ NSString * const saveDispatchAbnEnd         = @"/acs/wacs/MobileSpecial/MobileUp
 NSString * const saveDispatchNormal         = @"/acs/wacs/MobileSpecial/MobileSaveSpecialNormalDispatch";//特殊保障上报正常(航班id/环节ID/用户ID),返回结果是时间（时：分）
 // 首页
 NSString * const ovSummaryUrl               = @"/acs/ov/summary";
+NSString * const ovFltFDRTHreshold          = @"/ov/fltFDRThreshold";
+NSString * const ovFltFMRTHreshold          = @"/ov/fltFMRThreshold";
 NSString * const ovFltFDRlUrl               = @"/acs/ov/fltFDR";
 NSString * const ovFltFMRUrl                = @"/acs/ov/fltFMR";
 NSString * const ovFltLDUrl                 = @"/acs/ov/fltLD";
@@ -347,7 +349,7 @@ NSString * const headImageUpload            = @"/acs/m/upload";//头像上传
 +(void)saveDispatchNormal:(int)flightId dispatchId:(int)dispatchId userId:(int)userId success:(void (^)(id))success failure:(void (^)(id))failure
 {
     NSString *temp = [NSString stringWithFormat:@"%@/%i/%i/%i",saveDispatchNormal,flightId,dispatchId,userId];
-    [HttpsUtils get:temp params:nil success:^(id responseObj) {
+    [HttpsUtils getString:temp params:nil success:^(id responseObj) {
         if(success){
             success(responseObj);
         }
@@ -412,6 +414,24 @@ NSString * const headImageUpload            = @"/acs/m/upload";//头像上传
 
 
 /**
+ 航班放行正常率 天数 --最近10天 /ov/fltFDR
+
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)getTenDaySuccess:(void (^)(id))success failure:(void (^)(id))failure
+{
+    [HttpsUtils getString:ovFltFDRTHreshold params:nil
+                  success:^(id responseObj) {
+                      if(success){
+                          success(responseObj);
+                      }
+                  } failure:failure];
+}
+
+
+
+/**
  航班近10天放行正常率  /ov/fltFDR
  
  @param date <#date description#>
@@ -427,6 +447,16 @@ NSString * const headImageUpload            = @"/acs/m/upload";//头像上传
     } failure:failure];
 }
 
+
++(void)getFlightYearSuccess:(void (^)(id))success failure:(void (^)(id))failure
+{
+    [HttpsUtils getString:ovFltFMRTHreshold params:nil
+                  success:^(id responseObj) {
+                      if(success){
+                          success(responseObj);
+                      }
+                  } failure:failure];
+}
 
 /**
  今年航班放行正常率 /ov/fltFMR
@@ -1012,7 +1042,7 @@ NSString * const headImageUpload            = @"/acs/m/upload";//头像上传
 +(void)isSigned:(int)userId success:(void (^)(id))success failure:(void (^)(id))failure
 {
     NSString *temp = [NSString stringWithFormat:@"%@?userId=%i",isSignedUrl,userId];
-    [HttpsUtils get:temp params:nil success:^(id responseObj) {
+    [HttpsUtils getString:temp params:nil success:^(id responseObj) {
         if(success){
             success(responseObj);
         }

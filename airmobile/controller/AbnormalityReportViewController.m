@@ -68,7 +68,7 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
     [_abnormalityHistoryTableView registerNib:[UINib nibWithNibName:@"AbnormalityReportHistoryTableViewCell" bundle:nil]
                        forCellReuseIdentifier:(NSString *)ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER];
 
-    _abnormalityHistoryViewHeight.constant = _abnormalityHistoryArray.count * 61 +51;
+    _abnormalityHistoryViewHeight.constant = _abnormalityHistoryArray.count * 70 +51;
 
 
     _photoCollectionView.delegate =self;
@@ -114,7 +114,7 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 -(void)setAbnormalityHistoryArray:(NSArray *)abnormalityHistoryArray
 {
     _abnormalityHistoryArray = abnormalityHistoryArray;
-    _abnormalityHistoryViewHeight.constant = _abnormalityHistoryArray.count * 61 +51;
+    _abnormalityHistoryViewHeight.constant = _abnormalityHistoryArray.count * 70 +51;
 }
 
 -(void)dealloc
@@ -218,7 +218,7 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView == _abnormalityHistoryTableView) {
-        return 61;
+        return 70;
     }
     return 58;
 }
@@ -336,6 +336,7 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
             break;
         case OptionsTypeEvent:
             _event = value;
+            _explainTextView.text = _event.content;
             break;
         case OptionsTypeEventLevel:
             _eventLevel = value;

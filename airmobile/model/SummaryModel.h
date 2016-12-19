@@ -20,6 +20,8 @@
 @property (nonatomic, assign) int finishedCnt;//已执行航班数
 @property (nonatomic, assign) int unfinishedCnt;//未执行航班数
 @property (nonatomic, copy) NSString *releaseRatio;//放行正常率
+@property (nonatomic, copy) NSString *dayNum;//放行正常率天数 ---最近10天
+@property (nonatomic, copy) NSString *month;//放行正常率 --最近几个月
 @property (nonatomic, copy) NSString *warning;//航班正常性判定，分正常、黄色Ⅲ级(一般)、橙色Ⅱ级(重大)、红色 Ⅰ级(严重)
 @property (nonatomic, copy) NSString *aovTxt;//aov输入的自由文本
 

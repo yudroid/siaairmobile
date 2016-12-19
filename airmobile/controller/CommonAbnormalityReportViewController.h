@@ -7,11 +7,14 @@
 //
 
 #import "AbnormalityReportViewController.h"
+@class SafeguardModel;
 
 @interface CommonAbnormalityReportViewController : AbnormalityReportViewController
 
 @property (nonatomic, assign)   int         flightID;
 @property (nonatomic, assign)   int         SafeguardID;
 @property (nonatomic, assign)   Boolean     isKeyFlight;
+
+@property (nonatomic ,strong) SafeguardModel *safefuardModel;
 
 @end

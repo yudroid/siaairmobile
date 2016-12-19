@@ -21,6 +21,9 @@
 @property (nonatomic, assign) int   passNight;      //过夜航班数
 @property (nonatomic, assign) float takeUpRatio;    //当前占用数/机位总数
 
+
+
+
 @property (nonatomic, copy) NSArray<SeatUsedModel *> *seatUsed;// 机位使用列表
 
 -(void) updateCraftSeatTakeUpInfo:(id)data;

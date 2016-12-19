@@ -92,8 +92,20 @@ singleton_implementation(HomePageService);
         [summaryModel updateFlightHourModel:responesObj flag:1];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"PlanArrHours" object:summaryModel.flightHours];
     } failure:nil];
-    
-//    // 实际进港航班小时分布 /flt/realArrFltPerHour
+
+    [HttpsUtils getTenDaySuccess:^(id responesObj) {
+        summaryModel.dayNum = responesObj;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"FlightDelayTarget"
+                                                            object:summaryModel.delayTagart];
+    } failure:nil];
+
+
+    [HttpsUtils getFlightYearSuccess:^(id responesObj) {
+        summaryModel.month = responesObj;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"FlightDelayTarget"
+                                                            object:summaryModel.delayTagart];
+    } failure:nil];
+    //    // 实际进港航班小时分布 /flt/realArrFltPerHour
 //    [HttpsUtils getRealArrHours:nil success:^(id responesObj) {
 //        [summaryModel updateFlightHourModel:responesObj flag:2];
 //        [[NSNotificationCenter defaultCenter] postNotificationName:@"RealArrHours" object:summaryModel.flightHours];
@@ -255,6 +267,9 @@ singleton_implementation(HomePageService);
         [[NSNotificationCenter defaultCenter] postNotificationName:@"CraftSeatTypeTakeUpSort"
                                                             object:seatModel.usedDetail];
     } failure:nil];
+
+
+//    [self getUserSignStatus];
 }
 
 #pragma mark - 获取用户签到信息

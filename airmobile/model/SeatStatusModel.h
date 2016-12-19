@@ -11,9 +11,23 @@
 
 @interface SeatStatusModel : RootModel
 
-@property (nonatomic,assign) int seatNum;// 机位总数
-@property (nonatomic,assign) int seatUsed;// 机位使用数
-@property (nonatomic,assign) int seatFree;// 机位空闲数
+
+@property (nonatomic, assign) int willOnehourInFlt;
+@property (nonatomic, assign) int willOnehourOutFlt;
+@property (nonatomic, assign) int nextHourTakeUp;
+@property (nonatomic, assign) int normalCnt;
+@property (nonatomic, assign) int parentCnt;
+@property (nonatomic, assign) int childCnt;
+@property (nonatomic, assign) int unusableCnt;
+@property (nonatomic, assign) int normalTakeUpCnt;
+@property (nonatomic, assign) int parentTakeUpCnt;
+@property (nonatomic, assign) int childTakeUpCnt;
+@property (nonatomic, assign) int passNightCnt;
+@property (nonatomic, assign) int longNormalTakeUpCnt;
+@property (nonatomic, assign) int longParentTakeUpCnt;
+@property (nonatomic, assign) int longChildTakeUpCnt;
+
+
 @property (nonatomic,assign) int nextIn;// 下小时进港
 @property (nonatomic,assign) int nextOut;// 下小时出港
 

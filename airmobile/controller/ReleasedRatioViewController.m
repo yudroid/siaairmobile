@@ -8,6 +8,7 @@
 
 #import "ReleasedRatioViewController.h"
 #import "ReleasedRatioModel.h"
+#import "HomePageService.h"
 
 @interface ReleasedRatioViewController ()
 
@@ -71,16 +72,23 @@
     tenDayBackgroundImageView.image = [UIImage imageNamed:@"SegmentedLeft"];
     [tenDayImageView addSubview:tenDayBackgroundImageView];
     //10天的Label
+
+    NSString *dayString = [HomePageService sharedHomePageService].summaryModel.dayNum;
+    if (dayString &&[dayString isKindOfClass:[NSString class]]&& ![dayString isEqualToString:@""]) {
+
+    }else{
+        dayString = [NSString stringWithFormat:@"最近%lu天",(unsigned long)_tenDayReleased.count];
+    }
     tenDayLabel = [CommonFunction addLabelFrame:CGRectMake(0,
                                                            0,
                                                            viewWidth(tenDayImageView) ,
                                                            viewHeight(tenDayImageView))
-                                           text:@"最近10天"
+                                           text:dayString
                                            font:33/2
                                   textAlignment:(NSTextAlignmentCenter)
                                    colorFromHex:0xFFFFFFFF];
     [tenDayImageView addSubview:tenDayLabel];
-    
+
     UIButton *tenDayButton = [[UIButton alloc] initWithFrame:tenDayLabel.frame];
     [tenDayButton addTarget:self
                      action:@selector(buttonClickedWithSender:)
@@ -102,11 +110,18 @@
     eightMonthBackgroundImageView.image = nil;
     [eightMonthImageView addSubview:eightMonthBackgroundImageView];
 
+    NSString *monthString = [HomePageService sharedHomePageService].summaryModel.dayNum;
+    if (monthString &&[monthString isKindOfClass:[NSString class]]&& ![monthString isEqualToString:@""]) {
+
+    }else{
+        monthString = [NSString stringWithFormat:@"最近%lu个月",(unsigned long)_yearReleased.count];
+    }
+
     eightMonthLabel = [CommonFunction addLabelFrame:CGRectMake(0,
                                                                0,
                                                                viewWidth(tenDayLabel),
                                                                viewHeight(tenDayLabel))
-                                               text:@"今年"
+                                               text:monthString
                                                font:33/2
                                       textAlignment:(NSTextAlignmentCenter)
                                        colorFromHex:0xFF17B9E8];

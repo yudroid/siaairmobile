@@ -7,10 +7,15 @@
 //
 
 #import "RootViewController.h"
-@class CraftseatCntModel;
+@class SeatStatusModel;
+
+typedef NS_ENUM(NSUInteger, SeatUsedViewControllerType) {
+    SeatUsedViewControllerTypeMain,//主机位
+    SeatUsedViewControllerTypeSub //副机位
+};
 
 @interface SeatUsedViewController : RootViewController<UITableViewDataSource,UITableViewDelegate>
 
--(instancetype)initWithCraftseatCntModel:(CraftseatCntModel *)craftseatCntModel;
+-(instancetype)initWithCraftseatCntModel:(SeatStatusModel *)seatStatusModel type:(SeatUsedViewControllerType) type;
 
 @end

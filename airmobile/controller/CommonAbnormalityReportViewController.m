@@ -7,6 +7,11 @@
 //
 
 #import "CommonAbnormalityReportViewController.h"
+#import "AppDelegate.h"
+#import "HttpsUtils+Business.h"
+#import "SafeguardModel.h"
+#import "BasisInfoEventModel.h"
+#import "UIViewController+Reminder.h"
 
 typedef NS_ENUM(NSUInteger, ReportState) {
     ReportStateNoStart,
@@ -62,6 +67,47 @@ typedef NS_ENUM(NSUInteger, ReportState) {
         default:
             break;
     }
+}
+
+
+- (IBAction)startReportDatClick:(id)sender {
+
+    AppDelegate *appdelete = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+
+    [HttpsUtils saveDispatchAbnStart:(int)_safefuardModel.fid
+                          dispatchId:(int)_safefuardModel.id
+                              userId:(int)appdelete.userInfoModel.id
+                             eventId:self.event.id
+                                memo:self.explainTextView.text
+                                flag:self.isSpecial
+                             imgPath:@""
+                             success:^(id response) {
+                                 [self showAnimationTitle:@"上报成功"];
+                             }
+                             failure:^(NSError *error) {
+                                 [self showAnimationTitle:@"上报失败"];
+                             }];
+
+
+    //    [self setupDateView];
+}
+
+- (IBAction)endReportDate:(id)sender {
+    AppDelegate *appdelete = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [HttpsUtils saveDispatchAbnEnd:(int)_safefuardModel.id
+                            userId:(int)appdelete.userInfoModel.id
+                           success:^(id response) {
+                               [self showAnimationTitle:@"上报成功"];
+                               self.event = nil;
+                               self.eventType = nil;
+                               self.eventLevel = nil;
+                               [self.tableView reloadData];
+                               self.tableView.allowsSelection = YES;
+                               self.startReportButton.enabled = YES;
+                           }
+                           failure:^(NSError *error) {
+                               [self showAnimationTitle:@"上报失败"];
+                           }];
 }
 
 /*

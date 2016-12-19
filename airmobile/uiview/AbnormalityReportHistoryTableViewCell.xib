@@ -18,33 +18,33 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上报开始" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCq-S6-DFp">
-                        <rect key="frame" x="232" y="29.5" width="68" height="24"/>
-                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
+                        <rect key="frame" x="248" y="31" width="56" height="20"/>
+                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
                         <color key="textColor" red="0.58039215690000001" green="0.58039215690000001" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="航班延误" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mnm-bx-9ZI">
-                        <rect key="frame" x="19" y="11" width="68" height="18"/>
+                        <rect key="frame" x="19" y="11" width="60" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="18" id="Aeb-Ol-4KA"/>
                             <constraint firstAttribute="height" constant="18" id="emH-8x-iPW"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
+                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="15"/>
                         <color key="textColor" red="0.10588235294117647" green="0.10588235294117647" blue="0.10588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="结束14:30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ddg-2Q-EAx">
-                        <rect key="frame" x="85" y="37.5" width="58.5" height="15"/>
-                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="13"/>
+                        <rect key="frame" x="80" y="37.5" width="54" height="15"/>
+                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
                         <color key="textColor" red="0.81568627450980391" green="0.81568627450980391" blue="0.81568627450980391" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开始13:30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JaK-dw-J9R">
-                        <rect key="frame" x="19" y="38" width="59" height="15"/>
+                        <rect key="frame" x="19" y="38" width="54" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="IrA-dH-r8R"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="13"/>
+                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
                         <color key="textColor" red="0.81568627450980391" green="0.81568627450980391" blue="0.81568627450980391" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -56,7 +56,7 @@
                     <constraint firstItem="ddg-2Q-EAx" firstAttribute="top" secondItem="JaK-dw-J9R" secondAttribute="top" id="K4v-yP-dBq"/>
                     <constraint firstItem="aCq-S6-DFp" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="OhY-1W-4qS"/>
                     <constraint firstItem="mnm-bx-9ZI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="TMr-uG-rZa"/>
-                    <constraint firstAttribute="trailing" secondItem="aCq-S6-DFp" secondAttribute="trailing" constant="20" id="Tw0-b1-mYB"/>
+                    <constraint firstAttribute="trailing" secondItem="aCq-S6-DFp" secondAttribute="trailing" constant="16" id="Tw0-b1-mYB"/>
                     <constraint firstItem="JaK-dw-J9R" firstAttribute="top" secondItem="mnm-bx-9ZI" secondAttribute="bottom" constant="8.5" id="XKA-4e-tn5"/>
                     <constraint firstItem="ddg-2Q-EAx" firstAttribute="leading" secondItem="JaK-dw-J9R" secondAttribute="trailing" constant="7.5" id="nIh-Br-Pgx"/>
                 </constraints>

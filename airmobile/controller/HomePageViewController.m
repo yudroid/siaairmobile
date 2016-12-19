@@ -21,6 +21,7 @@
 #import "PassengerTopViewController.h"
 #import "SeatUsedViewController.h"
 #import "HomePageService.h"
+#import "ResourceOverview.h"
 
 
 @interface HomePageViewController ()
@@ -202,10 +203,10 @@
  */
 -(void) titleButtonClickedWithSender:(UIButton *)sender
 {
-    overviewLabel.textColor     = [CommonFunction colorFromHex:0X7FFFFFFF];
-    flightLabel.textColor       = [CommonFunction colorFromHex:0X7FFFFFFF];
-    passengerLabel.textColor    = [CommonFunction colorFromHex:0x7FFFFFFF];
-    resourceLabel.textColor     = [CommonFunction colorFromHex:0X7FFFFFFF];
+    overviewLabel.textColor     = [CommonFunction colorFromHex:0XbFFFFFFF];
+    flightLabel.textColor       = [CommonFunction colorFromHex:0XbFFFFFFF];
+    passengerLabel.textColor    = [CommonFunction colorFromHex:0xbFFFFFFF];
+    resourceLabel.textColor     = [CommonFunction colorFromHex:0XbFFFFFFF];
     
     [self removeAllView];
     
@@ -321,13 +322,18 @@
     }
     else
     {
-        resourceContentView = [[ResourceContentView alloc] initWithFrame:CGRectMake(0,
-                                                                                    80,
-                                                                                    kScreenWidth,
-                                                                                    kScreenHeight-80-49)
-                                                         seatStatusModel:[HomePageService sharedHomePageService].seatModel
-                                                                delegate:self];
+//        resourceContentView = [[ResourceContentView alloc] initWithFrame:CGRectMake(0,
+//                                                                                    80,
+//                                                                                    kScreenWidth,
+//                                                                                    kScreenHeight-80-49)
+//                                                         seatStatusModel:[HomePageService sharedHomePageService].seatModel
+//                                                                delegate:self];
+
+        resourceContentView = [[ResourceOverview alloc]initWithFrame:CGRectMake(0, 76, kScreenWidth, kScreenHeight-80-49) delegate:self];
+
         [self.view addSubview:resourceContentView];
+
+
     }
 }
 
@@ -485,10 +491,18 @@
 /**
  展示机位的使用详细信息
  */
--(void) showSeatUsedDetailView{
-    SeatUsedViewController *seatUsed = [[SeatUsedViewController alloc]initWithCraftseatCntModel:[HomePageService sharedHomePageService].seatModel.usedDetail];
+-(void) showSeatUsedMainDetailView{
+    SeatUsedViewController *seatUsed = [[SeatUsedViewController alloc]initWithCraftseatCntModel:[HomePageService sharedHomePageService].seatModel type:SeatUsedViewControllerTypeMain];
     [self.navigationController pushViewController:seatUsed
                                          animated:YES];
+}
+
+-(void) showSeatUsedSubDetailView
+{
+    SeatUsedViewController *seatUsed = [[SeatUsedViewController alloc]initWithCraftseatCntModel:[HomePageService sharedHomePageService].seatModel type:SeatUsedViewControllerTypeSub];
+    [self.navigationController pushViewController:seatUsed
+                                         animated:YES];
+
 }
 
 @end

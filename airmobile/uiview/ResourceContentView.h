@@ -10,16 +10,28 @@
 #import "PoP.h"
 #import "RoundProgressView.h"
 #import "LDProgressView.h"
+
+
+typedef NS_ENUM(NSUInteger, ResourceContentViewType) {
+    ResourceContentViewTypeMain,//主机位
+    ResourceContentViewTypeSub //副机位
+};
+
+
 @class SeatStatusModel;
 
 @protocol ResourceContentViewDelegate <NSObject>
 
 @optional
 
+
+
 /**
  展示机位的使用详细信息
  */
--(void) showSeatUsedDetailView;
+-(void) showSeatUsedMainDetailView;
+
+-(void) showSeatUsedSubDetailView;
 
 @end
 
@@ -44,5 +56,8 @@
 
 -(id)initWithFrame:(CGRect)                         frame
    seatStatusModel:(SeatStatusModel *)              seatStatusModel
+              type:(ResourceContentViewType)        type
           delegate:(id<ResourceContentViewDelegate>)delegate;
+
+@property (nonatomic ,assign) ResourceContentViewType type;
 @end

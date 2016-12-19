@@ -58,13 +58,14 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-    if(self.userInfoModel.id && self.userInfoModel.id != 0){
-        // 程序将展示，开起个别远程service
-        [[HomePageService sharedHomePageService] startService];
-        [[MessageService sharedMessageService] startService];
-    }
+//    if(self.userInfoModel.id && self.userInfoModel.id != 0){
+//
+//    }
+    // 程序将展示，开起个别远程service
+    [[HomePageService sharedHomePageService] startService];
+    [[MessageService sharedMessageService] startService];
 
-    
+
 }
 
 

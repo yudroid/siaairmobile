@@ -50,15 +50,20 @@
 
     }
 
-    if(specialModel.tag == 0 || !specialModel.normalTime || [specialModel.normalTime isEqualToString:@""]){
-        _statusLabel.text = @"--未开始--";
-        _statusLabel.textColor = [CommonFunction colorFromHex:0xffff7c36];
-    }else if (specialModel.tag == 1){
+    if (specialModel.tag == 1){
         _statusLabel.text = @"--正常--";
         _statusLabel.textColor = [CommonFunction colorFromHex:0xff2dce70];
-    }else{
+    }else if (specialModel.tag == 2){
         _statusLabel.text = @"--异常--";
         _statusLabel.textColor = [CommonFunction colorFromHex:0xfff46970];
+    }else if(specialModel.tag == 0 || !specialModel.normalTime || [specialModel.normalTime isEqualToString:@""]){
+        _statusLabel.text = @"--未开始--";
+        _statusLabel.textColor = [CommonFunction colorFromHex:0xffff7c36];
+    }
+
+    if (specialModel.normalTime&&[specialModel.normalTime isKindOfClass:[NSString class]]&&![specialModel.normalTime isEqualToString:@""]) {
+        [_starReportButton setTitle:specialModel.normalTime forState:UIControlStateNormal] ;
+        _statusLabel.enabled = NO;
     }
 }
 

@@ -322,6 +322,14 @@
 
 
 /**
+ 航班放行正常率 天数 --最近10天 /ov/fltFDR
+
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)getTenDaySuccess:(void (^)(id))success failure:(void (^)(id))failure;
+
+/**
  航班近10天放行正常率  /ov/fltFDR
 
  @param date <#date description#>
@@ -330,6 +338,14 @@
  */
 +(void)getFlightTenDayRatio:(NSString *)date success:(void (^)(id))success failure:(void (^)(id))failure;
 
+
+/**
+ 航班放行正常率 月数 --最近19个月 /ov/fltFDR
+
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)getFlightYearSuccess:(void (^)(id))success failure:(void (^)(id))failure;
 
 /**
  今年航班放行正常率 /ov/fltFMR

@@ -14,11 +14,10 @@
 
 @property (nonatomic, assign) int id;
 @property (nonatomic, assign) int fid;
-@property (nonatomic, strong) NSString *safeName;
+@property (nonatomic, copy)   NSString *safeName;
 @property (nonatomic, assign) Boolean isAD;
 @property (nonatomic, assign) int tag;
-@property (nonatomic, assign) NSString * normalTime;
-
+@property (nonatomic, assign) NSString *normalTime;
 
 
 @end

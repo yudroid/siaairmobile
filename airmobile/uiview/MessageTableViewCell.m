@@ -15,12 +15,10 @@
     _headImageView.layer.cornerRadius = 20;
     _headImageView.layer.masksToBounds = YES;
     // Initialization code
-    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
 }
 
 @end

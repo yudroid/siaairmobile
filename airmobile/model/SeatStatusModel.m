@@ -15,9 +15,7 @@
     if([self isNull:data])
         return;
     NSLog(@"%@",data);
-    _seatNum  = [[data objectForKey:@"parentCnt"]  intValue]+[[data objectForKey:@"normalCnt"]  intValue];// 机位总数
-    _seatUsed = [[data objectForKey:@"normalTakeUpCnt"] intValue]+[[data objectForKey:@"parentTakeUpCnt"] intValue];// 机位使用数
-    _seatFree = _seatNum-_seatUsed;// 机位空闲数
+    [self setValuesForKeysWithDictionary:data];
     if(_usedDetail == nil)
         _usedDetail = [CraftseatCntModel new];
     [_usedDetail updateCraftSeatTakeUpInfo:data];

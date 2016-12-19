@@ -36,7 +36,7 @@
     _starLabel.text = [NSString stringWithFormat:@"开始:%@",abnormalModel.startTime];
     _endLabel.text =  [NSString stringWithFormat:@"结束:%@",abnormalModel.endTime];
 
-    NSDictionary *dic = [[PersistenceUtils findBasisInfoEventWithEventId:(int)abnormalModel.id] lastObject];
+    NSDictionary *dic = [[PersistenceUtils findBasisInfoEventWithEventId:(int)abnormalModel.event.intValue] lastObject];
 
     BasisInfoEventModel *eventModel = [[BasisInfoEventModel alloc]initWithDictionary:dic];
     _nameLabel.text = eventModel.event;

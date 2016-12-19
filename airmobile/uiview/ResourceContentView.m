@@ -33,15 +33,18 @@ const NSString *RESOURCECONTENT_TABLECELL_IDENTIFIER = @"RESOURCECONTENT_TABLECE
     UILabel *longInSeatLabel;
     UILabel *arrLabel;
     UILabel *depLabel;
+    UIImageView *disableImageView;
+    UIImageView *longInSeatImageView;
 }
 
 -(id)initWithFrame:(CGRect)                         frame
    seatStatusModel:(SeatStatusModel *)              seatStatusModel
+              type:(ResourceContentViewType)        type
           delegate:(id<ResourceContentViewDelegate>)delegate
 {
     self = [super initWithFrame:frame];
     if(self){
-
+        _type = type;
         _delegate           = delegate;
 
         _seatStatusModel    = seatStatusModel;
@@ -59,8 +62,8 @@ const NSString *RESOURCECONTENT_TABLECELL_IDENTIFIER = @"RESOURCECONTENT_TABLECE
                                                                                  end:271
                                                                            clockwise:NO];
 
-        
-        normalProportion    =_seatStatusModel.seatUsed/@(_seatStatusModel.seatNum).floatValue;
+
+
 
         
         //对数据进行动画
@@ -85,7 +88,7 @@ const NSString *RESOURCECONTENT_TABLECELL_IDENTIFIER = @"RESOURCECONTENT_TABLECE
                                                                            viewY(progressRound)+viewHeight(progressRound)/2-45+15,
                                                                            viewWidth(progressRound),
                                                                            45)];// 机位总数
-        totalNumLabel.text          = @(_seatStatusModel.seatNum).stringValue;
+
         totalNumLabel.textAlignment = NSTextAlignmentCenter;
         totalNumLabel.font          = [UIFont fontWithName:@"PingFangSC-Semibold" size:px_px_2_2_3(95, 113, 113/2*3)];
 
@@ -104,7 +107,7 @@ const NSString *RESOURCECONTENT_TABLECELL_IDENTIFIER = @"RESOURCECONTENT_TABLECE
         y=viewBotton(progressRound)+px_px_2_2_3(70,83, 135)+9.5;
 
         disable        = [[UILabel alloc] init];
-        disable.text            = @(_seatStatusModel.seatUsed).stringValue;
+
         disable.textAlignment   = NSTextAlignmentCenter;
         disable.font            = [UIFont fontWithName:@"PingFang SC" size:px2(75)];
         CGSize maxSize          = CGSizeMake(100, 100);
@@ -113,7 +116,7 @@ const NSString *RESOURCECONTENT_TABLECELL_IDENTIFIER = @"RESOURCECONTENT_TABLECE
         [self addSubview:disable];
 
         percentLabel   = [[UILabel alloc]initWithFrame:CGRectMake(viewTrailing(disable), y-9.5, 50, 9.5)];
-        percentLabel.text       = [NSString stringWithFormat:@"%ld%%",(long)@(_seatStatusModel.seatUsed/@(_seatStatusModel.seatNum).floatValue*100).integerValue];
+
         percentLabel.font       = [UIFont fontWithName:@"PingFang SC" size:px2(23)];
         percentLabel.textColor  = [CommonFunction colorFromHex:0XFF2dce71];
 //        exportSize = [percentLabel sizeThatFits:maxSize];
@@ -121,7 +124,7 @@ const NSString *RESOURCECONTENT_TABLECELL_IDENTIFIER = @"RESOURCECONTENT_TABLECE
         [self addSubview:percentLabel];
 
         longInSeat                  = [[UILabel alloc] init];
-        longInSeat.text             = @(_seatStatusModel.seatFree).stringValue;
+
         longInSeat.textAlignment    = NSTextAlignmentCenter;
         longInSeat.font             = [UIFont fontWithName:@"PingFang SC" size:px2(75)];
         exportSize                  = [longInSeat sizeThatFits:maxSize];
@@ -138,7 +141,7 @@ const NSString *RESOURCECONTENT_TABLECELL_IDENTIFIER = @"RESOURCECONTENT_TABLECE
         disAbleLabel.frame  = CGRectMake((viewX(disable)+viewTrailing(disable))/2-exportSize.width/2+3, y, exportSize.width, 12);
         [self addSubview:disAbleLabel];
 
-        UIImageView *disableImageView   = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"DisableResource"]];
+        disableImageView   = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"DisableResource"]];
         disableImageView.frame          = CGRectMake(viewX(disAbleLabel)-6, viewY(disAbleLabel)+3, 6, 6);
         [self addSubview:disableImageView];
 
@@ -153,7 +156,7 @@ const NSString *RESOURCECONTENT_TABLECELL_IDENTIFIER = @"RESOURCECONTENT_TABLECE
         [self addSubview:longInSeatLabel];
 
 
-        UIImageView *longInSeatImageView    = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"DisableResource"]];
+        longInSeatImageView    = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"DisableResource"]];
         longInSeatImageView.frame           = CGRectMake(viewX(longInSeatLabel)-6, viewY(longInSeatLabel)+3, 6, 6);
         [self addSubview:longInSeatImageView];
 //
@@ -178,7 +181,7 @@ const NSString *RESOURCECONTENT_TABLECELL_IDENTIFIER = @"RESOURCECONTENT_TABLECE
         CGFloat width       = (viewWidth(self)-16*3)/2;
         UIImage *lessImage  = [UIImage imageNamed:@"lessThanBackground"];
         CGFloat height      = width *lessImage.size.height/lessImage.size.width;
-        UIView *lessView    = [[UIView alloc]initWithFrame:CGRectMake(16, viewHeight(self)-height-px_px_2_2_3(45*2, 54*2, 54*3),width, height)];
+        UIView *lessView    = [[UIView alloc]initWithFrame:CGRectMake(16, viewHeight(self)-height-px_px_2_2_3(30*2, 40*2, 40*3),width, height)];
         [self addSubview:lessView];
         
         UIImageView *lessThanImageView  = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0,viewWidth(lessView),viewHeight(lessView))];
@@ -255,8 +258,11 @@ const NSString *RESOURCECONTENT_TABLECELL_IDENTIFIER = @"RESOURCECONTENT_TABLECE
                                                    object:nil];
 
     }
+    [self resetData];
     return self;
 }
+
+
 
 -(void)dealloc
 {
@@ -316,25 +322,43 @@ const NSString *RESOURCECONTENT_TABLECELL_IDENTIFIER = @"RESOURCECONTENT_TABLECE
 
 -(void)showSeatUsedDetail:(UIButton *)sender
 {
-    [_delegate showSeatUsedDetailView];
+    if (_type == ResourceContentViewTypeMain) {
+        [_delegate showSeatUsedMainDetailView];
+    }else{
+        [_delegate showSeatUsedSubDetailView];
+    }
+
+
 }
 
 -(void)loadData:(NSNotification *)notification
 {
     if ([notification.object isKindOfClass:[SeatStatusModel class]]) {
         _seatStatusModel = notification.object;
-        if(normalProportion !=_seatStatusModel.seatUsed/@(_seatStatusModel.seatNum).floatValue){
-            normalProportion =_seatStatusModel.seatUsed/@(_seatStatusModel.seatNum).floatValue;
-            [progressRound animationWithStrokeEnd:normalProportion withProgressType:ProgreesTypeNormal];
-        }
+        [self resetData];
 
-        totalNumLabel.text      = @(_seatStatusModel.seatNum).stringValue;
-        disable.text            = @(_seatStatusModel.seatUsed).stringValue;
+    }
+}
+
+-(void)resetData
+{
+    if (_type == ResourceContentViewTypeMain) {
+
+        normalProportion =@((_seatStatusModel.normalTakeUpCnt+_seatStatusModel.parentTakeUpCnt)/(float)(_seatStatusModel.normalCnt + _seatStatusModel.parentTakeUpCnt)).floatValue;
+        [progressRound animationWithStrokeEnd:normalProportion withProgressType:ProgreesTypeNormal];
+
+        //机位
+        totalNumLabel.text      = @(_seatStatusModel.normalCnt + _seatStatusModel.parentCnt).stringValue;
+
+        //占用
+        disable.text            = @(_seatStatusModel.normalTakeUpCnt + _seatStatusModel.parentTakeUpCnt).stringValue;
         CGSize maxSize          = CGSizeMake(100, 100);
         CGSize exportSize       = [disable sizeThatFits:maxSize];
         disable.frame           = CGRectMake(kScreenWidth/2-30-exportSize.width, viewY(disable), exportSize.width, 30);
-        percentLabel.text       = [NSString stringWithFormat:@"%ld%%",(long)@(_seatStatusModel.seatUsed/@(_seatStatusModel.seatNum).floatValue*100).integerValue];
-        longInSeat.text             = @(_seatStatusModel.seatFree).stringValue;
+        //百分比
+        percentLabel.text       = [NSString stringWithFormat:@"%ld%%",(long)@((_seatStatusModel.normalTakeUpCnt+_seatStatusModel.parentTakeUpCnt)/@(_seatStatusModel.normalCnt + _seatStatusModel.parentTakeUpCnt).floatValue*100).integerValue];
+        //剩余
+        longInSeat.text             = @(_seatStatusModel.normalCnt + _seatStatusModel.parentCnt-(_seatStatusModel.normalTakeUpCnt+_seatStatusModel.parentTakeUpCnt)).stringValue;
         exportSize                  = [longInSeat sizeThatFits:maxSize];
         longInSeat.frame            = CGRectMake(kScreenWidth/2+30, viewY(longInSeat), exportSize.width, 30);
 
@@ -349,7 +373,57 @@ const NSString *RESOURCECONTENT_TABLECELL_IDENTIFIER = @"RESOURCECONTENT_TABLECE
                                    value:[UIFont fontWithName:@"PingFangSC-Regular" size:8]
                                    range:NSMakeRange(depAttributeString.length-4, 4)];
         depLabel.attributedText = depAttributeString;
+    }else if (_type == ResourceContentViewTypeSub){
+        normalProportion =@((_seatStatusModel.normalTakeUpCnt+_seatStatusModel.childTakeUpCnt)/(float)(_seatStatusModel.normalCnt + _seatStatusModel.childCnt)).floatValue;
+        [progressRound animationWithStrokeEnd:normalProportion withProgressType:ProgreesTypeNormal];
+
+
+        //机位
+        totalNumLabel.text      = @(_seatStatusModel.normalCnt + _seatStatusModel.childCnt).stringValue;
+
+
+        //占用
+        disable.text            = @(_seatStatusModel.normalTakeUpCnt+_seatStatusModel.childTakeUpCnt).stringValue;
+        CGSize maxSize          = CGSizeMake(100, 100);
+        CGSize exportSize       = [disable sizeThatFits:maxSize];
+        disable.frame           = CGRectMake(kScreenWidth/2-30-exportSize.width, viewY(disable), exportSize.width, 30);
+        //百分比
+        percentLabel.text       = [NSString stringWithFormat:@"%ld%%",(long)@((_seatStatusModel.normalTakeUpCnt+_seatStatusModel.childTakeUpCnt)/@(_seatStatusModel.normalCnt + _seatStatusModel.childCnt).floatValue*100).integerValue];
+        //剩余
+        longInSeat.text             = @(_seatStatusModel.normalCnt + _seatStatusModel.childCnt-(_seatStatusModel.normalTakeUpCnt+_seatStatusModel.childTakeUpCnt)).stringValue;
+        exportSize                  = [longInSeat sizeThatFits:maxSize];
+        longInSeat.frame            = CGRectMake(kScreenWidth/2+30, viewY(longInSeat), exportSize.width, 30);
+
+        NSMutableAttributedString *arrAttributeString = [[NSMutableAttributedString alloc ] initWithString:[NSString stringWithFormat:@"%@机位占用",@(_seatStatusModel.nextIn).stringValue]];
+        [arrAttributeString addAttribute:NSFontAttributeName
+                                   value:[UIFont fontWithName:@"PingFangSC-Regular" size:8]
+                                   range:NSMakeRange(arrAttributeString.length-4, 4)];
+        arrLabel.attributedText = arrAttributeString;
+
+        NSMutableAttributedString *depAttributeString = [[NSMutableAttributedString alloc ] initWithString:[NSString stringWithFormat:@"%@机位占用",@(_seatStatusModel.nextOut).stringValue]];
+        [depAttributeString addAttribute:NSFontAttributeName
+                                   value:[UIFont fontWithName:@"PingFangSC-Regular" size:8]
+                                   range:NSMakeRange(depAttributeString.length-4, 4)];
+        depLabel.attributedText = depAttributeString;
+
+
     }
+    //对数据进行动画
+    [progressRound animationWithStrokeEnd:normalProportion withProgressType:ProgreesTypeNormal];
+    [progressRound animationWithStrokeEnd:abnormalProportion withProgressType:ProgreesTypeAbnormal];
+    [progressRound animationWithStrokeEnd:cancleProportion withProgressType:ProgreesTypeCancel];
+    CGSize maxSize          = CGSizeMake(100, 100);
+    CGSize exportSize       = [disable sizeThatFits:maxSize];
+    exportSize          = [disAbleLabel sizeThatFits:maxSize];
+    disAbleLabel.frame  = CGRectMake((viewX(disable)+viewTrailing(disable))/2-exportSize.width/2+3, viewY(disAbleLabel), exportSize.width, 12);
+    disableImageView.frame          = CGRectMake(viewX(disAbleLabel)-6, viewY(disAbleLabel)+3, 6, 6);
+    exportSize = [longInSeatLabel sizeThatFits:maxSize];
+    longInSeatLabel.frame           = CGRectMake((viewX(longInSeat)+viewTrailing(longInSeat))/2-exportSize.width/2+3,
+                                                 viewY(longInSeatLabel),
+                                                 exportSize.width,
+                                                 12);
+    longInSeatImageView.frame           = CGRectMake(viewX(longInSeatLabel)-6, viewY(longInSeatLabel)+3, 6, 6);
+
 }
 
 @end
