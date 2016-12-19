@@ -271,6 +271,8 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
             } failure:^(NSError *error) {
                 [self showAnimationTitle:@"更新失败"];
             }];
+            
+            [HttpsUtils loadAllUsers];
 
         }]];
 

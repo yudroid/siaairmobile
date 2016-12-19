@@ -19,6 +19,7 @@
 #import "ChatViewController.h"
 #import "PersistenceUtils+Business.h"
 #import "FlightDelaysViewController.h"
+#import "AppDelegate.h"
 
 
 
@@ -41,6 +42,7 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
     NSArray<NSDictionary *> *array;
     NSMutableArray<NSDictionary *> *filterArray;
     UITextField *searchTextField;
+    int userId;
 }
 
 
@@ -70,7 +72,8 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 //    [button addTarget:self action:@selector(sendMessage:) forControlEvents:UIControlEventTouchUpInside];
 //    [self.view addSubview:button];
     
-    
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    userId = (int)delegate.userInfoModel.id;
     filterArray = [NSMutableArray array];
     //TabBer自定义
     self.tabBarView = [[TabBarView alloc] initTabBarWithModel:TabBarBgModelHomePage
@@ -431,10 +434,9 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
     _searchView.alpha = 1;
 }
 
--(void)loadChatList:(int)num start:(int)start
+-(void)loadChatList:(int)start num:(int)num
 {
-    array = [PersistenceUtils findChatList:start
-                                       num:num];
+    array = [PersistenceUtils findChatListByUserId:userId start:start num:num];
     [filterArray removeAllObjects];
     [filterArray addObjectsFromArray:array];
     [_tableView reloadData];
@@ -444,7 +446,7 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 {
     [super viewWillAppear:animated];
     NSLog(@"%s",__func__);
-    [self loadChatList:100 start:0];
+    [self loadChatList:0 num:1000];
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
