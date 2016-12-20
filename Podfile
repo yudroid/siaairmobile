@@ -17,7 +17,7 @@ target 'airmobile' do
   pod 'MJRefresh', '~> 3.1'
   pod 'SocketRocket', '~> 0.5.0'
   pod 'WJPhotoPicker', '~> 1.1.7'
-  pod 'Daysquare', :git => 'https://github.com/unixzii/Daysquare.git'
+#  pod 'Daysquare', :git => 'https://github.com/unixzii/Daysquare.git'
   pod 'FLAnimatedImage', '~> 1.0'
   pod 'FlyImage', '~>1.0'
   pod 'JTCalendar'

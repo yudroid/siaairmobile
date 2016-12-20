@@ -359,14 +359,18 @@
 
 -(void)showPassengerHourView:(NSNotification *)sender
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"showPassengerHourView"
-                                                        object:nil];
+    if([CommonFunction hasFunction:OV_PASSENGER_HOUR]){
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"showPassengerHourView"
+                                                            object:nil];
+    }
 }
 
 -(void)showSafetyPassenger:(NSNotification *)sender
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"showSafetyPassenger"
-                                                        object:nil];
+    if ([CommonFunction hasFunction:OV_PASSENGER_SAFTY]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"showSafetyPassenger"
+                                                            object:nil];
+    }
 }
 
 -(void)dealloc

@@ -51,7 +51,7 @@
     static NSArray *Strings;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        Strings = @[@"Sun", @"Mon", @"Tues", @"Wed", @"Thur", @"Fri", @"Sat"];
+        Strings = @[@"星期日", @"星期一", @"星期二", @"星期三", @"星期四", @"星期五", @"星期六"];
     });
     
     return Strings[weekday - 1];
@@ -62,7 +62,7 @@
     static NSArray *Strings;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        Strings = @[@"Jan.", @"Feb.", @"Mar.", @"Apr.", @"May.", @"Jun.", @"Jul.", @"Aug.", @"Sept.", @"Oct.", @"Nov.", @"Dec."];
+        Strings = @[@"一月.", @"二月.", @"三月.", @"四月.", @"五月.", @"六月.", @"七月.", @"八月.", @"九月.", @"十月.", @"十一月.", @"十二月."];
     });
     
     return Strings[month - 1];

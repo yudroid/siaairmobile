@@ -12,7 +12,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textFieldWidth;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *textFieldHeight;
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleLabelLeading;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentLabelTop;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentLabelLeading;
@@ -55,7 +55,7 @@
     _contentLabelLeading.constant = px_3(102);
 
     _titleLabel.font = [UIFont fontWithName:@"PingFang SC" size:px_3(52)];
-    _authorLabel.font = [UIFont fontWithName:@"PingFang SC" size:px_3(40)];
+
     _timeLabel.font = [UIFont fontWithName:@"PingFang SC" size:px_3(40)];
     _contentLabel.font = [UIFont fontWithName:@"PongFang SC" size:px_3(52)];
 
@@ -64,8 +64,6 @@
 {
     _titleText = [titleText copy];
     _titleLabel.text = [titleText copy];
-
-
 
 }
 

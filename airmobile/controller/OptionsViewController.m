@@ -151,7 +151,16 @@ static const NSString *OPTIONS_COLLECTIONVIEW_INDETIFIER = @"OPTIONS_COLLECTIONV
 }
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	return CGSizeMake((kScreenWidth-32)/4, 40);
+	NSString *content = @"";
+	if (_optionsType == OptionsTypeEvent) {
+		content = ((BasisInfoEventModel *)_collectionArray[indexPath.row]).event;
+
+	}else{
+		content = ((BasisInfoDictionaryModel *)_collectionArray[indexPath.row]).content;
+
+	}
+	CGSize size = [content boundingRectWithSize:CGSizeMake((kScreenWidth-32), CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont fontWithName:@"PingFang SC" size:15.0 ]} context:nil].size;
+	return CGSizeMake((kScreenWidth-32), size.height+8);
 }
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {

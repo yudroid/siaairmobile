@@ -17,10 +17,15 @@
 #import "TodayDutyViewController.h"
 #import "DutyModel.h"
 #import "ProductionTargetViewController.h"
+#import "SingleMessageViewController.h"
+#import "WeatherAirportController.h"
+
+#import <UMESDKKit/AirportFuctionWebViewController.h>
+#import <UMESDKKit/UMESDKApi.h>
 
 static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDENTIFIER";
 
-@interface FunctionViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface FunctionViewController ()<UITableViewDelegate,UITableViewDataSource,UMESDKApiDelegate>
 
 @property (nonatomic,strong) UITableView    *tableView;
 @property (nonatomic,strong) NSArray        *tableArray;
@@ -39,6 +44,9 @@ static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDEN
                                                  selectedType:TabBarSelectedTypeFunction
                                                      delegate:self];
     [self.view insertSubview:self.tabBarView aboveSubview:self.view];
+
+    [UMESDKApi setTestMode:NO];
+    [UMESDKApi registerApp:@"ume_d7d3218b16c74a9280ed25aded2fff29" andAppKey:@"383d05e19acf848d7f82f44a3bc31c29" andApiDelegate:self];
 }
 
 -(void)initTitleView
@@ -46,7 +54,7 @@ static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDEN
     //titleView订制
     [self titleViewInitWithHight:64];
     self.titleView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"home_title_bg.png"]];
-    [self titleViewAddTitleText:@"功能"];
+    [self titleViewAddTitleText:@"值班"];
 }
 -(void)initTable
 {
@@ -62,11 +70,39 @@ static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDEN
                                            bundle:nil]
      forCellReuseIdentifier:(NSString *)FUNCTION_TABLECELL_IDENTIFIER];
     _tableView.tableFooterView = [[UIView alloc]init];
-    _tableArray= @[@{@"name":@"通讯录",@"image":@"AddressBook"},
-                   @{@"name":@"值班表",@"image":@"WatchBill"},
-                   @{@"name":@"当日值班表",@"image":@"TodayDuty"}
-//                   @{@"name":@"生产指标",@"image":@"TodayDuty"}
-                   ];
+//    _tableArray= @[@{@"name":@"通讯录",@"image":@"AddressBook"},
+//                   @{@"name":@"值班表",@"image":@"WatchBill"},
+//                   @{@"name":@"当日值班表",@"image":@"TodayDuty"},
+//                   @{@"name":@"运营情况",@"image":@"WatchBill"},
+//                   @{@"name":@"天气信息",@"image":@"WatchBill"},
+//                   @{@"name":@"周边航线",@"image":@"WatchBill"}
+////                   @{@"name":@"生产指标",@"image":@"TodayDuty"}
+//                   ];
+
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    if ([CommonFunction hasFunction:FUNC_ADDRESS]) {
+        [mutableArray addObject:@{@"name":@"通讯录",@"image":@"AddressBook"}];
+    }
+    if ([CommonFunction hasFunction:FUNC_DUTYTABLE]) {
+        [mutableArray addObject:@{@"name":@"值班表",@"image":@"WatchBill"}];
+    }
+    if ([CommonFunction hasFunction:FUNC_TODAYDUTY]) {
+        [mutableArray addObject:@{@"name":@"当日值班表",@"image":@"TodayDuty"}];
+    }
+    if ([CommonFunction hasFunction:FUNC_TARGET]) {
+        [mutableArray addObject:@{@"name":@"生产指标",@"image":@"TodayDuty"}];
+    }
+    if ([CommonFunction hasFunction:FUNC_YYQK]) {
+        [mutableArray addObject: @{@"name":@"运营情况",@"image":@"WatchBill"}];
+    }
+    if ([CommonFunction hasFunction:FUNC_TQXX]) {
+        [mutableArray addObject:@{@"name":@"天气信息",@"image":@"WatchBill"}];
+    }
+    if ([CommonFunction hasFunction:FUNC_ZBHX]) {
+        [mutableArray addObject:@{@"name":@"周边航线",@"image":@"WatchBill"}];
+    }
+    _tableArray = [mutableArray copy];
+
     [self.view addSubview:_tableView];
 }
 
@@ -121,6 +157,28 @@ static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDEN
         [self.navigationController pushViewController:productionTargetVC
                                              animated:YES];
     }
+    else if ([name isEqualToString:@"天气信息"]){
+//        [HttpUtils accessLog:[HttpUtils userName] funcName:@"天气信息" success:nil failure:nil];
+        WeatherAirportController* controller = [[WeatherAirportController alloc] init];
+        controller.airportCode = localAirportIata;
+        controller.functionId = @"weather";
+        controller.title = @"天气信息";
+        [self.navigationController pushViewController:controller animated:YES];
+    }else if ([name isEqualToString:@"运营情况"]){
+//        [HttpUtils accessLog:[HttpUtils userName] funcName:@"运营情况" success:nil failure:nil];
+
+        WeatherAirportController* controller = [[WeatherAirportController alloc] init];
+        controller.airportCode = localAirportIata;
+        controller.functionId = @"information";
+        controller.title = @"运营情况";
+        [self.navigationController pushViewController:controller animated:YES];
+    }else if ([name isEqualToString:@"周边航线"]){
+        WeatherAirportController* controller = [[WeatherAirportController alloc] init];
+        controller.airportCode = localAirportIata;
+        controller.functionId = @"route";
+        controller.title = @"周边航线";
+        [self.navigationController pushViewController:controller animated:YES];
+    }
 }
 
 #pragma mark - 切换底部主功能页面
@@ -135,8 +193,7 @@ static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDEN
         }
         case TabBarSelectedTypeMessage:
         {
-            MessageViewController *messagepage = [[MessageViewController alloc] init];
-            [self.navigationController pushViewController:messagepage animated:NO];
+            [self showMessageViewController];
             break;
         }
         case TabBarSelectedTypeFlight:
@@ -155,5 +212,26 @@ static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDEN
             break;
     }
 }
+
+-(void)showMessageViewController
+{
+    if([CommonFunction hasFunction:MSG_WORNING] && ![CommonFunction hasFunction:MSG_FLIGHT] && ![CommonFunction hasFunction:MSG_DIALOG]){
+        SingleMessageViewController *message = [[SingleMessageViewController alloc] init];
+        message.type = @"COMMAND";
+        [self.navigationController pushViewController:message animated:NO];
+    }else if(![CommonFunction hasFunction:MSG_WORNING] && [CommonFunction hasFunction:MSG_FLIGHT] && ![CommonFunction hasFunction:MSG_DIALOG]){
+        SingleMessageViewController *message = [[SingleMessageViewController alloc] init];
+        message.type = @"FLIGHT";
+        [self.navigationController pushViewController:message animated:NO];
+    }else{
+        MessageViewController *message = [[MessageViewController alloc] init];
+        [self.navigationController pushViewController:message animated:NO];
+    }
+}
+
+-(void)callBackWithResponse:(UMEBaseResponse *) response{
+    NSLog(@"back ----%@",response);
+}
+
 
 @end

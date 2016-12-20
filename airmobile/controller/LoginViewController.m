@@ -274,7 +274,6 @@
         [self toast:@"用户名不能为空"];
         return;
     }
-    
     if ([StringUtils isNullOrWhiteSpace:password]) {
         [self toast:@"密码不能为空"];
         return;
@@ -314,6 +313,7 @@
                 [DefaultHelper setString:password forKey:pwdKey];
                 AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
                 delegate.userInfoModel = user;
+//                delegate.userInfoModel.functions = @"10000000,20000000,30000000,30500000,40000000,50000000";
 
                 if (![[NSUserDefaults standardUserDefaults] boolForKey:@"NotFirst"]) {
                     LoadingView *loadingView = [[NSBundle mainBundle]loadNibNamed:@"LoadingView" owner:nil options:nil][0];

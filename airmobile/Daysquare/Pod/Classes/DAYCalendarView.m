@@ -536,8 +536,11 @@
         self.selectedIndicatorView.attachingView = sender;
     }
     
+
+    
     self->_selectedDate = [DAYUtils dateFromDateComponents:comps];
     [self sendActionsForControlEvents:UIControlEventValueChanged];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SelectedDate" object:nil];
 }
 
 - (void)updateCurrentVisibleRow {
@@ -662,11 +665,11 @@
     
     [self configureContentView];
     
-    self.contentView.transform = CGAffineTransformMakeTranslation(0, CGRectGetHeight(self.contentView.frame) / 3 * (direction ? 1 : -1));
+    self.contentView.transform = CGAffineTransformMakeTranslation(CGRectGetWidth(self.contentView.frame) / 3 * (direction ? 1 : -1), 0);
     self.contentView.alpha = 0;
     
     [UIView animateWithDuration:0.35 delay:0 usingSpringWithDamping:0.72 initialSpringVelocity:0 options:kNilOptions animations:^{
-        snapshotView.transform = CGAffineTransformMakeTranslation(0, -CGRectGetHeight(self.contentView.frame) / 2 * (direction ? 1 : -1));
+        snapshotView.transform = CGAffineTransformMakeTranslation(-CGRectGetWidth(self.contentView.frame) / 2 * (direction ? 1 : -1), 0);
         snapshotView.alpha = 0;
         
         self.selectedIndicatorView.transform = CGAffineTransformMakeScale(0, 0);

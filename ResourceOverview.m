@@ -97,7 +97,7 @@
                                                                    0,
                                                                    viewWidth(tenDayLabel),
                                                                    viewHeight(tenDayLabel))
-                                                   text:@"副机位"
+                                                   text:@"子机位"
                                                    font:33/2
                                           textAlignment:(NSTextAlignmentCenter)
                                            colorFromHex:0xFF17B9E8];

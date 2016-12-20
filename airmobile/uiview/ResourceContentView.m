@@ -323,9 +323,14 @@ const NSString *RESOURCECONTENT_TABLECELL_IDENTIFIER = @"RESOURCECONTENT_TABLECE
 -(void)showSeatUsedDetail:(UIButton *)sender
 {
     if (_type == ResourceContentViewTypeMain) {
-        [_delegate showSeatUsedMainDetailView];
+        if([CommonFunction hasFunction:OV_CRAFTSEAT_MAIN]){
+            [_delegate showSeatUsedMainDetailView];
+        }
+
     }else{
-        [_delegate showSeatUsedSubDetailView];
+        if ([CommonFunction hasFunction:OV_CRAFTSEAT_BRANCH]) {
+            [_delegate showSeatUsedSubDetailView];
+        }
     }
 
 

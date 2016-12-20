@@ -412,8 +412,11 @@ const NSString *PSNSAFETYCONTEN_TABLEVIEW_IDENTIFER = @"PSNSAFETYCONTEN_TABLEVIE
 
 -(void)showTop5DaysView:(NSNotification *)sender
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"showTop5DaysView"
-                                                        object:nil];
+    if([CommonFunction hasFunction:OV_PASSENGER_TOPFIVE]){
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"showTop5DaysView"
+                                                            object:nil];
+    }
+
 }
 
 

@@ -7,7 +7,7 @@
 //
 
 #import "NightShiftRoomViewController.h"
-#import <DAYCalendarView.h>
+#import "DAYCalendarView.h"
 #import "NightShiftRoomTableViewCell.h"
 #import "DutyModel.h"
 #import "HttpsUtils+Business.h"
@@ -57,6 +57,8 @@ static const NSString *NIGHTSHIFTROOM_TABLECELL_IDENTIFIER = @"NIGHTSHIFTROOM_TA
                                                  name:@"SelectedDate"
                                                object:nil];
 
+    [self UpdateNetwork];
+
 
 }
 
@@ -76,7 +78,8 @@ static const NSString *NIGHTSHIFTROOM_TABLECELL_IDENTIFIER = @"NIGHTSHIFTROOM_TA
     //设定时间格式,这里可以设置成自己需要的格式
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     //用[NSDate date]可以获取系统当前时间
-    NSString *currentDateStr = [dateFormatter stringFromDate:_calendarView.selectedDate];
+    NSDate *date = _calendarView.selectedDate?:[NSDate date];
+    NSString *currentDateStr = [dateFormatter stringFromDate:date];
     NSLog(@"%@",currentDateStr);
 
 

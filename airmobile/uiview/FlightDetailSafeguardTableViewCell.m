@@ -63,7 +63,7 @@
 
     if (specialModel.normalTime&&[specialModel.normalTime isKindOfClass:[NSString class]]&&![specialModel.normalTime isEqualToString:@""]) {
         [_starReportButton setTitle:specialModel.normalTime forState:UIControlStateNormal] ;
-        _statusLabel.enabled = NO;
+        _starReportButton.enabled = NO;
     }
 }
 

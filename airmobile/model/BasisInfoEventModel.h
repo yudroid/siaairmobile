@@ -12,7 +12,7 @@
 
 
 
-@property (nonatomic ,assign) int id;
+@property (nonatomic ,assign) int basisid;
 @property (nonatomic ,assign) int event_type;
 @property (nonatomic ,assign) int dispatch_type;
 @property (nonatomic ,assign) int event_level;

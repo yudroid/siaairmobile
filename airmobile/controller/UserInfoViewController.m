@@ -22,6 +22,7 @@
 #import "PersistenceUtils+Business.h"
 #import "LoginViewController.h"
 #import <FlyImage.h>
+#import "SingleMessageViewController.h"
 
 
 
@@ -59,9 +60,9 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     self.view.backgroundColor =  [CommonFunction colorFromHex:0XFFEBEBF1];
     // Do any additional setup after loading the view.
 
-    logoffButton = [[UIButton alloc]initWithFrame:CGRectMake((kScreenWidth-50)/2,
+    logoffButton = [[UIButton alloc]initWithFrame:CGRectMake((kScreenWidth-70)/2,
                                                              viewBotton(_tableView)+5,
-                                                             50,
+                                                             70,
                                                              30)];
 
     [logoffButton setTitle:@"注销" forState:UIControlStateNormal];
@@ -76,7 +77,7 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     //titleView订制
     [self titleViewInitWithHight:64];
     self.titleView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"home_title_bg.png"]];
-    [self titleViewAddTitleText:@"我的"];
+    [self titleViewAddTitleText:@"设置"];
 }
 -(void) initUserInfoView
 {
@@ -143,10 +144,19 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     _tableView.backgroundColor = [UIColor clearColor];
     [_tableView registerNib:[UINib nibWithNibName:@"UserInfoTableViewCell" bundle:nil] forCellReuseIdentifier:(NSString *)USERINFO_TABLECELL_IDENTIFIER];
     _tableView.tableFooterView = [[UIView alloc]init];
-    _tableArray= @[@{@"name":@"用户管理",@"image":@"UserManager"},
-                   @{@"name":@"消息过滤",@"image":@"AccessControl"},
-                   @{@"name":@"版本检测",@"image":@"VersionCheck"},
-                   @{@"name":@"更新基础数据",@"image":@"RefreshData"}];
+
+    
+    NSMutableArray *mutableArray = [NSMutableArray array];
+    [mutableArray addObject:@{@"name":@"用户管理",@"image":@"UserManager"}];
+    if ([CommonFunction hasFunction:SET_MSGFILTER]) {
+        [mutableArray addObject:@{@"name":@"通讯录",@"image":@"AddressBook"}];
+    }
+    if ([CommonFunction hasFunction:SET_VERSION]) {
+        [mutableArray addObject:@{@"name":@"值班表",@"image":@"WatchBill"}];
+    }
+    if ([CommonFunction hasFunction:SET_SYNCBASE]) {
+        [mutableArray addObject:@{@"name":@"当日值班表",@"image":@"TodayDuty"}];
+    }
     
     [self.view addSubview:_tableView];
 }
@@ -159,6 +169,7 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     if ([title isEqualToString:@"签到"]) {
         [HttpsUtils signIn:(int)appdelegate.userInfoModel.id
                    success:^(NSNumber *response) {
+                       appdelegate.userInfoModel.signStatus = @"已签到";
                         [cardButton setTitle:@"签退" forState:UIControlStateNormal];
                    }
                    failure:^(NSError *error) {
@@ -168,6 +179,7 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     }else if ([title isEqualToString:@"签退"]){
         [HttpsUtils signOut:(int)appdelegate.userInfoModel.id
                     success:^(NSNumber *response) {
+                        appdelegate.userInfoModel.signStatus = @"已签退";
                         [cardButton setTitle:@"完成" forState:UIControlStateNormal];
                     }
                     failure:^(NSError *error) {
@@ -239,8 +251,9 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
         [self.navigationController pushViewController:messageFilterVC animated:YES];
 
     }else if ([name isEqualToString:@"版本检测"]){
-        [self showAnimationTitle:@"正在进行版本检测"];
 
+
+        [self showAnimationTitle:@"正在进行版本检测"];
     }else if ([name isEqualToString:@"更新基础数据"]){
 #if __IPHONE_OS_VERSION_MAX_ALLOWED == __IPHONE_8_3
         UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
@@ -298,8 +311,7 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
         }
         case TabBarSelectedTypeMessage:
         {
-            MessageViewController *messagepage = [[MessageViewController alloc] init];
-            [self.navigationController pushViewController:messagepage animated:NO];
+            [self showMessageViewController];
             break;
         }
         case TabBarSelectedTypeFunction:
@@ -313,6 +325,21 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     }
 }
 
+-(void)showMessageViewController
+{
+    if([CommonFunction hasFunction:MSG_WORNING] && ![CommonFunction hasFunction:MSG_FLIGHT] && ![CommonFunction hasFunction:MSG_DIALOG]){
+        SingleMessageViewController *message = [[SingleMessageViewController alloc] init];
+        message.type = @"COMMAND";
+        [self.navigationController pushViewController:message animated:NO];
+    }else if(![CommonFunction hasFunction:MSG_WORNING] && [CommonFunction hasFunction:MSG_FLIGHT] && ![CommonFunction hasFunction:MSG_DIALOG]){
+        SingleMessageViewController *message = [[SingleMessageViewController alloc] init];
+        message.type = @"FLIGHT";
+        [self.navigationController pushViewController:message animated:NO];
+    }else{
+        MessageViewController *message = [[MessageViewController alloc] init];
+        [self.navigationController pushViewController:message animated:NO];
+    }
+}
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {

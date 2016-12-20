@@ -18,6 +18,7 @@
 @property (nonatomic, assign) Boolean isAD;
 @property (nonatomic, assign) int tag;
 @property (nonatomic, assign) NSString *normalTime;
+@property (nonatomic, strong) NSString *safeguardDepart;
 
 
 @end

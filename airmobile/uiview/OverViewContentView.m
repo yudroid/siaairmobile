@@ -11,6 +11,7 @@
 #import "TagView.h"
 #import "SummaryModel.h"
 #import "NightShiftRoomViewController.h"
+#import "HomePageService.h"
 
 @interface OverViewContentView ()
 
@@ -34,12 +35,13 @@
 
 
 -(id)initWithFrame:(CGRect)                         frame
-      summaryModel:(SummaryModel *)                 summaryModel
           delegate:(id<OverviewContentViewDelegate>)delegate
 {
     self = [super initWithFrame:frame];
     
     if(self){
+
+        SummaryModel *summaryModel = [HomePageService sharedHomePageService].summaryModel;
 
         float y = 0;
         _delegate = delegate;
@@ -270,6 +272,7 @@
         lowTimelabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 75, viewHeight(lowView))];
         lowTimelabel.text = summaryModel.flightDate;
 //        lowTimelabel.backgroundColor = [UIColor blackColor];
+        lowTimelabel.textAlignment = NSTextAlignmentCenter;
         lowTimelabel.adjustsFontSizeToFitWidth = YES;
 
         [lowView addSubview:lowTimelabel];
@@ -307,17 +310,23 @@
 #pragma mark - 事件
 -(void) showFlightHourView:(UIButton *)sender
 {
-    [_delegate showFlightHourView];
+    if([CommonFunction hasFunction:OV_WHOLE_ALLHOUR]){
+        [_delegate showFlightHourView];
+    }
 }
 
 -(void) showAlterIndicateView:(UIButton *)sender
 {
-    [_delegate showWorningIndicatorView];
+    if([CommonFunction hasFunction:OV_WHOLE_STATUS]){
+        [_delegate showWorningIndicatorView];
+    }
 }
 
 -(void) showRatioView:(UIButton *)sender
 {
-    [_delegate showReleasedRatioView];
+    if([CommonFunction hasFunction:OV_WHOLE_RELEASED]){
+        [_delegate showReleasedRatioView];
+    }
 }
 
 
@@ -345,13 +354,16 @@
 
 -(void) loadData:(NSNotification *)notification
 {
-    SummaryModel *summaryModel = notification.object;
 
-    if (![totalNumLabel.text isEqualToString:@"0"]) {
+
+    if (totalNumLabel.text!=nil&&
+        ![totalNumLabel.text isEqualToString:@""]&&
+        ![totalNumLabel.text isEqualToString:@"0"]) {
         return;
     }
 
 
+    SummaryModel *summaryModel = notification.object;
     calendarLabel.text  = summaryModel.flightDate;
     CGSize maxLabelSize = CGSizeMake(100, CGFLOAT_MAX);
     CGSize expectSize           = [calendarLabel sizeThatFits:maxLabelSize];

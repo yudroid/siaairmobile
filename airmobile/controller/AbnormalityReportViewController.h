@@ -10,6 +10,13 @@
 @class BasisInfoEventModel;
 @class BasisInfoDictionaryModel;
 
+
+typedef NS_ENUM(NSUInteger, ReportState) {
+    ReportStateNoStart,
+    ReportStateStarted,
+    ReportStateCompleted
+};
+
 @interface AbnormalityReportViewController : RootViewController
 @property (weak, nonatomic) IBOutlet UIButton       *startReportButton;
 @property (weak, nonatomic) IBOutlet UIButton       *endReportButton;
@@ -28,5 +35,10 @@
 
 
 @property (nonatomic, assign) BOOL isSpecial;//是否特殊航班
+
+@property (nonatomic, assign) ReportState reportState;
+@property (nonatomic, assign) int abnormalId;
+
+@property (nonatomic, strong) NSString *title;
 
 @end

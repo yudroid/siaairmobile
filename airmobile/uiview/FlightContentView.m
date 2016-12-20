@@ -460,17 +460,23 @@
 }
 -(void) showArrFlightHourView:(UIButton *)sender
 {
-    [_delegate showFlightHourView:(ArrFlightHour)];
+    if ([CommonFunction hasFunction:OV_FLIGHT_ARRHOUR]) {
+        [_delegate showFlightHourView:(ArrFlightHour)];
+    }
 }
 
 -(void) showDepFlightHourView:(UIButton *)sender
 {
-    [_delegate showFlightHourView:(DepFlightHour)];
+    if([CommonFunction hasFunction:OV_FLIGHT_DEPHOUR]){
+        [_delegate showFlightHourView:(DepFlightHour)];
+    }
 }
 
 -(void) showAbnRsnAndDlyTime:(UIButton *)sender
 {
-    [_delegate showFlightAbnnormalView];
+    if ([CommonFunction hasFunction:OV_FLIGHT_DEPABN]) {
+        [_delegate showFlightAbnnormalView];
+    }
 }
 
 -(void) updateShapeArray:(NSMutableArray *)array

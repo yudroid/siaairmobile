@@ -12,8 +12,6 @@
 
 @interface ReleasedRatioViewController ()
 
-@property (nonatomic, strong) NSMutableArray<ReleasedRatioModel *> *tenDayReleased;// 近10的放行正常率
-@property (nonatomic, strong) NSMutableArray<ReleasedRatioModel *> *yearReleased;// 今年放行正常率
 
 @end
 
@@ -26,17 +24,7 @@
     UIView *segmentedView;
 }
 
--(instancetype)initWithTenDayDataArray:(NSArray<ReleasedRatioModel *> *)tenDayDataArray
-                         yearDataArray:(NSArray<ReleasedRatioModel *> *)yearDataArray
-{
-    self = [super init];
-    if (self) {
-        _tenDayReleased = [tenDayDataArray copy];
-        _yearReleased = [yearDataArray copy];
-    }
-    return self;
 
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -77,7 +65,7 @@
     if (dayString &&[dayString isKindOfClass:[NSString class]]&& ![dayString isEqualToString:@""]) {
 
     }else{
-        dayString = [NSString stringWithFormat:@"最近%lu天",(unsigned long)_tenDayReleased.count];
+        dayString = [NSString stringWithFormat:@"最近%lu天",(unsigned long)[HomePageService sharedHomePageService].summaryModel.tenDayReleased.count];
     }
     tenDayLabel = [CommonFunction addLabelFrame:CGRectMake(0,
                                                            0,
@@ -114,7 +102,7 @@
     if (monthString &&[monthString isKindOfClass:[NSString class]]&& ![monthString isEqualToString:@""]) {
 
     }else{
-        monthString = [NSString stringWithFormat:@"最近%lu个月",(unsigned long)_yearReleased.count];
+        monthString = [NSString stringWithFormat:@"最近%lu个月",(unsigned long)[HomePageService sharedHomePageService].summaryModel.yearReleased.count];
     }
 
     eightMonthLabel = [CommonFunction addLabelFrame:CGRectMake(0,
@@ -177,8 +165,7 @@
         tenDayRatioView = [[TenDayRatioView alloc] initWithFrame:CGRectMake(0,
                                                                             viewBotton(segmentedView) +13 ,
                                                                             kScreenWidth,
-                                                                            kScreenHeight-110)
-                                                       dataArray:_tenDayReleased];
+                                                                            kScreenHeight-110)];
         [self.view addSubview:tenDayRatioView];
         eightMonthRatioView = nil;
     }
@@ -195,8 +182,7 @@
         eightMonthRatioView = [[EightMonthRatioView alloc] initWithFrame:CGRectMake(0,
                                                                                     viewBotton(segmentedView) +13 ,
                                                                                     kScreenWidth,
-                                                                                    kScreenHeight-110)
-                               dataArray:_yearReleased];
+                                                                                    kScreenHeight-110)];
 
         [self.view addSubview:eightMonthRatioView];
         tenDayRatioView = nil;

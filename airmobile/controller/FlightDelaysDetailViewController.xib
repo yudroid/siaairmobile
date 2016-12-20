@@ -14,6 +14,7 @@
                 <outlet property="contentLabelLeading" destination="hpE-P1-oZ5" id="e1G-pt-mpx"/>
                 <outlet property="contentLabelTop" destination="dXt-tg-arV" id="1zq-gM-lD5"/>
                 <outlet property="textFieldWidth" destination="pGo-A0-IlK" id="IDa-pd-8m8"/>
+                <outlet property="timeLabel" destination="iDl-dT-sqY" id="Aan-aO-IYq"/>
                 <outlet property="titleLabel" destination="0Sp-es-Ua2" id="9dp-E3-Xvc"/>
                 <outlet property="titleLabelLeading" destination="lcp-68-kUw" id="1dX-2y-aE3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -25,17 +26,17 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JyL-LJ-1xZ">
-                    <rect key="frame" x="0.0" y="64" width="375" height="3.5"/>
+                    <rect key="frame" x="0.0" y="64" width="375" height="4"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="3.5" id="1bq-iY-HtB"/>
                     </constraints>
                 </view>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GiC-SN-dlc">
-                    <rect key="frame" x="0.0" y="67.5" width="375" height="599.5"/>
+                    <rect key="frame" x="0.0" y="68" width="375" height="599"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="大会发电和法律考试的返回拉萨法拉盛案说法啊加 爱了就发觉；案例介绍设计费；爱睡懒觉啊；剪短发；老费劲啊；费劲；埃及法；手机发； 激发；世界发达；手机发；手机发； 级沙发就是发生纠纷；安老师放假啊；发；司法局啊；十分骄傲" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xer-NP-hA3">
-                            <rect key="frame" x="31" y="130" width="326" height="126"/>
+                            <rect key="frame" x="31" y="117" width="326" height="126"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="326" id="pGo-A0-IlK"/>
                             </constraints>
@@ -44,41 +45,40 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fvh-1K-oUK">
-                            <rect key="frame" x="0.0" y="0.0" width="388" height="116"/>
+                            <rect key="frame" x="0.0" y="0.0" width="388" height="103"/>
                             <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="【T1航站】 发生大面积延误发生大面积延误发生大面积延误发生大面积延误发生大面积延误发生大面积延误发生大面积延误" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Sp-es-Ua2">
+                                    <rect key="frame" x="31" y="19" width="341" height="67.5"/>
+                                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="16"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iDl-dT-sqY">
+                                    <rect key="frame" x="31" y="94" width="341" height="0.0"/>
+                                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="15"/>
+                                    <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4GJ-My-s0L">
-                                    <rect key="frame" x="0.0" y="60.5" width="388" height="1"/>
+                                    <rect key="frame" x="0.0" y="102" width="388" height="1"/>
                                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="0.5" id="ZF0-mQ-0Jm"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="seI-Aq-Ct4">
-                                    <rect key="frame" x="0.0" y="115.5" width="388" height="0.5"/>
-                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="10K-hj-Jfd"/>
-                                        <constraint firstAttribute="height" constant="0.5" id="WUd-Yq-via"/>
-                                    </constraints>
-                                </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="【T1航站】 发生大面积延误发生大面积延误发生大面积延误发生大面积延误发生大面积延误发生大面积延误发生大面积延误" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Sp-es-Ua2">
-                                    <rect key="frame" x="31" y="19" width="341" height="22.5"/>
-                                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="16"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
+                                <constraint firstItem="4GJ-My-s0L" firstAttribute="top" secondItem="iDl-dT-sqY" secondAttribute="bottom" constant="8" id="000-jY-YxD"/>
+                                <constraint firstItem="0Sp-es-Ua2" firstAttribute="top" secondItem="Fvh-1K-oUK" secondAttribute="top" constant="19" id="8i8-ix-lkn"/>
                                 <constraint firstAttribute="trailing" secondItem="0Sp-es-Ua2" secondAttribute="trailing" constant="16" id="D2O-9x-q2v"/>
                                 <constraint firstAttribute="trailing" secondItem="4GJ-My-s0L" secondAttribute="trailing" id="RfK-nt-agB"/>
-                                <constraint firstAttribute="height" constant="116" id="Z0l-fa-ZgG"/>
-                                <constraint firstItem="0Sp-es-Ua2" firstAttribute="top" secondItem="Fvh-1K-oUK" secondAttribute="top" constant="19" id="Zq9-rG-Ar2"/>
-                                <constraint firstItem="4GJ-My-s0L" firstAttribute="top" secondItem="0Sp-es-Ua2" secondAttribute="bottom" constant="19" id="k79-lU-9Sx"/>
+                                <constraint firstAttribute="bottom" secondItem="4GJ-My-s0L" secondAttribute="bottom" id="buO-gR-kq8"/>
+                                <constraint firstAttribute="trailing" secondItem="iDl-dT-sqY" secondAttribute="trailing" constant="16" id="fZW-Rw-dpu"/>
                                 <constraint firstItem="4GJ-My-s0L" firstAttribute="leading" secondItem="Fvh-1K-oUK" secondAttribute="leading" id="kjC-dx-Czd"/>
                                 <constraint firstItem="0Sp-es-Ua2" firstAttribute="leading" secondItem="Fvh-1K-oUK" secondAttribute="leading" constant="31" id="lcp-68-kUw"/>
-                                <constraint firstAttribute="trailing" secondItem="seI-Aq-Ct4" secondAttribute="trailing" id="lxX-Yw-PMU"/>
-                                <constraint firstItem="seI-Aq-Ct4" firstAttribute="leading" secondItem="Fvh-1K-oUK" secondAttribute="leading" id="soH-PS-uUC"/>
+                                <constraint firstItem="iDl-dT-sqY" firstAttribute="top" secondItem="0Sp-es-Ua2" secondAttribute="bottom" constant="8" id="oWX-fh-mP9"/>
+                                <constraint firstItem="iDl-dT-sqY" firstAttribute="leading" secondItem="0Sp-es-Ua2" secondAttribute="leading" id="uXH-nL-fx3"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -105,7 +105,7 @@
                 <constraint firstItem="GiC-SN-dlc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="pe8-Ub-HHX"/>
                 <constraint firstItem="JyL-LJ-1xZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="q0u-zu-0bp"/>
             </constraints>
-            <point key="canvasLocation" x="25.5" y="52.5"/>
+            <point key="canvasLocation" x="-13.5" y="62.5"/>
         </view>
     </objects>
 </document>

@@ -10,6 +10,7 @@
 #import "PNBarChart.h"
 #import "ReleasedRatioModel.h"
 #import "RatioTableViewCell.h"
+#import "HomePageService.h"
 
 @implementation TenDayRatioView
 {
@@ -21,13 +22,12 @@
 }
 
 -(instancetype)initWithFrame:(CGRect)frame
-                   dataArray:(NSArray *)dataArray
 {
     self = [super initWithFrame:frame];
     
     if(self){
 
-        tenDayArray             = [dataArray copy];
+        tenDayArray             = [[HomePageService sharedHomePageService].summaryModel.tenDayReleased copy];
         CGFloat topBgViewWidth  = kScreenWidth-2*px2(22);
         UIView *topBgView       = [[UIView alloc] initWithFrame:CGRectMake(10,
                                                                      0,
@@ -106,7 +106,7 @@
                                                                      viewBotton(lineImageView)+4,
                                                                      50,
                                                                      12)
-                                                     text:@"120"
+                                                     text:@"100"
                                                      font:11
                                             textAlignment:NSTextAlignmentRight
                                              colorFromHex:0x75FFFFFF];
@@ -121,7 +121,7 @@
         barChart.showYLabel = NO;
         barChart.backgroundColor = [UIColor clearColor];
 
-        barChart.yMaxValue = 120;
+        barChart.yMaxValue = 100;
         barChart.yMinValue = 30;
         barChart.yChartLabelWidth = 20.0;
         barChart.chartMarginTop = 5.0;
@@ -220,6 +220,8 @@
     s = s/tenDayArray.count;
     return s;
 }
+
+
 
 -(void)loadData:(NSNotification *)notification
 {

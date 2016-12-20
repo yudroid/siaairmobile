@@ -1,0 +1,32 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "16C3F33DF3DFBF4472121021E238BCCF5AB5A444",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "6638ab2a-b73c-5a44-a86f-bfa468f79031++4330" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "16C3F33DF3DFBF4472121021E238BCCF5AB5A444" : 9223372036854775807,
+    "6638ab2a-b73c-5a44-a86f-bfa468f79031++4330" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "CA5CF304-55AA-4578-9E02-E831D1EFD53C",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "16C3F33DF3DFBF4472121021E238BCCF5AB5A444" : "airmobile\/",
+    "6638ab2a-b73c-5a44-a86f-bfa468f79031++4330" : "%E6%8E%8C%E4%B8%8A%E6%9C%BA%E5%9C%BA\/Geese\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "airmobile",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "airmobile.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/yangqlios\/siaairmobile.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "16C3F33DF3DFBF4472121021E238BCCF5AB5A444"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/192.168.163.208\/svn\/lwgoose",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "6638ab2a-b73c-5a44-a86f-bfa468f79031++4330"
+    }
+  ]
+}

@@ -16,7 +16,6 @@
 #import "HttpsUtils+Business.h"
 #import "FlightDetailModel.h"
 #import "SafeguardModel.h"
-
 #import "SpecialModel.h"
 #import "AppDelegate.h"
 
@@ -50,7 +49,9 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 @property (weak, nonatomic) IBOutlet UILabel *regionlabel;
 
 
+@property (weak, nonatomic) IBOutlet UIView *specialView;//特殊保障view
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tablViewTop;//普通保障
 
 
 @end
@@ -111,6 +112,13 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 }
 -(void)viewDidAppear:(BOOL)animated{
     [_safeguardTableView reloadData];
+
+    if (![CommonFunction hasFunction:FL_SPETIAL]) {
+        [self hideSpecialView];
+    }
+    if (![CommonFunction hasFunction:FL_NORMAL]) {
+        _tableViewHeight.constant = 0;
+    }
 }
 
 -(void)updateSpecialsTableView
@@ -146,6 +154,14 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
     }
     [_AirlineCollectionView reloadData];
 
+}
+
+//隐藏特殊保障环节
+-(void)hideSpecialView
+{
+    _specialView.hidden = YES;
+    _safeguardTableViewHeight = 0;
+    _tableViewHeight.constant = -37;
 }
 
 #pragma mark - UITableViewDelegate UITableViewDataSource
@@ -206,12 +222,17 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 #pragma mark - FlightDetailTableViewCellDelegate
 -(void)flightDetailTableViewCellUsualButtonClick:(UIButton *)sender
 {
-    CommonAbnormalityReportViewController *abnormalityReportVC=[[CommonAbnormalityReportViewController alloc] initWithNibName:@"AbnormalityReportViewController" bundle:nil];
-    abnormalityReportVC.flightID = flight.id;
-    abnormalityReportVC.SafeguardID = (int )dispatches[sender.tag].id;
-    abnormalityReportVC.isKeyFlight = YES;
-    [self.navigationController pushViewController:abnormalityReportVC
-                                         animated:YES];
+    if ([CommonFunction hasFunction:FL_NORMAL_REPORTABN]) {
+        CommonAbnormalityReportViewController *abnormalityReportVC=[[CommonAbnormalityReportViewController alloc] initWithNibName:@"AbnormalityReportViewController" bundle:nil];
+        abnormalityReportVC.title = @"异常上报";
+        abnormalityReportVC.flightID = flight.id;
+        abnormalityReportVC.SafeguardID = (int )dispatches[sender.tag].id;
+        abnormalityReportVC.isKeyFlight = YES;
+        abnormalityReportVC.DispatchType = DispatchType;
+        [self.navigationController pushViewController:abnormalityReportVC
+                                             animated:YES];
+    }
+
 }
 
 
@@ -270,30 +291,39 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 #pragma mark - FlightDetailSafeguardTableViewCellDelegate
 -(void)flightDetailSafeguardTableViewCellAbnormalButtonClick:(UIButton *)sender
 {
-    SpecialAbnormalityReportViewController *abnormalityReportVC=[[SpecialAbnormalityReportViewController alloc]initWithNibName:@"AbnormalityReportViewController" bundle:nil];
-    abnormalityReportVC.specialModel = specicals[sender.tag];
-    abnormalityReportVC.DispatchType = DispatchType;
-    abnormalityReportVC.isSpecial = self.isSpecial;
-    [self.navigationController pushViewController:abnormalityReportVC
-                                         animated:YES];
+    if ([CommonFunction hasFunction:FL_SPETIAL_REPROTABN]) {
+        SpecialAbnormalityReportViewController *abnormalityReportVC=[[SpecialAbnormalityReportViewController alloc]initWithNibName:@"AbnormalityReportViewController" bundle:nil];
+        abnormalityReportVC.title = @"特殊上报";
+        abnormalityReportVC.specialModel = specicals[sender.tag];
+        abnormalityReportVC.DispatchType = DispatchType;
+        abnormalityReportVC.isSpecial = self.isSpecial;
+        [self.navigationController pushViewController:abnormalityReportVC
+                                             animated:YES];
+
+    }
+
 }
 -(void)flightDetailSafeguardTableViewCellNormalButtonClick:(UIButton *)sender
 {
-    AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    [HttpsUtils saveDispatchNormal:flight.id
-                        dispatchId:specicals[sender.tag].id
-                            userId:(int)delegate.userInfoModel.id
-                           success:^(id responseObj) {
-                               [self showAnimationTitle:@"上报成功"];
-                               if (responseObj && [responseObj isKindOfClass:[NSString class]]) {
-                                   specicals[sender.tag].normalTime = responseObj;
-                                   specicals[sender.tag].tag = 1;
-                                   [_safeguardTableView reloadData];
-                               }
-    } failure:^(NSError *error) {
-        [self showAnimationTitle:@"上报失败"];
+    if ([CommonFunction hasFunction:FL_SPETIAL_REPORTNOR]) {
+        AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        [HttpsUtils saveDispatchNormal:flight.id
+                            dispatchId:specicals[sender.tag].id
+                                userId:(int)delegate.userInfoModel.id
+                               success:^(id responseObj) {
+                                   [self showAnimationTitle:@"上报成功"];
+                                   if (responseObj && [responseObj isKindOfClass:[NSString class]]) {
+                                       specicals[sender.tag].normalTime = responseObj;
+                                       specicals[sender.tag].tag = 1;
+                                       [_safeguardTableView reloadData];
+                                   }
+                               } failure:^(NSError *error) {
+                                   [self showAnimationTitle:@"上报失败"];
+                                   
+                               }];
 
-    }];
+    }
+
 
 
 }
@@ -304,30 +334,50 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
         [flight setValuesForKeysWithDictionary:responseObj];
         [self basicInfo];
     } failure:nil];
-    
-    [HttpsUtils getDispatchDetail:_flightId success:^(id responseObj) {
-        [dispatches removeAllObjects];
-        if([flight isNull:responseObj]){
-            return;
-        }
-        
-        for(id item in responseObj){
-            [dispatches addObject:[[SafeguardModel alloc] initWithDictionary:item]];
-        }
-        [self updateDispatchesTableView];
-    } failure:nil];
-    
-    [HttpsUtils getSpecialDetail:_flightId success:^(id responseObj) {
-        [specicals removeAllObjects];
-        if([flight isNull:responseObj]){
-            return;
-        }
-        
-        for(id item in responseObj){
-            [specicals addObject:[[SpecialModel alloc] initWithDictionary:item]];
-        }
-        [self updateSpecialsTableView];
-    } failure:nil];
+
+
+    //普通保障环节
+    if([CommonFunction hasFunction:FL_NORMAL]){
+        [HttpsUtils getDispatchDetail:_flightId success:^(id responseObj) {
+            [dispatches removeAllObjects];
+            if([flight isNull:responseObj]){
+                return;
+            }
+
+            for(id item in responseObj){
+                [dispatches addObject:[[SafeguardModel alloc] initWithDictionary:item]];
+            }
+            [self updateDispatchesTableView];
+        } failure:nil];
+
+    }
+
+
+    //特殊保障环节
+
+    if([CommonFunction hasFunction:FL_SPETIAL]){
+        [HttpsUtils getSpecialDetail:_flightId success:^(id responseObj) {
+            [specicals removeAllObjects];
+            if([flight isNull:responseObj]){
+                return;
+            }
+            AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+
+            NSLog(@"%@",appDelegate.userInfoModel.deptName);
+            for(id item in responseObj){
+                SpecialModel *model = [[SpecialModel alloc] initWithDictionary:item];
+
+                if ([model.safeguardDepart isEqualToString:appDelegate.userInfoModel.deptName]||
+                    [CommonFunction hasFunction:FL_ALLDISPATCH]) {//自己部门或者有检查权限
+                    [specicals addObject:model];
+                }
+                
+            }
+            [self updateSpecialsTableView];
+        } failure:nil];
+
+    }
+
 }
 
 @end

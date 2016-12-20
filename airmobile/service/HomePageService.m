@@ -269,14 +269,19 @@ singleton_implementation(HomePageService);
     } failure:nil];
 
 
-//    [self getUserSignStatus];
+    [self getUserSignStatus];
 }
 
 #pragma mark - 获取用户签到信息
 
 -(void)getUserSignStatus
 {
-    AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication];
+
+    AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+
+    if(appdelegate.userInfoModel.signStatus.length>0){
+        return ;
+    }
     [HttpsUtils isSigned:(int)appdelegate.userInfoModel.id
                  success:^(NSNumber *response) {
                      if (response.integerValue == 3) {

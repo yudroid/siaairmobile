@@ -21,14 +21,17 @@
 #import "PassengerTopViewController.h"
 #import "SeatUsedViewController.h"
 #import "HomePageService.h"
+
 #import "ResourceOverview.h"
+
+#import "SingleMessageViewController.h"
+
 
 
 @interface HomePageViewController ()
-//@property (nonatomic ,strong) SummaryModel      *summaryModel;
-//@property (nonatomic ,strong) FlightStusModel   *flighStusModel;
-//@property (nonatomic ,strong) PassengerModel    *passengerModel;
-//@property (nonatomic ,strong) SeatStatusModel   *seatStatusModel;
+
+@property (nonatomic, strong) NSArray *titleLabelArray;
+
 
 @end
 
@@ -90,108 +93,166 @@
 //    selectedLine = [CommonFunction addLine:CGRectMake(0, 0, kScreenWidth/4-16, 2.5) color:[UIColor redColor]];
 //    selectedLine.center = CGPointMake(kScreenWidth/8, 74);
 //    [titleLabelView addSubview:selectedLine];
+//    selectedLine = [[UIImageView alloc]initWithFrame:CGRectMake(0,
+//                                                                0,
+//                                                                kScreenWidth/4-16,
+//                                                                6)];
+//    selectedLine.center = CGPointMake(kScreenWidth/8, 74);
+//    selectedLine.image  = [UIImage imageNamed:@"SelectedLine"];
+//    [titleLabelView addSubview:selectedLine];
+//
+//    overviewLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
+//                                                              0,
+//                                                              kScreenWidth/4,
+//                                                              titleLableHeight)];//整体概览
+//    overviewLabel.center    = CGPointMake(kScreenWidth/8, 57);
+//    overviewLabel.textColor = [CommonFunction colorFromHex:0XFFFFFFFF];
+//    overviewLabel.text      = @"总体";
+//    overviewLabel.font      =  [UIFont fontWithName:@"PingFangSC-Regular"
+//                                          size:px2(37)];
+//    overviewLabel.textAlignment = NSTextAlignmentCenter;
+//    [titleLabelView addSubview:overviewLabel];
+//    
+//    UIButton *overviewBtn = [[UIButton alloc] initWithFrame:CGRectMake(0,
+//                                                                       0,
+//                                                                       kScreenWidth/4,
+//                                                                       50)];
+//    overviewBtn.center  = CGPointMake(kScreenWidth/8, 57);
+//    overviewBtn.tag     = 0;
+//    [overviewBtn addTarget:self
+//                    action:@selector(titleButtonClickedWithSender:)
+//          forControlEvents:UIControlEventTouchUpInside];
+//    //    overviewBtn.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.5];//显示按键范围
+//    [titleLabelView addSubview:overviewBtn];
+//    
+//    
+//    flightLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
+//                                                            0,
+//                                                            kScreenWidth/4,
+//                                                            titleLableHeight)];//航班
+//    flightLabel.center          = CGPointMake(kScreenWidth*3/8, 57);
+//    flightLabel.textColor       = [CommonFunction colorFromHex:0X7FFFFFFF];
+//    flightLabel.text            = @"航班";
+//    flightLabel.textAlignment   = NSTextAlignmentCenter;
+//    flightLabel.font            =  [UIFont fontWithName:@"PingFangSC-Regular"
+//                                        size:px2(37)];
+//    [titleLabelView addSubview:flightLabel];
+//    
+//    UIButton *flightBtn = [[UIButton alloc] initWithFrame:CGRectMake(0,
+//                                                                     0,
+//                                                                     kScreenWidth/4,
+//                                                                     50)];
+//    flightBtn.center    = CGPointMake(kScreenWidth*3/8, 57);
+//    flightBtn.tag       = 1;
+//    [flightBtn addTarget:self
+//                  action:@selector(titleButtonClickedWithSender:)
+//        forControlEvents:UIControlEventTouchUpInside];
+//    //    securityBtn.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.5];//显示按键范围
+//    [titleLabelView addSubview:flightBtn];
+//    
+//    passengerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
+//                                                               0,
+//                                                               kScreenWidth/4,
+//                                                               titleLableHeight)];//旅客
+//    passengerLabel.center       = CGPointMake(kScreenWidth*5/8, 57);
+//    passengerLabel.textColor    = [CommonFunction colorFromHex:0X7FFFFFFF];
+//    passengerLabel.text         = @"旅客";
+//    passengerLabel.textAlignment= NSTextAlignmentCenter;
+//    passengerLabel.font         =  [UIFont fontWithName:@"PingFangSC-Regular"
+//                                           size:px2(37)];
+//    [titleLabelView addSubview:passengerLabel];
+//    
+//    UIButton *passengerBtn      = [[UIButton alloc] initWithFrame:CGRectMake(0,
+//                                                                        0,
+//                                                                        kScreenWidth/4,
+//                                                                        50)];
+//    passengerBtn.center = CGPointMake(kScreenWidth*5/8, 57);
+//    passengerBtn.tag    = 2;
+//    [passengerBtn addTarget:self
+//                     action:@selector(titleButtonClickedWithSender:)
+//           forControlEvents:UIControlEventTouchUpInside];
+//    [titleLabelView addSubview:passengerBtn];
+//    
+//    resourceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
+//                                                              0,
+//                                                              kScreenWidth/4,
+//                                                              titleLableHeight)];//资源
+//    resourceLabel.center        = CGPointMake(kScreenWidth-kScreenWidth/8, 57);
+//    resourceLabel.textColor     = [CommonFunction colorFromHex:0X7FFFFFFF];
+//    resourceLabel.text          = @"机位";
+//    resourceLabel.textAlignment = NSTextAlignmentCenter;
+//    resourceLabel.font          = [UIFont fontWithName:@"PingFangSC-Regular"
+//                                                  size:px2(37)];
+//    [titleLabelView addSubview:resourceLabel];
+//    
+//    UIButton *resourceBtn   = [[UIButton alloc] initWithFrame:CGRectMake(0,
+//                                                                       0,
+//                                                                       kScreenWidth/4,
+//                                                                       50)];
+//    resourceBtn.center      = CGPointMake(kScreenWidth-kScreenWidth/8, 57);
+//    resourceBtn.tag         = 3;
+//    [resourceBtn addTarget:self
+//                    action:@selector(titleButtonClickedWithSender:)
+//          forControlEvents:UIControlEventTouchUpInside];
+//    [titleLabelView addSubview:resourceBtn];
+
+
+    NSArray *titleArray = @[@"总体",@"航班",@"旅客",@"机位"];
+    NSMutableArray *titleMutableArray = [[NSMutableArray alloc]initWithArray:titleArray];
+    if (![CommonFunction hasFunction:OV_CRAFTSEAT]){
+        [titleMutableArray removeObjectAtIndex:3];
+    }
+    if (![CommonFunction hasFunction:OV_PASSENGER]) {
+        [titleMutableArray removeObjectAtIndex:2];
+    }
+    if (![CommonFunction hasFunction:OV_FLIGHT]) {
+        [titleMutableArray removeObjectAtIndex:1];
+    }
+    if (![CommonFunction hasFunction:OV_WHOLE]) {
+        [titleMutableArray removeObjectAtIndex:0];
+    }
+
     selectedLine = [[UIImageView alloc]initWithFrame:CGRectMake(0,
                                                                 0,
-                                                                kScreenWidth/4-16,
+                                                                kScreenWidth/titleMutableArray.count-16,
                                                                 6)];
-    selectedLine.center = CGPointMake(kScreenWidth/8, 74);
+    selectedLine.center = CGPointMake(kScreenWidth/(titleMutableArray.count*2), 74);
     selectedLine.image  = [UIImage imageNamed:@"SelectedLine"];
     [titleLabelView addSubview:selectedLine];
 
-    overviewLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
-                                                              0,
-                                                              kScreenWidth/4,
-                                                              titleLableHeight)];//整体概览
-    overviewLabel.center    = CGPointMake(kScreenWidth/8, 57);
-    overviewLabel.textColor = [CommonFunction colorFromHex:0XFFFFFFFF];
-    overviewLabel.text      = @"总体";
-    overviewLabel.font      =  [UIFont fontWithName:@"PingFangSC-Regular"
-                                          size:px2(37)];
-    overviewLabel.textAlignment = NSTextAlignmentCenter;
-    [titleLabelView addSubview:overviewLabel];
-    
-    UIButton *overviewBtn = [[UIButton alloc] initWithFrame:CGRectMake(0,
-                                                                       0,
-                                                                       kScreenWidth/4,
-                                                                       50)];
-    overviewBtn.center  = CGPointMake(kScreenWidth/8, 57);
-    overviewBtn.tag     = 0;
-    [overviewBtn addTarget:self
-                    action:@selector(titleButtonClickedWithSender:)
-          forControlEvents:UIControlEventTouchUpInside];
-    //    overviewBtn.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.5];//显示按键范围
-    [titleLabelView addSubview:overviewBtn];
-    
-    
-    flightLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
-                                                            0,
-                                                            kScreenWidth/4,
-                                                            titleLableHeight)];//航班
-    flightLabel.center          = CGPointMake(kScreenWidth*3/8, 57);
-    flightLabel.textColor       = [CommonFunction colorFromHex:0X7FFFFFFF];
-    flightLabel.text            = @"航班";
-    flightLabel.textAlignment   = NSTextAlignmentCenter;
-    flightLabel.font            =  [UIFont fontWithName:@"PingFangSC-Regular"
-                                        size:px2(37)];
-    [titleLabelView addSubview:flightLabel];
-    
-    UIButton *flightBtn = [[UIButton alloc] initWithFrame:CGRectMake(0,
-                                                                     0,
-                                                                     kScreenWidth/4,
-                                                                     50)];
-    flightBtn.center    = CGPointMake(kScreenWidth*3/8, 57);
-    flightBtn.tag       = 1;
-    [flightBtn addTarget:self
-                  action:@selector(titleButtonClickedWithSender:)
-        forControlEvents:UIControlEventTouchUpInside];
-    //    securityBtn.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.5];//显示按键范围
-    [titleLabelView addSubview:flightBtn];
-    
-    passengerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
-                                                               0,
-                                                               kScreenWidth/4,
-                                                               titleLableHeight)];//旅客
-    passengerLabel.center       = CGPointMake(kScreenWidth*5/8, 57);
-    passengerLabel.textColor    = [CommonFunction colorFromHex:0X7FFFFFFF];
-    passengerLabel.text         = @"旅客";
-    passengerLabel.textAlignment= NSTextAlignmentCenter;
-    passengerLabel.font         =  [UIFont fontWithName:@"PingFangSC-Regular"
-                                           size:px2(37)];
-    [titleLabelView addSubview:passengerLabel];
-    
-    UIButton *passengerBtn      = [[UIButton alloc] initWithFrame:CGRectMake(0,
-                                                                        0,
-                                                                        kScreenWidth/4,
-                                                                        50)];
-    passengerBtn.center = CGPointMake(kScreenWidth*5/8, 57);
-    passengerBtn.tag    = 2;
-    [passengerBtn addTarget:self
-                     action:@selector(titleButtonClickedWithSender:)
-           forControlEvents:UIControlEventTouchUpInside];
-    [titleLabelView addSubview:passengerBtn];
-    
-    resourceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
-                                                              0,
-                                                              kScreenWidth/4,
-                                                              titleLableHeight)];//资源
-    resourceLabel.center        = CGPointMake(kScreenWidth-kScreenWidth/8, 57);
-    resourceLabel.textColor     = [CommonFunction colorFromHex:0X7FFFFFFF];
-    resourceLabel.text          = @"机位";
-    resourceLabel.textAlignment = NSTextAlignmentCenter;
-    resourceLabel.font          = [UIFont fontWithName:@"PingFangSC-Regular"
-                                                  size:px2(37)];
-    [titleLabelView addSubview:resourceLabel];
-    
-    UIButton *resourceBtn   = [[UIButton alloc] initWithFrame:CGRectMake(0,
-                                                                       0,
-                                                                       kScreenWidth/4,
-                                                                       50)];
-    resourceBtn.center      = CGPointMake(kScreenWidth-kScreenWidth/8, 57);
-    resourceBtn.tag         = 3;
-    [resourceBtn addTarget:self
-                    action:@selector(titleButtonClickedWithSender:)
-          forControlEvents:UIControlEventTouchUpInside];
-    [titleLabelView addSubview:resourceBtn];
+
+    NSMutableArray *labelArray = [NSMutableArray array];
+    for (int i = 0 ; i<titleMutableArray.count; i++) {
+
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(i*kScreenWidth/titleMutableArray.count, 30, kScreenWidth/titleMutableArray.count, titleHeight-30)];
+        label.textColor = [CommonFunction colorFromHex:0XFFFFFFFF];
+        label.text      = titleMutableArray[i];
+        label.font      =  [UIFont fontWithName:@"PingFangSC-Regular"
+                                                   size:px2(37)];
+        label.textAlignment = NSTextAlignmentCenter;
+        [titleLabelView addSubview:label];
+
+//        label.backgroundColor = [UIColor greenColor];
+
+
+        [labelArray addObject:label];
+
+
+        UIButton *button = [[UIButton alloc] initWithFrame:label.frame];
+        button.tag     = i;
+        [button addTarget:self
+                        action:@selector(titleButtonClickedWithSender:)
+              forControlEvents:UIControlEventTouchUpInside];
+        //    overviewBtn.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.5];//显示按键范围
+        [titleLabelView addSubview:button];
+
+
+    }
+    _titleLabelArray = [labelArray copy];
+    if (_titleLabelArray.count>0) {
+        ((UILabel *)_titleLabelArray[0]).textColor = [CommonFunction colorFromHex:0XbFFFFFFF];
+    }
+
 
 }
 
@@ -203,46 +264,65 @@
  */
 -(void) titleButtonClickedWithSender:(UIButton *)sender
 {
-    overviewLabel.textColor     = [CommonFunction colorFromHex:0XbFFFFFFF];
-    flightLabel.textColor       = [CommonFunction colorFromHex:0XbFFFFFFF];
-    passengerLabel.textColor    = [CommonFunction colorFromHex:0xbFFFFFFF];
-    resourceLabel.textColor     = [CommonFunction colorFromHex:0XbFFFFFFF];
+    for (UILabel *label in _titleLabelArray) {
+        label.textColor = [CommonFunction colorFromHex:0XbFFFFFFF];
+    }
     
     [self removeAllView];
-    
-    switch (sender.tag)
-    {
-        case 0:
-            selectedLine.center     = CGPointMake(kScreenWidth/8, 74);
-            overviewLabel.textColor = [CommonFunction colorFromHex:0XFFFFFFFF];
-            homePageType            = HomePageTypeOverview;
-            [self showOverviewContentView];
-            break;
-            
-        case 1:
-            selectedLine.center     = CGPointMake(kScreenWidth*3/8, 74);
-            flightLabel.textColor   = [CommonFunction colorFromHex:0XFFFFFFFF];
-            homePageType            = HomePageTypeFlight;
-            [self showFlightContentView];
-            break;
-            
-        case 2:
-            selectedLine.center         = CGPointMake(kScreenWidth*5/8, 74);
-            passengerLabel.textColor    = [CommonFunction colorFromHex:0XFFFFFFFF];
-            homePageType                = HomePageTypePassenger;
-            [self showPassengerContentView];
-            break;
-            
-        case 3:
-            selectedLine.center         = CGPointMake(kScreenWidth-kScreenWidth/8, 74);
-            resourceLabel.textColor     = [CommonFunction colorFromHex:0XFFFFFFFF];
-            homePageType                = HomePageTypeResource;
-            [self showResourceContentView];
-            break;
-            
-        default:
-            break;
+
+    selectedLine.center     = CGPointMake(kScreenWidth/(_titleLabelArray.count*2) *(sender.tag*2+1), 74);
+    ((UILabel *)_titleLabelArray[sender.tag]).textColor = [CommonFunction colorFromHex:0XFFFFFFFF];
+
+    NSString *title = ((UILabel *)_titleLabelArray[sender.tag]).text;
+
+
+    if ([title isEqualToString:@"总体"]) {
+        homePageType = HomePageTypeOverview;
+        [self showOverviewContentView];
+    }else if([title isEqualToString:@"航班"]){
+        homePageType = HomePageTypeFlight;
+        [self showFlightContentView];
+    }else if([title isEqualToString:@"旅客"]){
+        homePageType = HomePageTypePassenger;
+        [self showPassengerContentView];
+    }else if([title isEqualToString:@"机位"]){
+        homePageType = HomePageTypeResource;
+        [self showResourceContentView];
     }
+
+//    switch (sender.tag)
+//    {
+//        case 0:
+//            selectedLine.center     = CGPointMake(kScreenWidth/(_titleLabelArray.count*2) *(sender.tag*2+1), 74);
+//            tit.textColor = [CommonFunction colorFromHex:0XFFFFFFFF];
+//            homePageType            = HomePageTypeOverview;
+//            [self showOverviewContentView];
+//            break;
+//            
+//        case 1:
+//            selectedLine.center     = CGPointMake(kScreenWidth/(_titleLabelArray.count*2) *(sender.tag*2+1), 74);
+//            flightLabel.textColor   = [CommonFunction colorFromHex:0XFFFFFFFF];
+//            homePageType            = HomePageTypeFlight;
+//            [self showFlightContentView];
+//            break;
+//            
+//        case 2:
+//            selectedLine.center         = CGPointMake(kScreenWidth/(_titleLabelArray.count*2) *(sender.tag*2+1), 74);
+//            passengerLabel.textColor    = [CommonFunction colorFromHex:0XFFFFFFFF];
+//            homePageType                = HomePageTypePassenger;
+//            [self showPassengerContentView];
+//            break;
+//            
+//        case 3:
+//            selectedLine.center         = CGPointMake(kScreenWidth/(_titleLabelArray.count*2) *(sender.tag*2+1), 74);
+//            resourceLabel.textColor     = [CommonFunction colorFromHex:0XFFFFFFFF];
+//            homePageType                = HomePageTypeResource;
+//            [self showResourceContentView];
+//            break;
+//            
+//        default:
+//            break;
+//    }
 }
 
 
@@ -263,7 +343,7 @@
                                                                                     self.titleView.frame.size.height,
                                                                                     kScreenWidth,
                                                                                     kScreenHeight-viewHeight(self.titleView)-viewHeight(self.tabBarView))
-                                                           summaryModel:[HomePageService sharedHomePageService].summaryModel
+
                                                                delegate:self];
         [self.view addSubview:overviewContentView];
     }
@@ -375,9 +455,7 @@
         }
         case TabBarSelectedTypeMessage:
         {
-            MessageViewController *messagepage = [[MessageViewController alloc] init];
-            [self.navigationController pushViewController:messagepage
-                                                 animated:NO];
+            [self showMessageViewController];
             break;
         }
         case TabBarSelectedTypeFunction:
@@ -399,6 +477,22 @@
     }
 }
 
+-(void)showMessageViewController
+{
+    if([CommonFunction hasFunction:MSG_WORNING] && ![CommonFunction hasFunction:MSG_FLIGHT] && ![CommonFunction hasFunction:MSG_DIALOG]){
+        SingleMessageViewController *message = [[SingleMessageViewController alloc] init];
+        message.type = @"COMMAND";
+        [self.navigationController pushViewController:message animated:NO];
+    }else if(![CommonFunction hasFunction:MSG_WORNING] && [CommonFunction hasFunction:MSG_FLIGHT] && ![CommonFunction hasFunction:MSG_DIALOG]){
+        SingleMessageViewController *message = [[SingleMessageViewController alloc] init];
+        message.type = @"FLIGHT";
+        [self.navigationController pushViewController:message animated:NO];
+    }else{
+        MessageViewController *message = [[MessageViewController alloc] init];
+        [self.navigationController pushViewController:message animated:NO];
+    }
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -411,8 +505,7 @@
  */
 -(void) showReleasedRatioView
 {
-    ReleasedRatioViewController *ratio = [[ReleasedRatioViewController alloc] initWithTenDayDataArray:[HomePageService sharedHomePageService].summaryModel.tenDayReleased
-                                                                                        yearDataArray:[HomePageService sharedHomePageService].summaryModel.yearReleased];
+    ReleasedRatioViewController *ratio = [[ReleasedRatioViewController alloc] init];
     [self.navigationController pushViewController:ratio
                                          animated:YES];
 }

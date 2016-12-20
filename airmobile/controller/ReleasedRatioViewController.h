@@ -21,7 +21,4 @@
     
 }
 
--(instancetype)initWithTenDayDataArray:(NSArray<ReleasedRatioModel *> *)tenDayDataArray
-                         yearDataArray:(NSArray<ReleasedRatioModel *> *)yearDataArray;
-
 @end

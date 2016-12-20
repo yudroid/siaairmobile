@@ -48,7 +48,6 @@
 }
 
 -(id)initWithFrame:(CGRect)                         frame
-      summaryModel:(SummaryModel *)                 summaryModel
           delegate:(id<OverviewContentViewDelegate>)delegate;
 
 @end

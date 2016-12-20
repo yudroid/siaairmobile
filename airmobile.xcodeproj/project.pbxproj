@@ -93,6 +93,8 @@
 		846F1DAE1DAA229600C8920B /* DefaultHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 846F1DAD1DAA229600C8920B /* DefaultHelper.m */; };
 		846F1DC11DAA2E3400C8920B /* launchScreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 846F1DC01DAA2E3400C8920B /* launchScreen@2x.png */; };
 		846F1DC31DAA2E3B00C8920B /* launchScreen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 846F1DC21DAA2E3B00C8920B /* launchScreen@3x.png */; };
+		8471FBCB1E055BEC0037F9F5 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8471FBCA1E055BEC0037F9F5 /* Constants.m */; };
+		8471FBCE1E056F6F0037F9F5 /* SingleMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8471FBCD1E056F6F0037F9F5 /* SingleMessageViewController.m */; };
 		8473A5241DB4DAE800A8DCE2 /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8473A5231DB4DAE800A8DCE2 /* calendar.png */; };
 		84919D731DC9FD6500C6F5DE /* HomePageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 84919D721DC9FD6500C6F5DE /* HomePageService.m */; };
 		84919D761DC9FD7B00C6F5DE /* MessageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 84919D751DC9FD7B00C6F5DE /* MessageService.m */; };
@@ -164,6 +166,19 @@
 		F758C9941DC3634D00556120 /* AlertIndicateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84183A141DBDDDBE00D7DD86 /* AlertIndicateViewController.m */; };
 		F758C9C01DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F758C9BE1DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.m */; };
 		F758C9C11DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F758C9BF1DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.xib */; };
+		F764BBFC1E07C91D00CE252F /* WeatherAirportController.m in Sources */ = {isa = PBXBuildFile; fileRef = F764BBFB1E07C91D00CE252F /* WeatherAirportController.m */; };
+		F7680B111E07CC4F000B8C0D /* UMESDKKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7680B101E07CC4F000B8C0D /* UMESDKKit.framework */; };
+		F77497001E0773EA00B5773C /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = F77496EB1E0773EA00B5773C /* next.png */; };
+		F77497011E0773EA00B5773C /* next@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F77496EC1E0773EA00B5773C /* next@2x.png */; };
+		F77497021E0773EA00B5773C /* next@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F77496ED1E0773EA00B5773C /* next@3x.png */; };
+		F77497031E0773EA00B5773C /* prev.png in Resources */ = {isa = PBXBuildFile; fileRef = F77496EE1E0773EA00B5773C /* prev.png */; };
+		F77497041E0773EA00B5773C /* prev@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F77496EF1E0773EA00B5773C /* prev@2x.png */; };
+		F77497051E0773EA00B5773C /* prev@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F77496F01E0773EA00B5773C /* prev@3x.png */; };
+		F77497061E0773EA00B5773C /* DAYCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = F77496F31E0773EA00B5773C /* DAYCalendarView.m */; };
+		F77497071E0773EA00B5773C /* DAYComponentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F77496F71E0773EA00B5773C /* DAYComponentView.m */; };
+		F77497081E0773EA00B5773C /* DAYIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = F77496F91E0773EA00B5773C /* DAYIndicatorView.m */; };
+		F77497091E0773EA00B5773C /* DAYNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F77496FB1E0773EA00B5773C /* DAYNavigationBar.m */; };
+		F774970A1E0773EA00B5773C /* DAYUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F77496FD1E0773EA00B5773C /* DAYUtils.m */; };
 		F78B13B01DF47938000A6833 /* ModifyPwd.xib in Resources */ = {isa = PBXBuildFile; fileRef = F78B13AD1DF47937000A6833 /* ModifyPwd.xib */; };
 		F78B13B11DF47938000A6833 /* ModifyPwdView.m in Sources */ = {isa = PBXBuildFile; fileRef = F78B13AF1DF47938000A6833 /* ModifyPwdView.m */; };
 		F78B13B41DF47946000A6833 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = F78B13B31DF47946000A6833 /* UIImage+ImageEffects.m */; };
@@ -438,6 +453,10 @@
 		846F1DAD1DAA229600C8920B /* DefaultHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DefaultHelper.m; path = utils/DefaultHelper.m; sourceTree = "<group>"; };
 		846F1DC01DAA2E3400C8920B /* launchScreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "launchScreen@2x.png"; path = "resources/launchScreen@2x.png"; sourceTree = "<group>"; };
 		846F1DC21DAA2E3B00C8920B /* launchScreen@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "launchScreen@3x.png"; path = "resources/launchScreen@3x.png"; sourceTree = "<group>"; };
+		8471FBC91E055BEC0037F9F5 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = utils/Constants.h; sourceTree = "<group>"; };
+		8471FBCA1E055BEC0037F9F5 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Constants.m; path = utils/Constants.m; sourceTree = "<group>"; };
+		8471FBCC1E056F6F0037F9F5 /* SingleMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleMessageViewController.h; sourceTree = "<group>"; };
+		8471FBCD1E056F6F0037F9F5 /* SingleMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleMessageViewController.m; sourceTree = "<group>"; };
 		8473A5231DB4DAE800A8DCE2 /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar.png; sourceTree = "<group>"; };
 		84919D711DC9FD6500C6F5DE /* HomePageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomePageService.h; path = service/HomePageService.h; sourceTree = "<group>"; };
 		84919D721DC9FD6500C6F5DE /* HomePageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomePageService.m; path = service/HomePageService.m; sourceTree = "<group>"; };
@@ -564,6 +583,26 @@
 		F758C9BD1DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbnormalityReportHistoryTableViewCell.h; sourceTree = "<group>"; };
 		F758C9BE1DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbnormalityReportHistoryTableViewCell.m; sourceTree = "<group>"; };
 		F758C9BF1DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AbnormalityReportHistoryTableViewCell.xib; sourceTree = "<group>"; };
+		F764BBFA1E07C91D00CE252F /* WeatherAirportController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherAirportController.h; sourceTree = "<group>"; };
+		F764BBFB1E07C91D00CE252F /* WeatherAirportController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherAirportController.m; sourceTree = "<group>"; };
+		F7680B101E07CC4F000B8C0D /* UMESDKKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMESDKKit.framework; sourceTree = "<group>"; };
+		F77496EB1E0773EA00B5773C /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = next.png; sourceTree = "<group>"; };
+		F77496EC1E0773EA00B5773C /* next@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "next@2x.png"; sourceTree = "<group>"; };
+		F77496ED1E0773EA00B5773C /* next@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "next@3x.png"; sourceTree = "<group>"; };
+		F77496EE1E0773EA00B5773C /* prev.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = prev.png; sourceTree = "<group>"; };
+		F77496EF1E0773EA00B5773C /* prev@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "prev@2x.png"; sourceTree = "<group>"; };
+		F77496F01E0773EA00B5773C /* prev@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "prev@3x.png"; sourceTree = "<group>"; };
+		F77496F21E0773EA00B5773C /* DAYCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAYCalendarView.h; sourceTree = "<group>"; };
+		F77496F31E0773EA00B5773C /* DAYCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAYCalendarView.m; sourceTree = "<group>"; };
+		F77496F41E0773EA00B5773C /* Daysquare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Daysquare.h; sourceTree = "<group>"; };
+		F77496F61E0773EA00B5773C /* DAYComponentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAYComponentView.h; sourceTree = "<group>"; };
+		F77496F71E0773EA00B5773C /* DAYComponentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAYComponentView.m; sourceTree = "<group>"; };
+		F77496F81E0773EA00B5773C /* DAYIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAYIndicatorView.h; sourceTree = "<group>"; };
+		F77496F91E0773EA00B5773C /* DAYIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAYIndicatorView.m; sourceTree = "<group>"; };
+		F77496FA1E0773EA00B5773C /* DAYNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAYNavigationBar.h; sourceTree = "<group>"; };
+		F77496FB1E0773EA00B5773C /* DAYNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAYNavigationBar.m; sourceTree = "<group>"; };
+		F77496FC1E0773EA00B5773C /* DAYUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAYUtils.h; sourceTree = "<group>"; };
+		F77496FD1E0773EA00B5773C /* DAYUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAYUtils.m; sourceTree = "<group>"; };
 		F78B13AD1DF47937000A6833 /* ModifyPwd.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ModifyPwd.xib; sourceTree = "<group>"; };
 		F78B13AE1DF47937000A6833 /* ModifyPwdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyPwdView.h; sourceTree = "<group>"; };
 		F78B13AF1DF47938000A6833 /* ModifyPwdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyPwdView.m; sourceTree = "<group>"; };
@@ -755,6 +794,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7680B111E07CC4F000B8C0D /* UMESDKKit.framework in Frameworks */,
 				F747F9361DD2B3B90099E7AF /* libsqlite3.0.tbd in Frameworks */,
 				6D859A9CB7F46A46E3C321A4 /* libPods-airmobile.a in Frameworks */,
 			);
@@ -795,6 +835,7 @@
 		414AFCB9EEEABA248FA28392 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F7680B101E07CC4F000B8C0D /* UMESDKKit.framework */,
 				F747F9351DD2B3B90099E7AF /* libsqlite3.0.tbd */,
 				B40A6E3BB15FEF8D72885961 /* libPods-airmobile.a */,
 				C8CF004928F1770818C25801 /* libPods-airmobileTests.a */,
@@ -996,6 +1037,8 @@
 				843F4CFA1DACCF2500D73D56 /* ThreadUtils.m */,
 				84ADE6D31DCC7B9300F58A46 /* PersistenceUtils.h */,
 				84ADE6D41DCC7B9300F58A46 /* PersistenceUtils.m */,
+				8471FBC91E055BEC0037F9F5 /* Constants.h */,
+				8471FBCA1E055BEC0037F9F5 /* Constants.m */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -1310,6 +1353,8 @@
 			children = (
 				F7A2A0451DB8D0590023F228 /* FunctionViewController.h */,
 				F7A2A0461DB8D0590023F228 /* FunctionViewController.m */,
+				F764BBFA1E07C91D00CE252F /* WeatherAirportController.h */,
+				F764BBFB1E07C91D00CE252F /* WeatherAirportController.m */,
 				F7EEEC5B1E00396C000D3056 /* TodayDutyViewController.h */,
 				F7EEEC5C1E00396C000D3056 /* TodayDutyViewController.m */,
 				F7EEEC5D1E00396C000D3056 /* TodayDutyViewController.xib */,
@@ -1342,6 +1387,8 @@
 				F70893E31DD2ECAD00135540 /* FlightDelaysDetailViewController.h */,
 				F70893E41DD2ECAD00135540 /* FlightDelaysDetailViewController.m */,
 				F70893E51DD2ECAD00135540 /* FlightDelaysDetailViewController.xib */,
+				8471FBCC1E056F6F0037F9F5 /* SingleMessageViewController.h */,
+				8471FBCD1E056F6F0037F9F5 /* SingleMessageViewController.m */,
 			);
 			name = Message;
 			sourceTree = "<group>";
@@ -1378,6 +1425,62 @@
 				F7A2A04A1DB8D0590023F228 /* LoginViewController.m */,
 			);
 			name = Login;
+			sourceTree = "<group>";
+		};
+		F77496E71E0773EA00B5773C /* Daysquare */ = {
+			isa = PBXGroup;
+			children = (
+				F77496E91E0773EA00B5773C /* Pod */,
+			);
+			path = Daysquare;
+			sourceTree = "<group>";
+		};
+		F77496E91E0773EA00B5773C /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				F77496EA1E0773EA00B5773C /* Assets */,
+				F77496F11E0773EA00B5773C /* Classes */,
+			);
+			path = Pod;
+			sourceTree = "<group>";
+		};
+		F77496EA1E0773EA00B5773C /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				F77496EB1E0773EA00B5773C /* next.png */,
+				F77496EC1E0773EA00B5773C /* next@2x.png */,
+				F77496ED1E0773EA00B5773C /* next@3x.png */,
+				F77496EE1E0773EA00B5773C /* prev.png */,
+				F77496EF1E0773EA00B5773C /* prev@2x.png */,
+				F77496F01E0773EA00B5773C /* prev@3x.png */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		F77496F11E0773EA00B5773C /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F77496F21E0773EA00B5773C /* DAYCalendarView.h */,
+				F77496F31E0773EA00B5773C /* DAYCalendarView.m */,
+				F77496F41E0773EA00B5773C /* Daysquare.h */,
+				F77496F51E0773EA00B5773C /* Internal */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		F77496F51E0773EA00B5773C /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				F77496F61E0773EA00B5773C /* DAYComponentView.h */,
+				F77496F71E0773EA00B5773C /* DAYComponentView.m */,
+				F77496F81E0773EA00B5773C /* DAYIndicatorView.h */,
+				F77496F91E0773EA00B5773C /* DAYIndicatorView.m */,
+				F77496FA1E0773EA00B5773C /* DAYNavigationBar.h */,
+				F77496FB1E0773EA00B5773C /* DAYNavigationBar.m */,
+				F77496FC1E0773EA00B5773C /* DAYUtils.h */,
+				F77496FD1E0773EA00B5773C /* DAYUtils.m */,
+			);
+			path = Internal;
 			sourceTree = "<group>";
 		};
 		F792513C1DB5EE01006AA119 /* 消息 */ = {
@@ -1438,6 +1541,7 @@
 		F7A25D561DBE274D00F36C32 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				F77496E71E0773EA00B5773C /* Daysquare */,
 				F7A25D571DBE277500F36C32 /* SJPhotoPicker */,
 			);
 			name = lib;
@@ -1721,6 +1825,7 @@
 				845055571DACF65200400EBF /* login_accounts@2x.png in Resources */,
 				840D15E91DC2FBCE005FA910 /* overview_toppsn@2x.png in Resources */,
 				840D15EA1DC2FBCE005FA910 /* overview_toppsn@3x.png in Resources */,
+				F77497021E0773EA00B5773C /* next@3x.png in Resources */,
 				84BA54F21DA256940037198F /* LaunchScreen.storyboard in Resources */,
 				8450555A1DACF65200400EBF /* login_bg@3x.png in Resources */,
 				845055751DACF65200400EBF /* splash_4@3x.png in Resources */,
@@ -1732,6 +1837,7 @@
 				8450556C1DACF65200400EBF /* splash@2x.png in Resources */,
 				F7EEEC5F1E00396C000D3056 /* TodayDutyViewController.xib in Resources */,
 				F792515A1DB61D9C006AA119 /* ContactPersonTableViewCell.xib in Resources */,
+				F77497041E0773EA00B5773C /* prev@2x.png in Resources */,
 				845055711DACF65200400EBF /* splash_2@3x.png in Resources */,
 				F792516E1DB63D62006AA119 /* ChatTimeTableViewCell.xib in Resources */,
 				F7EEEF221DB3A580004AF0AE /* FlightDetailTableViewCell.xib in Resources */,
@@ -1739,6 +1845,7 @@
 				F78B13B91DF47B4C000A6833 /* MessageFilterViewController.xib in Resources */,
 				845055B31DAE3F1A00400EBF /* home_title_bg@2x.png in Resources */,
 				846F1DC31DAA2E3B00C8920B /* launchScreen@3x.png in Resources */,
+				F77497001E0773EA00B5773C /* next.png in Resources */,
 				F758C9C11DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.xib in Resources */,
 				F79251551DB610D6006AA119 /* FixedMessageTableViewCell.xib in Resources */,
 				F7003E4E1DDC38540056F3DA /* TakePhotoCollectionViewCell.xib in Resources */,
@@ -1777,6 +1884,8 @@
 				F79251891DB781AB006AA119 /* NightShiftRoomViewController.xib in Resources */,
 				F7A25D861DBE277500F36C32 /* photopicker_back.png in Resources */,
 				8450556B1DACF65200400EBF /* logout.png in Resources */,
+				F77497011E0773EA00B5773C /* next@2x.png in Resources */,
+				F77497051E0773EA00B5773C /* prev@3x.png in Resources */,
 				845055701DACF65200400EBF /* splash_2@2x.png in Resources */,
 				845055651DACF65200400EBF /* login_logo@2x.png in Resources */,
 				8450556E1DACF65200400EBF /* splash_1@2x.png in Resources */,
@@ -1798,6 +1907,7 @@
 				F7EAE1A31DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.xib in Resources */,
 				F7A25D101DBA059800F36C32 /* AbnormalityReportTableViewCell.xib in Resources */,
 				F7A25D871DBE277500F36C32 /* photopicker_back@2x.png in Resources */,
+				F77497031E0773EA00B5773C /* prev.png in Resources */,
 				F7003E491DDC30CE0056F3DA /* OptionCollectionViewCell.xib in Resources */,
 				F7EE87811DB3635F006473F5 /* FlightFilterView.xib in Resources */,
 				845055581DACF65200400EBF /* login_accounts@3x.png in Resources */,
@@ -1990,6 +2100,7 @@
 				F74289E31E04D4FD00AC00D4 /* MonthlyTargetView.m in Sources */,
 				F7D38D701DE3D1D4001110AF /* LoadingView.m in Sources */,
 				843F4CF51DACC70F00D73D56 /* HttpsUtils.m in Sources */,
+				8471FBCE1E056F6F0037F9F5 /* SingleMessageViewController.m in Sources */,
 				840D15D71DC0C478005FA910 /* RegionDlyTimeModel.m in Sources */,
 				F74289EE1E04D77800AC00D4 /* FunctionService.m in Sources */,
 				84183A181DBDDDDE00D7DD86 /* FlightAbnViewController.m in Sources */,
@@ -2021,6 +2132,7 @@
 				840D15CE1DC0B709005FA910 /* AreaDelayTimeView.m in Sources */,
 				F74902C31DC879C2005B193D /* SafeguardModel.m in Sources */,
 				F7003E4D1DDC38540056F3DA /* TakePhotoCollectionViewCell.m in Sources */,
+				F764BBFC1E07C91D00CE252F /* WeatherAirportController.m in Sources */,
 				F7D47FE71DFA8D7F0050B293 /* BasisInfoDictionaryModel.m in Sources */,
 				84163BEC1DD1E73700DD9163 /* DeptInfoModel.m in Sources */,
 				F7EEEF211DB3A580004AF0AE /* FlightDetailTableViewCell.m in Sources */,
@@ -2069,9 +2181,12 @@
 				84919D761DC9FD7B00C6F5DE /* MessageService.m in Sources */,
 				F79251881DB781AB006AA119 /* NightShiftRoomViewController.m in Sources */,
 				841839F11DBCB87600D7DD86 /* PNPieChartDataItem.m in Sources */,
+				F774970A1E0773EA00B5773C /* DAYUtils.m in Sources */,
 				84183A311DBF8E6700D7DD86 /* FlightHourModel.m in Sources */,
 				F78B13C41DF51056000A6833 /* MessageFilterTableViewCell.m in Sources */,
 				F7F057171DF9730C006BCD67 /* SpecialModel.m in Sources */,
+				F77497071E0773EA00B5773C /* DAYComponentView.m in Sources */,
+				8471FBCB1E055BEC0037F9F5 /* Constants.m in Sources */,
 				F7003E481DDC30CE0056F3DA /* OptionCollectionViewCell.m in Sources */,
 				F7EAE19D1DB4B0680060626F /* AbnormalityReportCollectionViewCell.m in Sources */,
 				84BA54E41DA256940037198F /* AppDelegate.m in Sources */,
@@ -2079,6 +2194,7 @@
 				841839F01DBCB87600D7DD86 /* PNPieChart.m in Sources */,
 				F74902961DC82B42005B193D /* SpecialAbnormalityReportViewController.m in Sources */,
 				843DF1E71DE5BBE100B247B0 /* FlightDetailModel.m in Sources */,
+				F77497091E0773EA00B5773C /* DAYNavigationBar.m in Sources */,
 				F7A2A0511DB8D0590023F228 /* FlightViewController.m in Sources */,
 				F7A2A0641DB8D0EE0023F228 /* PassengerContentView.m in Sources */,
 				F78B13B11DF47938000A6833 /* ModifyPwdView.m in Sources */,
@@ -2086,6 +2202,7 @@
 				F7A25D8D1DBE277500F36C32 /* SJPickPhotoCell.m in Sources */,
 				F70893F21DD492AD00135540 /* TagView.m in Sources */,
 				F79251921DB858D9006AA119 /* AddressBookViewController.m in Sources */,
+				F77497081E0773EA00B5773C /* DAYIndicatorView.m in Sources */,
 				84BA54ED1DA256940037198F /* airmobile.xcdatamodeld in Sources */,
 				F7428A011E04DA9200AC00D4 /* GlobalHelper.m in Sources */,
 				F7A25D021DB9E6C000F36C32 /* PsnGeneralContentView.m in Sources */,
@@ -2105,6 +2222,7 @@
 				F74902DB1DC881E9005B193D /* CraftseatCntModel.m in Sources */,
 				F74289E01E04D4EA00AC00D4 /* AnnualTargetView.m in Sources */,
 				F74289DB1E04D42400AC00D4 /* ProductionTargetViewController.m in Sources */,
+				F77497061E0773EA00B5773C /* DAYCalendarView.m in Sources */,
 				F7A25D0F1DBA059800F36C32 /* AbnormalityReportTableViewCell.m in Sources */,
 				84183A341DBF8F2B00D7DD86 /* FlightHourTableViewCell.m in Sources */,
 				F70893E11DD2EC1B00135540 /* FlightDelaysViewController.m in Sources */,
@@ -2213,7 +2331,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -2255,7 +2373,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -2269,12 +2387,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 9R73LBY7Z3;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/airmobile/airmobile-Prefix.pch";
 				INFOPLIST_FILE = airmobile/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.taocares.sia.airmobiletest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.taocares.sia.airmobilepro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2288,13 +2410,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 9R73LBY7Z3;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/airmobile/airmobile-Prefix.pch";
 				INFOPLIST_FILE = airmobile/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.taocares.sia.airmobiletest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.taocares.sia.airmobilepro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

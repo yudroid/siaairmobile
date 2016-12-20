@@ -13,7 +13,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    _headImageView.layer.cornerRadius = 20;
+    _headImageView.layer.cornerRadius = viewWidth(_headImageView)/2;
     _headImageView.layer.masksToBounds = YES;
     // Initialization code
 }

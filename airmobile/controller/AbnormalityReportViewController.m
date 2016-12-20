@@ -43,6 +43,10 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 @property (nonatomic ,strong) NSMutableArray *collectionArray;
 @property (nonatomic, strong) AbnormalModel *abnormalModel ;
 
+
+
+
+
 @end
 
 @implementation AbnormalityReportViewController
@@ -50,10 +54,12 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.reportState = ReportStateStarted;
+
     //titleView订制
     [self titleViewInitWithHight:64];
     self.titleView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"home_title_bg.png"]];
-    [self titleViewAddTitleText:@"异常上报"];
+    [self titleViewAddTitleText:self.title];
     [self titleViewAddBackBtn];
     
     _tableView.delegate = self;
@@ -106,8 +112,40 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
                            forKeyPath:@"enabled"
                               options:NSKeyValueObservingOptionNew
                               context:nil];
-
     
+}
+
+-(void)setReportState:(ReportState)reportState
+{
+    _reportState = reportState;
+    switch (reportState) {
+        case ReportStateNoStart:
+            self.startReportButton.enabled = YES;
+            self.endReportButton.enabled = NO;
+            self.tableView.allowsSelection = YES;
+            self.requireTextView.editable = YES;
+            self.explainTextView.editable = YES;
+            self.iphoneButton.enabled = YES;
+            break;
+        case ReportStateStarted:
+            self.startReportButton.enabled = NO;
+            self.endReportButton.enabled = YES;
+            self.tableView.allowsSelection = NO;
+            self.requireTextView.editable = NO;
+            self.explainTextView.editable = NO;
+            self.iphoneButton.enabled = NO;
+            break;
+        case ReportStateCompleted:
+            self.startReportButton.enabled = NO;
+            self.endReportButton.enabled = NO;
+            self.tableView.allowsSelection = NO;
+            self.requireTextView.editable = NO;
+            self.explainTextView.editable = NO;
+            self.iphoneButton.enabled = NO;
+            break;
+        default:
+            break;
+    }
 }
 
 
@@ -333,6 +371,8 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
     switch (optionType) {
         case OptionsTypeType:
             _eventType =value;
+            _event = nil;
+            _explainTextView.text = @"";
             break;
         case OptionsTypeEvent:
             _event = value;
@@ -340,6 +380,8 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
             break;
         case OptionsTypeEventLevel:
             _eventLevel = value;
+            _event = nil;
+            _explainTextView.text = @"";
             break;
         default:
 

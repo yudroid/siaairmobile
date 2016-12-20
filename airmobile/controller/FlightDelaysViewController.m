@@ -105,6 +105,7 @@ static const NSString *FLGHTDELAYS_TABLECELL_IDENTIFIER = @"FLGHTDELAYS_TABLECEL
     
     FlightDelaysDetailViewController *flightDelaysDetailVC = [[FlightDelaysDetailViewController alloc]initWithNibName:@"FlightDelaysDetailViewController" bundle:nil];
     flightDelaysDetailVC.titleText = model.title;
+    flightDelaysDetailVC.timeLabel.text = model.createtime;
     flightDelaysDetailVC.contentText = model.content;
     [self.navigationController pushViewController:flightDelaysDetailVC
                                          animated:YES];
