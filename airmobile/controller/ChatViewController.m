@@ -284,7 +284,7 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
     NSDictionary *message = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithLong:_localChatId],
                              @"chatid",content,
                              @"content",[NSNumber numberWithLong:user.id],
-                             @"userid",user.name,@"username", nil];
+                             @"userid",user.name,@"username", nil,@"createTime",[CommonFunction dateFormat:nil format:@"yyyy-MM-dd HH:mm:ss"]];
     [PersistenceUtils insertNewChatMessage:message needid:NO success:^{
         [self refreshDialogData];
     }];

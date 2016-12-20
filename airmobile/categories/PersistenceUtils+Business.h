@@ -19,12 +19,12 @@
 /**
  查询最近的聊天记录按照事先倒序
 
- @param start 开始位置
- @param num   显示数量
-
+ @param userId <#userId description#>
+ @param start <#start description#>
+ @param num <#num description#>
  @return 聊天记录列表
  */
-+(NSArray<NSDictionary *> *)findChatList:(int)start num:(int)num;
++(NSArray<NSDictionary *> *)findChatListByUserId:(int)userId start:(int)start num:(int)num;
 
 /**
  根据工作组id查找工作组人员

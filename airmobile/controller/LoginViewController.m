@@ -369,6 +369,8 @@
                         [loadingView removeFromSuperview];
                         
                     }];
+                    
+                    [HttpsUtils loadAllUsers];
 
                 }else{
                     [ThreadUtils dispatchMain:^{

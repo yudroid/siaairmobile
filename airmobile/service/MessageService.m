@@ -115,6 +115,7 @@ singleton_implementation(MessageService);
         [msgDict setValue:[dic objectForKey:@"content"]     forKey:@"content"];
         [msgDict setValue:[NSNumber numberWithLong:fromId]  forKey:@"userid"];
         [msgDict setValue:[NSNumber numberWithLong:0]       forKey:@"type"];
+        [msgDict setValue:[dic objectForKey:@"createTime"]       forKey:@"createTime"];
         
         [PersistenceUtils insertNewChatMessage:msgDict
                                         needid:YES
@@ -138,6 +139,7 @@ singleton_implementation(MessageService);
         [msgDict setValue:[NSNumber numberWithLong:fromId]      forKey:@"userid"];
         [msgDict setValue:[dic objectForKey:@"sendUserName"]    forKey:@"username"];
         [msgDict setValue:[NSNumber numberWithLong:1]           forKey:@"type"];
+        [msgDict setValue:[dic objectForKey:@"createTime"]       forKey:@"createTime"];
         
         [PersistenceUtils insertNewChatMessage:msgDict needid:YES success:^{
             if(_chatDelegate != nil){

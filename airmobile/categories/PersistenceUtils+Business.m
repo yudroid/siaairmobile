@@ -8,6 +8,7 @@
 
 #import "PersistenceUtils+Business.h"
 #import "HttpsUtils+Business.h"
+#import "AppDelegate.h"
 
 @implementation PersistenceUtils (Business)
 
@@ -19,7 +20,7 @@
         //IF NOT EXISTS才创建表，所以这是可以重复执行的
         //NSString* createSql = @"CREATE TABLE IF NOT EXISTS TABLENAME(Id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT NOT NULL, Age INTEGER)";
         
-        NSString *chatInfoTable = @"CREATE TABLE IF NOT EXISTS ChatInfo (id integer PRIMARY KEY AUTOINCREMENT NOT NULL,chatid integer,name nvarchar(128),type integer(1),time datetime,unread integer(5) DEFAULT(0),describe nvarchar(256),remark nvarchar(128));";
+        NSString *chatInfoTable = @"CREATE TABLE IF NOT EXISTS ChatInfo (id integer PRIMARY KEY AUTOINCREMENT NOT NULL,chatid integer,name nvarchar(128),type integer(1),userid integer,time datetime,unread integer(5) DEFAULT(0),describe nvarchar(256),remark nvarchar(128));";
         int result = sqlite3_exec(database, [chatInfoTable UTF8String], NULL, NULL, NULL);
         if (result == SQLITE_OK) {
             NSLog(@"成功创建表   #会话记录表#   %@",@"chatInfoTable");
@@ -43,7 +44,7 @@
             NSLog(@"成功创建表   #用户信息表#   %@",@"userInfoTable");
         }
         
-        NSString *sysMsgTable = @"CREATE TABLE IF NOT EXISTS SysMessage (msgid integer NOT NULL PRIMARY KEY AUTOINCREMENT, type integer(2,0) NOT NULL, content nvarchar(1024,0),title nvarchar(100,0), createtime datetime NOT NULL, readtime date NOT NULL, status integer(1,0), todeptids nvarchar(500,0), todept integer(20,0));";
+        NSString *sysMsgTable = @"CREATE TABLE IF NOT EXISTS SysMessage (msgid integer NOT NULL PRIMARY KEY AUTOINCREMENT, type integer(2,0) NOT NULL, content nvarchar(1024,0),title nvarchar(100,0), createtime datetime NOT NULL, readtime date NOT NULL, status integer(1,0), todeptids nvarchar(500,0), todept integer(20,0), userid integer);";
 
         result = sqlite3_exec(database, [sysMsgTable UTF8String], NULL, NULL, NULL);
         if (result == SQLITE_OK) {
@@ -75,9 +76,9 @@
 }
 
 #pragma mark 消息查询、存储、删除
-+(NSArray<NSDictionary *> *)findChatList:(int)start num:(int)num;
++(NSArray<NSDictionary *> *)findChatListByUserId:(int)userId start:(int)start num:(int)num;
 {
-    NSString *sql = [NSString stringWithFormat:@"select * from ChatInfo t order by t.time desc LIMIT %i OFFSET %i",num,start];
+    NSString *sql = [NSString stringWithFormat:@"select * from ChatInfo t where t.userid=%i order by t.time desc LIMIT %i OFFSET %i",userId,num,start];
     NSArray *result = [self executeQuery:sql];
 
     return result;
@@ -90,6 +91,14 @@
     return result;
 }
 
+/**
+ <#Description#>
+
+ @param chatId 本地聊天记录id localid
+ @param start <#start description#>
+ @param num <#num description#>
+ @return <#return value description#>
+ */
 +(NSArray<NSDictionary *> *)findMsgListByChatId:(long)chatId start:(int)start num:(int)num
 {
     NSString *sql = [NSString stringWithFormat:@"select * from (select * from ChatMessage t where t.chatid=%li order by t.time desc limit %i offset %i) order by time",chatId,num,start];
@@ -206,14 +215,14 @@
 
 +(void)updateChatName:name chatId:(int)chatId
 {
-    NSString *updateSql = @"update ChatInfo set name='%@',time=CURRENT_TIMESTAMP where chatid=%i;";
-    [self executeNoQuery:[NSString stringWithFormat:updateSql,name,chatId]];
+    NSString *updateSql = @"update ChatInfo set name='%@',time=CURRENT_TIMESTAMP where chatid=%i and userid=%i;";
+    [self executeNoQuery:[NSString stringWithFormat:updateSql,name,chatId,[self getLocalUserId]]];
 }
 
 +(void)updateUnReadCountAndTime:(int)count chatid:(int)chatId;
 {
-    NSString *updateSql = @"update ChatInfo set time=CURRENT_TIMESTAMP,unread=unread+%i where id=%i;";
-    [self executeNoQuery:[NSString stringWithFormat:updateSql,count,chatId]];
+    NSString *updateSql = @"update ChatInfo set time=CURRENT_TIMESTAMP,unread=unread+%i where id=%i and userid=%i;";
+    [self executeNoQuery:[NSString stringWithFormat:updateSql,count,chatId,[self getLocalUserId]]];
 }
 
 
@@ -245,23 +254,25 @@
         int localId = [[localChat objectForKey:@"id"] intValue];
         int userid = [[message objectForKey:@"userid"] intValue];
         NSString *content = [message objectForKey:@"content"];
-        [self saveChatMessage:localId content:content userid:userid userName:name];
+        NSString *createTime = [message objectForKey:@"createTime"];
+        [self saveChatMessage:localId content:content userid:userid userName:name time:createTime];
     }else{
         int localid = [[message objectForKey:@"chatid"] intValue];
         int userid = [[message objectForKey:@"userid"] intValue];
         NSString *userName = [message objectForKey:@"username"];
         NSString *content = [message objectForKey:@"content"];
-        [self saveChatMessage:localid content:content userid:userid userName:userName];
+        NSString *createTime = [message objectForKey:@"createTime"];
+        [self saveChatMessage:localid content:content userid:userid userName:userName time:createTime];
     }
     if(success!=nil){
         success();
     }
 }
 
-+(void)saveChatMessage:(int)localid content:(NSString *)content userid:(int)userid userName:(NSString *)userName
++(void)saveChatMessage:(int)localid content:(NSString *)content userid:(int)userid userName:(NSString *)userName time:(NSString *)receivedTime
 {
-    NSString *insertSql = @"INSERT INTO ChatMessage VALUES (?, %i, '%@', %i, '%@', CURRENT_TIMESTAMP, 0);";
-    [self executeNoQuery:[NSString stringWithFormat:insertSql,localid,content,userid,userName]];
+    NSString *insertSql = @"INSERT INTO ChatMessage VALUES (?, %i, '%@', %i, '%@', '%@', 0);";
+    [self executeNoQuery:[NSString stringWithFormat:insertSql,localid,content,userid,userName,receivedTime]];
     [self updateUnReadCountAndTime:1 chatid:localid];
 }
 
@@ -277,15 +288,15 @@
 +(NSDictionary *)getLocalChatIdByName:(NSString *)name type:(int)type chatId:(int)chatId
 {
     // 查询判断语句
-    NSString *querySql = @"select * from ChatInfo t where t.chatid=%i and t.type=%i";
-    NSArray *result = [self executeQuery:[NSString stringWithFormat:querySql,chatId,type]];
+    NSString *querySql = @"select * from ChatInfo t where t.chatid=%i and t.type=%i and t.userid=%i";
+    NSArray *result = [self executeQuery:[NSString stringWithFormat:querySql,chatId,type,[self getLocalUserId]]];
     if(result==nil || [result count]==0){
-        NSString *insertChatSql = @"INSERT INTO ChatInfo VALUES (?, %i, '%@', %i, CURRENT_TIMESTAMP, 0, null, null);";
-        [self executeNoQuery:[NSString stringWithFormat:insertChatSql,chatId,name,type]];
+        NSString *insertChatSql = @"INSERT INTO ChatInfo VALUES (?, %i, '%@', %i, %i, CURRENT_TIMESTAMP, 0, null, null);";
+        [self executeNoQuery:[NSString stringWithFormat:insertChatSql,chatId,name,type,[self getLocalUserId]]];
     }else{
         [self updateChatName:name chatId:chatId];
     }
-    result = [self executeQuery:[NSString stringWithFormat:querySql,chatId,type]];
+    result = [self executeQuery:[NSString stringWithFormat:querySql,chatId,type,[self getLocalUserId]]];
     if(result==nil || [result count]==0){
         return nil;
     }
@@ -382,17 +393,17 @@
     NSString *createTime = [message objectForKey:@"createTime"];
     NSString *status = [message objectForKey:@"status"];
     NSString *todeptIds = [message objectForKey:@"toDeptIds"];
-    NSString *insertSql = @"INSERT INTO SysMessage VALUES (%i, '%@', '%@', '%@', '%@', '%@', '%@', %i, null);";
-    return [NSString stringWithFormat:insertSql,msgid,type,content,title,createTime,status,todeptIds,toDept];
+    NSString *insertSql = @"INSERT INTO SysMessage VALUES (%i, '%@', '%@', '%@', '%@', '%@', '%@', %i, null, %i);";
+    return [NSString stringWithFormat:insertSql,msgid,type,content,title,createTime,status,todeptIds,toDept,[self getLocalUserId]];
 }
 
 +(NSArray<NSDictionary *> *)findSysMsgListByType:(NSString *)type start:(long)start
 {
     NSString *sql = nil;
     if([type isEqualToString:@"FLIGHT"]){
-        sql = [NSString stringWithFormat:@"select * from SysMessage t where t.type='%@' and t.id>%li order by t.createtime",type,start];
+        sql = [NSString stringWithFormat:@"select * from SysMessage t where t.type='%@' and t.id>%li and t.userid=%i order by t.createtime",type,start,[self getLocalUserId]];
     }else{
-        sql = [NSString stringWithFormat:@"select * from SysMessage t where t.type!='%@' and t.id>%li order by t.createtime",type,start];
+        sql = [NSString stringWithFormat:@"select * from SysMessage t where t.type!='%@' and t.id>%li and t.userid=%i order by t.createtime",type,start,[self getLocalUserId]];
     }
     NSArray *result = [self executeQuery:sql];
     return result;
@@ -402,9 +413,9 @@
 {
     NSString *sql = nil;
     if([type isEqualToString:@"FLIGHT"]){
-        sql = [NSString stringWithFormat:@"select * from SysMessage t where t.type='%@' order by t.createtime desc limit %i offset %i",type,num,start];
+        sql = [NSString stringWithFormat:@"select * from SysMessage t where t.type='%@' and t.userid=%i order by t.createtime desc limit %i offset %i",type,[self getLocalUserId],num,start];
     }else{
-        sql = [NSString stringWithFormat:@"select * from SysMessage t where t.type!='%@' order by t.createtime desc limit %i offset %i",type,num,start];
+        sql = [NSString stringWithFormat:@"select * from SysMessage t where t.type!='%@' and t.userid=%i order by t.createtime desc limit %i offset %i",type,[self getLocalUserId],num,start];
     }
     NSArray *result = [self executeQuery:sql];
     return result;
@@ -472,6 +483,11 @@
     [self executeNoQuery:[NSString stringWithFormat:@"update SysMessage set readtime=CURRENT_TIMESTAMP where msgid=%li",msgId]];
 }
 
++(int)getLocalUserId
+{
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    return (int)delegate.userInfoModel.id;
+}
 //+(void) updateAllMessage:(NSArray*) array{
 //    if(array == nil || [array count] == 0){
 //        return;
