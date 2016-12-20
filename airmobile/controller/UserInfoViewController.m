@@ -145,17 +145,16 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     [_tableView registerNib:[UINib nibWithNibName:@"UserInfoTableViewCell" bundle:nil] forCellReuseIdentifier:(NSString *)USERINFO_TABLECELL_IDENTIFIER];
     _tableView.tableFooterView = [[UIView alloc]init];
 
-    
     NSMutableArray *mutableArray = [NSMutableArray array];
     [mutableArray addObject:@{@"name":@"用户管理",@"image":@"UserManager"}];
     if ([CommonFunction hasFunction:SET_MSGFILTER]) {
-        [mutableArray addObject:@{@"name":@"通讯录",@"image":@"AddressBook"}];
+        [mutableArray addObject:@{@"name":@"消息过滤",@"image":@"AccessControl"}];
     }
     if ([CommonFunction hasFunction:SET_VERSION]) {
-        [mutableArray addObject:@{@"name":@"值班表",@"image":@"WatchBill"}];
+        [mutableArray addObject:@{@"name":@"版本检测",@"image":@"VersionCheck"}];
     }
     if ([CommonFunction hasFunction:SET_SYNCBASE]) {
-        [mutableArray addObject:@{@"name":@"当日值班表",@"image":@"TodayDuty"}];
+        [mutableArray addObject:@{@"name":@"更新基础数据",@"image":@"RefreshData"}];
     }
     _tableArray = [mutableArray copy];
     
