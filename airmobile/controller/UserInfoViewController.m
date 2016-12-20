@@ -157,6 +157,7 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     if ([CommonFunction hasFunction:SET_SYNCBASE]) {
         [mutableArray addObject:@{@"name":@"当日值班表",@"image":@"TodayDuty"}];
     }
+    _tableArray = [mutableArray copy];
     
     [self.view addSubview:_tableView];
 }
