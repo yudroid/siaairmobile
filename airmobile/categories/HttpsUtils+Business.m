@@ -23,7 +23,6 @@ static NSString* __userName = @"";
 static NSString* __password = @"";
 
 
-NSString * const base                       = @"http://192.168.163.69";
 NSString * const loginUrl                   = @"/acs/login/mobile";
 NSString * const userMsgSendUrl             = @"/acs/um/m";// 发送用户消息
 NSString * const groupMsgSendUrl            = @"/acs/wm/m";// 发送工作组消息

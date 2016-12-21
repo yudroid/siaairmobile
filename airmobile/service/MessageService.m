@@ -8,13 +8,13 @@
 
 #import "MessageService.h"
 #import "PersistenceUtils+Business.h"
-//#define wsuserurl @"ws://219.134.93.113:8087/acs/usermsg"
-//#define wsgroupurl @"ws://219.134.93.113:8087/acs/workgroupmsg"
-//#define wssysurl @"ws://219.134.93.113:8087/acs/alertmsg"
+#define wsuserurl @"ws://219.134.93.113:8087/acs/usermsg"
+#define wsgroupurl @"ws://219.134.93.113:8087/acs/workgroupmsg"
+#define wssysurl @"ws://219.134.93.113:8087/acs/alertmsg"
 
-#define wsuserurl @"ws://192.168.163.69:80/acs/usermsg"
-#define wsgroupurl @"ws://192.168.163.69:80/acs/workgroupmsg"
-#define wssysurl @"ws://192.168.163.69:80/acs/alertmsg"
+//#define wsuserurl @"ws://192.168.163.69:80/acs/usermsg"
+//#define wsgroupurl @"ws://192.168.163.69:80/acs/workgroupmsg"
+//#define wssysurl @"ws://192.168.163.69:80/acs/alertmsg"
 
 @implementation MessageService
 {
