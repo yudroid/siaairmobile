@@ -148,7 +148,9 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     _tableView.tableFooterView = [[UIView alloc]init];
 
     NSMutableArray *mutableArray = [NSMutableArray array];
-    [mutableArray addObject:@{@"name":@"用户管理",@"image":@"UserManager"}];
+    if ([CommonFunction hasFunction:SET_USERMANAGE]) {
+        [mutableArray addObject:@{@"name":@"用户管理",@"image":@"UserManager"}];
+    }
     if ([CommonFunction hasFunction:SET_MSGFILTER]) {
         [mutableArray addObject:@{@"name":@"消息过滤",@"image":@"AccessControl"}];
     }

@@ -23,6 +23,10 @@ static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TA
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, copy) NSArray *tableviewArray;
+@property (weak, nonatomic) IBOutlet UIView *headerView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerViewHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *clearMeaageHeight;
+@property (weak, nonatomic) IBOutlet UIView *clearMessageView;
 
 @end
 
@@ -98,6 +102,23 @@ static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TA
 
 #endif
 
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    if (![CommonFunction hasFunction:SET_USERMANAGE_HEADER]) {
+        _headerViewHeight.constant = 0;
+        _headImageView.hidden = YES;
+        [self.view layoutIfNeeded];
+    }
+    if (![CommonFunction hasFunction:SET_USERMANAGE_CLEARMESSAGE]) {
+        _clearMeaageHeight.constant = 0;
+        _clearMessageView.hidden = YES;
+        [self.view layoutIfNeeded];
+    }
+    if (![CommonFunction hasFunction:SET_USERMANAGE_PASSWORD]) {
+        _tableView.hidden = YES;
+    }
 }
 - (IBAction)nameButtonClick:(id)sender {
 

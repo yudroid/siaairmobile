@@ -10,7 +10,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserManagementViewController">
             <connections>
+                <outlet property="clearMeaageHeight" destination="FCP-hX-zek" id="YnS-Ch-TAQ"/>
+                <outlet property="clearMessageView" destination="Au0-db-WBQ" id="RKo-Lu-5DC"/>
                 <outlet property="headImageView" destination="7gY-c7-ULZ" id="XUM-qj-clF"/>
+                <outlet property="headerView" destination="389-3d-k1F" id="nYP-0O-W3G"/>
+                <outlet property="headerViewHeight" destination="At5-er-bh5" id="3V3-Qs-kRU"/>
                 <outlet property="tableView" destination="aGT-ue-ZCj" id="7dS-wW-qVJ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -28,7 +32,7 @@
                     <rect key="frame" x="0.0" y="80" width="375" height="78"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="头像" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Fj-R6-FSF">
-                            <rect key="frame" x="22" y="27" width="34" height="24"/>
+                            <rect key="frame" x="22" y="0.0" width="290" height="78"/>
                             <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="17"/>
                             <color key="textColor" red="0.10588235294117647" green="0.10588235294117647" blue="0.10588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -49,15 +53,17 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="7gY-c7-ULZ" firstAttribute="centerY" secondItem="389-3d-k1F" secondAttribute="centerY" id="4Tz-Zh-HUk"/>
                         <constraint firstItem="bGS-JZ-qhp" firstAttribute="leading" secondItem="389-3d-k1F" secondAttribute="leading" id="4os-5v-b7M"/>
                         <constraint firstAttribute="height" constant="78" id="At5-er-bh5"/>
                         <constraint firstAttribute="trailing" secondItem="bGS-JZ-qhp" secondAttribute="trailing" id="DRp-ex-1w1"/>
-                        <constraint firstItem="3Fj-R6-FSF" firstAttribute="leading" secondItem="389-3d-k1F" secondAttribute="leading" constant="22" id="Hyb-Sy-cXL"/>
                         <constraint firstItem="bGS-JZ-qhp" firstAttribute="top" secondItem="389-3d-k1F" secondAttribute="top" id="LAq-Ek-bBq"/>
-                        <constraint firstItem="3Fj-R6-FSF" firstAttribute="top" secondItem="389-3d-k1F" secondAttribute="top" constant="27" id="PsJ-fB-FVY"/>
                         <constraint firstAttribute="bottom" secondItem="bGS-JZ-qhp" secondAttribute="bottom" id="RsF-Jx-RdQ"/>
                         <constraint firstAttribute="trailing" secondItem="7gY-c7-ULZ" secondAttribute="trailing" constant="20" id="V3M-O9-CDI"/>
-                        <constraint firstItem="7gY-c7-ULZ" firstAttribute="centerY" secondItem="3Fj-R6-FSF" secondAttribute="centerY" id="w62-u7-jcl"/>
+                        <constraint firstItem="3Fj-R6-FSF" firstAttribute="top" secondItem="389-3d-k1F" secondAttribute="top" id="eB8-HG-Lwf"/>
+                        <constraint firstAttribute="bottom" secondItem="3Fj-R6-FSF" secondAttribute="bottom" id="nbU-wa-jug"/>
+                        <constraint firstItem="3Fj-R6-FSF" firstAttribute="leading" secondItem="389-3d-k1F" secondAttribute="leading" constant="22" id="uH6-M2-S8k"/>
+                        <constraint firstItem="7gY-c7-ULZ" firstAttribute="leading" secondItem="3Fj-R6-FSF" secondAttribute="trailing" constant="8" id="woy-Gp-gnD"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Au0-db-WBQ">

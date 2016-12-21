@@ -56,6 +56,10 @@ extern const long SET;
 extern const long SET_MSGFILTER;
 extern const long SET_VERSION;
 extern const long SET_SYNCBASE;
+extern const long SET_USERMANAGE;  //用户管理
+extern const long SET_USERMANAGE_HEADER; // 头像
+extern const long SET_USERMANAGE_CLEARMESSAGE; // 头像
+extern const long SET_USERMANAGE_PASSWORD;// 修改密码
 
 @interface Constants : NSObject
 
