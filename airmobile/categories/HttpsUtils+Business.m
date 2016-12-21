@@ -222,8 +222,10 @@ NSString * const headImageUpload            = @"/acs/m/upload";//头像上传
 +(void)loadAllUsers
 {
     [HttpsUtils post:userlistUrl params:nil success:^(id responseObj) {
+        [PersistenceUtils saveUserList:responseObj];
         [ThreadUtils dispatch:^{
-            [PersistenceUtils saveUserList:responseObj];
+            NSLog(@"     -=-=-=-=-=-=-=save users     -=-=-=-=-=-=-=");
+            
         }];
         
     } failure:^(NSError *error) {

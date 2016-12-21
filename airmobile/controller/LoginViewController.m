@@ -323,6 +323,8 @@
                     __block NSInteger eventTag = 0;
                     __block NSInteger dicTag = 0;
 
+                    [HttpsUtils loadAllUsers];
+                    
                     [HttpsUtils loadEventsProgress:^(float rate) {
 
                     } Success:^(id response) {
@@ -370,7 +372,7 @@
                         
                     }];
                     
-                    [HttpsUtils loadAllUsers];
+                    
 
                 }else{
                     [ThreadUtils dispatchMain:^{

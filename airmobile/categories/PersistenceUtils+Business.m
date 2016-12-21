@@ -139,7 +139,7 @@
     }
     
     [self executeInsertBatch:sqlArray];
-
+NSLog(@"     -=-=-=-=-=-=-=save users  finished   -=-=-=-=-=-=-=");
 }
 
 +(NSArray<DeptInfoModel *> *)loadUserListGroupByDept
