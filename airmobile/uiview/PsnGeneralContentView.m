@@ -101,7 +101,7 @@
                                                                          0,
                                                                          40,
                                                                          12)
-                                                         text:@"计划"
+                                                         text:@"进港"
                                                          font:27/2
                                                 textAlignment:NSTextAlignmentLeft
                                                  colorFromHex:0xFFFFFFFF]];
@@ -116,7 +116,7 @@
                                                                          0,
                                                                          40,
                                                                          12)
-                                                         text:@"实际"
+                                                         text:@"出港"
                                                          font:27/2
                                                 textAlignment:NSTextAlignmentLeft
                                                  colorFromHex:0xFFFFFFFF]];
