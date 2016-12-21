@@ -11,7 +11,7 @@
 #import "StringUtils.h"
 
 // 生产网络IP地址
-static NSString* baseUri = @"http://192.168.163.132:8080";
+static NSString* baseUri = @"http://192.168.163.69:80";
 //static NSString* baseUri = @"http://219.134.93.113:8087";
 
 /**
