@@ -68,6 +68,9 @@
         
         if (self)
         {
+            UIView *topline = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 0.5)];
+            topline.backgroundColor = [CommonFunction colorFromHex:0x5F999999];
+            [self addSubview:topline];
             _delegate = delegate;
             funtionNum = [self getFunctionNum]*2;
             index = 1;

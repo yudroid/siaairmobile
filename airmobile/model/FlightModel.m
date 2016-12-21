@@ -17,10 +17,7 @@
         NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:dictionary];
         for (NSString *key in dic.allKeys) {
             id value = [dic objectForKey:key];
-            if (value &&
-                [value isKindOfClass:[NSString class]] &&
-                ([value isEqualToString:@"null"] ||
-                 [value isEqualToString:@"(null)"])) {
+            if ([value isKindOfClass:[NSNull class]]) {
                 [dic setObject:@"" forKey:key];
             }
         }

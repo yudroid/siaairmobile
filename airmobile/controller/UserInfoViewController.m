@@ -251,9 +251,22 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
         [self.navigationController pushViewController:messageFilterVC animated:YES];
 
     }else if ([name isEqualToString:@"版本检测"]){
+//        [self showAnimationTitle:@"正在进行版本检测"];
 
+#if __IPHONE_OS_VERSION_MAX_ALLOWED == __IPHONE_8_3
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"发现新版本" message:@"是否更新" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        alertView.tag = 1;
+        [alertView show];
+#else
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"发现新版本" message:@"是否更新？" preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-services://?action=download-manifest&url=https://www.pgyer.com/app/plist/acf6d58c177698e4c0117cdf44b282c5&password=123456"]];
 
-        [self showAnimationTitle:@"正在进行版本检测"];
+        }]];
+
+        [self presentViewController:alertController animated:YES completion:nil];
+#endif
     }else if ([name isEqualToString:@"更新基础数据"]){
 #if __IPHONE_OS_VERSION_MAX_ALLOWED == __IPHONE_8_3
         UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];

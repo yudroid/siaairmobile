@@ -89,35 +89,46 @@
 
 - (IBAction)startReportDatClick:(id)sender {
 
+    [self starNetWorking];
     AppDelegate *appdelete = (AppDelegate*)[[UIApplication sharedApplication] delegate];
 
     [HttpsUtils saveDispatchAbnStart:(int)_safefuardModel.fid
                           dispatchId:(int)_safefuardModel.id
                               userId:(int)appdelete.userInfoModel.id
                              eventId:self.event.basisid
-                                memo:self.explainTextView.text
+                                memo:self.requireTextView.text
                                 flag:self.isSpecial
                              imgPath:@"null"
                              success:^(id response) {
+
+                                 [self stopNetWorking];
+                                 if([response isEqualToString:@"0"]){
+                                     return ;
+                                 }
+                                 [self showAnimationTitle:@"上报成功"];
+
                                  self.reportState = ReportStateStarted;
                                  if (response &&[response isKindOfClass:[NSString class]]) {
                                      self.abnormalId = ((NSString *)response).intValue;
                                  }
+
                              }
                              failure:^(NSError *error) {
+                                 [self stopNetWorking];
                                  [self showAnimationTitle:@"上报失败"];
+                                 
                              }];
-
-
-    //    [self setupDateView];
 }
 
 - (IBAction)endReportDate:(id)sender {
+
+    [self starNetWorking];
     AppDelegate *appdelete = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    [HttpsUtils saveDispatchAbnEnd:(int)_safefuardModel.id
+    [HttpsUtils saveDispatchAbnEnd:self.abnormalId
                             userId:(int)appdelete.userInfoModel.id
                            success:^(id response) {
                                if (response&&[response isKindOfClass:[NSString class]]&&[response isEqualToString:@"Success"]) {
+                                   [self stopNetWorking];
                                    [self showAnimationTitle:@"上报成功"];
                                    [self.tableView reloadData];
                                    self.reportState = ReportStateCompleted;
@@ -128,7 +139,9 @@
 
                            }
                            failure:^(NSError *error) {
+                               [self stopNetWorking];
                                [self showAnimationTitle:@"上报失败"];
+                               //                               self.endReportButton.enabled = NO;
                            }];
 }
 

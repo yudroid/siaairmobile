@@ -45,8 +45,8 @@ static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDEN
                                                      delegate:self];
     [self.view insertSubview:self.tabBarView aboveSubview:self.view];
 
-    [UMESDKApi setTestMode:NO];
-    [UMESDKApi registerApp:@"ume_d7d3218b16c74a9280ed25aded2fff29" andAppKey:@"383d05e19acf848d7f82f44a3bc31c29" andApiDelegate:self];
+//    [UMESDKApi setTestMode:NO];
+//    [UMESDKApi registerApp:@"ume_d7d3218b16c74a9280ed25aded2fff29" andAppKey:@"383d05e19acf848d7f82f44a3bc31c29" andApiDelegate:self];
 }
 
 -(void)initTitleView
@@ -90,16 +90,16 @@ static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDEN
         [mutableArray addObject:@{@"name":@"当日值班表",@"image":@"TodayDuty"}];
     }
     if ([CommonFunction hasFunction:FUNC_TARGET]) {
-        [mutableArray addObject:@{@"name":@"生产指标",@"image":@"TodayDuty"}];
+        [mutableArray addObject:@{@"name":@"生产指标",@"image":@"site_icon2_value"}];
     }
     if ([CommonFunction hasFunction:FUNC_YYQK]) {
-        [mutableArray addObject: @{@"name":@"运营情况",@"image":@"WatchBill"}];
+        [mutableArray addObject: @{@"name":@"运营情况",@"image":@"site_airport"}];
     }
     if ([CommonFunction hasFunction:FUNC_TQXX]) {
-        [mutableArray addObject:@{@"name":@"天气信息",@"image":@"WatchBill"}];
+        [mutableArray addObject:@{@"name":@"天气信息",@"image":@"site_weather"}];
     }
     if ([CommonFunction hasFunction:FUNC_ZBHX]) {
-        [mutableArray addObject:@{@"name":@"周边航线",@"image":@"WatchBill"}];
+        [mutableArray addObject:@{@"name":@"周边航线",@"image":@"site_around"}];
     }
     _tableArray = [mutableArray copy];
 

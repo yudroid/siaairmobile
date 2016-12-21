@@ -19,4 +19,21 @@
     return;
 }
 
+-(NSString *)realStartTime
+{
+    if (!_realStartTime||[_realStartTime isEqualToString:@"(null)"] ) {
+        return @"";
+    }
+    return _realStartTime;
+}
+
+-(NSString *)realEndTime
+{
+    if (!_realEndTime||[_realEndTime isEqualToString:@"(null)"] ) {
+        return @"";
+    }
+    return _realEndTime;
+
+}
+
 @end

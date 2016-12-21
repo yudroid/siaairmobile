@@ -56,7 +56,7 @@
                                                                      7.5,
                                                                      80,
                                                                      20)
-                                                     text:[NSString stringWithFormat:@"%.1f%%",(float)@([self sum]*100.0).floatValue]
+                                                     text:@""
                                                      font:24
                                             textAlignment:NSTextAlignmentRight
                                              colorFromHex:0xFFFFFFFF];
@@ -68,7 +68,7 @@
                                                                        viewHeight(ratioNum)+viewY(ratioNum) ,
                                                                        120,
                                                                        20)
-                                                       text:[NSString stringWithFormat:@"今日 %@",[CommonFunction dateFormat:nil format:@"MM月dd日"]]
+                                                       text:@""
                                                        font:11
                                               textAlignment:NSTextAlignmentRight
                                                colorFromHex:0x75FFFFFF];
@@ -227,8 +227,8 @@
 {
     if ([notification.object isKindOfClass:[NSArray class]]) {
         tenDayArray     = notification.object;
-        ratioNum.text   = [NSString stringWithFormat:@"%ld%%",(long)@([self sum]*100.0).integerValue];
-        todayLabel.text = [NSString stringWithFormat:@"今日 %@",[CommonFunction dateFormat:nil format:@"MM月dd日"]];
+//        ratioNum.text   = [NSString stringWithFormat:@"%ld%%",(long)@([self sum]*100.0).integerValue];
+//        todayLabel.text = [NSString stringWithFormat:@"今日 %@",[CommonFunction dateFormat:nil format:@"MM月dd日"]];
         [barChart setXLabels:[self getXLabels]];
         [barChart setYValues:[self getYLabels]];
         [barChart strokeChart];

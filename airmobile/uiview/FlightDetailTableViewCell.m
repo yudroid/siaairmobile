@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *peopleLabel;
 
 @property (weak, nonatomic) IBOutlet UIView *statusBackView;
+@property (weak, nonatomic) IBOutlet UIView *tagView;
 
 @end
 
@@ -31,6 +32,7 @@
     _statusLabel.adjustsFontSizeToFitWidth = YES;
     _statusBackView.layer.cornerRadius = viewWidth(_statusBackView)/2.0;
     _statusBackView.layer.masksToBounds = YES;
+    _tagView.layer.cornerRadius = viewWidth(_tagView)/2;
 
     // Initialization code
 }
@@ -70,15 +72,19 @@
     _statusLabel.text = safeguardModel.status;
     if([safeguardModel.status isEqualToString:@"正常"]){
         _statusBackView.backgroundColor = [CommonFunction colorFromHex:0Xff2dce70];
-    }else if([safeguardModel.status isEqualToString:@"延误"]){
+        _tagView.backgroundColor = [CommonFunction colorFromHex:0Xff2dce70];
+    }else if([safeguardModel.status containsString:@"延误"]){
         _statusBackView.backgroundColor = [CommonFunction colorFromHex:0Xfff46970];
-    }else if([safeguardModel.status isEqualToString:@"进行中"]){
+        _tagView.backgroundColor = [CommonFunction colorFromHex:0Xfff46970];
+    }else if([safeguardModel.status containsString:@"进行中"]){
         _statusBackView.backgroundColor = [CommonFunction colorFromHex:0Xff17b9e8];
-    }else if([safeguardModel.status isEqualToString:@"未开始"]){
+        _tagView.backgroundColor = [CommonFunction colorFromHex:0Xff17b9e8];
+    }else if([safeguardModel.status containsString:@"未开始"]){
         _statusBackView.backgroundColor = [CommonFunction colorFromHex:0Xffff7c36];
+        _tagView.backgroundColor = [CommonFunction colorFromHex:0Xffff7c36];
     }
     _peopleLabel.text = safeguardModel.dispatchPeople;
-    _timeLabel.text = [NSString stringWithFormat:@"%@-%@",safeguardModel.realStartTime,safeguardModel.endTime];
+    _timeLabel.text = [NSString stringWithFormat:@"%@-%@",safeguardModel.realStartTime,safeguardModel.realEndTime];
 }
 
 

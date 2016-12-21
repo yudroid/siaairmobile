@@ -106,13 +106,18 @@
                                 flag:self.isSpecial
                              imgPath:@"null"
                              success:^(id response) {
+
+                                 [self stopNetWorking];
+                                 if([response isEqualToString:@"0"]){
+                                     return ;
+                                 }
                                  [self showAnimationTitle:@"上报成功"];
                                  _specialModel.tag = 2;
                                  self.reportState = ReportStateStarted;
                                  if (response &&[response isKindOfClass:[NSString class]]) {
                                      self.abnormalId = ((NSString *)response).intValue;
                                  }
-                                 [self stopNetWorking];
+
                              }
                              failure:^(NSError *error) {
                                  [self stopNetWorking];

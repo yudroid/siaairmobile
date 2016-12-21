@@ -88,7 +88,8 @@
 
 
 
-    _flightStatus.text = flight.fState;
+    NSString *state = [[flight.fState componentsSeparatedByString:@"/"] lastObject];
+    _flightStatus.text = state;
     if(flight.special.integerValue == 0){
         _backImageView.image = [UIImage imageNamed:@"FlightNormal"];
         _specialLabel.text = @"普";
