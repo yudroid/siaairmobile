@@ -1188,5 +1188,22 @@ NSString * const headImageUpload            = @"/acs/m/upload";//头像上传
 
 }
 
++(void)versionCheckSuccess:(void (^)(id))success
+                   failure:(void (^)(id))failure
+{
+
+    [HttpsUtils postNoDomain:@"http://www.pgyer.com/apiv1/app/viewGroup"
+                      params:@{@"aId":@"93ed7797513437b2cc15dd14e4529e29",
+                               @"_api_key":@"9d59cdc7e7b2b5bedf26cf3972d24faa"}
+                     success:^(id response) {
+                         success(response);
+                     } failure:^(NSError *error) {
+
+                         failure(error);
+                     }];
+
+
+}
+
 
 @end

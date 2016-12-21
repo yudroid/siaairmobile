@@ -220,14 +220,19 @@
 -(void)loadData:(NSNotification *)notification
 {
     if ([notification.object isKindOfClass:[NSArray class]]) {
-        eightMonthArray = notification.object;
+
+        if (!eightMonthArray || eightMonthArray.count) {
+
+            eightMonthArray = notification.object;
+            [barChart setXLabels:[self getXLabels]];
+            [barChart setYValues:[self getYLabels]];
+            [barChart strokeChart];
+
+            [tenDayTableView reloadData];
+        }
 //        ratioNum.text   = [NSString stringWithFormat:@"%ld%%",(long)@([self sum]*100.0).integerValue];
 //        todayLabel.text = [NSString stringWithFormat:@"今日 %@",[CommonFunction dateFormat:nil format:@"MM月dd日"]];
-        [barChart setXLabels:[self getXLabels]];
-        [barChart setYValues:[self getYLabels]];
-        [barChart strokeChart];
 
-        [tenDayTableView reloadData];
     }
     
     

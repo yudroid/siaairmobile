@@ -18,8 +18,10 @@
 #import "SafeguardModel.h"
 #import "SpecialModel.h"
 #import "AppDelegate.h"
+#import "FlightDetailHeaderFooterView.h"
 
 static const NSString *FLIGHTDETAIL_TABLECELL_IDENTIFIER = @"FLIGHTDETAIL_TABLECELL_IDENTIFIER";
+static const NSString *FLIGHTDETAIL_TABLEHEADER_IDENTIFIER = @"FLIGHTDETAIL_TABLEHEADER_IDENTIFIER";
 static const NSString *FLIGHTDETAIL_SAFEGUARDTABLECELL_IDENTIFIER = @"FLIGHTDETAIL_SAFEGUARDTABLECELL_IDENTIFIER";
 static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER";
 
@@ -29,7 +31,9 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
                                         FlightDetailTableViewCellDelegate,
                                         UICollectionViewDelegate,
                                         UICollectionViewDataSource,
-                                        UICollectionViewDelegateFlowLayout,FlightDetailSafeguardTableViewCellDelegate>
+                                        UICollectionViewDelegateFlowLayout,
+                                        FlightDetailHeaderFooterViewDelegate,
+FlightDetailSafeguardTableViewCellDelegate>
 
 @property (weak, nonatomic) IBOutlet    UITableView         *tableView;
 @property (weak, nonatomic) IBOutlet    NSLayoutConstraint  *tableViewHeight;
@@ -38,7 +42,6 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 
 @property (nonatomic, copy) NSArray     *airLineCollectionArray;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *safeguradViewHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *safeguardTableViewHeight;
 
 @property (weak, nonatomic) IBOutlet UILabel *flightDateLabel;
@@ -47,11 +50,6 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 @property (weak, nonatomic) IBOutlet UILabel *baggagelabel;
 @property (weak, nonatomic) IBOutlet UILabel *modelLabel;
 @property (weak, nonatomic) IBOutlet UILabel *regionlabel;
-
-
-@property (weak, nonatomic) IBOutlet UIView *specialView;//特殊保障view
-
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tablViewTop;//普通保障
 
 
 @end
@@ -92,20 +90,17 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
     
     _AirlineCollectionView.delegate     = self;
     _AirlineCollectionView.dataSource   = self;
-    
-
 
 
     [_AirlineCollectionView registerNib:[UINib nibWithNibName:@"FlightDetailAirLineCollectionViewCell"
                                                        bundle:nil]
              forCellWithReuseIdentifier:(NSString *)FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER];
 
-    _tableViewHeight.constant = 103*dispatches.count;
-    _safeguardTableViewHeight.constant = 90 * specicals.count +36;
+//    [_tableView registerNib:[UINib nibWithNibName:@"FlightDetailHeaderFooterView" bundle:nil] forCellReuseIdentifier:(NSString *)FLIGHTDETAIL_TABLEHEADER_IDENTIFIER];
 
-
+    _tableViewHeight.constant = 103*dispatches.count+37;
+    _safeguardTableViewHeight.constant = 90 * specicals.count +37;
     [self basicInfo];
-
     [self loadData];
 
     
@@ -114,22 +109,23 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
     [_safeguardTableView reloadData];
 
     if (![CommonFunction hasFunction:FL_SPETIAL]) {
-        [self hideSpecialView];
+        _safeguardTableViewHeight = 0;
     }
     if (![CommonFunction hasFunction:FL_NORMAL]) {
         _tableViewHeight.constant = 0;
+        _tableView.hidden = YES;
     }
 }
 
 -(void)updateSpecialsTableView
 {
-    _safeguardTableViewHeight.constant = 90 * specicals.count +36;
+    _safeguardTableViewHeight.constant = 90 * specicals.count +37;
     [_safeguardTableView reloadData];
 
 }
 -(void)updateDispatchesTableView
 {
-    _tableViewHeight.constant = 103*dispatches.count;
+    _tableViewHeight.constant = 103*dispatches.count+37;
     [_tableView reloadData];
 
 }
@@ -156,15 +152,13 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 
 }
 
-//隐藏特殊保障环节
--(void)hideSpecialView
-{
-    _specialView.hidden = YES;
-    _safeguardTableViewHeight = 0;
-    _tableViewHeight.constant = -37;
-}
 
 #pragma mark - UITableViewDelegate UITableViewDataSource
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -174,6 +168,10 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
     return dispatches.count;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 37.0;
+}
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView == _safeguardTableView) {
@@ -181,6 +179,22 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
     }
     return 103;
 }
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    FlightDetailHeaderFooterView *headerView = [[NSBundle mainBundle] loadNibNamed:@"FlightDetailHearderFooterView" owner:nil options:nil][0];
+    headerView.delegate = self;
+    headerView.frame = CGRectMake(0, 0, kScreenWidth, 37);
+    if (tableView == _tableView) {
+        headerView.titleLabel.text = @"普通保障";
+        headerView.tag = 0;
+    }else{
+        headerView.titleLabel.text = @"特殊保障";
+        headerView.tag = 1;
+    }
+    return headerView;
+}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView == _safeguardTableView) {
@@ -269,24 +283,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 
 }
 
-- (IBAction)safeguradContractButtonClick:(UIButton *)sender {
-    if (sender.tag == 0) {
-        
-        sender.tag = 1;
-        [UIView animateWithDuration:0.3 animations:^{
-            sender.transform = CGAffineTransformMakeRotation(M_PI);
-            _safeguradViewHeight.constant = 36;
-            [self.view layoutIfNeeded];
-        }];
-    }else{
-        sender.tag = 0;
-        [UIView animateWithDuration:0.3 animations:^{
-            sender.transform = CGAffineTransformMakeRotation(0);
-            _safeguradViewHeight.constant = specicals.count *90+36;
-            [self.view layoutIfNeeded];
-        }];
-    }
-}
+
 
 #pragma mark - FlightDetailSafeguardTableViewCellDelegate
 -(void)flightDetailSafeguardTableViewCellAbnormalButtonClick:(UIButton *)sender
@@ -325,6 +322,36 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
     }
 
 
+
+}
+
+#pragma mark - FlightDetailHeaderFooterViewDelegate
+-(void)flightDetailHeaderFooterView:(UITableViewHeaderFooterView *)view
+                showAndHiddenButton:(UIButton *)sender
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        if (view.tag == 0) {
+            if (sender.tag == 1) {
+                _tableViewHeight.constant = 37;
+                [self.view layoutIfNeeded];
+
+            }else{
+
+                _tableViewHeight.constant = 37+ dispatches.count *103;
+                [self.view layoutIfNeeded];
+            }
+        }else{
+            if (sender.tag == 1) {
+                _safeguardTableViewHeight.constant = 37;
+                [self.view layoutIfNeeded];
+
+            }else{
+                _safeguardTableViewHeight.constant = 37+ specicals.count *103;
+                [self.view layoutIfNeeded];
+            }
+        }
+
+    }];
 
 }
 
@@ -377,7 +404,6 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
         } failure:nil];
 
     }
-
 }
 
 @end

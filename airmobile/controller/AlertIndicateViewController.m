@@ -108,7 +108,7 @@
 
 
     UIImageView *lineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(passengerTtitle),
-                                                                              viewBotton(passengerTtitle)+4,
+                                                                              viewBotton(passengerTtitle)+8,
                                                                               viewWidth(topBgView)-viewX(passengerTtitle)-18,
                                                                               0.5)];
     lineImageView.image = [UIImage imageNamed:@"hiddenLine"];
@@ -119,7 +119,7 @@
                                                                  viewBotton(lineImageView)+4,
                                                                  50,
                                                                  9)
-                                                 text:[NSString stringWithFormat:@"%0.2lf",[self maxValue]]
+                                                 text:@"100"
                                                  font:11
                                         textAlignment:NSTextAlignmentRight
                                          colorFromHex:0x75FFFFFF];
@@ -141,7 +141,7 @@
 
     //Use yFixedValueMax and yFixedValueMin to Fix the Max and Min Y Value
     //Only if you needed
-    lineChart.yFixedValueMax = [self maxValue]*1000;
+    lineChart.yFixedValueMax = 1000;
     lineChart.yFixedValueMin = 0;
 
 
@@ -331,30 +331,35 @@
 -(void)loadData:(NSNotification *)notification
 {
     if ([notification.object isKindOfClass:[FlightLargeDelayModel class]]) {
-        _flightLargeDelayModel  = notification.object;
-//        ratioNum.text           = @(_flightLargeDelayModel.delayOneHourRatio).stringValue;
-        peopleLabel.text        = @(_flightLargeDelayModel.glqPassenCnt).stringValue;
-//        todayLabel.text         = [NSString stringWithFormat:@"当前 %@",[CommonFunction dateFormat:nil format:@"hh:mi"]];
-        arrRatioLabel.text      = [NSString stringWithFormat:@"%ld%%",(long)@(_flightLargeDelayModel.delayOneHourRatio*100.0).integerValue];
-        addTimeLabel.text       = [NSString stringWithFormat:@"%d min",_flightLargeDelayModel.noTakeoffAndLanding];
 
-        [lineChart setXLabels:[self getFlightHourXLabels]];
+        if ([self getFlightHourXLabels].count ==0 ) {
+            _flightLargeDelayModel  = notification.object;
+            //        ratioNum.text           = @(_flightLargeDelayModel.delayOneHourRatio).stringValue;
+            peopleLabel.text        = @(_flightLargeDelayModel.glqPassenCnt).stringValue;
+            //        todayLabel.text         = [NSString stringWithFormat:@"当前 %@",[CommonFunction dateFormat:nil format:@"hh:mi"]];
+            arrRatioLabel.text      = [NSString stringWithFormat:@"%ld%%",(long)@(_flightLargeDelayModel.delayOneHourRatio*100.0).integerValue];
+            addTimeLabel.text       = [NSString stringWithFormat:@"%d min",_flightLargeDelayModel.noTakeoffAndLanding];
 
-        // Line Chart #2
-        NSArray * dataArray = [self getFlightHourYLabels];
-        PNLineChartData *data = [PNLineChartData new];
-        data.dataTitle = @"航班";
-        data.color = [UIColor whiteColor];
-        data.alpha = 0.5f;
-        data.itemCount = dataArray.count;
-        data.inflexionPointStyle = PNLineChartPointStyleCircle;
-        data.getData = ^(NSUInteger index) {
-            CGFloat yValue = [dataArray[index] floatValue];
-            return [PNLineChartDataItem dataItemWithY:yValue];
-        };
+            [lineChart setXLabels:[self getFlightHourXLabels]];
 
-        lineChart.chartData = @[data];
-        [lineChart strokeChart];
+            // Line Chart #2
+            NSArray * dataArray = [self getFlightHourYLabels];
+            PNLineChartData *data = [PNLineChartData new];
+            data.dataTitle = @"航班";
+            data.color = [UIColor whiteColor];
+            data.alpha = 0.5f;
+            data.itemCount = dataArray.count;
+            data.inflexionPointStyle = PNLineChartPointStyleCircle;
+            data.getData = ^(NSUInteger index) {
+                CGFloat yValue = [dataArray[index] floatValue];
+                return [PNLineChartDataItem dataItemWithY:yValue];
+            };
+            
+            lineChart.chartData = @[data];
+            [lineChart strokeChart];
+
+
+        }
 
     }
 }

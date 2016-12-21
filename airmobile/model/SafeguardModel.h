@@ -22,5 +22,7 @@
 @property (nonatomic, copy)     NSString    *realStartTime; //实际开始时间
 @property (nonatomic, copy)     NSString    *realEndTime;   //实际结束时间
 
+-(NSString *)startTimeAndEndTime;
+
 
 @end

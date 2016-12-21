@@ -84,7 +84,7 @@
         _tagView.backgroundColor = [CommonFunction colorFromHex:0Xffff7c36];
     }
     _peopleLabel.text = safeguardModel.dispatchPeople;
-    _timeLabel.text = [NSString stringWithFormat:@"%@-%@",safeguardModel.realStartTime,safeguardModel.realEndTime];
+    _timeLabel.text = [NSString stringWithFormat:@"%@",[safeguardModel startTimeAndEndTime]];
 }
 
 

@@ -90,6 +90,20 @@
 
     NSString *state = [[flight.fState componentsSeparatedByString:@"/"] lastObject];
     _flightStatus.text = state;
+    if(
+       [state isEqualToString:@"起飞"]||
+       [state isEqualToString:@"到达"]||
+       [state isEqualToString:@"登机"]){
+        _flightStatus.textColor = [CommonFunction colorFromHex:0Xff2dce70];
+    }else if([state isEqualToString:@"计划"]){
+        _flightStatus.textColor = [CommonFunction colorFromHex:0Xffff7c36];
+    }else if ([state isEqualToString:@"延误"]||
+              [state isEqualToString:@"取消"]||
+              [state isEqualToString:@"返航"]||
+              [state isEqualToString:@"备降"]){
+        _flightStatus.textColor = [CommonFunction colorFromHex:0Xfff46970];
+    }
+
     if(flight.special.integerValue == 0){
         _backImageView.image = [UIImage imageNamed:@"FlightNormal"];
         _specialLabel.text = @"普";
@@ -100,19 +114,6 @@
 //        _statusReasonLabel.text = @"天气原因";
     }
 
-    if(
-       [flight.fState isEqualToString:@"起飞"]||
-       [flight.fState isEqualToString:@"到达"]||
-       [flight.fState isEqualToString:@"登机"]){
-        _flightStatus.textColor = [CommonFunction colorFromHex:0Xffff7c36];
-    }else if([flight.fState isEqualToString:@"计划"]){
-        _flightStatus.textColor = [CommonFunction colorFromHex:0Xff2dce70];
-    }else if ([flight.fState isEqualToString:@"延误"]||
-              [flight.fState isEqualToString:@"取消"]||
-              [flight.fState isEqualToString:@"返航"]||
-              [flight.fState isEqualToString:@"备降"]){
-        _flightStatus.textColor = [CommonFunction colorFromHex:0Xfff46970];
-    }
 
     if(!flight.sCity||[flight.sCity isEqualToString:@""]){
         _middleView.hidden = YES;

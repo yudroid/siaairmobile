@@ -106,4 +106,12 @@
 
 
 +(NSURL *)imageDownloadURLWithString:(NSString *)path;
+
+
+
+///无主机名
++(void) postNoDomain:(NSString*)            segment
+              params:(id)                   formData
+             success:(void (^) (id))        success
+             failure:(void (^) (NSError*))  failure;
 @end

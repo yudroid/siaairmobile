@@ -636,38 +636,43 @@
 -(void)loadData:(NSNotification *)notification
 {
     if ([notification.object isKindOfClass:[FlightStusModel class]]) {
-        _flightStusModel = notification.object;
-        arrInNum.text    = @(_flightStusModel.arrCount).stringValue;
-        depOutNum.text   = @(_flightStusModel.depCount).stringValue;
 
-        NSInteger Delay = 0;
-        NSInteger Cancel = 0;
-        if (scrollView.contentOffset.x == 0) {
-            Delay = _flightStusModel.depDelay;
-            Cancel = _flightStusModel.depCancel;
-        }else{
-            Delay = _flightStusModel.arrDelay;
-            Cancel = _flightStusModel.arrCancel;
+        if(!arrInNum ||[arrInNum.text isEqualToString:@""] ||[arrInNum.text isEqualToString:@"0"]){
+            _flightStusModel = notification.object;
+            arrInNum.text    = @(_flightStusModel.arrCount).stringValue;
+            depOutNum.text   = @(_flightStusModel.depCount).stringValue;
+
+            NSInteger Delay = 0;
+            NSInteger Cancel = 0;
+            if (scrollView.contentOffset.x == 0) {
+                Delay = _flightStusModel.depDelay;
+                Cancel = _flightStusModel.depCancel;
+            }else{
+                Delay = _flightStusModel.arrDelay;
+                Cancel = _flightStusModel.arrCancel;
+
+            }
+            NSMutableAttributedString *delayAttributeString = [[NSMutableAttributedString alloc ] initWithString:[NSString stringWithFormat:@"延误 %ld",(long)Delay]];
+            [delayAttributeString addAttribute:NSFontAttributeName
+                                         value:[UIFont fontWithName:@"PingFangSC-Regular" size:13]
+                                         range:NSMakeRange(0, 2)];
+            delay.attributedText = delayAttributeString;
+
+            NSMutableAttributedString *cancelAttributeString = [[NSMutableAttributedString alloc ]
+                                                                initWithString:[NSString stringWithFormat:@"取消 %ld",(long)Cancel]];
+            [cancelAttributeString addAttribute:NSFontAttributeName
+                                          value:[UIFont fontWithName:@"PingFangSC-Regular" size:13]
+                                          range:NSMakeRange(0, 2)];
+            cancel.attributedText = cancelAttributeString;
+
+            totalNum.text = @(_flightStusModel.flightCount).stringValue;
+            arrNum.text = @(_flightStusModel.arrCount).stringValue;
+            
+            [self updateShapeArray:arrShapeArray];
+            [self updateShapeArray:depShapeArray];
 
         }
-        NSMutableAttributedString *delayAttributeString = [[NSMutableAttributedString alloc ] initWithString:[NSString stringWithFormat:@"延误 %ld",(long)Delay]];
-        [delayAttributeString addAttribute:NSFontAttributeName
-                                     value:[UIFont fontWithName:@"PingFangSC-Regular" size:13]
-                                     range:NSMakeRange(0, 2)];
-        delay.attributedText = delayAttributeString;
 
-        NSMutableAttributedString *cancelAttributeString = [[NSMutableAttributedString alloc ]
-                                                            initWithString:[NSString stringWithFormat:@"取消 %ld",(long)Cancel]];
-        [cancelAttributeString addAttribute:NSFontAttributeName
-                                      value:[UIFont fontWithName:@"PingFangSC-Regular" size:13]
-                                      range:NSMakeRange(0, 2)];
-        cancel.attributedText = cancelAttributeString;
-
-        totalNum.text = @(_flightStusModel.flightCount).stringValue;
-        arrNum.text = @(_flightStusModel.arrCount).stringValue;
-
-        [self updateShapeArray:arrShapeArray];
-        [self updateShapeArray:depShapeArray];
     }
 }
 @end

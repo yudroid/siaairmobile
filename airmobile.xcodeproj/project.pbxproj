@@ -168,6 +168,9 @@
 		F758C9C11DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F758C9BF1DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.xib */; };
 		F764BBFC1E07C91D00CE252F /* WeatherAirportController.m in Sources */ = {isa = PBXBuildFile; fileRef = F764BBFB1E07C91D00CE252F /* WeatherAirportController.m */; };
 		F7680B111E07CC4F000B8C0D /* UMESDKKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7680B101E07CC4F000B8C0D /* UMESDKKit.framework */; };
+		F7680B141E0A4917000B8C0D /* FlightDetailHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7680B131E0A4917000B8C0D /* FlightDetailHeaderFooterView.m */; };
+		F7680B161E0A4932000B8C0D /* FlightDetailHearderFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7680B151E0A4932000B8C0D /* FlightDetailHearderFooterView.xib */; };
+		F7680B191E0A6069000B8C0D /* VersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7680B181E0A6069000B8C0D /* VersionModel.m */; };
 		F77497001E0773EA00B5773C /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = F77496EB1E0773EA00B5773C /* next.png */; };
 		F77497011E0773EA00B5773C /* next@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F77496EC1E0773EA00B5773C /* next@2x.png */; };
 		F77497021E0773EA00B5773C /* next@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F77496ED1E0773EA00B5773C /* next@3x.png */; };
@@ -586,6 +589,11 @@
 		F764BBFA1E07C91D00CE252F /* WeatherAirportController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherAirportController.h; sourceTree = "<group>"; };
 		F764BBFB1E07C91D00CE252F /* WeatherAirportController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherAirportController.m; sourceTree = "<group>"; };
 		F7680B101E07CC4F000B8C0D /* UMESDKKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMESDKKit.framework; sourceTree = "<group>"; };
+		F7680B121E0A4917000B8C0D /* FlightDetailHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightDetailHeaderFooterView.h; sourceTree = "<group>"; };
+		F7680B131E0A4917000B8C0D /* FlightDetailHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightDetailHeaderFooterView.m; sourceTree = "<group>"; };
+		F7680B151E0A4932000B8C0D /* FlightDetailHearderFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightDetailHearderFooterView.xib; sourceTree = "<group>"; };
+		F7680B171E0A6069000B8C0D /* VersionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersionModel.h; sourceTree = "<group>"; };
+		F7680B181E0A6069000B8C0D /* VersionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VersionModel.m; sourceTree = "<group>"; };
 		F77496EB1E0773EA00B5773C /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = next.png; sourceTree = "<group>"; };
 		F77496EC1E0773EA00B5773C /* next@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "next@2x.png"; sourceTree = "<group>"; };
 		F77496ED1E0773EA00B5773C /* next@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "next@3x.png"; sourceTree = "<group>"; };
@@ -1166,6 +1174,8 @@
 				F7D47FE31DFA8D580050B293 /* BasisInfoEventModel.m */,
 				F7D47FE51DFA8D7F0050B293 /* BasisInfoDictionaryModel.h */,
 				F7D47FE61DFA8D7F0050B293 /* BasisInfoDictionaryModel.m */,
+				F7680B171E0A6069000B8C0D /* VersionModel.h */,
+				F7680B181E0A6069000B8C0D /* VersionModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1668,6 +1678,9 @@
 				F7EEEF1E1DB3A580004AF0AE /* FlightDetailTableViewCell.h */,
 				F7EEEF1F1DB3A580004AF0AE /* FlightDetailTableViewCell.m */,
 				F7EEEF201DB3A580004AF0AE /* FlightDetailTableViewCell.xib */,
+				F7680B121E0A4917000B8C0D /* FlightDetailHeaderFooterView.h */,
+				F7680B131E0A4917000B8C0D /* FlightDetailHeaderFooterView.m */,
+				F7680B151E0A4932000B8C0D /* FlightDetailHearderFooterView.xib */,
 				F7A25D0C1DBA059800F36C32 /* AbnormalityReportTableViewCell.h */,
 				F7A25D0D1DBA059800F36C32 /* AbnormalityReportTableViewCell.m */,
 				F7A25D0E1DBA059800F36C32 /* AbnormalityReportTableViewCell.xib */,
@@ -1864,6 +1877,7 @@
 				845055591DACF65200400EBF /* login_bg@2x.png in Resources */,
 				F792517C1DB7431D006AA119 /* UserManagementViewController.xib in Resources */,
 				F79251771DB73E2C006AA119 /* UserInfoTableViewCell.xib in Resources */,
+				F7680B161E0A4932000B8C0D /* FlightDetailHearderFooterView.xib in Resources */,
 				845055641DACF65200400EBF /* login_input_field@3x.png in Resources */,
 				F7D47FF11DFEC7400050B293 /* PsnSafetyContentViewTableViewCell.xib in Resources */,
 				8450556F1DACF65200400EBF /* splash_1@3x.png in Resources */,
@@ -2156,6 +2170,7 @@
 				F7D47FF01DFEC7400050B293 /* PsnSafetyContentViewTableViewCell.m in Sources */,
 				840D15ED1DC2FC67005FA910 /* PassengerTopViewController.m in Sources */,
 				840A4D111DD85DE200C39A79 /* PassengerModel.m in Sources */,
+				F7680B191E0A6069000B8C0D /* VersionModel.m in Sources */,
 				84183A091DBDDBD600D7DD86 /* FlightHourViewController.m in Sources */,
 				F78B13B81DF47B4C000A6833 /* MessageFilterViewController.m in Sources */,
 				F70893EB1DD2F66700135540 /* FlightDelaysTableViewCell.m in Sources */,
@@ -2232,6 +2247,7 @@
 				F758C9931DC3632800556120 /* DelayTimeTableViewCell.m in Sources */,
 				F749029C1DC86302005B193D /* AbnormalModel.m in Sources */,
 				841839F91DBCC10200D7DD86 /* PNLineChartData.m in Sources */,
+				F7680B141E0A4917000B8C0D /* FlightDetailHeaderFooterView.m in Sources */,
 				84183A2B1DBF5DE900D7DD86 /* ReleasedRatioModel.m in Sources */,
 				845E643E1DAB980C0072360D /* CommonFunction.m in Sources */,
 			);

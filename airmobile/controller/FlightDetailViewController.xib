@@ -17,10 +17,7 @@
                 <outlet property="modelLabel" destination="Mud-6X-6Hi" id="KBd-ff-zcs"/>
                 <outlet property="regionlabel" destination="cBQ-EP-xnW" id="Oe3-Pk-9Xt"/>
                 <outlet property="safeguardTableView" destination="QBr-5b-hfX" id="A6c-ph-Yyv"/>
-                <outlet property="safeguardTableViewHeight" destination="OQS-aO-xUh" id="Jie-0N-9en"/>
-                <outlet property="safeguradViewHeight" destination="OQS-aO-xUh" id="LKP-r6-1kQ"/>
-                <outlet property="specialView" destination="2LY-8E-V0M" id="G2D-BL-wnB"/>
-                <outlet property="tablViewTop" destination="YmD-6C-b54" id="wJm-t4-Uvk"/>
+                <outlet property="safeguardTableViewHeight" destination="04n-Md-4XM" id="11y-Ub-H6A"/>
                 <outlet property="tableView" destination="jEj-kJ-Brb" id="zTz-5Q-EhX"/>
                 <outlet property="tableViewHeight" destination="fpP-bG-jAO" id="XDe-U7-kyo"/>
                 <outlet property="terminalLabel" destination="3FL-T6-vv0" id="MBf-sm-2Hs"/>
@@ -258,69 +255,15 @@
                                         <constraint firstItem="3FL-T6-vv0" firstAttribute="leading" secondItem="cBQ-EP-xnW" secondAttribute="leading" id="zrw-rg-Nde"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2LY-8E-V0M">
-                                    <rect key="frame" x="0.0" y="158" width="600" height="37"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ofg-mG-pv2">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="37"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="特殊保障详情" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eTq-6t-c3T">
-                                                    <rect key="frame" x="10" y="0.0" width="72" height="37"/>
-                                                    <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fjA-Z6-bvH">
-                                                    <rect key="frame" x="560" y="11" width="20" height="0.0"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="20" id="I6G-kO-2Pj"/>
-                                                        <constraint firstAttribute="height" id="oJh-tK-2Ak"/>
-                                                    </constraints>
-                                                    <state key="normal" image="FlightDetailContract"/>
-                                                    <connections>
-                                                        <action selector="safeguradContractButtonClick:" destination="-1" eventType="touchUpInside" id="070-dA-hHS"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <color key="backgroundColor" red="0.9882352941176471" green="0.59215686274509804" blue="0.9882352941176471" alpha="1" colorSpace="calibratedRGB"/>
-                                            <constraints>
-                                                <constraint firstItem="eTq-6t-c3T" firstAttribute="leading" secondItem="Ofg-mG-pv2" secondAttribute="leading" constant="10" id="Dt8-1T-glu"/>
-                                                <constraint firstItem="eTq-6t-c3T" firstAttribute="top" secondItem="Ofg-mG-pv2" secondAttribute="top" id="Kap-at-zPF"/>
-                                                <constraint firstItem="fjA-Z6-bvH" firstAttribute="top" secondItem="Ofg-mG-pv2" secondAttribute="top" constant="11" id="Rx3-Qv-Y6n"/>
-                                                <constraint firstAttribute="bottom" secondItem="eTq-6t-c3T" secondAttribute="bottom" id="SLP-KA-pJI"/>
-                                                <constraint firstAttribute="trailing" secondItem="fjA-Z6-bvH" secondAttribute="trailing" constant="20" id="Zwa-kz-S2T"/>
-                                            </constraints>
-                                        </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aOs-IC-15T">
-                                            <rect key="frame" x="0.0" y="36" width="600" height="1"/>
-                                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="1" id="LX5-dZ-Nls"/>
-                                            </constraints>
-                                        </view>
-                                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QBr-5b-hfX">
-                                            <rect key="frame" x="0.0" y="37" width="600" height="0.0"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </tableView>
-                                    </subviews>
+                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QBr-5b-hfX">
+                                    <rect key="frame" x="0.0" y="158" width="600" height="36"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstItem="Ofg-mG-pv2" firstAttribute="top" secondItem="2LY-8E-V0M" secondAttribute="top" id="7dv-UC-aaL"/>
-                                        <constraint firstAttribute="trailing" secondItem="Ofg-mG-pv2" secondAttribute="trailing" id="FBy-el-XYa"/>
-                                        <constraint firstAttribute="trailing" secondItem="QBr-5b-hfX" secondAttribute="trailing" id="FRr-bw-Tz3"/>
-                                        <constraint firstItem="QBr-5b-hfX" firstAttribute="leading" secondItem="2LY-8E-V0M" secondAttribute="leading" id="FSD-pf-bEm"/>
-                                        <constraint firstAttribute="height" constant="37" id="OQS-aO-xUh"/>
-                                        <constraint firstItem="Ofg-mG-pv2" firstAttribute="leading" secondItem="2LY-8E-V0M" secondAttribute="leading" id="WtA-ML-pvS"/>
-                                        <constraint firstItem="QBr-5b-hfX" firstAttribute="top" secondItem="Ofg-mG-pv2" secondAttribute="bottom" id="gK9-IC-sLy"/>
-                                        <constraint firstAttribute="bottom" secondItem="QBr-5b-hfX" secondAttribute="bottom" id="kbi-pT-zgO"/>
-                                        <constraint firstAttribute="trailing" secondItem="aOs-IC-15T" secondAttribute="trailing" id="maY-rT-GJI"/>
-                                        <constraint firstItem="QBr-5b-hfX" firstAttribute="top" secondItem="aOs-IC-15T" secondAttribute="bottom" id="ukL-Gi-2g3"/>
-                                        <constraint firstItem="aOs-IC-15T" firstAttribute="top" secondItem="2LY-8E-V0M" secondAttribute="top" constant="36" id="vc9-YS-1fO"/>
-                                        <constraint firstItem="aOs-IC-15T" firstAttribute="leading" secondItem="2LY-8E-V0M" secondAttribute="leading" id="vds-KO-MTa"/>
+                                        <constraint firstAttribute="height" constant="36" id="04n-Md-4XM"/>
                                     </constraints>
-                                </view>
+                                </tableView>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jEj-kJ-Brb">
-                                    <rect key="frame" x="0.0" y="203" width="600" height="300"/>
+                                    <rect key="frame" x="0.0" y="210" width="600" height="300"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="300" id="fpP-bG-jAO"/>
@@ -328,18 +271,18 @@
                                 </tableView>
                             </subviews>
                             <constraints>
+                                <constraint firstItem="QBr-5b-hfX" firstAttribute="top" secondItem="S3B-AG-2ZM" secondAttribute="bottom" constant="16" id="1Is-KD-tV3"/>
                                 <constraint firstItem="S3B-AG-2ZM" firstAttribute="centerX" secondItem="W2h-Dq-HHd" secondAttribute="centerX" id="1qo-IN-027"/>
                                 <constraint firstAttribute="trailing" secondItem="S3B-AG-2ZM" secondAttribute="trailing" id="HGx-Ng-oXJ"/>
                                 <constraint firstAttribute="trailing" secondItem="jEj-kJ-Brb" secondAttribute="trailing" id="JWk-ZH-TIR"/>
+                                <constraint firstAttribute="trailing" secondItem="QBr-5b-hfX" secondAttribute="trailing" id="JXI-NU-qG4"/>
                                 <constraint firstItem="S3B-AG-2ZM" firstAttribute="top" secondItem="W2h-Dq-HHd" secondAttribute="top" id="JeS-0M-Qqq"/>
                                 <constraint firstItem="S3B-AG-2ZM" firstAttribute="leading" secondItem="W2h-Dq-HHd" secondAttribute="leading" id="Sly-04-HHP"/>
                                 <constraint firstAttribute="trailing" secondItem="jEj-kJ-Brb" secondAttribute="trailing" id="UkQ-to-Rq2"/>
-                                <constraint firstItem="jEj-kJ-Brb" firstAttribute="top" secondItem="2LY-8E-V0M" secondAttribute="bottom" constant="8" id="YmD-6C-b54"/>
-                                <constraint firstAttribute="trailing" secondItem="2LY-8E-V0M" secondAttribute="trailing" id="ci5-ZO-0tj"/>
-                                <constraint firstItem="2LY-8E-V0M" firstAttribute="top" secondItem="S3B-AG-2ZM" secondAttribute="bottom" constant="16" id="eJw-LY-n4R"/>
+                                <constraint firstItem="jEj-kJ-Brb" firstAttribute="top" secondItem="QBr-5b-hfX" secondAttribute="bottom" constant="16" id="d0K-WX-rab"/>
                                 <constraint firstItem="jEj-kJ-Brb" firstAttribute="leading" secondItem="W2h-Dq-HHd" secondAttribute="leading" id="q45-uu-Pgg"/>
-                                <constraint firstItem="2LY-8E-V0M" firstAttribute="leading" secondItem="W2h-Dq-HHd" secondAttribute="leading" id="uAS-P2-VBU"/>
                                 <constraint firstAttribute="bottom" secondItem="jEj-kJ-Brb" secondAttribute="bottom" constant="8" id="wCG-jv-6sK"/>
+                                <constraint firstItem="QBr-5b-hfX" firstAttribute="leading" secondItem="W2h-Dq-HHd" secondAttribute="leading" id="zOI-T9-NCG"/>
                             </constraints>
                         </scrollView>
                     </subviews>
@@ -365,7 +308,4 @@
             <point key="canvasLocation" x="25" y="51"/>
         </view>
     </objects>
-    <resources>
-        <image name="FlightDetailContract" width="20" height="11"/>
-    </resources>
 </document>

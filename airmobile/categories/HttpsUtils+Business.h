@@ -638,5 +638,12 @@
 
 
 
+/**
+ 版本检测
 
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)versionCheckSuccess:(void (^)(id))success
+                   failure:(void (^)(id))failure;
 @end

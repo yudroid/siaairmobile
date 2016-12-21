@@ -10,6 +10,25 @@
 
 @implementation SafeguardModel
 
+-(instancetype)initWithDictionary:(NSDictionary *)dictionary
+{
+    self = [super init];
+    if (self) {
+        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:dictionary];
+        for (NSString *key in dic.allKeys) {
+            id value = [dic objectForKey:key];
+            if ([value isKindOfClass:[NSNull class]]) {
+                [dic setObject:@"" forKey:key];
+            }
+        }
+
+
+        [self setValuesForKeysWithDictionary:dic];
+    }
+    return self;
+}
+
+
 -(void)setValue:(id)value forUndefinedKey:(NSString *)key
 {
 
@@ -34,6 +53,24 @@
     }
     return _realEndTime;
 
+}
+
+-(NSString *)startTimeAndEndTime
+{
+    NSString *start = @"";
+    if (_realStartTime && ![_realStartTime isEqualToString:@""]) {
+        start = _realStartTime;
+    }else{
+        start = _startTime;
+    }
+
+    NSString *end = @"";
+    if (_realEndTime && ![_realEndTime isEqualToString:@""]) {
+        end = _realEndTime;
+    }else{
+        end = _endTime;
+    }
+    return [NSString stringWithFormat:@"%@-%@",start,end];
 }
 
 @end

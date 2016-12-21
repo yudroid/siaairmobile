@@ -15,6 +15,7 @@
 #import "DeptInfoModel.h"
 #import "HttpsUtils+Business.h"
 #import "DeptInfoModel.h"
+#import "UIViewController+Reminder.h"
 
 const char * ALERTVIEW_BLOCK = "ALERTVIEW_BLOCK";
 static const NSString *ADDRESSBOOK_TABLEGROUPHEAER_IDENTIFIER = @"ADDRESSBOOK_TABLEGROUPHEADER_IDENTIFIER";
@@ -57,6 +58,7 @@ forHeaderFooterViewReuseIdentifier:(NSString *)ADDRESSBOOK_TABLEGROUPHEAER_IDENT
 
 -(void)UpdateNetwork
 {
+    [self starNetWorking];
     [HttpsUtils getContactList:^(NSArray *responseObj) {
         if ([responseObj isKindOfClass:[NSArray class]]) {
             NSMutableArray *depMutableArray = [NSMutableArray array];
@@ -71,8 +73,11 @@ forHeaderFooterViewReuseIdentifier:(NSString *)ADDRESSBOOK_TABLEGROUPHEAER_IDENT
                 [_resultArry addObject:[NSNumber numberWithBool:NO]];
             }
             [_tableView reloadData];
+            [self stopNetWorking];
         }
     } failure:^(NSError *error) {
+        [self showAnimationTitle:@"获取失败"];
+        [self stopNetWorking];
 
     }];
 }

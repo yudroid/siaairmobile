@@ -543,5 +543,64 @@ constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
 }
 
 
+///无主机名
++(void) postNoDomain:(NSString*)            segment
+      params:(id)                   formData
+     success:(void (^) (id))        success
+     failure:(void (^) (NSError*))  failure  {
+
+    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
+    //使用
+    //manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+
+    //请求超时时间
+    [manager.requestSerializer setTimeoutInterval: timeInterval];
+
+    //设置请求编码格式
+    [manager.requestSerializer setStringEncoding:NSUTF8StringEncoding];
+
+    //设置响应编码格式
+    [manager.responseSerializer setStringEncoding:NSUTF8StringEncoding];
+
+    //加上 https ssl验证
+    [manager setSecurityPolicy:[self customSecurityPolicy]];
+
+
+    //构建url
+    NSURL* url = [NSURL URLWithString:segment];
+
+
+
+    NSString* absoluteUrl = [StringUtils trim:[url absoluteString]];
+
+    //absoluteUrl = [NSString stringWithFormat:@"%@?uid=%@",absoluteUrl,[GuidUtils GuidString]];
+    //    if ([absoluteUrl length]>0 &&[StringUtils equals:[absoluteUrl substringFromIndex:([absoluteUrl length]-1)] To:@"/" ByIgnoreCase:YES]) {
+    //        absoluteUrl = [NSString stringWithFormat:@"%@%@",absoluteUrl,[GuidUtils GuidString]];
+    //    }
+    //    else if ([absoluteUrl length]>0){
+    //        absoluteUrl = [NSString stringWithFormat:@"%@/%@",absoluteUrl,[GuidUtils GuidString]];
+    //    }
+    NSLog(@"Post调用地址 %@",absoluteUrl);
+    //注：该方法是异步调用的
+    [manager POST:[url absoluteString]
+       parameters:formData
+         progress:nil
+          success:^(NSURLSessionTask* task, id responseObject){
+              NSLog(@"success ----  %@",responseObject);
+              if(success){
+                  //回调success
+                  success(responseObject);
+              }
+          }failure:^(NSURLSessionTask* operation, NSError* error){
+              NSLog(@"falied ---- %@",error);
+              if(failure){
+                  failure(error);
+              }
+          }
+     ];
+
+}
+
 
 @end

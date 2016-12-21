@@ -156,24 +156,30 @@
 -(void)loadData:(NSNotification *)notification
 {
     if ([notification.object isKindOfClass:[NSArray class]]) {
-        array = notification.object;
 
-        [flightHourTableView reloadData];
+        if(!array || array.count == 0 )
+        {
+            array = notification.object;
 
-        [self updateShapeArray];
+            [flightHourTableView reloadData];
 
-        abnRsnProgress  = [[PNPieChart alloc] initWithFrame:CGRectMake(0, 10, viewHeight(topBgView)-20, viewHeight(topBgView)-20) items:shapeArray];
-        abnRsnProgress.center       = CGPointMake(20+100, viewHeight(topBgView)/2);
-        abnRsnProgress.descriptionTextColor         = [UIColor whiteColor];
-        abnRsnProgress.descriptionTextFont          = [UIFont systemFontOfSize:11];
-        abnRsnProgress.descriptionTextShadowColor   = [UIColor clearColor];
-        abnRsnProgress.showAbsoluteValues           = YES;
-        abnRsnProgress.showOnlyValues               = YES;
-        [abnRsnProgress strokeChart];
-        abnRsnProgress.legendStyle                  = PNLegendItemStyleStacked;
-        abnRsnProgress.legendFont                   = [UIFont fontWithName:@"PingFangSC-Regular" size:10];
-        abnRsnProgress.innerCircleRadius            = viewHeight(abnRsnProgress)/2-40;
-        [topBgView addSubview:abnRsnProgress];
+            [self updateShapeArray];
+
+            abnRsnProgress  = [[PNPieChart alloc] initWithFrame:CGRectMake(0, 10, viewHeight(topBgView)-20, viewHeight(topBgView)-20) items:shapeArray];
+            abnRsnProgress.center       = CGPointMake(20+100, viewHeight(topBgView)/2);
+            abnRsnProgress.descriptionTextColor         = [UIColor whiteColor];
+            abnRsnProgress.descriptionTextFont          = [UIFont systemFontOfSize:11];
+            abnRsnProgress.descriptionTextShadowColor   = [UIColor clearColor];
+            abnRsnProgress.showAbsoluteValues           = YES;
+            abnRsnProgress.showOnlyValues               = YES;
+            [abnRsnProgress strokeChart];
+            abnRsnProgress.legendStyle                  = PNLegendItemStyleStacked;
+            abnRsnProgress.legendFont                   = [UIFont fontWithName:@"PingFangSC-Regular" size:10];
+            abnRsnProgress.innerCircleRadius            = viewHeight(abnRsnProgress)/2-40;
+            [topBgView addSubview:abnRsnProgress];
+
+        }
+
 
     }
 }
