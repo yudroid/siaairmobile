@@ -119,16 +119,17 @@
                                                                  viewBotton(lineImageView)+4,
                                                                  50,
                                                                  9)
-                                                 text:@"100"
+                                                 text:[NSString stringWithFormat:@"%0.0lf%%",[self maxValue]*100.0]
                                                  font:11
                                         textAlignment:NSTextAlignmentRight
                                          colorFromHex:0x75FFFFFF];
     [topBgView addSubview:maxLabel];
 
+
     lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(20,
-                                                              5+23+23+2,
+                                                              viewBotton(lineImageView),
                                                               topBgView.frame.size.width-40,
-                                                              topBgView.frame.size.height-(5+23+23+2)-5)];
+                                                              topBgView.frame.size.height-(viewBotton(lineImageView))-5)];
     lineChart.backgroundColor = [UIColor clearColor];
     lineChart.skipXPoints = 1;
     [lineChart setXLabels:[self getFlightHourXLabels]];
@@ -141,7 +142,7 @@
 
     //Use yFixedValueMax and yFixedValueMin to Fix the Max and Min Y Value
     //Only if you needed
-    lineChart.yFixedValueMax = 1000;
+    lineChart.yFixedValueMax = [self maxValue]*1000;
     lineChart.yFixedValueMin = 0;
 
 
@@ -354,13 +355,13 @@
                 CGFloat yValue = [dataArray[index] floatValue];
                 return [PNLineChartDataItem dataItemWithY:yValue];
             };
-            
+
             lineChart.chartData = @[data];
             [lineChart strokeChart];
-
-
+            
+            
         }
-
+        
     }
 }
 

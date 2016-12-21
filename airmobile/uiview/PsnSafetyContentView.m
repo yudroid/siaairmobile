@@ -77,7 +77,7 @@ const NSString *PSNSAFETYCONTEN_TABLEVIEW_IDENTIFER = @"PSNSAFETYCONTEN_TABLEVIE
                                                                       viewBotton(lineImageView)+px_px_2_3(9, 15),
                                                                       viewWidth(lineImageView),
                                                                       9)
-                                                      text:@""
+                                                      text:[NSString stringWithFormat:@"%ld",@([self maxValue] * 1.2).integerValue]
                                                       font:11
                                              textAlignment:NSTextAlignmentRight
                                               colorFromHex:0x75FFFFFF];
@@ -129,7 +129,7 @@ const NSString *PSNSAFETYCONTEN_TABLEVIEW_IDENTIFER = @"PSNSAFETYCONTEN_TABLEVIE
                                                                          direction:4
                                                                             colors:@[(__bridge id)[CommonFunction colorFromHex:0XFFFDD4C3].CGColor,
                                                                                      (__bridge id)[CommonFunction colorFromHex:0XFFFDC4D5].CGColor ]
-                                                                        proportion:((NSNumber *)[dataArray[i] objectForKey:@"ratio"]).floatValue];
+                                                                        proportion:((NSNumber *)[dataArray[i] objectForKey:@"count"]).floatValue/([self maxValue]*1.2)];
             [topBgView addSubview:barProgress];
 
             UILabel  *tagLabel = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width*(i+1)/(dataArray.count+1)-30,
@@ -417,6 +417,18 @@ const NSString *PSNSAFETYCONTEN_TABLEVIEW_IDENTIFER = @"PSNSAFETYCONTEN_TABLEVIE
                                                             object:nil];
     }
 
+}
+
+-(CGFloat)maxValue
+{
+    float maxValue = 0;
+    for (NSDictionary *dic in _dataArray) {
+        if (((NSNumber *)[dic objectForKey:@"count"]).floatValue>maxValue) {
+            maxValue = ((NSNumber *)[dic objectForKey:@"count"]).floatValue;
+        }
+
+    }
+    return maxValue;
 }
 
 

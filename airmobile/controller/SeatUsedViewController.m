@@ -77,7 +77,7 @@ const NSString *SEATUSED_TABLEVIEW_IDENTIFIER = @"SEATUSED_TABLEVIEW_IDENTIFIER"
     [progressRound animationWithStrokeEnd:normalProportion withProgressType:ProgreesTypeNormal];
     [progressRound animationWithStrokeEnd:abnormalProportion withProgressType:ProgreesTypeAbnormal];
     [progressRound animationWithStrokeEnd:cancleProportion withProgressType:ProgreesTypeCancel];
-    [progressRound animationWithStrokeEnd:unusedPropertion withProgressType:5];
+//    [progressRound animationWithStrokeEnd:unusedPropertion withProgressType:5];
 
     //圆圈底部圆圈
 //    UIImage *bottomRoundImage = [UIImage imageNamed:@"chartBack"];
@@ -471,13 +471,13 @@ const NSString *SEATUSED_TABLEVIEW_IDENTIFIER = @"SEATUSED_TABLEVIEW_IDENTIFIER"
         //圆的四个属性
         normalProportion = (_seatStatusModel.longNormalTakeUpCnt+_seatStatusModel.longParentTakeUpCnt)/@(_seatStatusModel.normalCnt+_seatStatusModel.parentCnt).floatValue ;
         abnormalProportion = normalProportion+((_seatStatusModel.normalCnt+_seatStatusModel.parentCnt)-(_seatStatusModel.normalTakeUpCnt+_seatStatusModel.parentTakeUpCnt))/@(_seatStatusModel.normalCnt+_seatStatusModel.parentCnt).floatValue;
-        cancleProportion = abnormalProportion + (_seatStatusModel.normalTakeUpCnt+_seatStatusModel.parentTakeUpCnt)/@(_seatStatusModel.normalCnt+_seatStatusModel.parentCnt).floatValue;
-        unusedPropertion = cancleProportion +(_seatStatusModel.unusableCnt)/@(_seatStatusModel.normalCnt+_seatStatusModel.parentCnt).floatValue;
+        cancleProportion = abnormalProportion + (_seatStatusModel.normalTakeUpCnt+_seatStatusModel.parentTakeUpCnt-(_seatStatusModel.longNormalTakeUpCnt+_seatStatusModel.longParentTakeUpCnt))/@(_seatStatusModel.normalCnt+_seatStatusModel.parentCnt).floatValue;
+//        unusedPropertion = cancleProportion +(_seatStatusModel.unusableCnt)/@(_seatStatusModel.normalCnt+_seatStatusModel.parentCnt).floatValue;
         //对数据进行动画
         [progressRound animationWithStrokeEnd:normalProportion withProgressType:ProgreesTypeNormal];
         [progressRound animationWithStrokeEnd:abnormalProportion withProgressType:ProgreesTypeAbnormal];
         [progressRound animationWithStrokeEnd:cancleProportion withProgressType:ProgreesTypeCancel];
-        [progressRound animationWithStrokeEnd:unusedPropertion withProgressType:5];
+//        [progressRound animationWithStrokeEnd:unusedPropertion withProgressType:5];
         //机位
         totalNumLabel.text = @(_seatStatusModel.normalCnt+_seatStatusModel.parentCnt).stringValue;
 
@@ -499,13 +499,13 @@ const NSString *SEATUSED_TABLEVIEW_IDENTIFIER = @"SEATUSED_TABLEVIEW_IDENTIFIER"
         //圆的四个属性
         normalProportion = (_seatStatusModel.longNormalTakeUpCnt+_seatStatusModel.longChildTakeUpCnt)/@(_seatStatusModel.normalCnt+_seatStatusModel.childCnt).floatValue ;
         abnormalProportion = normalProportion+((_seatStatusModel.normalCnt+_seatStatusModel.childCnt)-(_seatStatusModel.normalTakeUpCnt+_seatStatusModel.childTakeUpCnt))/@(_seatStatusModel.normalCnt+_seatStatusModel.childCnt).floatValue;
-        cancleProportion = abnormalProportion + (_seatStatusModel.normalTakeUpCnt+_seatStatusModel.childTakeUpCnt)/@(_seatStatusModel.normalCnt+_seatStatusModel.childCnt).floatValue;
-        unusedPropertion = cancleProportion +(_seatStatusModel.unusableCnt)/@(_seatStatusModel.normalCnt+_seatStatusModel.childCnt).floatValue;
+        cancleProportion = abnormalProportion + (_seatStatusModel.normalTakeUpCnt+_seatStatusModel.childTakeUpCnt-(_seatStatusModel.longNormalTakeUpCnt+_seatStatusModel.longChildTakeUpCnt))/@(_seatStatusModel.normalCnt+_seatStatusModel.childCnt).floatValue;
+//        unusedPropertion = cancleProportion +(_seatStatusModel.unusableCnt)/@(_seatStatusModel.normalCnt+_seatStatusModel.childCnt).floatValue;
         //对数据进行动画
         [progressRound animationWithStrokeEnd:normalProportion withProgressType:ProgreesTypeNormal];
         [progressRound animationWithStrokeEnd:abnormalProportion withProgressType:ProgreesTypeAbnormal];
         [progressRound animationWithStrokeEnd:cancleProportion withProgressType:ProgreesTypeCancel];
-        [progressRound animationWithStrokeEnd:unusedPropertion withProgressType:5];
+//        [progressRound animationWithStrokeEnd:unusedPropertion withProgressType:5];
         //机位
         totalNumLabel.text = @(_seatStatusModel.normalCnt+_seatStatusModel.childCnt).stringValue;
 

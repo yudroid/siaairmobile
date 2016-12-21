@@ -120,7 +120,8 @@
     if (!cell) {
         cell = [[AbnReasonTableViewCell alloc]initWithStyle:(UITableViewCellStyleDefault)
                                             reuseIdentifier:abnRsn.reason
-                                                  abnReason:abnRsn];
+                                                  abnReason:abnRsn
+                                                        sum:[self sum]];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;

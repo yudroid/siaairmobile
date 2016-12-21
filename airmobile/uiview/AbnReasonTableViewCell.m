@@ -13,6 +13,7 @@
 -(instancetype) initWithStyle: (UITableViewCellStyle)   style
               reuseIdentifier: (NSString *)             identifier
                     abnReason: (AbnReasonModel *)       abnReason
+                          sum:(CGFloat)sum
 {
     self = [super init];
     if(self){
@@ -30,7 +31,7 @@
                                                                      0,
                                                                      kScreenWidth/2-px2(32),
                                                                      viewHeight(self.contentView))
-                                                     text:[NSString stringWithFormat:@"%i架次,%i%%",(int)abnReason.count,(int)(abnReason.percent*100)]
+                                                     text:[NSString stringWithFormat:@"%i架次,%.1f%%",(int)abnReason.count,abnReason.count/@(sum).floatValue*100]
                                                      font:px_px_2_3(24, 40)
                                             textAlignment:(NSTextAlignmentRight)
                                              colorFromHex:0xFF1B1B1B];

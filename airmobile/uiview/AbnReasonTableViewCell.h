@@ -13,6 +13,7 @@
 
 -(instancetype) initWithStyle: (UITableViewCellStyle)   style
               reuseIdentifier: (NSString *)             identifier
-                    abnReason: (AbnReasonModel *)       abnReason;
+                    abnReason: (AbnReasonModel *)       abnReason
+                          sum:(CGFloat)sum;
 
 @end
