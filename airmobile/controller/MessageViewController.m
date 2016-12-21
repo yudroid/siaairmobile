@@ -346,6 +346,7 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
         if(dic == nil){
             return nil;
         }
+         cell.headImageView.image = [UIImage imageNamed:@"MessageHeader"];
         cell.nameLabel.text = [dic objectForKey:@"name"];
         cell.messageLabel.text = [dic objectForKey:@"describe"];
         cell.timeLable.text = [[dic objectForKey:@"time"] stringByReplacingOccurrencesOfString:@" "

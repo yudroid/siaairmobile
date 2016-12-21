@@ -91,7 +91,8 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     _headImageView.image = [UIImage imageNamed:@"home_title_bg.png"];
     _headImageView.layer.cornerRadius = 25.0;
     _headImageView.layer.masksToBounds = YES;
-    [_headImageView setIconURL:[HttpsUtils imageDownloadURLWithString:@"1481161300838/2345.png"]];
+//    [_headImageView setIconURL:[HttpsUtils imageDownloadURLWithString:appdelegate.userInfoModel.imagePath]];
+    _headImageView.image = [UIImage imageNamed:@"MessageHeader"];
     [userInfo addSubview:_headImageView];
     
     _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(74, 16, 150, 20)];

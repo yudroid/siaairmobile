@@ -187,10 +187,11 @@ static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TA
                 [self showAnimationTitle:@"上传成功"];
                  NSString *imageName = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
 
+                AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                appdelegate.userInfoModel.imagePath = imageName;
                 NSLog(@"%@",[HttpsUtils imageDownloadURLWithString:imageName]);
 //                [_headImageView sd_setImageWithURL:[HttpsUtils imageDownloadURLWithString:imageName]];
                 [_headImageView setIconURL:[HttpsUtils imageDownloadURLWithString:imageName]];
-
                 _headImageView.backgroundColor = [UIColor redColor];
                
                 [self stopNetWorking];

@@ -37,7 +37,7 @@
 {
     _content = content;
     _titleLabel.text = [content objectForKey:@"hour"] ;
-    _valueLabel.text = ((NSNumber *)[content objectForKey:@"ratio"]).stringValue;
+    _valueLabel.text = ((NSNumber *)[content objectForKey:@"count"]).stringValue;
 
 }
 

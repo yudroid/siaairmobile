@@ -26,6 +26,7 @@
 @property (nonatomic ,copy)   NSString    *seat;
 @property (nonatomic ,copy)   NSString    *signStatus; // “” “未签到” "已签到" “已签退”
 @property (nonatomic ,copy)   NSString    *functions; // 权限数组
+@property (nonatomic ,copy)   NSString    *imagePath;
 
 
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary ;
