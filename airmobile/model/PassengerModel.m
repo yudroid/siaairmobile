@@ -63,8 +63,8 @@
 {
     if([self isNull:data])
         return;
-    _hourInCount =  [[data objectForKey:@"hourInCount"]     intValue];
-    _hourOutCount = [[data objectForKey:@"hourOutCount"]    intValue];
+    _hourInCount =  [[data objectForKey:@"willInPsn"]     intValue];
+    _hourOutCount = [[data objectForKey:@"willOutPsn"]    intValue];
 }
 
 -(void) updateSafetyPassenger: (id)data
