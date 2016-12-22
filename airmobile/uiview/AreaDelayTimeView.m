@@ -39,7 +39,7 @@
         topBgBackgroundImageView.image          = [UIImage imageNamed:@"TenDayRatioChartBackground"];
         [topBgView addSubview:topBgBackgroundImageView];
 
-        UILabel *passengerTtitle    = [[UILabel alloc] initWithFrame:CGRectMake(16, 8, viewWidth(topBgView)-100, 11)];
+        UILabel *passengerTtitle    = [[UILabel alloc] initWithFrame:CGRectMake(16, 8, viewWidth(topBgView)-100, 13)];
         passengerTtitle.font        = [UIFont fontWithName:@"PingFangSC-Regular" size:27/2];
         passengerTtitle.textColor   = [UIColor whiteColor];
         passengerTtitle.text        = @"区域平均延误时间";

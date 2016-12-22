@@ -7,10 +7,13 @@
 //
 
 #import "FlightHourView.h"
+#import "PNMixLineChart.h"
+#import "PNLineChartData.h"
+#import "PNLineChartDataItem.h"
 
 @implementation FlightHourView
 {
-    PNLineChart *lineChart;
+    PNMixLineChart *lineChart;
     NSArray<FlightHourModel *> *hourArray;
     FlightHourType _flightHourType;
     PNBarChart *barChart;
@@ -43,7 +46,7 @@
         UILabel *passengerTtitle    = [[UILabel alloc] initWithFrame:CGRectMake(px_px_2_3(32, 73),
                                                                              px_px_2_3(10, 24) ,
                                                                              viewWidth(topBgView)-100,
-                                                                             11)];
+                                                                             13)];
         passengerTtitle.font        = [UIFont fontWithName:@"PingFangSC-Regular"
                                                size:27/2];
         passengerTtitle.textColor = [UIColor whiteColor];
@@ -108,7 +111,7 @@
         
         
         // 计划的折线图
-        lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(20,
+        lineChart = [[PNMixLineChart alloc] initWithFrame:CGRectMake(20,
                                                                   5+23+15+2,
                                                                   topBgView.frame.size.width-40,
                                                                   topBgView.frame.size.height-(5+23+15+2)-5)];
@@ -119,6 +122,10 @@
         lineChart.showGenYLabels    =NO;
         lineChart.yFixedValueMax    = [self maxValue]*1.2;
         lineChart.yFixedValueMin    = 0;
+
+
+
+        lineChart.changeNum = [CommonFunction currentHour];
         
         // added an examle to show how yGridLines can be enabled
         // the color is set to clearColor so that the demo remains the same
@@ -148,7 +155,7 @@
         barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(20,
                                                                 5+23+15+2,
                                                                 topBgView.frame.size.width-40,
-                                                                topBgView.frame.size.height-(5+23+15+2)-5)];//折线图
+                                                                topBgView.frame.size.height-(5+23+15+2)-5)];
         
         barChart.yMaxValue          = [self maxValue]*1.2;
         barChart.yMinValue          = 0;
@@ -331,6 +338,9 @@
     }
     return max;
 }
+
+
+
 
 
 @end

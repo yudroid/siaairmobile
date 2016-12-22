@@ -79,6 +79,16 @@
 //        pageControl.backgroundColor = [UIColor blueColor];
         [self addSubview:pageControl];//四个按钮
 
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:@"showSafetyPassenger"
+                                                      object:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:@"showTop5DaysView"
+                                                      object:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:@"showPassengerHourView"
+                                                      object:nil];
+
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(showSafetyPassenger:)
                                                      name:@"showSafetyPassenger"

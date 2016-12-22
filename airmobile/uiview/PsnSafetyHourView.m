@@ -51,7 +51,7 @@
         UILabel *passengerTtitle = [[UILabel alloc] initWithFrame:CGRectMake(15,
                                                                              7,
                                                                              viewWidth(topBgView)-100,
-                                                                             11)];
+                                                                             13)];
         passengerTtitle.text        = @"隔离区内旅客时间分布";
         passengerTtitle.font        = [UIFont fontWithName:@"PingFangSC-Regular" size:27/2];
         passengerTtitle.textColor   = [UIColor whiteColor];

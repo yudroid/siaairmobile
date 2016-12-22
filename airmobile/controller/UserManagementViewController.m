@@ -41,7 +41,7 @@ static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TA
     //titleView订制
     [self titleViewInitWithHight:64];
     self.titleView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"home_title_bg.png"]];
-    [self titleViewAddTitleText:@"我的"];
+    [self titleViewAddTitleText:@"用户管理"];
     [self titleViewAddBackBtn];
     
     _headImageView.layer.cornerRadius =17.5;
@@ -198,6 +198,8 @@ static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TA
     [self dismissViewControllerAnimated:YES completion:^{
 //        _headImageView.image = [info objectForKey:UIImagePickerControllerEditedImage];
         UIImage  *image = [info objectForKey:UIImagePickerControllerEditedImage];
+        NSData *imgData = UIImageJPEGRepresentation(image, 0.5);
+        image = [UIImage imageWithData:imgData];
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
         NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"headimage.png"]];
         BOOL result = [UIImagePNGRepresentation(image)writeToFile: filePath atomically:YES];
@@ -210,8 +212,7 @@ static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TA
 
                 AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
                 appdelegate.userInfoModel.imagePath = imageName;
-                NSLog(@"%@",[HttpsUtils imageDownloadURLWithString:imageName]);
-//                [_headImageView sd_setImageWithURL:[HttpsUtils imageDownloadURLWithString:imageName]];
+
                 [_headImageView setIconURL:[HttpsUtils imageDownloadURLWithString:imageName]];
                 _headImageView.backgroundColor = [UIColor redColor];
                

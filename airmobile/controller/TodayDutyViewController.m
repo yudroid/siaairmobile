@@ -12,6 +12,7 @@
 #import "DutyModel.h"
 #import "HttpsUtils+Business.h"
 #import "DeptInfoModel.h"
+#import "UIViewController+Reminder.h"
 
 
 static const NSString *ADDRESSBOOK_TABLEGROUPHEAER_IDENTIFIER   = @"ADDRESSBOOK_TABLEGROUPHEADER_IDENTIFIER";
@@ -62,7 +63,8 @@ forHeaderFooterViewReuseIdentifier:(NSString *)ADDRESSBOOK_TABLEGROUPHEAER_IDENT
     //用[NSDate date]可以获取系统当前时间
     NSString *currentDateStr = [dateFormatter stringFromDate:[NSDate date]];
     NSLog(@"%@",currentDateStr);
-    
+
+    [self starNetWorking];
     [HttpsUtils getDutyTableByDay:currentDateStr success:^(NSArray *responseObj) {
         if ([responseObj isKindOfClass:[NSArray class]]) {
             NSMutableArray *depMutableArray = [NSMutableArray array];
@@ -93,9 +95,10 @@ forHeaderFooterViewReuseIdentifier:(NSString *)ADDRESSBOOK_TABLEGROUPHEAER_IDENT
             }
             [_tableView reloadData];
         }
+        [self stopNetWorking];
 
     } failure:^(NSError *error) {
-
+        [self stopNetWorking];
     }];
 }
 

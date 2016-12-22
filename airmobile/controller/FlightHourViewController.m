@@ -73,7 +73,7 @@
     UILabel *passengerTtitle = [[UILabel alloc] initWithFrame:CGRectMake(px2(33),
                                                                          px_px_2_3(14, 22),
                                                                          topBgView.frame.size.width-100,
-                                                                         11)];
+                                                                         13)];
     passengerTtitle.text = @"航班小时分布图";
     passengerTtitle.font = [UIFont fontWithName:@"PingFang SC" size:px_px_2_3(27, 45)];
     passengerTtitle.textColor = [UIColor whiteColor];

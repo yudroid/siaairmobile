@@ -58,7 +58,7 @@
         UILabel *passengerTtitle = [[UILabel alloc] initWithFrame:CGRectMake(16,
                                                                              8,
                                                                              viewWidth(topBgView)-100,
-                                                                             10)];
+                                                                             13)];
         passengerTtitle.text = @"旅客进出港统计";
         passengerTtitle.font = [UIFont fontWithName:@"PingFangSC-Regular"
                                                size:27/2];
@@ -101,7 +101,7 @@
                                                                          0,
                                                                          40,
                                                                          12)
-                                                         text:@"进港"
+                                                         text:@"计划"
                                                          font:27/2
                                                 textAlignment:NSTextAlignmentLeft
                                                  colorFromHex:0xFFFFFFFF]];
@@ -116,7 +116,7 @@
                                                                          0,
                                                                          40,
                                                                          12)
-                                                         text:@"出港"
+                                                         text:@"实际"
                                                          font:27/2
                                                 textAlignment:NSTextAlignmentLeft
                                                  colorFromHex:0xFFFFFFFF]];

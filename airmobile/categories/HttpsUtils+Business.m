@@ -79,7 +79,7 @@ NSString * const loadDictDataUrl            = @"/acs/wacs/MobileFirstLoading/que
 NSString * const loadEventUrl               = @"/acs/wacs/MobileFirstLoading/queryMobileEvent";//获取事件数据
 NSString * const updatePwdUrl               = @"/acs/login/updatePwd";//修改密码
 
-NSString * const headImageUpload            = @"/acs/m/upload";//头像上传
+NSString * const headImageUpload            = @"/acs/ath/user/imageupload";//头像上传
 
 @implementation HttpsUtils (Business)
 
@@ -1071,11 +1071,12 @@ NSString * const headImageUpload            = @"/acs/m/upload";//头像上传
  */
 +(void)logOut:(int)userId success:(void (^)(id))success failure:(void (^)(id))failure
 {
-    [HttpsUtils get:logOutUrl params:nil success:^(id responseObj) {
-        if(success){
-            success(responseObj);
-        }
-    } failure:failure];
+    [HttpsUtils getString:loginUrl params:nil
+                  success:^(id responseObj) {
+                      if(success){
+                          success(responseObj);
+                      }
+                  } failure:failure];
 }
 
 /**

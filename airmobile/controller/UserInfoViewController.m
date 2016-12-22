@@ -91,8 +91,7 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     _headImageView.image = [UIImage imageNamed:@"home_title_bg.png"];
     _headImageView.layer.cornerRadius = 25.0;
     _headImageView.layer.masksToBounds = YES;
-//    [_headImageView setIconURL:[HttpsUtils imageDownloadURLWithString:appdelegate.userInfoModel.imagePath]];
-    _headImageView.image = [UIImage imageNamed:@"MessageHeader"];
+
     [userInfo addSubview:_headImageView];
     
     _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(74, 16, 150, 20)];
@@ -148,6 +147,7 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     _tableView.tableFooterView = [[UIView alloc]init];
 
     NSMutableArray *mutableArray = [NSMutableArray array];
+//    [mutableArray addObject:@{@"name":@"用户管理",@"image":@"UserManager"}];
     if ([CommonFunction hasFunction:SET_USERMANAGE]) {
         [mutableArray addObject:@{@"name":@"用户管理",@"image":@"UserManager"}];
     }
@@ -165,6 +165,15 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     [self.view addSubview:_tableView];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    if (_headImageView.image == nil) {
+        _headImageView.image = [UIImage imageNamed:@"MessageHeader"];
+    }
+    AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [_headImageView setIconURL:[HttpsUtils imageDownloadURLWithString:appdelegate.userInfoModel.imagePath]];
+
+}
 
 -(void)cardButtonClick:(UIButton *)sender
 {
@@ -195,8 +204,10 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
 -(void)logoffButtonClick:(UIButton *)sender
 {
     AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [self starNetWorking];
     [HttpsUtils logOut:(int)appdelegate.userInfoModel.id
                success:^(NSNumber *response) {
+                   [self stopNetWorking];
                    LoginViewController *homepage = [[LoginViewController alloc] init];
                    UINavigationController *nv = [[UINavigationController alloc]initWithRootViewController:homepage];
                    nv.navigationBarHidden= YES;
@@ -204,12 +215,8 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
                    [appdelegate.window makeKeyWindow];
                }
                failure:^(NSError *error) {
-//                   [self showAnimationTitle:@"注销失败"];
-                   LoginViewController *homepage = [[LoginViewController alloc] init];
-                   UINavigationController *nv = [[UINavigationController alloc]initWithRootViewController:homepage];
-                   nv.navigationBarHidden= YES;
-                   appdelegate.window.rootViewController = nv;
-                   [appdelegate.window makeKeyWindow];
+                   [self stopNetWorking];
+                   [self showAnimationTitle:@"注销失败"];
                }];
 
 }

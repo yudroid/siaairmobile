@@ -71,7 +71,7 @@
     UILabel *passengerTtitle = [[UILabel alloc] initWithFrame:CGRectMake(16,
                                                                          8,
                                                                          viewWidth(topBgView)-100,
-                                                                         11)];
+                                                                         13)];
     passengerTtitle.text = @"放行率";
     passengerTtitle.font = [UIFont fontWithName:@"PingFangSC-Regular"
                                            size:27/2];

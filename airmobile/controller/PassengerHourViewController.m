@@ -56,7 +56,7 @@
     UILabel *passengerTtitle = [[UILabel alloc] initWithFrame:CGRectMake(16,
                                                                          8,
                                                                          viewWidth(topBgView)-100,
-                                                                         11)];
+                                                                         13)];
     passengerTtitle.text = @"旅客小时分布";
     passengerTtitle.font = [UIFont fontWithName:@"PingFangSC-Regular"
                                            size:27/2];
@@ -79,7 +79,7 @@
                                                                      0,
                                                                      40,
                                                                      12)
-                                                     text:@"计划"
+                                                     text:@"进港"
                                                      font:27/2
                                             textAlignment:NSTextAlignmentLeft
                                              colorFromHex:0xFFFFFFFF]];
@@ -94,7 +94,7 @@
                                                                      0,
                                                                      40,
                                                                      12)
-                                                     text:@"实际"
+                                                     text:@"出港"
                                                      font:27/2
                                             textAlignment:NSTextAlignmentLeft
                                              colorFromHex:0xFFFFFFFF]];
@@ -140,7 +140,7 @@
     NSArray * arrArray = [self getFlightHourYLabels];
     PNLineChartData *data = [PNLineChartData new];
     data.dataTitle = @"航班";
-    data.color = [UIColor greenColor];
+    data.color = [UIColor whiteColor];
     data.alpha = 0.5f;
     data.itemCount = arrArray.count;
     data.inflexionPointStyle = PNLineChartPointStyleCircle;

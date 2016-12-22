@@ -46,7 +46,7 @@
         UILabel *passengerTtitle = [[UILabel alloc] initWithFrame:CGRectMake(16,
                                                                              8,
                                                                              viewWidth(topBgView)-100,
-                                                                             11)];
+                                                                             13)];
         passengerTtitle.text = @"隔离区旅客区域分布";
         passengerTtitle.font = [UIFont fontWithName:@"PingFangSC-Regular"
                                                size:27/2];

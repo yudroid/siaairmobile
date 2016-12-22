@@ -8,9 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PNBarChart.h"
-#import "PNLineChart.h"
-#import "PNLineChartData.h"
-#import "PNLineChartDataItem.h"
+
 #import "FlightHourModel.h"
 #import "FlightHourTableViewCell.h"
 #import "EnumTypeModel.h"

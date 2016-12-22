@@ -9,9 +9,13 @@
 #import "BaseService.h"
 #import <Foundation/Foundation.h>
 
+typedef void  (^TimeBlock)(void);
+
 @implementation BaseService
 {
     NSTimer *timer;
+    TimeBlock timeblock;
+
 }
 
 - (void)startService:(void (^)(void))callBack
@@ -31,15 +35,29 @@
 
 - (void)startTimer:(void (^)(void))callBack
 {
-    timer =  [NSTimer scheduledTimerWithTimeInterval:30
-                                             repeats:YES
-                                               block:(^(NSTimer *timer){
-        if(callBack){
-            callBack();
-        }
-    })];
+//    timer =  [NSTimer scheduledTimerWithTimeInterval:30
+//                                             repeats:YES
+//                                               block:(^(NSTimer *timer){
+//        if(callBack){
+////            callBack();
+//
+//        }
+//    })];
+
+//    timer = [NSTimer scheduledTimerWithTimeInterval:30 invocation:<#(nonnull NSInvocation *)#> repeats:YES]
+    timer = [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(timerFounction) userInfo:nil repeats:YES];
+
+    timeblock = callBack;
+
     [timer fire];
     [[NSRunLoop currentRunLoop] run];
+}
+
+
+-(void)timerFounction
+{
+    timeblock();
+
 }
 
 @end

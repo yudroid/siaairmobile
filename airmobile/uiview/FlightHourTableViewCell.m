@@ -101,11 +101,17 @@
                                                       font:17/2
                                              textAlignment:(NSTextAlignmentRight)
                                               colorFromHex:0xFF000000]];
+            NSString *title = @"";
+            if (flightHour.hour.integerValue>[CommonFunction currentHour]) {
+                title = @"预测进";
+            }else{
+                title = @"实际进";
+            }
             [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth-100,
                                                                       (viewHeight(self)-8)/2+3,
                                                                       40,
                                                                       8)
-                                                      text:@"实际进"
+                                                      text:title
                                                       font:17/2
                                              textAlignment:(NSTextAlignmentRight)
                                               colorFromHex:0xFF000000]];
@@ -126,11 +132,17 @@
                                                       font:17/2
                                              textAlignment:(NSTextAlignmentRight)
                                               colorFromHex:0xFF000000]];
+            NSString *title = @"";
+            if (flightHour.hour.integerValue>[CommonFunction currentHour]) {
+                title = @"预测出";
+            }else{
+                title = @"实际出";
+            }
             [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth-100,
                                                                       (viewHeight(self)-8)/2+3,
                                                                       40,
                                                                       8)
-                                                      text:@"实际出"
+                                                      text:title
                                                       font:17/2
                                              textAlignment:(NSTextAlignmentRight)
                                               colorFromHex:0xFF000000]];

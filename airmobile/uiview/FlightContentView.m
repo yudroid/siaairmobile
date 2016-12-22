@@ -8,6 +8,7 @@
 
 #import "FlightContentView.h"
 #import "FlightStusModel.h"
+#import "HomePageService.h"
 
 @interface FlightContentView()
 
@@ -45,7 +46,6 @@
 }
 
 -(instancetype)initWithFrame:(CGRect)                       frame
-             flightStusModel:(FlightStusModel *)            flightStusModel
                     delegate:(id<FlightContentViewDelegate>)delegate
 {
     self = [super initWithFrame:frame];
@@ -53,8 +53,10 @@
     if(self){
         
         _delegate = delegate;
+        
+        _flightStusModel = [HomePageService sharedHomePageService].flightModel;
 
-        _flightStusModel = flightStusModel;
+
         
         arrShapeArray = [[NSMutableArray alloc] init];
         depShapeArray = [[NSMutableArray alloc] init];

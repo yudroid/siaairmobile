@@ -126,6 +126,7 @@
 		F70893F41DD492BD00135540 /* TagView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F70893F31DD492BD00135540 /* TagView.xib */; };
 		F70893FC1DD5952F00135540 /* ContactPersonTableViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F70893FB1DD5952F00135540 /* ContactPersonTableViewHeaderView.m */; };
 		F70893FE1DD5955200135540 /* ContactPersonTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F70893FD1DD5955200135540 /* ContactPersonTableViewHeaderView.xib */; };
+		F714CAF41E0BACD1008D9B83 /* PNMixLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = F714CAF31E0BACD1008D9B83 /* PNMixLineChart.m */; };
 		F74289CF1E00DF7C00AC00D4 /* loadingPage@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F74289CE1E00DF7C00AC00D4 /* loadingPage@2x.jpg */; };
 		F74289D11E00DFCA00AC00D4 /* loadingPage@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F74289D01E00DFCA00AC00D4 /* loadingPage@3x.jpg */; };
 		F74289D41E00E7A200AC00D4 /* LinkPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = F74289D31E00E7A200AC00D4 /* LinkPageView.m */; };
@@ -517,6 +518,8 @@
 		F70893FA1DD5952F00135540 /* ContactPersonTableViewHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactPersonTableViewHeaderView.h; sourceTree = "<group>"; };
 		F70893FB1DD5952F00135540 /* ContactPersonTableViewHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactPersonTableViewHeaderView.m; sourceTree = "<group>"; };
 		F70893FD1DD5955200135540 /* ContactPersonTableViewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactPersonTableViewHeaderView.xib; sourceTree = "<group>"; };
+		F714CAF21E0BACD1008D9B83 /* PNMixLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNMixLineChart.h; sourceTree = "<group>"; };
+		F714CAF31E0BACD1008D9B83 /* PNMixLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNMixLineChart.m; sourceTree = "<group>"; };
 		F74289CE1E00DF7C00AC00D4 /* loadingPage@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "loadingPage@2x.jpg"; sourceTree = "<group>"; };
 		F74289D01E00DFCA00AC00D4 /* loadingPage@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "loadingPage@3x.jpg"; sourceTree = "<group>"; };
 		F74289D21E00E7A200AC00D4 /* LinkPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkPageView.h; sourceTree = "<group>"; };
@@ -927,6 +930,8 @@
 				841839EE1DBCB87600D7DD86 /* PNPieChartDataItem.m */,
 				841839F21DBCC10200D7DD86 /* PNLineChart.h */,
 				841839F31DBCC10200D7DD86 /* PNLineChart.m */,
+				F714CAF21E0BACD1008D9B83 /* PNMixLineChart.h */,
+				F714CAF31E0BACD1008D9B83 /* PNMixLineChart.m */,
 				841839F41DBCC10200D7DD86 /* PNLineChartData.h */,
 				841839F51DBCC10200D7DD86 /* PNLineChartData.m */,
 				841839F61DBCC10200D7DD86 /* PNLineChartDataItem.h */,
@@ -2181,6 +2186,7 @@
 				F7A25D8B1DBE277500F36C32 /* SJPhotoPickerRaidoButton.m in Sources */,
 				F74902991DC860AA005B193D /* RootModel.m in Sources */,
 				84ADE6D81DCC8E8700F58A46 /* PersistenceUtils+Business.m in Sources */,
+				F714CAF41E0BACD1008D9B83 /* PNMixLineChart.m in Sources */,
 				F7A2A0661DB8D0EE0023F228 /* TabBarView.m in Sources */,
 				F7A25D801DBE277500F36C32 /* SJPickPhotoController.m in Sources */,
 				F78B13B41DF47946000A6833 /* UIImage+ImageEffects.m in Sources */,

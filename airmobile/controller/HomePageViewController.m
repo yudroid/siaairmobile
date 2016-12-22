@@ -364,7 +364,6 @@
                                                                                 100,
                                                                                 kScreenWidth,
                                                                                 kScreenHeight-100-49)
-                                                     flightStusModel:[HomePageService sharedHomePageService].flightModel
                                                             delegate:self];
         [self.view addSubview:flightContentView];
     }

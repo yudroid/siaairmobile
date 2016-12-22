@@ -25,7 +25,7 @@ static const NSString *MessageFilter_TABLECELL_IDENTIFIER = @"MessageFilter_TABL
     //titleView订制
     [self titleViewInitWithHight:64];
     self.titleView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"home_title_bg.png"]];
-    [self titleViewAddTitleText:@"我的"];
+    [self titleViewAddTitleText:@"消息过滤"];
     [self titleViewAddBackBtn];
 
     _tableView.delegate = self;

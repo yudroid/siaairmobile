@@ -62,7 +62,7 @@
         UILabel *arrInLabel = [CommonFunction addLabelFrame:CGRectMake(0,
                                                                        viewBotton(arrInNum)+10,
                                                                        viewWidth(abnRsnProgress),
-                                                                       13)
+                                                                       15)
                                                        text:@"延误总数"
                                                        font:17
                                               textAlignment:(NSTextAlignmentCenter)
@@ -93,6 +93,10 @@
 //                                                 selector:@selector(loadData:)
 //                                                     name:@""
 //                                                   object:nil];
+
+
+        [topBgView bringSubviewToFront:arrInLabel];
+        [topBgView bringSubviewToFront:arrInNum];
 
     }
     

@@ -241,4 +241,18 @@
     return [functions containsString:[NSString stringWithFormat:@"%li",functionId]];
 }
 
+//获取当前小时数
++(NSInteger)currentHour
+{
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSUInteger unitFlags = NSCalendarUnitYear | //年
+    NSCalendarUnitMonth | //月份
+    NSCalendarUnitDay | //日
+    NSCalendarUnitHour |  //小时
+    NSCalendarUnitMinute |  //分钟
+    NSCalendarUnitSecond;  // 秒
+    NSDateComponents *dateComponent = [calendar components:unitFlags fromDate:[NSDate date]];
+    return [dateComponent hour];
+}
+
 @end

@@ -27,6 +27,9 @@
 +(UILabel *)addLabelFrame:(CGRect)rect text:(NSString *)text font:(CGFloat)font textAlignment:(NSTextAlignment)textAlignment colorFromHex:(long)hexColor;
 +(BOOL) hasFunction:(long)functionId;
 
+//获取当前小时数
++(NSInteger)currentHour;
+
 //判断是否为ios10以上版本
 +(BOOL) iOSVersion10;
     
