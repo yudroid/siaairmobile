@@ -401,9 +401,9 @@ NSLog(@"     -=-=-=-=-=-=-=save users  finished   -=-=-=-=-=-=-=");
 {
     NSString *sql = nil;
     if([type isEqualToString:@"FLIGHT"]){
-        sql = [NSString stringWithFormat:@"select * from SysMessage t where t.type='%@' and t.id>%li and t.userid=%i order by t.createtime",type,start,[self getLocalUserId]];
+        sql = [NSString stringWithFormat:@"select * from SysMessage t where t.type like '%@%%'  and t.id>%li and t.userid=%i order by t.createtime",type,start,[self getLocalUserId]];
     }else{
-        sql = [NSString stringWithFormat:@"select * from SysMessage t where t.type!='%@' and t.id>%li and t.userid=%i order by t.createtime",type,start,[self getLocalUserId]];
+        sql = [NSString stringWithFormat:@"select * from SysMessage t where t.type not like '%@%%' and t.id>%li and t.userid=%i order by t.createtime",@"FLIGHT",start,[self getLocalUserId]];
     }
     NSArray *result = [self executeQuery:sql];
     return result;
@@ -413,9 +413,9 @@ NSLog(@"     -=-=-=-=-=-=-=save users  finished   -=-=-=-=-=-=-=");
 {
     NSString *sql = nil;
     if([type isEqualToString:@"FLIGHT"]){
-        sql = [NSString stringWithFormat:@"select * from SysMessage t where t.type='%@' and t.userid=%i order by t.createtime desc limit %i offset %i",type,[self getLocalUserId],num,start];
+        sql = [NSString stringWithFormat:@"select * from SysMessage t where t.type like '%@%%' and t.userid=%i order by t.createtime desc limit %i offset %i",type,[self getLocalUserId],num,start];
     }else{
-        sql = [NSString stringWithFormat:@"select * from SysMessage t where t.type!='%@' and t.userid=%i order by t.createtime desc limit %i offset %i",type,[self getLocalUserId],num,start];
+        sql = [NSString stringWithFormat:@"select * from SysMessage t where t.type not like '%@%%' and t.userid=%i order by t.createtime desc limit %i offset %i",@"FLIGHT",[self getLocalUserId],num,start];
     }
     NSArray *result = [self executeQuery:sql];
     return result;
