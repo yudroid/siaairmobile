@@ -243,16 +243,16 @@
     // Draw each line
     for (NSUInteger lineIndex = 0; lineIndex < self.chartData.count; lineIndex++) {
         PNLineChartData *chartData = self.chartData[lineIndex];
-        CAShapeLayer *frontchartLine = (CAShapeLayer *) self.chartLineArray[lineIndex];
-        CAShapeLayer *behindchartLine = (CAShapeLayer *) self.chartLineArray[lineIndex+1];
+        CAShapeLayer *frontchartLine = (CAShapeLayer *) self.chartLineArray[lineIndex*2];
+        CAShapeLayer *behindchartLine = (CAShapeLayer *) self.chartLineArray[lineIndex*2+1];
         CAShapeLayer *pointLayer = (CAShapeLayer *) self.chartPointArray[lineIndex];
         UIGraphicsBeginImageContext(self.frame.size);
         // setup the color of the chart line
-        frontchartLine.strokeColor = [UIColor whiteColor].CGColor;
-        behindchartLine.strokeColor = [UIColor whiteColor].CGColor;
+        frontchartLine.strokeColor  = [chartData color].CGColor;
+        behindchartLine.strokeColor = [chartData color].CGColor;
 
-        UIBezierPath *frontprogressline = [_chartPath objectAtIndex:0];
-        UIBezierPath *behindprogressline = [_chartPath objectAtIndex:1];
+        UIBezierPath *frontprogressline = [_chartPath objectAtIndex:2*lineIndex];
+        UIBezierPath *behindprogressline = [_chartPath objectAtIndex:2*lineIndex+1];
         UIBezierPath *pointPath = [_pointPath objectAtIndex:lineIndex];
 
         frontchartLine.path = frontprogressline.CGPath;
@@ -309,8 +309,8 @@
         UIBezierPath *pointPath = [UIBezierPath bezierPath];
 
 
-        [chartPath insertObject:frontprogressline atIndex:lineIndex];
-        [chartPath insertObject:behindprogressline atIndex:lineIndex+1];
+        [chartPath insertObject:frontprogressline atIndex:lineIndex*2];
+        [chartPath insertObject:behindprogressline atIndex:lineIndex*2+1];
         [pointsPath insertObject:pointPath atIndex:lineIndex];
 
 
@@ -324,29 +324,6 @@
         int last_y = 0;
         NSMutableArray<NSDictionary<NSString *, NSValue *> *> *progrssLinePaths = [NSMutableArray new];// 路径上的点过程数组from point to point
         CGFloat inflexionWidth = chartData.inflexionPointWidth;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         // 折线图上所有的点
@@ -452,7 +429,7 @@
             CAShapeLayer *chartLine = [CAShapeLayer layer];
             chartLine.lineCap = kCALineCapButt;
             chartLine.lineJoin = kCALineJoinMiter;
-            chartLine.fillColor = [[UIColor whiteColor] CGColor];
+            chartLine.fillColor = [chartData.color  CGColor];
             chartLine.lineWidth = chartData.lineWidth;
             chartLine.strokeEnd = 0.0;
             [self.layer addSublayer:chartLine];
@@ -461,7 +438,7 @@
             CAShapeLayer *chartLine1 = [CAShapeLayer layer];
             chartLine1.lineCap = kCALineCapButt;
             chartLine1.lineJoin = kCALineJoinMiter;
-            chartLine1.fillColor = [[UIColor whiteColor] CGColor];
+            chartLine1.fillColor = [chartData.color CGColor];
             chartLine1.lineWidth = chartData.lineWidth;
             chartLine1.strokeEnd = 0.0;
             [chartLine1 setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithInt:2], [NSNumber numberWithInt:2], nil]];
@@ -473,8 +450,8 @@
             pointLayer.strokeColor = [[chartData.color colorWithAlphaComponent:chartData.alpha] CGColor];
             pointLayer.lineCap = kCALineCapRound;
             pointLayer.lineJoin = kCALineJoinBevel;
-            pointLayer.fillColor = nil;
-            pointLayer.lineWidth = chartData.lineWidth;
+            pointLayer.fillColor = [chartData.color CGColor];
+            pointLayer.lineWidth = chartData.lineWidth+2;
             [self.layer addSublayer:pointLayer];
             [self.chartPointArray addObject:pointLayer];
         }
@@ -538,21 +515,31 @@
 
     for (NSUInteger lineIndex = 0; lineIndex < self.chartData.count; lineIndex++) {
 
-        CAShapeLayer *chartLine = (CAShapeLayer *) self.chartLineArray[lineIndex];
+        CAShapeLayer *frontchartLine = (CAShapeLayer *) self.chartLineArray[lineIndex*2];
+        CAShapeLayer *behindchartLine = (CAShapeLayer *) self.chartLineArray[lineIndex*2+1];
         CAShapeLayer *pointLayer = (CAShapeLayer *) self.chartPointArray[lineIndex];
 
 
-        UIBezierPath *progressline = [_chartPath objectAtIndex:lineIndex];
+        UIBezierPath *frontProgressline = [_chartPath objectAtIndex:lineIndex*2];
+        UIBezierPath *behindProgressline = [_chartPath objectAtIndex:lineIndex*2+1];
         UIBezierPath *pointPath = [_pointPath objectAtIndex:lineIndex];
 
 
         CABasicAnimation *pathAnimation = [CABasicAnimation animationWithKeyPath:@"path"];
-        pathAnimation.fromValue = (id) chartLine.path;
-        pathAnimation.toValue = (id) [progressline CGPath];
+        pathAnimation.fromValue = (id) frontchartLine.path;
+        pathAnimation.toValue = (id) [frontProgressline CGPath];
         pathAnimation.duration = 0.5f;
         pathAnimation.autoreverses = NO;
         pathAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-        [chartLine addAnimation:pathAnimation forKey:@"animationKey"];
+        [frontchartLine addAnimation:pathAnimation forKey:@"animationKey"];
+
+        CABasicAnimation *pathAnimation1 = [CABasicAnimation animationWithKeyPath:@"path"];
+        pathAnimation1.fromValue = (id) behindchartLine.path;
+        pathAnimation1.toValue = (id) [behindProgressline CGPath];
+        pathAnimation1.duration = 0.5f;
+        pathAnimation1.autoreverses = NO;
+        pathAnimation1.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        [behindchartLine addAnimation:pathAnimation1 forKey:@"animationKey"];
 
 
         CABasicAnimation *pointPathAnimation = [CABasicAnimation animationWithKeyPath:@"path"];
@@ -563,7 +550,8 @@
         pointPathAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
         [pointLayer addAnimation:pointPathAnimation forKey:@"animationKey"];
 
-        chartLine.path = progressline.CGPath;
+        frontchartLine.path = frontProgressline.CGPath;
+        behindchartLine.path = behindProgressline.CGPath;
         pointLayer.path = pointPath.CGPath;
 
 

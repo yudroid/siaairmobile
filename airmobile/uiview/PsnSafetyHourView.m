@@ -7,7 +7,7 @@
 //
 
 #import "PsnSafetyHourView.h"
-#import "PNLineChart.h"
+#import "PNMixLineChart.h"
 #import "PNLineChartData.h"
 #import "PNLineChartDataItem.h"
 #import "FlightHourModel.h"
@@ -21,7 +21,7 @@
 
 @implementation PsnSafetyHourView
 {
-    PNLineChart *lineChart;
+    PNMixLineChart *lineChart;
     NSArray<FlightHourModel *> *hourArray;
     UITableView *flightHourTableView;
 }
@@ -102,7 +102,7 @@
         [topBgView addSubview:maxLabel];
         
         // 计划的折线图
-        lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(20,
+        lineChart = [[PNMixLineChart alloc] initWithFrame:CGRectMake(20,
                                                                   5+23+15+2,
                                                                   topBgView.frame.size.width-40,
                                                                   topBgView.frame.size.height-(5+23+15+2)-5)];
@@ -111,9 +111,9 @@
         lineChart.showCoordinateAxis= NO;
         lineChart.showGenYLabels    = NO;
         lineChart.yFixedValueMax    = [self chartMaxValue];
-        lineChart.yFixedValueMin    = 0;
+        lineChart.yFixedValueMin    = -([self chartMaxValue]*0.05);
         [lineChart setXLabels:[self getFlightHourXLabels]];
-        
+        lineChart.changeNum = [CommonFunction currentHour];
         // added an examle to show how yGridLines can be enabled
         // the color is set to clearColor so that the demo remains the same
         lineChart.yGridLinesColor   = [UIColor yellowColor];
@@ -123,7 +123,7 @@
         data.dataTitle              = @"航班";
         data.color                  = [UIColor whiteColor];
         data.alpha                  = 0.5f;
-        data.inflexionPointWidth    = 2.0f;
+//        data.inflexionPointWidth    = 2.0f;
         data.itemCount              = dataArray.count;
         data.inflexionPointStyle    = PNLineChartPointStyleCircle;
         data.getData = ^(NSUInteger index) {
@@ -137,7 +137,7 @@
         [topBgView addSubview:lineChart];
         
         UILabel *zoreLabel  = [[UILabel alloc]initWithFrame:CGRectMake(viewWidth(topBgView)-6-px2(31),
-                                                                      topBgView.frame.size.height-(10+13+12+2),
+                                                                      topBgView.frame.size.height-(10+13+12+2)-5,
                                                                       topBgView.frame.size.width-40,
                                                                       10)];
         zoreLabel.text      = @"0";
@@ -146,7 +146,7 @@
         [topBgView addSubview:zoreLabel];
 
         UIImageView *lowImageView   = [[UIImageView alloc]initWithFrame:CGRectMake(px2(31),
-                                                                                   topBgView.frame.size.height-10-13-2,
+                                                                                   topBgView.frame.size.height-10-13-7,
                                                                                    viewWidth(topBgView)-2*px2(31),
                                                                                    px2(2))];
         lowImageView.image          = [UIImage imageNamed:@"hiddenLine"];

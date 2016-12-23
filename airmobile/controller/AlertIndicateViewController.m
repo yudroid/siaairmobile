@@ -8,7 +8,7 @@
 
 #import "AlertIndicateViewController.h"
 #import "RoundProgressView.h"
-#import "PNLineChart.h"
+#import "PNMixLineChart.h"
 #import "PNLineChartData.h"
 #import "PNLineChartDataItem.h"
 #import "FlightHourModel.h"
@@ -27,7 +27,7 @@
     CGFloat cancleProportion;
 
 
-    PNLineChart *lineChart;
+    PNMixLineChart *lineChart;
     UILabel     *ratioNum;
     UILabel     *peopleLabel;
     UILabel     *todayLabel;
@@ -126,7 +126,7 @@
     [topBgView addSubview:maxLabel];
 
 
-    lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(20,
+    lineChart = [[PNMixLineChart alloc] initWithFrame:CGRectMake(20,
                                                               viewBotton(lineImageView),
                                                               topBgView.frame.size.width-40,
                                                               topBgView.frame.size.height-(viewBotton(lineImageView))-5)];
@@ -143,7 +143,8 @@
     //Use yFixedValueMax and yFixedValueMin to Fix the Max and Min Y Value
     //Only if you needed
     lineChart.yFixedValueMax = [self maxValue]*1000;
-    lineChart.yFixedValueMin = 0;
+    lineChart.yFixedValueMin = -([self maxValue]*1000*0.05);
+    lineChart.changeNum = INTMAX_MAX;
 
 
     // Line Chart #2
@@ -165,7 +166,7 @@
 
 
     UIImageView *downlineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(passengerTtitle),
-                                                                                  topBgView.frame.size.height-10-15-2,
+                                                                                  topBgView.frame.size.height-10-15-7,
                                                                                   viewWidth(topBgView)-viewX(passengerTtitle)-18,
                                                                                   0.5)];
     downlineImageView.image = [UIImage imageNamed:@"hiddenLine"];

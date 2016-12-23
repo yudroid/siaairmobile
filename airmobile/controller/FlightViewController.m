@@ -309,6 +309,7 @@ static const NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_I
     FlightDetailViewController *flightDetailVC = [[FlightDetailViewController alloc]initWithNibName:@"FlightDetailViewController"
                                                                                              bundle:nil];
     FlightModel *flight = [dataArray objectAtIndex:indexPath.row];
+    flightDetailVC.flightNo = flight.fNum;
     flightDetailVC.flightId = flight.id;
     flightDetailVC.isSpecial =  [dataArray objectAtIndex:indexPath.row].special.boolValue;
     [self.navigationController pushViewController:flightDetailVC animated:YES];

@@ -51,6 +51,10 @@ FlightDetailSafeguardTableViewCellDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *modelLabel;
 @property (weak, nonatomic) IBOutlet UILabel *regionlabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *arrTime;
+@property (weak, nonatomic) IBOutlet UILabel *depTime;
+@property (weak, nonatomic) IBOutlet UILabel *frontFlightNo;
+@property (weak, nonatomic) IBOutlet UILabel *frontFlightStatus;
 
 @end
 
@@ -74,7 +78,7 @@ FlightDetailSafeguardTableViewCellDelegate>
     
     //titleView订制
     [self titleViewInitWithHight:64];
-    [self titleViewAddTitleText:@"航班详情"];
+    [self titleViewAddTitleText:_flightNo];
     [self titleViewAddBackBtn];
     
     self.titleView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"home_title_bg.png"]];
@@ -108,23 +112,35 @@ FlightDetailSafeguardTableViewCellDelegate>
 -(void)viewDidAppear:(BOOL)animated{
     [_safeguardTableView reloadData];
 
+
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
     if (![CommonFunction hasFunction:FL_SPETIAL]) {
-        _safeguardTableViewHeight = 0;
+        _safeguardTableViewHeight.constant = 0;
     }
     if (![CommonFunction hasFunction:FL_NORMAL]) {
         _tableViewHeight.constant = 0;
         _tableView.hidden = YES;
     }
+
 }
 
 -(void)updateSpecialsTableView
 {
+    if (![CommonFunction hasFunction:FL_SPETIAL]) {
+        return;
+    }
     _safeguardTableViewHeight.constant = 90 * specicals.count +37;
     [_safeguardTableView reloadData];
 
 }
 -(void)updateDispatchesTableView
 {
+    if (![CommonFunction hasFunction:FL_NORMAL]) {
+        return;
+    }
     _tableViewHeight.constant = 103*dispatches.count+37;
     [_tableView reloadData];
 
@@ -139,6 +155,10 @@ FlightDetailSafeguardTableViewCellDelegate>
     _baggagelabel.text      = flight.baggage;
     _modelLabel.text        = flight.model;
     _regionlabel.text       = flight.region;
+    _arrTime.text           = flight.sTime;
+    _depTime.text           = flight.eTime;
+    _frontFlightNo.text     = flight.preorderNum;
+    _frontFlightStatus.text = flight.preorderState;
     _airLineCollectionArray = [flight.airLine componentsSeparatedByString:@"-"];
 
     if ([_airLineCollectionArray[0] isEqualToString:@"SZX"]) {
