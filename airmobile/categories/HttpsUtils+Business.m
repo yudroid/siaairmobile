@@ -42,8 +42,8 @@ NSString * const saveDispatchAbnEnd         = @"/acs/wacs/MobileSpecial/MobileUp
 NSString * const saveDispatchNormal         = @"/acs/wacs/MobileSpecial/MobileSaveSpecialNormalDispatch";//特殊保障上报正常(航班id/环节ID/用户ID),返回结果是时间（时：分）
 // 首页
 NSString * const ovSummaryUrl               = @"/acs/ov/summary";
-NSString * const ovFltFDRTHreshold          = @"/ov/fltFDRThreshold";
-NSString * const ovFltFMRTHreshold          = @"/ov/fltFMRThreshold";
+NSString * const ovFltFDRTHreshold          = @"/acs/ov/fltFDRThreshold";
+NSString * const ovFltFMRTHreshold          = @"/acs/ov/fltFMRThreshold";
 NSString * const ovFltFDRlUrl               = @"/acs/ov/fltFDR";
 NSString * const ovFltFMRUrl                = @"/acs/ov/fltFMR";
 NSString * const ovFltLDUrl                 = @"/acs/ov/fltLD";
