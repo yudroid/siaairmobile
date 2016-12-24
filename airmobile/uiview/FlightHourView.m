@@ -181,7 +181,7 @@
         NSMutableArray *colors = [NSMutableArray array];
         NSInteger num = [self getFlightHourXLabels].count;
         for (int i = 0; i<num; i++) {
-            if (i<[CommonFunction currentHour]-1) {
+            if (i<[CommonFunction currentHour]) {
                 [colors addObject:[CommonFunction colorFromHex:0xff6AF9DF]];
             }else{
                 [colors addObject:[CommonFunction colorFromHex:0xffB0C4DE]];
