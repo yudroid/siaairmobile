@@ -49,7 +49,6 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self initTitleView];
     [self initUserInfoView];
     [self initTable];
@@ -265,7 +264,7 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
 //        [self showAnimationTitle:@"正在进行版本检测"];
         [HttpsUtils versionCheckSuccess:^(id response) {
             NSArray * data = [response objectForKey:@"data"];
-            VersionModel *version = [[VersionModel alloc]initWithDictionary:[data firstObject]];
+            VersionModel *version = [[VersionModel alloc]initWithDictionary:[data lastObject]];
             NSString *app_Version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
             if ([version.appVersion isEqualToString:app_Version]) {
                 [self showAnimationTitle:@"已经为最新版本"];

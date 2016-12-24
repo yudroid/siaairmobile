@@ -11,6 +11,7 @@
 #import "MessageService.h"
 #import "PersistenceUtils+Business.h"
 #import "HomePageViewController.h"
+#import <PgySDK/PgyManager.h>
 
 @interface AppDelegate ()
 
@@ -27,6 +28,11 @@
 
     NSString *path = NSHomeDirectory();//主目录
     NSLog(@"NSHomeDirectory:%@",path);
+
+    //启动基本SDK
+    [[PgyManager sharedPgyManager] startManagerWithAppId:@"93ed7797513437b2cc15dd14e4529e29"];
+    //关闭用户反馈功能(默认开启)
+    [[PgyManager sharedPgyManager] setEnableFeedback:NO];
 
     [PersistenceUtils initTable];
 
