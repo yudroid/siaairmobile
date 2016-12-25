@@ -241,8 +241,10 @@ NSLog(@"     -=-=-=-=-=-=-=save users  finished   -=-=-=-=-=-=-=");
         int type = [[message objectForKey:@"type"] intValue];
         int chatId = [[message objectForKey:@"chatid"] intValue];
         NSString *name = @"";
+        NSString *workgroupTitle = @"workgroupTitle";
         if(type==1){
             name = [message objectForKey:@"username"];
+            workgroupTitle = [message objectForKey:@"workgroupTitle"];
         }else{
             NSDictionary *userDic = [self getUserById:chatId];
             if(userDic==nil){
@@ -250,7 +252,7 @@ NSLog(@"     -=-=-=-=-=-=-=save users  finished   -=-=-=-=-=-=-=");
             }
             name = [userDic objectForKey:@"username"];
         }
-        NSDictionary *localChat =  [self getLocalChatIdByName:name type:type chatId:chatId];
+        NSDictionary *localChat =  [self getLocalChatIdByName:type==1?workgroupTitle:name type:type chatId:chatId];
         int localId = [[localChat objectForKey:@"id"] intValue];
         int userid = [[message objectForKey:@"userid"] intValue];
         NSString *content = [message objectForKey:@"content"];
@@ -282,6 +284,7 @@ NSLog(@"     -=-=-=-=-=-=-=save users  finished   -=-=-=-=-=-=-=");
 
  @param name <#name description#>
  @param type <#type description#>
+ 
  @param chatId <#chatId description#>
  @return <#return value description#>
  */
@@ -293,10 +296,12 @@ NSLog(@"     -=-=-=-=-=-=-=save users  finished   -=-=-=-=-=-=-=");
     if(result==nil || [result count]==0){
         NSString *insertChatSql = @"INSERT INTO ChatInfo VALUES (?, %i, '%@', %i, %i, CURRENT_TIMESTAMP, 0, null, null);";
         [self executeNoQuery:[NSString stringWithFormat:insertChatSql,chatId,name,type,[self getLocalUserId]]];
+        result = [self executeQuery:[NSString stringWithFormat:querySql,chatId,type,[self getLocalUserId]]];
     }else{
-        [self updateChatName:name chatId:chatId];
+//        [self updateChatName:name chatId:chatId];
+        [self updateUnReadCountAndTime:1 chatid:chatId];
     }
-    result = [self executeQuery:[NSString stringWithFormat:querySql,chatId,type,[self getLocalUserId]]];
+    
     if(result==nil || [result count]==0){
         return nil;
     }

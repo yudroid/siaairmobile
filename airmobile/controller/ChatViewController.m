@@ -9,6 +9,7 @@
 #import "ChatViewController.h"
 #import "ChatLeftTableViewCell.h"
 #import "ChatRightTableViewCell.h"
+#import "ChatLeftTableViewCell.h"
 #import "ChatTimeTableViewCell.h"
 #import "HttpsUtils+Business.h"
 #import "AppDelegate.h"
@@ -45,6 +46,9 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
     [self initTitleView];
     
     dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+//    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+    
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     user = delegate.userInfoModel;
     
@@ -67,6 +71,9 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
 
     
     [MessageService sharedMessageService].chatDelegate = self;
+    if(_tableView.contentSize.height -_tableView.bounds.size.height>0){
+        [_tableView setContentOffset:CGPointMake(0, _tableView.contentSize.height -_tableView.bounds.size.height+100) animated:YES];
+    }
 }
 
 - (void)tapBgClick{
@@ -284,7 +291,7 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
     NSDictionary *message = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithLong:_localChatId],
                              @"chatid",content,
                              @"content",[NSNumber numberWithLong:user.id],
-                             @"userid",user.name,@"username", nil,@"createTime",[CommonFunction dateFormat:nil format:@"yyyy-MM-dd HH:mm:ss"]];
+                             @"userid",user.name,@"username", [CommonFunction dateFormat:nil format:@"yyyy-MM-dd HH:mm:ss"],@"createTime", nil];
     [PersistenceUtils insertNewChatMessage:message needid:NO success:^{
         [self refreshDialogData];
     }];

@@ -292,8 +292,9 @@
             [self.view hideToastActivity];
             
         }];
-        
+
         [[HomePageService sharedHomePageService] startService];
+        [[MessageService sharedMessageService] setUserId:(int)user.id];
         [[MessageService sharedMessageService] startService];
         [HttpsUtils getAlertMsgListSuccess:nil failure:nil];// 同步最近的异常消息
         

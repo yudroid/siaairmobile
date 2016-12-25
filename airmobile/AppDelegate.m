@@ -62,8 +62,10 @@
 //
 //    }
     // 程序将展示，开起个别远程service
-    [[HomePageService sharedHomePageService] startService];
-    [[MessageService sharedMessageService] startService];
+    if(_userInfoModel != nil) {
+        [[HomePageService sharedHomePageService] startService];
+        [[MessageService sharedMessageService] startService];
+    }
 
 
 }
@@ -77,6 +79,8 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
+    [[HomePageService sharedHomePageService] stopService];
+    [[MessageService sharedMessageService] stopService];
 }
 
 @end

@@ -20,6 +20,7 @@
 #import "PersistenceUtils+Business.h"
 #import "FlightDelaysViewController.h"
 #import "AppDelegate.h"
+#import "MessageService.h"
 
 
 
@@ -27,7 +28,7 @@ static const NSString *MESSAGE_TABLECELL_IDENTIFIER = @"MESSAGE_TABLECELL_IDENTI
 static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_IDENTIFIER";
 
 
-@interface MessageViewController ()<TabBarViewDelegate,UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate,UITextFieldDelegate>
+@interface MessageViewController ()<TabBarViewDelegate,UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate,UITextFieldDelegate,MessageViewDelegate>
 
 
 @property (nonatomic, strong) UISearchBar *searBar;
@@ -80,7 +81,7 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
                                                  selectedType:TabBarSelectedTypeMessage
                                                      delegate:self];
     [self.view insertSubview:self.tabBarView aboveSubview:self.view];
-
+    [MessageService sharedMessageService].chatListDelegate = self;
 }
 
 #pragma mark - 切换底部主功能页面
@@ -450,10 +451,20 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
     [self loadChatList:0 num:1000];
 }
 
+-(void) viewWillDisappear:(BOOL)animated
+{
+    [MessageService sharedMessageService].chatListDelegate = nil;
+}
+
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [self.view endEditing:YES];
     return YES;
+}
+
+-(void)refreshChatInfoList
+{
+    [self loadChatList:0 num:1000];
 }
 
 @end
