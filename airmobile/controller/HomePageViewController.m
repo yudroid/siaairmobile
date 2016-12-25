@@ -212,13 +212,6 @@
         [titleMutableArray removeObjectAtIndex:0];
     }
 
-    selectedLine = [[UIImageView alloc]initWithFrame:CGRectMake(0,
-                                                                0,
-                                                                kScreenWidth/titleMutableArray.count-16,
-                                                                6)];
-    selectedLine.center = CGPointMake(kScreenWidth/(titleMutableArray.count*2), 74);
-    selectedLine.image  = [UIImage imageNamed:@"SelectedLine"];
-    [titleLabelView addSubview:selectedLine];
 
 
     NSMutableArray *labelArray = [NSMutableArray array];
@@ -251,9 +244,14 @@
     _titleLabelArray = [labelArray copy];
     if (_titleLabelArray.count>0) {
         ((UILabel *)_titleLabelArray[0]).textColor = [CommonFunction colorFromHex:0XbFFFFFFF];
+        selectedLine = [[UIImageView alloc]initWithFrame:CGRectMake(0,
+                                                                    0,
+                                                                    kScreenWidth/titleMutableArray.count-16,
+                                                                    6)];
+        selectedLine.center = CGPointMake(kScreenWidth/(titleMutableArray.count*2), 74);
+        selectedLine.image  = [UIImage imageNamed:@"SelectedLine"];
+        [titleLabelView addSubview:selectedLine];
     }
-
-
 }
 
 #pragma mark 切换首页中各子页面
