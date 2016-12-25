@@ -10,14 +10,14 @@
 #import "RegionDlyTimeModel.h"
 #import "DelayTimeTableViewCell.h"
 #import "PNBarChart.h"
-#import "PNLineChart.h"
+#import "PNMixLineChart.h"
 #import "PNLineChartData.h"
 #import "PNLineChartDataItem.h"
 
 @implementation AreaDelayTimeView
 
 {
-    PNLineChart *lineChart;
+    PNMixLineChart *lineChart;
     NSArray<RegionDlyTimeModel *> *hourArray;
     PNBarChart *barChart;
     UITableView *flightHourTableView;
@@ -104,30 +104,30 @@
 
         
         // 计划的折线图
-        lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(20,
-                                                                  5+23+15+2,
+        lineChart = [[PNMixLineChart alloc] initWithFrame:CGRectMake(20,
+                                                                  viewBotton(maxLabel),
                                                                   topBgView.frame.size.width-40,
-                                                                  topBgView.frame.size.height-(5+23+15+2)-5)];
+                                                                  topBgView.frame.size.height-(viewBotton(maxLabel))-5)];
         lineChart.backgroundColor   = [UIColor clearColor];
         lineChart.skipXPoints       = 0;
         [lineChart setXLabels:[self getFlightHourXLabels]];
         lineChart.showCoordinateAxis    = NO;
         lineChart.showGenYLabels        =NO;
         lineChart.yFixedValueMax        = [self maxValue]*1.2;
-        lineChart.yFixedValueMin        = 0;
+        lineChart.yFixedValueMin        = -([self maxValue]*0.1);
         
         // added an examle to show how yGridLines can be enabled
         // the color is set to clearColor so that the demo remains the same
         lineChart.yGridLinesColor = [UIColor yellowColor];
         
-        
+        lineChart.changeNum = INTMAX_MAX;
         // Line Chart #2
         NSArray * dataArray         = [self getFlightHourYLabels];
         PNLineChartData *data       = [PNLineChartData new];
         data.dataTitle              = @"航班";
-        data.color                  = [UIColor whiteColor];
+        data.color                  = [CommonFunction colorFromHex:0xFFF2F925];
         data.alpha                  = 0.5f;
-        data.inflexionPointWidth    = 2.0f;
+//        data.inflexionPointWidth    = 2.0f;
         data.itemCount              = dataArray.count;
         data.inflexionPointStyle    = PNLineChartPointStyleCircle;
         data.getData = ^(NSUInteger index) {
@@ -142,9 +142,9 @@
         
         
         barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(20,
-                                                                5+23+15+2,
-                                                                topBgView.frame.size.width-40,
-                                                                topBgView.frame.size.height-(5+23+15+2)-5)];//折线图
+                                                                 viewBotton(maxLabel),
+                                                                 topBgView.frame.size.width-40,
+                                                                 topBgView.frame.size.height-(viewBotton(maxLabel))-5)];//折线图
         
         barChart.yMaxValue      = [self maxTimeValue]*1.2;
         barChart.yMinValue      = 0;
@@ -174,7 +174,7 @@
 
         
         UIImageView *downLineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(planImageView),
-                                                                                      viewHeight(topBgView)-10-15,
+                                                                                      viewHeight(topBgView)-10-15-5,
                                                                                       viewWidth(topBgView)-32,
                                                                                       0.5)];
         downLineImageView.image = [UIImage imageNamed:@"hiddenLine"];
@@ -275,9 +275,9 @@
         NSArray * dataArray         = [self getFlightHourYLabels];
         PNLineChartData *data       = [PNLineChartData new];
         data.dataTitle              = @"航班";
-        data.color                  = [UIColor whiteColor];
+        data.color                  = [CommonFunction colorFromHex:0xFFF2F925];
         data.alpha                  = 0.5f;
-        data.inflexionPointWidth    = 2.0f;
+//        data.inflexionPointWidth    = 2.0f;
         data.itemCount              = dataArray.count;
         data.inflexionPointStyle    = PNLineChartPointStyleCircle;
         data.getData = ^(NSUInteger index) {

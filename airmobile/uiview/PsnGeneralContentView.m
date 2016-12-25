@@ -93,8 +93,8 @@
 
         UIImageView *planImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0,
                                                                                   2,
-                                                                                  10,
-                                                                                  10)];
+                                                                                  11,
+                                                                                  11)];
         planImageView.image = [UIImage imageNamed:@"PsnGeneralChartTag1"];
         [prTitleView addSubview:planImageView];
         [prTitleView addSubview:[CommonFunction addLabelFrame:CGRectMake(viewTrailing(planImageView)+2,
@@ -107,10 +107,11 @@
                                                  colorFromHex:0xFFFFFFFF]];
 
         UIImageView *realImageView  = [[UIImageView alloc]initWithFrame:CGRectMake(viewTrailing(planImageView)+2+40+16,
-                                                                                  2,
-                                                                                  10,
-                                                                                  10)];
+                                                                                  1,
+                                                                                  12,
+                                                                                  12)];
         realImageView.image         = [UIImage imageNamed:@"PsnGeneralChartTag2"];
+        realImageView.alpha         = 0.8;
         [prTitleView addSubview:realImageView];
         [prTitleView addSubview:[CommonFunction addLabelFrame:CGRectMake(viewTrailing(realImageView)+2,
                                                                          0,

@@ -16,6 +16,10 @@
 //#define wsgroupurl @"ws://192.168.163.152:8080/acs/workgroupmsg"
 //#define wssysurl @"ws://192.168.163.152:8080/acs/alertmsg"
 
+//#define wsuserurl @"ws://192.168.163.153:8080/acs/usermsg"
+//#define wsgroupurl @"ws://192.168.163.153:8080/acs/workgroupmsg"
+//#define wssysurl @"ws://192.168.163.153:8080/acs/alertmsg"
+
 @implementation MessageService
 {
     SRWebSocket *userWebSocket;

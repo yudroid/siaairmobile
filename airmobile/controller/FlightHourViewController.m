@@ -7,11 +7,12 @@
 //
 
 #import "FlightHourViewController.h"
-#import "PNLineChart.h"
+#import "PNMixLineChart.h"
 #import "FlightHourModel.h"
 #import "FlightHourTableViewCell.h"
 #import "PNLineChartData.h"
 #import "PNLineChartDataItem.h"
+
 
 @interface FlightHourViewController ()
 
@@ -21,7 +22,7 @@
 
 @implementation FlightHourViewController
 {
-    PNLineChart *lineChart;
+    PNMixLineChart *lineChart;
     UITableView *flightHourTableView;
     UILabel     *ratioNum;
     UILabel     *maxLabel ;
@@ -129,7 +130,7 @@
     
     
     
-    lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(px2(33),
+    lineChart = [[PNMixLineChart alloc] initWithFrame:CGRectMake(px2(33),
                                                               viewBotton(maxLabel),
                                                               viewWidth(topBgView)-2*px2(33),
                                                               viewHeight(topBgView)-viewBotton(maxLabel))];
@@ -161,7 +162,8 @@
         CGFloat yValue = [dataArray[index] floatValue];
         return [PNLineChartDataItem dataItemWithY:yValue];
     };
-    
+
+    lineChart.changeNum = [CommonFunction currentHour]-1;
     lineChart.chartData = @[data];
     [lineChart strokeChart];
     [topBgView addSubview:lineChart];

@@ -7,7 +7,7 @@
 //
 
 #import "PassengerHourViewController.h"
-#import "PNLineChart.h"
+#import "PNMixLineChart.h"
 #import "PNLineChartData.h"
 #import "PNLineChartDataItem.h"
 #import "FlightHourModel.h"
@@ -20,7 +20,7 @@
 @implementation PassengerHourViewController
 
 {
-    PNLineChart                 *arrLineChart;
+    PNMixLineChart                 *arrLineChart;
     NSArray<FlightHourModel *>  *hourArray;
     UITableView                 *flightHourTableView;
 }
@@ -116,7 +116,7 @@
                                          colorFromHex:0x75FFFFFF];
     [topBgView addSubview:maxLabel];
 
-    arrLineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(viewX(passengerTtitle),
+    arrLineChart = [[PNMixLineChart alloc] initWithFrame:CGRectMake(viewX(passengerTtitle),
                                                                  viewBotton(maxLabel),
                                                                  viewWidth(topBgView)-viewX(passengerTtitle)-18,
                                                                  viewHeight(topBgView)-viewBotton(maxLabel))];
@@ -133,7 +133,7 @@
     //Use yFixedValueMax and yFixedValueMin to Fix the Max and Min Y Value
     //Only if you needed
     arrLineChart.yFixedValueMax = (int)([self maxValue] *1.2);
-    arrLineChart.yFixedValueMin = 0;
+    arrLineChart.yFixedValueMin = -([self maxValue]*0.1);
     
     
     // Line Chart #1
@@ -161,20 +161,20 @@
         CGFloat yValue = [depArray[index] floatValue];
         return [PNLineChartDataItem dataItemWithY:yValue];
     };
-    
+    arrLineChart.changeNum = [CommonFunction currentHour]-1;
     arrLineChart.chartData = @[data,data2];
     [arrLineChart strokeChart];
     [topBgView addSubview:arrLineChart];
     
     UIImageView *downlineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(passengerTtitle),
-                                                                                  topBgView.frame.size.height-10-10,
+                                                                                  topBgView.frame.size.height-10-10-7,
                                                                                   viewWidth(topBgView)-viewX(passengerTtitle)-18,
                                                                                   0.5)];
     downlineImageView.image = [UIImage imageNamed:@"hiddenLine"];
     [topBgView addSubview:downlineImageView];
 
     [topBgView addSubview:[CommonFunction addLabelFrame:CGRectMake(20,
-                                                                   viewY(downlineImageView)-13-4,
+                                                                   viewY(downlineImageView)-13,
                                                                    topBgView.frame.size.width-40,
                                                                    13)
                                                    text:@"0"

@@ -62,11 +62,26 @@
                                                                                0,
                                                                                (kScreenWidth-2*px2(32))/2,
                                                                                viewHeight(self.contentView))];
-        countLabel.text             =[NSString stringWithFormat:@"%d", (int)flightHour.planDepCount+(int)flightHour.planArrCount];
-    
+        NSString *yc = @"";
+        if(flightHour.hour.integerValue>=[CommonFunction currentHour]){
+            yc = @"预测";
+        }
+        countLabel.text             =[NSString stringWithFormat:@"%@ %d", yc,(int)flightHour.planDepCount+(int)flightHour.planArrCount];
         countLabel.font             = [UIFont fontWithName:@"PingFang SC" size:px2(36)];
         countLabel.textAlignment    = NSTextAlignmentRight;
         [self.contentView addSubview:countLabel];
+
+        NSMutableAttributedString *valueAttributedString = [[NSMutableAttributedString alloc]initWithString:countLabel.text];
+        [valueAttributedString addAttribute:NSFontAttributeName
+                                       value:[UIFont fontWithName:@"PingFangSC-Regular" size:11]
+                                       range:[countLabel.text rangeOfString:@"预测"]];
+
+
+        //        valueLable1.backgroundColor = [UIColor redColor];
+        countLabel.attributedText = valueAttributedString;
+    
+
+
 
         UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(px2(32),
                                                                    viewHeight(self.contentView)-0.5,
@@ -102,7 +117,7 @@
                                              textAlignment:(NSTextAlignmentRight)
                                               colorFromHex:0xFF000000]];
             NSString *title = @"";
-            if (flightHour.hour.integerValue>[CommonFunction currentHour]) {
+            if (flightHour.hour.integerValue>[CommonFunction currentHour]-1) {
                 title = @"预测进";
             }else{
                 title = @"实际进";
@@ -133,7 +148,7 @@
                                              textAlignment:(NSTextAlignmentRight)
                                               colorFromHex:0xFF000000]];
             NSString *title = @"";
-            if (flightHour.hour.integerValue>[CommonFunction currentHour]) {
+            if (flightHour.hour.integerValue>[CommonFunction currentHour]-1) {
                 title = @"预测出";
             }else{
                 title = @"实际出";

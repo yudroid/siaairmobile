@@ -243,7 +243,7 @@
                                                           self.showLevelLine ? chartCavanHeight/2.0:chartCavanHeight)]; //Bar height
 
             //Change Bar Radius
-            bar.barRadius = _barRadius;
+            bar.barRadius = viewWidth(bar)/2;
             
             //Set Bar Animation
             bar.displayAnimated = self.displayAnimated;

@@ -22,6 +22,11 @@
 #import "LoadingView.h"
 #import "PersistenceUtils+Business.h"
 #import "UIViewController+Reminder.h"
+#import "FlightViewController.h"
+#import "MessageViewController.h"
+#import "FunctionViewController.h"
+#import "UserInfoViewController.h"
+#import "SingleMessageViewController.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
 
@@ -339,8 +344,8 @@
                         if (dicTag == 1 && eventTag == 1) {
                              [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NotFirst"];
                             [ThreadUtils dispatchMain:^{
-                                HomePageViewController *homepage = [[HomePageViewController alloc] init];
-                                [self.navigationController pushViewController:homepage animated:YES];
+                                [self loadViewController];
+
                             }];
                         }
                     } failure:^(NSError *error) {
@@ -363,8 +368,8 @@
                         if (dicTag == 1 && eventTag == 1) {
                              [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NotFirst"];
                             [ThreadUtils dispatchMain:^{
-                                HomePageViewController *homepage = [[HomePageViewController alloc] init];
-                                [self.navigationController pushViewController:homepage animated:YES];
+                                [self loadViewController];
+
                             }];
                         }
                         
@@ -379,16 +384,10 @@
 
                 }else{
                     [ThreadUtils dispatchMain:^{
-                        HomePageViewController *homepage = [[HomePageViewController alloc] init];
-                        [self.navigationController pushViewController:homepage animated:YES];
+                        [self loadViewController];
                     }];
 
                 }
-
-
-
-
-
 
                 BOOL isFirstTime = [StringUtils isNullOrWhiteSpace:[DefaultHelper getStringForKey:@"SIAAIRMOBILE.LOGINFIRSTTIME"]];
                 if (isFirstTime) {
@@ -503,9 +502,47 @@
                 position:CSToastPositionCenter];
 }
 
+-(void)loadViewController
+{
+    if ([CommonFunction hasFunction:OV]) {
+        HomePageViewController *homepage = [[HomePageViewController alloc] init];
+        [self.navigationController pushViewController:homepage animated:YES];
+    }else if([CommonFunction hasFunction:FL]){
+
+        FlightViewController *flightVC = [[FlightViewController alloc]init];
+        [self.navigationController pushViewController:flightVC animated:YES];
+    }else if([CommonFunction hasFunction:MSG]){
+        if([CommonFunction hasFunction:MSG_WORNING] && ![CommonFunction hasFunction:MSG_FLIGHT] && ![CommonFunction hasFunction:MSG_DIALOG]){
+            SingleMessageViewController *message = [[SingleMessageViewController alloc] init];
+            message.type = @"COMMAND";
+            [self.navigationController pushViewController:message animated:NO];
+        }else if(![CommonFunction hasFunction:MSG_WORNING] && [CommonFunction hasFunction:MSG_FLIGHT] && ![CommonFunction hasFunction:MSG_DIALOG]){
+            SingleMessageViewController *message = [[SingleMessageViewController alloc] init];
+            message.type = @"FLIGHT";
+            [self.navigationController pushViewController:message animated:NO];
+        }else{
+            MessageViewController *message = [[MessageViewController alloc] init];
+            [self.navigationController pushViewController:message animated:NO];
+        }
+
+
+    }else if([CommonFunction hasFunction:FUNC]){
+        FunctionViewController *functionVC = [[FunctionViewController alloc]init];
+        [self.navigationController pushViewController:functionVC animated:YES];
+
+    }else if ([CommonFunction hasFunction:SET]){
+        UserInfoViewController *userInfoVC = [[UserInfoViewController alloc]init];
+        [self.navigationController pushViewController:userInfoVC animated:YES];
+
+    }else{
+        [self showAnimationTitle:@"该账号无权限"];
+    }
+
+}
+
 /*
  #pragma mark - Navigation
- 
+
  // In a storyboard-based application, you will often want to do a little preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
  // Get the new view controller using [segue destinationViewController].

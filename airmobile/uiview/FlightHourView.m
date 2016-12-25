@@ -111,7 +111,7 @@
         
         
         // 计划的折线图
-        lineChart = [[PNMixLineChart alloc] initWithFrame:CGRectMake(20,
+        lineChart = [[PNMixLineChart alloc] initWithFrame:CGRectMake(20+1.5,
                                                                   5+23+15+2,
                                                                   topBgView.frame.size.width-40,
                                                                   topBgView.frame.size.height-(5+23+15+2)-5)];
@@ -125,7 +125,7 @@
 
 
 
-        lineChart.changeNum = [CommonFunction currentHour];
+        lineChart.changeNum = [CommonFunction currentHour]-1;
         
         // added an examle to show how yGridLines can be enabled
         // the color is set to clearColor so that the demo remains the same
@@ -138,7 +138,7 @@
         data.dataTitle          = @"航班";
         data.color              = [UIColor whiteColor];
         data.alpha              = 0.5f;
-        data.inflexionPointWidth= 2.0f;
+//        data.inflexionPointWidth= 2.0f;
         data.itemCount          = dataArray.count;
         data.inflexionPointStyle= PNLineChartPointStyleCircle;
         data.getData = ^(NSUInteger index) {
@@ -151,7 +151,7 @@
         [lineChart strokeChart];
         
         
-        
+        //柱状图
         barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(20,
                                                                 5+23+15+2,
                                                                 topBgView.frame.size.width-40,
@@ -169,7 +169,7 @@
 
         barChart.labelMarginTop     = 5.0;
         barChart.showChartBorder    = NO;
-        barChart.barRadius          = 6.0f;
+        barChart.barRadius          = 2.0f;
         barChart.chartMarginBottom  = 5.0f;
         [barChart setXLabels:[self getFlightHourXLabels]];
         [barChart setYValues:[self getPlanYLabels]];
@@ -177,8 +177,17 @@
         barChart.isGradientShow     = YES;
         barChart.isShowNumbers      = NO;
         barChart.barBackgroundColor = [UIColor clearColor];
-        barChart.strokeColor = [CommonFunction colorFromHex:0xff6AF9DF];
-        
+//        barChart.strokeColor = [CommonFunction colorFromHex:0xff6AF9DF];
+        NSMutableArray *colors = [NSMutableArray array];
+        NSInteger num = [self getFlightHourXLabels].count;
+        for (int i = 0; i<num; i++) {
+            if (i<[CommonFunction currentHour]) {
+                [colors addObject:[CommonFunction colorFromHex:0xff6AF9DF]];
+            }else{
+                [colors addObject:[CommonFunction colorFromHex:0xffB0C4DE]];
+            }
+        }
+        barChart.strokeColors = [colors copy];
         [barChart strokeChart];
 
         

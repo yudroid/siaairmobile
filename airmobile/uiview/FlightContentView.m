@@ -197,7 +197,7 @@
         [scrollView addSubview:arrLegend];
         
         arrInNum = [CommonFunction addLabelFrame:CGRectMake(0,
-                                                                     (viewHeight(arrRoundProgress)-52)/2-px_px_2_2_3(30, 40, 60),
+                                                                     (viewHeight(arrRoundProgress)-52)/2-px_px_2_2_3(20, 30, 50),
                                                                      viewWidth(arrRoundProgress),
                                                                      52)
                                                      text:@(_flightStusModel.arrCount).stringValue
@@ -210,7 +210,7 @@
         [arrRoundProgress addSubview:arrInNum];
 
         UILabel *arrInLabel = [CommonFunction addLabelFrame:CGRectMake(0,
-                                                                       viewBotton(arrInNum)+px_px_2_2_3(30,44, 73),
+                                                                       viewBotton(arrInNum)+px_px_2_2_3(20,30, 60),
                                                                        viewWidth(arrRoundProgress),
                                                                        18)
                                                        text:@"进港航班"
@@ -256,19 +256,18 @@
 
         
         depOutNum = [CommonFunction addLabelFrame:CGRectMake(0,
-                                                                      (viewHeight(arrRoundProgress)-52)/2-px_px_2_2_3(30, 40, 60),
+                                                                      (viewHeight(arrRoundProgress)-52)/2-px_px_2_2_3(20, 30, 50),
                                                                       viewWidth(arrRoundProgress),
                                                                       52)
                                                       text:@(_flightStusModel.depCount).stringValue
                                                       font:px_px_2_2_3(95,120, 203)
                                              textAlignment:(NSTextAlignmentCenter)
                                               colorFromHex:0xFF0B0b0b];
-
         depOutNum.font = [UIFont fontWithName:@"PingFangSC-Semibold"
                                          size:px_px_2_2_3(95,120, 203)];
         [depRoundProgress addSubview:depOutNum];
         UILabel *depOutLabel = [CommonFunction addLabelFrame:CGRectMake(0,
-                                                                        viewBotton(arrInNum)+px_px_2_2_3(30,44, 73),
+                                                                        viewBotton(arrInNum)+px_px_2_2_3(20,30, 60),
                                                                         viewWidth(arrRoundProgress),
                                                                         15) text:@"出港航班"
                                                         font:18
