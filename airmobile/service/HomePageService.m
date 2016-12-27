@@ -318,30 +318,29 @@ singleton_implementation(HomePageService);
     }
     [HttpsUtils versionCheckSuccess:^(id response) {
 
-    
-        NSArray * data = [response objectForKey:@"data"];
-        VersionModel *version = [[VersionModel alloc]initWithDictionary:[data lastObject]];
-        NSString *app_Version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-        AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        appdelegate.userInfoModel.version = version.appVersion;
-        if (![version.appVersion isEqualToString:app_Version]) {
-            UINavigationController *appRootVC = (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;
-            UIViewController *viewController = [appRootVC.viewControllers lastObject];
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"发现新版本" message:@"是否更新？" preferredStyle:UIAlertControllerStyleAlert];
-            [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
-            [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@%@",@"itms-services://?action=download-manifest&url=https://www.pgyer.com/app/plist/",version.appKey,@"&password=",@"123456"]]];
+            NSArray * data = [response objectForKey:@"data"];
+            VersionModel *version = [[VersionModel alloc]initWithDictionary:[data lastObject]];
+            NSString *app_Version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+            AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            appdelegate.userInfoModel.version = version.appVersion;
+            if (![version.appVersion isEqualToString:app_Version]) {
+                UINavigationController *appRootVC = (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;
+                UIViewController *viewController = [appRootVC.viewControllers lastObject];
+                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"发现新版本" message:@"是否更新？" preferredStyle:UIAlertControllerStyleAlert];
+                [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+                [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@%@",@"itms-services://?action=download-manifest&url=https://www.pgyer.com/app/plist/",version.appKey,@"&password=",@"123456"]]];
 
-            }]];
+                }]];
 
-
-            dispatch_async(dispatch_get_main_queue(), ^{
                 [viewController presentViewController:alertController animated:YES completion:nil];
-            });
 
-        }else{
 
-        }
+                
+            }else{
+                
+            }
+
     } failure:^(id error) {
 
     }];
