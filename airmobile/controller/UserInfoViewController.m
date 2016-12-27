@@ -247,7 +247,7 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
         cell.secondLabel.text = [NSString stringWithFormat:@"%@(%@)",@"当前版本",app_Version];
         AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 
-        if(![appdelegate.userInfoModel.version isEqualToString:app_Version])
+        if(appdelegate.userInfoModel.version.floatValue >app_Version.floatValue)
             cell.versionImageView.hidden = NO;
     }
     return  cell;
@@ -273,7 +273,7 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
             NSArray * data = [response objectForKey:@"data"];
             VersionModel *version = [[VersionModel alloc]initWithDictionary:[data lastObject]];
             NSString *app_Version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-            if ([version.appVersion isEqualToString:app_Version]) {
+            if (version.appVersion.floatValue >app_Version.floatValue) {
                 [self showAnimationTitle:@"已经为最新版本"];
             }else{
 #if __IPHONE_OS_VERSION_MAX_ALLOWED == __IPHONE_8_3
