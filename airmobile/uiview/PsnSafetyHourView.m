@@ -57,15 +57,31 @@
         passengerTtitle.textColor   = [UIColor whiteColor];
         [topBgView addSubview:passengerTtitle];
 
-        UILabel *ratioNum = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-100,
+        int index = (int)[CommonFunction currentHour];
+         FlightHourModel *flightHourModel =[[FlightHourModel alloc]init];
+        if (hourArray.count-1>=index) {
+            flightHourModel =hourArray[index];
+
+        }
+        UILabel *ratioNum = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-150,
                                                                      10,
-                                                                     80,
+                                                                     130,
                                                                      18)
-                                                     text:@([self sum]).stringValue
+                                                     text:[NSString stringWithFormat:@"%ld预测",flightHourModel.planDepCount+flightHourModel.planArrCount]
                                                      font:20
                                             textAlignment:NSTextAlignmentRight colorFromHex:0xFFFFFFFF];
         ratioNum.font = [UIFont fontWithName:@"PingFang SC"
                                         size:px2(48)];
+
+        NSMutableAttributedString *valueAttributedString = [[NSMutableAttributedString alloc]initWithString:ratioNum.text];
+        [valueAttributedString addAttribute:NSFontAttributeName
+                                      value:[UIFont fontWithName:@"PingFangSC-Regular" size:13]
+                                      range:[ratioNum.text rangeOfString:@"预测"]];
+
+
+        //        valueLable1.backgroundColor = [UIColor redColor];
+        ratioNum.attributedText = valueAttributedString;
+
         [topBgView addSubview:ratioNum];
 
         UIImageView *planImageView = [[UIImageView alloc]initWithFrame:CGRectMake(17,

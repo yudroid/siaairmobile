@@ -299,7 +299,7 @@
             maxValue = model.count;
         }
     }
-    return maxValue;
+    return maxValue==0?1:maxValue;
 }
 
 -(int)maxTimeValue

@@ -63,7 +63,7 @@
 
     NSString *dayString = [HomePageService sharedHomePageService].summaryModel.dayNum;
     if (dayString &&[dayString isKindOfClass:[NSString class]]&& ![dayString isEqualToString:@""]) {
-
+        dayString = [NSString stringWithFormat:@"最近%@天",[HomePageService sharedHomePageService].summaryModel.dayNum];
     }else{
         dayString = [NSString stringWithFormat:@"最近%lu天",(unsigned long)[HomePageService sharedHomePageService].summaryModel.tenDayReleased.count];
     }
@@ -98,9 +98,10 @@
     eightMonthBackgroundImageView.image = nil;
     [eightMonthImageView addSubview:eightMonthBackgroundImageView];
 
-    NSString *monthString = [HomePageService sharedHomePageService].summaryModel.dayNum;
+    NSString *monthString = @"";
     if (monthString &&[monthString isKindOfClass:[NSString class]]&& ![monthString isEqualToString:@""]) {
 
+        monthString = [NSString stringWithFormat:@"最近%lu个月",(unsigned long)[HomePageService sharedHomePageService].summaryModel.month];
     }else{
         monthString = [NSString stringWithFormat:@"最近%lu个月",(unsigned long)[HomePageService sharedHomePageService].summaryModel.yearReleased.count];
     }

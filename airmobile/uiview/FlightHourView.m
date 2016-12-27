@@ -57,7 +57,6 @@
             passengerTtitle.text = @"出港航班小时分布";
         }
 
-
         UIImageView *planImageView = [[UIImageView alloc]initWithFrame:CGRectMake(16,
                                                                                   viewBotton(passengerTtitle)+ px_px_2_3(16, 28),
                                                                                   10,
@@ -121,7 +120,7 @@
         lineChart.showCoordinateAxis= NO;
         lineChart.showGenYLabels    =NO;
         lineChart.yFixedValueMax    = [self maxValue]*1.2;
-        lineChart.yFixedValueMin    = 0;
+        lineChart.yFixedValueMin    = -[self maxValue]*0.1;
 
 
 
@@ -203,7 +202,7 @@
 //        }
         
         [topBgView addSubview:[CommonFunction addLabelFrame:CGRectMake(20,
-                                                                       topBgView.frame.size.height-(10+15+12),
+                                                                       topBgView.frame.size.height-(10+15+12)-5,
                                                                        topBgView.frame.size.width-40,
                                                                        12)
                                                        text:@"0"
@@ -212,7 +211,7 @@
                                                colorFromHex:0x75FFFFFF]];
 
         UIImageView *downLineImageView  = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(planImageView),
-                                                                                      viewHeight(topBgView)-10-15,
+                                                                                      viewHeight(topBgView)-10-15-5,
                                                                                       viewWidth(topBgView)-32,
                                                                                       0.5)];
         downLineImageView.image         = [UIImage imageNamed:@"hiddenLine"];
@@ -345,7 +344,7 @@
             }
         }
     }
-    return max;
+    return max==0?1:max;
 }
 
 

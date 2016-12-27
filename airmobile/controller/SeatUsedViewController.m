@@ -172,7 +172,7 @@ const NSString *SEATUSED_TABLEVIEW_IDENTIFIER = @"SEATUSED_TABLEVIEW_IDENTIFIER"
     longInSeatLabel.frame = CGRectMake((viewWidth(longInSeatView)-exportSize.width)/2,
                                        0,
                                        exportSize.width,
-                                       11);
+                                       12);
     [longInSeatView addSubview:longInSeatLabel];
     longInSeat = [[UILabel alloc] initWithFrame:CGRectMake(viewX(longInSeatLabel),
                                                            viewBotton(longInSeatLabel)+5,
@@ -212,7 +212,7 @@ const NSString *SEATUSED_TABLEVIEW_IDENTIFIER = @"SEATUSED_TABLEVIEW_IDENTIFIER"
     freeSeatLabel.frame = CGRectMake((viewWidth(freeSeatView)-exportSize.width)/2,
                                      0,
                                      exportSize.width,
-                                     11);
+                                     12);
     [freeSeatView addSubview:freeSeatLabel];
 
     freeSeat = [[UILabel alloc] initWithFrame:CGRectMake(viewX(freeSeatLabel),
@@ -256,7 +256,7 @@ const NSString *SEATUSED_TABLEVIEW_IDENTIFIER = @"SEATUSED_TABLEVIEW_IDENTIFIER"
     nightLabel.frame = CGRectMake((viewWidth(nightView)-exportSize.width)/2,
                                   0,
                                   exportSize.width,
-                                  11);
+                                  12);
     [nightView addSubview:nightLabel];
 
     night = [[UILabel alloc] initWithFrame:CGRectMake(viewX(nightLabel),
@@ -286,7 +286,7 @@ const NSString *SEATUSED_TABLEVIEW_IDENTIFIER = @"SEATUSED_TABLEVIEW_IDENTIFIER"
     disAbleLabel.frame = CGRectMake((viewWidth(disAbleView)-exportSize.width)/2,
                                     0,
                                     exportSize.width,
-                                    11);
+                                    12);
     [disAbleView addSubview:disAbleLabel];
     UIImageView *disAbleImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(disAbleLabel)-8,
                                                                                  2,
@@ -362,7 +362,7 @@ const NSString *SEATUSED_TABLEVIEW_IDENTIFIER = @"SEATUSED_TABLEVIEW_IDENTIFIER"
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SeatUsedModel *model = array[indexPath.row];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)SEATUSED_TABLEVIEW_IDENTIFIER];
+    UITableViewCell *cell ;
     
     if (!cell) {
 
@@ -398,7 +398,7 @@ const NSString *SEATUSED_TABLEVIEW_IDENTIFIER = @"SEATUSED_TABLEVIEW_IDENTIFIER"
         }else{
             intfreeSeat = model.normalCnt+model.childCnt -model.normalTakeUpCnt-model.childTakeUpCnt;
         }
-        notUseLabel.text = [NSString stringWithFormat:@"空余 %ld",intfreeSeat];
+        notUseLabel.text = [NSString stringWithFormat:@"空余 %ld",(long)intfreeSeat];
         CGSize exportSize = [notUseLabel sizeThatFits:maxSize];
         notUseLabel.frame = CGRectMake(viewWidth(contentView)-10-exportSize.width,
                                        0,
@@ -416,7 +416,7 @@ const NSString *SEATUSED_TABLEVIEW_IDENTIFIER = @"SEATUSED_TABLEVIEW_IDENTIFIER"
         maxSize = CGSizeMake(100, 100);
         useLabel.font = [UIFont fontWithName:@"PingFangSC-Regular"
                                         size:25/2];
-        useLabel.text = [NSString stringWithFormat:@"占用 %ld",intuseSeat];
+        useLabel.text = [NSString stringWithFormat:@"占用 %ld",(long)intuseSeat];
         exportSize = [useLabel sizeThatFits:maxSize];
         useLabel.frame = CGRectMake(viewX(notUseLabel)-10-exportSize.width,
                                     0,

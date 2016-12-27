@@ -375,7 +375,7 @@
             max = model.ratio;
         }
     }
-    return max;
+    return max == 0?1:max;
 
 }
 

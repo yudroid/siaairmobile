@@ -148,7 +148,7 @@
         [topBgView addSubview:lineImageView];
         
         maxLabel = [CommonFunction addLabelFrame:CGRectMake(viewWidth(topBgView)-18-50,viewBotton(lineImageView)+4, 50, 12)
-                                                     text:@((int)([self maxValue]*1.2)).stringValue
+                                                     text:@([self maxValue]*1.2).stringValue
                                                      font:11
                                             textAlignment:NSTextAlignmentRight
                                              colorFromHex:0x95FFFFFF];
@@ -348,11 +348,7 @@
         
 //        [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, 200+30+30+30+90, kScreenWidth/2-20, 20) text:@"1568人" font:25 textAlignment:NSTextAlignmentLeft colorFromHex:0xFF000000]];
 
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(loadData:)
-                                                     name:@"PassengerSummary"
-                                                   object:nil];
-        
+
     }
     
     return self;
@@ -374,13 +370,6 @@
     }
 }
 
--(void)dealloc
-{
-
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:@"PassengerSummary"
-                                                  object:nil];
-}
 -(void)loadData:(NSNotification *)notification
 {
     if ([notification.object isKindOfClass:[PassengerModel class]]) {

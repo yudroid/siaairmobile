@@ -241,7 +241,7 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     cell.nameLabel.text =name;
     cell.iconImageView.image = [UIImage imageNamed:imageString];
     if ([name isEqualToString:@"版本检测"]) {
-        cell.versionImageView.hidden = NO;
+//        cell.versionImageView.hidden = NO;
     }
     return  cell;
 }

@@ -89,6 +89,15 @@
 
 - (IBAction)startReportDatClick:(id)sender {
 
+    if(self.event == nil){
+        [self showAnimationTitle:@"请选取有效的事件"];
+        return;
+    }
+
+    if (self.requireTextView.text.length == 0) {
+        [self showAnimationTitle:@"请填写要求"];
+        return;
+    }
     [self starNetWorking];
     AppDelegate *appdelete = (AppDelegate*)[[UIApplication sharedApplication] delegate];
 

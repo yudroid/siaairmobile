@@ -133,6 +133,11 @@ static const NSString *NIGHTSHIFTROOM_TABLECELL_IDENTIFIER = @"NIGHTSHIFTROOM_TA
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    DutyModel *dutyModel = _tableArray[indexPath.row];
+    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",dutyModel.phone];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+    
 }
 
 /*

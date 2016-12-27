@@ -39,12 +39,12 @@ typedef void  (^TimeBlock)(void);
 //                                             repeats:YES
 //                                               block:(^(NSTimer *timer){
 //        if(callBack){
-////            callBack();
+////            callBack();<#(nonnull NSInvocation *)#>
 //
 //        }
 //    })];
 
-//    timer = [NSTimer scheduledTimerWithTimeInterval:30 invocation:<#(nonnull NSInvocation *)#> repeats:YES]
+//    timer = [NSTimer scheduledTimerWithTimeInterval:30 invocation: repeats:YES]
     timer = [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(timerFounction) userInfo:nil repeats:YES];
 
     timeblock = callBack;

@@ -322,7 +322,7 @@ viewForHeaderInSection:(NSInteger)section
             max = model.count;
         }
     }
-    return max;
+    return max==0?1:max;
 }
 
 

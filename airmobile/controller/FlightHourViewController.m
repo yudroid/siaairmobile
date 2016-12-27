@@ -287,7 +287,7 @@
             max =(int)(model.planDepCount+model.planArrCount);
         }
     }
-    return max;
+    return max==0?1:max;
 
 }
 

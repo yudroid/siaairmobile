@@ -335,7 +335,7 @@
             max = (int)model.depCount;
         }
     }
-    return max;
+    return max==0?1:max;
 
 }
 

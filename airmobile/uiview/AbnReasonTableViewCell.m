@@ -31,7 +31,7 @@
                                                                      0,
                                                                      kScreenWidth/2-px2(32),
                                                                      viewHeight(self.contentView))
-                                                     text:[NSString stringWithFormat:@"%i架次,%.1f%%",(int)abnReason.count,abnReason.count/@(sum).floatValue*100]
+                                                     text:[NSString stringWithFormat:@"%i架次,%.1f%%",(int)abnReason.count,abnReason.count/@(sum==0?1:sum).floatValue*100]
                                                      font:px_px_2_3(24, 40)
                                             textAlignment:(NSTextAlignmentRight)
                                              colorFromHex:0xFF1B1B1B];

@@ -21,7 +21,7 @@ target 'airmobile' do
   pod 'FLAnimatedImage', '~> 1.0'
   pod 'FlyImage', '~>1.0'
   pod 'JTCalendar'
-  pod 'Pgyer'
+  pod 'Bugly'
   
   target 'airmobileTests' do
     inherit! :search_paths

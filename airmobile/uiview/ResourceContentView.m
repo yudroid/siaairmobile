@@ -97,7 +97,7 @@ const NSString *RESOURCECONTENT_TABLECELL_IDENTIFIER = @"RESOURCECONTENT_TABLECE
         UILabel *totalLabel         = [[UILabel alloc] initWithFrame:CGRectMake(viewX(progressRound),
                                                                                 viewBotton(totalNumLabel)+7,
                                                                                 viewWidth(progressRound),
-                                                                                13)];
+                                                                                15)];
         totalLabel.text             = @"机位";
         totalLabel.textAlignment    = NSTextAlignmentCenter;
         totalLabel.font             =  [UIFont fontWithName:@"PingFangSC-Regular" size:px2(32)];
@@ -271,54 +271,6 @@ const NSString *RESOURCECONTENT_TABLECELL_IDENTIFIER = @"RESOURCECONTENT_TABLECE
                                                   object:nil];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 50;
-}
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [array count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    SeatUsedModel *model    = array[indexPath.row];
-    UITableViewCell *cell   = [tableView dequeueReusableCellWithIdentifier:(NSString *)RESOURCECONTENT_TABLECELL_IDENTIFIER];
-    
-    if (!cell) {
-//        cell = [[UITableViewCell alloc]initWithStyle:(UITableViewCellStyleDefault)
-//                                     reuseIdentifier:model.type];
-//        
-//        [cell addSubview:[CommonFunction addLabelFrame:CGRectMake(20, 0, 30, 30)
-//                                                  text:model.type
-//                                                  font:30
-//                                         textAlignment:(NSTextAlignmentLeft)
-//                                          colorFromHex:0xFF1B1B1B]];
-//        [cell addSubview:[CommonFunction addLabelFrame:CGRectMake(50, 0, kScreenWidth/2-50-30, 13)
-//                                                  text:[NSString stringWithFormat:@"占用 %i",model.used]
-//                                                  font:12
-//                                         textAlignment:(NSTextAlignmentLeft)
-//                                          colorFromHex:0xFF1B1B1B]];
-//        [cell addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, 0, kScreenWidth/2-50, 12)
-//                                                  text:[NSString stringWithFormat:@"空余 %i",model.free]
-//                                                  font:12
-//                                         textAlignment:(NSTextAlignmentRight)
-//                                          colorFromHex:0xFF1B1B1B]];
-//        
-//        LDProgressView *progressF   = [[LDProgressView alloc] initWithFrame:CGRectMake(50, 12+3, kScreenWidth-100, 10)];
-//        progressF.color             = [CommonFunction colorFromHex:0XFF05CA6E];
-//        progressF.progress          = [model getPercent];
-//        progressF.showText          = @NO;
-//        progressF.animate           = @YES;
-//        progressF.showBackgroundInnerShadow = @NO;
-//        progressF.type              = LDProgressSolid;
-//        progressF.outerStrokeWidth  = @NO;
-//        progressF.showStroke        = @NO;
-//        progressF.background        = [CommonFunction colorFromHex:0XFFE9EDF1];
-//        [cell addSubview:progressF];
-
-    }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    return cell;
-}
 
 -(void)showSeatUsedDetail:(UIButton *)sender
 {
