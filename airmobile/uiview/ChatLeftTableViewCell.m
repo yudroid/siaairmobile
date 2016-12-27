@@ -53,7 +53,7 @@
                                             options:NSStringDrawingUsesLineFragmentOrigin
                                          attributes:@{NSFontAttributeName:textFont}
                                             context:nil]).size;
-    _contentWidth.constant = size.width;
+    _contentWidth.constant = size.width+10;
     _contentHeight.constant = size.height;
     _contentLabel.text = [contentText copy];
 }

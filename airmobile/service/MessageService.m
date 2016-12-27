@@ -12,9 +12,9 @@
 #define wsgroupurl @"ws://219.134.93.113:8087/acs/workgroupmsg"
 #define wssysurl @"ws://219.134.93.113:8087/acs/alertmsg"
 
-//#define wsuserurl @"ws://192.168.163.152:8080/acs/usermsg"
-//#define wsgroupurl @"ws://192.168.163.152:8080/acs/workgroupmsg"
-//#define wssysurl @"ws://192.168.163.152:8080/acs/alertmsg"
+//#define wsuserurl @"ws://192.168.163.126:8080/acs/usermsg"
+//#define wsgroupurl @"ws://192.168.163.126:8080/acs/workgroupmsg"
+//#define wssysurl @"ws://192.168.163.126:8080/acs/alertmsg"
 
 //#define wsuserurl @"ws://192.168.163.153:8080/acs/usermsg"
 //#define wsgroupurl @"ws://192.168.163.153:8080/acs/workgroupmsg"
@@ -168,7 +168,7 @@ singleton_implementation(MessageService);
         }];
     }else if([urlString isEqualToString:wssysurl]){
         
-        if(![[dic allKeys] containsObject:@"createTime"]){
+        if(![[dic allKeys] containsObject:@"createTime"] || ![[dic allKeys] containsObject:@"type"]){
             return;
         }
         long msgId = [[dic objectForKey:@"id"] longLongValue];
@@ -184,7 +184,10 @@ singleton_implementation(MessageService);
         [msgDict setValue:[NSNumber numberWithLong:todept]      forKey:@"toDept"];
         
         [PersistenceUtils insertNewSysMessage:msgDict];
-
+        NSString *type = [dic objectForKey:@"type"];
+        if(_curTabBarView != nil && type!=nil && ![type containsString:@"FLIGHT"]){
+            [_curTabBarView setHasNewMessage:YES];
+        }
     }
  
 }

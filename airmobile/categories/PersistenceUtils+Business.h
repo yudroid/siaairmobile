@@ -138,7 +138,12 @@
 +(void)syncSysMessages:(NSArray<NSDictionary *> *)messages;
 
 
+/**
+ 保存用户聊天的消息记录
 
+ @param messages <#messages description#>
+ */
++(void)saveChatMessages:(NSArray<NSDictionary *> *)messages localId:(int)localId;
 
 /**
  查询系统消息列表，根据type
@@ -192,6 +197,12 @@
  @param msgId <#msgId description#>
  */
 +(void)updateSysMessageRead:(long)msgId;
+
+
+/**
+ 获取未读消息数目
+ */
++(int)unReadCount;
 
 
 /**

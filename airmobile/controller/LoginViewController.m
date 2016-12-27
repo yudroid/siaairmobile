@@ -297,11 +297,6 @@
             [self.view hideToastActivity];
             
         }];
-
-        [[HomePageService sharedHomePageService] startService];
-        [[MessageService sharedMessageService] setUserId:(int)user.id];
-        [[MessageService sharedMessageService] startService];
-        [HttpsUtils getAlertMsgListSuccess:nil failure:nil];// 同步最近的异常消息
         
         /*
          返回 1 登录成功  2 登录失败，用户名\密码为空 3登录失败，用户名或密码输入错误 4 用户被禁用 5已在其他设备登录，登录失败 6 账号已过期 7 MAC地址不匹配
@@ -310,6 +305,13 @@
         switch (user.flag) {
             case 1:
             {
+                
+                [HttpsUtils sysChatInfoList:(int)user.id];
+                [[HomePageService sharedHomePageService] startService];
+                [[MessageService sharedMessageService] setUserId:(int)user.id];
+                [[MessageService sharedMessageService] startService];
+                [HttpsUtils getAlertMsgListSuccess:nil failure:nil];// 同步最近的异常消息
+                
                 [HttpsUtils setUserName:userName];
                 [HttpsUtils setPassword:password];
                 NSString* userKey = @"taocares_userName";
@@ -448,7 +450,7 @@
             _loginBtn.enabled = YES;
             [self.view hideToastActivity];
             //调用失败的回调
-            [self toast:@"服务或网络异常"];
+            [self toast:@"服务器网络异常"];
         }];
         return;
     }];

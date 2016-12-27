@@ -81,7 +81,6 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
                                                  selectedType:TabBarSelectedTypeMessage
                                                      delegate:self];
     [self.view insertSubview:self.tabBarView aboveSubview:self.view];
-    [MessageService sharedMessageService].chatListDelegate = self;
 }
 
 #pragma mark - 切换底部主功能页面
@@ -448,6 +447,7 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 {
     [super viewWillAppear:animated];
     NSLog(@"%s",__func__);
+    [MessageService sharedMessageService].chatListDelegate = self;
     [self loadChatList:0 num:1000];
 }
 
