@@ -121,6 +121,7 @@ static const NSString *FLGHTDELAYS_TABLECELL_IDENTIFIER = @"FLGHTDELAYS_TABLECEL
     startIndex = 0;
     [data addObjectsFromArray:[PersistenceUtils findSysMsgListByType:_type start:startIndex num:pagesize]];
     [_tableView reloadData];
+    startIndex = (int)[data count];
 }
 
 -(void)updateNetwork
@@ -135,7 +136,7 @@ static const NSString *FLGHTDELAYS_TABLECELL_IDENTIFIER = @"FLGHTDELAYS_TABLECEL
     } @finally {
         [_tableView.mj_header endRefreshing];
     }
-    startIndex +=pagesize;
+    startIndex = (int)[data count];
 }
 
 -(void)loadMoreNetwork
@@ -148,7 +149,7 @@ static const NSString *FLGHTDELAYS_TABLECELL_IDENTIFIER = @"FLGHTDELAYS_TABLECEL
     } @finally {
         [_tableView.mj_footer endRefreshing];
     }
-    startIndex +=pagesize;
+    startIndex = (int)[data count];
 }
 
 /*

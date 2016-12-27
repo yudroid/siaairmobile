@@ -185,6 +185,7 @@ static const NSString *SINGLE_FLGHTDELAYS_TABLECELL_IDENTIFIER = @"SINGLE_FLGHTD
     startIndex = 0;
     [data addObjectsFromArray:[PersistenceUtils findSysMsgListByType:_type start:startIndex num:pagesize]];
     [_tableView reloadData];
+    startIndex +=pagesize;
 }
 
 -(void)updateNetwork

@@ -44,7 +44,7 @@
             NSLog(@"成功创建表   #用户信息表#   %@",@"userInfoTable");
         }
         
-        NSString *sysMsgTable = @"CREATE TABLE IF NOT EXISTS SysMessage (msgid integer NOT NULL PRIMARY KEY AUTOINCREMENT, type integer(2,0) NOT NULL, content nvarchar(1024,0),title nvarchar(100,0), createtime datetime NOT NULL, readtime date NOT NULL, status integer(1,0), todeptids nvarchar(500,0), todept integer(20,0), userid integer);";
+        NSString *sysMsgTable = @"DROP TABLE IF EXISTS SysMessage;CREATE TABLE SysMessage (id integer PRIMARY KEY AUTOINCREMENT NOT NULL,msgid integer NOT NULL, type integer(2,0) NOT NULL, content nvarchar(1024,0),title nvarchar(100,0), createtime datetime NOT NULL, readtime date NOT NULL, status integer(1,0), todeptids nvarchar(500,0), todept integer(20,0), userid integer);";
 
         result = sqlite3_exec(database, [sysMsgTable UTF8String], NULL, NULL, NULL);
         if (result == SQLITE_OK) {
@@ -453,7 +453,7 @@ NSLog(@"     -=-=-=-=-=-=-=save users  finished   -=-=-=-=-=-=-=");
     NSString *createTime = [message objectForKey:@"createTime"];
     NSString *status = [message objectForKey:@"status"];
     NSString *todeptIds = [message objectForKey:@"toDeptIds"];
-    NSString *insertSql = @"INSERT INTO SysMessage VALUES (%i, '%@', '%@', '%@', '%@', '%@', '%@', %i, null, %i);";
+    NSString *insertSql = @"INSERT INTO SysMessage VALUES (?,%i, '%@', '%@', '%@', '%@', '%@', '%@', %i, null, %i);";
     return [NSString stringWithFormat:insertSql,msgid,type,content,title,createTime,status,todeptIds,toDept,[self getLocalUserId]];
 }
 
