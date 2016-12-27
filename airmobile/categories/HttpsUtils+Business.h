@@ -125,6 +125,33 @@
  */
 +(void)getAlertMsgListSuccess:(void(^)(id))success failure:(void (^)(NSError *))failure;
 
+
+/**
+ 聊天记录列表进行同步
+ 
+ @param userId <#userId description#>
+ */
++(void)sysChatInfoList:(int)userId;
+
+
+/**
+ 获取组聊天记录列表
+
+ @param chatId <#chatId description#>
+ @param localId <#localId description#>
+ */
++(void)getGroupChatMsgListByGroupId:(int)chatId localId:(int)localId;
+
+
+/**
+ 用户聊天记录列表
+
+ @param userId <#userId description#>
+ @param chatId <#chatId description#>
+ @param localId <#localId description#>
+ */
++(void)getUserChatMsgListFrom:(int)userId to:(int)chatId localId:(int)localId;
+
 #pragma mark 航班列表 航班详情 航班保障详情 航班特殊详情
 
 /**
@@ -646,4 +673,7 @@
  */
 +(void)versionCheckSuccess:(void (^)(id))success
                    failure:(void (^)(id))failure;
+
+
+
 @end

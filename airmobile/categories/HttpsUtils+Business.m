@@ -29,6 +29,10 @@ NSString * const groupMsgSendUrl            = @"/acs/wm/m";// 发送工作组消
 NSString * const userMsgListUrl             = @"/acs/um/sl";// 用户消息列表
 NSString * const groupMsgListUrl            = @"/acs/wm/chatlst";// 工作组消息
 NSString * const alertMsgListUrl            = @"/acs/am/lst";// 系统消息
+NSString * const synChatInfoListUrl         = @"/acs/um/sl";// 同步用户消息列表
+NSString * const synGroupChatInfoListUrl    = @"/acs/wm/chatlst";// 同步工作组列表
+NSString * const getUserChatListUrl         = @"/acs/um/cr";// 获取用户消息
+NSString * const getGroupChatListUrl        = @"/acs/wm/lst";// 获取工作组消息
 //NSString * const 
 NSString * const userlistUrl                = @"/acs/wacs/user/SelectAllDeptListForIphone";
 NSString * const groupSaveUrl               = @"/acs/wacs/group/save";
@@ -278,6 +282,54 @@ NSString * const headImageUpload            = @"/acs/ath/user/imageupload";//头
             [PersistenceUtils syncSysMessages:responseObj];
         }];
     } failure:failure];
+}
+
+
+/**
+ 聊天记录列表进行同步
+ 
+ @param userId <#userId description#>
+ */
++(void)sysChatInfoList:(int)userId
+{
+    NSString *temp = [NSString stringWithFormat:@"%@/%i",synChatInfoListUrl,userId];
+    [HttpsUtils get:temp params:nil success:^(id responseObj) {
+        [PersistenceUtils syncUserMessages:responseObj];
+    } failure:nil];
+    
+    [HttpsUtils get:synGroupChatInfoListUrl params:nil success:^(id responseObj) {
+        [PersistenceUtils syncGroupMessages:responseObj];
+    } failure:nil];
+}
+
+/**
+ 获取组聊天记录列表
+ 
+ @param chatId <#chatId description#>
+ @param localId <#localId description#>
+ */
++(void)getGroupChatMsgListByGroupId:(int)chatId localId:(int)localId
+{
+    NSString *temp = [NSString stringWithFormat:@"%@/%i",getGroupChatListUrl,chatId];
+    [HttpsUtils get:temp params:nil success:^(id responseObj) {
+        [PersistenceUtils saveChatMessages:responseObj localId:localId];
+    } failure:nil];
+}
+
+
+/**
+ 用户聊天记录列表
+ 
+ @param userId <#userId description#>
+ @param chatId <#chatId description#>
+ @param localId <#localId description#>
+ */
++(void)getUserChatMsgListFrom:(int)userId to:(int)chatId localId:(int)localId
+{
+    NSString *temp = [NSString stringWithFormat:@"%@/%i/%i",getUserChatListUrl,userId,chatId];
+    [HttpsUtils get:temp params:nil success:^(id responseObj) {
+        [PersistenceUtils saveChatMessages:responseObj localId:localId];
+    } failure:nil];
 }
 
 #pragma mark 航班 列表查询 航班明细 保障环节列表 重点保障环节列表 环节异常记录列表 报告正常 报告异常开始结束

@@ -102,6 +102,7 @@ static const NSString *FLGHTDELAYS_TABLECELL_IDENTIFIER = @"FLGHTDELAYS_TABLECEL
     NSDictionary *dic = [data objectAtIndex:indexPath.row];
     SysMessageModel *model = [[SysMessageModel alloc] initWithDictionary:dic];
     [PersistenceUtils updateSysMessageRead:model.msgid];
+    [self.tabBarView setHasNewMessage:[PersistenceUtils unReadCount]];
     
     FlightDelaysDetailViewController *flightDelaysDetailVC = [[FlightDelaysDetailViewController alloc]initWithNibName:@"FlightDelaysDetailViewController" bundle:nil];
     flightDelaysDetailVC.titleText = model.title;

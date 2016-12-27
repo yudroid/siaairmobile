@@ -11,6 +11,7 @@
 #import <SocketRocket/SocketRocket.h>
 #import "ChatViewController.h"
 #import "MessageViewController.h"
+#import "TabBarView.h"
 
 @interface MessageService : BaseService<SRWebSocketDelegate>
 
@@ -25,6 +26,7 @@ singleton_interface(MessageService);
 
 @property (nonatomic,weak) id<ChatViewDelegate> chatDelegate;
 @property (nonatomic,weak) id<MessageViewDelegate> chatListDelegate;
+@property (nonatomic,strong) TabBarView *curTabBarView;
 
 -(void)setUserId:(int)userId;
 

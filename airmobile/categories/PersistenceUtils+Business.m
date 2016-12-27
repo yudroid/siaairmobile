@@ -328,7 +328,18 @@ NSLog(@"     -=-=-=-=-=-=-=save users  finished   -=-=-=-=-=-=-=");
  */
 +(void)syncUserMessages:(NSArray<NSDictionary *> *)messages
 {
+    if(messages ==nil || [messages count]==0){
+        return;
+    }
     
+    int userId = [self getLocalUserId];
+    for(NSDictionary *message in messages){
+        NSString *name = [message objectForKey:@"toName"];
+        int chatId = [[message objectForKey:@"toId"] isEqual:[NSNull null]]?1:[[message objectForKey:@"toId"] intValue];
+        NSDictionary *localChat = [self getLocalChatIdByName:name type:0 chatId:chatId];
+        int localId = [[localChat objectForKey:@"id"] intValue];
+        [HttpsUtils getUserChatMsgListFrom:userId to:chatId localId:localId];
+    }
 }
 
 /**
@@ -338,7 +349,16 @@ NSLog(@"     -=-=-=-=-=-=-=save users  finished   -=-=-=-=-=-=-=");
  */
 +(void)syncGroupMessages:(NSArray<NSDictionary *> *)messages
 {
-    
+    if(messages ==nil || [messages count]==0){
+        return;
+    }
+    for(NSDictionary *message in messages){
+        NSString *name = [message objectForKey:@"workgroupTitle"];
+        int chatId = [[message objectForKey:@"workgroupId"] isEqual:[NSNull null]]?1:[[message objectForKey:@"workgroupId"] intValue];
+        NSDictionary *localChat = [self getLocalChatIdByName:name type:1 chatId:chatId];
+        int localId = [[localChat objectForKey:@"id"] intValue];
+        [HttpsUtils getGroupChatMsgListByGroupId:chatId localId:localId];
+    }
 }
 
 /**
@@ -361,8 +381,8 @@ NSLog(@"     -=-=-=-=-=-=-=save users  finished   -=-=-=-=-=-=-=");
         }
     }
     
-    NSString *querysql = @"select msgid from SysMessage t where msgid in (%@)";
-    NSArray *exists = [self executeQuery:[NSString stringWithFormat:querysql, ids]];
+    NSString *querysql = @"select msgid from SysMessage t where msgid in (%@) and t.userid=%i";
+    NSArray *exists = [self executeQuery:[NSString stringWithFormat:querysql, ids,[self getLocalUserId]]];
     ids = nil;
     if(exists!=nil && [exists count]>0){
         for(NSDictionary * msg in exists){
@@ -381,6 +401,41 @@ NSLog(@"     -=-=-=-=-=-=-=save users  finished   -=-=-=-=-=-=-=");
     }
     // 批量插入
     [self executeInsertBatch:array];
+}
+
+/**
+ 保存用户聊天的消息记录
+ 
+ @param messages <#messages description#>
+ */
++(void)saveChatMessages:(NSArray<NSDictionary *> *)messages localId:(int)localId
+{
+    if(messages ==nil || [messages count]==0){
+        return;
+    }
+    NSArray *charHisArray = [self findMsgListByChatId:localId start:0 num:1];
+    NSString *lastMsgTime = nil;
+    if(charHisArray!=nil && [charHisArray count]>0){
+        lastMsgTime = [[charHisArray objectAtIndex:0] objectForKey:@"time"];
+    }
+    int type = 0;
+    for(NSDictionary *msg in messages){
+        if([[msg allKeys] containsObject:@"workgroupId"]){
+            type = 1;
+        }else{
+            type = 0;
+        }
+        
+        NSString *createTime = [msg objectForKey:@"createTime"];
+        // 进行判断，如果最后一条消息时间>要存储的消息，不进行存储继续
+        if(lastMsgTime!=nil && lastMsgTime>=createTime){
+            continue;
+        }
+        int userid = type==1?[[msg objectForKey:@"sendUserId"] intValue]:[[msg objectForKey:@"fromId"] intValue];
+        NSString *userName = type==1?[msg objectForKey:@"sendUserName"]:[msg objectForKey:@"fromName"];
+        NSString *content = [msg objectForKey:@"content"];
+        [self saveChatMessage:localId content:content userid:userid userName:userName time:createTime];
+    }
 }
 
 +(void)insertNewSysMessage:(NSDictionary *)message
@@ -488,11 +543,26 @@ NSLog(@"     -=-=-=-=-=-=-=save users  finished   -=-=-=-=-=-=-=");
     [self executeNoQuery:[NSString stringWithFormat:@"update SysMessage set readtime=CURRENT_TIMESTAMP where msgid=%li",msgId]];
 }
 
+/**
+ 获取未读消息数目
+ */
++(int)unReadCount
+{
+    NSString *sql = [NSString stringWithFormat:@"select count(0) unread from SysMessage t where t.type not like '%@%%' and t.userid=%i and t.readtime like '%%null%%'",@"FLIGHT",[self getLocalUserId]];
+    NSArray *result = [self executeQuery:sql];
+    if(result!=nil && [result count]>0){
+        return [[[result objectAtIndex:0] objectForKey:@"unread"] intValue];
+    }
+    return 0;
+}
+
 +(int)getLocalUserId
 {
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     return (int)delegate.userInfoModel.id;
 }
+
+
 //+(void) updateAllMessage:(NSArray*) array{
 //    if(array == nil || [array count] == 0){
 //        return;

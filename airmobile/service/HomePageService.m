@@ -317,6 +317,8 @@ singleton_implementation(HomePageService);
         return ;
     }
     [HttpsUtils versionCheckSuccess:^(id response) {
+
+    
         NSArray * data = [response objectForKey:@"data"];
         VersionModel *version = [[VersionModel alloc]initWithDictionary:[data lastObject]];
         NSString *app_Version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
