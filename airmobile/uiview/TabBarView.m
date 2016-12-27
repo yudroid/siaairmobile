@@ -134,7 +134,7 @@
             
             TabBarIteam *function   = [[TabBarIteam alloc] initWithCenter:CGPointMake(kScreenWidth*(1+(index-1)*2)/funtionNum, 49/2)];
             function.image          = [UIImage imageNamed:@"icon_function.png"];
-            function.text           = @"值班";
+            function.text           = @"功能";
             UIButton *functionBtn   = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 49, 49)];
             functionBtn.center      = CGPointMake(kScreenWidth*(1+(index-1)*2)/funtionNum, 49/2);
             functionBtn.tag         = 3;

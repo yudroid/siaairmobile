@@ -237,13 +237,20 @@
         currentStatus.text = summaryModel.warning;
         currentStatus.textAlignment = NSTextAlignmentCenter;
         currentStatus.font          =  [UIFont fontWithName:@"PingFangSC-Regular" size:px2(32)];
-        if([summaryModel.warning isEqualToString:@"正常"]){
-            currentStatus.textColor = [UIColor yellowColor];
-        }else if([summaryModel.warning isEqualToString:@"重大"]){
-            currentStatus.textColor = [CommonFunction colorFromHex:0XFFF46970];
+
+        if([summaryModel.warning containsString:@"红色"]){
+            currentStatus.textColor = [CommonFunction colorFromHex:0xfff30f0f];
+        }else if([summaryModel.warning containsString:@"橙色"]){
+            currentStatus.textColor = [CommonFunction colorFromHex:0xffff8f22];
+        }else if([summaryModel.warning containsString:@"黄色"]){
+            currentStatus.textColor = [CommonFunction colorFromHex:0xfffcf02d];
+        }else if([summaryModel.warning containsString:@"蓝色"]){
+             currentStatus.textColor = [CommonFunction colorFromHex:0xfff0266c];
         }else{
-            currentStatus.textColor = [UIColor redColor];
+             currentStatus.textColor = [CommonFunction colorFromHex:0xff12d865];
         }
+
+
         currentStatus.textColor = [CommonFunction colorFromHex:0XFFF46970];
         [self addSubview:currentStatus];
 
@@ -395,12 +402,16 @@
     ratioView.bigLabel.text  = [NSString stringWithFormat:@"%.1f",[summaryModel.releaseRatio floatValue] *100];     //放行率
 
     currentStatus.text = summaryModel.warning;
-    if([summaryModel.warning isEqualToString:@"正常"]){
-        currentStatus.textColor = [UIColor yellowColor];
-    }else if([summaryModel.warning isEqualToString:@"重大"]){
-        currentStatus.textColor = [CommonFunction colorFromHex:0XFFF46970];
+    if([summaryModel.warning containsString:@"红色"]){
+        currentStatus.textColor = [CommonFunction colorFromHex:0xfff30f0f];
+    }else if([summaryModel.warning containsString:@"橙色"]){
+        currentStatus.textColor = [CommonFunction colorFromHex:0xffff8f22];
+    }else if([summaryModel.warning containsString:@"黄色"]){
+        currentStatus.textColor = [CommonFunction colorFromHex:0xfffcf02d];
+    }else if([summaryModel.warning containsString:@"蓝色"]){
+        currentStatus.textColor = [CommonFunction colorFromHex:0xfff0266c];
     }else{
-        currentStatus.textColor = [UIColor redColor];
+        currentStatus.textColor = [CommonFunction colorFromHex:0xff12d865];
     }
     lowTimelabel.text = summaryModel.flightDate;
 

@@ -55,7 +55,9 @@ static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TA
     [_tableView registerNib:[UINib nibWithNibName:@"UserManagermentTableViewCell" bundle:nil] forCellReuseIdentifier:(NSString *)USERMANAGEMENT_TABLECELL_IDENTIFIER];
     // Do any additional setup after loading the view from its nib.
 
-    [_headImageView setIconURL:[HttpsUtils imageDownloadURLWithString:@"1481161300838/2345.png"]];
+    AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [_headImageView setIconURL:[HttpsUtils imageDownloadURLWithString:appdelegate.userInfoModel.imagePath]];
+
 }
 - (IBAction)messageClearButtonClick:(id)sender {
 #if __IPHONE_OS_VERSION_MAX_ALLOWED == __IPHONE_8_3

@@ -109,6 +109,7 @@
 
                                  [self stopNetWorking];
                                  if([response isEqualToString:@"0"]){
+                                     [self showAnimationTitle:@"上报失败"];
                                      return ;
                                  }
                                  [self showAnimationTitle:@"上报成功"];

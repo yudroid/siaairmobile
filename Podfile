@@ -8,7 +8,7 @@ target 'airmobile' do
   # use_frameworks!
 
   # Pods for airmobile
-  pod "AFNetworking", "~> 3.0"
+  pod 'AFNetworking', '~> 3.0'
   pod 'Toast', '~> 3.0'
   pod 'KSCrash', '~>1.1.1'
   pod 'ATAppUpdater', '~>1.7'

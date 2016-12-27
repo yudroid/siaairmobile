@@ -10,6 +10,7 @@
 #import "BaseService.h"
 #import <SocketRocket/SocketRocket.h>
 #import "ChatViewController.h"
+#import "MessageViewController.h"
 
 @interface MessageService : BaseService<SRWebSocketDelegate>
 
@@ -23,5 +24,8 @@ singleton_interface(MessageService);
                    type:(BOOL)type;
 
 @property (nonatomic,weak) id<ChatViewDelegate> chatDelegate;
+@property (nonatomic,weak) id<MessageViewDelegate> chatListDelegate;
+
+-(void)setUserId:(int)userId;
 
 @end

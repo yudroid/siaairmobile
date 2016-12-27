@@ -28,6 +28,8 @@
 @property (nonatomic ,copy)   NSString    *functions; // 权限数组
 @property (nonatomic ,copy)   NSString    *imagePath;
 
+@property (nonatomic ,copy)   NSString    *version;//版本号
+
 
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary ;
 

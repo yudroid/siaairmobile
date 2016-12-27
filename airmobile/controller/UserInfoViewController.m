@@ -166,11 +166,12 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
 
 -(void)viewWillAppear:(BOOL)animated
 {
+
+    AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [_headImageView setIconURL:[HttpsUtils imageDownloadURLWithString:appdelegate.userInfoModel.imagePath]];
     if (_headImageView.image == nil) {
         _headImageView.image = [UIImage imageNamed:@"MessageHeader"];
     }
-    AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    [_headImageView setIconURL:[HttpsUtils imageDownloadURLWithString:appdelegate.userInfoModel.imagePath]];
 
 }
 
@@ -241,7 +242,13 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     cell.nameLabel.text =name;
     cell.iconImageView.image = [UIImage imageNamed:imageString];
     if ([name isEqualToString:@"版本检测"]) {
-//        cell.versionImageView.hidden = NO;
+
+        NSString *app_Version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+        cell.secondLabel.text = [NSString stringWithFormat:@"%@(%@)",@"当前版本",app_Version];
+        AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+
+        if(![appdelegate.userInfoModel.version isEqualToString:app_Version])
+            cell.versionImageView.hidden = NO;
     }
     return  cell;
 }

@@ -40,6 +40,9 @@
     PNPieChart      *arrRoundProgress;
     PNPieChart      *depRoundProgress;
 
+    UIButton        *abnButton; //异常按钮
+    UILabel         *abnLabel;  //异常按钮文字
+
     NSMutableArray *arrShapeArray;
     NSMutableArray *depShapeArray;
 
@@ -290,7 +293,7 @@
                                                                                      26)];
         unusualImageView.image =  [UIImage imageNamed:@"unusualBackground"];
         [self addSubview:unusualImageView];
-        UILabel *abnLabel = [CommonFunction addLabelFrame:CGRectMake(viewX(unusualImageView),
+        abnLabel = [CommonFunction addLabelFrame:CGRectMake(viewX(unusualImageView),
                                                                      viewY(unusualImageView),
                                                                      viewWidth(unusualImageView),
                                                                      viewHeight(unusualImageView))
@@ -303,7 +306,7 @@
                                         size:35/2];
         [self addSubview:abnLabel];
 
-        UIButton *abnButton = [[UIButton alloc] initWithFrame:unusualImageView.frame];
+        abnButton = [[UIButton alloc] initWithFrame:unusualImageView.frame];
         [abnButton addTarget:self
                       action:@selector(showAbnRsnAndDlyTime:)
             forControlEvents:UIControlEventTouchUpInside];
@@ -585,6 +588,9 @@
                                           value:[UIFont fontWithName:@"PingFangSC-Regular" size:13]
                                           range:NSMakeRange(0, 2)];
             cancel.attributedText = cancelAttributeString;
+
+            abnButton.enabled = YES;
+            abnLabel.textColor = [UIColor whiteColor];
             [self updateShapeArray:depShapeArray];
 
             break;
@@ -608,6 +614,8 @@
                                           range:NSMakeRange(0, 2)];
             cancel.attributedText = cancelAttributeString;
 
+            abnButton.enabled = NO;
+            abnLabel.textColor = [CommonFunction colorFromHex:0xffb3b3b3];
             [self updateShapeArray:arrShapeArray];
 
             break;

@@ -12,9 +12,9 @@
 //#define wsgroupurl @"ws://219.134.93.113:8087/acs/workgroupmsg"
 //#define wssysurl @"ws://219.134.93.113:8087/acs/alertmsg"
 
-//#define wsuserurl @"ws://192.168.163.69:80/acs/usermsg"
-//#define wsgroupurl @"ws://192.168.163.69:80/acs/workgroupmsg"
-//#define wssysurl @"ws://192.168.163.69:80/acs/alertmsg"
+//#define wsuserurl @"ws://192.168.163.152:8080/acs/usermsg"
+//#define wsgroupurl @"ws://192.168.163.152:8080/acs/workgroupmsg"
+//#define wssysurl @"ws://192.168.163.152:8080/acs/alertmsg"
 
 //#define wsuserurl @"ws://192.168.163.153:8080/acs/usermsg"
 //#define wsgroupurl @"ws://192.168.163.153:8080/acs/workgroupmsg"
@@ -37,6 +37,11 @@
 
 singleton_implementation(MessageService);
 
+-(void)setUserId:(int)userId
+{
+    _userId = userId;
+}
+
 -(void)startService
 {
     [self regiestWebSocket];
@@ -51,15 +56,9 @@ singleton_implementation(MessageService);
                    type:(BOOL)type
 {
     _clientId   = clientId;
-    _userId     = userId;
     _toId       = toId;
     _group      = type;
-//    if(userWebSocket == nil){
-//        [self regiestWebSocket];
-//    }
-    if(!type){
-        [userWebSocket send:[NSString stringWithFormat:@"register:%li",_clientId]];
-    }
+
 }
 
 -(void)refreshMessage
@@ -89,6 +88,15 @@ singleton_implementation(MessageService);
     sysWebSocket.delegate = self;
     NSLog(@"Opening Connection...");
     [sysWebSocket open];
+}
+
+-(void)stopService
+{
+    [super stopService];
+    [userWebSocket close];
+    [groupWebSocket close];
+    [sysWebSocket close];
+    
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message
@@ -131,6 +139,10 @@ singleton_implementation(MessageService);
                 if(_chatDelegate != nil){
                     [_chatDelegate refreshDialogData];
                 }
+                                           
+                if(_chatListDelegate != nil){
+                     [_chatListDelegate refreshChatInfoList];
+                }
             }];
     }else if([urlString isEqualToString:wsgroupurl]){
         if(![[dic allKeys] containsObject:@"createTime"]){
@@ -148,10 +160,14 @@ singleton_implementation(MessageService);
         [msgDict setValue:[dic objectForKey:@"sendUserName"]    forKey:@"username"];
         [msgDict setValue:[NSNumber numberWithLong:1]           forKey:@"type"];
         [msgDict setValue:[dic objectForKey:@"createTime"]       forKey:@"createTime"];
+        [msgDict setValue:[dic objectForKey:@"workgroupTitle"] forKey:@"workgroupTitle"];
         
         [PersistenceUtils insertNewChatMessage:msgDict needid:YES success:^{
             if(_chatDelegate != nil){
                 [_chatDelegate refreshDialogData];
+            }
+            if(_chatListDelegate != nil){
+                [_chatListDelegate refreshChatInfoList];
             }
         }];
     }else if([urlString isEqualToString:wssysurl]){
@@ -180,7 +196,10 @@ singleton_implementation(MessageService);
 - (void)webSocketDidOpen:(SRWebSocket *)webSocket
 {
     NSLog(@"Websocket Connected");
-    [webSocket send:[NSString stringWithFormat:@"register:%li",_userId]];
+    NSString *urlString = [webSocket.url absoluteString];
+    if([urlString isEqualToString:wsuserurl]){
+        [userWebSocket send:[NSString stringWithFormat:@"register:%li",_userId]];
+    }
     
     //    NSError *error;
     //

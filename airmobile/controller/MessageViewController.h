@@ -9,6 +9,13 @@
 #import "RootViewController.h"
 #import <SocketRocket/SRWebSocket.h>
 
+@protocol MessageViewDelegate <NSObject>
+
+@required
+-(void)refreshChatInfoList;
+
+@end
+
 @interface MessageViewController : RootViewController<TabBarViewDelegate>
 
 @end
