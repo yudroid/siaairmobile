@@ -1247,8 +1247,8 @@ NSString * const headImageUpload            = @"/acs/ath/user/imageupload";//头
 {
 
     [HttpsUtils postNoDomain:@"http://www.pgyer.com/apiv1/app/viewGroup"
-                      params:@{@"aId":@"93ed7797513437b2cc15dd14e4529e29",
-                               @"_api_key":@"9d59cdc7e7b2b5bedf26cf3972d24faa"}
+                      params:@{@"aId":@"e2ad0a7d08ee964d5998b55953f5239c",
+                               @"_api_key":@"f060407601f716e5ae7c95f15a255cc3"}
                      success:^(id response) {
                          success(response);
                      } failure:^(NSError *error) {
