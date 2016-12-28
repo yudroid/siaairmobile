@@ -68,7 +68,15 @@
 
 -(void)setSafeguardModel:(SafeguardModel *)safeguardModel
 {
-    _nameLabel.text = safeguardModel.name;
+//
+    NSString *name = [NSString stringWithFormat:@"%@%@",safeguardModel.name,safeguardModel.isAD?@"进":@"出"];
+    NSMutableAttributedString *aname = [[NSMutableAttributedString  alloc]initWithString:name];
+    [aname addAttribute:NSFontAttributeName
+                  value:[UIFont fontWithName:@"PingFangSC-Regular" size:11]
+                  range:[name rangeOfString:safeguardModel.isAD?@"进":@"出"]];
+    [aname addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:[name rangeOfString:safeguardModel.isAD?@"进":@"出"]];
+
+    _nameLabel.attributedText = aname;
     _statusLabel.text = safeguardModel.status;
     if([safeguardModel.status isEqualToString:@"正常"]){
         _statusBackView.backgroundColor = [CommonFunction colorFromHex:0Xff2dce70];
@@ -85,6 +93,7 @@
     }
     _peopleLabel.text = safeguardModel.dispatchPeople;
     _timeLabel.text = [NSString stringWithFormat:@"%@",[safeguardModel startTimeAndEndTime]];
+
 }
 
 

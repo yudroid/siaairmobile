@@ -80,6 +80,18 @@ FlightDetailSafeguardTableViewCellDelegate>
     [self titleViewInitWithHight:64];
     [self titleViewAddTitleText:_flightNo];
     [self titleViewAddBackBtn];
+    UIButton *tagButton = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-16-30, 27, 30, 30)];
+    if (1) {
+        [tagButton setImage:[UIImage imageNamed:@"Concern1"] forState:UIControlStateNormal];
+        tagButton.tag = 1;
+    }else{
+        [tagButton setImage:[UIImage imageNamed:@"Concern2"] forState:UIControlStateNormal];
+        tagButton.tag = 2;
+    }
+
+    [tagButton addTarget: self action:@selector(concernButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.titleView addSubview:tagButton];
+
     
     self.titleView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"home_title_bg.png"]];
     // 航班保障信息相关
@@ -117,12 +129,44 @@ FlightDetailSafeguardTableViewCellDelegate>
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    if (![CommonFunction hasFunction:FL_SPETIAL]) {
+    if (![CommonFunction hasFunction:FL_SPETIAL]||!_isSpecial) {
         _safeguardTableViewHeight.constant = 0;
     }
     if (![CommonFunction hasFunction:FL_NORMAL]) {
         _tableViewHeight.constant = 0;
         _tableView.hidden = YES;
+    }
+
+}
+
+-(void)concernButtonClick:(UIButton *)sender
+{
+    if (sender.tag == 1) {
+        [UIView animateWithDuration:0.2 animations:^{
+            sender.transform =  CGAffineTransformMakeScale(0.5, 0.5);
+            [sender setImage:[UIImage imageNamed:@"Concern2"] forState:UIControlStateNormal];
+            sender.tag = 2;
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:0.2 animations:^{
+                sender.transform = CGAffineTransformScale(sender.transform, 2, 2);
+
+            }];
+
+        }];
+
+    }else{
+        [UIView animateWithDuration:0.2 animations:^{
+            sender.transform =  CGAffineTransformMakeScale(0.5, 0.5);
+            [sender setImage:[UIImage imageNamed:@"Concern1"] forState:UIControlStateNormal];
+            sender.tag = 1;
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:0.2 animations:^{
+                sender.transform = CGAffineTransformScale(sender.transform, 2, 2);
+
+            }];
+            
+        }];
+
     }
 
 }
@@ -402,7 +446,7 @@ FlightDetailSafeguardTableViewCellDelegate>
 
     //特殊保障环节
 
-    if([CommonFunction hasFunction:FL_SPETIAL]){
+    if([CommonFunction hasFunction:FL_SPETIAL]&&_isSpecial){
         [HttpsUtils getSpecialDetail:_flightId success:^(id responseObj) {
             [specicals removeAllObjects];
             if([flight isNull:responseObj]){
