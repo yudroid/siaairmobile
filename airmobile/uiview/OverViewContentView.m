@@ -269,14 +269,14 @@
         [self addSubview:lineImageView];
 
 
-        UIView *lowView = [[UIView alloc]initWithFrame:CGRectMake(viewX(lineImageView),
+        UIView *lowView = [[UIView alloc]initWithFrame:CGRectMake(0,
                                                                  viewBotton(lineImageView),
-                                                                 viewWidth(lineImageView),
+                                                                 kScreenWidth,
                                                                  kScreenHeight-viewBotton(lineImageView)-5-49-76 )];
 
         [self addSubview:lowView];
 
-        lowTimelabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 75, viewHeight(lowView))];
+        lowTimelabel = [[UILabel alloc]initWithFrame:CGRectMake(8, 0, 70, viewHeight(lowView))];
         lowTimelabel.text = summaryModel.flightDate;
 //        lowTimelabel.backgroundColor = [UIColor blackColor];
         lowTimelabel.textAlignment = NSTextAlignmentCenter;
@@ -286,7 +286,7 @@
 
         _noticeTextView                  = [[UITextView alloc] initWithFrame:CGRectMake(viewTrailing(lowTimelabel),
                                                                                        5,
-                                                                                       viewWidth(lowView)-150,
+                                                                                       viewWidth(lowView)-156,
                                                                                        viewHeight(lowView)-10)];
         _noticeTextView.text             = summaryModel.aovTxt;
         _noticeTextView.textAlignment    = NSTextAlignmentCenter;

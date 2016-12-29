@@ -192,7 +192,7 @@
                                                                    viewY(buildingImageView),
                                                                    kScreenWidth-160,
                                                                    viewHeight(buildingImageView))
-                                                   text:@"航站楼内滞留旅客"
+                                                   text:@"隔离区内旅客"
                                                    font:px_px_2_2_3(20, 30, 40)
                                           textAlignment:(NSTextAlignmentLeft)
                                            colorFromHex:0xFF000000]];

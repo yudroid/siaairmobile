@@ -53,10 +53,11 @@ const long FUNC_TQXX = 40600000;//天气信息
 const long FUNC_ZBHX = 40700000;//周边航线
 
 const long SET = 50000000;//设置
-const long SET_MSGFILTER = 50100000;//消息过滤
-const long SET_VERSION = 50200000;//版本检测
-const long SET_SYNCBASE = 50300000;//更新基础数据
-const long SET_USERMANAGE= 50400000;  //用户管理
+const long SET_MSGFILTER = 50100000; //消息过滤
+const long SET_VERSION   = 50200000; //版本检测
+const long SET_SYNCBASE  = 50300000; //更新基础数据
+const long SET_USERMANAGE= 50400000; //用户管理
+const long SET_FUNCTION  = 50500000; //功能说明
 const long SET_USERMANAGE_HEADER = 50401000; // 头像
 const long SET_USERMANAGE_CLEARMESSAGE = 50402000; // 消息清除
 const long SET_USERMANAGE_PASSWORD = 50403000;// 修改密码

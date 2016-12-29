@@ -149,11 +149,8 @@ FlightDetailSafeguardTableViewCellDelegate>
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:0.2 animations:^{
                 sender.transform = CGAffineTransformScale(sender.transform, 2, 2);
-
             }];
-
         }];
-
     }else{
         [UIView animateWithDuration:0.2 animations:^{
             sender.transform =  CGAffineTransformMakeScale(0.5, 0.5);
@@ -162,13 +159,9 @@ FlightDetailSafeguardTableViewCellDelegate>
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:0.2 animations:^{
                 sender.transform = CGAffineTransformScale(sender.transform, 2, 2);
-
             }];
-            
         }];
-
     }
-
 }
 
 -(void)updateSpecialsTableView

@@ -33,7 +33,7 @@ const NSString *SEATUSED_TABLEVIEW_IDENTIFIER = @"SEATUSED_TABLEVIEW_IDENTIFIER"
     RoundProgressView   *progressRound;
     UITableView         *flightHourTableView;
     UILabel *totalNumLabel;
-    UILabel *inSeatLabel;
+//    UILabel *inSeatLabel;
     UILabel *freeSeat;
     UILabel *disable;
     UILabel *night;
@@ -107,15 +107,15 @@ const NSString *SEATUSED_TABLEVIEW_IDENTIFIER = @"SEATUSED_TABLEVIEW_IDENTIFIER"
     totalLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:15];
     [self.view addSubview:totalLabel];
     
-    inSeatLabel = [[UILabel alloc] initWithFrame:CGRectMake(viewX(progressRound),
-                                                                     viewBotton(totalLabel)+8,
-                                                                     viewWidth(progressRound),
-                                                                     12)];// 当前停占
+//    inSeatLabel = [[UILabel alloc] initWithFrame:CGRectMake(viewX(progressRound),
+//                                                                     viewBotton(totalLabel)+8,
+//                                                                     viewWidth(progressRound),
+//                                                                     12)];// 当前停占
+//
+//    inSeatLabel.textAlignment = NSTextAlignmentCenter;
+//    inSeatLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:15];
+//    [self.view addSubview:inSeatLabel];
 
-    inSeatLabel.textAlignment = NSTextAlignmentCenter;
-    inSeatLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:15];
-    [self.view addSubview:inSeatLabel];
-    
 //    UILabel *nightNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2+15, 65+25+86+5+15+5, 50, 15)];
 //    nightNumLabel.text = @"245";
 //    nightNumLabel.font = [UIFont systemFontOfSize:15];
@@ -142,18 +142,16 @@ const NSString *SEATUSED_TABLEVIEW_IDENTIFIER = @"SEATUSED_TABLEVIEW_IDENTIFIER"
 
 
     CGFloat y = viewBotton( maxLabel)+px_px_2_3(60, 100);
-    CGFloat width = (kScreenWidth-43)/4;
+    CGFloat width = (kScreenWidth-32)/4;
 
     CGSize maxSize = CGSizeMake(100, 100);
     CGSize exportSize;
 
     //长期占用
-    UIView *longInSeatView = [[UIView alloc]initWithFrame:CGRectMake(43/2,
+    UIView *longInSeatView = [[UIView alloc]initWithFrame:CGRectMake(16,
                                                                      y,
                                                                      width,
                                                                      30)];
-
-
     [self.view addSubview:longInSeatView];
     UIImageView *longInSeatImageView = [[UIImageView alloc]initWithFrame:CGRectMake(8,
                                                                                     3,
@@ -164,15 +162,15 @@ const NSString *SEATUSED_TABLEVIEW_IDENTIFIER = @"SEATUSED_TABLEVIEW_IDENTIFIER"
     longInSeatImageView.layer.masksToBounds = YES;
     [longInSeatView addSubview:longInSeatImageView];
 
-    UILabel *longInSeatLabel= [[UILabel alloc] init];//长期占用
+    UILabel *longInSeatLabel= [[UILabel alloc] initWithFrame:CGRectMake(14, 0, width-14, 12)];//长期占用
     longInSeatLabel.text = @"长期占用";
     longInSeatLabel.font =  [UIFont fontWithName:@"PingFangSC-Regular"
                                             size:13];
-    exportSize = [longInSeatLabel sizeThatFits:maxSize];
-    longInSeatLabel.frame = CGRectMake((viewWidth(longInSeatView)-exportSize.width)/2,
-                                       0,
-                                       exportSize.width,
-                                       12);
+//    exportSize = [longInSeatLabel sizeThatFits:maxSize];
+//    longInSeatLabel.frame = CGRectMake((viewWidth(longInSeatView)-exportSize.width)/2,
+//                                       0,
+//                                       exportSize.width,
+//                                       12);
     [longInSeatView addSubview:longInSeatLabel];
     longInSeat = [[UILabel alloc] initWithFrame:CGRectMake(viewX(longInSeatLabel),
                                                            viewBotton(longInSeatLabel)+5,
@@ -201,18 +199,15 @@ const NSString *SEATUSED_TABLEVIEW_IDENTIFIER = @"SEATUSED_TABLEVIEW_IDENTIFIER"
     freeSeatImageView.layer.masksToBounds = YES;
     [freeSeatView addSubview:freeSeatImageView];
 
-    UILabel *freeSeatLabel= [[UILabel alloc] initWithFrame:CGRectMake(viewTrailing(freeSeatImageView)+5,
-                                                                      0,
-                                                                      width-viewTrailing(freeSeatImageView)-5,
-                                                                      11)];// 不可用
+    UILabel *freeSeatLabel= [[UILabel alloc] initWithFrame:CGRectMake(14, 0, width-14, 12)];// 不可用
     freeSeatLabel.text = @"空余机位";
     freeSeatLabel.font =  [UIFont fontWithName:@"PingFangSC-Regular"
                                           size:13];
-    exportSize = [freeSeatLabel sizeThatFits:maxSize];
-    freeSeatLabel.frame = CGRectMake((viewWidth(freeSeatView)-exportSize.width)/2,
-                                     0,
-                                     exportSize.width,
-                                     12);
+//    exportSize = [freeSeatLabel sizeThatFits:maxSize];
+//    freeSeatLabel.frame = CGRectMake((viewWidth(freeSeatView)-exportSize.width)/2,
+//                                     0,
+//                                     exportSize.width,
+//                                     12);
     [freeSeatView addSubview:freeSeatLabel];
 
     freeSeat = [[UILabel alloc] initWithFrame:CGRectMake(viewX(freeSeatLabel),
@@ -245,18 +240,15 @@ const NSString *SEATUSED_TABLEVIEW_IDENTIFIER = @"SEATUSED_TABLEVIEW_IDENTIFIER"
     nightImageView.layer.masksToBounds = YES;
     [nightView addSubview:nightImageView];
 
-    UILabel *nightLabel= [[UILabel alloc] initWithFrame:CGRectMake(viewTrailing(nightImageView)+5,
-                                                                   0,
-                                                                   width-viewTrailing(nightImageView)-5,
-                                                                   11)];// 不可用
+    UILabel *nightLabel= [[UILabel alloc] initWithFrame:CGRectMake(14, 0, width-14, 12)];// 不可用
     nightLabel.text = @"当前占用";
     nightLabel.font =  [UIFont fontWithName:@"PingFangSC-Regular"
                                        size:13];
-    exportSize = [nightLabel sizeThatFits:maxSize];
-    nightLabel.frame = CGRectMake((viewWidth(nightView)-exportSize.width)/2,
-                                  0,
-                                  exportSize.width,
-                                  12);
+//    exportSize = [nightLabel sizeThatFits:maxSize];
+//    nightLabel.frame = CGRectMake((viewWidth(nightView)-exportSize.width)/2,
+//                                  0,
+//                                  exportSize.width,
+//                                  12);
     [nightView addSubview:nightLabel];
 
     night = [[UILabel alloc] initWithFrame:CGRectMake(viewX(nightLabel),
@@ -276,10 +268,17 @@ const NSString *SEATUSED_TABLEVIEW_IDENTIFIER = @"SEATUSED_TABLEVIEW_IDENTIFIER"
                                                                    30)];
     [self.view addSubview:disAbleView];
 
-    UILabel *disAbleLabel= [[UILabel alloc] initWithFrame:CGRectMake(0,
-                                                                     0,
-                                                                     100-5,
-                                                                     11)];// 不可用
+    UIImageView *disAbleImageView = [[UIImageView alloc]initWithFrame:CGRectMake(8,
+                                                                                 2,
+                                                                                 6,
+                                                                                 6)];
+    disAbleImageView.backgroundColor = [CommonFunction colorFromHex:0xfff0f0f0];
+    disAbleImageView.layer.cornerRadius = 3.0;
+    disAbleImageView.layer.masksToBounds = YES;
+    [disAbleView addSubview:disAbleImageView];
+
+
+    UILabel *disAbleLabel= [[UILabel alloc] initWithFrame:CGRectMake(14, 0, width-14, 12)];// 不可用
     disAbleLabel.text = @"不可用";
     disAbleLabel.font =  [UIFont fontWithName:@"PingFangSC-Regular" size:13];
     exportSize = [disAbleLabel sizeThatFits:maxSize];
@@ -288,14 +287,6 @@ const NSString *SEATUSED_TABLEVIEW_IDENTIFIER = @"SEATUSED_TABLEVIEW_IDENTIFIER"
                                     exportSize.width,
                                     12);
     [disAbleView addSubview:disAbleLabel];
-    UIImageView *disAbleImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(disAbleLabel)-8,
-                                                                                 2,
-                                                                                 6,
-                                                                                 6)];
-    disAbleImageView.backgroundColor = [CommonFunction colorFromHex:0xfff0f0f0];
-    disAbleImageView.layer.cornerRadius = 3.0;
-    disAbleImageView.layer.masksToBounds = YES;
-    [disAbleView addSubview:disAbleImageView];
 
     disable = [[UILabel alloc] initWithFrame:CGRectMake(viewX(disAbleLabel),
                                                         viewBotton(disAbleLabel)+5,
@@ -481,14 +472,14 @@ const NSString *SEATUSED_TABLEVIEW_IDENTIFIER = @"SEATUSED_TABLEVIEW_IDENTIFIER"
         //机位
         totalNumLabel.text = @(_seatStatusModel.normalCnt+_seatStatusModel.parentCnt).stringValue;
 
-        NSMutableAttributedString *inSeatAttributedString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"过夜航班 %@",@(_seatStatusModel.passNightCnt).stringValue] ];
-        [inSeatAttributedString addAttribute:NSForegroundColorAttributeName
-                                       value:[CommonFunction colorFromHex:0xFFF24737]
-                                       range:NSMakeRange(5, inSeatAttributedString.length-5)];
-        [inSeatAttributedString addAttribute:NSForegroundColorAttributeName
-                                       value:[CommonFunction colorFromHex:0xFFd4d4d4]
-                                       range:NSMakeRange(0, 5)];
-        inSeatLabel.attributedText = inSeatAttributedString;
+//        NSMutableAttributedString *inSeatAttributedString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"过夜航班 %@",@(_seatStatusModel.passNightCnt).stringValue] ];
+//        [inSeatAttributedString addAttribute:NSForegroundColorAttributeName
+//                                       value:[CommonFunction colorFromHex:0xFFF24737]
+//                                       range:NSMakeRange(5, inSeatAttributedString.length-5)];
+//        [inSeatAttributedString addAttribute:NSForegroundColorAttributeName
+//                                       value:[CommonFunction colorFromHex:0xFFd4d4d4]
+//                                       range:NSMakeRange(0, 5)];
+//        inSeatLabel.attributedText = inSeatAttributedString;
 
         longInSeat.text = @(_seatStatusModel.longNormalTakeUpCnt+_seatStatusModel.longParentTakeUpCnt).stringValue;
         freeSeat.text = @(_seatStatusModel.normalCnt+_seatStatusModel.parentCnt-_seatStatusModel.normalTakeUpCnt-_seatStatusModel.parentTakeUpCnt).stringValue;
@@ -509,14 +500,14 @@ const NSString *SEATUSED_TABLEVIEW_IDENTIFIER = @"SEATUSED_TABLEVIEW_IDENTIFIER"
         //机位
         totalNumLabel.text = @(_seatStatusModel.normalCnt+_seatStatusModel.childCnt).stringValue;
 
-        NSMutableAttributedString *inSeatAttributedString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"过夜航班 %@",@(_seatStatusModel.passNightCnt).stringValue] ];
-        [inSeatAttributedString addAttribute:NSForegroundColorAttributeName
-                                       value:[CommonFunction colorFromHex:0xFFF24737]
-                                       range:NSMakeRange(5, inSeatAttributedString.length-5)];
-        [inSeatAttributedString addAttribute:NSForegroundColorAttributeName
-                                       value:[CommonFunction colorFromHex:0xFFd4d4d4]
-                                       range:NSMakeRange(0, 5)];
-        inSeatLabel.attributedText = inSeatAttributedString;
+//        NSMutableAttributedString *inSeatAttributedString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"过夜航班 %@",@(_seatStatusModel.passNightCnt).stringValue] ];
+//        [inSeatAttributedString addAttribute:NSForegroundColorAttributeName
+//                                       value:[CommonFunction colorFromHex:0xFFF24737]
+//                                       range:NSMakeRange(5, inSeatAttributedString.length-5)];
+//        [inSeatAttributedString addAttribute:NSForegroundColorAttributeName
+//                                       value:[CommonFunction colorFromHex:0xFFd4d4d4]
+//                                       range:NSMakeRange(0, 5)];
+//        inSeatLabel.attributedText = inSeatAttributedString;
 
         longInSeat.text = @(_seatStatusModel.longNormalTakeUpCnt+_seatStatusModel.longChildTakeUpCnt).stringValue;
         freeSeat.text = @(_seatStatusModel.normalCnt+_seatStatusModel.childCnt-_seatStatusModel.normalTakeUpCnt-_seatStatusModel.childTakeUpCnt).stringValue;

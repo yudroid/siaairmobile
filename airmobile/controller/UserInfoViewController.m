@@ -24,6 +24,7 @@
 #import <FlyImage.h>
 #import "SingleMessageViewController.h"
 #import "VersionModel.h"
+#import "FunctionShowViewController.h"
 
 
 
@@ -159,6 +160,9 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     if ([CommonFunction hasFunction:SET_SYNCBASE]) {
         [mutableArray addObject:@{@"name":@"更新基础数据",@"image":@"RefreshData"}];
     }
+    if ([CommonFunction hasFunction:SET_FUNCTION]) {
+        [mutableArray addObject:@{@"name":@"功能说明",@"image":@"RefreshData"}];
+    }
     _tableArray = [mutableArray copy];
     
     [self.view addSubview:_tableView];
@@ -287,7 +291,6 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@%@",@"itms-services://?action=download-manifest&url=https://www.pgyer.com/app/plist/",version.appKey,@"&password=",@"siaaoc"]]];
 
                 }]];
-
                 [self presentViewController:alertController animated:YES completion:nil];
 
             }
@@ -336,6 +339,11 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
         [self presentViewController:alertController animated:YES completion:nil];
 #endif
         
+
+    }else if([name isEqualToString:@"功能说明"]){
+
+        FunctionShowViewController *funcitonShowVC = [[FunctionShowViewController alloc]init];
+        [self.navigationController pushViewController:funcitonShowVC animated:YES];
 
     }
     
