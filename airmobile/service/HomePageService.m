@@ -324,7 +324,7 @@ singleton_implementation(HomePageService);
             NSString *app_Version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
             AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
             appdelegate.userInfoModel.version = version.appVersion;
-            if (![version.appVersion isEqualToString:app_Version]) {
+            if (version.appVersion.floatValue > app_Version.floatValue) {
                 UINavigationController *appRootVC = (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;
                 UIViewController *viewController = [appRootVC.viewControllers lastObject];
                 UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"发现新版本" message:@"是否更新？" preferredStyle:UIAlertControllerStyleAlert];

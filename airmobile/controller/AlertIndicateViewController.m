@@ -72,7 +72,7 @@
                                                                          8,
                                                                          viewWidth(topBgView)-100,
                                                                          13)];
-    passengerTtitle.text = @"放行率";
+    passengerTtitle.text = @"执行率";
     passengerTtitle.font = [UIFont fontWithName:@"PingFangSC-Regular"
                                            size:27/2];
     passengerTtitle.textColor = [UIColor whiteColor];
@@ -193,7 +193,7 @@
                                                                    kScreenWidth-160,
                                                                    viewHeight(buildingImageView))
                                                    text:@"航站楼内滞留旅客"
-                                                   font:px_px_2_2_3(25, 36, 48)
+                                                   font:px_px_2_2_3(20, 30, 40)
                                           textAlignment:(NSTextAlignmentLeft)
                                            colorFromHex:0xFF000000]];
     peopleLabel = [CommonFunction addLabelFrame:CGRectMake(kScreenWidth-80-22,
@@ -226,7 +226,7 @@
                                                                    kScreenWidth-160,
                                                                    viewHeight(delayImageView))
                                                    text:@"延误>1h航班出港率"
-                                                   font:px_px_2_2_3(25, 36, 48)
+                                                   font:px_px_2_2_3(20, 30, 40)
                                           textAlignment:(NSTextAlignmentLeft) colorFromHex:0xFF000000]];
 
     arrRatioLabel = [CommonFunction addLabelFrame:CGRectMake(kScreenWidth-80-43/2,
@@ -257,7 +257,7 @@
                                                                    kScreenWidth-160,
                                                                    viewHeight(noFlightImageView))
                                                    text:@"无航班起降累积时间"
-                                                   font:px_px_2_2_3(25, 36, 48)
+                                                   font:px_px_2_2_3(20, 30, 40)
                                           textAlignment:(NSTextAlignmentLeft)
                                            colorFromHex:0xFF000000]];
 
