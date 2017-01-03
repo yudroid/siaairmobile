@@ -8,9 +8,9 @@
 
 #import "MessageService.h"
 #import "PersistenceUtils+Business.h"
-//#define wsuserurl @"ws://219.134.93.113:8087/acs/usermsg"
-//#define wsgroupurl @"ws://219.134.93.113:8087/acs/workgroupmsg"
-//#define wssysurl @"ws://219.134.93.113:8087/acs/alertmsg"
+#define wsuserurl @"ws://219.134.93.113:8087/acs/usermsg"
+#define wsgroupurl @"ws://219.134.93.113:8087/acs/workgroupmsg"
+#define wssysurl @"ws://219.134.93.113:8087/acs/alertmsg"
 
 //#define wsuserurl @"ws://192.168.163.126:8080/acs/usermsg"
 //#define wsgroupurl @"ws://192.168.163.126:8080/acs/workgroupmsg"
@@ -20,9 +20,9 @@
 //#define wsgroupurl @"ws://192.168.163.153:8080/acs/workgroupmsg"
 //#define wssysurl @"ws://192.168.163.153:8080/acs/alertmsg"
 
-#define wsuserurl @"ws://192.168.163.123:8080/acs/usermsg"
-#define wsgroupurl @"ws://192.168.163.123:8080/acs/workgroupmsg"
-#define wssysurl @"ws://192.168.163.123:8080/acs/alertmsg"
+//#define wsuserurl @"ws://192.168.163.123:8080/acs/usermsg"
+//#define wsgroupurl @"ws://192.168.163.123:8080/acs/workgroupmsg"
+//#define wssysurl @"ws://192.168.163.123:8080/acs/alertmsg"
 
 @implementation MessageService
 {
@@ -105,7 +105,7 @@ singleton_implementation(MessageService);
     // groupmessage --- "{"content":"Yang also","createTime":"2016-04-10 15:40:20","sendUserId":65,"sendUserName":"杨泉林","workgroupId":619,"workgroupTitle":"成员: admin 张宇","workgroupUserIds":"1,66"}"
     // sysmessage --- "toDept toDeptIds"
     
-    NSLog(@"Received \"%@\"", message);
+//    NSLog(@"Received \"%@\"", message);
     
     NSString *urlString = [webSocket.url absoluteString];
     NSData *jsonData = [message dataUsingEncoding:NSUTF8StringEncoding];

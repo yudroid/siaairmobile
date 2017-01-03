@@ -305,7 +305,7 @@
         switch (user.flag) {
             case 1:
             {
-                
+                NSLog(@"%s",__func__);
                 [HttpsUtils sysChatInfoList:(int)user.id];
                 [[HomePageService sharedHomePageService] startService];
                 [[MessageService sharedMessageService] setUserId:(int)user.id];

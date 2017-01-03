@@ -14,7 +14,7 @@
 {
     if([self isNull:data])
         return;
-    NSLog(@"%@",data);
+//    NSLog(@"%@",data);
     [self setValuesForKeysWithDictionary:data];
     if(_usedDetail == nil)
         _usedDetail = [CraftseatCntModel new];
