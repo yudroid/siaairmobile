@@ -166,7 +166,12 @@
     _unfinishedCnt  =   [[data objectForKey:@"unfinishedCnt"] intValue];
     _releaseRatio   =   [data objectForKey:@"releaseRatio"];
     _warning        =   [data objectForKey:@"warning"];
-    _aovTxt         =   [data objectForKey:@"aovTxt"];
+    if ([[data objectForKey:@"aovTxt"] isKindOfClass:[NSNull class]]) {
+        _aovTxt     =   @"";
+    }else{
+        _aovTxt     =   [data objectForKey:@"aovTxt"];
+    }
+
 }
 
 -(void)updateFlightDelayTarget:(NSDictionary *)data
