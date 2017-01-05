@@ -25,6 +25,8 @@
 #import "ResourceOverview.h"
 
 #import "SingleMessageViewController.h"
+#import "HttpsUtils+Business.h"
+#import "AppDelegate.h"
 
 
 
@@ -44,6 +46,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    [HttpsUtils sysChatInfoList:(int)(appDelegate.userInfoModel.id)];
+    
     self.view.backgroundColor = [UIColor whiteColor]; // 全局背景颜色
     [self initInchData];
 

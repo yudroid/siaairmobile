@@ -220,6 +220,9 @@
     _accountTF.text=[DefaultHelper getStringForKey:userKey];
     _passwordTF.text=[DefaultHelper getStringForKey:pwdKey];
     
+//    _accountTF.text=@"zzy";
+//    _passwordTF.text=@"1";
+    
     y = 339+45+25+45+52;
     
     if([DeviceInfoUtil IphoneVersions] == 5){
@@ -315,8 +318,8 @@
                 [DefaultHelper setString:password forKey:pwdKey];
                 AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
                 delegate.userInfoModel = user;
+
                 
-                [HttpsUtils sysChatInfoList:(int)user.id];
                 [[HomePageService sharedHomePageService] startService];
                 [[MessageService sharedMessageService] setUserId:(int)user.id];
                 [[MessageService sharedMessageService] startService];
