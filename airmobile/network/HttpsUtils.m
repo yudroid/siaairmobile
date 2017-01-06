@@ -15,6 +15,7 @@
 //static NSString* baseUri = @"http://192.168.163.123:8080";
 //static NSString* baseUri = @"http://192.168.163.153:8080";
 //static NSString* baseUri = @"http://192.168.163.181:8080";
+
 static NSString* baseUri = @"http://192.168.163.132:8080";
 //static NSString* baseUri = @"http://219.134.93.113:8087";
 //static NSString* baseUri = @"http://192.168.163.69:80";
@@ -26,16 +27,13 @@ static NSString* baseUri = @"http://192.168.163.132:8080";
 //static NSString* baseUri = @"http://192.168.163.181:8080";
 
 //static NSString* baseUri = @"http://192.168.163.152:8080";
-//static NSString* baseUri = @"http://219.134.93.113:8087";
-//static NSString* baseUri = @"http://192.168.163.69:80";
 
+//static NSString* baseUri = @"http://192.168.163.132:8080";
+
+//static NSString* baseUri = @"http://219.134.93.113:8087";
+//static NSString* b aseUri = @"http://219.134.93.113:8087";
 //static NSString* baseUri = @"http://192.168.163.69:80";
 //static NSString* baseUri = @"http://219.134.93.113:8087";
-//static NSString* baseUri = @"http://192.168.163.126:8080";
-//static NSString* baseUri = @"http://219.134.93.113:8087";
-//static NSString* baseUri = @"http://192.168.163.69:80";
-
-
 
 
 /**
@@ -92,19 +90,19 @@ static NSTimeInterval timeInterval = 16;
     //    else if ([absoluteUrl length]>0){
     //        absoluteUrl = [NSString stringWithFormat:@"%@/%@",absoluteUrl,[GuidUtils GuidString]];
     //    }
-    NSLog(@"Post调用地址 %@",absoluteUrl);
+//    NSLog(@"Post调用地址 %@",absoluteUrl);
     //注：该方法是异步调用的
     [manager POST:[url absoluteString]
        parameters:formData
          progress:nil
           success:^(NSURLSessionTask* task, id responseObject){
-              NSLog(@"success ----  %@",responseObject);
+//              NSLog(@"success ----  %@",responseObject);
               if(success){
                   //回调success
                   success(responseObject);
               }
           }failure:^(NSURLSessionTask* operation, NSError* error){
-              NSLog(@"falied ---- %@",error);
+//              NSLog(@"falied ---- %@",error);
               if(failure){
                   failure(error);
               }
@@ -153,7 +151,7 @@ static NSTimeInterval timeInterval = 16;
     NSString* absoluteUrl = [StringUtils trim:[url absoluteString]];
     
     //absoluteUrl = [NSString stringWithFormat:@"%@?uid=%@",absoluteUrl,[GuidUtils GuidString]];
-    NSLog(@"Get调用地址 %@",absoluteUrl);
+//    NSLog(@"Get调用地址 %@",absoluteUrl);
     //注：该方法是异步调用的
     [manager GET:absoluteUrl
       parameters:requestData
@@ -165,7 +163,7 @@ static NSTimeInterval timeInterval = 16;
                 success(responseObject);
             }
             }failure:^(NSURLSessionTask* operation, NSError* error){
-                NSLog(@"falied ---- %@",error);
+//                NSLog(@"falied ---- %@",error);
             if(failure){
                 //回调
                 failure(error);
@@ -216,7 +214,7 @@ static NSTimeInterval timeInterval = 16;
     NSString* absoluteUrl = [StringUtils trim:[url absoluteString]];
 
     //absoluteUrl = [NSString stringWithFormat:@"%@?uid=%@",absoluteUrl,[GuidUtils GuidString]];
-    NSLog(@"Get调用地址 %@",absoluteUrl);
+//    NSLog(@"Get调用地址 %@",absoluteUrl);
     //注：该方法是异步调用的
     [manager GET:absoluteUrl
       parameters:requestData
@@ -230,7 +228,7 @@ static NSTimeInterval timeInterval = 16;
                  success(responseObject);
              }
          }failure:^(NSURLSessionTask* operation, NSError* error){
-             NSLog(@"falied ---- %@",error);
+//             NSLog(@"falied ---- %@",error);
              if(failure){
                  //回调
                  failure(error);
@@ -282,7 +280,7 @@ static NSTimeInterval timeInterval = 16;
     NSString* absoluteUrl = [StringUtils trim:[url absoluteString]];
     
     //absoluteUrl = [NSString stringWithFormat:@"%@?uid=%@",absoluteUrl,[GuidUtils GuidString]];
-    NSLog(@"Post调用地址 %@",absoluteUrl);
+//    NSLog(@"Post调用地址 %@",absoluteUrl);
     
     //注：该方法是异步调用的
     [manager POST:absoluteUrl
@@ -291,13 +289,13 @@ static NSTimeInterval timeInterval = 16;
           success:^(NSURLSessionTask* task, id responseObject){
             NSString *result = [[NSString alloc] initWithData:responseObject
                                                      encoding:NSUTF8StringEncoding];
-            NSLog(@"success ----  %@",result);
+//            NSLog(@"success ----  %@",result);
             if(success){
                 //回调
                 success(result);
             }
         }failure:^(NSURLSessionTask* operation, NSError* error){
-            NSLog(@"falied ---- %@",error);
+//            NSLog(@"falied ---- %@",error);
             if(failure){
                 failure(error);
             }
@@ -347,7 +345,7 @@ static NSTimeInterval timeInterval = 16;
     NSString* absoluteUrl = [StringUtils trim:[url absoluteString]];
     
     //absoluteUrl = [NSString stringWithFormat:@"%@?uid=%@",absoluteUrl,[GuidUtils GuidString]];
-    NSLog(@"Get调用地址 %@",absoluteUrl);
+//    NSLog(@"Get调用地址 %@",absoluteUrl);
     
     //注：该方法是异步调用的
     [manager GET:absoluteUrl parameters:requestData
@@ -355,13 +353,13 @@ static NSTimeInterval timeInterval = 16;
          success:^(NSURLSessionTask* task, id responseObject){
             NSString *result = [[NSString alloc] initWithData:responseObject
                                                      encoding:NSUTF8StringEncoding];
-            NSLog(@"success ----  %@",result);
+//            NSLog(@"success ----  %@",result);
             if(success){
                 //回调
                 success(result);
             }
         }failure:^(NSURLSessionTask* operation, NSError* error){
-            NSLog(@"falied ---- %@",error);
+//            NSLog(@"falied ---- %@",error);
             if(failure){
                 //回调
                 failure(error);
@@ -411,7 +409,7 @@ static NSTimeInterval timeInterval = 16;
     }
     
     
-    NSLog(@"Get调用地址 %@",[url absoluteString]);
+//    NSLog(@"Get调用地址 %@",[url absoluteString]);
     
     //注：该方法是异步调用的
     [manager GET:[url absoluteString]
@@ -423,7 +421,7 @@ static NSTimeInterval timeInterval = 16;
                 success(responseObject);
             }
         }failure:^(NSURLSessionTask* operation, NSError* error){
-            NSLog(@"falied ---- %@",error);
+//            NSLog(@"falied ---- %@",error);
             if(failure){
                 //回调
                 failure(error);
@@ -510,7 +508,7 @@ static NSTimeInterval timeInterval = 16;
     }
 
 
-    NSLog(@"Get调用地址 %@",[url absoluteString]);
+//    NSLog(@"Get调用地址 %@",[url absoluteString]);
 
     //设置响应编码格式
     [manager.responseSerializer setStringEncoding:NSUTF8StringEncoding];
@@ -604,19 +602,19 @@ constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
     //    else if ([absoluteUrl length]>0){
     //        absoluteUrl = [NSString stringWithFormat:@"%@/%@",absoluteUrl,[GuidUtils GuidString]];
     //    }
-    NSLog(@"Post调用地址 %@",absoluteUrl);
+//    NSLog(@"Post调用地址 %@",absoluteUrl);
     //注：该方法是异步调用的
     [manager POST:[url absoluteString]
        parameters:formData
          progress:nil
           success:^(NSURLSessionTask* task, id responseObject){
-              NSLog(@"success ----  %@",responseObject);
+//              NSLog(@"success ----  %@",responseObject);
               if(success){
                   //回调success
                   success(responseObject);
               }
           }failure:^(NSURLSessionTask* operation, NSError* error){
-              NSLog(@"falied ---- %@",error);
+//              NSLog(@"falied ---- %@",error);
               if(failure){
                   failure(error);
               }

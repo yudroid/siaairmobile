@@ -148,7 +148,7 @@
         [topBgView addSubview:lineImageView];
         
         maxLabel = [CommonFunction addLabelFrame:CGRectMake(viewWidth(topBgView)-18-50,viewBotton(lineImageView)+4, 50, 12)
-                                                     text:@([self maxValue]*1.2).stringValue
+                                                     text:@((int)([self maxValue]*1.2)).stringValue
                                                      font:11
                                             textAlignment:NSTextAlignmentRight
                                              colorFromHex:0x95FFFFFF];

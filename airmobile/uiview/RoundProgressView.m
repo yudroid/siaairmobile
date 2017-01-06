@@ -25,7 +25,7 @@
     
     if (self)
     {
-        //        self.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.5];//显示范围
+        //self.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.5];//显示范围
         _aboveColos = [NSArray arrayWithArray:aboveColos];
         _belowColos = [NSArray arrayWithArray:belowColos];
         

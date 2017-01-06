@@ -233,8 +233,6 @@
 		F7A25D151DBA106300F36C32 /* UploadPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7A25D131DBA106300F36C32 /* UploadPhotoViewController.xib */; };
 		F7A25D191DBDA67A00F36C32 /* ContactPersonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7A25D181DBDA67A00F36C32 /* ContactPersonViewController.xib */; };
 		F7A25D1B1DBDA6B400F36C32 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7A25D1A1DBDA6B400F36C32 /* ChatViewController.xib */; };
-		F7A25D1E1DBDB5C000F36C32 /* TimePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D1D1DBDB5C000F36C32 /* TimePickerView.m */; };
-		F7A25D201DBDB5D000F36C32 /* TimePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7A25D1F1DBDB5D000F36C32 /* TimePickerView.xib */; };
 		F7A25D7E1DBE277500F36C32 /* SJPhotoAlbumsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D5A1DBE277500F36C32 /* SJPhotoAlbumsController.m */; };
 		F7A25D7F1DBE277500F36C32 /* SJPhotoPickerNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D5C1DBE277500F36C32 /* SJPhotoPickerNavController.m */; };
 		F7A25D801DBE277500F36C32 /* SJPickPhotoController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D5E1DBE277500F36C32 /* SJPickPhotoController.m */; };
@@ -682,10 +680,10 @@
 		F7A25D011DB9E6C000F36C32 /* PsnGeneralContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PsnGeneralContentView.m; sourceTree = "<group>"; };
 		F7A25D031DB9E6C900F36C32 /* PsnSafetyContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PsnSafetyContentView.h; sourceTree = "<group>"; };
 		F7A25D041DB9E6C900F36C32 /* PsnSafetyContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PsnSafetyContentView.m; sourceTree = "<group>"; };
-		F7A25D061DB9E6EE00F36C32 /* ProgreesBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgreesBarView.h; sourceTree = "<group>"; };
-		F7A25D071DB9E6EE00F36C32 /* ProgreesBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgreesBarView.m; sourceTree = "<group>"; };
-		F7A25D091DB9E71A00F36C32 /* RoundProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundProgressView.h; sourceTree = "<group>"; };
-		F7A25D0A1DB9E71A00F36C32 /* RoundProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundProgressView.m; sourceTree = "<group>"; };
+		F7A25D061DB9E6EE00F36C32 /* ProgreesBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProgreesBarView.h; path = ../ProgreesBarView.h; sourceTree = "<group>"; };
+		F7A25D071DB9E6EE00F36C32 /* ProgreesBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProgreesBarView.m; path = ../ProgreesBarView.m; sourceTree = "<group>"; };
+		F7A25D091DB9E71A00F36C32 /* RoundProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RoundProgressView.h; path = ../RoundProgressView.h; sourceTree = "<group>"; };
+		F7A25D0A1DB9E71A00F36C32 /* RoundProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RoundProgressView.m; path = ../RoundProgressView.m; sourceTree = "<group>"; };
 		F7A25D0C1DBA059800F36C32 /* AbnormalityReportTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbnormalityReportTableViewCell.h; sourceTree = "<group>"; };
 		F7A25D0D1DBA059800F36C32 /* AbnormalityReportTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbnormalityReportTableViewCell.m; sourceTree = "<group>"; };
 		F7A25D0E1DBA059800F36C32 /* AbnormalityReportTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AbnormalityReportTableViewCell.xib; sourceTree = "<group>"; };
@@ -694,9 +692,6 @@
 		F7A25D131DBA106300F36C32 /* UploadPhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadPhotoViewController.xib; sourceTree = "<group>"; };
 		F7A25D181DBDA67A00F36C32 /* ContactPersonViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactPersonViewController.xib; sourceTree = "<group>"; };
 		F7A25D1A1DBDA6B400F36C32 /* ChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
-		F7A25D1C1DBDB5C000F36C32 /* TimePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePickerView.h; sourceTree = "<group>"; };
-		F7A25D1D1DBDB5C000F36C32 /* TimePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = TimePickerView.m; sourceTree = "<group>"; };
-		F7A25D1F1DBDB5D000F36C32 /* TimePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimePickerView.xib; sourceTree = "<group>"; };
 		F7A25D591DBE277500F36C32 /* SJPhotoAlbumsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJPhotoAlbumsController.h; sourceTree = "<group>"; };
 		F7A25D5A1DBE277500F36C32 /* SJPhotoAlbumsController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = SJPhotoAlbumsController.m; sourceTree = "<group>"; };
 		F7A25D5B1DBE277500F36C32 /* SJPhotoPickerNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJPhotoPickerNavController.h; sourceTree = "<group>"; };
@@ -863,54 +858,10 @@
 		841839E61DBC87DD00D7DD86 /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
-				F7428A0C1E05593700AC00D4 /* ResourceOverview.h */,
-				F7428A0D1E05593700AC00D4 /* ResourceOverview.m */,
-				840D15E11DC20C4F005FA910 /* PsnSafetyAreaView.h */,
-				840D15E21DC20C4F005FA910 /* PsnSafetyAreaView.m */,
-				840D15DE1DC20C2D005FA910 /* PsnSafetyHourView.h */,
-				840D15DF1DC20C2D005FA910 /* PsnSafetyHourView.m */,
-				F7A25D031DB9E6C900F36C32 /* PsnSafetyContentView.h */,
-				F7A25D041DB9E6C900F36C32 /* PsnSafetyContentView.m */,
-				F7A25D001DB9E6C000F36C32 /* PsnGeneralContentView.h */,
-				F7A25D011DB9E6C000F36C32 /* PsnGeneralContentView.m */,
-				F7A2A0581DB8D0EE0023F228 /* FlightContentView.h */,
-				F7A2A0591DB8D0EE0023F228 /* FlightContentView.m */,
-				F7A2A05A1DB8D0EE0023F228 /* OverViewContentView.h */,
-				F7A2A05B1DB8D0EE0023F228 /* OverViewContentView.m */,
-				F7A2A05C1DB8D0EE0023F228 /* PassengerContentView.h */,
-				F7A2A05D1DB8D0EE0023F228 /* PassengerContentView.m */,
-				F7A25D091DB9E71A00F36C32 /* RoundProgressView.h */,
-				F7A25D0A1DB9E71A00F36C32 /* RoundProgressView.m */,
-				F7A25D061DB9E6EE00F36C32 /* ProgreesBarView.h */,
-				F7A25D071DB9E6EE00F36C32 /* ProgreesBarView.m */,
-				F7A2A05E1DB8D0EE0023F228 /* ResourceContentView.h */,
-				F7A2A05F1DB8D0EE0023F228 /* ResourceContentView.m */,
-				84183A231DBE14A800D7DD86 /* TenDayRatioView.h */,
-				84183A241DBE14A800D7DD86 /* TenDayRatioView.m */,
-				84183A261DBE150E00D7DD86 /* EightMonthRatioView.h */,
-				84183A271DBE150E00D7DD86 /* EightMonthRatioView.m */,
-				84183A2C1DBF65D400D7DD86 /* RatioTableViewCell.h */,
-				84183A2D1DBF65D400D7DD86 /* RatioTableViewCell.m */,
-				84183A321DBF8F2B00D7DD86 /* FlightHourTableViewCell.h */,
-				84183A331DBF8F2B00D7DD86 /* FlightHourTableViewCell.m */,
-				840D15C51DC0557F005FA910 /* FlightHourView.h */,
-				840D15C61DC0557F005FA910 /* FlightHourView.m */,
-				840D15C91DC0B6DB005FA910 /* AbnormalReasonView.h */,
-				840D15CA1DC0B6DB005FA910 /* AbnormalReasonView.m */,
-				840D15CC1DC0B709005FA910 /* AreaDelayTimeView.h */,
-				840D15CD1DC0B709005FA910 /* AreaDelayTimeView.m */,
-				840D15CF1DC0C18F005FA910 /* AbnReasonTableViewCell.h */,
-				840D15D01DC0C18F005FA910 /* AbnReasonTableViewCell.m */,
-				840D15D81DC19B3B005FA910 /* DelayTimeTableViewCell.h */,
-				840D15D91DC19B3B005FA910 /* DelayTimeTableViewCell.m */,
-				840D15DB1DC1D6E0005FA910 /* PsnHourTableViewCell.h */,
-				840D15DC1DC1D6E0005FA910 /* PsnHourTableViewCell.m */,
-				F70893F01DD492AD00135540 /* TagView.h */,
-				F70893F11DD492AD00135540 /* TagView.m */,
-				F70893F31DD492BD00135540 /* TagView.xib */,
-				F7D47FED1DFEC7400050B293 /* PsnSafetyContentViewTableViewCell.h */,
-				F7D47FEE1DFEC7400050B293 /* PsnSafetyContentViewTableViewCell.m */,
-				F7D47FEF1DFEC7400050B293 /* PsnSafetyContentViewTableViewCell.xib */,
+				F7C61F551E1DEEDC009C1391 /* 总体 */,
+				F7C61F561E1DEEEA009C1391 /* 航班 */,
+				F7C61F571E1DEEF2009C1391 /* 旅客 */,
+				F7C61F581E1DEEFA009C1391 /* 机位 */,
 			);
 			name = "首页";
 			sourceTree = "<group>";
@@ -918,6 +869,10 @@
 		841839E71DBCB87600D7DD86 /* pnchart */ = {
 			isa = PBXGroup;
 			children = (
+				F7A25D061DB9E6EE00F36C32 /* ProgreesBarView.h */,
+				F7A25D071DB9E6EE00F36C32 /* ProgreesBarView.m */,
+				F7A25D091DB9E71A00F36C32 /* RoundProgressView.h */,
+				F7A25D0A1DB9E71A00F36C32 /* RoundProgressView.m */,
 				84183A011DBDB6DF00D7DD86 /* PNBar.h */,
 				84183A021DBDB6DF00D7DD86 /* PNBar.m */,
 				84183A031DBDB6DF00D7DD86 /* PNBarChart.h */,
@@ -1064,6 +1019,7 @@
 		846F1D8A1DA89E2600C8920B /* uiview */ = {
 			isa = PBXGroup;
 			children = (
+				F71082541E1E451000EB0EDD /* 引导页 */,
 				F7ED844B1DF06C8A0036D591 /* TabBarView */,
 				F7D38D6D1DE3D1B5001110AF /* LoadingView */,
 				841839E71DBCB87600D7DD86 /* pnchart */,
@@ -1072,12 +1028,6 @@
 				F792513C1DB5EE01006AA119 /* 消息 */,
 				F7003E4F1DDC4EED0056F3DA /* 功能 */,
 				F79251721DB73DD3006AA119 /* 我的 */,
-				F7A25D1C1DBDB5C000F36C32 /* TimePickerView.h */,
-				F7A25D1D1DBDB5C000F36C32 /* TimePickerView.m */,
-				F7A25D1F1DBDB5D000F36C32 /* TimePickerView.xib */,
-				F74289D21E00E7A200AC00D4 /* LinkPageView.h */,
-				F74289D31E00E7A200AC00D4 /* LinkPageView.m */,
-				F74289D51E00E7BB00AC00D4 /* LinkPageView.xib */,
 			);
 			path = uiview;
 			sourceTree = "<group>";
@@ -1308,6 +1258,95 @@
 			name = "功能";
 			sourceTree = "<group>";
 		};
+		F71082501E1E13EF00EB0EDD /* 航班小时分布 */ = {
+			isa = PBXGroup;
+			children = (
+				84183A321DBF8F2B00D7DD86 /* FlightHourTableViewCell.h */,
+				84183A331DBF8F2B00D7DD86 /* FlightHourTableViewCell.m */,
+				840D15C51DC0557F005FA910 /* FlightHourView.h */,
+				840D15C61DC0557F005FA910 /* FlightHourView.m */,
+			);
+			name = "航班小时分布";
+			sourceTree = "<group>";
+		};
+		F71082511E1E424200EB0EDD /* 区域平均延误时间 */ = {
+			isa = PBXGroup;
+			children = (
+				840D15CC1DC0B709005FA910 /* AreaDelayTimeView.h */,
+				840D15CD1DC0B709005FA910 /* AreaDelayTimeView.m */,
+				840D15D81DC19B3B005FA910 /* DelayTimeTableViewCell.h */,
+				840D15D91DC19B3B005FA910 /* DelayTimeTableViewCell.m */,
+			);
+			name = "区域平均延误时间";
+			sourceTree = "<group>";
+		};
+		F71082521E1E425500EB0EDD /* 异常原因 */ = {
+			isa = PBXGroup;
+			children = (
+				840D15C91DC0B6DB005FA910 /* AbnormalReasonView.h */,
+				840D15CA1DC0B6DB005FA910 /* AbnormalReasonView.m */,
+				840D15CF1DC0C18F005FA910 /* AbnReasonTableViewCell.h */,
+				840D15D01DC0C18F005FA910 /* AbnReasonTableViewCell.m */,
+			);
+			name = "异常原因";
+			sourceTree = "<group>";
+		};
+		F71082531E1E445800EB0EDD /* 旅客小时分布 */ = {
+			isa = PBXGroup;
+			children = (
+				840D15DB1DC1D6E0005FA910 /* PsnHourTableViewCell.h */,
+				840D15DC1DC1D6E0005FA910 /* PsnHourTableViewCell.m */,
+			);
+			name = "旅客小时分布";
+			sourceTree = "<group>";
+		};
+		F71082541E1E451000EB0EDD /* 引导页 */ = {
+			isa = PBXGroup;
+			children = (
+				F74289D21E00E7A200AC00D4 /* LinkPageView.h */,
+				F74289D31E00E7A200AC00D4 /* LinkPageView.m */,
+				F74289D51E00E7BB00AC00D4 /* LinkPageView.xib */,
+			);
+			name = "引导页";
+			sourceTree = "<group>";
+		};
+		F71082551E1E454E00EB0EDD /* 航班详情 */ = {
+			isa = PBXGroup;
+			children = (
+				F7EEEF191DB396E0004AF0AE /* FlightDetailViewController.h */,
+				F7EEEF1A1DB396E0004AF0AE /* FlightDetailViewController.m */,
+				F7EEEF1B1DB396E0004AF0AE /* FlightDetailViewController.xib */,
+			);
+			name = "航班详情";
+			sourceTree = "<group>";
+		};
+		F71082561E1E455E00EB0EDD /* 异常上报 */ = {
+			isa = PBXGroup;
+			children = (
+				F7EAE1931DB4776C0060626F /* AbnormalityReportViewController.h */,
+				F7EAE1941DB4776C0060626F /* AbnormalityReportViewController.m */,
+				F7EAE1951DB4776C0060626F /* AbnormalityReportViewController.xib */,
+				F74902911DC82B1F005B193D /* CommonAbnormalityReportViewController.h */,
+				F74902921DC82B1F005B193D /* CommonAbnormalityReportViewController.m */,
+				F74902941DC82B42005B193D /* SpecialAbnormalityReportViewController.h */,
+				F74902951DC82B42005B193D /* SpecialAbnormalityReportViewController.m */,
+				F7A25D8F1DBEF34800F36C32 /* OptionsViewController.h */,
+				F7A25D901DBEF34800F36C32 /* OptionsViewController.m */,
+				F7A25D911DBEF34800F36C32 /* OptionsViewController.xib */,
+			);
+			name = "异常上报";
+			sourceTree = "<group>";
+		};
+		F71082571E1E459900EB0EDD /* 图片上传 */ = {
+			isa = PBXGroup;
+			children = (
+				F7A25D111DBA106300F36C32 /* UploadPhotoViewController.h */,
+				F7A25D121DBA106300F36C32 /* UploadPhotoViewController.m */,
+				F7A25D131DBA106300F36C32 /* UploadPhotoViewController.xib */,
+			);
+			name = "图片上传";
+			sourceTree = "<group>";
+		};
 		F74289DC1E04D4BD00AC00D4 /* 生产指标 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1421,22 +1460,9 @@
 			children = (
 				F7A2A0431DB8D0590023F228 /* FlightViewController.h */,
 				F7A2A0441DB8D0590023F228 /* FlightViewController.m */,
-				F7EEEF191DB396E0004AF0AE /* FlightDetailViewController.h */,
-				F7EEEF1A1DB396E0004AF0AE /* FlightDetailViewController.m */,
-				F7EEEF1B1DB396E0004AF0AE /* FlightDetailViewController.xib */,
-				F7EAE1931DB4776C0060626F /* AbnormalityReportViewController.h */,
-				F7EAE1941DB4776C0060626F /* AbnormalityReportViewController.m */,
-				F7EAE1951DB4776C0060626F /* AbnormalityReportViewController.xib */,
-				F74902911DC82B1F005B193D /* CommonAbnormalityReportViewController.h */,
-				F74902921DC82B1F005B193D /* CommonAbnormalityReportViewController.m */,
-				F74902941DC82B42005B193D /* SpecialAbnormalityReportViewController.h */,
-				F74902951DC82B42005B193D /* SpecialAbnormalityReportViewController.m */,
-				F7A25D111DBA106300F36C32 /* UploadPhotoViewController.h */,
-				F7A25D121DBA106300F36C32 /* UploadPhotoViewController.m */,
-				F7A25D131DBA106300F36C32 /* UploadPhotoViewController.xib */,
-				F7A25D8F1DBEF34800F36C32 /* OptionsViewController.h */,
-				F7A25D901DBEF34800F36C32 /* OptionsViewController.m */,
-				F7A25D911DBEF34800F36C32 /* OptionsViewController.xib */,
+				F71082561E1E455E00EB0EDD /* 异常上报 */,
+				F71082551E1E454E00EB0EDD /* 航班详情 */,
+				F71082571E1E459900EB0EDD /* 图片上传 */,
 			);
 			name = Flight;
 			sourceTree = "<group>";
@@ -1655,6 +1681,140 @@
 				F7A25D7D1DBE277500F36C32 /* SJPreviewPhotoCell.m */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		F7C61F551E1DEEDC009C1391 /* 总体 */ = {
+			isa = PBXGroup;
+			children = (
+				F7C61F5E1E1DF0B7009C1391 /* 总体总览 */,
+				F7C61F611E1DF37E009C1391 /* 放行正常率 */,
+			);
+			name = "总体";
+			sourceTree = "<group>";
+		};
+		F7C61F561E1DEEEA009C1391 /* 航班 */ = {
+			isa = PBXGroup;
+			children = (
+				F7C61F5D1E1DF08D009C1391 /* 航班总览 */,
+				F71082501E1E13EF00EB0EDD /* 航班小时分布 */,
+				F71082511E1E424200EB0EDD /* 区域平均延误时间 */,
+				F71082521E1E425500EB0EDD /* 异常原因 */,
+			);
+			name = "航班";
+			sourceTree = "<group>";
+		};
+		F7C61F571E1DEEF2009C1391 /* 旅客 */ = {
+			isa = PBXGroup;
+			children = (
+				F7C61F5C1E1DF04D009C1391 /* 旅客进出港统计 */,
+				F71082531E1E445800EB0EDD /* 旅客小时分布 */,
+				F7C61F5B1E1DEFBB009C1391 /* 机上等待时间 */,
+				F7C61F5A1E1DEF90009C1391 /* 隔离区内旅客时间分布 */,
+				F7C61F591E1DEF58009C1391 /* 隔离区内旅客区域分布 */,
+			);
+			name = "旅客";
+			sourceTree = "<group>";
+		};
+		F7C61F581E1DEEFA009C1391 /* 机位 */ = {
+			isa = PBXGroup;
+			children = (
+				F7C61F5F1E1DF2F3009C1391 /* 机位总览 */,
+				F7C61F601E1DF300009C1391 /* 机位详情 */,
+			);
+			name = "机位";
+			sourceTree = "<group>";
+		};
+		F7C61F591E1DEF58009C1391 /* 隔离区内旅客区域分布 */ = {
+			isa = PBXGroup;
+			children = (
+				840D15E11DC20C4F005FA910 /* PsnSafetyAreaView.h */,
+				840D15E21DC20C4F005FA910 /* PsnSafetyAreaView.m */,
+			);
+			name = "隔离区内旅客区域分布";
+			sourceTree = "<group>";
+		};
+		F7C61F5A1E1DEF90009C1391 /* 隔离区内旅客时间分布 */ = {
+			isa = PBXGroup;
+			children = (
+				840D15DE1DC20C2D005FA910 /* PsnSafetyHourView.h */,
+				840D15DF1DC20C2D005FA910 /* PsnSafetyHourView.m */,
+			);
+			name = "隔离区内旅客时间分布";
+			sourceTree = "<group>";
+		};
+		F7C61F5B1E1DEFBB009C1391 /* 机上等待时间 */ = {
+			isa = PBXGroup;
+			children = (
+				F7A25D031DB9E6C900F36C32 /* PsnSafetyContentView.h */,
+				F7A25D041DB9E6C900F36C32 /* PsnSafetyContentView.m */,
+				F7D47FED1DFEC7400050B293 /* PsnSafetyContentViewTableViewCell.h */,
+				F7D47FEE1DFEC7400050B293 /* PsnSafetyContentViewTableViewCell.m */,
+				F7D47FEF1DFEC7400050B293 /* PsnSafetyContentViewTableViewCell.xib */,
+			);
+			name = "机上等待时间";
+			sourceTree = "<group>";
+		};
+		F7C61F5C1E1DF04D009C1391 /* 旅客进出港统计 */ = {
+			isa = PBXGroup;
+			children = (
+				F7A2A05C1DB8D0EE0023F228 /* PassengerContentView.h */,
+				F7A2A05D1DB8D0EE0023F228 /* PassengerContentView.m */,
+				F7A25D001DB9E6C000F36C32 /* PsnGeneralContentView.h */,
+				F7A25D011DB9E6C000F36C32 /* PsnGeneralContentView.m */,
+			);
+			name = "旅客进出港统计";
+			sourceTree = "<group>";
+		};
+		F7C61F5D1E1DF08D009C1391 /* 航班总览 */ = {
+			isa = PBXGroup;
+			children = (
+				F7A2A0581DB8D0EE0023F228 /* FlightContentView.h */,
+				F7A2A0591DB8D0EE0023F228 /* FlightContentView.m */,
+			);
+			name = "航班总览";
+			sourceTree = "<group>";
+		};
+		F7C61F5E1E1DF0B7009C1391 /* 总体总览 */ = {
+			isa = PBXGroup;
+			children = (
+				F7A2A05A1DB8D0EE0023F228 /* OverViewContentView.h */,
+				F7A2A05B1DB8D0EE0023F228 /* OverViewContentView.m */,
+				F70893F01DD492AD00135540 /* TagView.h */,
+				F70893F11DD492AD00135540 /* TagView.m */,
+				F70893F31DD492BD00135540 /* TagView.xib */,
+			);
+			name = "总体总览";
+			sourceTree = "<group>";
+		};
+		F7C61F5F1E1DF2F3009C1391 /* 机位总览 */ = {
+			isa = PBXGroup;
+			children = (
+				F7428A0C1E05593700AC00D4 /* ResourceOverview.h */,
+				F7428A0D1E05593700AC00D4 /* ResourceOverview.m */,
+			);
+			name = "机位总览";
+			sourceTree = "<group>";
+		};
+		F7C61F601E1DF300009C1391 /* 机位详情 */ = {
+			isa = PBXGroup;
+			children = (
+				F7A2A05E1DB8D0EE0023F228 /* ResourceContentView.h */,
+				F7A2A05F1DB8D0EE0023F228 /* ResourceContentView.m */,
+			);
+			name = "机位详情";
+			sourceTree = "<group>";
+		};
+		F7C61F611E1DF37E009C1391 /* 放行正常率 */ = {
+			isa = PBXGroup;
+			children = (
+				84183A231DBE14A800D7DD86 /* TenDayRatioView.h */,
+				84183A241DBE14A800D7DD86 /* TenDayRatioView.m */,
+				84183A261DBE150E00D7DD86 /* EightMonthRatioView.h */,
+				84183A271DBE150E00D7DD86 /* EightMonthRatioView.m */,
+				84183A2C1DBF65D400D7DD86 /* RatioTableViewCell.h */,
+				84183A2D1DBF65D400D7DD86 /* RatioTableViewCell.m */,
+			);
+			name = "放行正常率";
 			sourceTree = "<group>";
 		};
 		F7D38D6D1DE3D1B5001110AF /* LoadingView */ = {
@@ -1924,7 +2084,6 @@
 				845055611DACF65200400EBF /* login_icon_lock@2x.png in Resources */,
 				F79251931DB858D9006AA119 /* AddressBookViewController.xib in Resources */,
 				F7EAE19E1DB4B0680060626F /* AbnormalityReportCollectionViewCell.xib in Resources */,
-				F7A25D201DBDB5D000F36C32 /* TimePickerView.xib in Resources */,
 				F79251811DB74576006AA119 /* UserManagermentTableViewCell.xib in Resources */,
 				846F1DC11DAA2E3400C8920B /* launchScreen@2x.png in Resources */,
 				F7A25D151DBA106300F36C32 /* UploadPhotoViewController.xib in Resources */,
@@ -2150,7 +2309,6 @@
 				F7F093C11E14DC3E0099E167 /* FunctionShowViewController.m in Sources */,
 				84183A121DBDDD3B00D7DD86 /* ReleasedRatioViewController.m in Sources */,
 				F7A25D7F1DBE277500F36C32 /* SJPhotoPickerNavController.m in Sources */,
-				F7A25D1E1DBDB5C000F36C32 /* TimePickerView.m in Sources */,
 				F7A25D8C1DBE277500F36C32 /* SJPhotoPickerToolBar.m in Sources */,
 				F7A25D0B1DB9E71A00F36C32 /* RoundProgressView.m in Sources */,
 				841839F81DBCC10200D7DD86 /* PNLineChart.m in Sources */,

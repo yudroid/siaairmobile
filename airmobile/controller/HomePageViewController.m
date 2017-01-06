@@ -55,11 +55,6 @@
                 aboveSubview:self.view];
     [self initPageTitle];
 
-    //获取数据
-    HomePageService *homePageService = [[HomePageService alloc]init];
-    [homePageService startService];
-   
-
     homePageType = HomePageTypeOverview;//设置当前页面为整体概览
     [self showOverviewContentView];//根据显示类型显示页面
 }

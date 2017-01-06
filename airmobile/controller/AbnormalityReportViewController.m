@@ -11,7 +11,6 @@
 #import "UIViewController+Reminder.h"
 #import "AbnormalityReportTableViewCell.h"
 #import "UploadPhotoViewController.h"
-#import "TimePickerView.h"
 #import "SJPhotoPicker.h"
 #import "SJPickPhotoController.h"
 #import "SJAlbumModel.h"
@@ -29,12 +28,12 @@ static const NSString *ABNORMALITYREPORT_TABLECELL_IDENTIFIER =@"ABNORMALITYREPO
 static const NSString *ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER = @"ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER";
 static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER";
 
-@interface AbnormalityReportViewController ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UITextViewDelegate,TimePickerViewDelegate,OptionsViewControllerDelegate,UploadPhotoViewControllerDelegate,UICollectionViewDelegateFlowLayout>
+@interface AbnormalityReportViewController ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UITextViewDelegate,OptionsViewControllerDelegate,UploadPhotoViewControllerDelegate,UICollectionViewDelegateFlowLayout>
 
 //控件
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UICollectionView *photoCollectionView;
-@property (nonatomic, strong) TimePickerView * timePickerView;
+
 //约束
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *abnormalityHistoryViewHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewBottom;
@@ -215,23 +214,6 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 //    }];
 }
 
-- (void)setupDateView
-{
-    if (_timePickerView == nil) {
-        [UIView animateWithDuration:0.3 animations:^{
-            _timePickerView = [[NSBundle mainBundle] loadNibNamed:@"TimePickerView"
-                                                            owner:nil
-                                                          options:nil][0];
-            _timePickerView.frame = CGRectMake(0, 64, kScreenWidth, kScreenHeight-64);
-            _timePickerView.delegate = self;
-            [self.view addSubview:_timePickerView];
-        }];
-    }else{
-        [UIView animateWithDuration:0.3 animations:^{
-            _timePickerView.alpha = 1;
-        }];
-    }
-}
 
 
 -(void)updateData

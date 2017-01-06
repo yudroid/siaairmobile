@@ -69,6 +69,7 @@
 //    }
     // 程序将展示，开起个别远程service
     if(_userInfoModel != nil) {
+        NSLog(@"%s",__func__);
         [[HomePageService sharedHomePageService] startService];
         [[MessageService sharedMessageService] startService];
     }

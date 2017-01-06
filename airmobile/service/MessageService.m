@@ -105,7 +105,7 @@ singleton_implementation(MessageService);
     // groupmessage --- "{"content":"Yang also","createTime":"2016-04-10 15:40:20","sendUserId":65,"sendUserName":"杨泉林","workgroupId":619,"workgroupTitle":"成员: admin 张宇","workgroupUserIds":"1,66"}"
     // sysmessage --- "toDept toDeptIds"
     
-    NSLog(@"Received \"%@\"", message);
+//    NSLog(@"Received \"%@\"", message);
     
     NSString *urlString = [webSocket.url absoluteString];
     NSData *jsonData = [message dataUsingEncoding:NSUTF8StringEncoding];

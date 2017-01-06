@@ -43,7 +43,7 @@ singleton_implementation(HomePageService);
     if(seatModel    == nil){
         seatModel       = [SeatStatusModel new];
     }
-    
+    NSLog(@"%s",__func__);
     [super startService:^{
         [self cacheHomePageData];
     }];
@@ -51,6 +51,7 @@ singleton_implementation(HomePageService);
 
 -(void)cacheHomePageData
 {
+    NSLog(@"%s",__func__);
     AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     if (appdelegate.userInfoModel && appdelegate.userInfoModel.id != 0) {
 

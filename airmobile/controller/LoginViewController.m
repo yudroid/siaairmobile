@@ -71,26 +71,27 @@
 // 创建logo的view
 -(void) createLogoView
 {
-    _bgView = [[UIImageView alloc]initWithFrame:CGRectMake(0,
+
+    _bgView                        = [[UIImageView alloc]initWithFrame:CGRectMake(0,
                                                            0,
                                                            kScreenWidth,
                                                            kScreenHeight)];
-    _bgView.image = [UIImage imageNamed:@"LoginBackground"];
+    _bgView.image                  = [UIImage imageNamed:@"LoginBackground"];
     _bgView.userInteractionEnabled = YES;
     [self.view addSubview:_bgView];
-    
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
+
+    UITapGestureRecognizer *tap    = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                           action:@selector(tapClick)];
     [_bgView addGestureRecognizer:tap];
-    int width = [DeviceInfoUtil lengthFitIp6andIp5WithLength:374/2];
-    int height = [DeviceInfoUtil lengthFitIp6andIp5WithLength:303/2];
-    UIImageView *logoImgV = [[UIImageView alloc]
+    int width                      = [DeviceInfoUtil lengthFitIp6andIp5WithLength:374/2];
+    int height                     = [DeviceInfoUtil lengthFitIp6andIp5WithLength:303/2];
+    UIImageView *logoImgV          = [[UIImageView alloc]
                              initWithFrame:CGRectMake((kScreenWidth-width)/2,
                                                       105,
                                                       width ,
                                                       height)];
-    logoImgV.image = [UIImage imageNamed:@"LoginLogo"];
-    
+    logoImgV.image                 = [UIImage imageNamed:@"LoginLogo"];
+
     [_bgView addSubview:logoImgV];
 }
 
@@ -149,13 +150,13 @@
     [_accountTF setValue:[UIFont boldSystemFontOfSize:17]
               forKeyPath:@"_placeholderLabel.font"];
     [AccountView addSubview:_accountTF];
-    
-    y = 339 +40 +21;
-    
+
+        y = 339 +40 +21;
+
     if([DeviceInfoUtil IphoneVersions] == 5){
         y -= 70;
     }
-    
+
     //ipad
     if([DeviceInfoUtil IphoneVersions] == 4){
         y -= 85;
@@ -231,7 +232,8 @@
         y-=100;
     }
     
-    _loginBtn = [[UIButton alloc]initWithFrame:CGRectMake((kScreenWidth - 257.5)/2,
+
+    _loginBtn                = [[UIButton alloc]initWithFrame:CGRectMake((kScreenWidth - 257.5)/2,
                                                           y,
                                                           257.5,
                                                           40)];
@@ -242,10 +244,10 @@
     [_loginBtn addTarget:self action:@selector(loginClick)
         forControlEvents:(UIControlEventTouchUpInside)];
     [_bgView addSubview:_loginBtn];
-    UILabel *loginLabel = [[UILabel alloc]initWithFrame:_loginBtn.frame];
-    loginLabel.textColor = [CommonFunction colorFromHex:0XFF122046];
-    loginLabel.text = @"登录";
-    loginLabel.font = [UIFont fontWithName:@"PingFang SC"
+    UILabel *loginLabel      = [[UILabel alloc]initWithFrame:_loginBtn.frame];
+    loginLabel.textColor     = [CommonFunction colorFromHex:0XFF122046];
+    loginLabel.text          = @"登录";
+    loginLabel.font          = [UIFont fontWithName:@"PingFang SC"
                                       size:18];
     loginLabel.textAlignment = NSTextAlignmentCenter;
     [_bgView addSubview:loginLabel];
@@ -305,7 +307,7 @@
         switch (user.flag) {
             case 1:
             {
-                
+                NSLog(@"%s",__func__);
                 [HttpsUtils sysChatInfoList:(int)user.id];
                 [[HomePageService sharedHomePageService] startService];
                 [[MessageService sharedMessageService] setUserId:(int)user.id];
