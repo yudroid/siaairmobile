@@ -148,8 +148,6 @@
 		F7428A0B1E04DECE00AC00D4 /* DateUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F7428A0A1E04DECE00AC00D4 /* DateUtils.m */; };
 		F7428A0E1E05593700AC00D4 /* ResourceOverview.m in Sources */ = {isa = PBXBuildFile; fileRef = F7428A0D1E05593700AC00D4 /* ResourceOverview.m */; };
 		F747F9361DD2B3B90099E7AF /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F747F9351DD2B3B90099E7AF /* libsqlite3.0.tbd */; };
-		F74902621DC71202005B193D /* DayOnDutyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902601DC71202005B193D /* DayOnDutyViewController.m */; };
-		F74902631DC71202005B193D /* DayOnDutyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F74902611DC71202005B193D /* DayOnDutyViewController.xib */; };
 		F74902931DC82B1F005B193D /* CommonAbnormalityReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902921DC82B1F005B193D /* CommonAbnormalityReportViewController.m */; };
 		F74902961DC82B42005B193D /* SpecialAbnormalityReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902951DC82B42005B193D /* SpecialAbnormalityReportViewController.m */; };
 		F74902991DC860AA005B193D /* RootModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902981DC860AA005B193D /* RootModel.m */; };
@@ -559,9 +557,6 @@
 		F7428A0C1E05593700AC00D4 /* ResourceOverview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResourceOverview.h; path = ../../ResourceOverview.h; sourceTree = "<group>"; };
 		F7428A0D1E05593700AC00D4 /* ResourceOverview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResourceOverview.m; path = ../../ResourceOverview.m; sourceTree = "<group>"; };
 		F747F9351DD2B3B90099E7AF /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
-		F749025F1DC71202005B193D /* DayOnDutyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayOnDutyViewController.h; sourceTree = "<group>"; };
-		F74902601DC71202005B193D /* DayOnDutyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = DayOnDutyViewController.m; sourceTree = "<group>"; };
-		F74902611DC71202005B193D /* DayOnDutyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayOnDutyViewController.xib; sourceTree = "<group>"; };
 		F74902911DC82B1F005B193D /* CommonAbnormalityReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonAbnormalityReportViewController.h; sourceTree = "<group>"; };
 		F74902921DC82B1F005B193D /* CommonAbnormalityReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = CommonAbnormalityReportViewController.m; sourceTree = "<group>"; };
 		F74902941DC82B42005B193D /* SpecialAbnormalityReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecialAbnormalityReportViewController.h; sourceTree = "<group>"; };
@@ -900,34 +895,17 @@
 			path = pnchart;
 			sourceTree = "<group>";
 		};
-		84183A191DBDDE0000D7DD86 /* overview */ = {
+		84183A191DBDDE0000D7DD86 /* 态势 */ = {
 			isa = PBXGroup;
 			children = (
 				F758C98F1DC360BD00556120 /* HomePageViewController.h */,
 				F758C9901DC360BD00556120 /* HomePageViewController.m */,
-				84183A071DBDDBD600D7DD86 /* FlightHourViewController.h */,
-				84183A081DBDDBD600D7DD86 /* FlightHourViewController.m */,
-				84183A101DBDDD3B00D7DD86 /* ReleasedRatioViewController.h */,
-				84183A111DBDDD3B00D7DD86 /* ReleasedRatioViewController.m */,
-				84183A131DBDDDBE00D7DD86 /* AlertIndicateViewController.h */,
-				84183A141DBDDDBE00D7DD86 /* AlertIndicateViewController.m */,
-				84183A161DBDDDDE00D7DD86 /* FlightAbnViewController.h */,
-				84183A171DBDDDDE00D7DD86 /* FlightAbnViewController.m */,
-				84183A1A1DBDDE4F00D7DD86 /* PassengerHourViewController.h */,
-				84183A1B1DBDDE4F00D7DD86 /* PassengerHourViewController.m */,
-				84183A1D1DBDDEA300D7DD86 /* SecurityPsnViewController.h */,
-				84183A1E1DBDDEA300D7DD86 /* SecurityPsnViewController.m */,
-				84183A201DBDDEBC00D7DD86 /* SeatUsedViewController.h */,
-				84183A211DBDDEBC00D7DD86 /* SeatUsedViewController.m */,
-				840D15BF1DC044DA005FA910 /* ArrDepFlightHourViewController.h */,
-				840D15C01DC044DA005FA910 /* ArrDepFlightHourViewController.m */,
-				840D15EB1DC2FC67005FA910 /* PassengerTopViewController.h */,
-				840D15EC1DC2FC67005FA910 /* PassengerTopViewController.m */,
-				F749025F1DC71202005B193D /* DayOnDutyViewController.h */,
-				F74902601DC71202005B193D /* DayOnDutyViewController.m */,
-				F74902611DC71202005B193D /* DayOnDutyViewController.xib */,
+				F710825B1E1F28F900EB0EDD /* 态势 */,
+				F710825F1E1F2B2200EB0EDD /* 旅客 */,
+				F710825C1E1F294A00EB0EDD /* 航班 */,
+				F710825E1E1F2B2000EB0EDD /* 机位 */,
 			);
-			name = overview;
+			name = "态势";
 			sourceTree = "<group>";
 		};
 		845055371DACF65200400EBF /* login */ = {
@@ -1035,12 +1013,12 @@
 		846F1D8B1DA89E2F00C8920B /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				F758C9BC1DC4375100556120 /* Login */,
-				84183A191DBDDE0000D7DD86 /* overview */,
-				F758C9BB1DC4374F00556120 /* Flight */,
-				F758C9BA1DC4374B00556120 /* Message */,
-				F758C9B91DC4374800556120 /* Function */,
-				F758C9B51DC4373F00556120 /* UserInfo */,
+				F758C9BC1DC4375100556120 /* 登录 */,
+				84183A191DBDDE0000D7DD86 /* 态势 */,
+				F758C9BB1DC4374F00556120 /* 详情 */,
+				F758C9BA1DC4374B00556120 /* 消息 */,
+				F758C9B91DC4374800556120 /* 功能 */,
+				F758C9B51DC4373F00556120 /* 我的 */,
 				F7A2A04D1DB8D0590023F228 /* RootViewController.h */,
 				F7A2A04E1DB8D0590023F228 /* RootViewController.m */,
 			);
@@ -1347,6 +1325,243 @@
 			name = "图片上传";
 			sourceTree = "<group>";
 		};
+		F71082581E1F285300EB0EDD /* 航班小时分布 */ = {
+			isa = PBXGroup;
+			children = (
+				84183A071DBDDBD600D7DD86 /* FlightHourViewController.h */,
+				84183A081DBDDBD600D7DD86 /* FlightHourViewController.m */,
+			);
+			name = "航班小时分布";
+			sourceTree = "<group>";
+		};
+		F71082591E1F287000EB0EDD /* 放行正常率 */ = {
+			isa = PBXGroup;
+			children = (
+				84183A101DBDDD3B00D7DD86 /* ReleasedRatioViewController.h */,
+				84183A111DBDDD3B00D7DD86 /* ReleasedRatioViewController.m */,
+			);
+			name = "放行正常率";
+			sourceTree = "<group>";
+		};
+		F710825A1E1F28D500EB0EDD /* 延误指标 */ = {
+			isa = PBXGroup;
+			children = (
+				84183A131DBDDDBE00D7DD86 /* AlertIndicateViewController.h */,
+				84183A141DBDDDBE00D7DD86 /* AlertIndicateViewController.m */,
+			);
+			name = "延误指标";
+			sourceTree = "<group>";
+		};
+		F710825B1E1F28F900EB0EDD /* 态势 */ = {
+			isa = PBXGroup;
+			children = (
+				F71082581E1F285300EB0EDD /* 航班小时分布 */,
+				F71082591E1F287000EB0EDD /* 放行正常率 */,
+				F710825A1E1F28D500EB0EDD /* 延误指标 */,
+			);
+			name = "态势";
+			sourceTree = "<group>";
+		};
+		F710825C1E1F294A00EB0EDD /* 航班 */ = {
+			isa = PBXGroup;
+			children = (
+				F71082641E1F2C1F00EB0EDD /* 航班小时分布 */,
+				F710825D1E1F297C00EB0EDD /* 航班异常 */,
+			);
+			name = "航班";
+			sourceTree = "<group>";
+		};
+		F710825D1E1F297C00EB0EDD /* 航班异常 */ = {
+			isa = PBXGroup;
+			children = (
+				84183A161DBDDDDE00D7DD86 /* FlightAbnViewController.h */,
+				84183A171DBDDDDE00D7DD86 /* FlightAbnViewController.m */,
+			);
+			name = "航班异常";
+			sourceTree = "<group>";
+		};
+		F710825E1E1F2B2000EB0EDD /* 机位 */ = {
+			isa = PBXGroup;
+			children = (
+				F71082611E1F2BBA00EB0EDD /* 机位使用详情 */,
+			);
+			name = "机位";
+			sourceTree = "<group>";
+		};
+		F710825F1E1F2B2200EB0EDD /* 旅客 */ = {
+			isa = PBXGroup;
+			children = (
+				F71082631E1F2BFF00EB0EDD /* 旅客小时分布 */,
+				F71082621E1F2BDB00EB0EDD /* 隔离区内旅客 */,
+				F71082601E1F2B8000EB0EDD /* 高峰旅客日排名 */,
+			);
+			name = "旅客";
+			sourceTree = "<group>";
+		};
+		F71082601E1F2B8000EB0EDD /* 高峰旅客日排名 */ = {
+			isa = PBXGroup;
+			children = (
+				840D15EB1DC2FC67005FA910 /* PassengerTopViewController.h */,
+				840D15EC1DC2FC67005FA910 /* PassengerTopViewController.m */,
+			);
+			name = "高峰旅客日排名";
+			sourceTree = "<group>";
+		};
+		F71082611E1F2BBA00EB0EDD /* 机位使用详情 */ = {
+			isa = PBXGroup;
+			children = (
+				84183A201DBDDEBC00D7DD86 /* SeatUsedViewController.h */,
+				84183A211DBDDEBC00D7DD86 /* SeatUsedViewController.m */,
+			);
+			name = "机位使用详情";
+			sourceTree = "<group>";
+		};
+		F71082621E1F2BDB00EB0EDD /* 隔离区内旅客 */ = {
+			isa = PBXGroup;
+			children = (
+				84183A1D1DBDDEA300D7DD86 /* SecurityPsnViewController.h */,
+				84183A1E1DBDDEA300D7DD86 /* SecurityPsnViewController.m */,
+			);
+			name = "隔离区内旅客";
+			sourceTree = "<group>";
+		};
+		F71082631E1F2BFF00EB0EDD /* 旅客小时分布 */ = {
+			isa = PBXGroup;
+			children = (
+				84183A1A1DBDDE4F00D7DD86 /* PassengerHourViewController.h */,
+				84183A1B1DBDDE4F00D7DD86 /* PassengerHourViewController.m */,
+			);
+			name = "旅客小时分布";
+			sourceTree = "<group>";
+		};
+		F71082641E1F2C1F00EB0EDD /* 航班小时分布 */ = {
+			isa = PBXGroup;
+			children = (
+				840D15BF1DC044DA005FA910 /* ArrDepFlightHourViewController.h */,
+				840D15C01DC044DA005FA910 /* ArrDepFlightHourViewController.m */,
+			);
+			name = "航班小时分布";
+			sourceTree = "<group>";
+		};
+		F71082651E1F2C7500EB0EDD /* 联系人 */ = {
+			isa = PBXGroup;
+			children = (
+				F79251471DB608E6006AA119 /* ContactPersonViewController.h */,
+				F79251481DB608E6006AA119 /* ContactPersonViewController.m */,
+				F7A25D181DBDA67A00F36C32 /* ContactPersonViewController.xib */,
+			);
+			name = "联系人";
+			sourceTree = "<group>";
+		};
+		F71082661E1F2C9F00EB0EDD /* 指令、航班消息 */ = {
+			isa = PBXGroup;
+			children = (
+				F70893DE1DD2EC1B00135540 /* FlightDelaysViewController.h */,
+				F70893DF1DD2EC1B00135540 /* FlightDelaysViewController.m */,
+				F70893E01DD2EC1B00135540 /* FlightDelaysViewController.xib */,
+				F71082681E1F2D6400EB0EDD /* 详情 */,
+			);
+			name = "指令、航班消息";
+			sourceTree = "<group>";
+		};
+		F71082671E1F2CA000EB0EDD /* 聊天 */ = {
+			isa = PBXGroup;
+			children = (
+				F792515B1DB6352D006AA119 /* ChatViewController.h */,
+				F792515C1DB6352D006AA119 /* ChatViewController.m */,
+				F7A25D1A1DBDA6B400F36C32 /* ChatViewController.xib */,
+			);
+			name = "聊天";
+			sourceTree = "<group>";
+		};
+		F71082681E1F2D6400EB0EDD /* 详情 */ = {
+			isa = PBXGroup;
+			children = (
+				F70893E31DD2ECAD00135540 /* FlightDelaysDetailViewController.h */,
+				F70893E41DD2ECAD00135540 /* FlightDelaysDetailViewController.m */,
+				F70893E51DD2ECAD00135540 /* FlightDelaysDetailViewController.xib */,
+			);
+			name = "详情";
+			sourceTree = "<group>";
+		};
+		F71082691E1F2DD000EB0EDD /* 用户管理 */ = {
+			isa = PBXGroup;
+			children = (
+				F79251781DB7431D006AA119 /* UserManagementViewController.h */,
+				F79251791DB7431D006AA119 /* UserManagementViewController.m */,
+				F792517A1DB7431D006AA119 /* UserManagementViewController.xib */,
+			);
+			name = "用户管理";
+			sourceTree = "<group>";
+		};
+		F710826A1E1F2DE700EB0EDD /* 消息过滤 */ = {
+			isa = PBXGroup;
+			children = (
+				F78B13B51DF47B4C000A6833 /* MessageFilterViewController.h */,
+				F78B13B61DF47B4C000A6833 /* MessageFilterViewController.m */,
+				F78B13B71DF47B4C000A6833 /* MessageFilterViewController.xib */,
+			);
+			name = "消息过滤";
+			sourceTree = "<group>";
+		};
+		F710826C1E1F2E0F00EB0EDD /* 功能显示 */ = {
+			isa = PBXGroup;
+			children = (
+				F7F093BE1E14DC3E0099E167 /* FunctionShowViewController.h */,
+				F7F093BF1E14DC3E0099E167 /* FunctionShowViewController.m */,
+				F7F093C01E14DC3E0099E167 /* FunctionShowViewController.xib */,
+			);
+			name = "功能显示";
+			sourceTree = "<group>";
+		};
+		F710826D1E1F2E5D00EB0EDD /* 天气 */ = {
+			isa = PBXGroup;
+			children = (
+				F764BBFA1E07C91D00CE252F /* WeatherAirportController.h */,
+				F764BBFB1E07C91D00CE252F /* WeatherAirportController.m */,
+			);
+			name = "天气";
+			sourceTree = "<group>";
+		};
+		F710826E1E1F2E6A00EB0EDD /* 当日值班表 */ = {
+			isa = PBXGroup;
+			children = (
+				F7EEEC5B1E00396C000D3056 /* TodayDutyViewController.h */,
+				F7EEEC5C1E00396C000D3056 /* TodayDutyViewController.m */,
+				F7EEEC5D1E00396C000D3056 /* TodayDutyViewController.xib */,
+			);
+			name = "当日值班表";
+			sourceTree = "<group>";
+		};
+		F710826F1E1F2E9B00EB0EDD /* 值班表 */ = {
+			isa = PBXGroup;
+			children = (
+				F79251851DB781AB006AA119 /* NightShiftRoomViewController.h */,
+				F79251861DB781AB006AA119 /* NightShiftRoomViewController.m */,
+				F79251871DB781AB006AA119 /* NightShiftRoomViewController.xib */,
+			);
+			name = "值班表";
+			sourceTree = "<group>";
+		};
+		F71082701E1F2EAB00EB0EDD /* 通讯录 */ = {
+			isa = PBXGroup;
+			children = (
+				F792518F1DB858D9006AA119 /* AddressBookViewController.h */,
+				F79251901DB858D9006AA119 /* AddressBookViewController.m */,
+				F79251911DB858D9006AA119 /* AddressBookViewController.xib */,
+			);
+			name = "通讯录";
+			sourceTree = "<group>";
+		};
+		F71082711E1F2EE700EB0EDD /* 生产指标 */ = {
+			isa = PBXGroup;
+			children = (
+				F74289D91E04D42400AC00D4 /* ProductionTargetViewController.h */,
+				F74289DA1E04D42400AC00D4 /* ProductionTargetViewController.m */,
+			);
+			name = "生产指标";
+			sourceTree = "<group>";
+		};
 		F74289DC1E04D4BD00AC00D4 /* 生产指标 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1392,70 +1607,47 @@
 			name = Persistence;
 			sourceTree = "<group>";
 		};
-		F758C9B51DC4373F00556120 /* UserInfo */ = {
+		F758C9B51DC4373F00556120 /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
 				F7A2A04F1DB8D0590023F228 /* UserInfoViewController.h */,
 				F7A2A0501DB8D0590023F228 /* UserInfoViewController.m */,
-				F79251781DB7431D006AA119 /* UserManagementViewController.h */,
-				F79251791DB7431D006AA119 /* UserManagementViewController.m */,
-				F792517A1DB7431D006AA119 /* UserManagementViewController.xib */,
-				F78B13B51DF47B4C000A6833 /* MessageFilterViewController.h */,
-				F78B13B61DF47B4C000A6833 /* MessageFilterViewController.m */,
-				F78B13B71DF47B4C000A6833 /* MessageFilterViewController.xib */,
-				F7F093BE1E14DC3E0099E167 /* FunctionShowViewController.h */,
-				F7F093BF1E14DC3E0099E167 /* FunctionShowViewController.m */,
-				F7F093C01E14DC3E0099E167 /* FunctionShowViewController.xib */,
+				F71082691E1F2DD000EB0EDD /* 用户管理 */,
+				F710826A1E1F2DE700EB0EDD /* 消息过滤 */,
+				F710826C1E1F2E0F00EB0EDD /* 功能显示 */,
 			);
-			name = UserInfo;
+			name = "我的";
 			sourceTree = "<group>";
 		};
-		F758C9B91DC4374800556120 /* Function */ = {
+		F758C9B91DC4374800556120 /* 功能 */ = {
 			isa = PBXGroup;
 			children = (
 				F7A2A0451DB8D0590023F228 /* FunctionViewController.h */,
 				F7A2A0461DB8D0590023F228 /* FunctionViewController.m */,
-				F764BBFA1E07C91D00CE252F /* WeatherAirportController.h */,
-				F764BBFB1E07C91D00CE252F /* WeatherAirportController.m */,
-				F7EEEC5B1E00396C000D3056 /* TodayDutyViewController.h */,
-				F7EEEC5C1E00396C000D3056 /* TodayDutyViewController.m */,
-				F7EEEC5D1E00396C000D3056 /* TodayDutyViewController.xib */,
-				F79251851DB781AB006AA119 /* NightShiftRoomViewController.h */,
-				F79251861DB781AB006AA119 /* NightShiftRoomViewController.m */,
-				F79251871DB781AB006AA119 /* NightShiftRoomViewController.xib */,
-				F792518F1DB858D9006AA119 /* AddressBookViewController.h */,
-				F79251901DB858D9006AA119 /* AddressBookViewController.m */,
-				F79251911DB858D9006AA119 /* AddressBookViewController.xib */,
-				F74289D91E04D42400AC00D4 /* ProductionTargetViewController.h */,
-				F74289DA1E04D42400AC00D4 /* ProductionTargetViewController.m */,
+				F71082701E1F2EAB00EB0EDD /* 通讯录 */,
+				F710826F1E1F2E9B00EB0EDD /* 值班表 */,
+				F710826E1E1F2E6A00EB0EDD /* 当日值班表 */,
+				F710826D1E1F2E5D00EB0EDD /* 天气 */,
+				F71082711E1F2EE700EB0EDD /* 生产指标 */,
 			);
-			name = Function;
+			name = "功能";
 			sourceTree = "<group>";
 		};
-		F758C9BA1DC4374B00556120 /* Message */ = {
+		F758C9BA1DC4374B00556120 /* 消息 */ = {
 			isa = PBXGroup;
 			children = (
 				F7A2A04B1DB8D0590023F228 /* MessageViewController.h */,
 				F7A2A04C1DB8D0590023F228 /* MessageViewController.m */,
-				F79251471DB608E6006AA119 /* ContactPersonViewController.h */,
-				F79251481DB608E6006AA119 /* ContactPersonViewController.m */,
-				F7A25D181DBDA67A00F36C32 /* ContactPersonViewController.xib */,
-				F792515B1DB6352D006AA119 /* ChatViewController.h */,
-				F792515C1DB6352D006AA119 /* ChatViewController.m */,
-				F7A25D1A1DBDA6B400F36C32 /* ChatViewController.xib */,
-				F70893DE1DD2EC1B00135540 /* FlightDelaysViewController.h */,
-				F70893DF1DD2EC1B00135540 /* FlightDelaysViewController.m */,
-				F70893E01DD2EC1B00135540 /* FlightDelaysViewController.xib */,
-				F70893E31DD2ECAD00135540 /* FlightDelaysDetailViewController.h */,
-				F70893E41DD2ECAD00135540 /* FlightDelaysDetailViewController.m */,
-				F70893E51DD2ECAD00135540 /* FlightDelaysDetailViewController.xib */,
+				F71082651E1F2C7500EB0EDD /* 联系人 */,
+				F71082671E1F2CA000EB0EDD /* 聊天 */,
+				F71082661E1F2C9F00EB0EDD /* 指令、航班消息 */,
 				8471FBCC1E056F6F0037F9F5 /* SingleMessageViewController.h */,
 				8471FBCD1E056F6F0037F9F5 /* SingleMessageViewController.m */,
 			);
-			name = Message;
+			name = "消息";
 			sourceTree = "<group>";
 		};
-		F758C9BB1DC4374F00556120 /* Flight */ = {
+		F758C9BB1DC4374F00556120 /* 详情 */ = {
 			isa = PBXGroup;
 			children = (
 				F7A2A0431DB8D0590023F228 /* FlightViewController.h */,
@@ -1464,16 +1656,16 @@
 				F71082551E1E454E00EB0EDD /* 航班详情 */,
 				F71082571E1E459900EB0EDD /* 图片上传 */,
 			);
-			name = Flight;
+			name = "详情";
 			sourceTree = "<group>";
 		};
-		F758C9BC1DC4375100556120 /* Login */ = {
+		F758C9BC1DC4375100556120 /* 登录 */ = {
 			isa = PBXGroup;
 			children = (
 				F7A2A0491DB8D0590023F228 /* LoginViewController.h */,
 				F7A2A04A1DB8D0590023F228 /* LoginViewController.m */,
 			);
-			name = Login;
+			name = "登录";
 			sourceTree = "<group>";
 		};
 		F77496E71E0773EA00B5773C /* Daysquare */ = {
@@ -2000,7 +2192,6 @@
 			files = (
 				F7EEEF1D1DB396E0004AF0AE /* FlightDetailViewController.xib in Resources */,
 				F7A25D881DBE277500F36C32 /* photopicker_back@3x.png in Resources */,
-				F74902631DC71202005B193D /* DayOnDutyViewController.xib in Resources */,
 				8450556A1DACF65200400EBF /* logo_flight@3x.png in Resources */,
 				845055601DACF65200400EBF /* login_icon_invisible@3x.png in Resources */,
 				F7EAE1971DB4776C0060626F /* AbnormalityReportViewController.xib in Resources */,
@@ -2269,7 +2460,6 @@
 				840D15E61DC2E99A005FA910 /* PassengerAreaModel.m in Sources */,
 				F7A25D811DBE277500F36C32 /* SJPreviewPhotoController.m in Sources */,
 				F74902A81DC867F0005B193D /* FlightStusModel.m in Sources */,
-				F74902621DC71202005B193D /* DayOnDutyViewController.m in Sources */,
 				F7A25D891DBE277500F36C32 /* SJPhotoAlbumCell.m in Sources */,
 				F7EAE1A21DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.m in Sources */,
 				840D15D11DC0C18F005FA910 /* AbnReasonTableViewCell.m in Sources */,
