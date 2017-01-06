@@ -21,6 +21,7 @@
 #import "FlightDelaysViewController.h"
 #import "AppDelegate.h"
 #import "MessageService.h"
+#import "HttpsUtils+Business.h"
 
 
 
@@ -51,6 +52,10 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    userId = (int)delegate.userInfoModel.id;
+//    [HttpsUtils sysChatInfoList:userId];
+    
     [self initTitleView];
     [self initSearBar];
     [self initTable];
@@ -73,8 +78,7 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 //    [button addTarget:self action:@selector(sendMessage:) forControlEvents:UIControlEventTouchUpInside];
 //    [self.view addSubview:button];
     
-    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    userId = (int)delegate.userInfoModel.id;
+
     filterArray = [NSMutableArray array];
     //TabBer自定义
     self.tabBarView = [[TabBarView alloc] initTabBarWithModel:TabBarBgModelHomePage

@@ -221,6 +221,9 @@
     _accountTF.text=[DefaultHelper getStringForKey:userKey];
     _passwordTF.text=[DefaultHelper getStringForKey:pwdKey];
     
+//    _accountTF.text=@"zzy";
+//    _passwordTF.text=@"1";
+    
     y = 339+45+25+45+52;
     
     if([DeviceInfoUtil IphoneVersions] == 5){
@@ -308,12 +311,6 @@
             case 1:
             {
                 NSLog(@"%s",__func__);
-                [HttpsUtils sysChatInfoList:(int)user.id];
-                [[HomePageService sharedHomePageService] startService];
-                [[MessageService sharedMessageService] setUserId:(int)user.id];
-                [[MessageService sharedMessageService] startService];
-                [HttpsUtils getAlertMsgListSuccess:nil failure:nil];// 同步最近的异常消息
-                
                 [HttpsUtils setUserName:userName];
                 [HttpsUtils setPassword:password];
                 NSString* userKey = @"taocares_userName";
@@ -324,8 +321,13 @@
                 AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
                 delegate.userInfoModel = user;
 
-//                //delegate.userInfoModel.functions = @"0000000,20000000,30000000,30500000,40000000,50000000";
+                
+                [[HomePageService sharedHomePageService] startService];
+                [[MessageService sharedMessageService] setUserId:(int)user.id];
+                [[MessageService sharedMessageService] startService];
+                [HttpsUtils getAlertMsgListSuccess:nil failure:nil];// 同步最近的异常消息
 
+//                //delegate.userInfoModel.functions = @"0000000,20000000,30000000,30500000,40000000,50000000";
 
                 if (![[NSUserDefaults standardUserDefaults] boolForKey:@"NotFirst"]) {
                     LoadingView *loadingView = [[NSBundle mainBundle]loadNibNamed:@"LoadingView" owner:nil options:nil][0];

@@ -139,7 +139,6 @@
     }
     
     [self executeInsertBatch:sqlArray];
-NSLog(@"     -=-=-=-=-=-=-=save users  finished   -=-=-=-=-=-=-=");
 }
 
 +(NSArray<DeptInfoModel *> *)loadUserListGroupByDept
@@ -352,6 +351,21 @@ NSLog(@"     -=-=-=-=-=-=-=save users  finished   -=-=-=-=-=-=-=");
     if(messages ==nil || [messages count]==0){
         return;
     }
+    
+    NSString *ids = nil;
+    for(NSDictionary *message in messages){
+        int chatId = [[message objectForKey:@"workgroupId"] isEqual:[NSNull null]]?1:[[message objectForKey:@"workgroupId"] intValue];
+        if(ids==nil){
+            ids = [NSString stringWithFormat:@"%i",chatId];
+        }else{
+            ids = [NSString stringWithFormat:@"%@,%i",ids,chatId];
+        }
+    }
+    if(ids != nil){
+        NSString *deleteSql = [NSString stringWithFormat:@"delete from ChatInfo where chatid not in (%@) and type=1 and userid=%i",ids,[self getLocalUserId]];
+        [self executeNoQuery:deleteSql];
+    }
+    
     for(NSDictionary *message in messages){
         NSString *name = [message objectForKey:@"workgroupTitle"];
         int chatId = [[message objectForKey:@"workgroupId"] isEqual:[NSNull null]]?1:[[message objectForKey:@"workgroupId"] intValue];

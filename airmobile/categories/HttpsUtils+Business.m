@@ -22,7 +22,6 @@ static NSString* __userName = @"";
  */
 static NSString* __password = @"";
 
-
 NSString * const loginUrl                   = @"/acs/login/mobile";
 NSString * const userMsgSendUrl             = @"/acs/um/m";// 发送用户消息
 NSString * const groupMsgSendUrl            = @"/acs/wm/m";// 发送工作组消息
@@ -210,6 +209,7 @@ NSString * const headImageUpload            = @"/acs/ath/user/imageupload";//头
 +(void) setPassword:(NSString*) password{
     __password = password;
 }
+
 #pragma mark 消息部分 发送消息 发送群组消息 加载用户 保存工作组信息 获取工作组信息
 
 +(void)sendUserMessage:(MessageModel *)message success: (void (^)(id))success failure:(void (^)(id))failure
@@ -227,7 +227,7 @@ NSString * const headImageUpload            = @"/acs/ath/user/imageupload";//头
     [HttpsUtils post:userlistUrl params:nil success:^(id responseObj) {
         [PersistenceUtils saveUserList:responseObj];
         [ThreadUtils dispatch:^{
-            NSLog(@"     -=-=-=-=-=-=-=save users     -=-=-=-=-=-=-=");
+            
             
         }];
         
