@@ -10,6 +10,7 @@
 #import "PNMixLineChart.h"
 #import "PNLineChartData.h"
 #import "PNLineChartDataItem.h"
+#import "HomePageService.h"
 
 @implementation FlightHourView
 {
@@ -194,13 +195,28 @@
         [topBgView addSubview:lineChart];
 
         
-//        if(type==DepFlightHour){
-//
-//            UIImageView *redLine = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(planImageView), viewY(barChart)+viewHeight(barChart)/2, viewWidth(lineImageView), 15)];
-//            redLine.image = [UIImage imageNamed:@"HourRedLine"];
-//            [topBgView addSubview:redLine];
-//        }
-        
+        if(type==DepFlightHour){
+            if ([HomePageService sharedHomePageService].flightModel.depFltTarget<barChart.yMaxValue) {
+
+                UIImageView *thresholdImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, viewWidth(barChart), 1)];
+
+                NSLog(@"%f,%f,%f",viewBotton(barChart)- [HomePageService sharedHomePageService].flightModel.depFltTarget,barChart.yMaxValue,viewHeight(barChart));
+
+                thresholdImageView.center = CGPointMake(barChart.center.x,viewBotton(barChart)- [HomePageService sharedHomePageService].flightModel.depFltTarget/barChart.yMaxValue*viewHeight(barChart)-3);
+                thresholdImageView.backgroundColor = [ UIColor redColor];
+
+                [topBgView addSubview:thresholdImageView];
+
+                UILabel *thresholdLabel = [[UILabel alloc]initWithFrame:CGRectMake(viewTrailing(thresholdImageView)-100, viewBotton(thresholdImageView),100, 20)];
+                thresholdLabel.text = [NSString stringWithFormat:@"%.0f",[HomePageService sharedHomePageService].flightModel.depFltTarget];
+                thresholdLabel.textColor = [UIColor redColor];
+                thresholdLabel.textAlignment = NSTextAlignmentRight;
+                [topBgView addSubview:thresholdLabel];
+
+            }
+
+        }
+
         [topBgView addSubview:[CommonFunction addLabelFrame:CGRectMake(20,
                                                                        topBgView.frame.size.height-(10+15+12)-5,
                                                                        topBgView.frame.size.width-40,

@@ -93,4 +93,11 @@
     }
 }
 
+-(void) updateDepFltTarget:(NSDictionary *)data
+{
+    if ([data isKindOfClass:[NSDictionary class]]&&[[data objectForKey:@"hourDepFltThreshold"] isKindOfClass:[NSString class]] ) {
+        _depFltTarget = ((NSString *)[data objectForKey:@"hourDepFltThreshold"]).floatValue;
+    }
+}
+
 @end

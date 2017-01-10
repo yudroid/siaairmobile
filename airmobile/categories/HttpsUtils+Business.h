@@ -356,6 +356,16 @@
  */
 +(void)getTenDaySuccess:(void (^)(id))success failure:(void (^)(id))failure;
 
+
+/**
+ 放行正常率  阈值
+
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)releaseRatioThresholdSuccess:(void (^)(id))success failure:(void (^)(id))failure;
+
+
 /**
  航班近10天放行正常率  /ov/fltFDR
 
@@ -454,6 +464,14 @@
  */
 +(void)getFlightAbnReason:(NSString *)date success:(void (^)(id))success failure:(void (^)(id))failure;
 
+
+/**
+ 出港 阈值
+
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)fltDepFltTargetSuccess:(void (^)(id))success failure:(void (^)(id))failure;
 
 /**
  航班区域延误时间 /flt/delayAreaSort

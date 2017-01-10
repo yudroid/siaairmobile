@@ -92,6 +92,14 @@ singleton_implementation(HomePageService);
         [[NSNotificationCenter defaultCenter] postNotificationName:@"FlightYearRatio"
                                                             object:summaryModel.yearReleased];
     } failure:nil];
+
+    // 航班放行正常率阈值
+    [HttpsUtils releaseRatioThresholdSuccess:^(id responesObj) {
+        [summaryModel updateReleaseRatioThreshold:responesObj];
+
+    } failure:nil ];
+
+
     
     // 航班延误指标 /fltLD
     [HttpsUtils getFlightDelayTarget:nil success:^(id responesObj) {
@@ -162,6 +170,12 @@ singleton_implementation(HomePageService);
         [flightModel updateFlightAbnReason:responesObj];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"FlightAbnReason"
                                                             object:[HomePageService sharedHomePageService].flightModel];
+    } failure:nil];
+
+    // 出港航班阈值
+    [HttpsUtils fltDepFltTargetSuccess:^(id responesObj) {
+        [flightModel updateDepFltTarget:responesObj];
+
     } failure:nil];
     
     // 航班区域延误时间 /flt/delayAreaSort

@@ -31,6 +31,8 @@
 @property (nonatomic, assign) int depDelay;
 @property (nonatomic, assign) int depCancel;
 
+@property (nonatomic, assign) float depFltTarget;///出港航班阈值
+
 @property (nonatomic, strong) NSMutableArray<AbnReasonModel *> *abnReasons;// 航班异常原因分类 不区分进出港
 @property (nonatomic, strong) NSMutableArray<RegionDlyTimeModel *> *regionDlyTimes;// 区域延误时间分类 不区分进出港
 
@@ -39,5 +41,7 @@
 -(void) updateFlightAbnReason:(id)data;
 
 -(void) updateRegionDlyTime:(id)data;
+
+-(void) updateDepFltTarget:(id)data;
 
 @end

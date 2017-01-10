@@ -122,7 +122,7 @@
         barChart.backgroundColor = [UIColor clearColor];
 
         barChart.yMaxValue = 100;
-        barChart.yMinValue = 30;
+        barChart.yMinValue = 00;
         barChart.yChartLabelWidth = 20.0;
         barChart.chartMarginTop = 5.0;
         barChart.chartMarginBottom = 10.0;
@@ -141,6 +141,21 @@
  
         [barChart strokeChart];
         [topBgView addSubview:barChart];
+
+        UIImageView *thresholdImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, viewWidth(barChart), 1)];
+
+        thresholdImageView.center = CGPointMake(barChart.center.x,viewBotton(barChart)- [HomePageService sharedHomePageService].summaryModel.releaseRatioThreshold*100/barChart.yMaxValue*viewHeight(barChart)-3);
+        thresholdImageView.image = [UIImage imageNamed:@"thresholdLine"];
+
+        [topBgView addSubview:thresholdImageView];
+
+        UILabel *thresholdLabel = [[UILabel alloc]initWithFrame:CGRectMake(viewTrailing(thresholdImageView)-100, viewBotton(thresholdImageView),100, 20)];
+        thresholdLabel.text = [NSString stringWithFormat:@"%.0f%%",[HomePageService sharedHomePageService].summaryModel.releaseRatioThreshold*100];
+        thresholdLabel.textColor = [UIColor redColor];
+        thresholdLabel.font = [UIFont systemFontOfSize:10];
+        thresholdLabel.textAlignment = NSTextAlignmentRight;
+        [topBgView addSubview:thresholdLabel];
+
 
 
         UIImageView *downlineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(passengerTtitle), topBgView.frame.size.height-10-15, viewWidth(topBgView)-viewX(passengerTtitle)-18, 0.5)];

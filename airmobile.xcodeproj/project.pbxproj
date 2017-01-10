@@ -850,7 +850,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		841839E61DBC87DD00D7DD86 /* 首页 */ = {
+		841839E61DBC87DD00D7DD86 /* 态势 */ = {
 			isa = PBXGroup;
 			children = (
 				F7C61F551E1DEEDC009C1391 /* 总体 */,
@@ -858,7 +858,7 @@
 				F7C61F571E1DEEF2009C1391 /* 旅客 */,
 				F7C61F581E1DEEFA009C1391 /* 机位 */,
 			);
-			name = "首页";
+			name = "态势";
 			sourceTree = "<group>";
 		};
 		841839E71DBCB87600D7DD86 /* pnchart */ = {
@@ -900,9 +900,9 @@
 			children = (
 				F758C98F1DC360BD00556120 /* HomePageViewController.h */,
 				F758C9901DC360BD00556120 /* HomePageViewController.m */,
-				F710825B1E1F28F900EB0EDD /* 态势 */,
-				F710825F1E1F2B2200EB0EDD /* 旅客 */,
+				F710825B1E1F28F900EB0EDD /* 总体 */,
 				F710825C1E1F294A00EB0EDD /* 航班 */,
+				F710825F1E1F2B2200EB0EDD /* 旅客 */,
 				F710825E1E1F2B2000EB0EDD /* 机位 */,
 			);
 			name = "态势";
@@ -1001,8 +1001,8 @@
 				F7ED844B1DF06C8A0036D591 /* TabBarView */,
 				F7D38D6D1DE3D1B5001110AF /* LoadingView */,
 				841839E71DBCB87600D7DD86 /* pnchart */,
-				841839E61DBC87DD00D7DD86 /* 首页 */,
-				F7EE87821DB370C4006473F5 /* 航班列表 */,
+				841839E61DBC87DD00D7DD86 /* 态势 */,
+				F7EE87821DB370C4006473F5 /* 详情 */,
 				F792513C1DB5EE01006AA119 /* 消息 */,
 				F7003E4F1DDC4EED0056F3DA /* 功能 */,
 				F79251721DB73DD3006AA119 /* 我的 */,
@@ -1352,14 +1352,14 @@
 			name = "延误指标";
 			sourceTree = "<group>";
 		};
-		F710825B1E1F28F900EB0EDD /* 态势 */ = {
+		F710825B1E1F28F900EB0EDD /* 总体 */ = {
 			isa = PBXGroup;
 			children = (
 				F71082581E1F285300EB0EDD /* 航班小时分布 */,
 				F71082591E1F287000EB0EDD /* 放行正常率 */,
 				F710825A1E1F28D500EB0EDD /* 延误指标 */,
 			);
-			name = "态势";
+			name = "总体";
 			sourceTree = "<group>";
 		};
 		F710825C1E1F294A00EB0EDD /* 航班 */ = {
@@ -2028,7 +2028,7 @@
 			name = TabBarView;
 			sourceTree = "<group>";
 		};
-		F7EE87821DB370C4006473F5 /* 航班列表 */ = {
+		F7EE87821DB370C4006473F5 /* 详情 */ = {
 			isa = PBXGroup;
 			children = (
 				F7EE87771DB3285B006473F5 /* FlightFilterView.h */,
@@ -2071,7 +2071,7 @@
 				F7003E4B1DDC38540056F3DA /* TakePhotoCollectionViewCell.m */,
 				F7003E4C1DDC38540056F3DA /* TakePhotoCollectionViewCell.xib */,
 			);
-			name = "航班列表";
+			name = "详情";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

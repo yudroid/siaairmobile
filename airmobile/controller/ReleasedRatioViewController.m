@@ -124,6 +124,8 @@
     [eightMonthImageView addSubview:eightMonthButton];
 
     [self showTenDayRatioView];
+
+    
 }
 
 -(void) buttonClickedWithSender:(UIButton *)sender

@@ -50,6 +50,8 @@ NSString * const ovFltFMRTHreshold          = @"/acs/ov/fltFMRThreshold";
 NSString * const ovFltFDRlUrl               = @"/acs/ov/fltFDR";
 NSString * const ovFltFMRUrl                = @"/acs/ov/fltFMR";
 NSString * const ovFltLDUrl                 = @"/acs/ov/fltLD";
+NSString * const ovFltreleaseRatioThreshold = @"/acs/ov/releaseRatioThreshold";//获取放行正常率阈值
+NSString * const fltDepFltTarget            = @"/acs/bmap/flt/depFltTarget";//航班-出港小时分布阈值
 NSString * const planArrFltPerHourUrl       = @"/acs/bmap/flt/arrFltPerHour";
 NSString * const realArrFltPerHourUrl       = @"/acs/bmap/flt/arrFltPerHour";
 NSString * const depFltPerHourUrl           = @"/acs/bmap/flt/depFltPerHour";
@@ -477,6 +479,26 @@ NSString * const headImageUpload            = @"/acs/ath/user/imageupload";//头
 }
 
 
+
+/**
+ 放行正常率  阈值
+
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)releaseRatioThresholdSuccess:(void (^)(id))success failure:(void (^)(id))failure
+{
+    [HttpsUtils getString:ovFltreleaseRatioThreshold params:nil
+                  success:^(id responseObj) {
+                      if(success){
+                          success(responseObj);
+                      }
+                  } failure:failure];
+}
+
+
+
+
 /**
  航班放行正常率 天数 --最近10天 /ov/fltFDR
 
@@ -657,6 +679,23 @@ NSString * const headImageUpload            = @"/acs/ath/user/imageupload";//头
     } failure:failure];
 }
 
+
+
+
+/**
+ 出港 阈值
+
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)fltDepFltTargetSuccess:(void (^)(id))success failure:(void (^)(id))failure
+{
+    [HttpsUtils get:fltDepFltTarget params:nil  success:^(id responseObj) {
+        if(success){
+            success(responseObj);
+        }
+    } failure:failure];
+}
 
 /**
  航班区域延误时间 /flt/delayAreaSort

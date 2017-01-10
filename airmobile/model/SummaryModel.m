@@ -155,6 +155,14 @@
     }
 }
 
+-(void)updateReleaseRatioThreshold:(NSString *)data
+{
+    if ([data isKindOfClass:[data class]]) {
+        _releaseRatioThreshold = data.floatValue;
+    }
+
+}
+
 -(void)updatePropertyData:(NSDictionary *)data
 {
     if([self isNull:data])

@@ -141,6 +141,20 @@
                                               textAlignment:NSTextAlignmentRight
                                                colorFromHex:0x75FFFFFF]];
 
+        UIImageView *thresholdImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, viewWidth(barChart), 1)];
+
+        thresholdImageView.center = CGPointMake(barChart.center.x,viewBotton(barChart)- [HomePageService sharedHomePageService].summaryModel.releaseRatioThreshold*100/barChart.yMaxValue*viewHeight(barChart)-3);
+        thresholdImageView.image = [UIImage imageNamed:@"thresholdLine"];
+
+        [topBgView addSubview:thresholdImageView];
+
+        UILabel *thresholdLabel = [[UILabel alloc]initWithFrame:CGRectMake(viewTrailing(thresholdImageView)-100, viewBotton(thresholdImageView),100, 20)];
+        thresholdLabel.text = [NSString stringWithFormat:@"%.0f%%",[HomePageService sharedHomePageService].summaryModel.releaseRatioThreshold*100];
+        thresholdLabel.textColor = [UIColor redColor];
+        thresholdLabel.font = [UIFont systemFontOfSize:10];
+        thresholdLabel.textAlignment = NSTextAlignmentRight;
+        [topBgView addSubview:thresholdLabel];
+
 
         //小时分布表格
         tenDayTableView = [[UITableView alloc]initWithFrame:CGRectMake(0,
