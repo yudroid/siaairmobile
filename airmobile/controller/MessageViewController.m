@@ -23,14 +23,10 @@
 #import "MessageService.h"
 #import "HttpsUtils+Business.h"
 
-
-
 static const NSString *MESSAGE_TABLECELL_IDENTIFIER = @"MESSAGE_TABLECELL_IDENTIFIER";
 static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_IDENTIFIER";
 
-
 @interface MessageViewController ()<TabBarViewDelegate,UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate,UITextFieldDelegate,MessageViewDelegate>
-
 
 @property (nonatomic, strong) UISearchBar *searBar;
 @property (nonatomic, strong) UITableView *tableView;
@@ -47,36 +43,18 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
     int userId;
 }
 
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     userId = (int)delegate.userInfoModel.id;
-//    [HttpsUtils sysChatInfoList:userId];
+
     
     [self initTitleView];
     [self initSearBar];
     [self initTable];
     [self initSearchTableView];
-    
-//    [self initOptionView];
-    
-    //titleView订制
-//    [self titleViewInitWithHight:64];
-//    [self titleViewAddTitleText:@"消息"];
-//
-//    textfield = [[UITextField alloc] initWithFrame:CGRectMake(10, 100, kScreenWidth-20, 200)];
-//    textfield.text = @"com.apple.MobileAsset.TextInput.SpellChecker";
-//    [self.view addSubview:textfield];
-//    
-//    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth/2-50, 250, 100, 30)];
-//    label.text = @"发 送 消 息";
-//    [self.view addSubview:label];
-//    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth/2-50, 250, 100, 30)];
-//    [button addTarget:self action:@selector(sendMessage:) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:button];
+
     
 
     filterArray = [NSMutableArray array];
@@ -87,65 +65,8 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
     [self.view insertSubview:self.tabBarView aboveSubview:self.view];
 }
 
-#pragma mark - 切换底部主功能页面
--(void)selectWithType:(TabBarSelectedType)type
-{
-    switch (type) {
-        case TabBarSelectedTypeHomePage:
-        {
-            HomePageViewController *homepage = [[HomePageViewController alloc] init];
-            [self.navigationController pushViewController:homepage animated:NO];
-            break;
-        }
-        case TabBarSelectedTypeFlight:
-        {
-            FlightViewController *flightpage = [[FlightViewController alloc] init];
-            [self.navigationController pushViewController:flightpage animated:NO];
-            break;
-        }
-        case TabBarSelectedTypeMessage:
-        {
-            [self showMessageViewController];
-            break;
-        }
-        case TabBarSelectedTypeFunction:
-        {
-            FunctionViewController *function = [[FunctionViewController alloc] init];
-            [self.navigationController pushViewController:function animated:NO];
-            break;
-        }
-        case TabBarSelectedTypeUserInfo:
-        {
-            UserInfoViewController *userInfo = [[UserInfoViewController alloc] init];
-            [self.navigationController pushViewController:userInfo animated:NO];
-            break;
-        }
-        default:
-            break;
-    }
-}
-
--(void)showMessageViewController
-{
-    if([CommonFunction hasFunction:MSG_WORNING] && ![CommonFunction hasFunction:MSG_FLIGHT] && ![CommonFunction hasFunction:MSG_DIALOG]){
-        SingleMessageViewController *message = [[SingleMessageViewController alloc] init];
-        message.type = @"COMMAND";
-        [self.navigationController pushViewController:message animated:NO];
-    }else if(![CommonFunction hasFunction:MSG_WORNING] && [CommonFunction hasFunction:MSG_FLIGHT] && ![CommonFunction hasFunction:MSG_DIALOG]){
-        SingleMessageViewController *message = [[SingleMessageViewController alloc] init];
-        message.type = @"FLIGHT";
-        [self.navigationController pushViewController:message animated:NO];
-    }else{
-        MessageViewController *message = [[MessageViewController alloc] init];
-        [self.navigationController pushViewController:message animated:NO];
-    }
-}
-
 -(void)initSearBar
 {
-//    _searBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 64, kScreenWidth, 44)];
-//    _searBar.delegate = self;
-//    [self.view addSubview:_searBar];
 
     UIView *searchView = [[UIView alloc]initWithFrame:CGRectMake(0,
                                                                  64,

@@ -693,5 +693,17 @@
                    failure:(void (^)(id))failure;
 
 
+/**
+ 异常上报上传图片
+
+ @param image 图片
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)unusualImageUploadImage:(UIImage *)image
+                       Success:(void (^)(id))success
+                       failure:(void (^)(id))failure;
+
+
 
 @end

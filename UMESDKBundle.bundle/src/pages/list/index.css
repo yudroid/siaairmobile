@@ -1,0 +1,288 @@
+/**
+ * Author: xijian (Enson)
+ * Date: 4/11/14
+ * Time: 4:52 下午
+ * Description:航班动态列表页样式
+ */
+html,body{
+    background-color: #ffffff;
+    height: 100%;
+}
+.content,.list-page{
+    height: 100%;
+}
+/****** 标题栏 begin ********/
+.titleBar {
+    height: 49px;
+    background: #F3F3F3 -webkit-gradient(linear,left top,left bottom,from(#FFF),color-stop(0.5,#FFF),to(#F3F3F3));
+    border-bottom: #DEDEDE 1px solid;
+    position: relative;
+    width: 100%;
+    top: 0;
+    z-index: 400;
+}
+.titleBar .backBtn {
+    width: 50px;
+    height: 50px;
+    background: url(http://gtms01.alicdn.com/tps/i1/T10puQXuhiXXX9kfDl-65-65.png) no-repeat center center;
+    background-size: 35px auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 40;
+}
+.titleBar .tabCtn {
+    width: 160px;
+    height: 50px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -80px;
+    text-align: center;
+}
+.titleBar .tabCtn .title{
+    display: block;
+    width: 160px;
+    height: 50px;
+    text-align: center;
+}
+.titleBar .tabCtn .title .city{
+    color: #13334D;
+    font-size: 18px;
+    padding: 10px 0 5px;
+}
+.titleBar .tabCtn .title .date{
+    color: #7b92a7;
+    font-size: 11px;
+}
+.rightBtn{
+    width: 33px;
+    height: 33px;
+    background: url(http://gtms01.alicdn.com/tps/i1/T1FgxlFORXXXX9kfDl-65-65.png) no-repeat center center;
+    background-size: 33px;
+    position: absolute;
+    top: 8px;
+    right: 12px;
+}
+
+.rightBtn.on{
+    background: url(http://gtms02.alicdn.com/tps/i2/T1ARdlFF4XXXX9kfDl-65-65.png) no-repeat center center;
+    background-size: 33px;
+}
+/****** 标题栏 end ********/
+
+/****** 航班列表 begin ********/
+.J_list{
+    height: 100%;
+}
+.flight-list{
+
+}
+.flight-item-wrap .mod-place{
+    height: 25px;
+    background-color: #f1f3f7;
+    color: #7b92a7;
+    font-size: 14px;
+    line-height: 25px;
+    padding-left: 10px;
+    border-bottom: 1px solid #E8EAF3;
+}
+.flight-item-wrap:first-child{
+    border-top: 1px solid #d3dde3;
+}
+.flight-item-wrap{
+    border-bottom: 1px solid #d3dde3;
+}
+.flight-list .flight-item{
+    height: 75px;
+    display: -webkit-box;
+    position: relative;
+}
+.flight-list .flight-item.followed .followed{
+    width: 23px;
+    height: 23px;
+    background: url(http://gtms04.alicdn.com/tps/i4/T1eKBjFTtbXXc1sTYg-46-46.png) no-repeat center center;
+    background-size: 23px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+.flight-list .flight-item .fiw{
+    -webkit-box-flex:1
+}
+.flight-list .flight-item .flight-no{
+    padding: 21px 0px 0px 10px;
+    width: 30%;
+}
+.flight-list .flight-item .flight-no .no{
+    font-size: 20px;
+    color: #2b577a;
+    margin-bottom: 4px;
+    font-family: STHeitiSC-Medium;
+}
+.flight-list .flight-item .flight-no .airline{
+    color: #7b92a7;
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.flight-list .flight-item .airport{
+    padding: 21px 0px 0px 0px;
+    color: #7b92a7;
+    font-size: 14px;
+    width: 25%;
+    font-family: STHeitiSC-Light;
+}
+.flight-list .flight-item .airport .dep-port{
+    margin-bottom: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 5px 0 0;
+}
+.flight-list .flight-item .airport .arr-port{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 5px 0 0;
+}
+.flight-list .flight-item .time{
+    padding: 21px 0px 0px 0px;
+    color: #2b577a;
+    font-size: 14px;
+    font-family: STHeitiSC-Light;
+}
+.flight-list .flight-item .time .dep-time{
+    margin-bottom: 8px;
+}
+.flight-list .flight-item .status{
+    width: 42px;
+    height: 42px;
+    margin-top: 16px;
+    position: relative;
+}
+.flight-list .flight-item .status.takeoff{
+    background: url(http://gtms02.alicdn.com/tps/i2/T1qMBlFQ4XXXbebDjp-84-84.png) no-repeat center center;
+    background-size: 42px;
+}
+.flight-list .flight-item .status.delay{
+    background: url(http://gtms04.alicdn.com/tps/i4/T1vxRiFKNcXXbebDjp-84-84.png) no-repeat center center;
+    background-size: 42px;
+}
+.flight-list .flight-item .status.ready{
+    background: url(http://gtms03.alicdn.com/tps/i3/T1frBlFFtaXXbebDjp-84-84.png) no-repeat center center;
+    background-size: 42px;
+}
+.flight-list .flight-item .status.arrive{
+    background: url(http://gtms03.alicdn.com/tps/i3/T1nJXjFGlcXXbebDjp-84-84.png) no-repeat center center;
+    background-size: 42px;
+}
+.flight-list .flight-item .status.cancel{
+    background: url(http://gtms01.alicdn.com/tps/i1/T18oUbFDNjXXbebDjp-84-84.png) no-repeat center center;
+    background-size: 42px;
+}
+.flight-list .flight-item .status.plan{
+    background: url(http://gtms03.alicdn.com/tps/i3/T1nJXjFGlcXXbebDjp-84-84.png) no-repeat center center;
+    background-size: 42px;
+}
+.flight-list .flight-item .status.return{
+    background: url(http://gtms03.alicdn.com/tps/i3/T1frBlFFtaXXbebDjp-84-84.png) no-repeat center center;
+    background-size: 42px;
+}
+.flight-list .flight-item .status .status-text{
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    font-size: 13px;
+    margin-left: -12px;
+    font-family: STHeitiSC-Light;
+}
+.flight-list .flight-item .status.takeoff .status-text{
+    color: #33cbaf;
+}
+.flight-list .flight-item .status.delay .status-text{
+    color: #ff6b5c;
+}
+.flight-list .flight-item .status.ready .status-text{
+    color: #907fce;
+}
+.flight-list .flight-item .status.arrive .status-text{
+    color: #4aa1e1;
+}
+.flight-list .flight-item .status.cancel .status-text{
+    color: #cdd4dc;
+}
+.flight-list .flight-item .status.plan .status-text {
+    color: #4aa1e1;
+}
+.flight-list .flight-item .status.return .status-text{
+    color: #907fce;
+}
+.flight-list .flight-item.click{
+    background-color: #e2e5e8;
+}
+
+/****** 航班列表 end ********/
+
+
+.olist-main-box {
+    position: relative;
+    padding-bottom: 20px;
+}
+.hidden {
+    display: none; }
+ .iscroll-tip {
+    clear: both;
+    width: 100%;
+    /*top:*/
+    /*height: 29px;
+    line-height: 31px;*/
+    font-size: 12px;
+    color: #93a4ae;
+    text-align: center;
+    /*span{
+        display: inline-block;
+    }*/ }
+.iscroll-tip em {
+    display: inline-block;
+    margin-bottom: -5px; }
+.iscroll-tip.iscroll-pull-down {
+    position: absolute;
+    top: -35px;
+    line-height: 22px; }
+.iscroll-tip.iscroll-pull-down em {
+    width: 18px;
+    height: 18px;
+    -webkit-transition: -webkit-transform 0.2s ease-in-out;
+    -moz-transition: -moz-transform 0.2s ease-in-out;
+    background: url(http://gtms01.alicdn.com/tps/i1/T1_vF_FwtbXXXCWhje-36-36.png) no-repeat left;
+    background-size: 18px; }
+.iscroll-tip.iscroll-pull-down.rotate em {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg); }
+.iscroll-tip.iscroll-loading {
+    margin: 12px 0px 12px; }
+.iscroll-tip.iscroll-loading em {
+    width: 25px;
+    height: 25px;
+    background: url(http://gtms01.alicdn.com/tps/i1/T1a901FzJdXXarDJrh-50-50.gif) no-repeat left;
+    background-size: 25px;
+    margin-right: 3px;
+    vertical-align: middle;
+    margin-top: -7px;
+}
+
+.common-error-status {
+    font-size: 14px;
+    text-align: center;
+    line-height: 1.5;
+    color: #7E919F;
+    padding: 185px 15px 0;
+    background: url("http://gtms01.alicdn.com/tps/i1/T1zd3xFh8dXXckL6Z0-130-130.png") no-repeat center 100px;
+    background-size: 65px 65px;
+}
+.iscroll-tip span{
+    height: 25px;
+    line-height: 25px;
+}

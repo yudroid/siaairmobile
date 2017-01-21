@@ -1,0 +1,13 @@
+{
+  "name": "libs",
+  "_release": "9580888475",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "95808884754febf0272c922af0c7b1fd99f73baf"
+  },
+  "_source": "http://gitlab.alibaba-inc.com/mpi/libs.git",
+  "_target": "*",
+  "_originalSource": "mpi/libs",
+  "_direct": true
+}

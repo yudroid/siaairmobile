@@ -113,9 +113,9 @@
         [topBgView addSubview:maxLabel];
         
         barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(viewX(passengerTtitle),
-                                                                viewBotton(maxLabel),
+                                                                viewBotton(lineImageView),
                                                                 viewWidth(topBgView)-viewX(passengerTtitle)-18,
-                                                                viewHeight(topBgView)-viewBotton(maxLabel))];
+                                                                viewHeight(topBgView)-viewBotton(lineImageView)-5)];
       
         barChart.showXLabel = YES;
         barChart.showYLabel = NO;
@@ -144,7 +144,8 @@
 
         UIImageView *thresholdImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, viewWidth(barChart), 1)];
 
-        thresholdImageView.center = CGPointMake(barChart.center.x,viewBotton(barChart)- [HomePageService sharedHomePageService].summaryModel.releaseRatioThreshold*100/barChart.yMaxValue*viewHeight(barChart)-3);
+        thresholdImageView.center = CGPointMake(barChart.center.x,
+                                                viewBotton(barChart)-25 - [HomePageService sharedHomePageService].summaryModel.releaseRatioThreshold*100/barChart.yMaxValue*(viewHeight(barChart)-30));
         thresholdImageView.image = [UIImage imageNamed:@"thresholdLine"];
 
         [topBgView addSubview:thresholdImageView];
@@ -156,9 +157,10 @@
         thresholdLabel.textAlignment = NSTextAlignmentRight;
         [topBgView addSubview:thresholdLabel];
 
-
-
-        UIImageView *downlineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(passengerTtitle), topBgView.frame.size.height-10-15, viewWidth(topBgView)-viewX(passengerTtitle)-18, 0.5)];
+        UIImageView *downlineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(passengerTtitle),
+                                                                                      viewBotton(barChart)-25,
+                                                                                      viewWidth(topBgView)-viewX(passengerTtitle)-18,
+                                                                                      0.5)];
         downlineImageView.image = [UIImage imageNamed:@"hiddenLine"];
         [topBgView addSubview:downlineImageView];
 
@@ -241,20 +243,12 @@
 -(void)loadData:(NSNotification *)notification
 {
     if ([notification.object isKindOfClass:[NSArray class]]) {
-
-        if (!tenDayArray || tenDayArray.count == 0 ) {
             tenDayArray     = notification.object;
             [barChart setXLabels:[self getXLabels]];
             [barChart setYValues:[self getYLabels]];
             [barChart strokeChart];
 
             [tenDayTableView reloadData];
-        }
-//        ratioNum.text   = [NSString stringWithFormat:@"%ld%%",(long)@([self sum]*100.0).integerValue];
-//        todayLabel.text = [NSString stringWithFormat:@"今日 %@",[CommonFunction dateFormat:nil format:@"MM月dd日"]];
-
-
-
     }
 
 

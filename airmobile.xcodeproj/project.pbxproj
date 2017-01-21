@@ -127,6 +127,21 @@
 		F70893FC1DD5952F00135540 /* ContactPersonTableViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F70893FB1DD5952F00135540 /* ContactPersonTableViewHeaderView.m */; };
 		F70893FE1DD5955200135540 /* ContactPersonTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F70893FD1DD5955200135540 /* ContactPersonTableViewHeaderView.xib */; };
 		F714CAF41E0BACD1008D9B83 /* PNMixLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = F714CAF31E0BACD1008D9B83 /* PNMixLineChart.m */; };
+		F723C2C11E30AEF20008D202 /* UIButton+PhotoChoose.m in Sources */ = {isa = PBXBuildFile; fileRef = F723C2C01E30AEF20008D202 /* UIButton+PhotoChoose.m */; };
+		F723C2C41E30B1570008D202 /* UIControl+SelfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F723C2C31E30B1570008D202 /* UIControl+SelfViewController.m */; };
+		F73DBB7E1E2DB7690085C000 /* CLWeeklyCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = F73DBB701E2DB7690085C000 /* CLWeeklyCalendarView.m */; };
+		F73DBB7F1E2DB7690085C000 /* DailyCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = F73DBB721E2DB7690085C000 /* DailyCalendarView.m */; };
+		F73DBB801E2DB7690085C000 /* DayTitleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F73DBB741E2DB7690085C000 /* DayTitleLabel.m */; };
+		F73DBB811E2DB7690085C000 /* NSDate+CL.m in Sources */ = {isa = PBXBuildFile; fileRef = F73DBB771E2DB7690085C000 /* NSDate+CL.m */; };
+		F73DBB821E2DB7690085C000 /* NSDictionary+CL.m in Sources */ = {isa = PBXBuildFile; fileRef = F73DBB791E2DB7690085C000 /* NSDictionary+CL.m */; };
+		F73DBB831E2DB7690085C000 /* UIColor+CL.m in Sources */ = {isa = PBXBuildFile; fileRef = F73DBB7B1E2DB7690085C000 /* UIColor+CL.m */; };
+		F73DBB841E2DB7690085C000 /* UIImage+CL.m in Sources */ = {isa = PBXBuildFile; fileRef = F73DBB7D1E2DB7690085C000 /* UIImage+CL.m */; };
+		F73DBB871E2DBE470085C000 /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = F73DBB861E2DBE470085C000 /* NSDate+Extension.m */; };
+		F73DBB8A1E2DC15F0085C000 /* NSArray+ObjectTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = F73DBB891E2DC15F0085C000 /* NSArray+ObjectTransform.m */; };
+		F73DBB8D1E2F08E80085C000 /* FlightSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F73DBB8C1E2F08E80085C000 /* FlightSearchViewController.m */; };
+		F73DBB901E2F09A90085C000 /* CityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F73DBB8F1E2F09A90085C000 /* CityViewController.m */; };
+		F73DBB991E2F0A360085C000 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F73DBB981E2F0A360085C000 /* CalendarViewController.m */; };
+		F73DBB9F1E2F474B0085C000 /* KyAirportService.m in Sources */ = {isa = PBXBuildFile; fileRef = F73DBB9E1E2F474B0085C000 /* KyAirportService.m */; };
 		F74289CF1E00DF7C00AC00D4 /* loadingPage@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F74289CE1E00DF7C00AC00D4 /* loadingPage@2x.jpg */; };
 		F74289D11E00DFCA00AC00D4 /* loadingPage@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F74289D01E00DFCA00AC00D4 /* loadingPage@3x.jpg */; };
 		F74289D41E00E7A200AC00D4 /* LinkPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = F74289D31E00E7A200AC00D4 /* LinkPageView.m */; };
@@ -147,6 +162,8 @@
 		F7428A041E04DAC900AC00D4 /* Airport.m in Sources */ = {isa = PBXBuildFile; fileRef = F7428A031E04DAC900AC00D4 /* Airport.m */; };
 		F7428A0B1E04DECE00AC00D4 /* DateUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F7428A0A1E04DECE00AC00D4 /* DateUtils.m */; };
 		F7428A0E1E05593700AC00D4 /* ResourceOverview.m in Sources */ = {isa = PBXBuildFile; fileRef = F7428A0D1E05593700AC00D4 /* ResourceOverview.m */; };
+		F74716B21E25C33600551515 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = F74716B11E25C33600551515 /* UINavigationController+FDFullscreenPopGesture.m */; };
+		F74716B71E25CCEB00551515 /* HasTabbarRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F74716B61E25CCEB00551515 /* HasTabbarRootViewController.m */; };
 		F747F9361DD2B3B90099E7AF /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F747F9351DD2B3B90099E7AF /* libsqlite3.0.tbd */; };
 		F74902931DC82B1F005B193D /* CommonAbnormalityReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902921DC82B1F005B193D /* CommonAbnormalityReportViewController.m */; };
 		F74902961DC82B42005B193D /* SpecialAbnormalityReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902951DC82B42005B193D /* SpecialAbnormalityReportViewController.m */; };
@@ -166,7 +183,6 @@
 		F758C9C01DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F758C9BE1DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.m */; };
 		F758C9C11DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F758C9BF1DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.xib */; };
 		F764BBFC1E07C91D00CE252F /* WeatherAirportController.m in Sources */ = {isa = PBXBuildFile; fileRef = F764BBFB1E07C91D00CE252F /* WeatherAirportController.m */; };
-		F7680B111E07CC4F000B8C0D /* UMESDKKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7680B101E07CC4F000B8C0D /* UMESDKKit.framework */; };
 		F7680B141E0A4917000B8C0D /* FlightDetailHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7680B131E0A4917000B8C0D /* FlightDetailHeaderFooterView.m */; };
 		F7680B161E0A4932000B8C0D /* FlightDetailHearderFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7680B151E0A4932000B8C0D /* FlightDetailHearderFooterView.xib */; };
 		F7680B191E0A6069000B8C0D /* VersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7680B181E0A6069000B8C0D /* VersionModel.m */; };
@@ -181,6 +197,8 @@
 		F77497081E0773EA00B5773C /* DAYIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = F77496F91E0773EA00B5773C /* DAYIndicatorView.m */; };
 		F77497091E0773EA00B5773C /* DAYNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F77496FB1E0773EA00B5773C /* DAYNavigationBar.m */; };
 		F774970A1E0773EA00B5773C /* DAYUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F77496FD1E0773EA00B5773C /* DAYUtils.m */; };
+		F779B9921E335E0D002E362D /* FlightConcernListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F779B9901E335E0D002E362D /* FlightConcernListViewController.m */; };
+		F779B9931E335E0D002E362D /* FlightConcernListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F779B9911E335E0D002E362D /* FlightConcernListViewController.xib */; };
 		F78B13B01DF47938000A6833 /* ModifyPwd.xib in Resources */ = {isa = PBXBuildFile; fileRef = F78B13AD1DF47937000A6833 /* ModifyPwd.xib */; };
 		F78B13B11DF47938000A6833 /* ModifyPwdView.m in Sources */ = {isa = PBXBuildFile; fileRef = F78B13AF1DF47938000A6833 /* ModifyPwdView.m */; };
 		F78B13B41DF47946000A6833 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = F78B13B31DF47946000A6833 /* UIImage+ImageEffects.m */; };
@@ -261,6 +279,12 @@
 		F7A2A0641DB8D0EE0023F228 /* PassengerContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A05D1DB8D0EE0023F228 /* PassengerContentView.m */; };
 		F7A2A0651DB8D0EE0023F228 /* ResourceContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A05F1DB8D0EE0023F228 /* ResourceContentView.m */; };
 		F7A2A0661DB8D0EE0023F228 /* TabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A0611DB8D0EE0023F228 /* TabBarView.m */; };
+		F7C6A0931E28658B00C12649 /* UMESDKBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F7C6A0921E28658B00C12649 /* UMESDKBundle.bundle */; };
+		F7C6A09D1E28C67E00C12649 /* UMESDKKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7C6A09C1E28C67E00C12649 /* UMESDKKit.framework */; };
+		F7C6A0A21E28C96F00C12649 /* FlightConcernViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C6A0A01E28C96F00C12649 /* FlightConcernViewController.m */; };
+		F7C6A0A31E28C96F00C12649 /* FlightConcernViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7C6A0A11E28C96F00C12649 /* FlightConcernViewController.xib */; };
+		F7C6A0A81E28D12100C12649 /* FlightConcernDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C6A0A61E28D12100C12649 /* FlightConcernDetailViewController.m */; };
+		F7C6A0A91E28D12100C12649 /* FlightConcernDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7C6A0A71E28D12100C12649 /* FlightConcernDetailViewController.xib */; };
 		F7D38D701DE3D1D4001110AF /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D38D6F1DE3D1D4001110AF /* LoadingView.m */; };
 		F7D38D721DE3D1E5001110AF /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7D38D711DE3D1E5001110AF /* LoadingView.xib */; };
 		F7D38D7F1DE6CE9A001110AF /* ImageViewCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D38D7D1DE6CE9A001110AF /* ImageViewCollectionViewCell.m */; };
@@ -518,6 +542,36 @@
 		F70893FD1DD5955200135540 /* ContactPersonTableViewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactPersonTableViewHeaderView.xib; sourceTree = "<group>"; };
 		F714CAF21E0BACD1008D9B83 /* PNMixLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNMixLineChart.h; sourceTree = "<group>"; };
 		F714CAF31E0BACD1008D9B83 /* PNMixLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNMixLineChart.m; sourceTree = "<group>"; };
+		F723C2BF1E30AEF20008D202 /* UIButton+PhotoChoose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+PhotoChoose.h"; sourceTree = "<group>"; };
+		F723C2C01E30AEF20008D202 /* UIButton+PhotoChoose.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+PhotoChoose.m"; sourceTree = "<group>"; };
+		F723C2C21E30B1570008D202 /* UIControl+SelfViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+SelfViewController.h"; sourceTree = "<group>"; };
+		F723C2C31E30B1570008D202 /* UIControl+SelfViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+SelfViewController.m"; sourceTree = "<group>"; };
+		F73DBB6F1E2DB7690085C000 /* CLWeeklyCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLWeeklyCalendarView.h; sourceTree = "<group>"; };
+		F73DBB701E2DB7690085C000 /* CLWeeklyCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLWeeklyCalendarView.m; sourceTree = "<group>"; };
+		F73DBB711E2DB7690085C000 /* DailyCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyCalendarView.h; sourceTree = "<group>"; };
+		F73DBB721E2DB7690085C000 /* DailyCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DailyCalendarView.m; sourceTree = "<group>"; };
+		F73DBB731E2DB7690085C000 /* DayTitleLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayTitleLabel.h; sourceTree = "<group>"; };
+		F73DBB741E2DB7690085C000 /* DayTitleLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayTitleLabel.m; sourceTree = "<group>"; };
+		F73DBB761E2DB7690085C000 /* NSDate+CL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+CL.h"; sourceTree = "<group>"; };
+		F73DBB771E2DB7690085C000 /* NSDate+CL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+CL.m"; sourceTree = "<group>"; };
+		F73DBB781E2DB7690085C000 /* NSDictionary+CL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+CL.h"; sourceTree = "<group>"; };
+		F73DBB791E2DB7690085C000 /* NSDictionary+CL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+CL.m"; sourceTree = "<group>"; };
+		F73DBB7A1E2DB7690085C000 /* UIColor+CL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CL.h"; sourceTree = "<group>"; };
+		F73DBB7B1E2DB7690085C000 /* UIColor+CL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CL.m"; sourceTree = "<group>"; };
+		F73DBB7C1E2DB7690085C000 /* UIImage+CL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CL.h"; sourceTree = "<group>"; };
+		F73DBB7D1E2DB7690085C000 /* UIImage+CL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CL.m"; sourceTree = "<group>"; };
+		F73DBB851E2DBE470085C000 /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
+		F73DBB861E2DBE470085C000 /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
+		F73DBB881E2DC15F0085C000 /* NSArray+ObjectTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+ObjectTransform.h"; sourceTree = "<group>"; };
+		F73DBB891E2DC15F0085C000 /* NSArray+ObjectTransform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+ObjectTransform.m"; sourceTree = "<group>"; };
+		F73DBB8B1E2F08E80085C000 /* FlightSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightSearchViewController.h; sourceTree = "<group>"; };
+		F73DBB8C1E2F08E80085C000 /* FlightSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightSearchViewController.m; sourceTree = "<group>"; };
+		F73DBB8E1E2F09A90085C000 /* CityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityViewController.h; sourceTree = "<group>"; };
+		F73DBB8F1E2F09A90085C000 /* CityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityViewController.m; sourceTree = "<group>"; };
+		F73DBB971E2F0A360085C000 /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
+		F73DBB981E2F0A360085C000 /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
+		F73DBB9D1E2F474B0085C000 /* KyAirportService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KyAirportService.h; sourceTree = "<group>"; };
+		F73DBB9E1E2F474B0085C000 /* KyAirportService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KyAirportService.m; sourceTree = "<group>"; };
 		F74289CE1E00DF7C00AC00D4 /* loadingPage@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "loadingPage@2x.jpg"; sourceTree = "<group>"; };
 		F74289D01E00DFCA00AC00D4 /* loadingPage@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "loadingPage@3x.jpg"; sourceTree = "<group>"; };
 		F74289D21E00E7A200AC00D4 /* LinkPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkPageView.h; sourceTree = "<group>"; };
@@ -556,6 +610,10 @@
 		F7428A0A1E04DECE00AC00D4 /* DateUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtils.m; sourceTree = "<group>"; };
 		F7428A0C1E05593700AC00D4 /* ResourceOverview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResourceOverview.h; path = ../../ResourceOverview.h; sourceTree = "<group>"; };
 		F7428A0D1E05593700AC00D4 /* ResourceOverview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResourceOverview.m; path = ../../ResourceOverview.m; sourceTree = "<group>"; };
+		F74716B01E25C33600551515 /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+FDFullscreenPopGesture.h"; sourceTree = "<group>"; };
+		F74716B11E25C33600551515 /* UINavigationController+FDFullscreenPopGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+FDFullscreenPopGesture.m"; sourceTree = "<group>"; };
+		F74716B51E25CCEB00551515 /* HasTabbarRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HasTabbarRootViewController.h; sourceTree = "<group>"; };
+		F74716B61E25CCEB00551515 /* HasTabbarRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HasTabbarRootViewController.m; sourceTree = "<group>"; };
 		F747F9351DD2B3B90099E7AF /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		F74902911DC82B1F005B193D /* CommonAbnormalityReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonAbnormalityReportViewController.h; sourceTree = "<group>"; };
 		F74902921DC82B1F005B193D /* CommonAbnormalityReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = CommonAbnormalityReportViewController.m; sourceTree = "<group>"; };
@@ -586,7 +644,6 @@
 		F758C9BF1DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AbnormalityReportHistoryTableViewCell.xib; sourceTree = "<group>"; };
 		F764BBFA1E07C91D00CE252F /* WeatherAirportController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherAirportController.h; sourceTree = "<group>"; };
 		F764BBFB1E07C91D00CE252F /* WeatherAirportController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherAirportController.m; sourceTree = "<group>"; };
-		F7680B101E07CC4F000B8C0D /* UMESDKKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMESDKKit.framework; sourceTree = "<group>"; };
 		F7680B121E0A4917000B8C0D /* FlightDetailHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightDetailHeaderFooterView.h; sourceTree = "<group>"; };
 		F7680B131E0A4917000B8C0D /* FlightDetailHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightDetailHeaderFooterView.m; sourceTree = "<group>"; };
 		F7680B151E0A4932000B8C0D /* FlightDetailHearderFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightDetailHearderFooterView.xib; sourceTree = "<group>"; };
@@ -609,6 +666,9 @@
 		F77496FB1E0773EA00B5773C /* DAYNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAYNavigationBar.m; sourceTree = "<group>"; };
 		F77496FC1E0773EA00B5773C /* DAYUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAYUtils.h; sourceTree = "<group>"; };
 		F77496FD1E0773EA00B5773C /* DAYUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAYUtils.m; sourceTree = "<group>"; };
+		F779B98F1E335E0D002E362D /* FlightConcernListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightConcernListViewController.h; sourceTree = "<group>"; };
+		F779B9901E335E0D002E362D /* FlightConcernListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightConcernListViewController.m; sourceTree = "<group>"; };
+		F779B9911E335E0D002E362D /* FlightConcernListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightConcernListViewController.xib; sourceTree = "<group>"; };
 		F78B13AD1DF47937000A6833 /* ModifyPwd.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ModifyPwd.xib; sourceTree = "<group>"; };
 		F78B13AE1DF47937000A6833 /* ModifyPwdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyPwdView.h; sourceTree = "<group>"; };
 		F78B13AF1DF47938000A6833 /* ModifyPwdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyPwdView.m; sourceTree = "<group>"; };
@@ -744,6 +804,14 @@
 		F7A2A05F1DB8D0EE0023F228 /* ResourceContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceContentView.m; sourceTree = "<group>"; };
 		F7A2A0601DB8D0EE0023F228 /* TabBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarView.h; sourceTree = "<group>"; };
 		F7A2A0611DB8D0EE0023F228 /* TabBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarView.m; sourceTree = "<group>"; };
+		F7C6A0921E28658B00C12649 /* UMESDKBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UMESDKBundle.bundle; sourceTree = "<group>"; };
+		F7C6A09C1E28C67E00C12649 /* UMESDKKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMESDKKit.framework; sourceTree = "<group>"; };
+		F7C6A09F1E28C96F00C12649 /* FlightConcernViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightConcernViewController.h; sourceTree = "<group>"; };
+		F7C6A0A01E28C96F00C12649 /* FlightConcernViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightConcernViewController.m; sourceTree = "<group>"; };
+		F7C6A0A11E28C96F00C12649 /* FlightConcernViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightConcernViewController.xib; sourceTree = "<group>"; };
+		F7C6A0A51E28D12100C12649 /* FlightConcernDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightConcernDetailViewController.h; sourceTree = "<group>"; };
+		F7C6A0A61E28D12100C12649 /* FlightConcernDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightConcernDetailViewController.m; sourceTree = "<group>"; };
+		F7C6A0A71E28D12100C12649 /* FlightConcernDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightConcernDetailViewController.xib; sourceTree = "<group>"; };
 		F7D38D6E1DE3D1D4001110AF /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
 		F7D38D6F1DE3D1D4001110AF /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
 		F7D38D711DE3D1E5001110AF /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
@@ -800,7 +868,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7680B111E07CC4F000B8C0D /* UMESDKKit.framework in Frameworks */,
+				F7C6A09D1E28C67E00C12649 /* UMESDKKit.framework in Frameworks */,
 				F747F9361DD2B3B90099E7AF /* libsqlite3.0.tbd in Frameworks */,
 				6D859A9CB7F46A46E3C321A4 /* libPods-airmobile.a in Frameworks */,
 			);
@@ -841,7 +909,8 @@
 		414AFCB9EEEABA248FA28392 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F7680B101E07CC4F000B8C0D /* UMESDKKit.framework */,
+				F7C6A09C1E28C67E00C12649 /* UMESDKKit.framework */,
+				F7C6A0921E28658B00C12649 /* UMESDKBundle.bundle */,
 				F747F9351DD2B3B90099E7AF /* libsqlite3.0.tbd */,
 				B40A6E3BB15FEF8D72885961 /* libPods-airmobile.a */,
 				C8CF004928F1770818C25801 /* libPods-airmobileTests.a */,
@@ -1019,8 +1088,7 @@
 				F758C9BA1DC4374B00556120 /* 消息 */,
 				F758C9B91DC4374800556120 /* 功能 */,
 				F758C9B51DC4373F00556120 /* 我的 */,
-				F7A2A04D1DB8D0590023F228 /* RootViewController.h */,
-				F7A2A04E1DB8D0590023F228 /* RootViewController.m */,
+				F74716B31E25CC9D00551515 /* 根视图 */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -1028,12 +1096,22 @@
 		846F1D8C1DA89E3500C8920B /* categories */ = {
 			isa = PBXGroup;
 			children = (
+				F74716B01E25C33600551515 /* UINavigationController+FDFullscreenPopGesture.h */,
+				F74716B11E25C33600551515 /* UINavigationController+FDFullscreenPopGesture.m */,
 				F79251391DB5CBDA006AA119 /* UIViewController+Reminder.h */,
 				F792513A1DB5CBE3006AA119 /* UIViewController+Reminder.m */,
 				843F4CF61DACCA6D00D73D56 /* HttpsUtils+Business.h */,
 				843F4CF71DACCA6D00D73D56 /* HttpsUtils+Business.m */,
 				84ADE6D61DCC8E8700F58A46 /* PersistenceUtils+Business.h */,
 				84ADE6D71DCC8E8700F58A46 /* PersistenceUtils+Business.m */,
+				F73DBB851E2DBE470085C000 /* NSDate+Extension.h */,
+				F73DBB861E2DBE470085C000 /* NSDate+Extension.m */,
+				F73DBB881E2DC15F0085C000 /* NSArray+ObjectTransform.h */,
+				F73DBB891E2DC15F0085C000 /* NSArray+ObjectTransform.m */,
+				F723C2C21E30B1570008D202 /* UIControl+SelfViewController.h */,
+				F723C2C31E30B1570008D202 /* UIControl+SelfViewController.m */,
+				F723C2BF1E30AEF20008D202 /* UIButton+PhotoChoose.h */,
+				F723C2C01E30AEF20008D202 /* UIButton+PhotoChoose.m */,
 			);
 			name = categories;
 			sourceTree = "<group>";
@@ -1138,6 +1216,8 @@
 				84919D781DC9FDFA00C6F5DE /* BaseService.m */,
 				F74289EC1E04D77800AC00D4 /* FunctionService.h */,
 				F74289ED1E04D77800AC00D4 /* FunctionService.m */,
+				F73DBB9D1E2F474B0085C000 /* KyAirportService.h */,
+				F73DBB9E1E2F474B0085C000 /* KyAirportService.m */,
 			);
 			name = service;
 			sourceTree = "<group>";
@@ -1239,10 +1319,10 @@
 		F71082501E1E13EF00EB0EDD /* 航班小时分布 */ = {
 			isa = PBXGroup;
 			children = (
-				84183A321DBF8F2B00D7DD86 /* FlightHourTableViewCell.h */,
-				84183A331DBF8F2B00D7DD86 /* FlightHourTableViewCell.m */,
 				840D15C51DC0557F005FA910 /* FlightHourView.h */,
 				840D15C61DC0557F005FA910 /* FlightHourView.m */,
+				84183A321DBF8F2B00D7DD86 /* FlightHourTableViewCell.h */,
+				84183A331DBF8F2B00D7DD86 /* FlightHourTableViewCell.m */,
 			);
 			name = "航班小时分布";
 			sourceTree = "<group>";
@@ -1562,6 +1642,35 @@
 			name = "生产指标";
 			sourceTree = "<group>";
 		};
+		F73DBB6E1E2DB7690085C000 /* CLWeeklyCalendarViewSourceCode */ = {
+			isa = PBXGroup;
+			children = (
+				F73DBB6F1E2DB7690085C000 /* CLWeeklyCalendarView.h */,
+				F73DBB701E2DB7690085C000 /* CLWeeklyCalendarView.m */,
+				F73DBB711E2DB7690085C000 /* DailyCalendarView.h */,
+				F73DBB721E2DB7690085C000 /* DailyCalendarView.m */,
+				F73DBB731E2DB7690085C000 /* DayTitleLabel.h */,
+				F73DBB741E2DB7690085C000 /* DayTitleLabel.m */,
+				F73DBB751E2DB7690085C000 /* Misc */,
+			);
+			path = CLWeeklyCalendarViewSourceCode;
+			sourceTree = "<group>";
+		};
+		F73DBB751E2DB7690085C000 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				F73DBB761E2DB7690085C000 /* NSDate+CL.h */,
+				F73DBB771E2DB7690085C000 /* NSDate+CL.m */,
+				F73DBB781E2DB7690085C000 /* NSDictionary+CL.h */,
+				F73DBB791E2DB7690085C000 /* NSDictionary+CL.m */,
+				F73DBB7A1E2DB7690085C000 /* UIColor+CL.h */,
+				F73DBB7B1E2DB7690085C000 /* UIColor+CL.m */,
+				F73DBB7C1E2DB7690085C000 /* UIImage+CL.h */,
+				F73DBB7D1E2DB7690085C000 /* UIImage+CL.m */,
+			);
+			path = Misc;
+			sourceTree = "<group>";
+		};
 		F74289DC1E04D4BD00AC00D4 /* 生产指标 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1607,6 +1716,25 @@
 			name = Persistence;
 			sourceTree = "<group>";
 		};
+		F74716B31E25CC9D00551515 /* 根视图 */ = {
+			isa = PBXGroup;
+			children = (
+				F7A2A04D1DB8D0590023F228 /* RootViewController.h */,
+				F7A2A04E1DB8D0590023F228 /* RootViewController.m */,
+				F74716B41E25CCAE00551515 /* 带有tab的根视图 */,
+			);
+			name = "根视图";
+			sourceTree = "<group>";
+		};
+		F74716B41E25CCAE00551515 /* 带有tab的根视图 */ = {
+			isa = PBXGroup;
+			children = (
+				F74716B51E25CCEB00551515 /* HasTabbarRootViewController.h */,
+				F74716B61E25CCEB00551515 /* HasTabbarRootViewController.m */,
+			);
+			name = "带有tab的根视图";
+			sourceTree = "<group>";
+		};
 		F758C9B51DC4373F00556120 /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1624,6 +1752,7 @@
 			children = (
 				F7A2A0451DB8D0590023F228 /* FunctionViewController.h */,
 				F7A2A0461DB8D0590023F228 /* FunctionViewController.m */,
+				F7C6A09E1E28C80D00C12649 /* 航班关注 */,
 				F71082701E1F2EAB00EB0EDD /* 通讯录 */,
 				F710826F1E1F2E9B00EB0EDD /* 值班表 */,
 				F710826E1E1F2E6A00EB0EDD /* 当日值班表 */,
@@ -1782,6 +1911,7 @@
 		F7A25D561DBE274D00F36C32 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				F73DBB6E1E2DB7690085C000 /* CLWeeklyCalendarViewSourceCode */,
 				F77496E71E0773EA00B5773C /* Daysquare */,
 				F7A25D571DBE277500F36C32 /* SJPhotoPicker */,
 			);
@@ -2009,6 +2139,36 @@
 			name = "放行正常率";
 			sourceTree = "<group>";
 		};
+		F7C6A09E1E28C80D00C12649 /* 航班关注 */ = {
+			isa = PBXGroup;
+			children = (
+				F7C6A09F1E28C96F00C12649 /* FlightConcernViewController.h */,
+				F7C6A0A01E28C96F00C12649 /* FlightConcernViewController.m */,
+				F7C6A0A11E28C96F00C12649 /* FlightConcernViewController.xib */,
+				F7C6A0A41E28D0E100C12649 /* 航班查询 */,
+			);
+			name = "航班关注";
+			sourceTree = "<group>";
+		};
+		F7C6A0A41E28D0E100C12649 /* 航班查询 */ = {
+			isa = PBXGroup;
+			children = (
+				F73DBB8B1E2F08E80085C000 /* FlightSearchViewController.h */,
+				F73DBB8C1E2F08E80085C000 /* FlightSearchViewController.m */,
+				F73DBB971E2F0A360085C000 /* CalendarViewController.h */,
+				F73DBB981E2F0A360085C000 /* CalendarViewController.m */,
+				F73DBB8E1E2F09A90085C000 /* CityViewController.h */,
+				F73DBB8F1E2F09A90085C000 /* CityViewController.m */,
+				F779B98F1E335E0D002E362D /* FlightConcernListViewController.h */,
+				F779B9901E335E0D002E362D /* FlightConcernListViewController.m */,
+				F779B9911E335E0D002E362D /* FlightConcernListViewController.xib */,
+				F7C6A0A51E28D12100C12649 /* FlightConcernDetailViewController.h */,
+				F7C6A0A61E28D12100C12649 /* FlightConcernDetailViewController.m */,
+				F7C6A0A71E28D12100C12649 /* FlightConcernDetailViewController.xib */,
+			);
+			name = "航班查询";
+			sourceTree = "<group>";
+		};
 		F7D38D6D1DE3D1B5001110AF /* LoadingView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2212,6 +2372,7 @@
 				8450555C1DACF65200400EBF /* login_btn@3x.png in Resources */,
 				F70893E21DD2EC1B00135540 /* FlightDelaysViewController.xib in Resources */,
 				8450556C1DACF65200400EBF /* splash@2x.png in Resources */,
+				F779B9931E335E0D002E362D /* FlightConcernListViewController.xib in Resources */,
 				F7EEEC5F1E00396C000D3056 /* TodayDutyViewController.xib in Resources */,
 				F792515A1DB61D9C006AA119 /* ContactPersonTableViewCell.xib in Resources */,
 				F77497041E0773EA00B5773C /* prev@2x.png in Resources */,
@@ -2220,6 +2381,7 @@
 				F7EEEF221DB3A580004AF0AE /* FlightDetailTableViewCell.xib in Resources */,
 				F7D38D801DE6CE9A001110AF /* ImageViewCollectionViewCell.xib in Resources */,
 				F78B13B91DF47B4C000A6833 /* MessageFilterViewController.xib in Resources */,
+				F7C6A0931E28658B00C12649 /* UMESDKBundle.bundle in Resources */,
 				845055B31DAE3F1A00400EBF /* home_title_bg@2x.png in Resources */,
 				846F1DC31DAA2E3B00C8920B /* launchScreen@3x.png in Resources */,
 				F77497001E0773EA00B5773C /* next.png in Resources */,
@@ -2236,6 +2398,7 @@
 				84BA54EA1DA256940037198F /* Main.storyboard in Resources */,
 				F7A25D931DBEF34800F36C32 /* OptionsViewController.xib in Resources */,
 				845055731DACF65200400EBF /* splash_3@3x.png in Resources */,
+				F7C6A0A31E28C96F00C12649 /* FlightConcernViewController.xib in Resources */,
 				F78B13C51DF51056000A6833 /* MessageFilterTableViewCell.xib in Resources */,
 				8450555D1DACF65200400EBF /* login_btn_pre@2x.png in Resources */,
 				845055591DACF65200400EBF /* login_bg@2x.png in Resources */,
@@ -2280,6 +2443,7 @@
 				F7A25D151DBA106300F36C32 /* UploadPhotoViewController.xib in Resources */,
 				F79251691DB63BB7006AA119 /* ChatRightTableViewCell.xib in Resources */,
 				F79251641DB63A10006AA119 /* ChatLeftTableViewCell.xib in Resources */,
+				F7C6A0A91E28D12100C12649 /* FlightConcernDetailViewController.xib in Resources */,
 				8450555E1DACF65200400EBF /* login_btn_pre@3x.png in Resources */,
 				F74289D11E00DFCA00AC00D4 /* loadingPage@3x.jpg in Resources */,
 				F7EAE1A31DB4BCC60060626F /* FlightDetailSafeguardTableViewCell.xib in Resources */,
@@ -2446,9 +2610,11 @@
 				840A4D141DD99EB900C39A79 /* SeatStatusModel.m in Sources */,
 				843F4CF81DACCA6D00D73D56 /* HttpsUtils+Business.m in Sources */,
 				F7A25D831DBE277500F36C32 /* SJAlbumModel.m in Sources */,
+				F73DBB831E2DB7690085C000 /* UIColor+CL.m in Sources */,
 				F792516D1DB63D62006AA119 /* ChatTimeTableViewCell.m in Sources */,
 				F78B13BE1DF481DA000A6833 /* MessageFilterView.m in Sources */,
 				846F1D951DA8F8F700C8920B /* DeviceInfoUtil.m in Sources */,
+				F73DBB811E2DB7690085C000 /* NSDate+CL.m in Sources */,
 				F79251971DB85D78006AA119 /* AddressBookTableViewCell.m in Sources */,
 				840D15DD1DC1D6E0005FA910 /* PsnHourTableViewCell.m in Sources */,
 				F758C9921DC362E700556120 /* PassengerTopModel.m in Sources */,
@@ -2458,6 +2624,7 @@
 				F79251591DB61D9C006AA119 /* ContactPersonTableViewCell.m in Sources */,
 				840D15E31DC20C4F005FA910 /* PsnSafetyAreaView.m in Sources */,
 				840D15E61DC2E99A005FA910 /* PassengerAreaModel.m in Sources */,
+				F73DBB7F1E2DB7690085C000 /* DailyCalendarView.m in Sources */,
 				F7A25D811DBE277500F36C32 /* SJPreviewPhotoController.m in Sources */,
 				F74902A81DC867F0005B193D /* FlightStusModel.m in Sources */,
 				F7A25D891DBE277500F36C32 /* SJPhotoAlbumCell.m in Sources */,
@@ -2475,9 +2642,12 @@
 				84ADE6D51DCC7B9300F58A46 /* PersistenceUtils.m in Sources */,
 				84183A1C1DBDDE4F00D7DD86 /* PassengerHourViewController.m in Sources */,
 				F74289E31E04D4FD00AC00D4 /* MonthlyTargetView.m in Sources */,
+				F74716B71E25CCEB00551515 /* HasTabbarRootViewController.m in Sources */,
 				F7D38D701DE3D1D4001110AF /* LoadingView.m in Sources */,
 				843F4CF51DACC70F00D73D56 /* HttpsUtils.m in Sources */,
 				8471FBCE1E056F6F0037F9F5 /* SingleMessageViewController.m in Sources */,
+				F723C2C41E30B1570008D202 /* UIControl+SelfViewController.m in Sources */,
+				F73DBB7E1E2DB7690085C000 /* CLWeeklyCalendarView.m in Sources */,
 				840D15D71DC0C478005FA910 /* RegionDlyTimeModel.m in Sources */,
 				F74289EE1E04D77800AC00D4 /* FunctionService.m in Sources */,
 				84183A181DBDDDDE00D7DD86 /* FlightAbnViewController.m in Sources */,
@@ -2485,8 +2655,11 @@
 				84919D791DC9FDFA00C6F5DE /* BaseService.m in Sources */,
 				F7A25D8E1DBE277500F36C32 /* SJPreviewPhotoCell.m in Sources */,
 				84ADE6DB1DCC9A3000F58A46 /* MessageModel.m in Sources */,
+				F73DBB821E2DB7690085C000 /* NSDictionary+CL.m in Sources */,
 				F792514F1DB60BD0006AA119 /* MessageTableViewCell.m in Sources */,
 				846F1DAE1DAA229600C8920B /* DefaultHelper.m in Sources */,
+				F73DBB9F1E2F474B0085C000 /* KyAirportService.m in Sources */,
+				F74716B21E25C33600551515 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				841839EF1DBCB87600D7DD86 /* PNGenericChart.m in Sources */,
 				F70893FC1DD5952F00135540 /* ContactPersonTableViewHeaderView.m in Sources */,
 				840D15C11DC044DA005FA910 /* ArrDepFlightHourViewController.m in Sources */,
@@ -2502,6 +2675,7 @@
 				F7A25D8C1DBE277500F36C32 /* SJPhotoPickerToolBar.m in Sources */,
 				F7A25D0B1DB9E71A00F36C32 /* RoundProgressView.m in Sources */,
 				841839F81DBCC10200D7DD86 /* PNLineChart.m in Sources */,
+				F779B9921E335E0D002E362D /* FlightConcernListViewController.m in Sources */,
 				F7EEEF1C1DB396E0004AF0AE /* FlightDetailViewController.m in Sources */,
 				F7EAE1961DB4776C0060626F /* AbnormalityReportViewController.m in Sources */,
 				F7D38D7F1DE6CE9A001110AF /* ImageViewCollectionViewCell.m in Sources */,
@@ -2515,6 +2689,8 @@
 				F7EEEF211DB3A580004AF0AE /* FlightDetailTableViewCell.m in Sources */,
 				84183A001DBCC17A00D7DD86 /* PNChartLabel.m in Sources */,
 				F7A2A0621DB8D0EE0023F228 /* FlightContentView.m in Sources */,
+				F73DBB871E2DBE470085C000 /* NSDate+Extension.m in Sources */,
+				F73DBB901E2F09A90085C000 /* CityViewController.m in Sources */,
 				F74902931DC82B1F005B193D /* CommonAbnormalityReportViewController.m in Sources */,
 				F7EE87861DB371CA006473F5 /* FlightFilterTableViewCell.m in Sources */,
 				F79251801DB74576006AA119 /* UserManagermentTableViewCell.m in Sources */,
@@ -2535,6 +2711,7 @@
 				840A4D111DD85DE200C39A79 /* PassengerModel.m in Sources */,
 				F7680B191E0A6069000B8C0D /* VersionModel.m in Sources */,
 				84183A091DBDDBD600D7DD86 /* FlightHourViewController.m in Sources */,
+				F73DBB8D1E2F08E80085C000 /* FlightSearchViewController.m in Sources */,
 				F78B13B81DF47B4C000A6833 /* MessageFilterViewController.m in Sources */,
 				F70893EB1DD2F66700135540 /* FlightDelaysTableViewCell.m in Sources */,
 				F79251371DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.m in Sources */,
@@ -2550,6 +2727,7 @@
 				F78B13B41DF47946000A6833 /* UIImage+ImageEffects.m in Sources */,
 				F7428A0B1E04DECE00AC00D4 /* DateUtils.m in Sources */,
 				F7A2A0541DB8D0590023F228 /* LoginViewController.m in Sources */,
+				F723C2C11E30AEF20008D202 /* UIButton+PhotoChoose.m in Sources */,
 				F758C9C01DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.m in Sources */,
 				84183A061DBDB6DF00D7DD86 /* PNBarChart.m in Sources */,
 				F79251761DB73E2C006AA119 /* UserInfoTableViewCell.m in Sources */,
@@ -2561,6 +2739,7 @@
 				F79251881DB781AB006AA119 /* NightShiftRoomViewController.m in Sources */,
 				841839F11DBCB87600D7DD86 /* PNPieChartDataItem.m in Sources */,
 				F774970A1E0773EA00B5773C /* DAYUtils.m in Sources */,
+				F73DBB801E2DB7690085C000 /* DayTitleLabel.m in Sources */,
 				84183A311DBF8E6700D7DD86 /* FlightHourModel.m in Sources */,
 				F78B13C41DF51056000A6833 /* MessageFilterTableViewCell.m in Sources */,
 				F7F057171DF9730C006BCD67 /* SpecialModel.m in Sources */,
@@ -2584,11 +2763,15 @@
 				F77497081E0773EA00B5773C /* DAYIndicatorView.m in Sources */,
 				84BA54ED1DA256940037198F /* airmobile.xcdatamodeld in Sources */,
 				F7428A011E04DA9200AC00D4 /* GlobalHelper.m in Sources */,
+				F73DBB991E2F0A360085C000 /* CalendarViewController.m in Sources */,
 				F7A25D021DB9E6C000F36C32 /* PsnGeneralContentView.m in Sources */,
 				F7D47FE41DFA8D580050B293 /* BasisInfoEventModel.m in Sources */,
 				F79251541DB610D6006AA119 /* FixedMessageTableViewCell.m in Sources */,
+				F73DBB8A1E2DC15F0085C000 /* NSArray+ObjectTransform.m in Sources */,
 				F7A2A0521DB8D0590023F228 /* FunctionViewController.m in Sources */,
+				F73DBB841E2DB7690085C000 /* UIImage+CL.m in Sources */,
 				F792517B1DB7431D006AA119 /* UserManagementViewController.m in Sources */,
+				F7C6A0A21E28C96F00C12649 /* FlightConcernViewController.m in Sources */,
 				F74289F11E04D7AD00AC00D4 /* ProductionKpi.m in Sources */,
 				F7A25D821DBE277500F36C32 /* SJPhotoPickerManager.m in Sources */,
 				84BA54E11DA256940037198F /* main.m in Sources */,
@@ -2613,6 +2796,7 @@
 				841839F91DBCC10200D7DD86 /* PNLineChartData.m in Sources */,
 				F7680B141E0A4917000B8C0D /* FlightDetailHeaderFooterView.m in Sources */,
 				84183A2B1DBF5DE900D7DD86 /* ReleasedRatioModel.m in Sources */,
+				F7C6A0A81E28D12100C12649 /* FlightConcernDetailViewController.m in Sources */,
 				845E643E1DAB980C0072360D /* CommonFunction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,7 +10,6 @@
 #import "RootViewController.h"
 
 @interface WeatherAirportController : RootViewController
-
 /**
  *  功能id
  information:机场信息

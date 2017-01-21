@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>UserInfoInput_NextButton_BackgroundColor</key>
+	<string>ff5b45</string>
+	<key>UserInfoInput_NextButton_TitleColor</key>
+	<string>ffffff</string>
+	<key>UserInfoInput_CodeButton_TitleColor</key>
+	<string>ffffff</string>
+	<key>UserInfoInput_CodeButton_BackgroundColor</key>
+	<string>ff5b45</string>
+	<key>CheckInButton_BackgroundColor</key>
+	<string>ff5b45</string>
+	<key>FfpButton_BackgroundColor</key>
+	<string>ff5b45</string>
+	<key>CheckinButton_TitleColor</key>
+	<string>ffffff</string>
+	<key>FfpButton_TitleColor</key>
+	<string>ffffff</string>
+</dict>
+</plist>

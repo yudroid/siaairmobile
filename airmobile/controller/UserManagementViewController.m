@@ -53,7 +53,6 @@ static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TA
     
     _tableviewArray = @[@"修改密码"];
     [_tableView registerNib:[UINib nibWithNibName:@"UserManagermentTableViewCell" bundle:nil] forCellReuseIdentifier:(NSString *)USERMANAGEMENT_TABLECELL_IDENTIFIER];
-    // Do any additional setup after loading the view from its nib.
 
     AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [_headImageView setIconURL:[HttpsUtils imageDownloadURLWithString:appdelegate.userInfoModel.imagePath]];
@@ -155,10 +154,7 @@ static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TA
         [modifyPwdView createBlurBackgroundWithImage:[self jt_imageWithView:self.view] tintColor:[[UIColor blackColor] colorWithAlphaComponent:0.35] blurRadius:60.0];
         modifyPwdView.delegate = self;
         [self.view addSubview:modifyPwdView];
-
-
     }
-
 }
 #pragma mark - UIAlertViewDelegate
 #if __IPHONE_OS_VERSION_MAX_ALLOWED <= __IPHONE_8_3
@@ -207,7 +203,6 @@ static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TA
         BOOL result = [UIImagePNGRepresentation(image)writeToFile: filePath atomically:YES];
 
         if (result) {
-
             [HttpsUtils headImageUploadSuccess:^(NSData *response) {
                 [self showAnimationTitle:@"上传成功"];
                  NSString *imageName = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
@@ -223,13 +218,10 @@ static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TA
             } failure:^(id error) {
                 [self stopNetWorking];
                 [self showAnimationTitle:@"上传失败"];
-
-
             }];
         }else{
             [self stopNetWorking];
             [self showAnimationTitle:@"上传失败"];
-
         }
     }];
 }
@@ -241,13 +233,11 @@ static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TA
 
 
 - (UIImage *)jt_imageWithView:(UIView *)view {
-
     CGFloat scale = [[UIScreen mainScreen] scale];
     UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, scale);
     [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:true];
     UIImage * image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-
     return image;
 }
 
@@ -279,15 +269,5 @@ static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TA
                       [self showAnimationTitle:@"修改失败"];
                   }];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

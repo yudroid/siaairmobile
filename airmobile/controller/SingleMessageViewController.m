@@ -41,6 +41,7 @@ static const NSString *SINGLE_FLGHTDELAYS_TABLECELL_IDENTIFIER = @"SINGLE_FLGHTD
                                                               kScreenHeight-64-48)];
     _tableView.delegate = self;
     _tableView.dataSource =self;
+    _tableView.tableFooterView = [[UIView alloc]init];
     //添加下拉刷新
     _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self
                                                             refreshingAction:@selector(updateNetwork)];
@@ -76,59 +77,7 @@ static const NSString *SINGLE_FLGHTDELAYS_TABLECELL_IDENTIFIER = @"SINGLE_FLGHTD
     [self titleViewAddTitleText:@"消息"];
 }
 
-#pragma mark - 切换底部主功能页面
--(void)selectWithType:(TabBarSelectedType)type
-{
-    switch (type) {
-        case TabBarSelectedTypeHomePage:
-        {
-            HomePageViewController *homepage = [[HomePageViewController alloc] init];
-            [self.navigationController pushViewController:homepage animated:NO];
-            break;
-        }
-        case TabBarSelectedTypeFlight:
-        {
-            FlightViewController *flightpage = [[FlightViewController alloc] init];
-            [self.navigationController pushViewController:flightpage animated:NO];
-            break;
-        }
-        case TabBarSelectedTypeMessage:
-        {
-            [self showMessageViewController];
-            break;
-        }
-        case TabBarSelectedTypeFunction:
-        {
-            FunctionViewController *function = [[FunctionViewController alloc] init];
-            [self.navigationController pushViewController:function animated:NO];
-            break;
-        }
-        case TabBarSelectedTypeUserInfo:
-        {
-            UserInfoViewController *userInfo = [[UserInfoViewController alloc] init];
-            [self.navigationController pushViewController:userInfo animated:NO];
-            break;
-        }
-        default:
-            break;
-    }
-}
 
--(void)showMessageViewController
-{
-    if([CommonFunction hasFunction:MSG_WORNING] && ![CommonFunction hasFunction:MSG_FLIGHT] && ![CommonFunction hasFunction:MSG_DIALOG]){
-        SingleMessageViewController *message = [[SingleMessageViewController alloc] init];
-        message.type = @"COMMAND";
-        [self.navigationController pushViewController:message animated:NO];
-    }else if(![CommonFunction hasFunction:MSG_WORNING] && [CommonFunction hasFunction:MSG_FLIGHT] && ![CommonFunction hasFunction:MSG_DIALOG]){
-        SingleMessageViewController *message = [[SingleMessageViewController alloc] init];
-        message.type = @"FLIGHT";
-        [self.navigationController pushViewController:message animated:NO];
-    }else{
-        MessageViewController *message = [[MessageViewController alloc] init];
-        [self.navigationController pushViewController:message animated:NO];
-    }
-}
 
 #pragma mark - UITableViewDelegate UITableViewDataSource
 

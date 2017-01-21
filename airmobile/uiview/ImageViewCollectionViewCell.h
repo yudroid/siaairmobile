@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void (^LongPressBlock) (UICollectionViewCell *cell);
+
 @interface ImageViewCollectionViewCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (nonatomic, copy) LongPressBlock longPressBlock;
 
 @end

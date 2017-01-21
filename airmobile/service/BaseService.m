@@ -57,7 +57,6 @@ typedef void  (^TimeBlock)(void);
 -(void)timerFounction
 {
     timeblock();
-
 }
 
 @end

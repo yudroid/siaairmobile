@@ -29,57 +29,29 @@
     [self starNetWorking];
     [HttpsUtils getDispatchAbns:_specialModel.id
                            type:1
-                        success:^(id response) {
+                        success:^(NSArray *response) {
                             [self stopNetWorking];
                             if ([response isKindOfClass:[NSArray class]]) {
-                                [self stopNetWorking];
-                                self.abnormalityHistoryArray = response;
-
-                                if ([response isKindOfClass:[NSArray class]]) {
-                                    NSMutableArray *mutableArray = [NSMutableArray array];
-                                    for (NSDictionary *dic in response) {
-                                        AbnormalModel *model = [[AbnormalModel alloc]initWithDictionary:dic];
-                                        [mutableArray addObject:model];
+                                //将字段数组转为对象数组
+                                self.abnormalityHistoryArray = [response DictionaryToModel:[AbnormalModel class]];
+                                int tag = 0;
+                                for (AbnormalModel *model in self.abnormalityHistoryArray) {
+                                    if ([self judgeReportStateWithAbnormalModel:model] == ReportStateStarted) {
+                                        self.reportState = ReportStateStarted;
+                                        [self setEventAbnormalModel:model];
+                                        tag = 1;
+                                        break;
                                     }
-                                    self.abnormalityHistoryArray = [mutableArray copy];
-
-                                    int  tag = 0;
-                                    for (AbnormalModel *model in self.abnormalityHistoryArray) {
-                                        if (model.startTime
-                                            &&![model.startTime isEqualToString:@""]
-                                            &&(!model.endTime||[model.endTime isEqualToString:@""])) {
-                                            tag = 1;
-                                            self.abnormalId = (int)model.id;
-
-                                            NSDictionary * dic = [[PersistenceUtils findBasisInfoEventWithEventId:model.event.intValue] lastObject];
-                                            self.event = [[BasisInfoEventModel alloc]initWithDictionary:dic];
-                                            NSDictionary *dic1= [[PersistenceUtils findBasisInfoDictionaryWithid:self.event.event_type] lastObject];
-                                            self.eventType = [[BasisInfoDictionaryModel alloc] initWithDictionary:dic1];
-                                            NSDictionary *dic2 = [[PersistenceUtils findBasisInfoDictionaryWithid:self.event.event_level] lastObject];
-                                            self.eventLevel = [[BasisInfoDictionaryModel alloc]initWithDictionary:dic2];
-
-                                            self.explainTextView.text = self.event.content;
-                                            [self.tableView reloadData];
-
-                                            self.reportState = ReportStateStarted;
-                                            break;
-                                        }
-                                        
-                                    }
-                                    if (tag == 0) {
-                                        self.reportState = ReportStateNoStart;
-                                    }
-                                    [self.abnormalityHistoryTableView reloadData];
                                 }
-
-
+                                if (!tag) {
+                                    self.reportState = ReportStateNoStart;
+                                }
                             }
-                        }
-                        failure:^(NSError *error) {
+                            [self.abnormalityHistoryTableView reloadData];
+                        }failure:^(NSError *error) {
                             [self stopNetWorking];
                             [self showAnimationTitle:@"获取历史列表失败"];
                         }];
-
 }
 
 
@@ -94,17 +66,49 @@
         [self showAnimationTitle:@"请填写要求"];
         return;
     }
-
     [self starNetWorking];
-    AppDelegate *appdelete = (AppDelegate*)[[UIApplication sharedApplication] delegate];
 
+    int index = 0;
+    NSMutableArray *filePathArray = [NSMutableArray array];
+    [self uploadImageIndex:index filePathArray:filePathArray failure:^(id error) {
+        [self stopNetWorking];
+        [self showAnimationTitle:@"上传失败"];
+    }];
+}
+
+-(void)uploadImageIndex:(int)index filePathArray:(NSMutableArray *)filePathArray failure:(void (^)(id))failure
+{
+    __block  int newIndex = index;
+    __block  NSMutableArray *blockFilePathArray = [filePathArray mutableCopy];
+    if (self.collectionArray.count>0&&index<self.collectionArray.count) {
+        [HttpsUtils unusualImageUploadImage:self.collectionArray[index] Success:^(id response) {
+            [blockFilePathArray addObject:response];
+            if (index+1 != self.collectionArray.count) {
+                [self showAnimationTitle:[NSString stringWithFormat:@"%d图片上传成功",newIndex+1]];
+            }else{
+                self.imageFilePath = [blockFilePathArray copy];
+            }
+            newIndex++;
+            [self uploadImageIndex:newIndex filePathArray:(NSMutableArray *)blockFilePathArray failure:failure];
+        } failure:^(id error) {
+            failure( error);
+        }];
+    }else{
+        [self sendstartReport];
+    }
+
+}
+
+-(void)sendstartReport
+{
+    AppDelegate *appdelete = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [HttpsUtils saveDispatchAbnStart:_specialModel.fid
                           dispatchId:_specialModel.id
                               userId:(int)appdelete.userInfoModel.id
                              eventId:self.event.basisid
                                 memo:self.requireTextView.text
                                 flag:self.isSpecial
-                             imgPath:@"null"
+                             imgPath:[self.imageFilePath componentsJoinedByString:@","]
                              success:^(id response) {
 
                                  [self stopNetWorking];
@@ -123,9 +127,10 @@
                              failure:^(NSError *error) {
                                  [self stopNetWorking];
                                  [self showAnimationTitle:@"上报失败"];
-
                              }];
 }
+
+
 
 - (IBAction)endReportDate:(id)sender {
 
@@ -143,12 +148,10 @@
                                }else{
                                    [self showAnimationTitle:response];
                                }
-
                            }
                            failure:^(NSError *error) {
                                [self stopNetWorking];
                                [self showAnimationTitle:@"上报失败"];
-//                               self.endReportButton.enabled = NO;
                            }];
 
 }

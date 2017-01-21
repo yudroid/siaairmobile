@@ -17,7 +17,7 @@
 @property (nonatomic, copy)   NSString *safeName;
 @property (nonatomic, assign) Boolean isAD;
 @property (nonatomic, assign) int tag;
-@property (nonatomic, assign) NSString *normalTime;
+@property (nonatomic, copy) NSString *normalTime;
 @property (nonatomic, strong) NSString *safeguardDepart;
 
 

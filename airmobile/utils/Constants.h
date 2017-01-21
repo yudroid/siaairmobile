@@ -51,6 +51,7 @@ extern const long FUNC_TARGET;
 extern const long FUNC_YYQK;
 extern const long FUNC_TQXX;
 extern const long FUNC_ZBHX;
+extern const long FUNC_HBGZ;
 
 extern const long SET;
 extern const long SET_MSGFILTER;

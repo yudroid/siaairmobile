@@ -38,6 +38,8 @@
 #import "GlobalHelper.h"
 #import "DefaultHelper.h"
 #import "Constants.h"
+#import "UINavigationController+FDFullscreenPopGesture.h"
+#import "NSArray+ObjectTransform.h"
 #endif
 
 #endif /* airmobile_Prefix_pch */

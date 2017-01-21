@@ -1,0 +1,334 @@
+/**
+ * Author: xijian (Enson)
+ * Date: 4/14/14
+ * Time: 4:46 下午
+ * Description:  航班动态详情页样式
+ */
+
+/****** 标题栏 begin ********/
+
+.show{
+    display: block;
+}
+.hide{
+    display: none;
+}
+.titleBar {
+    height: 49px;
+    background: #F3F3F3 -webkit-gradient(linear,left top,left bottom,from(#FFF),color-stop(0.5,#FFF),to(#F3F3F3));
+    border-bottom: #DEDEDE 1px solid;
+    position: relative;
+    width: 100%;
+    top: 0;
+    z-index: 400;
+}
+.titleBar .backBtn {
+    width: 50px;
+    height: 50px;
+    background: url(http://gtms01.alicdn.com/tps/i1/T10puQXuhiXXX9kfDl-65-65.png) no-repeat center center;
+    background-size: 35px auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 40;
+}
+.titleBar .tabCtn {
+    width: 160px;
+    height: 50px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -80px;
+    text-align: center;
+}
+.titleBar .tabCtn .title{
+    display: block;
+    width: 160px;
+    height: 50px;
+    text-align: center;
+}
+.titleBar .tabCtn .title .city{
+    color: #13334D;
+    font-size: 18px;
+    padding: 10px 0 5px;
+}
+.titleBar .tabCtn .title .date{
+    color: #7b92a7;
+    font-size: 11px;
+}
+.rightBtn{
+    width: 33px;
+    height: 33px;
+    background: url(http://gtms01.alicdn.com/tps/i1/T1FgxlFORXXXX9kfDl-65-65.png) no-repeat center center;
+    background-size: 33px;
+    position: absolute;
+    top: 8px;
+    right: 12px;
+}
+
+.rightBtn.on{
+    background: url(http://gtms02.alicdn.com/tps/i2/T1ARdlFF4XXXX9kfDl-65-65.png) no-repeat center center;
+    background-size: 33px;
+}
+/****** 标题栏 end ********/
+
+
+
+/****** 航班详情 begin ********/
+body{
+    background-color: #fff;
+}
+.info-main{
+    display: -webkit-box;
+    border-bottom: 1px solid #dcdcdc;
+    border-top: 1px solid #DCDCDC;
+    /*background: url(http://gtms03.alicdn.com/tps/i3/T1lgFgFKhcXXb.Sq2n-73-60.png) repeat;*/
+    color: #2b577a;
+    text-shadow: rgba(0, 0, 0, 0.15) 1px 1px;
+    -webkit-background-size: 36px 30px;
+    height: 125px;
+    width: 100%;
+     background: #F7F8FA;
+}
+.info-main .status-logo{
+    width: 109px;
+    height: 109px;
+    margin-left: 15px;
+    padding-top: 14px;
+    -webkit-box-flex:1;
+}
+.info-main .status-logo.unavail{
+    background: url(http://gtms03.alicdn.com/tps/i3/TB1FtFfFFXXXXb2bpXX18j82pXX-217-217.png) no-repeat 0px center;
+    background-size: 109px;
+}
+.info-main .status-logo.takeoff{
+    background: url(http://gtms04.alicdn.com/tps/i4/T16KywFSxcXXcwVQZy-217-217.png) no-repeat 0px center;
+    background-size: 109px;
+}
+.info-main .status-logo.delay{
+    background: url(http://gtms03.alicdn.com/tps/i3/T1ft9wFSXcXXcwVQZy-217-217.png) no-repeat 0 center;
+    background-size: 109px;
+}
+.info-main .status-logo.plan{
+    background: url(http://gtms02.alicdn.com/tps/i2/T1u9SDFPNXXXcwVQZy-217-217.png) no-repeat 0 center;
+    background-size: 109px;
+}
+.info-main .status-logo.cancel{
+    background: url(http://gtms03.alicdn.com/tps/i3/T1_naDFOpXXXcwVQZy-217-217.png) no-repeat 0 center;
+    background-size: 109px;
+}
+.info-main .status-logo.ready{
+    background: url(http://gtms01.alicdn.com/tps/i1/T15LmCFUFXXXcwVQZy-217-217.png) no-repeat 0 center;
+    background-size: 109px;
+}
+.info-main .status-logo.arrive{
+    background: url(http://gtms01.alicdn.com/tps/i1/T1amezFPJbXXcwVQZy-217-217.png) no-repeat 0 center;
+    background-size: 109px;
+}
+.info-main .status-logo.return{
+    background: url(http://gtms02.alicdn.com/tps/i2/T1f6GwFKtcXXcwVQZy-217-217.png) no-repeat 0 center;
+    background-size: 109px;
+}
+.info-main .text{
+    padding-top: 14px;
+    /*-webkit-box-flex:1;*/
+    width:55%
+}
+.info-main .text .status-text{
+    font-size: 20px;
+    color: #2b577a;
+    margin-bottom: 10px;
+    font-weight: bold;
+    /*text-shadow: 1px 1px 1px #FBFBFC;*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.info-main .text .info{
+    color: #2b577a;
+    font-size: 14px;
+    text-shadow: 1px 1px 1px #fafafc;
+}
+.info-main .text .info div{
+    line-height: 18px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.info-detail{
+    background-color: #fff;
+}
+.info-detail .c-info{
+    /*height: 95px;*/
+    padding: 0px 15px 10px;
+    border-bottom: 1px solid rgba(220, 220, 220, 0.75);
+    box-shadow: 1px 1px 1px rgba(213, 213, 213, 0.45);
+}
+.info-detail .c-info .c-city{
+    display: -webkit-box;
+    font-size: 16px;
+    color: #2b577a;
+    position: relative;
+    border-bottom: 1px solid #e9e9ea;
+    padding-bottom: 11px;
+    margin-bottom: 10px;
+    padding-top: 11px;
+}
+.info-detail .c-info .c-city .arrow{
+    width: 8px;
+    height: 12px;
+    background: url(http://gtms04.alicdn.com/tps/i4/T1X50gFHJfXXcU.1HX-15-24.png) no-repeat center center;
+    background-size: 8px;
+    position: absolute;
+    top: 13px;
+    right: 0px;
+}
+.info-detail .c-info .c-city .city{
+    padding-right:10px ;
+    margin-right: 10px;
+    border-right:1px solid #2b577a;
+}
+.info-detail .c-info .c-time{
+    display: -webkit-box;
+}
+.info-detail .c-info .c-time div{
+    -webkit-box-flex:1;
+}
+.info-detail .c-info .c-time .actual{
+    text-align: center;
+}
+.info-detail .c-info .c-time .terminal{
+    text-align: right;
+}
+.info-detail .c-info .c-time .terminal .terminal-name{
+    padding-right: 9px;
+}
+.info-detail .c-info .c-time .f1{
+    font-size: 14px;
+    color: #8a9ca8;
+    margin-bottom: 1px;
+}
+.info-detail .c-info .c-time .f2{
+    font-size: 22px;
+    color: #2b577a;
+    font-weight: bold;
+    font-family: Helvetica Neue;
+}
+.arrive-tip{
+    color: #4aa1e1;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 10px;
+    padding: 0px 15px;
+    line-height: 15px;
+}
+
+/****** 航班详情 end ********/
+
+.followed-tip{
+    color: #8a9ca8;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 45px;
+}
+.bottom-tip{
+    color: #FFF;
+    background-color: #2E4966;
+    font-size: 12px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    font-weight: normal;
+    font-family: STHeitiSC-Light;
+}
+.bottom-tip .umetrip-logo{
+    width: 47px;
+    height: 13px;
+    background: url(http://gtms03.alicdn.com/tps/i3/T1_dWoFKNcXXalsTDr-93-25.png) no-repeat center center;
+    background-size: 47px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -4px;
+    margin-left: 3px;
+}
+.btn-wrap{
+    padding: 10px 10px 35px;
+}
+.trip-btn-blue {
+    display: inline-block;
+    min-width: 60px;
+    height: 40px;
+    padding: 0 15px;
+    border: 0;
+     background: #5eb5f1;
+    text-align: center;
+    text-decoration: none;
+    line-height: 40px;
+    color: #FFF;
+    font-weight: normal;
+    font-size: 19px;
+    font-family: STHeitiSC-Light;
+    -webkit-border-radius: 3px;
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    text-shadow: 0 1px 0 #428DC9;
+    letter-spacing: 1px;
+    -webkit-appearance: none !important;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+
+.trip-btn-blue:active {
+    background: #429fed;}
+.btn-wrap.disabled .trip-btn-blue{
+    background:#d5dde2;
+}
+
+.loading-failed-tips{
+
+}
+.common-error-status {
+    font-size: 14px;
+    text-align: center;
+    line-height: 1.5;
+    color: #7E919F;
+    padding: 185px 15px 0;
+    background: url("http://gtms01.alicdn.com/tps/i1/T1zd3xFh8dXXckL6Z0-130-130.png") no-repeat center 100px;
+    background-size: 65px 65px;
+}
+/*** 自定义弹出框样式 ****/
+.confirmMode .c-float-modePop {
+    background: #FFF;
+}
+.confirmMode .c-float-modePop .warnMsg {
+    color: #2B577A;
+    line-height: 16px;
+    margin-bottom: -5px;
+}
+.confirmMode .c-float-modePop button.ok {
+    color: #FFF;
+    background: #5DB4F1;
+    border: 1px solid #5DB4F1;
+}
+.confirmMode .c-float-modePop button.cancel {
+    color: #697D91;
+    background: #FFF;
+    border: 1px solid #DEE4EC;
+}
+.m-mask {
+    background-color: #000;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    -webkit-touch-callout: none;
+    -webkit-backface-visibility: hidden;
+    -webkit-tap-highlight-color: rgba(255,255,255,0);
+    -webkit-tap-highlight-color: transparent;
+    position: fixed;
+}
+

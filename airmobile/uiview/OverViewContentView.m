@@ -360,15 +360,6 @@
 
 -(void) loadData:(NSNotification *)notification
 {
-
-
-    if (totalNumLabel.text!=nil&&
-        ![totalNumLabel.text isEqualToString:@""]&&
-        ![totalNumLabel.text isEqualToString:@"0"]) {
-        return;
-    }
-
-
     SummaryModel *summaryModel = notification.object;
     calendarLabel.text  = summaryModel.flightDate;
     CGSize maxLabelSize = CGSizeMake(100, CGFLOAT_MAX);

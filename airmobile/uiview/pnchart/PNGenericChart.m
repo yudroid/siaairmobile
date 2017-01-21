@@ -10,8 +10,6 @@
 
 @interface PNGenericChart ()
 
-
-
 @end
 
 @implementation PNGenericChart
@@ -23,11 +21,11 @@
     // Drawing code
 }
 */
-
+//设置默认值
 - (void) setupDefaultValues{
-    self.hasLegend = YES;
-    self.legendPosition = PNLegendPositionBottom;
-    self.legendStyle = PNLegendItemStyleStacked;
+    self.hasLegend = YES;//设置有图例
+    self.legendPosition = PNLegendPositionBottom;//图例在下方
+    self.legendStyle = PNLegendItemStyleStacked;//
     self.labelRowsInSerialMode = 1;
     self.displayAnimated = YES;
 }

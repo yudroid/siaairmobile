@@ -7,19 +7,21 @@
 //
 
 #import "NightShiftRoomViewController.h"
-#import "DAYCalendarView.h"
 #import "NightShiftRoomTableViewCell.h"
 #import "DutyModel.h"
 #import "HttpsUtils+Business.h"
 #import "DutyModel.h"
+#import "CLWeeklyCalendarView.h"
+#import "NSDate+Extension.h"
 
 static void *CapturingStillImageContext = &CapturingStillImageContext;
 static const NSString *NIGHTSHIFTROOM_TABLECELL_IDENTIFIER = @"NIGHTSHIFTROOM_TABLECELL_IDENTIFIER";
 
-@interface NightShiftRoomViewController ()<UITableViewDelegate,UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet DAYCalendarView *calendarView;
+@interface NightShiftRoomViewController ()<UITableViewDelegate,UITableViewDataSource,CLWeeklyCalendarViewDelegate>
+
+@property (weak, nonatomic) IBOutlet CLWeeklyCalendarView *calendarView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, copy) NSArray *tableArray;
+@property (nonatomic, copy) NSArray<DutyModel *> *tableArray;
 
 @end
 
@@ -41,59 +43,21 @@ static const NSString *NIGHTSHIFTROOM_TABLECELL_IDENTIFIER = @"NIGHTSHIFTROOM_TA
     [_tableView registerNib:[UINib nibWithNibName:@"NightShiftRoomTableViewCell" bundle:nil]
      forCellReuseIdentifier:(NSString *)NIGHTSHIFTROOM_TABLECELL_IDENTIFIER];
 
-    UISwipeGestureRecognizer *leftSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self
-                                                                                                    action:@selector(leftSwipeGestureRecognizerEvent)];
-    leftSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
-    [_calendarView addGestureRecognizer:leftSwipeGestureRecognizer];
-    UISwipeGestureRecognizer *rightSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self
-                                                                                                     action:@selector(rightSwipeGestureRecognizerEvent)];
-    rightSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
-    [_calendarView addGestureRecognizer:rightSwipeGestureRecognizer];
+    self.fd_interactivePopDisabled = YES;
 
-
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(selectDate:)
-                                                 name:@"SelectedDate"
-                                               object:nil];
-
-    [self UpdateNetwork];
-
+    _calendarView.delegate = self;
 
 }
 
--(void)dealloc
+
+-(void)UpdateNetworkWithDate:(NSDate *)date
 {
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"SelectedDate" object:nil];
-}
-
--(void)selectDate:(NSNotification *)notification
-{
-    [self UpdateNetwork];
-}
-
--(void)UpdateNetwork
-{
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    //设定时间格式,这里可以设置成自己需要的格式
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    //用[NSDate date]可以获取系统当前时间
-    NSDate *date = _calendarView.selectedDate?:[NSDate date];
-    NSString *currentDateStr = [dateFormatter stringFromDate:date];
-    NSLog(@"%@",currentDateStr);
-
-
-    [HttpsUtils getDutyTableByDay:currentDateStr success:^(NSArray *responseObj) {
+    [HttpsUtils getDutyTableByDay:[date formatterWithDateFormat:@"yyyy-MM-dd"]
+                          success:^(NSArray *responseObj) {
         if ([responseObj isKindOfClass:[NSArray class]]) {
-            NSMutableArray *depMutableArray = [NSMutableArray array];
-            for (NSDictionary *depDic in responseObj) {
-                DutyModel *du = [[DutyModel alloc]initWithDictionary:depDic];
-                [depMutableArray addObject:du];
-            }
-            _tableArray = [depMutableArray copy];
+            _tableArray = [responseObj DictionaryToModel:[DutyModel class]];
             [_tableView reloadData];
         }
-        
     } failure:^(NSError *error) {
         
     }];
@@ -101,17 +65,24 @@ static const NSString *NIGHTSHIFTROOM_TABLECELL_IDENTIFIER = @"NIGHTSHIFTROOM_TA
 
 
 
-#pragma mark - EVENT
--(void)leftSwipeGestureRecognizerEvent
-{
-    [_calendarView jumpToNextMonth];
 
-}
--(void)rightSwipeGestureRecognizerEvent
+#pragma mark - CLWeeklyCalendarViewDelegate
+-(NSDictionary *)CLCalendarBehaviorAttributes
 {
-    [_calendarView jumpToPreviousMonth];
-    
+    return @{
+             CLCalendarWeekStartDay : @7,                 //Start Day of the week, from 1-7 Mon-Sun -- default 1
+             //             CLCalendarDayTitleTextColor : [UIColor yellowColor],
+             //             CLCalendarSelectedDatePrintColor : [UIColor greenColor],
+             };
 }
+
+-(void)dailyCalendarViewDidSelect:(NSDate *)date
+{
+    [self UpdateNetworkWithDate:date];
+}
+
+
+
 #pragma mark - UITableViewDelegate UITableViewDataSource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

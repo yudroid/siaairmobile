@@ -139,7 +139,7 @@
     [lineChart setXLabels:[self getFlightHourXLabels]];
     lineChart.showCoordinateAxis = NO;
     lineChart.showGenYLabels=NO;
-    
+
     // added an examle to show how yGridLines can be enabled
     // the color is set to clearColor so that the demo remains the same
     lineChart.yGridLinesColor = [UIColor clearColor];
@@ -318,22 +318,10 @@
         maxLabel.text = @((int)([self maxValue]*1.2)).stringValue;
         lineChart.chartData = @[data];
         [lineChart strokeChart];
-
         [flightHourTableView reloadData];
-        
-
     }
 
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

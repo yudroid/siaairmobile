@@ -19,8 +19,9 @@
 #import "ProductionTargetViewController.h"
 #import "SingleMessageViewController.h"
 #import "WeatherAirportController.h"
+#import "FlightConcernViewController.h"
 
-#import <UMESDKKit/AirportFuctionWebViewController.h>
+//#import <UMESDKKit/AirportFuctionWebViewController.h>
 #import <UMESDKKit/UMESDKApi.h>
 
 static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDENTIFIER";
@@ -45,8 +46,8 @@ static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDEN
                                                      delegate:self];
     [self.view insertSubview:self.tabBarView aboveSubview:self.view];
 
-//    [UMESDKApi setTestMode:NO];
-//    [UMESDKApi registerApp:@"ume_d7d3218b16c74a9280ed25aded2fff29" andAppKey:@"383d05e19acf848d7f82f44a3bc31c29" andApiDelegate:self];
+    [UMESDKApi setTestMode:NO];
+    [UMESDKApi registerApp:@"ume_8a82b52ffa074e07a846cbafa6dd712e" andAppKey:@"4ef7b30b11bc2634acb0b1abbd9e394f" andApiDelegate:self];
 }
 
 -(void)initTitleView
@@ -101,6 +102,9 @@ static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDEN
     if ([CommonFunction hasFunction:FUNC_ZBHX]) {
         [mutableArray addObject:@{@"name":@"周边航线",@"image":@"site_around"}];
     }
+    if ([CommonFunction hasFunction:FUNC_HBGZ]){
+        [mutableArray addObject:@{@"name":@"航班关注",@"image":@"site_around"}];
+    }
     _tableArray = [mutableArray copy];
 
     [self.view addSubview:_tableView];
@@ -137,7 +141,6 @@ static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDEN
                              animated:YES];
     NSDictionary *rowDic = _tableArray[indexPath.row];
     NSString *name = [rowDic objectForKey:@"name"];
-
     if ([name isEqualToString:@"值班表"]){
         NightShiftRoomViewController *nightShiftRoomVC = [[NightShiftRoomViewController alloc] initWithNibName:@"NightShiftRoomViewController" bundle:nil];
         [self.navigationController pushViewController:nightShiftRoomVC
@@ -178,56 +181,12 @@ static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDEN
         controller.functionId = @"route";
         controller.title = @"周边航线";
         [self.navigationController pushViewController:controller animated:YES];
+    }else if ([name isEqualToString:@"航班关注"]){
+        FlightConcernViewController *flightConcernVC = [[FlightConcernViewController alloc] initWithNibName:@"FlightConcernViewController" bundle:nil];
+        [self.navigationController pushViewController:flightConcernVC animated:YES];
     }
 }
 
-#pragma mark - 切换底部主功能页面
--(void)selectWithType:(TabBarSelectedType)type
-{
-    switch (type) {
-        case TabBarSelectedTypeHomePage:
-        {
-            HomePageViewController *homepage = [[HomePageViewController alloc] init];
-            [self.navigationController pushViewController:homepage animated:NO];
-            break;
-        }
-        case TabBarSelectedTypeMessage:
-        {
-            [self showMessageViewController];
-            break;
-        }
-        case TabBarSelectedTypeFlight:
-        {
-            FlightViewController *flight = [[FlightViewController alloc] init];
-            [self.navigationController pushViewController:flight animated:NO];
-            break;
-        }
-        case TabBarSelectedTypeUserInfo:
-        {
-            UserInfoViewController *userInfo = [[UserInfoViewController alloc] init];
-            [self.navigationController pushViewController:userInfo animated:NO];
-            break;
-        }
-        default:
-            break;
-    }
-}
-
--(void)showMessageViewController
-{
-    if([CommonFunction hasFunction:MSG_WORNING] && ![CommonFunction hasFunction:MSG_FLIGHT] && ![CommonFunction hasFunction:MSG_DIALOG]){
-        SingleMessageViewController *message = [[SingleMessageViewController alloc] init];
-        message.type = @"COMMAND";
-        [self.navigationController pushViewController:message animated:NO];
-    }else if(![CommonFunction hasFunction:MSG_WORNING] && [CommonFunction hasFunction:MSG_FLIGHT] && ![CommonFunction hasFunction:MSG_DIALOG]){
-        SingleMessageViewController *message = [[SingleMessageViewController alloc] init];
-        message.type = @"FLIGHT";
-        [self.navigationController pushViewController:message animated:NO];
-    }else{
-        MessageViewController *message = [[MessageViewController alloc] init];
-        [self.navigationController pushViewController:message animated:NO];
-    }
-}
 
 -(void)callBackWithResponse:(UMEBaseResponse *) response{
     NSLog(@"back ----%@",response);

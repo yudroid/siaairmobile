@@ -18,7 +18,7 @@
 static const NSString *ADDRESSBOOK_TABLEGROUPHEAER_IDENTIFIER   = @"ADDRESSBOOK_TABLEGROUPHEADER_IDENTIFIER";
 static const NSString *ADDRESSBOOK_TABLECELL_IDENTIFIER         = @"ADDRESSBOOK_TABLECELL_IDENTIFIER";
 
-@interface TodayDutyViewController ()<UITableViewDelegate,UITableViewDataSource,ContactPersonTableViewHeaderViewDelegate>
+@interface TodayDutyViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray<DutyModel *> *tableArray;
 
@@ -64,15 +64,7 @@ static const NSString *ADDRESSBOOK_TABLECELL_IDENTIFIER         = @"ADDRESSBOOK_
     [self starNetWorking];
     [HttpsUtils getDutyTableByDay:currentDateStr success:^(NSArray *responseObj) {
         if ([responseObj isKindOfClass:[NSArray class]]) {
-            NSMutableArray *depMutableArray = [NSMutableArray array];
-            if ([responseObj isKindOfClass:[NSArray class]]) {
-
-                for (NSDictionary *dic in responseObj) {
-                    DutyModel *dutyModel = [[DutyModel alloc]initWithDictionary:dic];
-                    [depMutableArray addObject:dutyModel];
-                }
-            }
-            _tableArray = [depMutableArray copy];
+            _tableArray = [responseObj DictionaryToModel:[DutyModel class]];
             [_tableView reloadData];
         }
         [self stopNetWorking];

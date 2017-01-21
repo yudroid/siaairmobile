@@ -86,6 +86,9 @@ NSString * const updatePwdUrl               = @"/acs/login/updatePwd";//修改�
 
 NSString * const headImageUpload            = @"/acs/ath/user/imageupload";//头像上传
 
+NSString * const unusualImageUpload         = @"/acs/m/upload";//异常上报上传图片
+NSString * const unusualImageDownload       = @"/acs/m/download";//异常上报下载图片
+
 @implementation HttpsUtils (Business)
 
 /**
@@ -1291,11 +1294,29 @@ NSString * const headImageUpload            = @"/acs/ath/user/imageupload";//头
                      success:^(id response) {
                          success(response);
                      } failure:^(NSError *error) {
-
                          failure(error);
                      }];
+}
 
++(void)unusualImageUploadImage:(UIImage *)image
+                       Success:(void (^)(id))success
+                      failure:(void (^)(id))failure
 
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+    NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"unusual.png"]];
+    BOOL result = [UIImagePNGRepresentation(image)writeToFile: filePath atomically:YES];
+    if (!result) {
+        failure([[NSError alloc]init]);
+        return;
+    }
+    [HttpsUtils post:headImageUpload
+            filePath:filePath
+             success:^(id response) {
+                 success(response);
+             } failure:^(NSError *error) {
+                 failure(error);
+             }];
 }
 
 

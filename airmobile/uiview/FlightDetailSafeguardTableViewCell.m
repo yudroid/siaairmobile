@@ -61,7 +61,7 @@
         _statusLabel.textColor = [CommonFunction colorFromHex:0xffff7c36];
     }
 
-    if (specialModel.normalTime&&[specialModel.normalTime isKindOfClass:[NSString class]]&&![specialModel.normalTime isEqualToString:@""]) {
+    if (specialModel.normalTime &&[specialModel.normalTime isKindOfClass:[NSString class]]&&![specialModel.normalTime isEqualToString:@""]) {
         [_starReportButton setTitle:specialModel.normalTime forState:UIControlStateNormal] ;
 //        _starReportButton.enabled = NO;
     }

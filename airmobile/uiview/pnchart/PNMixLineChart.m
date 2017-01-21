@@ -592,7 +592,6 @@
         CGContextStrokePath(ctx);
 
         if (self.showLabel) {
-
             // draw x axis separator
             CGPoint point;
             for (NSUInteger i = 0; i < [self.xLabels count]; i++) {
@@ -601,7 +600,6 @@
                 CGContextAddLineToPoint(ctx, point.x, point.y);
                 CGContextStrokePath(ctx);
             }
-
             // draw y axis separator
             CGFloat yStepHeight = _chartCavanHeight / _yLabelNum;
             for (NSUInteger i = 0; i < [self.xLabels count]; i++) {
@@ -611,7 +609,6 @@
                 CGContextStrokePath(ctx);
             }
         }
-
         UIFont *font = [UIFont systemFontOfSize:11];
 
         // draw y unit
@@ -627,6 +624,21 @@
             CGRect drawRect = CGRectMake(CGRectGetWidth(rect) - _chartMarginLeft + 5, _chartMarginBottom + _chartCavanHeight - height / 2, 25.f, height);
             [self drawTextInContext:ctx text:self.xUnit inRect:drawRect font:font];
         }
+    }else{
+//        CGContextRef ctx = UIGraphicsGetCurrentContext();
+//        UIGraphicsPushContext(ctx);
+//        CGContextSetLineWidth(ctx, 0.5);
+//        [[UIColor colorWithRed:1 green:1 blue:1 alpha:0.5] setStroke];
+//
+//        // draw x axis arrow
+//        CGContextMoveToPoint(ctx, self.chartMarginLeft, self.chartMarginTop + _chartCavanHeight);
+//        CGContextAddLineToPoint(ctx, self.chartMarginLeft + _chartCavanWidth, self.chartMarginTop + _chartCavanHeight);
+//
+//        UIFont *font = [UIFont fontWithName:@"PingFang SC" size:15];
+//        [@"0" drawInRect:CGRectMake(ctx, self.chartMarginLeft + _chartCavanWidth - 50, self.chartMarginTop + _chartCavanHeight -50, 50, 50) withAttributes:]
+//        CGContextStrokePath(ctx);
+
+
     }
     if (self.showYGridLines) {
         CGContextRef ctx = UIGraphicsGetCurrentContext();

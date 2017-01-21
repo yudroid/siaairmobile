@@ -18,6 +18,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
+    self.fd_prefersNavigationBarHidden = YES;
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle
@@ -76,6 +77,8 @@
 - (void)backButtonClick{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+
 
 
 #pragma mark Tabbar方法

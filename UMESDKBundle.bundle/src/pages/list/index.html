@@ -1,0 +1,110 @@
+<html>
+<head>
+    <title>航班动态列表页</title>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta content="false" name="twcClient" id="twcClient" />
+    <link rel="apple-touch-icon-precomposed" href="http://a.tbcdn.cn/mw/s/hi/tbtouch/images/touch-icon.png" />
+    <link rel="stylesheet" href="../../widgets/libs/reset.css" />
+    <link rel="stylesheet" href="../../widgets/libs/base.css" />
+    <link rel="stylesheet" href="../../widgets/libs/notification.css" />
+
+    <script type="text/javascript" src="../../widgets/libs/mini-full-min.js"></script>
+    <script type="text/javascript" src="../../widgets/libs/zepto-full.js"></script>
+    <link rel="stylesheet" href="./index.css"/>
+    <script type="text/javascript">KISSY.Config.debug = true;</script>
+    <script src="../../config.js"></script>
+</head>
+<body>
+<div id="tbh5v0" class="content">
+    <div id="bodyCont" class="screen-wrap fullscreen list-page">
+				<script type="text/juicer" id="J_list_tpl">
+                    {@each _ as item}
+                    <li class="flight-item-wrap">
+                        <div class="mod-place">${item.deptAirportChnName}-${item.destAirportChnName}</div>
+                        <div class="flight-item ${item.followed}">
+                            <div class="fiw flight-no">
+                                <div class="no">${item.pflycode}</div>
+                                <div class="airline">${item.airlineChnName}</div>
+                            </div>
+                            <div class="fiw airport">
+                                <div class="dep-port">${item.aliasName1}${item.pterminal1}</div>
+								<div class="dep-port-code hide">${item.pairport1}</div>
+                                <div class="arr-port">${item.aliasName2}${item.pterminal2}</div>
+								<div class="arr-port-code hide">${item.pairport2}</div>
+                            </div>
+                            <div class="fiw time">
+                                <div class="dep-time">${item.pplantime1}</div>
+                                <div class="arr-time">${item.pplantime2}</div>
+                            </div>
+                            <div class="fiw status ${item.pstatus | getClassNameByStatus}">
+                                <div class="status-text">${item.pstatus}</div>
+                            </div>
+                            <div class="followed"></div>
+                        </div>
+                    </li>
+                    {@/each}
+            </script>
+        <section class="list J_list" id="J_list">
+            <div class="olist-main-box">
+                <div class="J_pullDown iscroll-tip hidden iscroll-pull-down">
+                    <em></em>
+                    <span>下拉查看当天更多历史航班</span>
+                </div>
+                <div class="J_listBox">
+					<ul class="flight-list"></ul>
+				</div>
+                <div class="J_pullUp  iscroll-tip hidden">
+                    <em></em>
+                    <span>加载更多...</span>
+                </div>
+            </div>
+        </section>
+		<section class="loading-failed-tips hide">
+            <div class="common-error-status">
+                <span class="error-text">亲，没有符合查询条件的航班哦，请重新输入</span>
+            </div>
+        </section>
+    </div>
+</div>
+
+<script>
+
+	var list, data, isMult, userAgent, followedList, pageBegin, pageEnd, flightDate;//list-模块对象;data-数据;isMult-是否为多段;userAgent-客户端版本，iphone或android;followedList-已关注列表
+	var render = function(ua, pcont, fl, im, fd){
+        if(pcont && pcont != ''){
+            data = JSON.parse(pcont);
+        }
+        userAgent = ua;
+        isMult = im;
+        flightDate = fd;
+        if(isMult == '0' && data){
+            data.page = Number(data.page);
+            data.pageSize = Number(data.pageSize);
+            pageBegin = data.page;
+            pageEnd = data.page;
+        }
+		if(fl && fl != ''){
+			followedList = JSON.parse(fl);
+		}
+		KISSY.use('h5-flight-trends/pages/list/index', function(S, List) {
+			list = new List();
+		});
+	}
+
+	var renderNextPage = function(pcont){
+		data = JSON.parse(pcont);
+		list.renderNextPage();
+	}
+
+	var renderPrevPage = function(pcont){
+		data = JSON.parse(pcont);
+		list.renderPrevPage();
+	}
+
+</script>
+</body>
+</html>

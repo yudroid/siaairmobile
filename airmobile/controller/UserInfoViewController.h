@@ -6,8 +6,8 @@
 //  Copyright © 2016年 杨泉林. All rights reserved.
 //
 
-#import "RootViewController.h"
+#import "HasTabbarRootViewController.h"
 
-@interface UserInfoViewController : RootViewController
+@interface UserInfoViewController : HasTabbarRootViewController
 
 @end

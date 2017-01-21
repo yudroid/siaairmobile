@@ -12,7 +12,19 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    UILongPressGestureRecognizer *longPress =
+    [[UILongPressGestureRecognizer alloc]initWithTarget:self
+                                                 action:@selector(longPrssAction:)];
+    longPress.minimumPressDuration = 1.0;
+    [self addGestureRecognizer:longPress];
+}
+
+-(void)longPrssAction:(UILongPressGestureRecognizer *)longPrss
+{
+    if(longPrss.state==UIGestureRecognizerStateBegan){
+        self.longPressBlock(self);
+    }
+
 }
 
 @end

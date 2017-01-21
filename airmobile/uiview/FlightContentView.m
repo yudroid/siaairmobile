@@ -645,8 +645,6 @@
 -(void)loadData:(NSNotification *)notification
 {
     if ([notification.object isKindOfClass:[FlightStusModel class]]) {
-
-        if(!arrInNum ||[arrInNum.text isEqualToString:@""] ||[arrInNum.text isEqualToString:@"0"]){
             _flightStusModel = notification.object;
             arrInNum.text    = @(_flightStusModel.arrCount).stringValue;
             depOutNum.text   = @(_flightStusModel.depCount).stringValue;
@@ -680,7 +678,9 @@
             [self updateShapeArray:arrShapeArray];
             [self updateShapeArray:depShapeArray];
 
-        }
+        [depRoundProgress strokeChart];
+        [arrRoundProgress strokeChart];
+
 
     }
 }

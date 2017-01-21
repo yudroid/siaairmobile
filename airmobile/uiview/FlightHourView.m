@@ -18,6 +18,7 @@
     NSArray<FlightHourModel *> *hourArray;
     FlightHourType _flightHourType;
     PNBarChart *barChart;
+    UILabel *maxLabel;
 }
 
 -(instancetype) initWithFrame:(CGRect)frame
@@ -100,7 +101,7 @@
         lineImageView.image = [UIImage imageNamed:@"hiddenLine"];
         [topBgView addSubview:lineImageView];
         
-        UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(20,
+        maxLabel = [CommonFunction addLabelFrame:CGRectMake(20,
                                                                      viewBotton(lineImageView)+4,
                                                                      topBgView.frame.size.width-40, 12)
                                                      text:[NSString stringWithFormat:@"%d",(int)([self maxValue]*1.2)]
@@ -199,11 +200,8 @@
             if ([HomePageService sharedHomePageService].flightModel.depFltTarget<barChart.yMaxValue) {
 
                 UIImageView *thresholdImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, viewWidth(barChart), 1)];
-
-                NSLog(@"%f,%f,%f",viewBotton(barChart)- [HomePageService sharedHomePageService].flightModel.depFltTarget,barChart.yMaxValue,viewHeight(barChart));
-
-                thresholdImageView.center = CGPointMake(barChart.center.x,viewBotton(barChart)- [HomePageService sharedHomePageService].flightModel.depFltTarget/barChart.yMaxValue*viewHeight(barChart)-3);
-                thresholdImageView.backgroundColor = [ UIColor redColor];
+                thresholdImageView.center = CGPointMake(barChart.center.x,viewBotton(barChart)-25- [HomePageService sharedHomePageService].flightModel.depFltTarget/barChart.yMaxValue*(viewHeight(barChart)-50));
+                thresholdImageView.image = [UIImage imageNamed:@"thresholdLine"];
 
                 [topBgView addSubview:thresholdImageView];
 
@@ -211,12 +209,10 @@
                 thresholdLabel.text = [NSString stringWithFormat:@"%.0f",[HomePageService sharedHomePageService].flightModel.depFltTarget];
                 thresholdLabel.textColor = [UIColor redColor];
                 thresholdLabel.textAlignment = NSTextAlignmentRight;
+                thresholdLabel.font = [UIFont systemFontOfSize:10];
                 [topBgView addSubview:thresholdLabel];
-
             }
-
         }
-
         [topBgView addSubview:[CommonFunction addLabelFrame:CGRectMake(20,
                                                                        topBgView.frame.size.height-(10+15+12)-5,
                                                                        topBgView.frame.size.width-40,
@@ -227,7 +223,7 @@
                                                colorFromHex:0x75FFFFFF]];
 
         UIImageView *downLineImageView  = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(planImageView),
-                                                                                      viewHeight(topBgView)-10-15-5,
+                                                                                      viewBotton(lineChart)-25,
                                                                                       viewWidth(topBgView)-32,
                                                                                       0.5)];
         downLineImageView.image         = [UIImage imageNamed:@"hiddenLine"];
@@ -276,14 +272,12 @@
 {
     FlightHourModel *flightHour = hourArray[indexPath.row];
     FlightHourTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:flightHour.hour];
-    
     if (!cell) {
         cell = [[FlightHourTableViewCell alloc]initWithStyle:(UITableViewCellStyleDefault)
                                              reuseIdentifier:flightHour.hour
                                                   flightHour:flightHour
                                                         type:_flightHourType];
     }
-    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
@@ -319,7 +313,6 @@
         }else if(_flightHourType ==DepFlightHour){
             [arr addObject:@((int)(model.planDepCount))];
         }
-//        [arr addObject:@((int)(model.planCount))];
     }
     return arr;
 }
@@ -327,14 +320,41 @@
 -(void)loadData:(NSNotification *)notification
 {
     if ([notification.object isKindOfClass:[NSArray class]]) {
-        if([notification.name isEqualToString:@"PlanArrHours"]){
+//        if([notification.name isEqualToString:@"PlanArrHours"]){
+//
+//
+//        }else if ([notification.name isEqualToString:@"RealArrHours"]){
+//
+//
+//        }
+        hourArray = notification.object;
 
-        }else if ([notification.name isEqualToString:@"RealArrHours"]){
+        lineChart.yFixedValueMax    = [self maxValue]*1.2;
+        lineChart.yFixedValueMin    = -[self maxValue]*0.1;
 
-        }
+        // Line Chart #2
+        NSArray * dataArray     = [self getFlightHourYLabels];
+        PNLineChartData *data   = [PNLineChartData new];
+        data.dataTitle          = @"航班";
+        data.color              = [UIColor whiteColor];
+        data.alpha              = 0.5f;
+        //        data.inflexionPointWidth= 2.0f;
+        data.itemCount          = dataArray.count;
+        data.inflexionPointStyle= PNLineChartPointStyleCircle;
+        data.getData = ^(NSUInteger index) {
+            CGFloat yValue = [dataArray[index] floatValue];
+            return [PNLineChartDataItem dataItemWithY:yValue];
+        };
+
+        lineChart.chartData = @[data];
+
+        [lineChart strokeChart];
+
+        barChart.yMaxValue          = [self maxValue]*1.2;
+        [barChart strokeChart];
+
 
     }
-
 }
 
 -(NSInteger)maxValue
@@ -362,9 +382,4 @@
     }
     return max==0?1:max;
 }
-
-
-
-
-
 @end

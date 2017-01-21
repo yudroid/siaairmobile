@@ -13,14 +13,15 @@
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary
 {
     if (self = [super init]) {
-        [self setValuesForKeysWithDictionary:dictionary];
+        if ([dictionary isKindOfClass:[NSDictionary class]]) {
+            [self setValuesForKeysWithDictionary:dictionary];
+        }
     }
     return self;
 }
 
 -(void)setValue:(id)value forUndefinedKey:(NSString *)key
 {
-    
     return;
 }
 

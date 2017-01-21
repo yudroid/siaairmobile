@@ -25,19 +25,20 @@
 #import "SingleMessageViewController.h"
 #import "VersionModel.h"
 #import "FunctionShowViewController.h"
+#import "UINavigationController+FDFullscreenPopGesture.h"
 
 
 
 static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDENTIFIER";
 
-@interface UserInfoViewController ()<TabBarViewDelegate,UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
+@interface UserInfoViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIImageView *headImageView ;
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UILabel *dptLabel;
 @property (nonatomic, strong) UILabel *phoneLabel;
-@property (nonatomic, copy) NSArray *tableArray;
+@property (nonatomic, copy)   NSArray *tableArray;
 
 @end
 
@@ -71,6 +72,9 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     [logoffButton setBackgroundImage:[UIImage imageNamed:@"AbnormalityRequestStarButton"] forState:UIControlStateNormal];
     logoffButton.titleLabel.font = [UIFont fontWithName:@"PingFang SC" size:18];
     [self.view addSubview:logoffButton];
+
+    self.navigationController.navigationBar.hidden = YES;
+    self.fd_prefersNavigationBarHidden = YES;
 }
 
 -(void)initTitleView
@@ -222,9 +226,7 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
                    [self stopNetWorking];
                    [self showAnimationTitle:@"注销失败"];
                }];
-
 }
-
 
 #pragma mark - UITableViewDelegate UITableViewDataSource
 
@@ -281,118 +283,74 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
                 [self showAnimationTitle:@"已经为最新版本"];
             }else{
 #if __IPHONE_OS_VERSION_MAX_ALLOWED == __IPHONE_8_3
-                UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"发现新版本" message:@"是否更新" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+                UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"发现新版本"
+                                                                   message:@"是否更新"
+                                                                  delegate:self
+                                                         cancelButtonTitle:@"取消"
+                                                         otherButtonTitles:@"确定", nil];
                 alertView.tag = 1;
                 [alertView show];
 #else
-                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"发现新版本" message:@"是否更新？" preferredStyle:UIAlertControllerStyleAlert];
-                [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
-                [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){
+                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"发现新版本"
+                                                                                         message:@"是否更新？"
+                                                                                  preferredStyle:UIAlertControllerStyleAlert];
+                [alertController addAction:[UIAlertAction actionWithTitle:@"取消"
+                                                                    style:UIAlertActionStyleCancel handler:nil]];
+                [alertController addAction:[UIAlertAction actionWithTitle:@"确定"
+                                                                    style:UIAlertActionStyleDefault
+                                                                  handler:^(UIAlertAction * _Nonnull action){
                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@%@",@"itms-services://?action=download-manifest&url=https://www.pgyer.com/app/plist/",version.appKey,@"&password=",@"siaaoc"]]];
-
                 }]];
                 [self presentViewController:alertController animated:YES completion:nil];
-
             }
         } failure:^(id error) {
             [self showAnimationTitle:@"版本检测失败"];
         }];
         return;
-
-
-
 #endif
     }else if ([name isEqualToString:@"更新基础数据"]){
 #if __IPHONE_OS_VERSION_MAX_ALLOWED == __IPHONE_8_3
-        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提示"
+                                                           message:@""
+                                                          delegate:self
+                                                 cancelButtonTitle:@"取消"
+                                                 otherButtonTitles:@"确定", nil];
         alertView.tag = 1;
         [alertView show];
 #else
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"确定要更新基础数据吗？" preferredStyle:UIAlertControllerStyleAlert];
-        [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
-        [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示"
+                                                                                 message:@"确定要更新基础数据吗？"
+                                                                          preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"取消"
+                                                            style:UIAlertActionStyleCancel handler:nil]];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"确定"
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * _Nonnull action){
             [HttpsUtils loadEventsSuccess:^(id response) {
                 [self showAnimationTitle:@"更新成功"];
 
                 for(NSDictionary *dic in response){
                     [PersistenceUtils insertBasisInfoEventWithDictionary:dic];
                 }
-
             } failure:^(NSError *error) {
                 [self showAnimationTitle:@"更新失败"];
             }];
-
             [HttpsUtils loadDictDatasSuccess:^(id response) {
                 [self showAnimationTitle:@"更新成功"];
                 for(NSDictionary *dic in response){
                     [PersistenceUtils insertBasisInfoDictionaryWithDictionary:dic];
                 }
-
             } failure:^(NSError *error) {
                 [self showAnimationTitle:@"更新失败"];
             }];
-            
             [HttpsUtils loadAllUsers];
-
         }]];
 
         [self presentViewController:alertController animated:YES completion:nil];
 #endif
-        
-
     }else if([name isEqualToString:@"功能说明"]){
-
         FunctionShowViewController *funcitonShowVC = [[FunctionShowViewController alloc]init];
         [self.navigationController pushViewController:funcitonShowVC animated:YES];
-
-    }
-    
-}
-#pragma mark - 切换底部主功能页面
--(void)selectWithType:(TabBarSelectedType)type
-{
-    switch (type) {
-        case TabBarSelectedTypeHomePage:
-        {
-            HomePageViewController *homepage = [[HomePageViewController alloc] init];
-            [self.navigationController pushViewController:homepage animated:NO];
-            break;
-        }
-        case TabBarSelectedTypeFlight:
-        {
-            FlightViewController *flightpage = [[FlightViewController alloc] init];
-            [self.navigationController pushViewController:flightpage animated:NO];
-            break;
-        }
-        case TabBarSelectedTypeMessage:
-        {
-            [self showMessageViewController];
-            break;
-        }
-        case TabBarSelectedTypeFunction:
-        {
-            FunctionViewController *function = [[FunctionViewController alloc] init];
-            [self.navigationController pushViewController:function animated:NO];
-            break;
-        }
-        default:
-        break;
-    }
-}
-
--(void)showMessageViewController
-{
-    if([CommonFunction hasFunction:MSG_WORNING] && ![CommonFunction hasFunction:MSG_FLIGHT] && ![CommonFunction hasFunction:MSG_DIALOG]){
-        SingleMessageViewController *message = [[SingleMessageViewController alloc] init];
-        message.type = @"COMMAND";
-        [self.navigationController pushViewController:message animated:NO];
-    }else if(![CommonFunction hasFunction:MSG_WORNING] && [CommonFunction hasFunction:MSG_FLIGHT] && ![CommonFunction hasFunction:MSG_DIALOG]){
-        SingleMessageViewController *message = [[SingleMessageViewController alloc] init];
-        message.type = @"FLIGHT";
-        [self.navigationController pushViewController:message animated:NO];
-    }else{
-        MessageViewController *message = [[MessageViewController alloc] init];
-        [self.navigationController pushViewController:message animated:NO];
     }
 }
 

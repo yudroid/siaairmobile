@@ -35,7 +35,7 @@ static const NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_I
 @implementation FlightViewController
 {
     FlightFilterView        *filterView;
-    NSMutableArray<FlightModel *>  *dataArray;
+    NSArray<FlightModel *>  *dataArray;
 
     int startIndex;
     int pagesize;
@@ -160,15 +160,6 @@ static const NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_I
     _searContentTextField.font = [UIFont fontWithName:@"PingFangSC-Regular" size:px_px_2_3(26, 40)];
     [_searBar addSubview:_searContentTextField];
 
-    //搜索按钮
-//    UIButton *searchBarSearchButton = [[UIButton alloc]
-//                                       initWithFrame:CGRectMake(kScreenWidth-51, 20, 51, 44)];
-//    [searchBarSearchButton setTitle:@"搜索"
-//                           forState:UIControlStateNormal];
-//    [searchBarSearchButton addTarget:self
-//                              action:@selector(searchBarSearchButtonClick:)
-//                    forControlEvents:UIControlEventTouchUpInside];
-//    [_searBar addSubview:searchBarSearchButton];
 
     dataArray = [NSMutableArray array];
 }
@@ -186,19 +177,11 @@ static const NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_I
 
     [HttpsUtils queryFlightList:conds success:^(id responseObj) {
         // 数据加载完成
-
-
         [_tableView.mj_header endRefreshing];
         if(![responseObj isKindOfClass:[NSArray class]]){
             return;
         }
-        dataArray = [NSMutableArray array];
-        FlightModel *flight = nil;
-        for(id item in responseObj){
-            flight = [[FlightModel alloc]initWithDictionary:item];
-
-            [dataArray addObject:flight];
-        }
+        dataArray = [responseObj DictionaryToModel:[FlightModel class]] ;
         [_tableView reloadData];
         startIndex =20;
 
@@ -225,18 +208,11 @@ static const NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_I
             return;
         }
         NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:dataArray];
-        FlightModel *flight = nil;
-        for(id item in responseObj){
-            flight = [[FlightModel alloc]initWithDictionary:item];
-            [mutableArray addObject:flight];
-        }
+        [mutableArray addObjectsFromArray:[responseObj DictionaryToModel:[FlightModel class]]];
         dataArray = [mutableArray copy];
         [_tableView.mj_footer endRefreshing];
         [_tableView reloadData];
-
         startIndex +=pagesize;
-
-        
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
         [_tableView.mj_footer endRefreshing];
@@ -319,77 +295,24 @@ static const NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_I
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-
-        flightNo = textField.text;
-
+    flightNo = textField.text;
     [self.view endEditing:YES];
-
     [_tableView.mj_header beginRefreshing];
     return YES;
 }
 
-#pragma mark - 切换底部主功能页面
--(void)selectWithType:(TabBarSelectedType)type
-{
-    switch (type) {
-        case TabBarSelectedTypeHomePage:
-        {
-            HomePageViewController *homepage = [[HomePageViewController alloc] init];
-            [self.navigationController pushViewController:homepage animated:NO];
-            break;
-        }
-        case TabBarSelectedTypeMessage:
-        {
-            [self showMessageViewController];
-            break;
-        }
-        case TabBarSelectedTypeFunction:
-        {
-            FunctionViewController *function = [[FunctionViewController alloc] init];
-            [self.navigationController pushViewController:function animated:NO];
-            break;
-        }
-        case TabBarSelectedTypeUserInfo:
-        {
-            UserInfoViewController *userInfo = [[UserInfoViewController alloc] init];
-            [self.navigationController pushViewController:userInfo animated:NO];
-            break;
-        }
-        default:
-        break;
-    }
-}
-
--(void)showMessageViewController
-{
-    if([CommonFunction hasFunction:MSG_WORNING] && ![CommonFunction hasFunction:MSG_FLIGHT] && ![CommonFunction hasFunction:MSG_DIALOG]){
-        SingleMessageViewController *message = [[SingleMessageViewController alloc] init];
-        message.type = @"COMMAND";
-        [self.navigationController pushViewController:message animated:NO];
-    }else if(![CommonFunction hasFunction:MSG_WORNING] && [CommonFunction hasFunction:MSG_FLIGHT] && ![CommonFunction hasFunction:MSG_DIALOG]){
-        SingleMessageViewController *message = [[SingleMessageViewController alloc] init];
-        message.type = @"FLIGHT";
-        [self.navigationController pushViewController:message animated:NO];
-    }else{
-        MessageViewController *message = [[MessageViewController alloc] init];
-        [self.navigationController pushViewController:message animated:NO];
-    }
-}
 
 -(void)flightFilterView:(FlightFilterView *)view SureButtonClickArea:(NSString *)area property:(NSString *)property status:(NSString *)status
 {
-
     flightRegion = area ;
     flightType = property ;
     flightStatus = status ;
 
     [_tableView.mj_header beginRefreshing];
-
 }
 
 -(void)flightFilterView:(FlightFilterView *)view filghtFilterCleanButton:(UIButton *)button
 {
-
     flightNo =@"";
     flightType = @"";
     flightRegion = @"";

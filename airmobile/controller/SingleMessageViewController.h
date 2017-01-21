@@ -6,9 +6,9 @@
 //  Copyright © 2016年 杨泉林. All rights reserved.
 //
 
-#import "RootViewController.h"
+#import "HasTabbarRootViewController.h"
 
-@interface SingleMessageViewController : RootViewController
+@interface SingleMessageViewController : HasTabbarRootViewController
 
 @property (copy, nonatomic) NSString *type;
 

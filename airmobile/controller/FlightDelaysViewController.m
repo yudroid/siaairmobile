@@ -34,6 +34,7 @@ static const NSString *FLGHTDELAYS_TABLECELL_IDENTIFIER = @"FLGHTDELAYS_TABLECEL
 
     _tableView.delegate = self;
     _tableView.dataSource =self;
+    _tableView.tableFooterView = [[UIView alloc]init];
     
     startIndex = 0;
     pagesize = 20;

@@ -1,0 +1,12 @@
+{
+  "name": "tracker",
+  "_release": "9c6f57b621",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "9c6f57b621d19afe257b6ebbe4246684d2bceb63"
+  },
+  "_source": "http://gitlab.alibaba-inc.com/mpi/tracker.git",
+  "_target": "*",
+  "_direct": true
+}

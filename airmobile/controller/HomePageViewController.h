@@ -11,6 +11,7 @@
 #import "FlightContentView.h"
 #import "PassengerContentView.h"
 #import "ResourceContentView.h"
+#import "HasTabbarRootViewController.h"
 @class ResourceOverview;
 
 typedef enum
@@ -22,7 +23,7 @@ typedef enum
     
 }HomePageType;
 
-@interface HomePageViewController : RootViewController<TabBarViewDelegate,OverviewContentViewDelegate,FlightContentViewDelegate,PassengerContentViewDelegate,ResourceContentViewDelegate>
+@interface HomePageViewController : HasTabbarRootViewController<TabBarViewDelegate,OverviewContentViewDelegate,FlightContentViewDelegate,PassengerContentViewDelegate,ResourceContentViewDelegate>
 {
     UIImageView *selectedLine;
     

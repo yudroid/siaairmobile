@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 @class BasisInfoEventModel;
 @class BasisInfoDictionaryModel;
+@class AbnormalModel;
 
 
 typedef NS_ENUM(NSUInteger, ReportState) {
@@ -26,19 +27,25 @@ typedef NS_ENUM(NSUInteger, ReportState) {
 @property (weak, nonatomic) IBOutlet UITextView     *explainTextView;
 
 @property (nonatomic, copy)          NSArray        *abnormalityHistoryArray;
+@property (nonatomic ,strong)        NSMutableArray *collectionArray;
+@property (nonatomic, copy)          NSArray        *imageFilePath;
 @property (weak, nonatomic) IBOutlet UITableView    *abnormalityHistoryTableView;
 @property (nonatomic, strong) NSString *DispatchType;
 
-@property (nonatomic, strong) BasisInfoDictionaryModel *eventType;
-@property (nonatomic, strong) BasisInfoDictionaryModel *eventLevel;
-@property (nonatomic, strong) BasisInfoEventModel *event;
+@property (nonatomic, strong) BasisInfoDictionaryModel *eventType;//事件类型
+@property (nonatomic, strong) BasisInfoDictionaryModel *eventLevel;//事件级别
+@property (nonatomic, strong) BasisInfoEventModel *event;//事件
 
 
 @property (nonatomic, assign) BOOL isSpecial;//是否特殊航班
-
-@property (nonatomic, assign) ReportState reportState;
+@property (nonatomic, assign) ReportState reportState;//数据上报的类型  上报  已经开始未结束  已经完成
 @property (nonatomic, assign) int abnormalId;
 
 @property (nonatomic, strong) NSString *title;
+
+
+-(ReportState)judgeReportStateWithAbnormalModel:(AbnormalModel *)abnormalModel;
+
+-(void)setEventAbnormalModel:(AbnormalModel *)abnormalModel;
 
 @end

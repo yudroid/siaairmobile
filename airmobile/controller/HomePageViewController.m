@@ -63,6 +63,8 @@
 
     homePageType = HomePageTypeOverview;//设置当前页面为整体概览
     [self showOverviewContentView];//根据显示类型显示页面
+
+    
 }
 
 
@@ -89,114 +91,6 @@
                                                                       76)];
     titleLabelView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"home_title_bg.png"]];
     [self.titleView addSubview:titleLabelView];
-    
-    // 当前选中的标记线
-//    selectedLine = [CommonFunction addLine:CGRectMake(0, 0, kScreenWidth/4-16, 2.5) color:[UIColor redColor]];
-//    selectedLine.center = CGPointMake(kScreenWidth/8, 74);
-//    [titleLabelView addSubview:selectedLine];
-//    selectedLine = [[UIImageView alloc]initWithFrame:CGRectMake(0,
-//                                                                0,
-//                                                                kScreenWidth/4-16,
-//                                                                6)];
-//    selectedLine.center = CGPointMake(kScreenWidth/8, 74);
-//    selectedLine.image  = [UIImage imageNamed:@"SelectedLine"];
-//    [titleLabelView addSubview:selectedLine];
-//
-//    overviewLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
-//                                                              0,
-//                                                              kScreenWidth/4,
-//                                                              titleLableHeight)];//整体概览
-//    overviewLabel.center    = CGPointMake(kScreenWidth/8, 57);
-//    overviewLabel.textColor = [CommonFunction colorFromHex:0XFFFFFFFF];
-//    overviewLabel.text      = @"总体";
-//    overviewLabel.font      =  [UIFont fontWithName:@"PingFangSC-Regular"
-//                                          size:px2(37)];
-//    overviewLabel.textAlignment = NSTextAlignmentCenter;
-//    [titleLabelView addSubview:overviewLabel];
-//    
-//    UIButton *overviewBtn = [[UIButton alloc] initWithFrame:CGRectMake(0,
-//                                                                       0,
-//                                                                       kScreenWidth/4,
-//                                                                       50)];
-//    overviewBtn.center  = CGPointMake(kScreenWidth/8, 57);
-//    overviewBtn.tag     = 0;
-//    [overviewBtn addTarget:self
-//                    action:@selector(titleButtonClickedWithSender:)
-//          forControlEvents:UIControlEventTouchUpInside];
-//    //    overviewBtn.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.5];//显示按键范围
-//    [titleLabelView addSubview:overviewBtn];
-//    
-//    
-//    flightLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
-//                                                            0,
-//                                                            kScreenWidth/4,
-//                                                            titleLableHeight)];//航班
-//    flightLabel.center          = CGPointMake(kScreenWidth*3/8, 57);
-//    flightLabel.textColor       = [CommonFunction colorFromHex:0X7FFFFFFF];
-//    flightLabel.text            = @"航班";
-//    flightLabel.textAlignment   = NSTextAlignmentCenter;
-//    flightLabel.font            =  [UIFont fontWithName:@"PingFangSC-Regular"
-//                                        size:px2(37)];
-//    [titleLabelView addSubview:flightLabel];
-//    
-//    UIButton *flightBtn = [[UIButton alloc] initWithFrame:CGRectMake(0,
-//                                                                     0,
-//                                                                     kScreenWidth/4,
-//                                                                     50)];
-//    flightBtn.center    = CGPointMake(kScreenWidth*3/8, 57);
-//    flightBtn.tag       = 1;
-//    [flightBtn addTarget:self
-//                  action:@selector(titleButtonClickedWithSender:)
-//        forControlEvents:UIControlEventTouchUpInside];
-//    //    securityBtn.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.5];//显示按键范围
-//    [titleLabelView addSubview:flightBtn];
-//    
-//    passengerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
-//                                                               0,
-//                                                               kScreenWidth/4,
-//                                                               titleLableHeight)];//旅客
-//    passengerLabel.center       = CGPointMake(kScreenWidth*5/8, 57);
-//    passengerLabel.textColor    = [CommonFunction colorFromHex:0X7FFFFFFF];
-//    passengerLabel.text         = @"旅客";
-//    passengerLabel.textAlignment= NSTextAlignmentCenter;
-//    passengerLabel.font         =  [UIFont fontWithName:@"PingFangSC-Regular"
-//                                           size:px2(37)];
-//    [titleLabelView addSubview:passengerLabel];
-//    
-//    UIButton *passengerBtn      = [[UIButton alloc] initWithFrame:CGRectMake(0,
-//                                                                        0,
-//                                                                        kScreenWidth/4,
-//                                                                        50)];
-//    passengerBtn.center = CGPointMake(kScreenWidth*5/8, 57);
-//    passengerBtn.tag    = 2;
-//    [passengerBtn addTarget:self
-//                     action:@selector(titleButtonClickedWithSender:)
-//           forControlEvents:UIControlEventTouchUpInside];
-//    [titleLabelView addSubview:passengerBtn];
-//    
-//    resourceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
-//                                                              0,
-//                                                              kScreenWidth/4,
-//                                                              titleLableHeight)];//资源
-//    resourceLabel.center        = CGPointMake(kScreenWidth-kScreenWidth/8, 57);
-//    resourceLabel.textColor     = [CommonFunction colorFromHex:0X7FFFFFFF];
-//    resourceLabel.text          = @"机位";
-//    resourceLabel.textAlignment = NSTextAlignmentCenter;
-//    resourceLabel.font          = [UIFont fontWithName:@"PingFangSC-Regular"
-//                                                  size:px2(37)];
-//    [titleLabelView addSubview:resourceLabel];
-//    
-//    UIButton *resourceBtn   = [[UIButton alloc] initWithFrame:CGRectMake(0,
-//                                                                       0,
-//                                                                       kScreenWidth/4,
-//                                                                       50)];
-//    resourceBtn.center      = CGPointMake(kScreenWidth-kScreenWidth/8, 57);
-//    resourceBtn.tag         = 3;
-//    [resourceBtn addTarget:self
-//                    action:@selector(titleButtonClickedWithSender:)
-//          forControlEvents:UIControlEventTouchUpInside];
-//    [titleLabelView addSubview:resourceBtn];
-
 
     NSArray *titleArray = @[@"总体",@"航班",@"旅客",@"机位"];
     NSMutableArray *titleMutableArray = [[NSMutableArray alloc]initWithArray:titleArray];
@@ -288,40 +182,6 @@
         homePageType = HomePageTypeResource;
         [self showResourceContentView];
     }
-
-//    switch (sender.tag)
-//    {
-//        case 0:
-//            selectedLine.center     = CGPointMake(kScreenWidth/(_titleLabelArray.count*2) *(sender.tag*2+1), 74);
-//            tit.textColor = [CommonFunction colorFromHex:0XFFFFFFFF];
-//            homePageType            = HomePageTypeOverview;
-//            [self showOverviewContentView];
-//            break;
-//            
-//        case 1:
-//            selectedLine.center     = CGPointMake(kScreenWidth/(_titleLabelArray.count*2) *(sender.tag*2+1), 74);
-//            flightLabel.textColor   = [CommonFunction colorFromHex:0XFFFFFFFF];
-//            homePageType            = HomePageTypeFlight;
-//            [self showFlightContentView];
-//            break;
-//            
-//        case 2:
-//            selectedLine.center         = CGPointMake(kScreenWidth/(_titleLabelArray.count*2) *(sender.tag*2+1), 74);
-//            passengerLabel.textColor    = [CommonFunction colorFromHex:0XFFFFFFFF];
-//            homePageType                = HomePageTypePassenger;
-//            [self showPassengerContentView];
-//            break;
-//            
-//        case 3:
-//            selectedLine.center         = CGPointMake(kScreenWidth/(_titleLabelArray.count*2) *(sender.tag*2+1), 74);
-//            resourceLabel.textColor     = [CommonFunction colorFromHex:0XFFFFFFFF];
-//            homePageType                = HomePageTypeResource;
-//            [self showResourceContentView];
-//            break;
-//            
-//        default:
-//            break;
-//    }
 }
 
 
@@ -400,13 +260,6 @@
     }
     else
     {
-//        resourceContentView = [[ResourceContentView alloc] initWithFrame:CGRectMake(0,
-//                                                                                    80,
-//                                                                                    kScreenWidth,
-//                                                                                    kScreenHeight-80-49)
-//                                                         seatStatusModel:[HomePageService sharedHomePageService].seatModel
-//                                                                delegate:self];
-
         resourceContentView = [[ResourceOverview alloc]initWithFrame:CGRectMake(0, 76, kScreenWidth, kScreenHeight-80-49) delegate:self];
 
         [self.view addSubview:resourceContentView];
@@ -433,63 +286,7 @@
     resourceContentView = nil;
 }
 
-#pragma mark 切换底部主功能页面
--(void)selectWithType:(TabBarSelectedType)type
-{
-    switch (type) {
-        case TabBarSelectedTypeHomePage:
-        {
-            HomePageViewController *homepage = [[HomePageViewController alloc] init];
-            [self.navigationController pushViewController:homepage
-                                                 animated:NO];
-            break;
-        }
-        case TabBarSelectedTypeFlight:
-        {
-            FlightViewController *flightpage = [[FlightViewController alloc] init];
-            [self.navigationController pushViewController:flightpage
-                                                 animated:NO];
-            break;
-        }
-        case TabBarSelectedTypeMessage:
-        {
-            [self showMessageViewController];
-            break;
-        }
-        case TabBarSelectedTypeFunction:
-        {
-            FunctionViewController *function = [[FunctionViewController alloc] init];
-            [self.navigationController pushViewController:function
-                                                 animated:NO];
-            break;
-        }
-        case TabBarSelectedTypeUserInfo:
-        {
-            UserInfoViewController *userInfo = [[UserInfoViewController alloc] init];
-            [self.navigationController pushViewController:userInfo
-                                                 animated:NO];
-            break;
-        }
-        default:
-            break;
-    }
-}
 
--(void)showMessageViewController
-{
-    if([CommonFunction hasFunction:MSG_WORNING] && ![CommonFunction hasFunction:MSG_FLIGHT] && ![CommonFunction hasFunction:MSG_DIALOG]){
-        SingleMessageViewController *message = [[SingleMessageViewController alloc] init];
-        message.type = @"COMMAND";
-        [self.navigationController pushViewController:message animated:NO];
-    }else if(![CommonFunction hasFunction:MSG_WORNING] && [CommonFunction hasFunction:MSG_FLIGHT] && ![CommonFunction hasFunction:MSG_DIALOG]){
-        SingleMessageViewController *message = [[SingleMessageViewController alloc] init];
-        message.type = @"FLIGHT";
-        [self.navigationController pushViewController:message animated:NO];
-    }else{
-        MessageViewController *message = [[MessageViewController alloc] init];
-        [self.navigationController pushViewController:message animated:NO];
-    }
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -581,14 +378,16 @@
  展示机位的使用详细信息
  */
 -(void) showSeatUsedMainDetailView{
-    SeatUsedViewController *seatUsed = [[SeatUsedViewController alloc]initWithCraftseatCntModel:[HomePageService sharedHomePageService].seatModel type:SeatUsedViewControllerTypeMain];
+    SeatUsedViewController *seatUsed = [[SeatUsedViewController alloc]initWithCraftseatCntModel:[HomePageService sharedHomePageService].seatModel
+                                                                                           type:SeatUsedViewControllerTypeMain];
     [self.navigationController pushViewController:seatUsed
                                          animated:YES];
 }
 
 -(void) showSeatUsedSubDetailView
 {
-    SeatUsedViewController *seatUsed = [[SeatUsedViewController alloc]initWithCraftseatCntModel:[HomePageService sharedHomePageService].seatModel type:SeatUsedViewControllerTypeSub];
+    SeatUsedViewController *seatUsed = [[SeatUsedViewController alloc]initWithCraftseatCntModel:[HomePageService sharedHomePageService].seatModel
+                                                                                           type:SeatUsedViewControllerTypeSub];
     [self.navigationController pushViewController:seatUsed
                                          animated:YES];
 

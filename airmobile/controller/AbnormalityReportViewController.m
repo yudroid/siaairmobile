@@ -10,7 +10,7 @@
 #import "AbnormalityReportCollectionViewCell.h"
 #import "UIViewController+Reminder.h"
 #import "AbnormalityReportTableViewCell.h"
-#import "UploadPhotoViewController.h"
+//#import "UploadPhotoViewController.h"
 #import "SJPhotoPicker.h"
 #import "SJPickPhotoController.h"
 #import "SJAlbumModel.h"
@@ -22,13 +22,15 @@
 #import "HttpsUtils+Business.h"
 #import "BasisInfoDictionaryModel.h"
 #import "BasisInfoEventModel.h"
-
+#import "UIButton+PhotoChoose.h"
+#import <FlyImage.h>
+#import "PersistenceUtils+Business.h"
 
 static const NSString *ABNORMALITYREPORT_TABLECELL_IDENTIFIER =@"ABNORMALITYREPORT_TABLECELL_IDENTIFIER";
 static const NSString *ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER = @"ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER";
 static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER";
 
-@interface AbnormalityReportViewController ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UITextViewDelegate,OptionsViewControllerDelegate,UploadPhotoViewControllerDelegate,UICollectionViewDelegateFlowLayout>
+@interface AbnormalityReportViewController ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UITextViewDelegate,OptionsViewControllerDelegate,UICollectionViewDelegateFlowLayout>
 
 //控件
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -39,7 +41,6 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewBottom;
 //自定义变量
 @property (nonatomic, copy) NSArray *tableViewArray;
-@property (nonatomic ,strong) NSMutableArray *collectionArray;
 @property (nonatomic, strong) AbnormalModel *abnormalModel ;
 
 
@@ -89,6 +90,8 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
     _explainTextView.returnKeyType = UIReturnKeyDone;
     _explainTextView.delegate = self;
 
+
+
 //    _explainTextView.text = _abnormalModel.
     _requireTextView.text = _abnormalModel.ask;
 
@@ -111,7 +114,41 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
                            forKeyPath:@"enabled"
                               options:NSKeyValueObservingOptionNew
                               context:nil];
+
+    //设置该按钮支持拍照
+    _iphoneButton.isPhotoChoose = YES;
+    _iphoneButton.photoDidFinished = ^(UIImage *image){
+        NSData *imgData = UIImageJPEGRepresentation(image, 0.5);
+        image = [UIImage imageWithData:imgData];
+        [_collectionArray addObject:image];
+        [_photoCollectionView reloadData];
+    };
     
+}
+
+-(ReportState)judgeReportStateWithAbnormalModel:(AbnormalModel *)abnormalModel
+{
+    if (abnormalModel.startTime
+        &&![abnormalModel.startTime isEqualToString:@""]
+        &&(!abnormalModel.endTime||[abnormalModel.endTime isEqualToString:@""])) {
+        return ReportStateStarted;
+    }else{
+        return ReportStateCompleted;
+    }
+}
+-(void)setEventAbnormalModel:(AbnormalModel *)abnormalModel
+{
+    NSDictionary * dic = [[PersistenceUtils findBasisInfoEventWithEventId:abnormalModel.event.intValue] lastObject];
+    self.event = [[BasisInfoEventModel alloc]initWithDictionary:dic];
+    NSDictionary *dic1= [[PersistenceUtils findBasisInfoDictionaryWithid:self.event.event_type] lastObject];
+    self.eventType = [[BasisInfoDictionaryModel alloc] initWithDictionary:dic1];
+    NSDictionary *dic2 = [[PersistenceUtils findBasisInfoDictionaryWithid:self.event.event_level] lastObject];
+    self.eventLevel = [[BasisInfoDictionaryModel alloc]initWithDictionary:dic2];
+    self.explainTextView.text = self.event.content;
+    self.requireTextView.text = abnormalModel.ask;
+
+    self.abnormalId = (int)abnormalModel.id;
+    [self.tableView reloadData];
 }
 
 -(void)setReportState:(ReportState)reportState
@@ -195,27 +232,6 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 //    [self setupDateView];
 }
 
-- (IBAction)phoneButttonClick:(id)sender
-{
-    UploadPhotoViewController *uploadPhotoVC = [[UploadPhotoViewController alloc]initWithNibName:@"UploadPhotoViewController"
-                                                                                          bundle:nil];
-    uploadPhotoVC.delegate = self;
-    [self.navigationController pushViewController:uploadPhotoVC animated:YES];
-
-//    [[SJPhotoPickerManager shareSJPhotoPickerManager] requestAlbumsWithType:PHAssetCollectionTypeSmartAlbum  albumResult:^(NSArray *albumArray) {
-//        SJPickPhotoController *vc = [[SJPickPhotoController alloc] init];
-//        SJAlbumModel *model = [[SJAlbumModel alloc] init];
-//        NSArray *groupArray = [albumArray mutableCopy];
-//        if (groupArray&&groupArray.count>0) {
-//            model = groupArray[0];
-//        }
-//        vc.assetResult = model.assetResult;
-//        [self.navigationController pushViewController:vc animated:NO];
-//    }];
-}
-
-
-
 -(void)updateData
 {
     [_tableView reloadData];
@@ -256,8 +272,7 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
             cell.valueLabel.text = _eventLevel.content;
         }
         return  cell;
-    }else
-    {
+    }else{
         AbnormalityReportHistoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString*)ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER];
         cell.abnormalModel = self.abnormalityHistoryArray[indexPath.row];
         return  cell;
@@ -270,10 +285,11 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     if(tableView == _abnormalityHistoryTableView){
+        AbnormalModel *model = self.abnormalityHistoryArray[indexPath.row];
+        [self setEventAbnormalModel:model];
+        [self judgeReportStateWithAbnormalModel:model];
         return;
     }
-
-
     OptionsViewController *optionsVC ;
 
     NSString *name =_tableViewArray[indexPath.row];
@@ -307,12 +323,22 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    ImageViewCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:(NSString *)ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER
-                                                                                  forIndexPath:indexPath];
-    cell.imageView.image = _collectionArray[indexPath.row];
+    ImageViewCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:(NSString *)ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER forIndexPath:indexPath];
+    if (self.reportState == ReportStateStarted) {
+//        cell.imageView seturl
+
+    }else{
+        cell.imageView.image = _collectionArray[indexPath.row];
+        cell.tag = indexPath.row;
+        __weak typeof(self) wSelf = self;
+        cell.longPressBlock = ^(UICollectionViewCell *cell){
+            [_collectionArray removeObject:((ImageViewCollectionViewCell *)cell).imageView.image];
+            [wSelf.photoCollectionView reloadData];
+        };
+    }
+
     return cell;
 }
-
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
@@ -378,11 +404,7 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 
 }
 
--(void)UploadPhotoViewControllerFinished:(NSArray *)dataArray
-{
-    _collectionArray = [dataArray copy];
-    [_photoCollectionView reloadData];
-}
+
 /*
 #pragma mark - Navigation
 

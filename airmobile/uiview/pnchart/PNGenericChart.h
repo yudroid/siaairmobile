@@ -22,16 +22,16 @@ typedef NS_ENUM(NSUInteger, PNLegendItemStyle) {
 
 @interface PNGenericChart : UIView
 
-@property (assign, nonatomic) BOOL hasLegend;
-@property (assign, nonatomic) PNLegendPosition legendPosition;
-@property (assign, nonatomic) PNLegendItemStyle legendStyle;
+@property (assign, nonatomic) BOOL hasLegend; //图例
+@property (assign, nonatomic) PNLegendPosition legendPosition;//图例位置
+@property (assign, nonatomic) PNLegendItemStyle legendStyle;//图例风格
 
-@property (assign, nonatomic) UIFont *legendFont;
-@property (copy, nonatomic) UIColor *legendFontColor;
-@property (assign, nonatomic) NSUInteger labelRowsInSerialMode;
+@property (assign, nonatomic) UIFont *legendFont; //图例字体
+@property (copy, nonatomic) UIColor *legendFontColor;//图例字体颜色
+@property (assign, nonatomic) NSUInteger labelRowsInSerialMode;//label 的行数
 
 /** Display the chart with or without animation. Default is YES. **/
-@property (nonatomic) BOOL displayAnimated;
+@property (nonatomic) BOOL displayAnimated; //展示动画
 
 /**
  *  returns the Legend View, or nil if no chart data is present.
@@ -41,6 +41,8 @@ typedef NS_ENUM(NSUInteger, PNLegendItemStyle) {
  *
  *  @return UIView of Legend
  */
+
+//返回一个图例视图，设置一个最大的宽度
 - (UIView*) getLegendWithMaxWidth:(CGFloat)mWidth;
 
 

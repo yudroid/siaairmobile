@@ -334,7 +334,7 @@
 {
     if ([notification.object isKindOfClass:[FlightLargeDelayModel class]]) {
 
-        if ([self getFlightHourXLabels].count ==0 ) {
+
             _flightLargeDelayModel  = notification.object;
             //        ratioNum.text           = @(_flightLargeDelayModel.delayOneHourRatio).stringValue;
             peopleLabel.text        = @(_flightLargeDelayModel.glqPassenCnt).stringValue;
@@ -361,7 +361,7 @@
             [lineChart strokeChart];
             
             
-        }
+
         
     }
 }

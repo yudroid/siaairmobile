@@ -22,4 +22,5 @@
 @property (nonatomic ,assign)   Boolean     isKey;          //是否为特殊航班
 @property (nonatomic ,copy)     NSString    *startTime;     //上报开始时间
 @property (nonatomic ,copy)     NSString    *endTime;       //上报结束时间
+@property (nonatomic ,copy)     NSString    *imagePath;     //图片路径
 @end

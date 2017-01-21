@@ -7,7 +7,7 @@
 //
 
 #import "WeatherAirportController.h"
-#import <UMESDKKit/AirportFuctionWebViewController.h>
+//#import <UMESDKKit/AirportFuctionWebViewController.h>
 #import <UMESDKKit/UMESDKApi.h>
 
 
@@ -38,13 +38,13 @@
 
 
 -(void) createWebView{
-    AirportFuctionWebViewController* airportController = [[AirportFuctionWebViewController alloc] init];
-    airportController.airportCode = self.airportCode;
-    airportController.functionID = self.functionId;
-    airportController.view.frame = CGRectMake(0, 64, kScreenWidth, kScreenHeight);
-    [self addChildViewController:airportController];
-    
-    [self.view addSubview:airportController.view];
+//    AirportFuctionWebViewController* airportController = [[AirportFuctionWebViewController alloc] init];
+//    airportController.airportCode = self.airportCode;
+//    airportController.functionID = self.functionId;
+//    airportController.view.frame = CGRectMake(0, 64, kScreenWidth, kScreenHeight);
+//    [self addChildViewController:airportController];
+//    
+//    [self.view addSubview:airportController.view];
 }
 
 

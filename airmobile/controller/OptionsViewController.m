@@ -80,7 +80,6 @@ static const NSString *OPTIONS_COLLECTIONVIEW_INDETIFIER = @"OPTIONS_COLLECTIONV
 
 			}
 			break;
-			
 		}
 		case OptionsTypeEventLevel:
 		{
@@ -94,7 +93,6 @@ static const NSString *OPTIONS_COLLECTIONVIEW_INDETIFIER = @"OPTIONS_COLLECTIONV
 			break;
 		}
 		default:
-
 			break;
 	}
 
@@ -138,9 +136,7 @@ static const NSString *OPTIONS_COLLECTIONVIEW_INDETIFIER = @"OPTIONS_COLLECTIONV
 
 	}else{
 		cell.basisInfoDictionaryModel = _collectionArray[indexPath.row];
-
 	}
-
 	return cell;
 
 }
@@ -154,13 +150,11 @@ static const NSString *OPTIONS_COLLECTIONVIEW_INDETIFIER = @"OPTIONS_COLLECTIONV
 	NSString *content = @"";
 	if (_optionsType == OptionsTypeEvent) {
 		content = ((BasisInfoEventModel *)_collectionArray[indexPath.row]).event;
-
 	}else{
 		content = ((BasisInfoDictionaryModel *)_collectionArray[indexPath.row]).content;
-
 	}
 	CGSize size = [content boundingRectWithSize:CGSizeMake((kScreenWidth-32), CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont fontWithName:@"PingFang SC" size:15.0 ]} context:nil].size;
-	return CGSizeMake((kScreenWidth-32), size.height+8);
+	return CGSizeMake((kScreenWidth-32), size.height?:20+8);
 }
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {

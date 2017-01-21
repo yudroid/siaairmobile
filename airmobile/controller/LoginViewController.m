@@ -27,6 +27,7 @@
 #import "FunctionViewController.h"
 #import "UserInfoViewController.h"
 #import "SingleMessageViewController.h"
+#import "UINavigationController+FDFullscreenPopGesture.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
 
@@ -64,7 +65,7 @@
 
     }
 
-    
+    self.fd_prefersNavigationBarHidden = YES;
 }
 
 #pragma mark - custom funtion
@@ -510,38 +511,34 @@
 
 -(void)loadViewController
 {
+    UIViewController *viewController = nil;
     if ([CommonFunction hasFunction:OV]) {
-        HomePageViewController *homepage = [[HomePageViewController alloc] init];
-        [self.navigationController pushViewController:homepage animated:YES];
+        viewController = [[HomePageViewController alloc] init];
     }else if([CommonFunction hasFunction:FL]){
-
-        FlightViewController *flightVC = [[FlightViewController alloc]init];
-        [self.navigationController pushViewController:flightVC animated:YES];
+        viewController = [[FlightViewController alloc]init];
     }else if([CommonFunction hasFunction:MSG]){
         if([CommonFunction hasFunction:MSG_WORNING] && ![CommonFunction hasFunction:MSG_FLIGHT] && ![CommonFunction hasFunction:MSG_DIALOG]){
             SingleMessageViewController *message = [[SingleMessageViewController alloc] init];
             message.type = @"COMMAND";
-            [self.navigationController pushViewController:message animated:NO];
         }else if(![CommonFunction hasFunction:MSG_WORNING] && [CommonFunction hasFunction:MSG_FLIGHT] && ![CommonFunction hasFunction:MSG_DIALOG]){
             SingleMessageViewController *message = [[SingleMessageViewController alloc] init];
             message.type = @"FLIGHT";
-            [self.navigationController pushViewController:message animated:NO];
         }else{
-            MessageViewController *message = [[MessageViewController alloc] init];
-            [self.navigationController pushViewController:message animated:NO];
+            viewController = [[MessageViewController alloc] init];
         }
 
-
     }else if([CommonFunction hasFunction:FUNC]){
-        FunctionViewController *functionVC = [[FunctionViewController alloc]init];
-        [self.navigationController pushViewController:functionVC animated:YES];
-
+        viewController = [[FunctionViewController alloc]init];
     }else if ([CommonFunction hasFunction:SET]){
-        UserInfoViewController *userInfoVC = [[UserInfoViewController alloc]init];
-        [self.navigationController pushViewController:userInfoVC animated:YES];
-
+        viewController = [[UserInfoViewController alloc]init];
     }else{
         [self showAnimationTitle:@"该账号无权限"];
+    }
+    if (viewController != nil) {
+        AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        UINavigationController *navigationContoller = [[UINavigationController alloc]initWithRootViewController:viewController];
+        appdelegate.window.rootViewController = navigationContoller;
+        [appdelegate.window makeKeyWindow];
     }
 
 }

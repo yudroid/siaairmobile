@@ -1,0 +1,245 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>航班动态首页</title>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta content="false" name="twcClient" id="twcClient" />
+    <link rel="apple-touch-icon-precomposed" href="http://a.tbcdn.cn/mw/s/hi/tbtouch/images/touch-icon.png" />
+    <link rel="stylesheet" href="../../widgets/libs/reset.css" />
+    <link rel="stylesheet" href="../../widgets/libs/base.css" />
+    <link rel="stylesheet" href="../../widgets/libs/notification.css" />
+
+    <script type="text/javascript" src="../../widgets/libs/mini-full-min.js"></script>
+    <script type="text/javascript" src="../../widgets/libs/zepto-full.js"></script>
+    <link rel="stylesheet" href="./index.css"/>
+    <script type="text/javascript">KISSY.Config.debug = true;</script>
+    <script src="../../config.js"></script>
+    <script type='text/juicer' id="J_card_item_tpl">
+            <div class="card-title-wrap">
+                <div class="card-title">
+                    <div class="title">${airlineChnName}${pflycode}</div>
+                    <div class="time">${pdate1} ${pdate1 | getDay}</div>
+                </div>
+                <div class="card-btn">
+                    <div class="refreshBtn"></div>
+                    <div class="deleteBtn"></div>
+                </div>
+
+            </div>
+            <section class="info-main">
+                <div class="status-logo ${pstatus | getClassNameByStatus}"></div>
+                <div class="text">
+                    <div class="status-text">${offTimeDesc}</div>
+                    <div class="info">
+                        <div class="counter">值机柜台：${ckiCounter}</div>
+                        <div class="gate">登机口：${pgate1}</div>
+                        <div class="luggage">行李转盘：${baggageTurn}</div>
+                        <div class="rate">准点率：${ontime}</div>
+                    </div>
+                </div>
+            </section>
+            <section class="info-detail">
+                <div class="c-info dep-info">
+                    <div class="c-city dep-city">
+                        <div class="city">${deptCityName}</div>
+                        <div class="dep-port-code port-code hide">${pairport1}</div>
+                        <div class="airport">${deptAirportChnName}</div>
+                        <div class="arrow"></div>
+                    </div>
+                    <div class="c-time dep-time">
+                        <div class="plan">
+                            <div class="f1 plan-title">计划出发</div>
+                            <div class="f2 plan-time">${pplantime1}</div>
+                        </div>
+                        <div class="actual">
+                            <div class="f1 actual-title">${prealtimetext1}</div>
+                            <div class="f2 actual-time">${prealtime1}</div>
+                        </div>
+                        <div class="terminal">
+                            <div class="f1 terminal-title">航站楼</div>
+                            <div class="f2 terminal-name">${pterminal1}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="c-info arr-info">
+                    <div class="c-city arr-city">
+                        <div class="city">${destCityName}</div>
+                        <div class="arr-port-code port-code hide">${pairport2}</div>
+                        <div class="airport">${destAirportChnName}</div>
+                        <div class="arrow"></div>
+                    </div>
+                    <div class="c-time arr-time">
+                        <div class="plan">
+                            <div class="f1 plan-title">计划到达</div>
+                            <div class="f2 plan-time">${pplantime2}</div>
+                        </div>
+                        <div class="actual">
+                            <div class="f1 actual-title">${prealtimetext2}</div>
+                            <div class="f2 actual-time">${prealtime2}</div>
+                        </div>
+                        <div class="terminal">
+                            <div class="f1 terminal-title">航站楼</div>
+                            <div class="f2 terminal-name">${pterminal2}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="arrive-tip">${preflightstatus}</div>
+                <div class="bottom-tip">航班动态服务独家提供<div class="umetrip-logo"></div> </div>
+            </section>
+    </script>
+</head>
+<body>
+<div id="tbh5v0" class="content">
+<div id="bodyCont" class="screen-wrap fullscreen search-page">
+
+<div class="default hide">
+    <div class="bg-pic"></div>
+    <div class="text">关注航班 免费获得通知 <br>随时了解航班起降信息</div>
+		<div class="bottom-tip">航班动态服务独家提供<div class="umetrip-logo"></div> </div>
+</div>
+
+<div class="flight-card">
+    <div class="slide-status">
+    <script type='text/juicer' id="J_card_status_tpl">
+        {@each _ as item,index}
+        <i {@if index==0}class="sel"{@/if}></i>
+        {@/each}
+    </script>
+    </div>
+    <section class="card-wrap" id="card-slide">
+        <div class="card-inner">
+            <ul class="card-list">
+                <script type='text/juicer' id="J_card_list_tpl">
+                {@each _ as item}
+                <li class="card-item">
+                    <div class="card-title-wrap">
+                        <div class="card-title">
+                            <div class="title">${item.airlineChnName}${item.pflycode}</div>
+                            <div class="time">${item.pdate1} ${item.pdate1 | getDay}</div>
+                        </div>
+                        <div class="card-btn">
+                            <div class="refreshBtn"></div>
+                            <div class="deleteBtn"></div>
+                        </div>
+
+                    </div>
+                    <section class="info-main">
+                        <div class="status-logo ${item.pstatus | getClassNameByStatus}"></div>
+                        <div class="text">
+                            <div class="status-text">${item.offTimeDesc}</div>
+                            <div class="info">
+                                <div class="counter">值机柜台：${item.ckiCounter}</div>
+                                <div class="gate">登机口：${item.pgate1}</div>
+                                <div class="luggage">行李转盘：${item.baggageTurn}</div>
+                                <div class="rate">准点率：${item.ontime}</div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="info-detail">
+                        <div class="c-info dep-info">
+                            <div class="c-city dep-city">
+                                <div class="city">${item.deptCityName}</div>
+								<div class="dep-port-code port-code hide">${item.pairport1}</div>
+                                <div class="airport">${item.deptAirportChnName}</div>
+                                <div class="arrow"></div>
+                            </div>
+                            <div class="c-time dep-time">
+                                <div class="plan">
+                                    <div class="f1 plan-title">计划出发</div>
+                                    <div class="f2 plan-time">${item.pplantime1}</div>
+                                </div>
+                                <div class="actual">
+                                    <div class="f1 actual-title">${item.prealtimetext1}</div>
+                                    <div class="f2 actual-time">${item.prealtime1}</div>
+                                </div>
+                                <div class="terminal">
+                                    <div class="f1 terminal-title">航站楼</div>
+                                    <div class="f2 terminal-name">${item.pterminal1}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="c-info arr-info">
+                            <div class="c-city arr-city">
+                                <div class="city">${item.destCityName}</div>
+								<div class="arr-port-code port-code hide">${item.pairport2}</div>
+                                <div class="airport">${item.destAirportChnName}</div>
+                                <div class="arrow"></div>
+                            </div>
+                            <div class="c-time arr-time">
+                                <div class="plan">
+                                    <div class="f1 plan-title">计划到达</div>
+                                    <div class="f2 plan-time">${item.pplantime2}</div>
+                                </div>
+                                <div class="actual">
+                                    <div class="f1 actual-title">${item.prealtimetext2}</div>
+                                    <div class="f2 actual-time">${item.prealtime2}</div>
+                                </div>
+                                <div class="terminal">
+                                    <div class="f1 terminal-title">航站楼</div>
+                                    <div class="f2 terminal-name">${item.pterminal2}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="arrive-tip">${item.preflightstatus}</div>
+                        <div class="bottom-tip">航班动态服务独家提供<div class="umetrip-logo"></div> </div>
+                    </section>
+                </li>
+                {@/each}
+                </script>
+            </ul>
+        </div>
+    </section>
+</div>
+
+
+</div>
+</div>
+<script>
+    var search, data, userAgent, index, followedList, notAssistant;//list-模块对象;data-数据;userAgent-客户端版本，iphone或android;index-刷新页序号;followedList-已关注列表; isAssistant-是否是小助手
+    //显示页面，ua-手机类型，如iphone，pcont-显示内容，json格式，fl-已订阅列表，show-显示关注按钮和关注提示，hideArrow-是否显示机场后面的箭头
+	var render = function(ua, pcont, fl, show, hideArrow){
+		userAgent = ua;
+        //是否显示右上角刷新删除按钮
+        if(show && show == 'false'){
+            $('body').append('<style type="text/css">.card-btn{display: none}</style>');
+        }
+        notAssistant = show;
+		KISSY.use('h5-flight-trends/pages/search/index', function(S, Search) {
+            if(pcont && pcont != ''){
+                data = JSON.parse(pcont);
+                data = data.pflystatus;
+            }
+            if(fl && fl != ''){
+                followedList = JSON.parse(fl);
+            }
+			search = new Search();
+            //隐藏箭头
+            if(hideArrow){
+                $('.arrow').hide();
+            }
+		});
+	}
+
+	var refreshPage = function(idx, pcont){
+
+		index = Number(idx);
+		if(pcont && pcont != ''){
+            data = JSON.parse(pcont);
+            data = data.pflystatus;
+        }
+		search.refreshPage();
+	}
+
+    var showFollowResult = function(type, res){
+        search.changeSubState(type, res);
+    }
+
+</script>
+</body>
+</html>

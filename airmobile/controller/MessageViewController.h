@@ -6,7 +6,7 @@
 //  Copyright © 2016年 杨泉林. All rights reserved.
 //
 
-#import "RootViewController.h"
+#import "HasTabbarRootViewController.h"
 #import <SocketRocket/SRWebSocket.h>
 
 @protocol MessageViewDelegate <NSObject>
@@ -16,6 +16,6 @@
 
 @end
 
-@interface MessageViewController : RootViewController<TabBarViewDelegate>
+@interface MessageViewController : HasTabbarRootViewController<TabBarViewDelegate>
 
 @end

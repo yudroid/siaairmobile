@@ -1,0 +1,1 @@
+(function(b){var a=function(e,f,d){return(e+(f-e)*d);};var c=function(d){return(-Math.cos(d*Math.PI)/2)+0.5;};b.scroll=function(g,j,i){g=g||(b.os.android?1:0);j=j||200;(typeof i==="function")&&(c=i);var d=window.pageYOffset,f=Date.now(),h=f+j;var e=function(){var l=+(new Date()),k=(l>h)?1:(l-f)/j;window.scrollTo(0,a(d,g,c(k)));(l>h)||setTimeout(e,15);};e();};}(Zepto));
