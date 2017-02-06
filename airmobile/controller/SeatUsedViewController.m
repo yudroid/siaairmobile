@@ -449,7 +449,8 @@ const NSString *SEATUSED_TABLEVIEW_IDENTIFIER = @"SEATUSED_TABLEVIEW_IDENTIFIER"
 -(void)loadData:(NSNotification *)notification
 {
     if ([notification.object isKindOfClass:[CraftseatCntModel class]]) {
-        _seatStatusModel  = notification.object;
+        _seatStatusModel  = [HomePageService sharedHomePageService].seatModel;
+        [self resetData];
     }
     
 }

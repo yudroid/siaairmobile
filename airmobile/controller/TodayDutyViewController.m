@@ -65,10 +65,15 @@ static const NSString *ADDRESSBOOK_TABLECELL_IDENTIFIER         = @"ADDRESSBOOK_
     [HttpsUtils getDutyTableByDay:currentDateStr success:^(NSArray *responseObj) {
         if ([responseObj isKindOfClass:[NSArray class]]) {
             _tableArray = [responseObj DictionaryToModel:[DutyModel class]];
+            _tableArray= [_tableArray sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+
+                NSInteger x1 = ((DutyModel *)obj1).sort;
+                NSInteger x2 = ((DutyModel *)obj2).sort;
+                return  x1>x2;
+            }];
             [_tableView reloadData];
         }
         [self stopNetWorking];
-
     } failure:^(NSError *error) {
         [self stopNetWorking];
     }];

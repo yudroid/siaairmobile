@@ -12,6 +12,7 @@
 #import "PNLineChartDataItem.h"
 #import "FlightHourModel.h"
 #import "FlightHourTableViewCell.h"
+#import "HomePageService.h"
 
 @interface PsnSafetyHourView ()
 
@@ -24,15 +25,17 @@
     PNMixLineChart *lineChart;
     NSArray<FlightHourModel *> *hourArray;
     UITableView *flightHourTableView;
+    UILabel *maxLabel;
+    UILabel *ratioNum;
 }
 
--(instancetype) initWithFrame:(CGRect)                      frame
-                    dataArray:(NSArray<FlightHourModel *> *)psnHours
+-(instancetype) initWithFrame:(CGRect)frame
+
 {
     self = [super initWithFrame:frame];
     if(self){
 
-        hourArray = psnHours ;
+        hourArray = [HomePageService sharedHomePageService].psnModel.psnHours ;
 
         CGFloat topBgViewWidth = kScreenWidth-2*px2(22);
         UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(10,
@@ -63,7 +66,7 @@
             flightHourModel =hourArray[index];
 
         }
-        UILabel *ratioNum = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-150,
+        ratioNum = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-150,
                                                                      10,
                                                                      130,
                                                                      18)
@@ -108,7 +111,7 @@
         upImageView.image = [UIImage imageNamed:@"hiddenLine"];
         [topBgView addSubview:upImageView];
 
-        UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(20,
+        maxLabel = [CommonFunction addLabelFrame:CGRectMake(20,
                                                                      viewBotton(upImageView)+px2(8),
                                                                      topBgView.frame.size.width-40, 12)
                                                      text:@([self chartMaxValue]).stringValue
@@ -179,12 +182,12 @@
         flightHourTableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
         flightHourTableView.showsVerticalScrollIndicator = NO;
         [self addSubview:flightHourTableView];
-//
-//        [[NSNotificationCenter defaultCenter] addObserver:self
-//                                                 selector:@selector(loadData:)
-//                                                     name:@"SafetyPsnHours"
-//                                                   object:nil];
-//        
+
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(loadData:)
+                                                     name:@"SafetyPsnHours"
+                                                   object:nil];
+        
     }
     return self;
 }
@@ -275,32 +278,40 @@
 
 -(void)loadData:(NSNotification *)notification
 {
-//    if ([notification.object isKindOfClass:[NSArray class]]) {
-//        hourArray = notification.object;
-//
-//        [flightHourTableView reloadData];
-//
-//        [lineChart setXLabels:[self getFlightHourXLabels]];
-//
-//        // Line Chart #2
-//        NSArray * dataArray         = [self getFlightHourYLabels];
-//        PNLineChartData *data       = [PNLineChartData new];
-//        data.dataTitle              = @"航班";
-//        data.color                  = [UIColor whiteColor];
-//        data.alpha                  = 0.5f;
-//        data.inflexionPointWidth    = 2.0f;
-//        data.itemCount              = dataArray.count;
-//        data.inflexionPointStyle    = PNLineChartPointStyleCircle;
-//        data.getData = ^(NSUInteger index) {
-//            CGFloat yValue = [dataArray[index] floatValue];
-//            return [PNLineChartDataItem dataItemWithY:yValue];
-//        };
-//
-//        lineChart.chartData = @[data];
-//
-//        [lineChart strokeChart];
-//
-//    }
+    if ([notification.object isKindOfClass:[NSArray class]]) {
+        hourArray = [HomePageService sharedHomePageService].psnModel.psnHours ;
+
+        [flightHourTableView reloadData];
+
+        [lineChart setXLabels:[self getFlightHourXLabels]];
+
+        // Line Chart #2
+        NSArray * dataArray         = [self getFlightHourYLabels];
+        PNLineChartData *data       = [PNLineChartData new];
+        data.dataTitle              = @"航班";
+        data.color                  = [UIColor whiteColor];
+        data.alpha                  = 0.5f;
+        data.inflexionPointWidth    = 2.0f;
+        data.itemCount              = dataArray.count;
+        data.inflexionPointStyle    = PNLineChartPointStyleCircle;
+        data.getData = ^(NSUInteger index) {
+            CGFloat yValue = [dataArray[index] floatValue];
+            return [PNLineChartDataItem dataItemWithY:yValue];
+        };
+
+        lineChart.chartData = @[data];
+
+        [lineChart strokeChart];
+        maxLabel.text = @([self chartMaxValue]).stringValue;
+
+        int index = (int)[CommonFunction currentHour];
+        FlightHourModel *flightHourModel =[[FlightHourModel alloc]init];
+        if (hourArray.count-1>=index) {
+            flightHourModel =hourArray[index];
+
+        }
+        ratioNum.text = [NSString stringWithFormat:@"%ld预测",flightHourModel.planDepCount+flightHourModel.planArrCount];
+    }
 
 }
 

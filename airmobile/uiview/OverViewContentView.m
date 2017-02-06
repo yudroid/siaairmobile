@@ -250,7 +250,7 @@
         }
 
 
-        currentStatus.textColor = [CommonFunction colorFromHex:0XFFF46970];
+//        currentStatus.textColor = [CommonFunction colorFromHex:0XFFF46970];
         [self addSubview:currentStatus];
 
         UIButton *indicateButton = [[UIButton alloc] initWithFrame:currentStatus.frame];

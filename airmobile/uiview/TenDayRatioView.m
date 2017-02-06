@@ -119,6 +119,7 @@
       
         barChart.showXLabel = YES;
         barChart.showYLabel = NO;
+        
         barChart.backgroundColor = [UIColor clearColor];
 
         barChart.yMaxValue = 100;

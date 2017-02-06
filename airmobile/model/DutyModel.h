@@ -17,8 +17,7 @@
 @property (nonatomic, copy) NSString *duty;     //职责
 @property (nonatomic, copy) NSString *phone;    //电话
 @property (nonatomic, copy) NSString *date;     //值班日期
-
-
+@property (nonatomic, assign) NSInteger sort;   //排序
 
 
 @end

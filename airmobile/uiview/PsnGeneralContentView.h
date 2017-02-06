@@ -13,7 +13,6 @@
 
 @interface PsnGeneralContentView : UIView
 
--(instancetype)initWithFrame:(CGRect)           frame
-              passengerModel:(PassengerModel *) passengerModel;
+
 
 @end

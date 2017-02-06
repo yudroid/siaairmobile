@@ -61,13 +61,6 @@
     backgroundImageView.image = [UIImage imageNamed:@"FlightHourChartBlackground"];
     [topBgView addSubview:backgroundImageView];
     [self.view addSubview:topBgView];
-    
-//    CAGradientLayer *gradient = [CAGradientLayer layer];
-//    gradient.frame = topBgView.bounds;
-//    gradient.colors = [NSArray arrayWithObjects:(id)[[CommonFunction colorFromHex:0XFF17B9E8] CGColor], (id)[[CommonFunction colorFromHex:0XFF5684FB] CGColor], nil];
-//    [topBgView.layer insertSublayer:gradient atIndex:0];
-//    [topBgView.layer setCornerRadius:8.0];// 将图层的边框设置为圆脚
-
 
     [topBgView.layer setMasksToBounds:YES];// 隐藏边界
     
@@ -129,6 +122,7 @@
     [topBgView addSubview:maxLabel];
     
     
+
     
     lineChart = [[PNMixLineChart alloc] initWithFrame:CGRectMake(px2(33),
                                                               viewBotton(maxLabel),

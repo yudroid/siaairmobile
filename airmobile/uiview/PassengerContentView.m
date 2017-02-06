@@ -46,8 +46,7 @@
         scrollView.showsVerticalScrollIndicator     = NO;
         [self addSubview:scrollView];
 
-        psnGeneral = [[PsnGeneralContentView alloc] initWithFrame:CGRectMake(0, 0, width, height)
-                                                   passengerModel:[HomePageService sharedHomePageService].psnModel];
+        psnGeneral = [[PsnGeneralContentView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
         [scrollView addSubview:psnGeneral];
 
 //        UIButton *psnHourBtn = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth/2, 200+30, kScreenWidth/2-20, 90)];
@@ -61,8 +60,7 @@
 //        [showSafeBtn addTarget:self action:@selector(showSafetyPassenger:) forControlEvents:UIControlEventTouchUpInside];
 //        [scrollView addSubview:showSafeBtn];
         
-        psnSafety = [[PsnSafetyContentView alloc] initWithFrame:CGRectMake(width, 0, width, height)
-                                                      dataArray:_passengermodel.psnOnPlane];
+        psnSafety = [[PsnSafetyContentView alloc] initWithFrame:CGRectMake(width, 0, width, height)];
         [scrollView addSubview:psnSafety];
         
 //        UIButton *showTopBtn = [[UIButton alloc] initWithFrame:CGRectMake(width+20, 200+30+30+10+30+10+90, kScreenWidth-40, 30)];

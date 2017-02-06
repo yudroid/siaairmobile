@@ -11,7 +11,5 @@
 
 @interface PsnSafetyHourView : UIView<UITableViewDataSource,UITableViewDelegate>
 
--(instancetype) initWithFrame:(CGRect)                      frame
-                    dataArray:(NSArray<FlightHourModel *> *)psnHours;
 
 @end

@@ -26,6 +26,7 @@
 #import "VersionModel.h"
 #import "FunctionShowViewController.h"
 #import "UINavigationController+FDFullscreenPopGesture.h"
+#import "YDWaveLoadingView.h"
 
 
 
@@ -44,9 +45,9 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
 
 @implementation UserInfoViewController
 {
-
-    UIButton *cardButton;
-    UIButton *logoffButton;
+    UIView      *userInfo;
+    UIButton    *cardButton;
+    UIButton    *logoffButton;
 }
 
 - (void)viewDidLoad {
@@ -75,6 +76,8 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
 
     self.navigationController.navigationBar.hidden = YES;
     self.fd_prefersNavigationBarHidden = YES;
+
+
 }
 
 -(void)initTitleView
@@ -87,7 +90,7 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
 -(void) initUserInfoView
 {
     AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    UIView *userInfo = [[UIView alloc] initWithFrame:CGRectMake(0, 70, kScreenWidth, 82)];
+    userInfo = [[UIView alloc] initWithFrame:CGRectMake(0, 70, kScreenWidth, 82)];
     userInfo.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:userInfo];
     
@@ -121,7 +124,7 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     _phoneLabel.font = [UIFont fontWithName:@"PingFang SC" size:13];
     [userInfo addSubview:_phoneLabel];
     
-    cardButton = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-16-60, 26, 65, 31)];
+    cardButton = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-16-60, 26, 72, 31)];
     [cardButton setTitle:@"签到" forState:UIControlStateNormal];
     cardButton.titleLabel.font = [UIFont fontWithName:@"PingFang SC" size:17];
     cardButton.layer.cornerRadius = 5.0;
@@ -187,24 +190,31 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
 {
     NSString *title = sender.titleLabel.text;
     AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+
     if ([title isEqualToString:@"签到"]) {
+        [self cardButtonAddLoadingView];
         [HttpsUtils signIn:(int)appdelegate.userInfoModel.id
                    success:^(NSNumber *response) {
                        appdelegate.userInfoModel.signStatus = @"已签到";
                         [cardButton setTitle:@"签退" forState:UIControlStateNormal];
+                       [self cardButtonRemoveLoadingView];
                    }
                    failure:^(NSError *error) {
                        [self showAnimationTitle:@"签到失败"];
+                       [self cardButtonRemoveLoadingView];
                    }];
 
     }else if ([title isEqualToString:@"签退"]){
+        [self cardButtonAddLoadingView];
         [HttpsUtils signOut:(int)appdelegate.userInfoModel.id
                     success:^(NSNumber *response) {
                         appdelegate.userInfoModel.signStatus = @"已签退";
                         [cardButton setTitle:@"完成" forState:UIControlStateNormal];
+                        [self cardButtonRemoveLoadingView];
                     }
                     failure:^(NSError *error) {
                         [self showAnimationTitle:@"签退失败"];
+                        [self cardButtonRemoveLoadingView];
                     }];
     }
     
@@ -226,6 +236,24 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
                    [self stopNetWorking];
                    [self showAnimationTitle:@"注销失败"];
                }];
+}
+
+-(void)cardButtonAddLoadingView
+{
+    YDWaveLoadingView *loadingView = [[YDWaveLoadingView alloc]initWithFrame:cardButton.frame];;
+    loadingView.tag = 99;
+    cardButton.hidden = YES;
+    [userInfo addSubview:loadingView];
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [ loadingView startLoading];
+    });
+}
+-(void)cardButtonRemoveLoadingView
+{
+    UIView *loadingView = [userInfo viewWithTag:99];
+    [loadingView removeFromSuperview];
+    cardButton.hidden = NO;
 }
 
 #pragma mark - UITableViewDelegate UITableViewDataSource
@@ -279,7 +307,7 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
             NSArray * data = [response objectForKey:@"data"];
             VersionModel *version = [[VersionModel alloc]initWithDictionary:[data lastObject]];
             NSString *app_Version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-            if (version.appVersion.floatValue<app_Version.floatValue) {
+            if (version.appVersion.floatValue<=app_Version.floatValue) {
                 [self showAnimationTitle:@"已经为最新版本"];
             }else{
 #if __IPHONE_OS_VERSION_MAX_ALLOWED == __IPHONE_8_3

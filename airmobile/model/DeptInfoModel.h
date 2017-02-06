@@ -13,6 +13,7 @@
 
 @property (nonatomic,assign)    long        deptId;
 @property (nonatomic,copy)      NSString    *deptName;
+@property (nonatomic, assign)   NSInteger   sort;
 
 @property (nonatomic,strong)    NSMutableArray<UserInfoModel *> *userArr;
 

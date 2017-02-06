@@ -38,11 +38,6 @@
         topBgBackgroundImageView.image          = [UIImage imageNamed:@"TenDayRatioChartBackground"];
         [topBgView addSubview:topBgBackgroundImageView];
 
-        //        CAGradientLayer *gradient = [CAGradientLayer layer];
-        //        gradient.frame = topBgView.bounds;
-        //        gradient.colors = [NSArray arrayWithObjects:(id)[[CommonFunction colorFromHex:0XFF17B9E8] CGColor], (id)[[CommonFunction colorFromHex:0XFF5684FB] CGColor], nil];
-        //        [topBgView.layer insertSublayer:gradient atIndex:0];
-        //        [topBgView.layer setCornerRadius:8.0];// 将图层的边框设置为圆脚
         [topBgView.layer setMasksToBounds:YES];// 隐藏边界
 
         UILabel *passengerTtitle    = [[UILabel alloc] initWithFrame:CGRectMake(16, 8, viewWidth(topBgView)-100, 13)];
@@ -101,6 +96,7 @@
                                                                 viewBotton(lineImageView),
                                                                 viewWidth(topBgView)-viewX(passengerTtitle)-18,
                                                                 viewHeight(topBgView)-viewBotton(lineImageView)-5)];
+
         barChart.showXLabel         = YES;
         barChart.showYLabel         = NO;
         barChart.backgroundColor    = [UIColor clearColor];

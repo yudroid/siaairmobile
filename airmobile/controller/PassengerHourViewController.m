@@ -12,6 +12,7 @@
 #import "PNLineChartDataItem.h"
 #import "FlightHourModel.h"
 #import "PsnHourTableViewCell.h"
+#import "HomePageService.h"
 
 @interface PassengerHourViewController ()
 
@@ -23,6 +24,7 @@
     PNMixLineChart                 *arrLineChart;
     NSArray<FlightHourModel *>  *hourArray;
     UITableView                 *flightHourTableView;
+    UILabel                     *maxLabel ;
 }
 -(instancetype)initWithDataArray:(NSArray<FlightHourModel *> *)dataArray
 {
@@ -106,7 +108,7 @@
     lineImageView.image = [UIImage imageNamed:@"hiddenLine"];
     [topBgView addSubview:lineImageView];
 
-    UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(viewWidth(topBgView)-18-50,
+    maxLabel = [CommonFunction addLabelFrame:CGRectMake(viewWidth(topBgView)-18-50,
                                                                  viewBotton(lineImageView)+4,
                                                                  50,
                                                                  12)
@@ -220,9 +222,10 @@
 
 -(void)loadData:(NSNotification *)notification
 {
-    if ([notification.object isKindOfClass:[NSArray class]]) {
-        hourArray = notification.object;
+
+        hourArray = [HomePageService sharedHomePageService].psnModel.psnHours;
         [flightHourTableView reloadData];
+
 
         [arrLineChart setXLabels:[self getFlightHourXLabels]];
 
@@ -254,7 +257,9 @@
         
         arrLineChart.chartData = @[data,data2];
         [arrLineChart strokeChart];
-    }
+
+    maxLabel.text = @((int)([self maxValue] *1.2)).stringValue;
+
 
 }
 

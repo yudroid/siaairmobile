@@ -61,12 +61,12 @@ forHeaderFooterViewReuseIdentifier:(NSString *)ADDRESSBOOK_TABLEGROUPHEAER_IDENT
     [self starNetWorking];
     [HttpsUtils getContactList:^(NSArray *responseObj) {
         if ([responseObj isKindOfClass:[NSArray class]]) {
-            NSMutableArray *depMutableArray = [NSMutableArray array];
-            for (NSDictionary *depDic in responseObj) {
-                DeptInfoModel *deptModel = [[DeptInfoModel alloc]initWithDictionary:depDic];
-                [depMutableArray addObject:deptModel];
-            }
-            array = [depMutableArray copy];
+            array = [responseObj DictionaryToModel:[DeptInfoModel class]];
+            array = [array sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+                NSInteger x1 = ((DeptInfoModel *)obj1).sort;
+                NSInteger x2 = ((DeptInfoModel *)obj2).sort;
+                return  x1>x2;
+            }];
             _resultArry = [NSMutableArray array];
             for (int i = 0; i<array.count; i++) {
                 // 初始时都是折叠状态（bool不能直接放在数组里）

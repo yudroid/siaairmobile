@@ -10,11 +10,13 @@
 #import "OptionCollectionViewCell.h"
 #import "PersistenceUtils+Business.h"
 #import "BasisInfoEventModel.h"
+#import "XRWaterfallLayout.h"
+#import "NSString+Size.h"
 
 
 static const NSString *OPTIONS_COLLECTIONVIEW_INDETIFIER = @"OPTIONS_COLLECTIONVIEW_INDETIFIER";
 
-@interface OptionsViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@interface OptionsViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,XRWaterfallLayoutDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 //自定义
 @property (nonatomic, assign) OptionsType optionsType;
@@ -41,7 +43,6 @@ static const NSString *OPTIONS_COLLECTIONVIEW_INDETIFIER = @"OPTIONS_COLLECTIONV
 
 	_collectionView.delegate = self;
 	_collectionView.dataSource = self;
-
 
 
 	switch (_optionsType) {
@@ -96,7 +97,10 @@ static const NSString *OPTIONS_COLLECTIONVIEW_INDETIFIER = @"OPTIONS_COLLECTIONV
 			break;
 	}
 
-
+	XRWaterfallLayout *waterFall = (XRWaterfallLayout *)_collectionView.collectionViewLayout;
+	waterFall.columnCount = _collectionArray.count>=3?3:_collectionArray.count;
+	[waterFall setColumnSpacing:10 rowSpacing:10 sectionInset:UIEdgeInsetsMake(10, 10, 10, 10)];
+	waterFall.delegate = self;
 	[_collectionView registerNib:[UINib nibWithNibName:@"OptionCollectionViewCell" bundle:nil]
 	  forCellWithReuseIdentifier:(NSString *)OPTIONS_COLLECTIONVIEW_INDETIFIER];
 }
@@ -156,19 +160,6 @@ static const NSString *OPTIONS_COLLECTIONVIEW_INDETIFIER = @"OPTIONS_COLLECTIONV
 	CGSize size = [content boundingRectWithSize:CGSizeMake((kScreenWidth-32), CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont fontWithName:@"PingFang SC" size:15.0 ]} context:nil].size;
 	return CGSizeMake((kScreenWidth-32), size.height?:20+8);
 }
--(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
-{
-	return UIEdgeInsetsMake(8, 16, 8, 16);
-}
--(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
-{
-	return 8;
-}
-
--(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
-{
-	return 0;
-}
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -178,14 +169,19 @@ static const NSString *OPTIONS_COLLECTIONVIEW_INDETIFIER = @"OPTIONS_COLLECTIONV
 	}
 	[self.navigationController popViewControllerAnimated:YES];
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(CGFloat)waterfallLayout:(XRWaterfallLayout *)waterfallLayout itemHeightForWidth:(CGFloat)itemWidth atIndexPath:(NSIndexPath *)indexPath
+{
+	NSString *contentText ;
+	if (_optionsType == OptionsTypeEvent) {
+		contentText = ((BasisInfoEventModel *)_collectionArray[indexPath.row]).event;
+
+
+	}else{
+		contentText = ((BasisInfoEventModel *) _collectionArray[indexPath.row]).content;
+	}
+	return [contentText sizeWithWidth:itemWidth-16 font:[UIFont fontWithName:@"PingFang SC" size:15]].height+16;
 }
-*/
+
 
 @end

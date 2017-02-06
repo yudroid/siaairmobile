@@ -199,6 +199,8 @@
 		F774970A1E0773EA00B5773C /* DAYUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F77496FD1E0773EA00B5773C /* DAYUtils.m */; };
 		F779B9921E335E0D002E362D /* FlightConcernListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F779B9901E335E0D002E362D /* FlightConcernListViewController.m */; };
 		F779B9931E335E0D002E362D /* FlightConcernListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F779B9911E335E0D002E362D /* FlightConcernListViewController.xib */; };
+		F779B9AD1E36F8F4002E362D /* XRWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F779B9AC1E36F8F4002E362D /* XRWaterfallLayout.m */; };
+		F779B9B01E371B91002E362D /* NSString+Size.m in Sources */ = {isa = PBXBuildFile; fileRef = F779B9AF1E371B91002E362D /* NSString+Size.m */; };
 		F78B13B01DF47938000A6833 /* ModifyPwd.xib in Resources */ = {isa = PBXBuildFile; fileRef = F78B13AD1DF47937000A6833 /* ModifyPwd.xib */; };
 		F78B13B11DF47938000A6833 /* ModifyPwdView.m in Sources */ = {isa = PBXBuildFile; fileRef = F78B13AF1DF47938000A6833 /* ModifyPwdView.m */; };
 		F78B13B41DF47946000A6833 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = F78B13B31DF47946000A6833 /* UIImage+ImageEffects.m */; };
@@ -239,6 +241,7 @@
 		F79251931DB858D9006AA119 /* AddressBookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F79251911DB858D9006AA119 /* AddressBookViewController.xib */; };
 		F79251971DB85D78006AA119 /* AddressBookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F79251951DB85D78006AA119 /* AddressBookTableViewCell.m */; };
 		F79251981DB85D78006AA119 /* AddressBookTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F79251961DB85D78006AA119 /* AddressBookTableViewCell.xib */; };
+		F79C2EF81E456E8600556CAA /* YDWaveLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F79C2EF71E456E8600556CAA /* YDWaveLoadingView.m */; };
 		F7A25D021DB9E6C000F36C32 /* PsnGeneralContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D011DB9E6C000F36C32 /* PsnGeneralContentView.m */; };
 		F7A25D051DB9E6C900F36C32 /* PsnSafetyContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D041DB9E6C900F36C32 /* PsnSafetyContentView.m */; };
 		F7A25D081DB9E6EE00F36C32 /* ProgreesBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D071DB9E6EE00F36C32 /* ProgreesBarView.m */; };
@@ -669,6 +672,10 @@
 		F779B98F1E335E0D002E362D /* FlightConcernListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightConcernListViewController.h; sourceTree = "<group>"; };
 		F779B9901E335E0D002E362D /* FlightConcernListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightConcernListViewController.m; sourceTree = "<group>"; };
 		F779B9911E335E0D002E362D /* FlightConcernListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightConcernListViewController.xib; sourceTree = "<group>"; };
+		F779B9AB1E36F8F4002E362D /* XRWaterfallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XRWaterfallLayout.h; sourceTree = "<group>"; };
+		F779B9AC1E36F8F4002E362D /* XRWaterfallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XRWaterfallLayout.m; sourceTree = "<group>"; };
+		F779B9AE1E371B91002E362D /* NSString+Size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Size.h"; sourceTree = "<group>"; };
+		F779B9AF1E371B91002E362D /* NSString+Size.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Size.m"; sourceTree = "<group>"; };
 		F78B13AD1DF47937000A6833 /* ModifyPwd.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ModifyPwd.xib; sourceTree = "<group>"; };
 		F78B13AE1DF47937000A6833 /* ModifyPwdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyPwdView.h; sourceTree = "<group>"; };
 		F78B13AF1DF47938000A6833 /* ModifyPwdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyPwdView.m; sourceTree = "<group>"; };
@@ -731,6 +738,8 @@
 		F79251941DB85D78006AA119 /* AddressBookTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookTableViewCell.h; sourceTree = "<group>"; };
 		F79251951DB85D78006AA119 /* AddressBookTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookTableViewCell.m; sourceTree = "<group>"; };
 		F79251961DB85D78006AA119 /* AddressBookTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressBookTableViewCell.xib; sourceTree = "<group>"; };
+		F79C2EF61E456E8600556CAA /* YDWaveLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDWaveLoadingView.h; sourceTree = "<group>"; };
+		F79C2EF71E456E8600556CAA /* YDWaveLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDWaveLoadingView.m; sourceTree = "<group>"; };
 		F7A25D001DB9E6C000F36C32 /* PsnGeneralContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PsnGeneralContentView.h; sourceTree = "<group>"; };
 		F7A25D011DB9E6C000F36C32 /* PsnGeneralContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PsnGeneralContentView.m; sourceTree = "<group>"; };
 		F7A25D031DB9E6C900F36C32 /* PsnSafetyContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PsnSafetyContentView.h; sourceTree = "<group>"; };
@@ -1066,6 +1075,7 @@
 		846F1D8A1DA89E2600C8920B /* uiview */ = {
 			isa = PBXGroup;
 			children = (
+				F79C2EF51E456E8600556CAA /* LoadingView */,
 				F71082541E1E451000EB0EDD /* 引导页 */,
 				F7ED844B1DF06C8A0036D591 /* TabBarView */,
 				F7D38D6D1DE3D1B5001110AF /* LoadingView */,
@@ -1112,6 +1122,8 @@
 				F723C2C31E30B1570008D202 /* UIControl+SelfViewController.m */,
 				F723C2BF1E30AEF20008D202 /* UIButton+PhotoChoose.h */,
 				F723C2C01E30AEF20008D202 /* UIButton+PhotoChoose.m */,
+				F779B9AE1E371B91002E362D /* NSString+Size.h */,
+				F779B9AF1E371B91002E362D /* NSString+Size.m */,
 			);
 			name = categories;
 			sourceTree = "<group>";
@@ -1908,6 +1920,15 @@
 			name = "我的";
 			sourceTree = "<group>";
 		};
+		F79C2EF51E456E8600556CAA /* LoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				F79C2EF61E456E8600556CAA /* YDWaveLoadingView.h */,
+				F79C2EF71E456E8600556CAA /* YDWaveLoadingView.m */,
+			);
+			path = LoadingView;
+			sourceTree = "<group>";
+		};
 		F7A25D561DBE274D00F36C32 /* lib */ = {
 			isa = PBXGroup;
 			children = (
@@ -2230,6 +2251,8 @@
 				F7003E4A1DDC38540056F3DA /* TakePhotoCollectionViewCell.h */,
 				F7003E4B1DDC38540056F3DA /* TakePhotoCollectionViewCell.m */,
 				F7003E4C1DDC38540056F3DA /* TakePhotoCollectionViewCell.xib */,
+				F779B9AB1E36F8F4002E362D /* XRWaterfallLayout.h */,
+				F779B9AC1E36F8F4002E362D /* XRWaterfallLayout.m */,
 			);
 			name = "详情";
 			sourceTree = "<group>";
@@ -2680,6 +2703,7 @@
 				F7EAE1961DB4776C0060626F /* AbnormalityReportViewController.m in Sources */,
 				F7D38D7F1DE6CE9A001110AF /* ImageViewCollectionViewCell.m in Sources */,
 				F74289FB1E04D7CA00AC00D4 /* YearKpi.m in Sources */,
+				F779B9AD1E36F8F4002E362D /* XRWaterfallLayout.m in Sources */,
 				840D15CE1DC0B709005FA910 /* AreaDelayTimeView.m in Sources */,
 				F74902C31DC879C2005B193D /* SafeguardModel.m in Sources */,
 				F7003E4D1DDC38540056F3DA /* TakePhotoCollectionViewCell.m in Sources */,
@@ -2783,6 +2807,7 @@
 				F7EE87791DB3285B006473F5 /* FlightFilterView.m in Sources */,
 				F74902DB1DC881E9005B193D /* CraftseatCntModel.m in Sources */,
 				F74289E01E04D4EA00AC00D4 /* AnnualTargetView.m in Sources */,
+				F779B9B01E371B91002E362D /* NSString+Size.m in Sources */,
 				F74289DB1E04D42400AC00D4 /* ProductionTargetViewController.m in Sources */,
 				F77497061E0773EA00B5773C /* DAYCalendarView.m in Sources */,
 				F7A25D0F1DBA059800F36C32 /* AbnormalityReportTableViewCell.m in Sources */,
@@ -2796,6 +2821,7 @@
 				841839F91DBCC10200D7DD86 /* PNLineChartData.m in Sources */,
 				F7680B141E0A4917000B8C0D /* FlightDetailHeaderFooterView.m in Sources */,
 				84183A2B1DBF5DE900D7DD86 /* ReleasedRatioModel.m in Sources */,
+				F79C2EF81E456E8600556CAA /* YDWaveLoadingView.m in Sources */,
 				F7C6A0A81E28D12100C12649 /* FlightConcernDetailViewController.m in Sources */,
 				845E643E1DAB980C0072360D /* CommonFunction.m in Sources */,
 			);

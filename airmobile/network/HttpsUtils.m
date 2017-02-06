@@ -16,8 +16,8 @@
 //static NSString* baseUri = @"http://192.168.163.153:8080";
 //static NSString* baseUri = @"http://192.168.163.181:8080";
 
-//static NSString* baseUri = @"http://192.168.163.132:8080";
-static NSString* baseUri = @"http://219.134.93.113:8087";
+static NSString* baseUri = @"http://192.168.163.132:8080";
+//static NSString* baseUri = @"http://219.134.93.113:8087";
 //static NSString* baseUri = @"http://192.168.163.69:80";
 //static NSString* baseUri = @"http://219.134.93.113:8087";
 
@@ -600,14 +600,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
 
     NSString* absoluteUrl = [StringUtils trim:[url absoluteString]];
 
-    //absoluteUrl = [NSString stringWithFormat:@"%@?uid=%@",absoluteUrl,[GuidUtils GuidString]];
-    //    if ([absoluteUrl length]>0 &&[StringUtils equals:[absoluteUrl substringFromIndex:([absoluteUrl length]-1)] To:@"/" ByIgnoreCase:YES]) {
-    //        absoluteUrl = [NSString stringWithFormat:@"%@%@",absoluteUrl,[GuidUtils GuidString]];
-    //    }
-    //    else if ([absoluteUrl length]>0){
-    //        absoluteUrl = [NSString stringWithFormat:@"%@/%@",absoluteUrl,[GuidUtils GuidString]];
-    //    }
-//    NSLog(@"Post调用地址 %@",absoluteUrl);
+
     //注：该方法是异步调用的
     [manager POST:[url absoluteString]
        parameters:formData

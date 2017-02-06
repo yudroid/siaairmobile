@@ -102,9 +102,9 @@ static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDEN
     if ([CommonFunction hasFunction:FUNC_ZBHX]) {
         [mutableArray addObject:@{@"name":@"周边航线",@"image":@"site_around"}];
     }
-//    if ([CommonFunction hasFunction:FUNC_HBGZ]){
-//        [mutableArray addObject:@{@"name":@"航班关注",@"image":@"site_around"}];
-//    }
+    if ([CommonFunction hasFunction:FUNC_HBGZ]){
+        [mutableArray addObject:@{@"name":@"航班关注",@"image":@"site_around"}];
+    }
     _tableArray = [mutableArray copy];
 
     [self.view addSubview:_tableView];

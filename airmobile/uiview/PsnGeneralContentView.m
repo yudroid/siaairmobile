@@ -8,6 +8,7 @@
 
 #import "PsnGeneralContentView.h"
 #import "PassengerModel.h"
+#import "HomePageService.h"
 
 @interface PsnGeneralContentView()
 
@@ -33,13 +34,13 @@
 
 }
 
--(instancetype)initWithFrame:(CGRect)frame passengerModel:(PassengerModel *)passengerModel
+-(instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     
     if(self){
 
-        _passengerModel = passengerModel;
+        _passengerModel = [HomePageService sharedHomePageService].psnModel;
         
         CGFloat topBgViewWidth = kScreenWidth-2*px2(22);
         UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(10,
@@ -348,12 +349,18 @@
         
 //        [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, 200+30+30+30+90, kScreenWidth/2-20, 20) text:@"1568人" font:25 textAlignment:NSTextAlignmentLeft colorFromHex:0xFF000000]];
 
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadData:) name:@"PassengerSummary" object:nil];
+
 
     }
     
     return self;
 }
 
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"PassengerSummary" object:nil];
+}
 -(void)showPassengerHourView:(NSNotification *)sender
 {
     if([CommonFunction hasFunction:OV_PASSENGER_HOUR]){
@@ -373,39 +380,41 @@
 -(void)loadData:(NSNotification *)notification
 {
     if ([notification.object isKindOfClass:[PassengerModel class]]) {
-        _passengerModel = notification.object;
+        _passengerModel = [HomePageService sharedHomePageService].psnModel;
         arrPsn.text = @(_passengerModel.hourInCount).stringValue;
         depPsn.text = @(_passengerModel.hourOutCount).stringValue;
         maxLabel.text = @((int)([self maxValue]*1.2)).stringValue;
-        CGPoint centerPoint = arrPlan.center;
-        arrPlan = [[ProgreesBarView alloc] initWithCenter:CGPointMake(centerPoint.x,
-                                                                      centerPoint.y)
-                                                     size:CGSizeMake(15, arrBarView.frame.size.height)
-                                                direction:4 colors:@[(__bridge id)[CommonFunction colorFromHex:0XFF9BEEDA].CGColor,
-                                                                     (__bridge id)[CommonFunction colorFromHex:0XFF94E1EB].CGColor ]
-                                               proportion:_passengerModel.planInCount/([self maxValue]*1.2)];
-
-        arrReal = [[ProgreesBarView alloc] initWithCenter:CGPointMake(arrBarView.frame.size.width*3/4,
-                                                                      arrBarView.frame.size.height/2)
-                                                     size:CGSizeMake(15, arrBarView.frame.size.height)
-                                                direction:4
-                                                   colors:@[(__bridge id)[CommonFunction colorFromHex:0XFF4A9EB8].CGColor,
-                                                            (__bridge id)[CommonFunction colorFromHex:0XFF4991CB].CGColor ]
-                                               proportion:_passengerModel.realInCount/([self maxValue]*1.2)];
-
-        depPlan = [[ProgreesBarView alloc] initWithCenter:CGPointMake(depBarView.frame.size.width/4,
-                                                                      depBarView.frame.size.height/2)
-                                                     size:CGSizeMake(15, depBarView.frame.size.height)
-                                                direction:4
-                                                   colors:@[(__bridge id)[CommonFunction colorFromHex:0XFF9BEEDA].CGColor,
-                                                            (__bridge id)[CommonFunction colorFromHex:0XFF94E1EB].CGColor ]
-                                               proportion:_passengerModel.planOutCount/([self maxValue]*1.2)];
-        depReal = [[ProgreesBarView alloc] initWithCenter:CGPointMake(depBarView.frame.size.width*3/4,
-                                                                      depBarView.frame.size.height/2)
-                                                     size:CGSizeMake(15, depBarView.frame.size.height)
-                                                direction:4 colors:@[(__bridge id)[CommonFunction colorFromHex:0XFF4A9EB8].CGColor,
-                                                                     (__bridge id)[CommonFunction colorFromHex:0XFF4991CB].CGColor ]
-                                               proportion:_passengerModel.realOutCount/([self maxValue]*1.2)];
+//        CGPoint centerPoint = arrPlan.center;
+//        arrPlan = [[ProgreesBarView alloc] initWithCenter:CGPointMake(centerPoint.x,
+//                                                                      centerPoint.y)
+//                                                     size:CGSizeMake(15, arrBarView.frame.size.height)
+//                                                direction:4 colors:@[(__bridge id)[CommonFunction colorFromHex:0XFF9BEEDA].CGColor,
+//                                                                     (__bridge id)[CommonFunction colorFromHex:0XFF94E1EB].CGColor ]
+//                                               proportion:_passengerModel.planInCount/([self maxValue]*1.2)];
+        [arrPlan animationWithStrokeEnd:_passengerModel.planInCount/([self maxValue]*1.2) ];
+//        arrReal = [[ProgreesBarView alloc] initWithCenter:CGPointMake(arrBarView.frame.size.width*3/4,
+//                                                                      arrBarView.frame.size.height/2)
+//                                                     size:CGSizeMake(15, arrBarView.frame.size.height)
+//                                                direction:4
+//                                                   colors:@[(__bridge id)[CommonFunction colorFromHex:0XFF4A9EB8].CGColor,
+//                                                            (__bridge id)[CommonFunction colorFromHex:0XFF4991CB].CGColor ]
+//                                               proportion:_passengerModel.realInCount/([self maxValue]*1.2)];
+        [arrReal animationWithStrokeEnd:_passengerModel.realInCount/([self maxValue]*1.2)];
+//        depPlan = [[ProgreesBarView alloc] initWithCenter:CGPointMake(depBarView.frame.size.width/4,
+//                                                                      depBarView.frame.size.height/2)
+//                                                     size:CGSizeMake(15, depBarView.frame.size.height)
+//                                                direction:4
+//                                                   colors:@[(__bridge id)[CommonFunction colorFromHex:0XFF9BEEDA].CGColor,
+//                                                            (__bridge id)[CommonFunction colorFromHex:0XFF94E1EB].CGColor ]
+//                                               proportion:_passengerModel.planOutCount/([self maxValue]*1.2)];
+        [depPlan animationWithStrokeEnd:_passengerModel.planOutCount/([self maxValue]*1.2)];
+//        depReal = [[ProgreesBarView alloc] initWithCenter:CGPointMake(depBarView.frame.size.width*3/4,
+//                                                                      depBarView.frame.size.height/2)
+//                                                     size:CGSizeMake(15, depBarView.frame.size.height)
+//                                                direction:4 colors:@[(__bridge id)[CommonFunction colorFromHex:0XFF4A9EB8].CGColor,
+//                                                                     (__bridge id)[CommonFunction colorFromHex:0XFF4991CB].CGColor ]
+//                                               proportion:_passengerModel.realOutCount/([self maxValue]*1.2)];
+        [depReal animationWithStrokeEnd:_passengerModel.realOutCount/([self maxValue]*1.2)];
 
         minLabel.text = @(_passengerModel.minCount).stringValue;
 

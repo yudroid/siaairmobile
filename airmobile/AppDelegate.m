@@ -30,8 +30,8 @@
     NSString *path = NSHomeDirectory();//主目录
     NSLog(@"NSHomeDirectory:%@",path);
 
-//    //腾讯bugly
-//    [Bugly startWithAppId:@"77560c2856"];
+    //腾讯bugly
+    [Bugly startWithAppId:@"77560c2856"];
 
 
 

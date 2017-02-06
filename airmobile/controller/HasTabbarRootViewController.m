@@ -64,11 +64,15 @@
 
 -(void)showMessageViewController
 {
-    SingleMessageViewController *message = [[SingleMessageViewController alloc] init];
+    UIViewController *message ;
     if([CommonFunction hasFunction:MSG_WORNING] && ![CommonFunction hasFunction:MSG_FLIGHT] && ![CommonFunction hasFunction:MSG_DIALOG]){
-        message.type = @"COMMAND";
+        message = [[SingleMessageViewController alloc] init];
+        ((SingleMessageViewController*)message).type = @"COMMAND";
     }else if(![CommonFunction hasFunction:MSG_WORNING] && [CommonFunction hasFunction:MSG_FLIGHT] && ![CommonFunction hasFunction:MSG_DIALOG]){
-        message.type = @"FLIGHT";
+        message = [[SingleMessageViewController alloc] init];
+        ((SingleMessageViewController*)message).type = @"FLIGHT";
+    }else{
+        message = [[MessageViewController alloc]init];
     }
     AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     UINavigationController *navigationContoller = [[UINavigationController alloc]initWithRootViewController:message];

@@ -74,7 +74,7 @@
         request.depCityCode = response.endCityCode;
         request.arrCityCode = response.startCityCode;
         request.subKey = @"123456";
-        request.airlineCode = response.airlineName;
+//        request.airlineCode = response.airlineName;
         [[UMESDKApi requestManager] sendRequest:request withDelegate:self];
 
     

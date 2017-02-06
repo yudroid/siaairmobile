@@ -9,6 +9,7 @@
 static const NSInteger  noFindViewTag = 1000;
 
 #import "UIViewController+Reminder.h"
+#import "YDWaveLoadingView.h"
 
 @implementation UIViewController (Reminder)
 
@@ -64,14 +65,17 @@ static const NSInteger  noFindViewTag = 1000;
     activityBackgroundView.alpha = 0;
     activityBackgroundView.tag = 554;
     [self.view addSubview:activityBackgroundView];
-    UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake((size.width-50)/2, (size.height-50)/2, 50, 50)];
-    activity.tag = 555;
-    activity.alpha = 0;
-    [self.view addSubview:activity];
-    [activity startAnimating];
+
+    YDWaveLoadingView *loadingView = [[YDWaveLoadingView alloc]initWithFrame:CGRectMake((size.width-115)/2, (size.height-50)/2, 115, 50)];
+    loadingView.tag = 99;
+    [activityBackgroundView addSubview:loadingView];
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [ loadingView startLoading];
+    });
+
     [UIView animateWithDuration:0.618 animations:^{
         activityBackgroundView.alpha = 0.8;
-        activity.alpha = 1;
     }];
 }
 
@@ -83,7 +87,6 @@ static const NSInteger  noFindViewTag = 1000;
     }];
     [[self.view viewWithTag:554] removeFromSuperview];
     [[self.view viewWithTag:555] removeFromSuperview];
-    [[self.view viewWithTag:556] removeFromSuperview];
 }
 
 
