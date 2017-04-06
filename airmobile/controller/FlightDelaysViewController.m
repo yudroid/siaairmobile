@@ -56,9 +56,9 @@ static const NSString *FLGHTDELAYS_TABLECELL_IDENTIFIER = @"FLGHTDELAYS_TABLECEL
     [self titleViewInitWithHight:64];
     self.titleView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"home_title_bg.png"]];
     if(![_type isEqualToString:@"FLIGHT"]){
-        [self titleViewAddTitleText:@"指令消息列表"];
+        [self titleViewAddTitleText:@"重要消息"];
     }else{
-        [self titleViewAddTitleText:@"航班消息列表"];
+        [self titleViewAddTitleText:@"航班事件消息"];
     }
     [self titleViewAddBackBtn];
 

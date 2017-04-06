@@ -11,9 +11,7 @@
 
 @interface AbnormalityReportHistoryTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *starLabel;
-@property (weak, nonatomic) IBOutlet UILabel *endLabel;
-@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
+@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 
 @property (nonatomic, strong) AbnormalModel *abnormalModel;
 

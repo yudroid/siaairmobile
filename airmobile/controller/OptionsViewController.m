@@ -61,31 +61,30 @@ static const NSString *OPTIONS_COLLECTIONVIEW_INDETIFIER = @"OPTIONS_COLLECTIONV
 		case OptionsTypeEvent:
 		{
 			NSMutableArray *mutableArray = [NSMutableArray  array];
-			NSArray *findArray = [PersistenceUtils findBasisInfoDictionaryWithType:@"DispatchType"];
-			int Id = -1;
-			for (NSDictionary *dic in findArray) {
-				if ([[dic objectForKey:@"content"] isEqualToString:_dispatchType]) {
-					Id = [[dic objectForKey:@"basisidid"] intValue];
-				}
-			}
+//			NSArray *findArray = [PersistenceUtils findBasisInfoDictionaryWithType:@"DispatchType"];
+//			int Id = -1;
+//			for (NSDictionary *dic in findArray) {
+//				if ([[dic objectForKey:@"content"] isEqualToString:_dispatchType]) {
+//					Id = [[dic objectForKey:@"basisidid"] intValue];
+//				}
+//			}
 			[mutableArray removeAllObjects];
-			if (Id != -1) {
-				NSArray *findEventArray = [PersistenceUtils findBasisInfoEventWithEventId:_event_type
-																			   dispatchId:Id
-																			   eventLevel:_event_level];
+
+				NSArray *findEventArray = [PersistenceUtils findBasisInfoEventWithEventId:_controlType
+																			   eventLevel:_ensureType];
 				for (NSDictionary *dic in findEventArray) {
 					BasisInfoEventModel *model = [[BasisInfoEventModel alloc]initWithDictionary:dic];
 					[mutableArray addObject:model];
 				}
 				_collectionArray = [mutableArray copy];
 
-			}
+
 			break;
 		}
 		case OptionsTypeEventLevel:
 		{
 			NSMutableArray *mutableArray = [NSMutableArray  array];
-			NSArray *findArray = [PersistenceUtils findBasisInfoDictionaryWithType:@"EventLevel"];
+			NSArray *findArray = [PersistenceUtils findBasisInfoDictionaryWithType:@"DispatchType"];
 			for (NSDictionary *dic  in findArray) {
 				BasisInfoDictionaryModel *model = [[BasisInfoDictionaryModel alloc]initWithDictionary:dic];
 				[mutableArray addObject:model];

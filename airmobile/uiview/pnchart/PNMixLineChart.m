@@ -627,15 +627,17 @@
     }else{
 //        CGContextRef ctx = UIGraphicsGetCurrentContext();
 //        UIGraphicsPushContext(ctx);
-//        CGContextSetLineWidth(ctx, 0.5);
-//        [[UIColor colorWithRed:1 green:1 blue:1 alpha:0.5] setStroke];
-//
+//        CGContextSetLineWidth(ctx, 0.1);
+////        [[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:0.5] setStroke];
+////        CGContextSetStrokeColorWithColor(ctx, [UIColor redColor].CGColor);
+//        CGContextSetFillColorWithColor(ctx, [UIColor grayColor].CGColor);//填充色设置成灰色
 //        // draw x axis arrow
-//        CGContextMoveToPoint(ctx, self.chartMarginLeft, self.chartMarginTop + _chartCavanHeight);
-//        CGContextAddLineToPoint(ctx, self.chartMarginLeft + _chartCavanWidth, self.chartMarginTop + _chartCavanHeight);
-//
-//        UIFont *font = [UIFont fontWithName:@"PingFang SC" size:15];
-//        [@"0" drawInRect:CGRectMake(ctx, self.chartMarginLeft + _chartCavanWidth - 50, self.chartMarginTop + _chartCavanHeight -50, 50, 50) withAttributes:]
+//        CGContextMoveToPoint(ctx, self.chartMarginLeft, _chartCavanHeight  + (_yLabelHeight / 2) + _chartMarginTop);
+//        CGContextAddLineToPoint(ctx, self.chartMarginLeft + _chartCavanWidth,  _chartCavanHeight  + (_yLabelHeight / 2) + _chartMarginTop );
+//        
+//        UIFont *font = [UIFont fontWithName:@"PingFang SC" size:10];
+//        CGRect textRect = CGRectMake(self.chartMarginLeft + _chartCavanWidth ,  _chartCavanHeight  + (_yLabelHeight / 2) + _chartMarginTop -15, 20, 15);
+//        [@"0" drawInRect:textRect withAttributes:@{NSFontAttributeName:font,NSForegroundColorAttributeName:[UIColor whiteColor]}];
 //        CGContextStrokePath(ctx);
 
 

@@ -25,14 +25,16 @@ static const NSString *ADDRESSBOOK_TABLECELL_IDENTIFIER = @"ADDRESSBOOK_TABLECEL
 
 @property (nonatomic, strong) NSMutableArray *tableArray;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSArray<DeptInfoModel *> *array;
+@property (nonatomic, strong) NSMutableArray *resultArry;
 
 @end
 
 @implementation AddressBookViewController
 {
-    NSArray<DeptInfoModel *> *array;
 
-    NSMutableArray *_resultArry;// 保存数据的展开状态(因为分组很多，所以不能设置一个bool类型记录)
+
+    // 保存数据的展开状态(因为分组很多，所以不能设置一个bool类型记录)
 }
 
 - (void)viewDidLoad {
@@ -52,32 +54,34 @@ static const NSString *ADDRESSBOOK_TABLECELL_IDENTIFIER = @"ADDRESSBOOK_TABLECEL
 forHeaderFooterViewReuseIdentifier:(NSString *)ADDRESSBOOK_TABLEGROUPHEAER_IDENTIFIER];
 
     _resultArry = [NSMutableArray array];
-    array = [NSArray array];
+    _array = [NSArray array];
     [self UpdateNetwork];
 }
 
 -(void)UpdateNetwork
 {
     [self starNetWorking];
+
+    __weak typeof(self) weakSelf = self;
     [HttpsUtils getContactList:^(NSArray *responseObj) {
         if ([responseObj isKindOfClass:[NSArray class]]) {
-            array = [responseObj DictionaryToModel:[DeptInfoModel class]];
-            array = [array sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            weakSelf.array = [responseObj DictionaryToModel:[DeptInfoModel class]];
+            weakSelf.array = [weakSelf.array sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
                 NSInteger x1 = ((DeptInfoModel *)obj1).sort;
                 NSInteger x2 = ((DeptInfoModel *)obj2).sort;
                 return  x1>x2;
             }];
-            _resultArry = [NSMutableArray array];
-            for (int i = 0; i<array.count; i++) {
+            weakSelf.resultArry = [NSMutableArray array];
+            for (int i = 0; i<weakSelf.array.count; i++) {
                 // 初始时都是折叠状态（bool不能直接放在数组里）
-                [_resultArry addObject:[NSNumber numberWithBool:NO]];
+                [weakSelf.resultArry addObject:[NSNumber numberWithBool:NO]];
             }
-            [_tableView reloadData];
-            [self stopNetWorking];
+            [weakSelf.tableView reloadData];
+            [weakSelf stopNetWorking];
         }
     } failure:^(NSError *error) {
-        [self showAnimationTitle:@"获取失败"];
-        [self stopNetWorking];
+        [weakSelf showAnimationTitle:@"获取失败"];
+        [weakSelf stopNetWorking];
 
     }];
 }
@@ -88,14 +92,14 @@ forHeaderFooterViewReuseIdentifier:(NSString *)ADDRESSBOOK_TABLEGROUPHEAER_IDENT
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [array count];
+    return [_array count];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView
 numberOfRowsInSection:(NSInteger)section
 {
     if ([[_resultArry objectAtIndex:section] boolValue]) {
-        NSArray *tempArr = [array objectAtIndex:section].userArr;
+        NSArray *tempArr = [_array objectAtIndex:section].userArr;
         if(tempArr==nil)
             return 0;
         return [tempArr count];
@@ -125,7 +129,7 @@ viewForHeaderInSection:(NSInteger)section
     view.tag = section;
     view.delegate = self;
     view.open = [[_resultArry objectAtIndex:view.tag] boolValue];
-    view.nameLabel.text = array[section].deptName;
+    view.nameLabel.text = _array[section].deptName;
     return view;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView
@@ -134,7 +138,7 @@ viewForHeaderInSection:(NSInteger)section
 
 
     AddressBookTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)ADDRESSBOOK_TABLECELL_IDENTIFIER];
-    UserInfoModel *userInfo = [[array objectAtIndex:indexPath.section].userArr objectAtIndex:indexPath.row];
+    UserInfoModel *userInfo = [[_array objectAtIndex:indexPath.section].userArr objectAtIndex:indexPath.row];
     cell.nameLabel.text = userInfo.name;
 
     return cell;
@@ -143,7 +147,7 @@ viewForHeaderInSection:(NSInteger)section
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",array[indexPath.section].userArr[indexPath.row].phone];
+    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",_array[indexPath.section].userArr[indexPath.row].phone];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
 
 }

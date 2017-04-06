@@ -51,7 +51,9 @@ const long FUNC_TARGET = 40400000;//生产指标
 const long FUNC_YYQK = 40500000;//运营情况
 const long FUNC_TQXX = 40600000;//天气信息
 const long FUNC_ZBHX = 40700000;//周边航线
-const long FUNC_HBGZ = 40800000;//航班关注
+//const long FUNC_HBGZ = 40800000;//航班关注
+const long FUNC_ZSK = 40800000;//知识库
+const long FUNC_YXJB = 40900000;//运行简报
 
 const long SET = 50000000;//设置
 const long SET_MSGFILTER = 50100000; //消息过滤

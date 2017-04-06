@@ -7,6 +7,7 @@
 //
 
 #import "SafeguardModel.h"
+#import "DateUtils.h"
 
 @implementation SafeguardModel
 
@@ -70,6 +71,8 @@
     }else{
         end = _endTime;
     }
+    start =[DateUtils convertToString:[DateUtils convertToDate:start format:@"yyyy-MM-dd HH:mm:ss"]  format:@"HH:mm"] ?:@"";
+    end =[DateUtils convertToString:[DateUtils convertToDate:end format:@"yyyy-MM-dd HH:mm:ss"]  format:@"HH:mm"]?:@"" ;
     return [NSString stringWithFormat:@"%@-%@",start,end];
 }
 

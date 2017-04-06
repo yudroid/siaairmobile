@@ -17,6 +17,7 @@
     NSArray<PassengerAreaModel *>           *nearArray;
     PNBarChart                              *barChart;
     UITableView                             *flightHourTableView;
+    UILabel                                 *maxLabel ;
 
 }
 
@@ -97,10 +98,10 @@
 
 //        [topBgView addSubview:[CommonFunction addLine:CGRectMake(20, 5+23+15, topBgView.frame.size.width-40, 1) color:[CommonFunction colorFromHex:0XFF3FDFB7]]];
         
-        UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(20,
+        maxLabel = [CommonFunction addLabelFrame:CGRectMake(20,
                                                                      viewBotton(upImageView)+px2(7),
                                                                      topBgView.frame.size.width-40, 12)
-                                                     text:[NSString stringWithFormat:@"%ld",(long)[self maxValue]]
+                                                     text:[NSString stringWithFormat:@"%ld",(long)([self maxValue]*1.2)]
                                                      font:11
                                             textAlignment:NSTextAlignmentRight
                                              colorFromHex:0x75FFFFFF];
@@ -111,7 +112,7 @@
                                                                 topBgView.frame.size.width-40,
                                                                 topBgView.frame.size.height-(5+23+15+2)-5)];//折线图
         
-        barChart.yMaxValue = [self maxValue];
+        barChart.yMaxValue = [self maxValue]*1.2;
         barChart.yMinValue = 0;
         barChart.showXLabel = YES;
         barChart.showYLabel = NO;
@@ -202,9 +203,21 @@
         }else{
             nearArray  =  notification.object;
         }
+
+        maxLabel.text = [NSString stringWithFormat:@"%ld",(long)([self maxValue]*1.2)];
+        barChart.yMaxValue = [self maxValue]*1.2;
         [barChart setXLabels:[self getFlightHourXLabels]];
         [barChart setYValues:[self getFlightHourYLabels]];
-        barChart.yMaxValue = [self maxValue];
+        NSMutableArray *colors = [NSMutableArray array];
+        for (int i = 0; i<farArray.count + nearArray.count; i++) {
+            if (i<nearArray.count) {
+                [colors addObject:[CommonFunction colorFromHex:0x99ffffff]];
+            }else{
+                [colors addObject:[CommonFunction colorFromHex:0xffBBE32E]];
+            }
+        }
+        barChart.strokeColors = [colors copy];
+
         [barChart strokeChart];
         
         [flightHourTableView reloadData];

@@ -35,8 +35,8 @@ NSString * const getGroupChatListUrl        = @"/acs/wm/lst";// 获取工作组�
 //NSString * const 
 NSString * const userlistUrl                = @"/acs/wacs/user/SelectAllDeptListForIphone";
 NSString * const groupSaveUrl               = @"/acs/wacs/group/save";
-NSString * const flightListUrl              = @"/acs/m/flightList";// 航班列表
-NSString * const flightDetailUrl            = @"/acs/m/flightDetail";// 航班详情列表
+NSString * const flightListUrl              = @"/acs/m/flightList2";// 航班列表
+NSString * const flightDetailUrl            = @"/acs/m/flightDetailTwo";// 航班详情列表
 NSString * const dispatchDetailsUrl         = @"/acs/wacs/flightDetail/queryFlightDispatchDetailForIphone";// 航班保障环节列表
 NSString * const specialDetailsUrl          = @"/acs/wacs/MobileSpecial/queryMobileSpecialList";// 特殊保障列表
 NSString * const dispatchAbnsUrl            = @"/acs/m/getExceptionByFlightDispatchId";//获取异常历史列表
@@ -52,6 +52,7 @@ NSString * const ovFltFMRUrl                = @"/acs/ov/fltFMR";
 NSString * const ovFltLDUrl                 = @"/acs/ov/fltLD";
 NSString * const ovFltreleaseRatioThreshold = @"/acs/ov/releaseRatioThreshold";//获取放行正常率阈值
 NSString * const fltDepFltTarget            = @"/acs/bmap/flt/depFltTarget";//航班-出港小时分布阈值
+NSString * const arrFltTarget               = @"/acs/bmap/flt/arrFltTarget";
 NSString * const planArrFltPerHourUrl       = @"/acs/bmap/flt/arrFltPerHour";
 NSString * const realArrFltPerHourUrl       = @"/acs/bmap/flt/arrFltPerHour";
 NSString * const depFltPerHourUrl           = @"/acs/bmap/flt/depFltPerHour";
@@ -88,6 +89,10 @@ NSString * const headImageUpload            = @"/acs/ath/user/imageupload";//头
 
 NSString * const unusualImageUpload         = @"/acs/m/upload";//异常上报上传图片
 NSString * const unusualImageDownload       = @"/acs/m/download";//异常上报下载图片
+NSString * const airportUrl                 = @"/acs/wacs/MobileFirstLoading/queryMobileAirport";//获取航站接口
+NSString * const serverList                 = @"/acs/cfg/sysparam/list?search_EQ_name=server_ip";//server 列表
+NSString * const airlineList                = @"/acs/wacs/airline/list";//server 列表
+NSString * const mobileLog                  = @"/acs/dms/log/mobileLog";//获取运行简报数据
 
 @implementation HttpsUtils (Business)
 
@@ -102,7 +107,6 @@ NSString * const unusualImageDownload       = @"/acs/m/download";//异常上报�
  *  @param failure  failure description
  */
 +(void) loginUser:(NSString*) userName pwd: (NSString*) pwd deviceInfo:(NSString*) deviceInfo success:(void (^) (id)) success failure:(void (^) (NSError*)) failure{
-
     NSDictionary *params = [NSDictionary dictionaryWithObjects:@[userName,pwd] forKeys:@[@"username",@"password"]];
     
     [HttpsUtils post:loginUrl params:params success:^(id responseObj) {
@@ -694,6 +698,21 @@ NSString * const unusualImageDownload       = @"/acs/m/download";//异常上报�
 +(void)fltDepFltTargetSuccess:(void (^)(id))success failure:(void (^)(id))failure
 {
     [HttpsUtils get:fltDepFltTarget params:nil  success:^(id responseObj) {
+        if(success){
+            success(responseObj);
+        }
+    } failure:failure];
+}
+
+/**
+ 进港速率
+
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)fltArrFltTargetSuccess:(void (^)(id))success failure:(void (^)(id))failure
+{
+    [HttpsUtils get:arrFltTarget params:nil  success:^(id responseObj) {
         if(success){
             success(responseObj);
         }
@@ -1319,5 +1338,78 @@ NSString * const unusualImageDownload       = @"/acs/m/download";//异常上报�
              }];
 }
 
+#pragma mark -查询航站列表
+/**
+ *  @author yangql, 16-02-23 12:02:34
+ *
+ *  @brief 查询航站信息
+ *
+ *  @param success 查询成功后缓存航站信息
+ *  @param failure 失败记录日志
+ */
++(void) airportQuerySucess:(void (^)(id))success failure:(void (^)(NSError *))failure
+{
+
+    [HttpsUtils get:airportUrl params:nil success:^(id responseObj) {
+        if (success) {
+            success(responseObj);
+        }
+    } failure:^(NSError* error){
+        [self addLog:[NSString stringWithFormat: @"error:%@",error] type:@"Error"];
+        if(failure){
+            failure(error);
+        }
+    }];
+}
+
+
++(void)serverIpListSucess:(void (^)(id))success failure:(void (^)(NSError *))failure
+{
+    [HttpsUtils get:serverList params:nil success:^(id responseObj) {
+        if (success) {
+            success(responseObj);
+        }
+    } failure:^(NSError* error){
+        failure(error);
+    }];
+
+}
++(void)airlineListSucess:(void (^)(id))success failure:(void (^)(NSError *))failure
+{
+    [HttpsUtils get:airlineList params:nil success:^(id responseObj) {
+        if (success) {
+            success(responseObj);
+        }
+    } failure:^(NSError* error){
+        failure(error);
+    }];
+
+}
+
++(void)mobileDayLogSucess:(void (^)(id))success failure:(void (^)(NSError *))failure
+{
+    [self mobileLogWithType:1 Sucess:success failure:failure];
+
+}
+
++(void)mobileWeekLogSucess:(void (^)(id))success failure:(void (^)(NSError *))failure
+{
+    [self mobileLogWithType:2 Sucess:success failure:failure];
+}
+
++(void)mobileMonthLogSucess:(void (^)(id))success failure:(void (^)(NSError *))failure
+{
+    [self mobileLogWithType:3 Sucess:success failure:failure];
+}
+
++ (void)mobileLogWithType:(NSInteger)type Sucess:(void (^)(id))success failure:(void (^)(NSError *))failure
+{
+    NSString *temp = [NSString stringWithFormat:@"%@/%ld",mobileLog,type];
+    [HttpsUtils get:temp params:nil success:^(id responseObj) {
+        if(success){
+            success(responseObj);
+        }
+    } failure:failure];
+}
 
 @end

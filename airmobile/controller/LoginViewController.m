@@ -28,6 +28,7 @@
 #import "UserInfoViewController.h"
 #import "SingleMessageViewController.h"
 #import "UINavigationController+FDFullscreenPopGesture.h"
+#import "KyAirportService.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
 
@@ -327,6 +328,8 @@
                 [[MessageService sharedMessageService] setUserId:(int)user.id];
                 [[MessageService sharedMessageService] startService];
                 [HttpsUtils getAlertMsgListSuccess:nil failure:nil];// 同步最近的异常消息
+                // 加载城市数据
+                [[KyAirportService sharedKyAirportService] cacheAirport];
 
 //                //delegate.userInfoModel.functions = @"0000000,20000000,30000000,30500000,40000000,50000000";
 

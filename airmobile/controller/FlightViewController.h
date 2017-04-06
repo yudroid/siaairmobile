@@ -7,9 +7,16 @@
 //
 
 #import "HasTabbarRootViewController.h"
+@class FlightModel;
 
-@interface FlightViewController : HasTabbarRootViewController
+@interface FlightViewController : RootViewController
 
 
+@property (nonatomic, strong) Airport       *arriveCity;
+@property (nonatomic, strong) Airport       *outCity;
+
+@property (nonatomic, copy) NSString        *flightNo;
+@property (nonatomic, copy) NSString        *flightDate;
+@property (nonatomic, copy) NSArray<FlightModel *>  *dataArray;
 
 @end

@@ -11,9 +11,15 @@
 
 typedef void  (^TimeBlock)(void);
 
+@interface BaseService()
+
+@property (nonatomic, strong) NSTimer *timer;
+
+@end
+
 @implementation BaseService
 {
-    NSTimer *timer;
+
     TimeBlock timeblock;
 
 }
@@ -27,9 +33,9 @@ typedef void  (^TimeBlock)(void);
 - (void)stopService
 {
     // 取消定时器
-    if(timer != nil){
-        [timer invalidate];
-        timer = nil;
+    if(_timer != nil){
+        [_timer invalidate];
+        _timer = nil;
     }
 }
 
@@ -45,11 +51,11 @@ typedef void  (^TimeBlock)(void);
 //    })];
 
 //    timer = [NSTimer scheduledTimerWithTimeInterval:30 invocation: repeats:YES]
-    timer = [NSTimer scheduledTimerWithTimeInterval:20 target:self selector:@selector(timerFounction) userInfo:nil repeats:YES];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:300 target:self selector:@selector(timerFounction) userInfo:nil repeats:YES];
 
     timeblock = callBack;
 
-    [timer fire];
+    [_timer fire];
     [[NSRunLoop currentRunLoop] run];
 }
 
@@ -57,6 +63,10 @@ typedef void  (^TimeBlock)(void);
 -(void)timerFounction
 {
     timeblock();
+}
+
+-(void)dealloc{
+    NSLog(@"111");
 }
 
 @end

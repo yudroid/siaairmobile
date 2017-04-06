@@ -178,7 +178,8 @@
                 label.textColor = _labelTextColor;
                 [label setTextAlignment:NSTextAlignmentCenter];
                 label.text = labelText;
-                //[label sizeToFit];
+                label.numberOfLines =1;
+                [label sizeToFit];
                 CGFloat labelXPosition;
                 if (_rotateForXAxisText){
                     label.transform = CGAffineTransformMakeRotation(M_PI / 4);

@@ -276,7 +276,6 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     cell.nameLabel.text =name;
     cell.iconImageView.image = [UIImage imageNamed:imageString];
     if ([name isEqualToString:@"版本检测"]) {
-
         NSString *app_Version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
         cell.secondLabel.text = [NSString stringWithFormat:@"%@(%@)",@"当前版本",app_Version];
         AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -303,39 +302,42 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
 
     }else if ([name isEqualToString:@"版本检测"]){
 //        [self showAnimationTitle:@"正在进行版本检测"];
-        [HttpsUtils versionCheckSuccess:^(id response) {
-            NSArray * data = [response objectForKey:@"data"];
-            VersionModel *version = [[VersionModel alloc]initWithDictionary:[data lastObject]];
-            NSString *app_Version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-            if (version.appVersion.floatValue<=app_Version.floatValue) {
-                [self showAnimationTitle:@"已经为最新版本"];
-            }else{
-#if __IPHONE_OS_VERSION_MAX_ALLOWED == __IPHONE_8_3
-                UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"发现新版本"
-                                                                   message:@"是否更新"
-                                                                  delegate:self
-                                                         cancelButtonTitle:@"取消"
-                                                         otherButtonTitles:@"确定", nil];
-                alertView.tag = 1;
-                [alertView show];
-#else
-                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"发现新版本"
-                                                                                         message:@"是否更新？"
-                                                                                  preferredStyle:UIAlertControllerStyleAlert];
-                [alertController addAction:[UIAlertAction actionWithTitle:@"取消"
-                                                                    style:UIAlertActionStyleCancel handler:nil]];
-                [alertController addAction:[UIAlertAction actionWithTitle:@"确定"
-                                                                    style:UIAlertActionStyleDefault
-                                                                  handler:^(UIAlertAction * _Nonnull action){
-                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@%@",@"itms-services://?action=download-manifest&url=https://www.pgyer.com/app/plist/",version.appKey,@"&password=",@"siaaoc"]]];
-                }]];
-                [self presentViewController:alertController animated:YES completion:nil];
-            }
-        } failure:^(id error) {
-            [self showAnimationTitle:@"版本检测失败"];
-        }];
-        return;
-#endif
+
+        NSString *message = @"态势>>总体>>延误指标\n"
+        "（1）IOS增加50%阈值线\n"
+        "（2）当前小时在折线图增加显示当前小时执行率。\n"
+        "（3）当前小时之后部分用虚线显示\n"
+        "（4）延误>1h航班出港率改为延误超1h航班占比\n"
+        "详情\n"
+        "（1）限制查询日期，可查询昨天以及今天的航班\n"
+        "（2）航班详情关注标识由五星改为文字\n"
+        "功能\n"
+        "（1）周边航线改为主要航线\n"
+        "（2）运营情况功能界面调整\n"
+        "优化\n"
+        "（1）优化断线重连机制\n"
+        "（2）优化后台消息提示\n"
+        "（3）修复IOS安卓部分界面显示不一致";
+
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"当前为最新版本" message:message preferredStyle:UIAlertControllerStyleAlert];
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        //paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+        paragraphStyle.alignment = NSTextAlignmentLeft;
+        //行间距
+        paragraphStyle.lineSpacing = 3.0;
+
+        NSDictionary * attributes = @{NSFontAttributeName : [UIFont systemFontOfSize:10.0], NSParagraphStyleAttributeName : paragraphStyle};
+        NSMutableAttributedString *attributedTitle = [[NSMutableAttributedString alloc] initWithString:message];
+        [attributedTitle addAttributes:attributes range:NSMakeRange(0, message.length)];
+        [alertController setValue:attributedTitle forKey:@"attributedMessage"];
+
+        [alertController addAction:[UIAlertAction actionWithTitle:@"版本检测" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+
+            [self versionCheck];
+        }]];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"取消"
+                                                            style:UIAlertActionStyleCancel handler:nil]];
+        [self presentViewController:alertController animated:YES completion:nil];
     }else if ([name isEqualToString:@"更新基础数据"]){
 #if __IPHONE_OS_VERSION_MAX_ALLOWED == __IPHONE_8_3
         UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提示"
@@ -391,6 +393,48 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
             [self showAnimationTitle:@"更新失败"];
         }];
     }
+}
+
+
+-(void)versionCheck
+{
+    [HttpsUtils versionCheckSuccess:^(id response) {
+        NSArray * data = [response objectForKey:@"data"];
+        VersionModel *version = [[VersionModel alloc]initWithDictionary:[data lastObject]];
+        NSString *app_Version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+        if (version.appVersion.floatValue<=app_Version.floatValue) {
+            [self showAnimationTitle:@"已经为最新版本"];
+
+
+        }else{
+#if __IPHONE_OS_VERSION_MAX_ALLOWED == __IPHONE_8_3
+            UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"发现新版本"
+                                                               message:@"是否更新"
+                                                              delegate:self
+                                                     cancelButtonTitle:@"取消"
+                                                     otherButtonTitles:@"确定", nil];
+            alertView.tag = 1;
+            [alertView show];
+#else
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"发现新版本"
+                                                                                     message:@"是否更新？"
+                                                                              preferredStyle:UIAlertControllerStyleAlert];
+            [alertController addAction:[UIAlertAction actionWithTitle:@"取消"
+                                                                style:UIAlertActionStyleCancel handler:nil]];
+            [alertController addAction:[UIAlertAction actionWithTitle:@"确定"
+                                                                style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * _Nonnull action){
+                                                                  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@%@",@"itms-services://?action=download-manifest&url=https://www.pgyer.com/app/plist/",version.appKey,@"&password=",@"siaaoc"]]];
+                                                              }]];
+            [self presentViewController:alertController animated:YES completion:nil];
+        }
+    } failure:^(id error) {
+        [self showAnimationTitle:@"版本检测失败"];
+    }];
+    return;
+#endif
+
+
 }
 
 

@@ -350,6 +350,9 @@
 //        [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, 200+30+30+30+90, kScreenWidth/2-20, 20) text:@"1568人" font:25 textAlignment:NSTextAlignmentLeft colorFromHex:0xFF000000]];
 
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadData:) name:@"PassengerSummary" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadForecastData:) name:@"PassengerForecast" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadSafetyPassengerData:) name:@"SafetyPassenger" object:nil];
+
 
 
     }
@@ -360,6 +363,8 @@
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"PassengerSummary" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"PassengerForecast" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"SafetyPassenger" object:nil];
 }
 -(void)showPassengerHourView:(NSNotification *)sender
 {
@@ -381,8 +386,7 @@
 {
     if ([notification.object isKindOfClass:[PassengerModel class]]) {
         _passengerModel = [HomePageService sharedHomePageService].psnModel;
-        arrPsn.text = @(_passengerModel.hourInCount).stringValue;
-        depPsn.text = @(_passengerModel.hourOutCount).stringValue;
+
         maxLabel.text = @((int)([self maxValue]*1.2)).stringValue;
 //        CGPoint centerPoint = arrPlan.center;
 //        arrPlan = [[ProgreesBarView alloc] initWithCenter:CGPointMake(centerPoint.x,
@@ -420,10 +424,21 @@
 
         arrValueLabel.text = [NSString stringWithFormat:@"%d/%d",_passengerModel.planInCount,_passengerModel.realInCount];
         depValueLabel.text = [NSString stringWithFormat:@"%d/%d",_passengerModel.planOutCount,_passengerModel.realOutCount];
-        DMZPeopleLabel.text = [NSString stringWithFormat:@"隔离区%@人",@(_passengerModel.safeCount)];
+
     }
 }
+-(void)loadForecastData:(NSNotification *)notification{
+    _passengerModel = [HomePageService sharedHomePageService].psnModel;
+    arrPsn.text = @(_passengerModel.hourInCount).stringValue;
+    depPsn.text = @(_passengerModel.hourOutCount).stringValue;
 
+}
+-(void)loadSafetyPassengerData:(NSNotification *)notification{
+    _passengerModel = [HomePageService sharedHomePageService].psnModel;
+    arrPsn.text = @(_passengerModel.hourInCount).stringValue;
+    depPsn.text = @(_passengerModel.hourOutCount).stringValue;
+    DMZPeopleLabel.text = [NSString stringWithFormat:@"隔离区%@人",@(_passengerModel.safeCount)];
+}
 -(int)maxValue
 {
     int max = 0;

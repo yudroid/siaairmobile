@@ -167,7 +167,7 @@ const NSString *PSNSAFETYCONTEN_TABLEVIEW_IDENTIFER = @"PSNSAFETYCONTEN_TABLEVIE
 
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadData:) name:@"PassengerOnboard" object:nil];
         //[self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, 200+30+30+10+30+10+90, kScreenWidth/2-20, 20) text:@"" font:25 textAlignment:NSTextAlignmentLeft colorFromHex:0xFF000000]];
-        
+       
     }
     
     return self;

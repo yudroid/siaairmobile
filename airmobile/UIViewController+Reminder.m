@@ -87,6 +87,8 @@ static const NSInteger  noFindViewTag = 1000;
     }];
     [[self.view viewWithTag:554] removeFromSuperview];
     [[self.view viewWithTag:555] removeFromSuperview];
+    [[self.view viewWithTag:556] removeFromSuperview];
+    [[self.view viewWithTag:99] removeFromSuperview];
 }
 
 
@@ -140,6 +142,12 @@ static const NSInteger  noFindViewTag = 1000;
     }];
 }
 
+
+-(void)updateNetWorkingWithString:(NSString *)string
+{
+    UILabel *title = [self.view viewWithTag:556 ];
+    title.text = string;
+}
 
 
 -(__kindof UIViewController *)storyboardWithstoryboardID:(NSString *)storyboardID

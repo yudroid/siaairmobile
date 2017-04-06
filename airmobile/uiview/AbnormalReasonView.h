@@ -13,7 +13,4 @@
 @interface AbnormalReasonView : UIView< UITableViewDelegate,
                                         UITableViewDataSource>
 
--(instancetype)initWithFrame:(CGRect)                       frame
-                   dataArray:(NSArray<AbnReasonModel *>*)   dataArray;
-
 @end

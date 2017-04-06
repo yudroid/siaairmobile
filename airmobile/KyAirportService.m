@@ -22,24 +22,54 @@ singleton_implementation(KyAirportService);
     NSMutableArray *array = [[NSMutableArray alloc]init];
     NSMutableArray<NSString *> *sqlArray = [[NSMutableArray<NSString *> alloc]init];
     NSString *sql = @"INSERT INTO AIRPORT(ID,CN,IATA,REGION,FIRST) VALUES(?,'%@','%@','%@','%@');";
-//    [HttpUtils airportQuerySucess:^(id responseObj) {
-//        Airport *airport = nil;
-//        for(id item in responseObj){
-//            airport = [[Airport alloc] init];
-//            [airport setValuesForKeysWithDictionary:item];
-//            airport.first = [StringUtils firstCharactor:[airport.cn substringToIndex:1]];
-//            [array addObject:airport];
-//            //创建sql语句
-//            [sqlArray addObject:[NSString stringWithFormat:sql,airport.cn,airport.iata,airport.region,airport.first]];
-//        }
-//        [ThreadUtils dispatch:^{
-//            [self truncateAirport];
-//            [PersistenceUtils executeInsertBatch:sqlArray];
-//        }];
-//    } failure:^(NSError *error) {
-//        NSLog(@"%@",error.localizedFailureReason);
-//    }];
+    [HttpsUtils airportQuerySucess:^(id responseObj) {
+        Airport *airport = nil;
+        for(NSDictionary *item in responseObj){
+            airport = [[Airport alloc] initCn:[item objectForKey:@"cn"] iata:[item objectForKey:@"iata"] region:[item objectForKey:@"region"] first:@""];
+            airport.first = [StringUtils firstCharactor:[airport.cn substringToIndex:1]];
+            [array addObject:airport];
+            //创建sql语句
+            [sqlArray addObject:[NSString stringWithFormat:sql,airport.cn,airport.iata,airport.region,airport.first]];
+        }
+        [ThreadUtils dispatch:^{
+            [self truncateAirport];
+            [PersistenceUtils executeInsertBatch:sqlArray];
+        }];
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error.localizedFailureReason);
+    }];
 }
+-(void)cacheAirportSucess:(void (^)())ssuccess failure:(void (^)())ffailure{
+
+    NSMutableArray *array = [[NSMutableArray alloc]init];
+    NSMutableArray<NSString *> *sqlArray = [[NSMutableArray<NSString *> alloc]init];
+    NSString *sql = @"INSERT INTO AIRPORT(ID,CN,IATA,REGION,FIRST) VALUES(?,'%@','%@','%@','%@');";
+    [HttpsUtils airportQuerySucess:^(id responseObj) {
+        Airport *airport = nil;
+        for(NSDictionary *item in responseObj){
+            airport = [[Airport alloc] initCn:[item objectForKey:@"cn"] iata:[item objectForKey:@"iata"] region:[item objectForKey:@"region"] first:@""];
+            airport.first = [StringUtils firstCharactor:[airport.cn substringToIndex:1]];
+            [array addObject:airport];
+            //创建sql语句
+            [sqlArray addObject:[NSString stringWithFormat:sql,airport.cn,airport.iata,airport.region,airport.first]];
+        }
+        [ThreadUtils dispatch:^{
+            [self truncateAirport];
+            [PersistenceUtils executeInsertBatch:sqlArray];
+            [ThreadUtils dispatchMain:^{
+                ssuccess();
+            }];
+
+        }];
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error.localizedFailureReason);
+        [ThreadUtils dispatchMain:^{
+            ffailure();
+        }];
+        
+    }];
+}
+
 
 - (void)truncateAirport
 {
@@ -93,9 +123,12 @@ singleton_implementation(KyAirportService);
         Airport *pudong = [Airport createCn:@"上海虹桥" iata:@"SHA" region:@"1" first:@"S"];
         Airport *hongqiao = [Airport createCn:@"上海浦东" iata:@"PVG" region:@"1" first:@"S"];
         Airport *guangzhou = [Airport createCn:@"广州" iata:@"CAN" region:@"1" first:@"G"];
-        Airport *shenzhen = [Airport createCn:@"深圳" iata:@"SZX" region:@"1" first:@"S"];
-        Airport *kunming = [Airport createCn:@"昆明" iata:@"KMG" region:@"1" first:@"K"];
-        [arr addObjectsFromArray:@[beijing,pudong,hongqiao,guangzhou,shenzhen,kunming]];
+        Airport *hangzhou = [Airport createCn:@"杭州" iata:@"HGH" region:@"1" first:@"H"];
+        Airport *nanjing = [Airport createCn:@"南京" iata:@"NKG" region:@"1" first:@"N"];
+        Airport *tianjin = [Airport createCn:@"天津" iata:@"TSN" region:@"1" first:@"T"];
+        Airport *chongqing = [Airport createCn:@"重庆" iata:@"CKG" region:@"1" first:@"C"];
+        Airport *qingdao = [Airport createCn:@"青岛" iata:@"TAO" region:@"1" first:@"q"];
+        [arr addObjectsFromArray:@[beijing,pudong,hongqiao,guangzhou,hangzhou,nanjing,tianjin,chongqing,qingdao]];
     }else{
         Airport *shouer = [Airport createCn:@"首尔" iata:@"SEL" region:@"0" first:@"S"];
         Airport *daban = [Airport createCn:@"大阪" iata:@"OSA" region:@"0" first:@"D"];

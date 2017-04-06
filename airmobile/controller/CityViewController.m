@@ -9,6 +9,8 @@
 #import "CityViewController.h"
 #import "KyAirportService.h"
 #import "StringUtils.h"
+#import "KyAirportService.h"
+#import "UIViewController+Reminder.h"
 
 @interface CityViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 
@@ -23,7 +25,7 @@
     UITextField *_searchTextF;
     BOOL _dmst;// 国内国际区域属性
     BOOL _searchFlag;
-    
+
     UIView *_noResultView;
 }
 
@@ -36,10 +38,10 @@
     _searchFlag = false;
     // 从SQLITE中加载各航站数据替换原来demo
     _dmst = true;
-    [self initAirportArray];
-    
+
+
     //创建展示的,tableview
-    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,64+44, kScreenWidth, kScreenHeight - 64) style:UITableViewStyleGrouped];
+    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,64+44, kScreenWidth, kScreenHeight - 64-44) style:UITableViewStyleGrouped];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.backgroundColor = [UIColor whiteColor];
@@ -48,6 +50,20 @@
     [self.view addSubview:_tableView];
 
     [self createSearch];
+
+    [self initAirportArray];
+
+    if(_dataArray!=nil && _dataArray.count>1&&((NSArray*)_dataArray[0]).count==9&&((NSArray*)_dataArray[1]).count==0){
+        [self starNetWorking];
+        [[KyAirportService sharedKyAirportService] cacheAirportSucess:^{
+            [self initAirportArray];
+            [self stopNetWorking];
+        } failure:^{
+            [self stopNetWorking];
+            [self showAnimationTitle:@"获取失败"];
+
+        }];
+    }
 }
 
 /**
@@ -60,13 +76,14 @@
     //开辟空间
     _dataArray=[NSMutableArray array];
     _sectionArray=[NSMutableArray array];
-    
+
     NSString *region = _dmst?@"1":@"0";
-    NSArray *airportArr = [[KyAirportService sharedKyAirportService] loadAirportByRegion:region];
-    
+    __block NSArray *airportArr = [[KyAirportService sharedKyAirportService] loadAirportByRegion:region];
+
+
     [_sectionArray addObject:@"热门"];
     [_dataArray addObject:[[KyAirportService sharedKyAirportService] findFavouriteAirport:region]];
-    
+
     for (int i='A'; i<='Z'; i++) {
         NSMutableArray * arr = [NSMutableArray array];
         NSString * string = [NSString stringWithFormat:@"%c",i];
@@ -79,13 +96,14 @@
         }
         [_dataArray addObject:arr];
     }
+    [_tableView reloadData];
 }
 
 - (void)createSearch{
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 10)];
     headerView.backgroundColor = [UIColor whiteColor];
     _tableView.tableHeaderView = headerView;
-    
+
     _searchTextF = [[UITextField alloc]initWithFrame:CGRectMake(13, 64+5, kScreenWidth - 13*2, 32)];
     _searchTextF.delegate = self;
     _searchTextF.layer.cornerRadius = 5;
@@ -99,12 +117,12 @@
     _searchTextF.font = [UIFont systemFontOfSize:14];
     _searchTextF.clearButtonMode = UITextFieldViewModeWhileEditing;
     [self.view addSubview:_searchTextF];
-    
-    
+
+
     UITapGestureRecognizer *tap= [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap)];
     tap.cancelsTouchesInView = NO;
     [_tableView addGestureRecognizer:tap];
-    
+
     // 创建搜索无内容的提示信息
     _noResultView = [[UIView alloc]initWithFrame:CGRectMake(0, 64+44, kScreenWidth, kScreenHeight - 64)];
     _noResultView.backgroundColor = [UIColor whiteColor];
@@ -138,7 +156,7 @@
     }else{
         _searchArray = [[NSMutableArray alloc]init];
     }
-    
+
     _searchFlag = true;
     // 如果搜索框内容为空直接返回重新刷新数据
     if([StringUtils isNullOrEmpty:_searchTextF.text]){
@@ -155,7 +173,7 @@
                 }
             }
         }
-        
+
         //判断搜索结果
         if([_searchArray count]==0){
             _noResultView.hidden = false;
@@ -234,9 +252,9 @@
         cell = [[UITableViewCell alloc]initWithStyle: UITableViewCellStyleDefault reuseIdentifier:airport.iata];
     }
     cell.textLabel.text = [NSString stringWithFormat:@"%@(%@)",airport.cn,airport.iata];
-    
+
     return cell;
-    
+
 }
 
 /**
@@ -299,13 +317,13 @@
 }
 
 /*
-#pragma mark - Navigation
+ #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

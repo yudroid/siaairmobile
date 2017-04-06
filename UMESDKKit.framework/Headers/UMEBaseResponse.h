@@ -22,6 +22,8 @@ typedef NS_OPTIONS(NSUInteger, UMEResponseTypes) {
 @property (nonatomic ,assign) UMEResponseTypes resqType;
 @property (nonatomic, assign) NSInteger errorCode;
 @property (nonatomic, copy) NSString *errorMsg;
+@property (nonatomic, assign) NSInteger networkErrorCode;
+@property (nonatomic, copy) NSString *networkErrorMsg;
 
 
 @end

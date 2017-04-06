@@ -13,7 +13,7 @@
 #import "PNLineChartDataItem.h"
 #import "FlightHourModel.h"
 #import "FlightLargeDelayModel.h"
-
+#import "HomePageService.h"
 @interface AlertIndicateViewController ()
 
 @property (nonatomic ,strong) FlightLargeDelayModel *flightLargeDelayModel;
@@ -33,8 +33,10 @@
     UILabel     *todayLabel;
     UILabel     *arrRatioLabel;
     UILabel     *addTimeLabel;
-
-
+    UIImageView *thresholdImageView;
+    UILabel     *thresholdLabel;
+    UIImageView *downlineImageView;
+    UILabel     *tagLabel ;
 }
 
 -(instancetype)initWithDalayTagart:(FlightLargeDelayModel *)flightLargeDelayModel
@@ -78,34 +80,14 @@
     passengerTtitle.textColor = [UIColor whiteColor];
     [topBgView addSubview:passengerTtitle];
 
-//    ratioNum = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-100,
-//                                                                 7.5,
-//                                                                 80,
-//                                                                 20)
-//                                                 text:@(_flightLargeDelayModel.delayOneHourRatio).stringValue
-//                                                 font:24
-//                                        textAlignment:NSTextAlignmentRight
-//                                         colorFromHex:0xFFFFFFFF];
-//    [topBgView addSubview:ratioNum];
 
-
-
-//    todayLabel = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-140,
-//                                                                   viewBotton(ratioNum)+4 ,
-//                                                                   120,
-//                                                                   9)
-//                                                   text:[NSString stringWithFormat:@"当前 %@",[CommonFunction dateFormat:nil format:@"hh:mi"]]
-//                                                   font:11
-//                                          textAlignment:NSTextAlignmentRight
-//                                           colorFromHex:0x75FFFFFF];
-//    [topBgView addSubview:todayLabel];
-
-//    UILabel *circleLabel= [CommonFunction addLabelFrame:CGRectMake(viewX(passengerTtitle), viewY(todayLabel), 20, 20) text:@"●" font:11 textAlignment:NSTextAlignmentLeft colorFromHex:0xFFFFFFFF];
-//    [topBgView addSubview:circleLabel];
-//
-//    UILabel *ratioChar = [CommonFunction addLabelFrame:CGRectMake(viewX(passengerTtitle)+20, viewY(todayLabel), 80, 20) text:@"放行率" font:11 textAlignment:NSTextAlignmentLeft colorFromHex:0x75FFFFFF];
-//    [topBgView addSubview:ratioChar];
-
+    tagLabel = [[UILabel alloc]initWithFrame:CGRectMake(viewWidth(topBgView)-100-16, 8, 100, 13)];
+    tagLabel.text = [self currentTimeAndValue];
+    tagLabel.textAlignment = NSTextAlignmentRight;
+    tagLabel.font = [UIFont fontWithName:@"PingFangSC-Regular"
+                                           size:27/2];
+    tagLabel.textColor = [UIColor whiteColor];
+    [topBgView addSubview:tagLabel];
 
     UIImageView *lineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(passengerTtitle),
                                                                               viewBotton(passengerTtitle)+8,
@@ -144,7 +126,8 @@
     //Only if you needed
     lineChart.yFixedValueMax = [self maxValue]*1000;
     lineChart.yFixedValueMin = -([self maxValue]*1000*0.05);
-    lineChart.changeNum = INTMAX_MAX;
+    NSInteger firNum = ((NSString *)[[self getFlightHourXLabels] firstObject]?:@"0").integerValue;
+    lineChart.changeNum = [CommonFunction currentHour]-firNum;
 
 
     // Line Chart #2
@@ -165,12 +148,30 @@
     [topBgView addSubview:lineChart];
 
 
-    UIImageView *downlineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(passengerTtitle),
+
+    downlineImageView = [[UIImageView alloc]initWithFrame:CGRectMake(viewX(passengerTtitle),
                                                                                   topBgView.frame.size.height-10-15-7,
                                                                                   viewWidth(topBgView)-viewX(passengerTtitle)-18,
                                                                                   0.5)];
     downlineImageView.image = [UIImage imageNamed:@"hiddenLine"];
     [topBgView addSubview:downlineImageView];
+
+
+
+    //添加阈值线
+
+    thresholdImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, viewWidth(lineImageView), 2)];
+    thresholdImageView.center = CGPointMake(lineChart.center.x,viewBotton(downlineImageView)- [HomePageService sharedHomePageService].summaryModel.delayTagart.executeRateThreshold*1000/lineChart.yValueMax *(viewHeight(lineChart)-(viewBotton(lineChart)-viewBotton(downlineImageView))));
+    thresholdImageView.image = [UIImage imageNamed:@"thresholdLine"];
+
+    [topBgView addSubview:thresholdImageView];
+
+    thresholdLabel = [[UILabel alloc]initWithFrame:CGRectMake(viewTrailing(thresholdImageView)-100, viewBotton(thresholdImageView),100, 20)];
+    thresholdLabel.text = [NSString stringWithFormat:@"%.0f",[HomePageService sharedHomePageService].summaryModel.delayTagart.executeRateThreshold*100];
+    thresholdLabel.textColor = [UIColor redColor];
+    thresholdLabel.textAlignment = NSTextAlignmentRight;
+    thresholdLabel.font = [UIFont systemFontOfSize:10];
+    [topBgView addSubview:thresholdLabel];
 
     [topBgView addSubview:[CommonFunction addLabelFrame:CGRectMake(20,
                                                                    viewY(downlineImageView)-13-4,
@@ -225,7 +226,7 @@
                                                                    viewY(delayImageView),
                                                                    kScreenWidth-160,
                                                                    viewHeight(delayImageView))
-                                                   text:@"延误>1h航班出港率"
+                                                   text:@"延误超1h航班占比"
                                                    font:px_px_2_2_3(20, 30, 40)
                                           textAlignment:(NSTextAlignmentLeft) colorFromHex:0xFF000000]];
 
@@ -359,7 +360,11 @@
 
             lineChart.chartData = @[data];
             [lineChart strokeChart];
-            
+
+        tagLabel.text = [self currentTimeAndValue];
+        thresholdImageView.center = CGPointMake(lineChart.center.x,
+                                                viewBotton(downlineImageView)- [HomePageService sharedHomePageService].summaryModel.delayTagart.executeRateThreshold*1000/lineChart.yValueMax *(viewHeight(lineChart)-(viewBotton(lineChart)-viewBotton(downlineImageView))));
+        thresholdLabel.text = [NSString stringWithFormat:@"%.0f",[HomePageService sharedHomePageService].summaryModel.delayTagart.executeRateThreshold*100];
             
 
         
@@ -377,6 +382,19 @@
     }
     return max == 0?1:max;
 
+}
+
+-(NSString *)currentTimeAndValue
+{
+    NSInteger currentHour = [CommonFunction currentHour];
+    CGFloat value = 0;
+    for(FlightHourModel *model in _flightLargeDelayModel.hourExecuteRateList){
+        if([model.hour isEqualToString:@(currentHour-1).stringValue]){
+            value = model.ratio *100;
+        }
+    }
+    return [NSString stringWithFormat:@"%ld点:%ld%%",currentHour-1,(NSInteger)value];
+    
 }
 
 @end

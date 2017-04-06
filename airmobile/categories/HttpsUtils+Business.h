@@ -473,6 +473,14 @@
  */
 +(void)fltDepFltTargetSuccess:(void (^)(id))success failure:(void (^)(id))failure;
 
+
+/**
+ 进港速率
+
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)fltArrFltTargetSuccess:(void (^)(id))success failure:(void (^)(id))failure;
 /**
  航班区域延误时间 /flt/delayAreaSort
 
@@ -704,6 +712,61 @@
                        Success:(void (^)(id))success
                        failure:(void (^)(id))failure;
 
+#pragma mark -查询航站列表
+/**
+ *  @author yangql, 16-02-23 12:02:34
+ *
+ *  @brief 查询航站信息
+ *
+ *  @param success 查询成功后缓存航站信息
+ *  @param failure 失败记录日志
+ */
++(void) airportQuerySucess:(void (^)(id))success
+                   failure:(void (^)(NSError *))failure;
+
+/**
+ 获取server ip列表
+
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void) serverIpListSucess:(void (^)(id))success
+                   failure:(void (^)(NSError *))failure;
 
 
+/**
+ 航空公司列表
+
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)airlineListSucess:(void (^)(id))success
+                 failure:(void (^)(NSError *))failure;
+
+
+/**
+ 运行简报-日报
+
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)mobileDayLogSucess:(void (^)(id))success
+               failure:(void (^)(NSError *))failure;
+
+/**
+ 运行简报-周报
+
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)mobileWeekLogSucess:(void (^)(id))success
+                  failure:(void (^)(NSError *))failure;
+/**
+ 运行简报-月报
+
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)mobileMonthLogSucess:(void (^)(id))success
+                  failure:(void (^)(NSError *))failure;
 @end

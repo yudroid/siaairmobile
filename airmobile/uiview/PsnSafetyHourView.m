@@ -165,7 +165,7 @@
         [topBgView addSubview:zoreLabel];
 
         UIImageView *lowImageView   = [[UIImageView alloc]initWithFrame:CGRectMake(px2(31),
-                                                                                   topBgView.frame.size.height-10-13-7,
+                                                                                   topBgView.frame.size.height-10-13-3,
                                                                                    viewWidth(topBgView)-2*px2(31),
                                                                                    px2(2))];
         lowImageView.image          = [UIImage imageNamed:@"hiddenLine"];
@@ -282,7 +282,7 @@
         hourArray = [HomePageService sharedHomePageService].psnModel.psnHours ;
 
         [flightHourTableView reloadData];
-
+        lineChart.yFixedValueMax    = [self chartMaxValue];
         [lineChart setXLabels:[self getFlightHourXLabels]];
 
         // Line Chart #2

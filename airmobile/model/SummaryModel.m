@@ -194,7 +194,7 @@
 
     _delayTagart.allOutCnt                     = [[data objectForKey:@"allOutCnt"] intValue];
     _delayTagart.delayOneHourCnt               = [[data objectForKey:@"delayOneHourCnt"] intValue];
-    _delayTagart.delayOneHourRatio             = [[data objectForKey:@"delayOneHourRatio"] floatValue];
+    _delayTagart.delayOneHourRatio             = [[data objectForKey:@"delayOneHourRatio"] doubleValue]+0.0001;
     _delayTagart.delayOneHourRatioThreshold    = [[data objectForKey:@"delayOneHourRatioThreshold"] floatValue];
     _delayTagart.executeRateThreshold          = [[data objectForKey:@"executeRateThreshold"] floatValue];
     [_delayTagart updateHourExecuteRateList:      [data objectForKey:@"hourExecuteRateList"]];

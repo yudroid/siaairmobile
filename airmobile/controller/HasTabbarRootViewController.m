@@ -9,7 +9,7 @@
 #import "HasTabbarRootViewController.h"
 #import "AppDelegate.h"
 #import "HomePageViewController.h"
-#import "FlightViewController.h"
+#import "TabFlightSearchViewController.h"
 #import "MessageViewController.h"
 #import "FunctionViewController.h"
 #import "UserInfoViewController.h"
@@ -42,7 +42,7 @@
             break;
 
         case TabBarSelectedTypeFlight:
-            viewController = [[FlightViewController alloc] init];
+            viewController = [[TabFlightSearchViewController alloc] init];
             break;
         case TabBarSelectedTypeMessage:
             [self showMessageViewController];

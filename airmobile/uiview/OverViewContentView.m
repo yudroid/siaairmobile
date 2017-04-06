@@ -211,7 +211,7 @@
                                                         options:nil][0];
         [ratioView bigText:[NSString stringWithFormat:@"%.1f",[summaryModel.releaseRatio floatValue] *100]
                bigFontSize:px_px_2_2_3(65,73, 123)
-                 smallText:@"放行率"
+                 smallText:@"放行正常率"
              smallFontSize:px_px_2_3(30, 50)
                   interval:px_px_2_2_3(20,32, 39)
                   tagImage:[UIImage imageNamed:@"StatusRed"]];

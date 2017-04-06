@@ -68,6 +68,13 @@ singleton_implementation(HomePageService);
 
 }
 
+-(void)sendPageData
+{
+    [self cacheSummaryData];
+    [self cacheFlightData];
+    [self cachePassengerData];
+    [self cacheSeatUsedData];
+}
 #pragma mark 首页摘要信息、小时分布、放行正常率、航延关键指标
 
 -(void) cacheSummaryData
@@ -115,14 +122,24 @@ singleton_implementation(HomePageService);
     } failure:nil];
 
     [HttpsUtils getTenDaySuccess:^(id responesObj) {
-        summaryModel.dayNum = responesObj;
+        if([responesObj isKindOfClass:[NSString class]]){
+            summaryModel.dayNum = responesObj;
+        }else if([responesObj isKindOfClass:[NSNumber class]]){
+            summaryModel.dayNum = ((NSNumber *)responesObj).stringValue;
+        }
+
         [[NSNotificationCenter defaultCenter] postNotificationName:@"FlightDelayTarget"
                                                             object:summaryModel.delayTagart];
     } failure:nil];
 
 
     [HttpsUtils getFlightYearSuccess:^(id responesObj) {
-        summaryModel.month = responesObj;
+        if([responesObj isKindOfClass:[NSString class]]){
+            summaryModel.month = responesObj;
+        }else if([responesObj isKindOfClass:[NSNumber class]]){
+            summaryModel.month = ((NSNumber *)responesObj).stringValue;
+        }
+
         [[NSNotificationCenter defaultCenter] postNotificationName:@"FlightDelayTarget"
                                                             object:summaryModel.delayTagart];
     } failure:nil];
@@ -175,7 +192,7 @@ singleton_implementation(HomePageService);
     // 出港航班阈值
     [HttpsUtils fltDepFltTargetSuccess:^(id responesObj) {
         [flightModel updateDepFltTarget:responesObj];
-
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"fltDepFltTarget" object:nil];
     } failure:nil];
     
     // 航班区域延误时间 /flt/delayAreaSort
@@ -359,5 +376,9 @@ singleton_implementation(HomePageService);
     } failure:^(id error) {
 
     }];
+}
+
+-(void)dealloc{
+    NSLog(@"111");
 }
 @end

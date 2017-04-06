@@ -256,6 +256,10 @@ const NSString *RESOURCECONTENT_TABLECELL_IDENTIFIER = @"RESOURCECONTENT_TABLECE
                                                  selector:@selector(loadData:)
                                                      name:@"CraftSeatTakeUpInfo"
                                                    object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(loadWillCraftSeatTakeUpData:)
+                                                     name:@"WillCraftSeatTakeUp"
+                                                   object:nil];
 
     }
     [self resetData];
@@ -268,6 +272,9 @@ const NSString *RESOURCECONTENT_TABLECELL_IDENTIFIER = @"RESOURCECONTENT_TABLECE
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:@"CraftSeatTakeUpInfo"
+                                                  object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:@"WillCraftSeatTakeUp"
                                                   object:nil];
 }
 
@@ -296,6 +303,40 @@ const NSString *RESOURCECONTENT_TABLECELL_IDENTIFIER = @"RESOURCECONTENT_TABLECE
 
     }
 }
+-(void)loadWillCraftSeatTakeUpData:(NSNotification *)notification
+{
+    if ([notification.object isKindOfClass:[SeatStatusModel class]]) {
+        _seatStatusModel = notification.object;
+
+    }
+    if (_type == ResourceContentViewTypeMain) {
+        NSMutableAttributedString *arrAttributeString = [[NSMutableAttributedString alloc ] initWithString:[NSString stringWithFormat:@"%@机位占用",@(_seatStatusModel.nextIn).stringValue]];
+        [arrAttributeString addAttribute:NSFontAttributeName
+                                   value:[UIFont fontWithName:@"PingFangSC-Regular" size:8]
+                                   range:NSMakeRange(arrAttributeString.length-4, 4)];
+        arrLabel.attributedText = arrAttributeString;
+
+        NSMutableAttributedString *depAttributeString = [[NSMutableAttributedString alloc ] initWithString:[NSString stringWithFormat:@"%@机位占用",@(_seatStatusModel.nextOut).stringValue]];
+        [depAttributeString addAttribute:NSFontAttributeName
+                                   value:[UIFont fontWithName:@"PingFangSC-Regular" size:8]
+                                   range:NSMakeRange(depAttributeString.length-4, 4)];
+        depLabel.attributedText = depAttributeString;
+    }else if (_type == ResourceContentViewTypeSub){
+        NSMutableAttributedString *arrAttributeString = [[NSMutableAttributedString alloc ] initWithString:[NSString stringWithFormat:@"%@机位占用",@(_seatStatusModel.nextIn).stringValue]];
+        [arrAttributeString addAttribute:NSFontAttributeName
+                                   value:[UIFont fontWithName:@"PingFangSC-Regular" size:8]
+                                   range:NSMakeRange(arrAttributeString.length-4, 4)];
+        arrLabel.attributedText = arrAttributeString;
+
+        NSMutableAttributedString *depAttributeString = [[NSMutableAttributedString alloc ] initWithString:[NSString stringWithFormat:@"%@机位占用",@(_seatStatusModel.nextOut).stringValue]];
+        [depAttributeString addAttribute:NSFontAttributeName
+                                   value:[UIFont fontWithName:@"PingFangSC-Regular" size:8]
+                                   range:NSMakeRange(depAttributeString.length-4, 4)];
+        depLabel.attributedText = depAttributeString;
+    }
+
+}
+
 
 -(void)resetData
 {
@@ -319,17 +360,7 @@ const NSString *RESOURCECONTENT_TABLECELL_IDENTIFIER = @"RESOURCECONTENT_TABLECE
         exportSize                  = [longInSeat sizeThatFits:maxSize];
         longInSeat.frame            = CGRectMake(kScreenWidth/2+30, viewY(longInSeat), exportSize.width, 30);
 
-        NSMutableAttributedString *arrAttributeString = [[NSMutableAttributedString alloc ] initWithString:[NSString stringWithFormat:@"%@机位占用",@(_seatStatusModel.nextIn).stringValue]];
-        [arrAttributeString addAttribute:NSFontAttributeName
-                                   value:[UIFont fontWithName:@"PingFangSC-Regular" size:8]
-                                   range:NSMakeRange(arrAttributeString.length-4, 4)];
-        arrLabel.attributedText = arrAttributeString;
 
-        NSMutableAttributedString *depAttributeString = [[NSMutableAttributedString alloc ] initWithString:[NSString stringWithFormat:@"%@机位占用",@(_seatStatusModel.nextOut).stringValue]];
-        [depAttributeString addAttribute:NSFontAttributeName
-                                   value:[UIFont fontWithName:@"PingFangSC-Regular" size:8]
-                                   range:NSMakeRange(depAttributeString.length-4, 4)];
-        depLabel.attributedText = depAttributeString;
     }else if (_type == ResourceContentViewTypeSub){
         normalProportion =@((_seatStatusModel.normalTakeUpCnt+_seatStatusModel.childTakeUpCnt)/(float)(_seatStatusModel.normalCnt + _seatStatusModel.childCnt)).floatValue;
         [progressRound animationWithStrokeEnd:normalProportion withProgressType:ProgreesTypeNormal];

@@ -24,6 +24,17 @@
 
 
         [self setValuesForKeysWithDictionary:dic];
+
+
+        //判断是进港 出港 还是关联航班
+        if([self.mInCity isKindOfClass:[NSNull class]]||[self.mInCity isEqualToString:@""]){
+            self.flightType = FlightTypeOut;
+        }else if (!self.mOutCity||[self.mOutCity isEqualToString:@""]){
+            self.flightType = FlightTypeIn;
+        }
+        else{
+            self.flightType = FlightTypeInOut;
+        }
     }
     return self;
 }

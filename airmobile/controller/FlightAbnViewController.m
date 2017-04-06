@@ -128,15 +128,13 @@
     AbnormalReasonView *abnView = [[AbnormalReasonView alloc] initWithFrame:CGRectMake(0,
                                                                                        0,
                                                                                        scrollView.frame.size.width,
-                                                                                       scrollView.frame.size.height)
-                                                                  dataArray:[HomePageService sharedHomePageService].flightModel.abnReasons];
+                                                                                       scrollView.frame.size.height)];
     [scrollView addSubview:abnView];
     
     AreaDelayTimeView *dlyView = [[AreaDelayTimeView alloc] initWithFrame:CGRectMake(scrollView.frame.size.width,
                                                                                      0,
                                                                                      scrollView.frame.size.width,
-                                                                                     scrollView.frame.size.height)
-                                                                dataArray:[HomePageService sharedHomePageService].flightModel.regionDlyTimes];
+                                                                                     scrollView.frame.size.height)];
     [scrollView addSubview:dlyView];
     
 //    pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, kScreenHeight-40, kScreenWidth, 40)];

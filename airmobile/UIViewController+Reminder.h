@@ -17,7 +17,7 @@
 -(void)stopNetWorking;
 
 - (void)starNetWorkingWithString:(NSString *)string;
-
+-(void)updateNetWorkingWithString:(NSString *)string;
 /**
  *  添加网络请求无内容视图
  */

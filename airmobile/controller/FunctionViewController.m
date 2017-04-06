@@ -19,7 +19,9 @@
 #import "ProductionTargetViewController.h"
 #import "SingleMessageViewController.h"
 #import "WeatherAirportController.h"
-#import "FlightConcernViewController.h"
+#import "OperationSituationViewController.h"
+#import "ReportViewController.h"
+#import "KnowledgeBaseViewController.h"
 
 //#import <UMESDKKit/AirportFuctionWebViewController.h>
 #import <UMESDKKit/UMESDKApi.h>
@@ -100,10 +102,13 @@ static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDEN
         [mutableArray addObject:@{@"name":@"天气信息",@"image":@"site_weather"}];
     }
     if ([CommonFunction hasFunction:FUNC_ZBHX]) {
-        [mutableArray addObject:@{@"name":@"周边航线",@"image":@"site_around"}];
+        [mutableArray addObject:@{@"name":@"主要航线",@"image":@"site_around"}];
     }
-    if ([CommonFunction hasFunction:FUNC_HBGZ]){
-        [mutableArray addObject:@{@"name":@"航班关注",@"image":@"site_around"}];
+    if ([CommonFunction hasFunction:FUNC_ZSK]){
+        [mutableArray addObject:@{@"name":@"知识库",@"image":@"site_around"}];
+    }
+    if([CommonFunction hasFunction:FUNC_YXJB]){
+        [mutableArray addObject:@{@"name":@"运行简报",@"image":@"site_around"}];
     }
     _tableArray = [mutableArray copy];
 
@@ -170,20 +175,29 @@ static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDEN
     }else if ([name isEqualToString:@"运营情况"]){
 //        [HttpUtils accessLog:[HttpUtils userName] funcName:@"运营情况" success:nil failure:nil];
 
-        WeatherAirportController* controller = [[WeatherAirportController alloc] init];
-        controller.airportCode = localAirportIata;
-        controller.functionId = @"information";
-        controller.title = @"运营情况";
-        [self.navigationController pushViewController:controller animated:YES];
-    }else if ([name isEqualToString:@"周边航线"]){
+//        WeatherAirportController* controller = [[WeatherAirportController alloc] init];
+//        controller.airportCode = localAirportIata;
+//        controller.functionId = @"information";
+//        controller.title = @"运营情况";
+//        [self.navigationController pushViewController:controller animated:YES];
+        OperationSituationViewController *operationSituationVC = [[OperationSituationViewController alloc]initWithNibName:@"OperationSituationViewController" bundle:nil];
+        [self.navigationController pushViewController:operationSituationVC animated:YES];
+    }else if ([name isEqualToString:@"主要航线"]){
         WeatherAirportController* controller = [[WeatherAirportController alloc] init];
         controller.airportCode = localAirportIata;
         controller.functionId = @"route";
-        controller.title = @"周边航线";
+        controller.title = @"主要航线";
         [self.navigationController pushViewController:controller animated:YES];
     }else if ([name isEqualToString:@"航班关注"]){
-        FlightConcernViewController *flightConcernVC = [[FlightConcernViewController alloc] initWithNibName:@"FlightConcernViewController" bundle:nil];
-        [self.navigationController pushViewController:flightConcernVC animated:YES];
+//        FlightConcernViewController *flightConcernVC = [[FlightConcernViewController alloc] initWithNibName:@"FlightConcernViewController" bundle:nil];
+//        [self.navigationController pushViewController:flightConcernVC animated:YES];
+    }else if([name isEqualToString:@"知识库"]){
+        KnowledgeBaseViewController *knowledgeBaseVC = [[KnowledgeBaseViewController alloc]initWithNibName:@"KnowledgeBaseViewController" bundle:nil];
+        [self.navigationController pushViewController:knowledgeBaseVC animated:YES];
+
+    }else if([name isEqualToString:@"运行简报"]){
+        ReportViewController *reportVC = [[ReportViewController alloc]initWithNibName:@"ReportViewController" bundle:nil];
+        [self.navigationController pushViewController:reportVC animated:YES];
     }
 }
 

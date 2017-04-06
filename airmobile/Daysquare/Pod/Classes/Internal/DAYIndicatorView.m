@@ -27,7 +27,7 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    self.ellipseLayer.path = CGPathCreateWithEllipseInRect(self.bounds, nil);
+    self.ellipseLayer.path = CFAutorelease(CGPathCreateWithEllipseInRect(self.bounds, nil));
     self.ellipseLayer.frame = self.bounds;
 }
 

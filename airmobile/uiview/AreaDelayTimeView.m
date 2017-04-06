@@ -13,6 +13,7 @@
 #import "PNMixLineChart.h"
 #import "PNLineChartData.h"
 #import "PNLineChartDataItem.h"
+#import "HomePageService.h"
 
 @implementation AreaDelayTimeView
 
@@ -21,15 +22,15 @@
     NSArray<RegionDlyTimeModel *> *hourArray;
     PNBarChart *barChart;
     UITableView *flightHourTableView;
+    UILabel *maxLabel;
 }
 
 -(instancetype) initWithFrame:(CGRect)                          frame
-                    dataArray:(NSArray<RegionDlyTimeModel *> *) dataArray
 {
     self = [super initWithFrame:frame];
     if(self){
 
-        hourArray               = dataArray;
+        hourArray               = [HomePageService sharedHomePageService].flightModel.regionDlyTimes;
 
         CGFloat topBgViewWidth  = kScreenWidth-2*px2(22);
         UIView *topBgView       = [[UIView alloc] initWithFrame:CGRectMake(10, 0, topBgViewWidth, topBgViewWidth *391/709)];
@@ -90,7 +91,7 @@
 //                                              colorFromHex:0x75FFFFFF];
 //        [topBgView addSubview:timeLabel];
 
-        UILabel *maxLabel = [CommonFunction addLabelFrame:CGRectMake(viewWidth(topBgView)/2,
+        maxLabel = [CommonFunction addLabelFrame:CGRectMake(viewWidth(topBgView)/2,
                                                                      viewBotton(lineImageView)+4,
                                                                      topBgView.frame.size.width/2-20,
                                                                      12)
@@ -267,28 +268,35 @@
 
 -(void)loadData:(NSNotification *)notification
 {
-    if ([notification.object isKindOfClass:[NSArray class]]) {
-        hourArray = notification.object;
-        [flightHourTableView reloadData];
+    hourArray = [HomePageService sharedHomePageService].flightModel.regionDlyTimes;
+    [flightHourTableView reloadData];
 
-        // Line Chart #2
-        NSArray * dataArray         = [self getFlightHourYLabels];
-        PNLineChartData *data       = [PNLineChartData new];
-        data.dataTitle              = @"航班";
-        data.color                  = [CommonFunction colorFromHex:0xFFF2F925];
-        data.alpha                  = 0.5f;
-//        data.inflexionPointWidth    = 2.0f;
-        data.itemCount              = dataArray.count;
-        data.inflexionPointStyle    = PNLineChartPointStyleCircle;
-        data.getData = ^(NSUInteger index) {
-            CGFloat yValue = [dataArray[index] floatValue];
-            return [PNLineChartDataItem dataItemWithY:yValue];
-        };
 
-        lineChart.chartData = @[data];
+    maxLabel.text = [NSString stringWithFormat:@"%d",(int)([self maxValue ]*1.2)];
+    lineChart.yFixedValueMax        = [self maxValue]*1.2;
+    lineChart.yFixedValueMin        = -([self maxValue]*0.1);
+    [lineChart setXLabels:[self getFlightHourXLabels]];
+    NSArray * dataArray         = [self getFlightHourYLabels];
+    PNLineChartData *data       = [PNLineChartData new];
+    data.dataTitle              = @"航班";
+    data.color                  = [CommonFunction colorFromHex:0xFFF2F925];
+    data.alpha                  = 0.5f;
+    //        data.inflexionPointWidth    = 2.0f;
+    data.itemCount              = dataArray.count;
+    data.inflexionPointStyle    = PNLineChartPointStyleCircle;
+    data.getData = ^(NSUInteger index) {
+        CGFloat yValue = [dataArray[index] floatValue];
+        return [PNLineChartDataItem dataItemWithY:yValue];
+    };
 
-        [lineChart strokeChart];
-    }
+    lineChart.chartData = @[data];
+    [lineChart strokeChart];
+
+    barChart.yMaxValue      = [self maxTimeValue]*1.2;
+    [barChart setXLabels:[self getFlightHourXLabels]];
+    [barChart setYValues:[self getPlanYLabels]];
+    [barChart strokeChart];
+
 }
 
 -(int)maxValue

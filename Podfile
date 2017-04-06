@@ -15,13 +15,14 @@ target 'airmobile' do
   pod 'pop', '~> 1.0'
   pod 'LDProgressView', '~> 1.2'
   pod 'MJRefresh', '~> 3.1'
-  pod 'SocketRocket', '~> 0.5.0'
+  pod 'SocketRocket'
   pod 'WJPhotoPicker', '~> 1.1.7'
 #  pod 'Daysquare', :git => 'https://github.com/unixzii/Daysquare.git'
   pod 'FLAnimatedImage', '~> 1.0'
   pod 'FlyImage', '~>1.0'
   pod 'JTCalendar'
   pod 'Bugly'
+  pod 'FCFileManager'
   
   target 'airmobileTests' do
     inherit! :search_paths

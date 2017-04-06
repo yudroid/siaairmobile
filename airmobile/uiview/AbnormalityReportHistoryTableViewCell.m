@@ -10,9 +10,12 @@
 #import "AbnormalModel.h"
 #import "PersistenceUtils+Business.h"
 #import "BasisInfoEventModel.h"
+#import "NSString+Size.h"
 
 @interface AbnormalityReportHistoryTableViewCell ()
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *nameLabelHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentLabelHeight;
 
 @end
 
@@ -33,19 +36,14 @@
 -(void)setAbnormalModel:(AbnormalModel *)abnormalModel
 {
     _abnormalModel = abnormalModel;
-    _starLabel.text = [NSString stringWithFormat:@"开始:%@",abnormalModel.startTime];
-    _endLabel.text =  [NSString stringWithFormat:@"结束:%@",abnormalModel.endTime];
-
-    NSDictionary *dic = [[PersistenceUtils findBasisInfoEventWithEventId:(int)abnormalModel.event.intValue] lastObject];
-
-    BasisInfoEventModel *eventModel = [[BasisInfoEventModel alloc]initWithDictionary:dic];
-    _nameLabel.text = eventModel.event;
-    if (abnormalModel.endTime && ![abnormalModel.endTime isEqualToString:@""]) {
-        _statusLabel.text = @"上报完成";
-    }else{
-        _statusLabel.text = @"上报开始";
-    }
-
+    NSDictionary * dic = [[PersistenceUtils findBasisInfoEventWithEventId:(int)abnormalModel.event] lastObject];
+    BasisInfoEventModel *model = [[BasisInfoEventModel alloc]initWithDictionary:dic];
+    _nameLabel.text = model.event;
+    CGSize size = [model.event sizeWithWidth:kScreenWidth - 32 font:[UIFont fontWithName:@"PingFang SC" size:15]];
+    _nameLabelHeight.constant = size.height;
+    size = [model.content sizeWithWidth:kScreenWidth - 32 font:[UIFont fontWithName:@"PingFang SC" size:12]];
+    _contentLabelHeight.constant = size.height;
+    _contentLabel.text = model.content;
 }
 
 @end

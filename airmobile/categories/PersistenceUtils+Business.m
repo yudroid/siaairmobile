@@ -9,6 +9,7 @@
 #import "PersistenceUtils+Business.h"
 #import "HttpsUtils+Business.h"
 #import "AppDelegate.h"
+#import "ConcernModel.h"
 
 @implementation PersistenceUtils (Business)
 
@@ -44,7 +45,7 @@
             NSLog(@"成功创建表   #用户信息表#   %@",@"userInfoTable");
         }
         
-        NSString *sysMsgTable = @"DROP TABLE IF EXISTS SysMessage;CREATE TABLE SysMessage (id integer PRIMARY KEY AUTOINCREMENT NOT NULL,msgid integer NOT NULL, type integer(2,0) NOT NULL, content nvarchar(1024,0),title nvarchar(100,0), createtime datetime NOT NULL, readtime date NOT NULL, status integer(1,0), todeptids nvarchar(500,0), todept integer(20,0), userid integer);";
+        NSString *sysMsgTable = @"CREATE TABLE IF NOT EXISTS SysMessage (id integer PRIMARY KEY AUTOINCREMENT NOT NULL,msgid integer NOT NULL, type integer(2,0) NOT NULL, content nvarchar(1024,0),title nvarchar(100,0), createtime datetime NOT NULL, readtime date NOT NULL, status integer(1,0), todeptids nvarchar(500,0), todept integer(20,0), userid integer);";
 
         result = sqlite3_exec(database, [sysMsgTable UTF8String], NULL, NULL, NULL);
         if (result == SQLITE_OK) {
@@ -67,6 +68,23 @@
 
         NSString *basisInfoDictionaryTable = @"CREATE TABLE IF NOT EXISTS BasisInfoDictionary (basisidid integer PRIMARY KEY AUTOINCREMENT NOT NULL,type text,code text,content text)";
         result = sqlite3_exec(database, [basisInfoDictionaryTable UTF8String], NULL, NULL, NULL);
+        if (result == SQLITE_OK) {
+            NSLog(@"成功创建表   #基础数据字典表#   %@",@"userInfoTable");
+        }
+
+
+        /**
+         *  @author yangql, 16-02-26 15:02:51
+         *  表名    AIRPORT  通航机场航站表
+         *  列明    说明               类型      主键    可否为空
+         *  ID     序号               INTEGER   是        否
+         *  CN     中文简称            VARCHAR           否
+         *  IATA   IATA编码           VARCHAR          否
+         *  REGION 区域属性1国内0国际   VARCHAR            是
+         *  FIRST  中文首字母          VARCHAR             是
+         */
+        static NSString *airportTable = @"CREATE TABLE IF NOT EXISTS AIRPORT (ID INTEGER PRIMARY KEY AUTOINCREMENT, CN VARCHAR NOT NULL, IATA VARCHAR NOT NULL, REGION VARCHAR, FIRST VARCHAR);";
+        result = sqlite3_exec(database, [airportTable UTF8String], NULL, NULL, NULL);
         if (result == SQLITE_OK) {
             NSLog(@"成功创建表   #基础数据字典表#   %@",@"userInfoTable");
         }
@@ -487,9 +505,22 @@
 {
     NSString *sql = nil;
     if([type isEqualToString:@"FLIGHT"]){
-        sql = [NSString stringWithFormat:@"select * from SysMessage t where t.type like '%@%%' and t.userid=%i order by t.createtime desc limit %i offset %i",type,[self getLocalUserId],num,start];
+        if([ConcernModel allConcernModel]==nil||[ConcernModel allConcernModel].count == 0){
+            sql = [NSString stringWithFormat:@"select * from SysMessage t where t.type  like '%@%%' and t.userid=%i order by t.createtime desc limit %i offset %i",@"FLIGHT",[self getLocalUserId],num,start];
+        }else{
+            sql = [NSString stringWithFormat:@"select * from SysMessage t where ( "];
+            int num = 0;
+            for (NSDictionary *model in [ConcernModel allConcernModel]) {
+                sql = [NSString stringWithFormat:@"%@%@%@",sql,(num==0?@"":@" or "),[NSString stringWithFormat:@"t.content like '%%%@%%'",[model objectForKey:@"key"]]];
+                num++;
+            }
+
+            sql = [NSString stringWithFormat:@"%@) and %@",sql,[NSString stringWithFormat:@"t.type  like '%@%%' and t.userid=%i order by t.createtime desc limit %i offset %i",@"FLIGHT",[self getLocalUserId],num,start]];
+        }
+
     }else{
         sql = [NSString stringWithFormat:@"select * from SysMessage t where t.type not like '%@%%' and t.userid=%i order by t.createtime desc limit %i offset %i",@"FLIGHT",[self getLocalUserId],num,start];
+
     }
     NSArray *result = [self executeQuery:sql];
     return result;
@@ -533,9 +564,9 @@
 
 }
 
-+(NSArray *)findBasisInfoEventWithEventId:(int)eventId dispatchId:(int)dispatchId eventLevel:(int)eventLevel
++(NSArray *)findBasisInfoEventWithEventId:(int)eventId eventLevel:(int)eventLevel
 {
-    NSString *sql = [NSString stringWithFormat:@"select * from BasisInfoEvent where event_type = %i and dispatch_type = %i and event_level = %i",eventId,dispatchId,eventLevel];
+    NSString *sql = [NSString stringWithFormat:@"select * from BasisInfoEvent where event_type = %i and dispatch_type = %i ",eventId,eventLevel];
     NSArray *result = [self executeQuery:sql];
     return result;
 }
@@ -626,5 +657,13 @@
 //        
 //    }];
 //}
+
+
++(void)delectMessage{
+
+    NSString *deleteSql = @"DELETE FROM ChatMessage;DELETE FROM SysMessage;DELETE FROM CHATINFO";
+    [PersistenceUtils executeNoQuery:deleteSql];
+
+}
 
 @end

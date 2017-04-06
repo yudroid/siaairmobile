@@ -258,11 +258,11 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
     if (indexPath.row ==0) {
         FixedMessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)MESSAGE_FIXTABLECELL_IDENTIFIER];
         cell.headImageView.image = [UIImage imageNamed:@"FlightDelays"];
-        cell.nameLabel.text = @"指令消息提醒";
+        cell.nameLabel.text = @"航班事件消息";
         return cell;
     }else if (indexPath.row ==1) {
         FixedMessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)MESSAGE_FIXTABLECELL_IDENTIFIER];
-        cell.nameLabel.text = @"航班变更提醒";
+        cell.nameLabel.text = @"重要消息";
         cell.headImageView.image = [UIImage imageNamed:@"EventRemind"];
         return cell;
     }else{
@@ -285,9 +285,10 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if(indexPath.row == 0){
-        [self showCommendMsgView];
-    }else if(indexPath.row ==1){
         [self showFlightEventView];
+
+    }else if(indexPath.row ==1){
+        [self showCommendMsgView];
     }else{
         NSDictionary *dic = [filterArray objectAtIndex:indexPath.row-2];
         long chatId = [[dic objectForKey:@"chatid"]  longLongValue];

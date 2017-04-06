@@ -9,6 +9,8 @@
 #import "OptionCollectionViewCell.h"
 #import "BasisInfoDictionaryModel.h"
 #import "BasisInfoEventModel.h"
+#import "UIControl+SelfViewController.h"
+
 
 @interface OptionCollectionViewCell()
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
@@ -20,6 +22,10 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     _nameLabel.adjustsFontSizeToFitWidth = YES;
+    UILongPressGestureRecognizer * longPressGr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressToDo)];
+    longPressGr.minimumPressDuration = 0.5;
+    [self addGestureRecognizer:longPressGr];
+
 }
 
 
@@ -46,4 +52,30 @@
     _nameLabel.text = basisInfoEventModel.event;
 
 }
+
+-(void)longPressToDo
+{
+    if ([_basisInfoEventModel isKindOfClass:[BasisInfoEventModel class]]) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"内容"
+                                                                       message:_basisInfoEventModel.content
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+
+        }]];
+
+        [[self rootViewController] presentViewController:alert animated:YES completion:nil];
+    }
+}
+
+-(UIViewController *)rootViewController
+{
+    for (UIView *nextView = self.superview; nextView; nextView = nextView.superview) {
+        UIResponder *responder = [nextView nextResponder];
+        if ([responder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)responder;
+        }
+    }
+    return nil;
+}
+
 @end

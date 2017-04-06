@@ -11,7 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "PNChartDelegate.h"
 #import "PNGenericChart.h"
-
+#import "PNLineChartExtendDataItem.h"
 @interface PNMixLineChart : PNGenericChart
 /**
  * Draws the chart in an animated fashion.
@@ -26,7 +26,7 @@
 /**
  * Array of `LineChartData` objects, one for each line.
  */
-@property (nonatomic) NSArray *chartData;
+@property (nonatomic) NSArray<PNLineChartExtendDataItem *> *chartData;
 
 @property (nonatomic) NSMutableArray *pathPoints;
 @property (nonatomic) NSMutableArray *xChartLabels;

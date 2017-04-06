@@ -31,8 +31,8 @@ typedef NS_ENUM(NSUInteger, OptionsType) {
 
 -(instancetype) initWithOptionType:(OptionsType)optionsType;
 
-@property (nonatomic, assign) int event_type;
-@property (nonatomic, strong) NSString *dispatchType;
-@property (nonatomic, assign) int event_level;
+@property (nonatomic, assign) int controlType;
+//@property (nonatomic, strong) NSString *dispatchType;
+@property (nonatomic, assign) int ensureType;
 
 @end

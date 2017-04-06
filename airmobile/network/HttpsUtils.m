@@ -12,11 +12,12 @@
 
 // 生产网络IP地址
 
-//static NSString* baseUri = @"http://192.168.163.126:8080";
-//static NSString* baseUri = @"http://192.168.163.153:8080";
+//static NSString* baseUri = @"http://192.168.163.132:8080";
+static NSString* baseUri = @"http://192.168.163.139:8080";
 //static NSString* baseUri = @"http://192.168.163.181:8080";
 
-static NSString* baseUri = @"http://192.168.163.132:8080";
+//static NSString* baseUri = @"http://192.168.163.72:8080";
+//static NSString* baseUri = @"http://192.168.163.45:8080";
 //static NSString* baseUri = @"http://219.134.93.113:8087";
 //static NSString* baseUri = @"http://192.168.163.69:80";
 //static NSString* baseUri = @"http://219.134.93.113:8087";
@@ -44,7 +45,7 @@ static NSString* baseUri = @"http://192.168.163.132:8080";
 /**
  *  请求响应超时时间间隔 以秒为单位  NSTimeInterval = double
  */
-static NSTimeInterval timeInterval = 16;
+static NSTimeInterval timeInterval = 10;
 
 @implementation HttpsUtils
 
@@ -496,6 +497,7 @@ static NSTimeInterval timeInterval = 16;
     
 }
 
+
 + (void)post:(NSString *)           segment
     filePath:(NSString *)           filePath
      success:(void (^) (id))        success
@@ -518,6 +520,9 @@ static NSTimeInterval timeInterval = 16;
     //设置响应编码格式
     [manager.responseSerializer setStringEncoding:NSUTF8StringEncoding];
 
+
+    //请求超时时间
+    [manager.requestSerializer setTimeoutInterval: timeInterval];
 
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
 
@@ -620,6 +625,8 @@ constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
      ];
 
 }
+
+
 
 
 @end

@@ -155,4 +155,24 @@ static CGFloat kWavePositionDuration = 5;
     return wavePath;
 }
 
+
+-(void)certainFlow{
+
+    [_displayLink invalidate];
+    self.displayLink = [CADisplayLink displayLinkWithTarget:self
+                                                   selector:@selector(updateWave:)];
+    [_displayLink addToRunLoop:[NSRunLoop currentRunLoop]
+                       forMode:NSRunLoopCommonModes];
+    CGPoint position = self.waveSinLayer.position;
+    position.y = position.y - self.bounds.size.height - 10;
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
+    animation.fromValue = [NSValue valueWithCGPoint:self.waveSinLayer.position];
+    animation.toValue = [NSValue valueWithCGPoint:position];
+    animation.duration = kWavePositionDuration;
+    animation.repeatCount = HUGE_VALF;
+    animation.removedOnCompletion = NO;
+    [self.waveSinLayer addAnimation:animation forKey:@"positionWave"];
+    [self.waveCosLayer addAnimation:animation forKey:@"positionWave"];
+
+}
 @end

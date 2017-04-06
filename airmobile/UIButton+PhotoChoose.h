@@ -11,11 +11,12 @@
 typedef void (^PhotoDidFinished) (UIImage *image);
 typedef void (^PhotoDidCanceled) (void);
 
+
 @interface UIButton (PhotoChoose)
 
 @property (nonatomic, assign) BOOL isPhotoChoose; //是否为相片选择器
 @property (nonatomic, copy) PhotoDidFinished photoDidFinished; //选择完之后执行的block
 @property (nonatomic, copy) PhotoDidCanceled photoDidCanceled; //取消之后执行的block
-
+@property (nonatomic, assign) Boolean enable;
 @end
 

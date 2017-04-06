@@ -20,6 +20,7 @@
 
 @property (weak, nonatomic) IBOutlet UIView *statusBackView;
 @property (weak, nonatomic) IBOutlet UIView *tagView;
+@property (weak, nonatomic) IBOutlet UIButton *nomalButton;
 
 @end
 
@@ -33,6 +34,12 @@
     _statusBackView.layer.cornerRadius = viewWidth(_statusBackView)/2.0;
     _statusBackView.layer.masksToBounds = YES;
     _tagView.layer.cornerRadius = viewWidth(_tagView)/2;
+    _nomalButton.layer.cornerRadius = 10;
+    _unusualButton.layer.cornerRadius = 10;
+    _nomalButton.layer.borderWidth = 1;
+    _unusualButton.layer.borderWidth = 1;
+    _nomalButton.layer.borderColor = [CommonFunction colorFromHex:0xFF18D0AE].CGColor;
+    _unusualButton.layer.borderColor = [CommonFunction colorFromHex:0xFFFF0000].CGColor;
 
     // Initialization code
 }
@@ -58,6 +65,13 @@
     }
 }
 
+- (IBAction)normalButtonClick:(UIButton *)sender {
+    if ([_delegate respondsToSelector:@selector(flightDetailTableViewCellnormalButtonClick:)]) {
+        sender.tag = self.indexRow;
+        [_delegate flightDetailTableViewCellnormalButtonClick:sender];
+    }
+
+}
 
 - (IBAction)unusualButtonClikc:(UIButton *)sender {
     if ([_delegate respondsToSelector:@selector(flightDetailTableViewCellUsualButtonClick:)]) {

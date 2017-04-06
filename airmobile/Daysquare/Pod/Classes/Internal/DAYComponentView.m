@@ -87,7 +87,7 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    self.dotLayer.path = CGPathCreateWithEllipseInRect(CGRectMake(0, 0, 5, 5), nil);
+    self.dotLayer.path = CFAutorelease(CGPathCreateWithEllipseInRect(CGRectMake(0, 0, 5, 5), nil));
     self.dotLayer.frame = CGRectMake((CGRectGetWidth(self.frame) - 5) / 2.0, CGRectGetMaxY(self.textLabel.frame), 5, 5);
 }
 

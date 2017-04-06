@@ -8,6 +8,7 @@
 
 #import "CalendarViewController.h"
 #import "DateUtils.h"
+#import "UIViewController+Reminder.h"
 
 @interface CalendarViewController (){
     NSMutableDictionary *_eventsByDate;
@@ -119,7 +120,9 @@
 - (void)calendar:(JTCalendarManager *)calendar didTouchDayView:(JTCalendarDayView *)dayView
 {
     _dateSelected = dayView.date;
-    if ([_todayDate timeIntervalSinceDate:_dateSelected] <0) {
+    NSTimeInterval time = [_todayDate timeIntervalSinceDate:_dateSelected]/60/60;
+    if (time<0 || time >48) {
+        [self showAnimationTitle:@"请选择今天或者昨天"];
         return;
     }
 

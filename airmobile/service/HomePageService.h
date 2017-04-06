@@ -23,6 +23,6 @@ singleton_interface(HomePageService);
 @property (nonatomic, strong) PassengerModel  *psnModel;      // 旅客数据
 @property (nonatomic, strong) SeatStatusModel *seatModel;     // 机位数据
 -(void)startService;
-
+-(void)sendPageData;
 
 @end

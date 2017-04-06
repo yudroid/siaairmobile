@@ -22,12 +22,12 @@
 
 
 /**
- *  将时间转换为字符串
+ *  将字符串换为时间
  *
  *  @param str   <#date description#>
  *  @param foramt 如"yyyy-MM-dd"  "yyyy-MM-dd HH:mm:ss"
  *
- *  @return <#return value description#>
+ *  @return return value description
  */
 +(NSDate*) convertToDate:(NSString*) str format:(NSString*) foramt;
 

@@ -7,6 +7,8 @@
 //
 
 #import "ImageViewCollectionViewCell.h"
+#import <FlyImage.h>
+#import "HttpsUtils+Business.h"
 
 @implementation ImageViewCollectionViewCell
 
@@ -25,6 +27,13 @@
         self.longPressBlock(self);
     }
 
+}
+-(void)setImagePath:(NSString *)imagePath
+{
+    _imagePath = imagePath;
+    [_imageView setIconURL:[HttpsUtils imageDownloadURLWithString:imagePath]];
+    _imageView.backgroundColor = [UIColor redColor];
+    
 }
 
 @end

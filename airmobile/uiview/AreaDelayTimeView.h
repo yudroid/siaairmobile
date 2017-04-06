@@ -12,7 +12,5 @@
 
 @interface AreaDelayTimeView : UIView<UITableViewDataSource,UITableViewDelegate>
 
--(instancetype) initWithFrame:(CGRect)                          frame
-                    dataArray:(NSArray<RegionDlyTimeModel *> *) dataArray;
 
 @end

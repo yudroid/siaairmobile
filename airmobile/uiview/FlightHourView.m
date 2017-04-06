@@ -19,6 +19,9 @@
     FlightHourType _flightHourType;
     PNBarChart *barChart;
     UILabel *maxLabel;
+    UITableView *flightHourTableView;
+    UIImageView *thresholdImageView ;
+    UILabel *thresholdLabel;
 }
 
 -(instancetype) initWithFrame:(CGRect)frame
@@ -199,13 +202,13 @@
         if(type==DepFlightHour){
             if ([HomePageService sharedHomePageService].flightModel.depFltTarget<barChart.yMaxValue) {
 
-                UIImageView *thresholdImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, viewWidth(barChart), 1)];
+                thresholdImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, viewWidth(barChart), 1)];
                 thresholdImageView.center = CGPointMake(barChart.center.x,viewBotton(barChart)-25- [HomePageService sharedHomePageService].flightModel.depFltTarget/barChart.yMaxValue*(viewHeight(barChart)-50));
                 thresholdImageView.image = [UIImage imageNamed:@"thresholdLine"];
 
                 [topBgView addSubview:thresholdImageView];
 
-                UILabel *thresholdLabel = [[UILabel alloc]initWithFrame:CGRectMake(viewTrailing(thresholdImageView)-100, viewBotton(thresholdImageView),100, 20)];
+                thresholdLabel = [[UILabel alloc]initWithFrame:CGRectMake(viewTrailing(thresholdImageView)-100, viewBotton(thresholdImageView),100, 20)];
                 thresholdLabel.text = [NSString stringWithFormat:@"%.0f",[HomePageService sharedHomePageService].flightModel.depFltTarget];
                 thresholdLabel.textColor = [UIColor redColor];
                 thresholdLabel.textAlignment = NSTextAlignmentRight;
@@ -231,7 +234,7 @@
 
         
         //小时分布表格
-        UITableView *flightHourTableView = [[UITableView alloc]initWithFrame:CGRectMake(0,
+        flightHourTableView = [[UITableView alloc]initWithFrame:CGRectMake(0,
                                                                                         viewBotton(topBgView),
                                                                                         kScreenWidth,
                                                                                         kScreenHeight-10-(65+viewBotton(topBgView)+40+5))];
@@ -246,10 +249,17 @@
                                                  selector:@selector(loadData:)
                                                      name:@"PlanArrHours"
                                                    object:nil];
+
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(loadData:)
-                                                     name:@"RealArrHours"
+                                                     name:@"PlanDepHours"
                                                    object:nil];
+
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(loadthresholdData:)
+                                                     name:@"fltDepFltTarget"
+                                                   object:nil];
+
         
     }
     return self;
@@ -258,7 +268,8 @@
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter]removeObserver:self name:@"PlanArrHours" object:nil];
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"RealArrHours" object:nil];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"PlanDepHours" object:nil];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"fltDepFltTarget" object:nil];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -329,6 +340,8 @@
 //        }
         hourArray = notification.object;
 
+        maxLabel.text = [NSString stringWithFormat:@"%d",(int)([self maxValue]*1.2)];
+
         lineChart.yFixedValueMax    = [self maxValue]*1.2;
         lineChart.yFixedValueMin    = -[self maxValue]*0.1;
 
@@ -350,11 +363,38 @@
 
         [lineChart strokeChart];
 
+
         barChart.yMaxValue          = [self maxValue]*1.2;
+        [barChart setXLabels:[self getFlightHourXLabels]];
+        [barChart setYValues:[self getPlanYLabels]];
+
+
+
+        NSMutableArray *colors = [NSMutableArray array];
+        NSInteger num = [self getFlightHourXLabels].count;
+        for (int i = 0; i<num; i++) {
+            if (i<[CommonFunction currentHour]) {
+                [colors addObject:[CommonFunction colorFromHex:0xff6AF9DF]];
+            }else{
+                [colors addObject:[CommonFunction colorFromHex:0xffB0C4DE]];
+            }
+        }
+
+        barChart.strokeColors = [colors copy];
         [barChart strokeChart];
 
-
+        thresholdImageView.center=CGPointMake(barChart.center.x,viewBotton(barChart)-25- [HomePageService sharedHomePageService].flightModel.depFltTarget/barChart.yMaxValue*(viewHeight(barChart)-50));
+        thresholdLabel.frame = CGRectMake(viewTrailing(thresholdImageView)-100, viewBotton(thresholdImageView),100, 20);
+        thresholdLabel.text = [NSString stringWithFormat:@"%.0f",[HomePageService sharedHomePageService].flightModel.depFltTarget];
+        [flightHourTableView reloadData];
     }
+}
+
+-(void)loadthresholdData:(NSNotification *)notification
+{
+    thresholdImageView.center=CGPointMake(barChart.center.x,viewBotton(barChart)-25- [HomePageService sharedHomePageService].flightModel.depFltTarget/barChart.yMaxValue*(viewHeight(barChart)-50));
+    thresholdLabel.frame = CGRectMake(viewTrailing(thresholdImageView)-100, viewBotton(thresholdImageView),100, 20);
+    thresholdLabel.text = [NSString stringWithFormat:@"%.0f",[HomePageService sharedHomePageService].flightModel.depFltTarget];
 }
 
 -(NSInteger)maxValue

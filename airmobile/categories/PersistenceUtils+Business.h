@@ -219,11 +219,10 @@
  查询基础数据字典-事件
 
  @param eventId <#eventId description#>
- @param dispatchId <#dispatchId description#>
  @param eventLevel <#eventLevel description#>
  @return <#return value description#>
  */
-+(NSArray *)findBasisInfoEventWithEventId:(int)eventId dispatchId:(int)dispatchId eventLevel:(int)eventLevel;
++(NSArray *)findBasisInfoEventWithEventId:(int)eventId  eventLevel:(int)eventLevel;
 
 
 
@@ -234,4 +233,7 @@
  @return <#return value description#>
  */
 +(NSArray *)findBasisInfoEventWithEventId:(int)eventId;
+
+//清空消息
++(void)delectMessage;
 @end

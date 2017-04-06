@@ -35,8 +35,15 @@
                  action:@selector(selfButtonClick:)
        forControlEvents:UIControlEventTouchUpInside];
     }
+}
+-(Boolean)enable
+{
+    return  ((NSNumber *)objc_getAssociatedObject(self, _cmd)).boolValue;
+}
 
-
+-(void)setEnable:(Boolean)enable
+{
+    objc_setAssociatedObject(self, @selector(enable), @(enable), OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
 -(PhotoDidFinished)photoDidFinished
@@ -65,6 +72,7 @@
 
 -(void)selfButtonClick:(UIButton *)sender
 {
+
 #if __IPHONE_OS_VERSION_MAX_ALLOWED <= __IPHONE_8_3
     UIActionSheet *sheet = [[UIActionSheet alloc]initWithTitle:nil
                                                       delegate:self
@@ -80,7 +88,7 @@
                                                         style:UIAlertActionStyleDefault
                                                       handler:^(UIAlertAction * _Nonnull action) {
                                                           UIImagePickerController *picker = [[UIImagePickerController alloc]init];
-                                                          picker.allowsEditing = YES;
+//                                                          picker.allowsEditing = YES;
                                                           picker.delegate = self;
                                                           if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
                                                               [[self rootViewController] showAnimationTitle:@"设备不支持拍照"];
@@ -95,7 +103,7 @@
                                                           handler:^(UIAlertAction * _Nonnull action) {
                                                               UIImagePickerController *picker = [[UIImagePickerController alloc]init];
                                                               picker.delegate = self;
-                                                              picker.allowsEditing = YES;
+//                                                              picker.allowsEditing = YES;
                                                               picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
                                                               [[self rootViewController] presentViewController:picker
                                                                                                       animated:YES
@@ -126,7 +134,7 @@
             [self showAnimationTitle:@"设备不支持拍照"];
             return;
         }
-        picker.allowsEditing = YES;
+//        picker.allowsEditing = YES;
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
     }else if (buttonIndex == 1){
         picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
@@ -138,7 +146,7 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
     [[self rootViewController] dismissViewControllerAnimated:YES completion:^{
-        UIImage  *image = [info objectForKey:UIImagePickerControllerEditedImage];
+        UIImage  *image = [info objectForKey:UIImagePickerControllerOriginalImage];
         if (self.photoDidFinished!=nil) {
             self.photoDidFinished(image);
         }
@@ -148,7 +156,7 @@
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [[self rootViewController] dismissViewControllerAnimated:YES completion:nil];
-    self.photoDidCanceled();
+//    self.photoDidCanceled();
 }
 
 

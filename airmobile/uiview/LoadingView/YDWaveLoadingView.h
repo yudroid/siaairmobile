@@ -17,5 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)stopLoading;
 
+-(void)certainFlow;
+
 @end
 NS_ASSUME_NONNULL_END

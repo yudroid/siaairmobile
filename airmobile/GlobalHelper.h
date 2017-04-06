@@ -29,4 +29,5 @@
 
 - (BOOL)isToday;
 - (void) setIsToday:(Boolean) isToday;
+
 @end

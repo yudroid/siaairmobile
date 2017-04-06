@@ -8,6 +8,12 @@
 
 #import "RootModel.h"
 
+typedef NS_ENUM(NSUInteger, FlightType) {
+    FlightTypeIn,//单进
+    FlightTypeOut,//单出
+    FlightTypeInOut//关联航班
+};
+
 @interface FlightModel : RootModel
 
 @property (nonatomic, assign) int id;
@@ -28,6 +34,8 @@
 @property (nonatomic, copy) NSString *region;   //区域属性
 @property (nonatomic, copy) NSString *fState;   //航班状态
 @property (nonatomic, copy) NSNumber *special;  //是否特殊航班 0:普通 1：特殊
+
+@property (nonatomic, assign) FlightType flightType;//航班类型；
 
 
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary;

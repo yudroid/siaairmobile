@@ -7,7 +7,7 @@
 //
 
 #import "WeatherAirportController.h"
-//#import <UMESDKKit/AirportFuctionWebViewController.h>
+#import <UMESDKKit/AirportFuctionWebViewController.h>
 #import <UMESDKKit/UMESDKApi.h>
 
 
@@ -38,13 +38,26 @@
 
 
 -(void) createWebView{
-//    AirportFuctionWebViewController* airportController = [[AirportFuctionWebViewController alloc] init];
-//    airportController.airportCode = self.airportCode;
-//    airportController.functionID = self.functionId;
-//    airportController.view.frame = CGRectMake(0, 64, kScreenWidth, kScreenHeight);
-//    [self addChildViewController:airportController];
-//    
-//    [self.view addSubview:airportController.view];
+    AirportFuctionWebViewController* airportController = [[AirportFuctionWebViewController alloc] init];
+    airportController.airportCode = self.airportCode;
+    airportController.functionID = self.functionId;
+    airportController.view.frame = CGRectMake(0, 64, kScreenWidth, kScreenHeight);
+    [self addChildViewController:airportController];
+    [self.view addSubview:airportController.view];
+    [self webView:airportController.view];
+}
+
+
+///解决底部遮挡不显示
+-(void)webView:(UIView *)rootView
+{
+    for (UIView *subView in rootView.subviews) {
+        if ([subView isKindOfClass:[UIWebView class]]) {
+            CGRect webFrame = subView.frame;
+            webFrame.size.height = kScreenHeight-64;
+            subView.frame = webFrame;
+        }
+    }
 }
 
 

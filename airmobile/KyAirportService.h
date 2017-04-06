@@ -24,6 +24,8 @@ singleton_interface(KyAirportService);
  */
 - (void)cacheAirport;
 
+-(void)cacheAirportSucess:(void (^)())ssuccess failure:(void (^)())ffailure;
+
 #pragma mark 删除
 /**
  *  @author yangql, 16-02-23 20:02:59
@@ -59,6 +61,8 @@ singleton_interface(KyAirportService);
  *  @return <#return value description#>
  */
 - (Airport *)localAirport;
+
+
 
 
 @end

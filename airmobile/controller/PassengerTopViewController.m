@@ -8,6 +8,7 @@
 
 #import "PassengerTopViewController.h"
 #import "PassengerTopModel.h"
+#import "HomePageService.h"
 
 @interface PassengerTopViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -19,11 +20,11 @@
     UITableView                     *flightHourTableView;
 }
 
--(instancetype)initWithDataArray:(NSArray *)dataArray
+-(instancetype)init
 {
     self = [super init];
     if (self) {
-        array = dataArray;
+        array = [HomePageService sharedHomePageService].psnModel.psnTops;
     }
     return self;
 }
@@ -120,10 +121,10 @@
 
 -(void)loadData:(NSNotification *)notification
 {
-    if ([notification.object isKindOfClass:[NSArray class]]) {
-        array = notification.object;
+
+        array =  [HomePageService sharedHomePageService].psnModel.psnTops;
         [flightHourTableView reloadData];
-    }
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

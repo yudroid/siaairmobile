@@ -10,7 +10,6 @@
 #import "AbnormalityReportCollectionViewCell.h"
 #import "UIViewController+Reminder.h"
 #import "AbnormalityReportTableViewCell.h"
-//#import "UploadPhotoViewController.h"
 #import "SJPhotoPicker.h"
 #import "SJPickPhotoController.h"
 #import "SJAlbumModel.h"
@@ -25,23 +24,41 @@
 #import "UIButton+PhotoChoose.h"
 #import <FlyImage.h>
 #import "PersistenceUtils+Business.h"
-
+#import "SpecialModel.h"
+#import "SafeguardModel.h"
+#import "AppDelegate.h"
+#import "TimePickerView.h"
+#import "UIViewController+Reminder.h"
+#import "DateUtils.h"
+#import "NSString+Size.h"
 static const NSString *ABNORMALITYREPORT_TABLECELL_IDENTIFIER =@"ABNORMALITYREPORT_TABLECELL_IDENTIFIER";
 static const NSString *ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER = @"ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER";
 static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER";
 
-@interface AbnormalityReportViewController ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UITextViewDelegate,OptionsViewControllerDelegate,UICollectionViewDelegateFlowLayout>
+@interface AbnormalityReportViewController ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UITextViewDelegate,OptionsViewControllerDelegate,UICollectionViewDelegateFlowLayout,TimePickerViewDelegate>
 
 //控件
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UICollectionView *photoCollectionView;
+@property (weak, nonatomic) IBOutlet UITableView    *abnormalityHistoryTableView;
+@property (weak, nonatomic) IBOutlet UIButton       *cancelButton;
+@property (weak, nonatomic) IBOutlet UIButton       *saveButton;
+@property (weak, nonatomic) IBOutlet UIButton       *iphoneButton;
+@property (weak, nonatomic) IBOutlet UITextView     *requireTextView;
+@property (weak, nonatomic) IBOutlet UITableView    *tableView;
 
 //约束
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *abnormalityHistoryViewHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewBottom;
+
 //自定义变量
 @property (nonatomic, copy) NSArray *tableViewArray;
 @property (nonatomic, strong) AbnormalModel *abnormalModel ;
+@property (weak, nonatomic) IBOutlet UIButton *timeButton;
+@property (nonatomic, strong) NSMutableArray *nImageArray;//上报历史后添加的新图片
+@property (nonatomic, copy)          NSArray        *abnormalityHistoryArray;
+@property (nonatomic ,strong)        NSMutableArray *collectionArray;
+@property (nonatomic, copy)          NSArray        *imageFilePath;
 
 
 
@@ -54,7 +71,7 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.reportState = ReportStateStarted;
+//    self.reportState = ReportStateStarted;
 
     //titleView订制
     [self titleViewInitWithHight:64];
@@ -67,7 +84,7 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
     _tableView.scrollEnabled = NO;
     [_tableView registerNib:[UINib nibWithNibName:@"AbnormalityReportTableViewCell" bundle:nil]
      forCellReuseIdentifier:(NSString *)ABNORMALITYREPORT_TABLECELL_IDENTIFIER];
-    _tableViewArray = @[@"事件类别",@"事件级别",@"事件"];
+    _tableViewArray = @[@"监察类型",@"保障类型",@"事项标准"];
 
     _abnormalityHistoryTableView.delegate = self;
     _abnormalityHistoryTableView.dataSource = self;
@@ -87,13 +104,11 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
     _requireTextView.returnKeyType =UIReturnKeyDone;
     _requireTextView.delegate = self;
 
-    _explainTextView.returnKeyType = UIReturnKeyDone;
-    _explainTextView.delegate = self;
 
 
 
 //    _explainTextView.text = _abnormalModel.
-    _requireTextView.text = _abnormalModel.ask;
+    _requireTextView.text = _abnormalModel.memo;
 
     //注册键盘事件
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -105,15 +120,6 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
 
-    //KVO
-    [self.startReportButton addObserver:self
-                             forKeyPath:@"enabled"
-                                options:NSKeyValueObservingOptionNew
-                                context:nil];
-    [self.endReportButton addObserver:self
-                           forKeyPath:@"enabled"
-                              options:NSKeyValueObservingOptionNew
-                              context:nil];
 
     //设置该按钮支持拍照
     _iphoneButton.isPhotoChoose = YES;
@@ -123,79 +129,48 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
         [_collectionArray addObject:image];
         [_photoCollectionView reloadData];
     };
+
+
+    [self loadAbnsRecord];
+
+    [_timeButton setTitle:[DateUtils convertToString:[NSDate date] format:@"HH:mm"] forState:UIControlStateNormal];
+
+}
+
+-(void)setEventAbnormalModel:(AbnormalModel *)abnormalModel
+{
+    NSDictionary * dic= [[PersistenceUtils findBasisInfoEventWithEventId:(int)abnormalModel.event] lastObject];
+    self.event = [[BasisInfoEventModel alloc]initWithDictionary:dic];
+    NSDictionary *dic1= [[PersistenceUtils findBasisInfoDictionaryWithid:self.event.event_type] lastObject];
+    self.controlType = [[BasisInfoDictionaryModel alloc] initWithDictionary:dic1];
+    NSDictionary *dic2 = [[PersistenceUtils findBasisInfoDictionaryWithid:self.event.dispatch_type] lastObject];
+    self.ensureType = [[BasisInfoDictionaryModel alloc]initWithDictionary:dic2];
+    self.requireTextView.text = abnormalModel.memo;
+
+    [self.tableView reloadData];
+    _collectionArray = [NSMutableArray arrayWithArray:[abnormalModel.pathList componentsSeparatedByString:@","]];
+    [_photoCollectionView reloadData];
     
 }
 
--(ReportState)judgeReportStateWithAbnormalModel:(AbnormalModel *)abnormalModel
-{
-    if (abnormalModel.startTime
-        &&![abnormalModel.startTime isEqualToString:@""]
-        &&(!abnormalModel.endTime||[abnormalModel.endTime isEqualToString:@""])) {
-        return ReportStateStarted;
-    }else{
-        return ReportStateCompleted;
-    }
-}
--(void)setEventAbnormalModel:(AbnormalModel *)abnormalModel
-{
-    NSDictionary * dic = [[PersistenceUtils findBasisInfoEventWithEventId:abnormalModel.event.intValue] lastObject];
-    self.event = [[BasisInfoEventModel alloc]initWithDictionary:dic];
-    NSDictionary *dic1= [[PersistenceUtils findBasisInfoDictionaryWithid:self.event.event_type] lastObject];
-    self.eventType = [[BasisInfoDictionaryModel alloc] initWithDictionary:dic1];
-    NSDictionary *dic2 = [[PersistenceUtils findBasisInfoDictionaryWithid:self.event.event_level] lastObject];
-    self.eventLevel = [[BasisInfoDictionaryModel alloc]initWithDictionary:dic2];
-    self.explainTextView.text = self.event.content;
-    self.requireTextView.text = abnormalModel.ask;
 
-    self.abnormalId = (int)abnormalModel.id;
-    [self.tableView reloadData];
+- (IBAction)timeButtonClick:(id)sender {
+    TimePickerView *timePickView = [[NSBundle mainBundle] loadNibNamed:@"TimePickerView" owner:nil options:nil][0];
+    timePickView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
+    timePickView.delegate = self;
+    [self.view addSubview:timePickView];
 }
-
--(void)setReportState:(ReportState)reportState
-{
-    _reportState = reportState;
-    switch (reportState) {
-        case ReportStateNoStart:
-            self.startReportButton.enabled = YES;
-            self.endReportButton.enabled = NO;
-            self.tableView.allowsSelection = YES;
-            self.requireTextView.editable = YES;
-            self.explainTextView.editable = YES;
-            self.iphoneButton.enabled = YES;
-            break;
-        case ReportStateStarted:
-            self.startReportButton.enabled = NO;
-            self.endReportButton.enabled = YES;
-            self.tableView.allowsSelection = NO;
-            self.requireTextView.editable = NO;
-            self.explainTextView.editable = NO;
-            self.iphoneButton.enabled = NO;
-            break;
-        case ReportStateCompleted:
-            self.startReportButton.enabled = NO;
-            self.endReportButton.enabled = NO;
-            self.tableView.allowsSelection = NO;
-            self.requireTextView.editable = NO;
-            self.explainTextView.editable = NO;
-            self.iphoneButton.enabled = NO;
-            break;
-        default:
-            break;
-    }
-}
-
 
 -(void)setAbnormalityHistoryArray:(NSArray *)abnormalityHistoryArray
 {
     _abnormalityHistoryArray = abnormalityHistoryArray;
-    _abnormalityHistoryViewHeight.constant = _abnormalityHistoryArray.count * 70 +51;
+    CGFloat sum = 0;
+    for (AbnormalModel *model in _abnormalityHistoryArray) {
+        sum += [self abnormalityHistoryTableHeightWithAbnormal:model];
+    }
+    _abnormalityHistoryViewHeight.constant = sum +51;
 }
 
--(void)dealloc
-{
-    [self.startReportButton removeObserver:self forKeyPath:@"enabled"];
-    [self.endReportButton removeObserver: self forKeyPath:@"enabled"];
-}
 
 // 键盘通知
 - (void)keyboardWillShowNotification:(NSNotification *)info
@@ -207,8 +182,6 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
     UITextView *textView ;
     if ([_requireTextView isFirstResponder]) {
         textView = _requireTextView;
-    }else{
-        textView = _explainTextView;
     }
     float y =viewY(textView.superview)+8;
     if (y>self.scrollView.contentOffset.y) {
@@ -224,21 +197,51 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 
 #pragma mark - EVENT
 
-- (IBAction)startReportDatClick:(id)sender {
-    
-//    [self setupDateView];
+- (IBAction)cancelButtonClick:(id)sender {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提醒"
+                                                                   message:@"确定要取消吗"
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+
+    }]];[alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }]];
+    [self presentViewController:alert animated:YES completion:nil];
+
 }
-- (IBAction)endReportDate:(id)sender {
-//    [self setupDateView];
+- (IBAction)saveButtonClick:(id)sender {
+
+    if (_requireTextView.text.length == 0) {
+        [self showAnimationTitle:@"请填写要求"];
+        return;
+    }
+    _nImageArray = [NSMutableArray array];
+    NSMutableArray *imagePath = [NSMutableArray array];
+    for (id model in _collectionArray) {
+        if ([model isKindOfClass:[UIImage class]]) {
+            [_nImageArray addObject:model];
+        }else if([model isKindOfClass:[NSString class]]){
+            [imagePath addObject:model];
+        }
+    }
+    self.imageFilePath = [imagePath copy];
+    if (_nImageArray.count>0) {
+        int  index = 0;
+        NSMutableArray *filePathArray = [NSMutableArray arrayWithArray:imagePath];
+        [self starNetWorkingWithString:@""];
+        [self uploadImageIndex:index filePathArray:filePathArray failure:^(id error) {
+            [self stopNetWorking];
+            [self showAnimationTitle:@"上传失败"];
+        }];
+    }else{
+//        [self starNetWorking];
+        [self sendAbnsReported];
+    }
+
+
 }
 
--(void)updateData
-{
-    [_tableView reloadData];
-    [_abnormalityHistoryTableView reloadData];
-    _explainTextView.text = @"";
-    _requireTextView.text = @"";
-}
+
 #pragma mark - UITableViewDelegate UITableViewDataSource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -248,13 +251,15 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
     }else{
         return _abnormalityHistoryArray.count;
     }
-
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView == _abnormalityHistoryTableView) {
-        return 70;
+
+        AbnormalModel *abnormalModel = self.abnormalityHistoryArray[indexPath.row];
+
+        return [self abnormalityHistoryTableHeightWithAbnormal:abnormalModel];
     }
     return 58;
 }
@@ -264,12 +269,12 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
         AbnormalityReportTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString*)ABNORMALITYREPORT_TABLECELL_IDENTIFIER];
         NSString *name =_tableViewArray[indexPath.row];
         cell.nameLabel.text =name;
-        if ([name isEqualToString:@"事件类别"]) {
-            cell.valueLabel.text = _eventType.content;
-        }else if([name isEqualToString:@"事件"]){
+        if ([name isEqualToString:@"监察类型"]) {
+            cell.valueLabel.text = _controlType.content;
+        }else if([name isEqualToString:@"事项标准"]){
             cell.valueLabel.text = _event.event;
-        }else if ([name isEqualToString:@"事件级别"]){
-            cell.valueLabel.text = _eventLevel.content;
+        }else if ([name isEqualToString:@"保障类型"]){
+            cell.valueLabel.text = _ensureType.content;
         }
         return  cell;
     }else{
@@ -287,20 +292,26 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
     if(tableView == _abnormalityHistoryTableView){
         AbnormalModel *model = self.abnormalityHistoryArray[indexPath.row];
         [self setEventAbnormalModel:model];
-        [self judgeReportStateWithAbnormalModel:model];
+//        [self judgeReportStateWithAbnormalModel:model];
         return;
     }
     OptionsViewController *optionsVC ;
 
     NSString *name =_tableViewArray[indexPath.row];
-    if ([name isEqualToString:@"事件类别"]) {
+    if ([name isEqualToString:@"监察类型"]) {
         optionsVC = [[OptionsViewController alloc]initWithOptionType:OptionsTypeType];
-    }else if([name isEqualToString:@"事件"]){
+    }else if([name isEqualToString:@"事项标准"]){
+        if (_controlType.content.length==0 ) {
+            [self showAnimationTitle:@"请选择检查类型"];
+            return;
+        }else if(_ensureType.content.length == 0){
+            [self showAnimationTitle:@"请选择保障类型"];
+            return;
+        }
        optionsVC = [[OptionsViewController alloc]initWithOptionType:OptionsTypeEvent];
-        optionsVC.event_type = _eventType.id;
-        optionsVC.event_level = _eventLevel.id;
-        optionsVC.dispatchType = _DispatchType;
-    }else if ([name isEqualToString:@"事件级别"]){
+        optionsVC.controlType = _controlType.id;
+        optionsVC.ensureType = _ensureType.id;
+    }else if ([name isEqualToString:@"保障类型"]){
         optionsVC = [[OptionsViewController alloc]initWithOptionType:OptionsTypeEventLevel];
     }else{
         optionsVC = [[OptionsViewController alloc]init];
@@ -324,18 +335,26 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     ImageViewCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:(NSString *)ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER forIndexPath:indexPath];
-    if (self.reportState == ReportStateStarted) {
-//        cell.imageView seturl
 
-    }else{
+        id item =  _collectionArray[indexPath.row];
+    if ([item isKindOfClass:[UIImage class]]) {
         cell.imageView.image = _collectionArray[indexPath.row];
-        cell.tag = indexPath.row;
         __weak typeof(self) wSelf = self;
         cell.longPressBlock = ^(UICollectionViewCell *cell){
             [_collectionArray removeObject:((ImageViewCollectionViewCell *)cell).imageView.image];
             [wSelf.photoCollectionView reloadData];
         };
+
+    }else if ([item isKindOfClass:[NSString class]]){
+        cell.imagePath = _collectionArray[indexPath.row];
+        __weak typeof(self) wSelf = self;
+        cell.longPressBlock = ^(UICollectionViewCell *cell){
+            [_collectionArray removeObject:((ImageViewCollectionViewCell *)cell).imagePath];
+            [wSelf.photoCollectionView reloadData];
+        };
+
     }
+    cell.tag = indexPath.row;
 
     return cell;
 }
@@ -354,65 +373,126 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
     return YES;
 }
 
+-(CGFloat)abnormalityHistoryTableHeightWithAbnormal:(AbnormalModel *)model
+{
+    NSDictionary * dic = [[PersistenceUtils findBasisInfoEventWithEventId:(int)model.event] lastObject];
+    BasisInfoEventModel *eventModel = [[BasisInfoEventModel alloc]initWithDictionary:dic];
+    CGSize size1 = [eventModel.event sizeWithWidth:kScreenWidth - 32 font:[UIFont fontWithName:@"PingFang SC" size:15]];
+    CGSize size2 = [eventModel.content sizeWithWidth:kScreenWidth - 32 font:[UIFont fontWithName:@"PingFang SC" size:12]];
+    return size1.height+size2.height + 24;
+}
+
 #pragma mark - TimePickerViewDelegate
--(void)timePickerViewDidEnsure:(NSDate *)date
+-(void)timePickerViewDidSelectDate:(NSDate *)date
 {
-    NSLog(@"选中时间%@",date);
+    NSLog(@"%@",date);
+
+    [_timeButton setTitle:[DateUtils convertToString:date format:@"hh:mm"] forState:UIControlStateNormal];
 }
 
 
-#pragma mark - KVO
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
-{
-    if ([[change objectForKey:@"new"]isKindOfClass:[NSNumber class]]) {
-        Boolean new = ((NSNumber *)[change objectForKey:@"new"]).boolValue;
-        if ([object isKindOfClass:[UIButton class]]) {
-            UIButton *button = object;
-            if (new) {
-                [button setBackgroundColor:[UIColor whiteColor]];
-            }else{
-//                [button setBackgroundColor:[UIColor grayColor]];
-            }
-        }
 
-    }
-
-}
 
 -(void)optionsViewControllerFinshedOptionType:(OptionsType)optionType Value:(id)value
 {
     switch (optionType) {
         case OptionsTypeType:
-            _eventType =value;
+            _controlType = value;
             _event = nil;
-            _explainTextView.text = @"";
             break;
         case OptionsTypeEvent:
             _event = value;
-            _explainTextView.text = _event.content;
             break;
         case OptionsTypeEventLevel:
-            _eventLevel = value;
+            _ensureType = value;
             _event = nil;
-            _explainTextView.text = @"";
             break;
         default:
 
             break;
     }
     [_tableView reloadData];
+}
+
+-(void)loadAbnsRecord
+{
+    [self starNetWorking];
+    [HttpsUtils getDispatchAbns:self.isSpecial? _specialModel.id:(int)_safefuardModel.id
+                           type:1
+                        success:^(NSArray *response) {
+                            [self stopNetWorking];
+                            if ([response isKindOfClass:[NSArray class]]) {
+                                //将字段数组转为对象数组
+                                self.abnormalityHistoryArray = [response DictionaryToModel:[AbnormalModel class]];
+                                AbnormalModel *model = [[AbnormalModel alloc]init];
+                                model.event = 90;
+                                model.memo = @"12321";
+                                model.userID = 123;
+                                model.flightID = 2341432;
+                                model.safeguardID = 7;
+                                model.arriveTime = @"20:20";
+                                model.pathList = @"1490862737568/abnormalImage.jpg,1490862737671/abnormalImage.jpg,1490862737869/abnormalImage.jpg";
+                                self.abnormalityHistoryArray =@[model];
+                            }
+                            [self.abnormalityHistoryTableView reloadData];
+                        }failure:^(NSError *error) {
+                            [self stopNetWorking];
+                            [self showAnimationTitle:@"获取历史列表失败"];
+                        }];
 
 }
 
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)uploadImageIndex:(int)index filePathArray:(NSMutableArray *)filePathArray failure:(void (^)(id))failure
+{
+
+    __block  int newIndex = index;
+    __block  NSMutableArray *blockFilePathArray = [filePathArray mutableCopy];
+    if (self.nImageArray.count>0&&index<self.nImageArray.count) {
+        [self updateNetWorkingWithString:[NSString stringWithFormat:@"正在上传第%d张，共%ld张",index+1,self.nImageArray.count]];
+        [HttpsUtils unusualImageUploadImage:self.nImageArray[index] Success:^(id response) {
+            [blockFilePathArray addObject:[[NSString alloc] initWithData:response  encoding:NSUTF8StringEncoding]];
+            if (index+1 != self.nImageArray.count) {
+            }else{
+                self.imageFilePath = [blockFilePathArray copy];
+            }
+            newIndex++;
+            [self uploadImageIndex:newIndex filePathArray:(NSMutableArray *)blockFilePathArray failure:failure];
+        } failure:^(id error) {
+            [self stopNetWorking];
+            failure(error);
+        }];
+    }else{
+        [self updateNetWorkingWithString:@"异常上报"];
+        [self sendAbnsReported];
+    }
 }
-*/
+
+-(void)sendAbnsReported
+{
+    AppDelegate *appdelete = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [HttpsUtils saveDispatchAbnStart:self.isSpecial?(int)_flightId.integerValue:(int)_safefuardModel.fid
+                          dispatchId:self.isSpecial? _specialModel.id:(int)_safefuardModel.id
+                              userId:(int)appdelete.userInfoModel.id
+                             eventId:self.event.basisid
+                                memo:self.requireTextView.text
+                                flag:self.isSpecial
+                             imgPath:[self.imageFilePath componentsJoinedByString:@","]
+                             success:^(id response) {
+                                 [self stopNetWorking];
+                                 if([response isEqualToString:@"0"]){
+                                     [self showAnimationTitle:@"上报失败"];
+                                     return ;
+                                 }
+                                 [self showAnimationTitle:@"上报成功"];
+
+                             }
+                             failure:^(NSError *error) {
+                                 [self stopNetWorking];
+                                 [self showAnimationTitle:@"上报失败"];
+                             }];
+    NSLog(@"图片路径----：%@",[self.imageFilePath componentsJoinedByString:@","]);
+}
 
 @end

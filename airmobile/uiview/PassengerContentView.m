@@ -18,10 +18,17 @@
 @end
 
 @implementation PassengerContentView{
-    UIPageControl                       *pageControl;
+//    UIPageControl                       *pageControl;
     PsnGeneralContentView               *psnGeneral;
     PsnSafetyContentView                *psnSafety;
-
+    UIView                              *segmentedView;
+    UIView                              *tenDayImageView;
+    UIImageView                         *tenDayBackgroundImageView;
+    UILabel                             *tenDayLabel;
+    UIView                              *eightMonthImageView;
+    UIImageView                         *eightMonthBackgroundImageView;
+    UILabel                             *eightMonthLabel;
+    UIScrollView                        *scrollView ;
 }
 
 
@@ -36,8 +43,8 @@
         _passengermodel             = passengermodel;
         _delegate                   = delegate;
         CGFloat width               =  frame.size.width;
-        CGFloat height              = frame.size.height;
-        UIScrollView *scrollView    = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
+        CGFloat height              = frame.size.height-34-6-6;
+        scrollView    = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 34+6+6, width, height)];
         scrollView.delegate         = self;
         scrollView.contentSize      = CGSizeMake(width*2, height-50);
         scrollView.backgroundColor  = [UIColor clearColor];
@@ -49,6 +56,79 @@
         psnGeneral = [[PsnGeneralContentView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
         [scrollView addSubview:psnGeneral];
 
+
+        segmentedView = [[UIView alloc]initWithFrame:CGRectMake(10,
+                                                                6,
+                                                                kScreenWidth-2*10,
+                                                                34)];
+        [self addSubview:segmentedView];
+        UIImageView *segmentedBackgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0,
+                                                                                                 0,
+                                                                                                 viewWidth(segmentedView),
+                                                                                                 viewHeight(segmentedView))];
+        segmentedBackgroundImageView.image = [UIImage imageNamed:@"segmentedBackground"];
+        [segmentedView addSubview:segmentedBackgroundImageView];
+        tenDayImageView = [[UIView alloc] initWithFrame:CGRectMake(0,
+                                                                   0,
+                                                                   viewWidth(segmentedView)/2,
+                                                                   viewHeight(segmentedView))];
+        [segmentedView addSubview:tenDayImageView];
+
+
+        tenDayBackgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0,
+                                                                                 0,
+                                                                                 viewWidth(tenDayImageView),
+                                                                                 viewHeight(tenDayImageView))];
+        tenDayBackgroundImageView.image = [UIImage imageNamed:@"SegmentedLeft"];
+        [tenDayImageView addSubview:tenDayBackgroundImageView];
+
+        tenDayLabel = [CommonFunction addLabelFrame:CGRectMake(0,
+                                                               0,
+                                                               viewWidth(tenDayImageView) ,
+                                                               viewHeight(tenDayImageView))
+                                               text:@"旅客进出港统计"
+                                               font:33/2
+                                      textAlignment:(NSTextAlignmentCenter)
+                                       colorFromHex:0xFFFFFFFF];
+        [tenDayImageView addSubview:tenDayLabel];
+
+        UIButton *tenDayButton = [[UIButton alloc] initWithFrame:tenDayLabel.frame];
+        [tenDayButton addTarget:self
+                         action:@selector(buttonClickedWithSender:)
+               forControlEvents:(UIControlEventTouchUpInside)];
+        tenDayButton.tag = 0;
+        [tenDayImageView addSubview:tenDayButton];
+
+
+        eightMonthImageView = [[UIView alloc ] initWithFrame:CGRectMake(viewWidth(tenDayImageView),
+                                                                        0,
+                                                                        viewWidth(tenDayImageView),
+                                                                        viewHeight(tenDayImageView))];
+        [segmentedView addSubview:eightMonthImageView];
+        //背景
+        eightMonthBackgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0,
+                                                                                     0,
+                                                                                     viewWidth(eightMonthImageView),
+                                                                                     viewHeight(eightMonthImageView))];
+        eightMonthBackgroundImageView.image = nil;
+        [eightMonthImageView addSubview:eightMonthBackgroundImageView];
+
+        eightMonthLabel = [CommonFunction addLabelFrame:CGRectMake(0,
+                                                                   0,
+                                                                   viewWidth(tenDayLabel),
+                                                                   viewHeight(tenDayLabel))
+                                                   text:@"机上等待时间"
+                                                   font:33/2
+                                          textAlignment:(NSTextAlignmentCenter)
+                                           colorFromHex:0xFF17B9E8];
+        [eightMonthImageView addSubview:eightMonthLabel];
+
+        UIButton *eightMonthButton = [[UIButton alloc] initWithFrame:eightMonthLabel.frame];
+        [eightMonthButton addTarget:self
+                             action:@selector(buttonClickedWithSender:)
+                   forControlEvents:(UIControlEventTouchUpInside)];
+        eightMonthButton.tag = 1;
+        [eightMonthImageView addSubview:eightMonthButton];
 //        UIButton *psnHourBtn = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth/2, 200+30, kScreenWidth/2-20, 90)];
 //        [psnHourBtn addTarget:self
 //                       action:@selector(showPassengerHourView:)
@@ -68,14 +148,14 @@
 //        [showTopBtn addTarget:self action:@selector(showTop5DaysView:) forControlEvents:UIControlEventTouchUpInside];
 //        [scrollView addSubview:showTopBtn];
 
-        pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, 0, width, 30)];
-        pageControl.center                  = CGPointMake(width/2, height-15);
-        pageControl.numberOfPages           = 2;
-        pageControl.userInteractionEnabled  = NO;
-        pageControl.pageIndicatorTintColor  = [CommonFunction colorFromHex:0X5F16C1F4];
-        pageControl.currentPageIndicatorTintColor = [CommonFunction colorFromHex:0XFF16C1F4];
+//        pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, 0, width, 30)];
+//        pageControl.center                  = CGPointMake(width/2, height-15);
+//        pageControl.numberOfPages           = 2;
+//        pageControl.userInteractionEnabled  = NO;
+//        pageControl.pageIndicatorTintColor  = [CommonFunction colorFromHex:0X5F16C1F4];
+//        pageControl.currentPageIndicatorTintColor = [CommonFunction colorFromHex:0XFF16C1F4];
 //        pageControl.backgroundColor = [UIColor blueColor];
-        [self addSubview:pageControl];//四个按钮
+//        [self addSubview:pageControl];//四个按钮
 
         [[NSNotificationCenter defaultCenter] removeObserver:self
                                                         name:@"showSafetyPassenger"
@@ -103,6 +183,53 @@
     
     return self;
 }
+
+-(void) buttonClickedWithSender:(UIButton *)sender
+{
+    tenDayBackgroundImageView.image = nil;
+    eightMonthBackgroundImageView.image = nil;
+
+    switch (sender.tag)
+    {
+        case 0:
+            tenDayBackgroundImageView.image = [UIImage imageNamed:@"SegmentedLeft"];
+            eightMonthLabel.textColor = [CommonFunction colorFromHex:0xFF17B9E8];
+            tenDayLabel.textColor = [CommonFunction colorFromHex:0xFFFFFFFF];
+
+            [self showTenDayRatioView];
+            break;
+
+        case 1:
+            eightMonthBackgroundImageView.image = [UIImage imageNamed:@"SegmentedRight"];
+            tenDayLabel.textColor = [CommonFunction colorFromHex:0xFF17B9E8];
+            eightMonthLabel.textColor = [CommonFunction colorFromHex:0xFFFFFFFF];
+            [self showEightMonthRatioView];
+            break;
+
+        default:
+            break;
+    }
+}
+
+-(void) showTenDayRatioView
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        scrollView.contentOffset = CGPointMake(0, 0);
+
+    }];
+
+
+}
+
+-(void) showEightMonthRatioView
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        scrollView.contentOffset = CGPointMake(kScreenWidth, 0);
+        
+    }];
+    
+}
+
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self
@@ -138,16 +265,19 @@
  */
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    NSInteger page = scrollView.contentOffset.x/kScreenWidth;
-    NSLog(@"%ld",page);
-    [pageControl setCurrentPage:page];
-    if (page == 0)
-    {
-        
-    }
-    else if (page == 1)
-    {
-        
+    if (scrollView.contentOffset.x== 0) {
+        tenDayBackgroundImageView.image = [UIImage imageNamed:@"SegmentedLeft"];
+        eightMonthBackgroundImageView.image = [UIImage imageNamed:@""];
+        eightMonthLabel.textColor = [CommonFunction colorFromHex:0xFF17B9E8];
+        tenDayLabel.textColor = [CommonFunction colorFromHex:0xFFFFFFFF];
+        [self showTenDayRatioView];
+
+    }else{
+        eightMonthBackgroundImageView.image = [UIImage imageNamed:@"SegmentedRight"];
+        tenDayBackgroundImageView.image = [UIImage imageNamed:@""];
+        tenDayLabel.textColor = [CommonFunction colorFromHex:0xFF17B9E8];
+        eightMonthLabel.textColor = [CommonFunction colorFromHex:0xFFFFFFFF];
+        [self showEightMonthRatioView];
     }
 }
 @end

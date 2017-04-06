@@ -240,7 +240,7 @@
     else
     {
         passengerContentView = [[PassengerContentView alloc] initWithFrame:CGRectMake(0,
-                                                                                      100,
+                                                                                      76,
                                                                                       kScreenWidth,
                                                                                       kScreenHeight-100-49)
                                                             PassengerModel:[HomePageService sharedHomePageService].psnModel
@@ -369,7 +369,7 @@
 }
 
 -(void)showTop5DaysView{
-    PassengerTopViewController *security = [[PassengerTopViewController alloc] initWithDataArray:[HomePageService sharedHomePageService].psnModel.psnTops];
+    PassengerTopViewController *security = [[PassengerTopViewController alloc] init];
     [self.navigationController pushViewController:security
                                          animated:YES];
 }

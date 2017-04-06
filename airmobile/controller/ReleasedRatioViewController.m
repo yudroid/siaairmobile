@@ -98,10 +98,10 @@
     eightMonthBackgroundImageView.image = nil;
     [eightMonthImageView addSubview:eightMonthBackgroundImageView];
 
-    NSString *monthString = @"";
+    NSString *monthString = [HomePageService sharedHomePageService].summaryModel.month;
     if (monthString &&[monthString isKindOfClass:[NSString class]]&& ![monthString isEqualToString:@""]) {
 
-        monthString = [NSString stringWithFormat:@"最近%lu个月",(unsigned long)[HomePageService sharedHomePageService].summaryModel.month];
+        monthString = [NSString stringWithFormat:@"最近%@个月",[HomePageService sharedHomePageService].summaryModel.month];
     }else{
         monthString = [NSString stringWithFormat:@"最近%lu个月",(unsigned long)[HomePageService sharedHomePageService].summaryModel.yearReleased.count];
     }

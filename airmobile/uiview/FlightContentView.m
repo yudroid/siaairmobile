@@ -36,6 +36,7 @@
     UILabel         *arrInNum;
     UILabel         *depOutNum;
     UILabel         *totalNum;
+    UILabel         *depNum ;
     UILabel         *arrNum;
     PNPieChart      *arrRoundProgress;
     PNPieChart      *depRoundProgress;
@@ -423,7 +424,7 @@
         verticalLineImageView2.image = [UIImage imageNamed:@"VerticalLine"];
         [uiview addSubview:verticalLineImageView2];
 
-        UILabel *depNum = [CommonFunction addLabelFrame:CGRectMake(viewTrailing(verticalLineImageView2),
+        depNum = [CommonFunction addLabelFrame:CGRectMake(viewTrailing(verticalLineImageView2),
                                                                    0,
                                                                    100,
                                                                    30)
@@ -648,7 +649,6 @@
             _flightStusModel = notification.object;
             arrInNum.text    = @(_flightStusModel.arrCount).stringValue;
             depOutNum.text   = @(_flightStusModel.depCount).stringValue;
-
             NSInteger Delay = 0;
             NSInteger Cancel = 0;
             if (scrollView.contentOffset.x == 0) {
@@ -674,7 +674,7 @@
 
             totalNum.text = @(_flightStusModel.flightCount).stringValue;
             arrNum.text = @(_flightStusModel.arrCount).stringValue;
-            
+        depNum.text = @(_flightStusModel.depCount).stringValue;
             [self updateShapeArray:arrShapeArray];
             [self updateShapeArray:depShapeArray];
 

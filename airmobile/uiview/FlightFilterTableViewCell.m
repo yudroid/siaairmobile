@@ -7,6 +7,7 @@
 //
 
 #import "FlightFilterTableViewCell.h"
+#import "ConcernModel.h"
 
 @interface FlightFilterTableViewCell()
 
@@ -29,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet UIView *middleView;
 @property (weak, nonatomic) IBOutlet UILabel *specialLabel;
 @property (weak, nonatomic) IBOutlet UILabel *statusReasonLabel;
+@property (weak, nonatomic) IBOutlet UILabel *concernLabel;//关注
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *leadingAlign;
 
@@ -102,6 +104,8 @@
               [state isEqualToString:@"返航"]||
               [state isEqualToString:@"备降"]){
         _flightStatus.textColor = [CommonFunction colorFromHex:0Xfff46970];
+    }else{
+        _flightStatus.textColor = [CommonFunction colorFromHex:0Xfff46970];
     }
 
     if(flight.special.integerValue == 0){
@@ -115,21 +119,35 @@
     }
 
 
-    if(!flight.sCity||[flight.sCity isEqualToString:@""]){
+    if(!flight.mInCity||[flight.mInCity isEqualToString:@""]){
         _middleView.hidden = YES;
         _preTakeOffLabel.text = flight.mOutTime;
         _preAirportLabel.text = flight.mOutCity;
-    }else{
+        _nextLandingLabel.text = flight.eTime;
+        _nextAirportLabel.text = flight.eCity;
+    }else if (!flight.mOutCity||[flight.mOutCity isEqualToString:@""]){
+        _middleView.hidden = YES;
+        _preTakeOffLabel.text = flight.sTime;
+        _preAirportLabel.text = flight.sCity;
+        _nextLandingLabel.text = flight.mInTime;
+        _nextAirportLabel.text = flight.mInCity;
+    }
+    else{
         _middleView.hidden = NO;
         _preTakeOffLabel.text = flight.sTime;
         _preAirportLabel.text = flight.sCity;
         _takeOffLabel.text = flight.mOutTime;
         _takeOffAirportLabel.text = flight.mInCity;
         _landingLabel.text = flight.mInTime;
+        _nextLandingLabel.text = flight.eTime;
+        _nextAirportLabel.text = flight.eCity;
     }
-    _nextLandingLabel.text = flight.eTime;
-    _nextAirportLabel.text = flight.eCity;
-    
+
+    if ([ConcernModel isconcern:flight.fNum]) {
+        _concernLabel.text = @"已关注";
+    }else{
+        _concernLabel.text = @"";
+    }
 }
 
 //判断为数字

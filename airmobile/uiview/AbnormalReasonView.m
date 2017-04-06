@@ -9,6 +9,7 @@
 #import "AbnormalReasonView.h"
 #import "AbnReasonTableViewCell.h"
 #import "AbnReasonModel.h"
+#import "HomePageService.h"
 
 @implementation AbnormalReasonView
 {
@@ -17,17 +18,14 @@
     UITableView *flightHourTableView;
     PNPieChart *abnRsnProgress;
     UIView *topBgView;
+    UILabel *arrInNum;
 }
 
-- (instancetype)initWithFrame:(CGRect)      frame
-                    dataArray:(NSArray *)   dataArray
-{
+- (instancetype)initWithFrame:(CGRect)      frame{
     self = [super initWithFrame:frame];
     
     if(self){
-
-
-        array                   = dataArray;
+        array                   = [HomePageService sharedHomePageService].flightModel.abnReasons;
         [self updateShapeArray];
         CGFloat topBgViewWidth  = kScreenWidth-2*px2(22);
         topBgView       = [[UIView alloc] initWithFrame:CGRectMake(10, 0, topBgViewWidth, topBgViewWidth *391/709)];
@@ -51,7 +49,7 @@
         [topBgView addSubview:abnRsnProgress];
 
         
-        UILabel *arrInNum = [CommonFunction addLabelFrame:CGRectMake(0,
+        arrInNum = [CommonFunction addLabelFrame:CGRectMake(0,
                                                                      (viewY(abnRsnProgress)+viewHeight(abnRsnProgress))/2-35/2-12,
                                                                      viewWidth(abnRsnProgress),
                                                                      24)
@@ -89,10 +87,10 @@
         flightHourTableView.tableFooterView                 = [[UIView alloc]init];
         [self addSubview:flightHourTableView];
 
-//        [[NSNotificationCenter defaultCenter] addObserver:self
-//                                                 selector:@selector(loadData:)
-//                                                     name:@""
-//                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(loadData:)
+                                                     name:@"FlightAbnReason"
+                                                   object:nil];
 
 
         [topBgView bringSubviewToFront:arrInLabel];
@@ -105,7 +103,7 @@
 
 -(void)dealloc
 {
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"FlightAbnReason" object:nil];
 }
 
 
@@ -160,32 +158,18 @@
 
 -(void)loadData:(NSNotification *)notification
 {
-    if ([notification.object isKindOfClass:[NSArray class]]) {
+    array =[HomePageService sharedHomePageService].flightModel.abnReasons;
+    if(array &&[array isKindOfClass:[NSArray class]]&& array.count != 0 )
+    {
 
-        if(!array || array.count == 0 )
-        {
-            array = notification.object;
+            arrInNum.text = @([self sum]).stringValue;
 
             [flightHourTableView reloadData];
 
             [self updateShapeArray];
-
-            abnRsnProgress  = [[PNPieChart alloc] initWithFrame:CGRectMake(0, 10, viewHeight(topBgView)-20, viewHeight(topBgView)-20) items:shapeArray];
-            abnRsnProgress.center       = CGPointMake(20+100, viewHeight(topBgView)/2);
-            abnRsnProgress.descriptionTextColor         = [UIColor whiteColor];
-            abnRsnProgress.descriptionTextFont          = [UIFont systemFontOfSize:11];
-            abnRsnProgress.descriptionTextShadowColor   = [UIColor clearColor];
-            abnRsnProgress.showAbsoluteValues           = YES;
-            abnRsnProgress.showOnlyValues               = YES;
+        [abnRsnProgress updateChartData:shapeArray];
             [abnRsnProgress strokeChart];
-            abnRsnProgress.legendStyle                  = PNLegendItemStyleStacked;
-            abnRsnProgress.legendFont                   = [UIFont fontWithName:@"PingFangSC-Regular" size:10];
-            abnRsnProgress.innerCircleRadius            = viewHeight(abnRsnProgress)/2-40;
-            [topBgView addSubview:abnRsnProgress];
 
         }
-
-
-    }
 }
 @end

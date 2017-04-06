@@ -21,7 +21,8 @@
 +(NSString*) convertToString:(NSDate*) date format:(NSString*) foramt{
     NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:foramt];
-    [formatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+    NSTimeZone *timeZone=[NSTimeZone systemTimeZone];
+    [formatter setTimeZone:timeZone];
     return [formatter stringFromDate:date];
 }
 
@@ -33,11 +34,10 @@
  *
  *  @return <#return value description#>
  */
-+(NSDate*) convertToDate:(NSString*) str format:(NSString*) foramt{
-    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:foramt];
-    [formatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
-    return [formatter dateFromString:str];
++(NSDate *) convertToDate:(NSString*) str format:(NSString*) foramt{
+    NSDateFormatter* dateFormat = [[NSDateFormatter alloc] init];//实例化一个NSDateFormatter对象
+    [dateFormat setDateFormat:foramt];//设定时间格式,这里可以设置成自己需要的格式
+    return [dateFormat dateFromString:str];
 }
 
 /**
@@ -59,6 +59,7 @@
     NSTimeInterval time = [dt2 timeIntervalSinceDate:dt1];
     return time/60;
 }
+
 
 + (NSDate *)getNow
 {

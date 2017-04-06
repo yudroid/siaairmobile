@@ -128,7 +128,7 @@
         barChart.chartMarginTop = 5.0;
         barChart.chartMarginBottom = 10.0;
         barChart.labelTextColor = [CommonFunction colorFromHex:0xFFFFFFFF];
-        
+        barChart.xLabelSkip = 2;
         
         barChart.labelMarginTop = 5.0;
         barChart.showChartBorder = NO;

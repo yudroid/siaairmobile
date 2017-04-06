@@ -10,41 +10,30 @@
 @class BasisInfoEventModel;
 @class BasisInfoDictionaryModel;
 @class AbnormalModel;
+@class SafeguardModel;
+@class SpecialModel;
 
-
-typedef NS_ENUM(NSUInteger, ReportState) {
-    ReportStateNoStart,
-    ReportStateStarted,
-    ReportStateCompleted
-};
+//typedef NS_ENUM(NSUInteger, ReportState) {
+//    ReportStateNoStart,
+//    ReportStateStarted,
+//    ReportStateCompleted
+//};
 
 @interface AbnormalityReportViewController : RootViewController
-@property (weak, nonatomic) IBOutlet UIButton       *startReportButton;
-@property (weak, nonatomic) IBOutlet UIButton       *endReportButton;
-@property (weak, nonatomic) IBOutlet UIButton       *iphoneButton;
-@property (weak, nonatomic) IBOutlet UITextView     *requireTextView;
-@property (weak, nonatomic) IBOutlet UITableView    *tableView;
-@property (weak, nonatomic) IBOutlet UITextView     *explainTextView;
 
-@property (nonatomic, copy)          NSArray        *abnormalityHistoryArray;
-@property (nonatomic ,strong)        NSMutableArray *collectionArray;
-@property (nonatomic, copy)          NSArray        *imageFilePath;
-@property (weak, nonatomic) IBOutlet UITableView    *abnormalityHistoryTableView;
-@property (nonatomic, strong) NSString *DispatchType;
-
-@property (nonatomic, strong) BasisInfoDictionaryModel *eventType;//事件类型
-@property (nonatomic, strong) BasisInfoDictionaryModel *eventLevel;//事件级别
+//@property (nonatomic, strong) NSString *DispatchType; //保障类型
+@property (nonatomic, strong) BasisInfoDictionaryModel *controlType;//监察类型
+@property (nonatomic, strong) BasisInfoDictionaryModel *ensureType;//保障类型
 @property (nonatomic, strong) BasisInfoEventModel *event;//事件
-
-
 @property (nonatomic, assign) BOOL isSpecial;//是否特殊航班
-@property (nonatomic, assign) ReportState reportState;//数据上报的类型  上报  已经开始未结束  已经完成
-@property (nonatomic, assign) int abnormalId;
 
-@property (nonatomic, strong) NSString *title;
+//普通保障需要的参数
+@property (nonatomic ,strong) SafeguardModel *safefuardModel;
 
 
--(ReportState)judgeReportStateWithAbnormalModel:(AbnormalModel *)abnormalModel;
+//特殊保障需要的参数
+@property (nonatomic, strong) NSString *flightId;//航班id
+@property (nonatomic, strong) SpecialModel *specialModel;
 
 -(void)setEventAbnormalModel:(AbnormalModel *)abnormalModel;
 

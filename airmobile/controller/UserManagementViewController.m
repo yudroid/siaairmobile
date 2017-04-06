@@ -14,11 +14,14 @@
 #import "HttpsUtils.h"
 #import "AppDelegate.h"
 #import <FlyImage.h>
+#import "ConcernModel.h"
+#import "UserManageSoundTableViewCell.h"
+#import "PersistenceUtils+Business.h"
 
 
 static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TABLECELL_IDENTIFIER";
 
-@interface UserManagementViewController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIAlertViewDelegate,ModifyPwdViewDelegate>
+@interface UserManagementViewController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,ModifyPwdViewDelegate>
 
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -51,7 +54,7 @@ static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TA
     _tableView.delegate = self;
     _tableView.dataSource = self;
     
-    _tableviewArray = @[@"修改密码"];
+    _tableviewArray = @[@"修改密码",@"清除关注",@"声音提示"];
     [_tableView registerNib:[UINib nibWithNibName:@"UserManagermentTableViewCell" bundle:nil] forCellReuseIdentifier:(NSString *)USERMANAGEMENT_TABLECELL_IDENTIFIER];
 
     AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -59,17 +62,13 @@ static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TA
 
 }
 - (IBAction)messageClearButtonClick:(id)sender {
-#if __IPHONE_OS_VERSION_MAX_ALLOWED == __IPHONE_8_3
-    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-    [alertView show];
-#else
+
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"确定要将消息清除吗？" preferredStyle:UIAlertControllerStyleAlert];
     [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
     [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        //清除消息
+        [PersistenceUtils delectMessage];
     }]];
     [self presentViewController:alertController animated:YES completion:nil];
-#endif
 }
 
 - (IBAction)headButtonClick:(id)sender {
@@ -138,9 +137,15 @@ static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TA
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UserManagermentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)USERMANAGEMENT_TABLECELL_IDENTIFIER];
-    cell.nameLabel.text= _tableviewArray[indexPath.row];
-    return  cell;
+    if ([_tableviewArray[indexPath.row] isEqualToString:@"声音提示"]) {
+        UserManageSoundTableViewCell *soundCell = [[NSBundle mainBundle] loadNibNamed:@"UserManageSoundTableViewCell" owner:nil options:nil][0];
+        return soundCell;
+    }else{
+        UserManagermentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)USERMANAGEMENT_TABLECELL_IDENTIFIER];
+        cell.nameLabel.text= _tableviewArray[indexPath.row];
+        return  cell;
+    }
+
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -148,12 +153,19 @@ static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TA
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     if([_tableviewArray[indexPath.row] isEqualToString:@"修改密码"]){
-
         modifyPwdView = [[NSBundle mainBundle]loadNibNamed:@"ModifyPwd" owner:nil options:nil][0];
         modifyPwdView.frame = self.view.frame;
         [modifyPwdView createBlurBackgroundWithImage:[self jt_imageWithView:self.view] tintColor:[[UIColor blackColor] colorWithAlphaComponent:0.35] blurRadius:60.0];
         modifyPwdView.delegate = self;
         [self.view addSubview:modifyPwdView];
+    }else if ([_tableviewArray[indexPath.row] isEqualToString:@"清除关注"]){
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"确定要将关注信息清除吗？" preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [ConcernModel removeAll];
+        }]];
+        [self presentViewController:alertController animated:YES completion:nil];
+
     }
 }
 #pragma mark - UIAlertViewDelegate

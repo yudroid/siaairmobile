@@ -10,14 +10,6 @@
 
 @implementation AbnormalModel
 
--(void)setValue:(id)value forUndefinedKey:(NSString *)key
-{
-    if([key isEqualToString:@"sTime"]){
-        _startTime = value;
-    }else if ([key isEqualToString:@"eTime"]){
-        _endTime = value;
-    }
-}
 
 
 

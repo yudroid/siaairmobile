@@ -147,9 +147,9 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
             cell = [[NSBundle mainBundle] loadNibNamed:@"ChatRightTableViewCell"
                                                  owner:nil
                                                options:nil][0];
-        [cell setContentText:content];
-        cell.timeLabel.text = time;
-        cell.nameLabel.text = name;
+        [cell setContentText:content?:@""];
+        cell.timeLabel.text = time?:@"";
+        cell.nameLabel.text = name?:@"";
         return cell;
     }else{
         ChatLeftTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)CHAT_LEFTTABLECELL_IDENTIFIER];
@@ -157,9 +157,9 @@ static const NSString *CHAT_TIMETABLECELL_IDENTIFIER = @"CHAT_TIMETABLECELL_IDEN
             cell = [[NSBundle mainBundle] loadNibNamed:@"ChatLeftTableViewCell"
                                                  owner:nil
                                                options:nil][0];
-        [cell setContentText:content];
-        cell.timeLabel.text = time;
-        cell.nameLabel.text = name;
+        [cell setContentText:content?:@""];
+        cell.timeLabel.text = time?:@"";
+        cell.nameLabel.text = name?:@"";
         return cell;
     }
     return  nil;

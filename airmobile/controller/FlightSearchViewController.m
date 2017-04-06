@@ -11,7 +11,9 @@
 #import "CalendarViewController.h"
 #import "DateUtils.h"
 #import "StringUtils.h"
-#import "FlightConcernListViewController.h"
+#import "AirlineViewController.h"
+#import "AirlineModel.h"
+//#import "FlightConcernListViewController.h"
 //#import "HttpUtils+BusinessHttpUtils.h"
 
 //数字和字母
@@ -22,28 +24,15 @@
 @end
 
 @implementation FlightSearchViewController{
-    UIButton *_seekButton;
-    UILabel *_dateLabel;
-    UITextField *_flightNumberTextF;
-    UIButton *_outCityButton;
-    UIButton *_arriveCityButton;
-    UILabel *_outCityLabel;
-    UILabel *_arriveCityLabel;
-    UIButton *_flightImg;
-    UISegmentedControl *segmentedControl;
-    Airport *arriveCity;
-    Airport *outCity;
-    
-    //查询条件
-    NSString *fltDate;
-    BOOL _queryflag;// YES 按照航班号查询 NO按照航站查询
+    UIButton    *airlineButton;
+    UILabel     *airlineLabel;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self->outCity = [[Airport alloc]initCn:@"深圳" iata:@"SZX" region:@"" first:@""];
-    self->arriveCity = [[Airport alloc]initCn:@"北京" iata:@"PEK" region:@"" first:@""];
+    self.outCity = [[Airport alloc]initCn:@"深圳" iata:@"SZX" region:@"" first:@""];
+    self.arriveCity = [[Airport alloc]initCn:@"北京" iata:@"PEK" region:@"" first:@""];
     _queryflag = true;
     
     //创建按航班号查询还是城市查询View
@@ -57,6 +46,8 @@
     //titleView订制
     [self titleViewInit];
 
+    [self createAirlineView];
+
 
 
     
@@ -66,12 +57,43 @@
 
     NSArray *segmentedArray = @[@"按航班号",@"按城市名"];
     //初始化UISegmentedControl
-    segmentedControl = [[UISegmentedControl alloc]initWithItems:segmentedArray];
-    segmentedControl.frame = CGRectMake(34, 30 + 64, kScreenWidth - 34 *  2, 31);
-    segmentedControl.tintColor = [CommonFunction colorFromHex:0xff17B9E8];
-    [segmentedControl addTarget: self  action:@selector(didClicksegmentedControlAction:) forControlEvents:UIControlEventValueChanged];
-    segmentedControl.selectedSegmentIndex = 0;
-    [self.view addSubview:segmentedControl];
+    _segmentedControl = [[UISegmentedControl alloc]initWithItems:segmentedArray];
+    _segmentedControl.frame = CGRectMake(34, 30 + 64, kScreenWidth - 34 *  2, 31);
+    _segmentedControl.tintColor = [CommonFunction colorFromHex:0xff17B9E8];
+    [_segmentedControl addTarget: self  action:@selector(didClicksegmentedControlAction:) forControlEvents:UIControlEventValueChanged];
+    _segmentedControl.selectedSegmentIndex = 0;
+    [self.view addSubview:_segmentedControl];
+}
+//创建航空公司查询视图
+-(void)createAirlineView{
+
+    airlineLabel =[self AddLabelViewWithFrame:CGRectMake(34, 94+30+80+67 + 60, 100, 20)text:@"航空公司" font:12 isCity:NO];
+
+    airlineButton = [[UIButton alloc]initWithFrame:CGRectMake(34,viewBotton(airlineLabel)+8, kScreenWidth - 34*2, 40)];
+    airlineButton.titleLabel.font = [UIFont systemFontOfSize: 18];
+    [airlineButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [airlineButton setTitle:@"您可以选择航空公司" forState:UIControlStateNormal];
+    [self.view addSubview:airlineButton];
+    airlineButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [airlineButton addTarget:self action:@selector(airlineButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+
+}
+
+-(void)airlineButtonClick:(UIButton *)sender
+{
+    AirlineViewController * airlineVC = [[AirlineViewController alloc]init];
+    airlineVC.resetCity = ^(AirlineModel *model){
+        self.airlineModel = model;
+
+    };
+    [self.navigationController pushViewController:airlineVC animated:YES];
+    
+}
+
+-(void)setAirlineModel:(AirlineModel *)airlineModel
+{
+    _airlineModel = airlineModel;
+    [airlineButton setTitle:airlineModel.nameChn forState:UIControlStateNormal];
 }
 - (void)clear{
     _arriveCityButton.hidden = YES;
@@ -84,12 +106,14 @@
 -(void)didClicksegmentedControlAction:(UISegmentedControl *)segmentedControl
 {
     [self clear];
-    switch (self->segmentedControl.selectedSegmentIndex) {
+    switch (_segmentedControl.selectedSegmentIndex) {
         case 0:
         {
             _outCityLabel.text = @"航班号";
             _flightNumberTextF.hidden = NO;
             _queryflag = true;
+            airlineLabel.hidden = NO;
+            airlineButton.hidden = NO;
             break;
         }
         case 1:
@@ -101,6 +125,9 @@
             _arriveCityButton.hidden = NO;
             _flightImg.hidden = NO;
             _queryflag = false;
+            airlineLabel.hidden = YES;
+            airlineButton.hidden = YES;
+
             break;
         }
         default:
@@ -117,10 +144,11 @@
     _flightNumberTextF.font = [UIFont systemFontOfSize: 18];
     _flightNumberTextF.placeholder = @"可直接输入3-4位数字";
     _flightNumberTextF.delegate = self;
+    _flightNumberTextF.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
     [self.view addSubview:_flightNumberTextF];
     
-    _outCityButton = [self AddButtonViewWithFrame:CGRectMake(34, 94+31+35, ( kScreenWidth - 34*2 - 60)/2, 45) text:@"" isCity:NO];
-    _arriveCityButton = [self AddButtonViewWithFrame:CGRectMake(34 + ( kScreenWidth - 34*2 )/2 +30, 94+31+35, ( kScreenWidth - 34*2)/2 - 30, 45) text:@"" isCity:YES];
+    _outCityButton = [self AddButtonViewWithFrame:CGRectMake(34, 94+31+35, ( kScreenWidth - 34*2 - 60)/2, 45) text:_outCity.cn?:@"" isCity:NO];
+    _arriveCityButton = [self AddButtonViewWithFrame:CGRectMake(34 + ( kScreenWidth - 34*2 )/2 +30, 94+31+35, ( kScreenWidth - 34*2)/2 - 30, 45) text:_arriveCity.cn?: @"" isCity:YES];
 
     [self AddLineViewFrame:CGRectMake(34, 94+31+81, kScreenWidth - 34*2, 1)];
 
@@ -148,11 +176,11 @@
  */
 - (void)flightImgButtonClick
 {
-    Airport *temp = self->outCity;
-    self->outCity = self->arriveCity;
-    self->arriveCity = temp;
-    [_outCityButton setTitle:self->outCity.cn forState:(UIControlStateNormal)];
-    [_arriveCityButton setTitle:self->arriveCity.cn forState:(UIControlStateNormal)];
+    Airport *temp = self.outCity;
+    self.outCity = self.arriveCity;
+    self.arriveCity = temp;
+    [_outCityButton setTitle:self.outCity.cn forState:(UIControlStateNormal)];
+    [_arriveCityButton setTitle:self.arriveCity.cn forState:(UIControlStateNormal)];
 }
 
 //创建日期View
@@ -161,7 +189,7 @@
     _dateLabel = [self AddLabelViewWithFrame:CGRectMake(34, 94+31+81+25, 130, 41) text:@"" font:15 isCity:NO];
     
     NSDate *date = [DateUtils getNow];
-    fltDate = [DateUtils convertToString:date format:@"yyyy-MM-dd"];
+    _fltDate = [DateUtils convertToString:date format:@"yyyy-MM-dd"];
 //    NSInteger day = [[DateUtils convertToString:date format:@"dd"] integerValue];
 //    NSInteger month = [[DateUtils convertToString:date format:@"MM"] integerValue];
 //    _dateLabel.attributedText = [self stringChangeAttributedString:month day:day];
@@ -190,15 +218,15 @@
 //        NSInteger month = [[DateUtils convertToString:date format:@"MM"] integerValue];
 //        _dateLabel.attributedText = [self stringChangeAttributedString:month day:day];
         _dateLabel.attributedText = [self stringChangeAttributedString:[DateUtils convertToString:date format:@"MM"] day:[DateUtils convertToString:date format:@"dd"]];
-        fltDate = [DateUtils convertToString:date format:@"yyyy-MM-dd"];
-        NSLog(@"当前选中日期%@",fltDate);
+        _fltDate = [DateUtils convertToString:date format:@"yyyy-MM-dd"];
+        NSLog(@"当前选中日期%@",_fltDate);
     };
     [self.navigationController pushViewController:calVC animated:true];
 }
 
 //创建查询Button
 - (void)createSeekButton{
-    _seekButton = [[UIButton alloc]initWithFrame:CGRectMake(34, 94+30+80+67 + 60, kScreenWidth - 34*2, 36)];
+    _seekButton = [[UIButton alloc]initWithFrame:CGRectMake(34, 94+30+80+67+100 + 60, kScreenWidth - 34*2, 36)];
     _seekButton.layer.cornerRadius = 5.0;
     _seekButton.backgroundColor  = [CommonFunction colorFromHex:0xff17B9E8];
     [_seekButton setTitle:@"查询" forState:UIControlStateNormal];
@@ -213,17 +241,17 @@
  */
 - (void)seekButtonClick{
     NSLog(@"%s",__func__);
-    FlightConcernListViewController *flightConcernDetailVC = [[FlightConcernListViewController alloc]init];
-    flightConcernDetailVC.date = fltDate;
-    if(segmentedControl.selectedSegmentIndex == 0){
-        flightConcernDetailVC.type = UMEFlightStatusSearchTypeFlightNo;
-        flightConcernDetailVC.flightNo = _flightNumberTextF.text;
-    }else{
-        flightConcernDetailVC.type = UMEFlightStatusSearchTypeFlightCity;
-        flightConcernDetailVC.starCityCode = self->arriveCity.iata;
-        flightConcernDetailVC.endCityCode = self->outCity.iata;
-    }
-    [self.navigationController pushViewController:flightConcernDetailVC animated:YES];
+//    FlightConcernListViewController *flightConcernDetailVC = [[FlightConcernListViewController alloc]init];
+//    flightConcernDetailVC.date = _fltDate;
+//    if(_segmentedControl.selectedSegmentIndex == 0){
+//        flightConcernDetailVC.type = UMEFlightStatusSearchTypeFlightNo;
+//        flightConcernDetailVC.flightNo = _flightNumberTextF.text;
+//    }else{
+//        flightConcernDetailVC.type = UMEFlightStatusSearchTypeFlightCity;
+//        flightConcernDetailVC.starCityCode = self.outCity.iata;
+//        flightConcernDetailVC.endCityCode = self.arriveCity.iata;
+//    }
+//    [self.navigationController pushViewController:flightConcernDetailVC animated:YES];
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
@@ -242,6 +270,13 @@
 
     // 判断是否本站位置，如果是，不能修改，只能点击图片进行切换
 
+    if(button.tag == 1 && [self.arriveCity.cn isEqualToString:@"深圳"]){
+        return;
+    }else if(button.tag == 0 && [self.outCity.cn isEqualToString:@"深圳"]){
+        return;
+    }
+
+
     CityViewController *cityVC = [[CityViewController alloc]init];
     if (button == _outCityButton) {
         cityVC.titleStr = @"出发城市";
@@ -252,11 +287,11 @@
     cityVC.resetCity = ^(Airport *airport){
         [button setTitle:airport.cn forState:UIControlStateNormal];
         if(button.tag == 1){
-            self->arriveCity = airport;
+            self.arriveCity = airport;
         }else{
-            self->outCity = airport;
+            self.outCity = airport;
         }
-        NSLog(@"起飞航站：%@ 到达航站:%@",self->outCity.cn,self->arriveCity.cn);
+        NSLog(@"起飞航站：%@ 到达航站:%@",self.outCity.cn,self.arriveCity.cn);
     };
     [self.navigationController pushViewController:cityVC animated:YES];
 
@@ -319,7 +354,6 @@
     [self titleViewInitWithHight:64];
     self.titleView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"home_title_bg.png"]];
     [self titleViewAddTitleText:@"航班查询"];
-    [self titleViewAddBackBtn];
 }
 
 
