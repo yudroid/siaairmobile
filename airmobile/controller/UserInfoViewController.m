@@ -303,21 +303,20 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     }else if ([name isEqualToString:@"版本检测"]){
 //        [self showAnimationTitle:@"正在进行版本检测"];
 
-        NSString *message = @"态势>>总体>>延误指标\n"
-        "（1）IOS增加50%阈值线\n"
-        "（2）当前小时在折线图增加显示当前小时执行率。\n"
-        "（3）当前小时之后部分用虚线显示\n"
-        "（4）延误>1h航班出港率改为延误超1h航班占比\n"
-        "详情\n"
-        "（1）限制查询日期，可查询昨天以及今天的航班\n"
-        "（2）航班详情关注标识由五星改为文字\n"
+        NSString *message = @"态势\n"
+        "（1）旅客界面修改\n"
+        "（2）放行正常率相关更改（最近20天变更为最近30天，x轴文字显示位置更改）\n"
+        "航班详情\n"
+        "（1）航班详情分进、出港显示\n"
+        "（2）航班查询结果修改（无查询结果提示无结果，查询结果为1条时进入该航班详情界面）\n"
+        "（3）更改查询逻辑，当只输入航班号会执行模糊查询，输入航空公司加航班号会执行精确查询\n"
+        "（4）新增航空公司查询\n"
+        "（5）航班列表添加关注标识，航班列表界面添加侧滑快捷关注功能\n"
         "功能\n"
-        "（1）周边航线改为主要航线\n"
-        "（2）运营情况功能界面调整\n"
-        "优化\n"
-        "（1）优化断线重连机制\n"
-        "（2）优化后台消息提示\n"
-        "（3）修复IOS安卓部分界面显示不一致";
+        "（1）新增知识库功能\n"
+        "（2）新增运行简报功能\n"
+        "设置\n"
+        "（1）新增显示当前版本更新信息";
 
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"当前为最新版本" message:message preferredStyle:UIAlertControllerStyleAlert];
         NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];

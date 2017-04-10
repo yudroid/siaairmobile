@@ -41,9 +41,8 @@ const NSString *KNOWLEDGEBASEIDENTIFIER = @"KNOWLEDGEBASEIDENTIFIER";
 
     [_tableView registerNib:[UINib nibWithNibName:@"KnowledgeBaseTableViewCell" bundle:nil]
      forCellReuseIdentifier:(NSString *)KNOWLEDGEBASEIDENTIFIER];
-    KnowledgeBaseModel *model = [[KnowledgeBaseModel alloc]init];
-    model.httpPath = @"DownFile.png";
-    _tableArray = @[model];
+
+    [_tableView.mj_header beginRefreshing];
 }
 
 -(void)initTitleView
@@ -59,48 +58,48 @@ const NSString *KNOWLEDGEBASEIDENTIFIER = @"KNOWLEDGEBASEIDENTIFIER";
 -(void)updateNetwork
 {
     _startIndex = 0;
-    NSDictionary *conds =@{@"search_flightNO":@"",
-                           //                           @"search_region":flightRegion?:@"",
-                           //                           @"search_model":flightType?:@"",
-                           //                           @"search_state":flightStatus?:@"",
-                           @"search_date"       :@"",
-                           @"search_startCity"  :@"",
+    NSDictionary *conds =@{
                            @"start":@(_startIndex).stringValue,
                            @"length":@(pageSize).stringValue};
 
 
-    [HttpsUtils queryFlightList:conds success:^(id responseObj) {
-        // 数据加载完成
-        [_tableView.mj_header endRefreshing];
-        if(![responseObj isKindOfClass:[NSArray class]]){
-            return;
-        }
-        _tableArray = [responseObj DictionaryToModel:[KnowledgeBaseModel class]] ;
-        [_tableView reloadData];
-        _startIndex =20;
+//    [HttpsUtils mobileKBListWithDictionary:conds Success:^(id responseObj) {
+////        // 数据加载完成
+////        [_tableView.mj_header endRefreshing];
+////        if(![responseObj isKindOfClass:[NSArray class]]){
+////            return;
+////        }
+////        _tableArray = [responseObj DictionaryToModel:[KnowledgeBaseModel class]] ;
+////        [_tableView reloadData];
+////        _startIndex =20;
+//
+//    } failure:^(NSError *error) {
+//        NSLog(@"%@",error);
+//        [_tableView.mj_header endRefreshing];
+//    }];
+    [HttpsUtils mobileKBListWithDictionary:conds Sucess:^(id responseObj) {
+                // 数据加载完成
+                [_tableView.mj_header endRefreshing];
+                if(![responseObj isKindOfClass:[NSArray class]]){
+                    return;
+                }
+                _tableArray = [responseObj DictionaryToModel:[KnowledgeBaseModel class]] ;
+                [_tableView reloadData];
+                _startIndex =20;
 
-    } failure:^(NSError *error) {
+    }  failure:^(NSError *error) {
         NSLog(@"%@",error);
         [_tableView.mj_header endRefreshing];
     }];
-
 }
 
 -(void)moreNetwork
 {
-    NSDictionary *conds =@{@"search_flightNO":@"",
-                           //                           @"search_region":flightRegion?:@"",
-                           //                           @"search_model":flightType?:@"",
-                           //                           @"search_state":flightStatus?:@"",
-                           @"search_date"       :@"",
-                           @"search_startCity"  :@"",
+    NSDictionary *conds =@{
                            @"start":@(_startIndex).stringValue,
                            @"length":@(pageSize).stringValue};
 
-
-    [HttpsUtils queryFlightList:conds success:^(id responseObj) {
-        // 数据加载完成
-
+    [HttpsUtils mobileKBListWithDictionary:conds Sucess:^(id responseObj) {
         if(![responseObj isKindOfClass:[NSArray class]]){
             return;
         }
@@ -110,10 +109,11 @@ const NSString *KNOWLEDGEBASEIDENTIFIER = @"KNOWLEDGEBASEIDENTIFIER";
         [_tableView.mj_footer endRefreshing];
         [_tableView reloadData];
         _startIndex +=pageSize;
-    } failure:^(NSError *error) {
+    }  failure:^(NSError *error) {
         NSLog(@"%@",error);
         [_tableView.mj_header endRefreshing];
     }];
+
 }
 
 
@@ -122,7 +122,7 @@ const NSString *KNOWLEDGEBASEIDENTIFIER = @"KNOWLEDGEBASEIDENTIFIER";
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return _tableArray.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -132,6 +132,7 @@ const NSString *KNOWLEDGEBASEIDENTIFIER = @"KNOWLEDGEBASEIDENTIFIER";
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     KnowledgeBaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)KNOWLEDGEBASEIDENTIFIER];
+    cell.knowledgeBaseModel = _tableArray[indexPath.row];
     return cell;
 }
 
@@ -140,11 +141,11 @@ const NSString *KNOWLEDGEBASEIDENTIFIER = @"KNOWLEDGEBASEIDENTIFIER";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
 //    KnowledgeBaseModel *model = _tableArray[0];
-    KnowledgeBaseModel *model = [[KnowledgeBaseModel alloc]init];
-    model.httpPath = @"DownFile.png";
+    KnowledgeBaseModel *model = _tableArray[indexPath.row];
     KnowledgeBaseContentViewController *knowledgeBaseContentVC = [[KnowledgeBaseContentViewController alloc]initWithNibName:@"KnowledgeBaseContentViewController" bundle:nil];
     knowledgeBaseContentVC.knowledgeBaseModel = model;
     knowledgeBaseContentVC.title = model.title;
+    knowledgeBaseContentVC.type = 1;
     [self.navigationController pushViewController:knowledgeBaseContentVC animated:YES];
 
 }

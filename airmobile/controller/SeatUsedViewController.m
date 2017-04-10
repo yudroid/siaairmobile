@@ -200,7 +200,7 @@ const NSString *SEATUSED_TABLEVIEW_IDENTIFIER = @"SEATUSED_TABLEVIEW_IDENTIFIER"
     [freeSeatView addSubview:freeSeatImageView];
 
     UILabel *freeSeatLabel= [[UILabel alloc] initWithFrame:CGRectMake(14, 0, width-14, 12)];// 不可用
-    freeSeatLabel.text = @"空余机位";
+    freeSeatLabel.text = @"当前占用";
     freeSeatLabel.font =  [UIFont fontWithName:@"PingFangSC-Regular"
                                           size:13];
 //    exportSize = [freeSeatLabel sizeThatFits:maxSize];
@@ -241,7 +241,7 @@ const NSString *SEATUSED_TABLEVIEW_IDENTIFIER = @"SEATUSED_TABLEVIEW_IDENTIFIER"
     [nightView addSubview:nightImageView];
 
     UILabel *nightLabel= [[UILabel alloc] initWithFrame:CGRectMake(14, 0, width-14, 12)];// 不可用
-    nightLabel.text = @"当前占用";
+    nightLabel.text = @"空余机位";
     nightLabel.font =  [UIFont fontWithName:@"PingFangSC-Regular"
                                        size:13];
 //    exportSize = [nightLabel sizeThatFits:maxSize];
@@ -462,13 +462,14 @@ const NSString *SEATUSED_TABLEVIEW_IDENTIFIER = @"SEATUSED_TABLEVIEW_IDENTIFIER"
 
         //圆的四个属性
         normalProportion = (_seatStatusModel.longNormalTakeUpCnt+_seatStatusModel.longParentTakeUpCnt)/@(_seatStatusModel.normalCnt+_seatStatusModel.parentCnt).floatValue ;
-        abnormalProportion = normalProportion+((_seatStatusModel.normalCnt+_seatStatusModel.parentCnt)-(_seatStatusModel.normalTakeUpCnt+_seatStatusModel.parentTakeUpCnt))/@(_seatStatusModel.normalCnt+_seatStatusModel.parentCnt).floatValue;
-        cancleProportion = abnormalProportion + (_seatStatusModel.normalTakeUpCnt+_seatStatusModel.parentTakeUpCnt-(_seatStatusModel.longNormalTakeUpCnt+_seatStatusModel.longParentTakeUpCnt))/@(_seatStatusModel.normalCnt+_seatStatusModel.parentCnt).floatValue;
+        cancleProportion = normalProportion + (_seatStatusModel.normalTakeUpCnt+_seatStatusModel.parentTakeUpCnt-(_seatStatusModel.longNormalTakeUpCnt+_seatStatusModel.longParentTakeUpCnt))/@(_seatStatusModel.normalCnt+_seatStatusModel.parentCnt).floatValue;
+        abnormalProportion = cancleProportion+((_seatStatusModel.normalCnt+_seatStatusModel.parentCnt)-(_seatStatusModel.normalTakeUpCnt+_seatStatusModel.parentTakeUpCnt))/@(_seatStatusModel.normalCnt+_seatStatusModel.parentCnt).floatValue;
+
 //        unusedPropertion = cancleProportion +(_seatStatusModel.unusableCnt)/@(_seatStatusModel.normalCnt+_seatStatusModel.parentCnt).floatValue;
         //对数据进行动画
         [progressRound animationWithStrokeEnd:normalProportion withProgressType:ProgreesTypeNormal];
-        [progressRound animationWithStrokeEnd:abnormalProportion withProgressType:ProgreesTypeAbnormal];
-        [progressRound animationWithStrokeEnd:cancleProportion withProgressType:ProgreesTypeCancel];
+        [progressRound animationWithStrokeEnd:cancleProportion withProgressType:ProgreesTypeAbnormal];
+        [progressRound animationWithStrokeEnd:abnormalProportion withProgressType:ProgreesTypeCancel];
 //        [progressRound animationWithStrokeEnd:unusedPropertion withProgressType:5];
         //机位
         totalNumLabel.text = @(_seatStatusModel.normalCnt+_seatStatusModel.parentCnt).stringValue;
@@ -483,20 +484,21 @@ const NSString *SEATUSED_TABLEVIEW_IDENTIFIER = @"SEATUSED_TABLEVIEW_IDENTIFIER"
 //        inSeatLabel.attributedText = inSeatAttributedString;
 
         longInSeat.text = @(_seatStatusModel.longNormalTakeUpCnt+_seatStatusModel.longParentTakeUpCnt).stringValue;
-        freeSeat.text = @(_seatStatusModel.normalCnt+_seatStatusModel.parentCnt-_seatStatusModel.normalTakeUpCnt-_seatStatusModel.parentTakeUpCnt).stringValue;
+         night.text = @(_seatStatusModel.normalCnt+_seatStatusModel.parentCnt-_seatStatusModel.normalTakeUpCnt-_seatStatusModel.parentTakeUpCnt).stringValue;
         disable.text = @(_seatStatusModel.unusableCnt).stringValue;
-        night.text = @(_seatStatusModel.normalTakeUpCnt+_seatStatusModel.parentTakeUpCnt).stringValue;
+        freeSeat.text = @(_seatStatusModel.normalTakeUpCnt+_seatStatusModel.parentTakeUpCnt).stringValue;
 
     }else{
         //圆的四个属性
         normalProportion = (_seatStatusModel.longNormalTakeUpCnt+_seatStatusModel.longChildTakeUpCnt)/@(_seatStatusModel.normalCnt+_seatStatusModel.childCnt).floatValue ;
-        abnormalProportion = normalProportion+((_seatStatusModel.normalCnt+_seatStatusModel.childCnt)-(_seatStatusModel.normalTakeUpCnt+_seatStatusModel.childTakeUpCnt))/@(_seatStatusModel.normalCnt+_seatStatusModel.childCnt).floatValue;
-        cancleProportion = abnormalProportion + (_seatStatusModel.normalTakeUpCnt+_seatStatusModel.childTakeUpCnt-(_seatStatusModel.longNormalTakeUpCnt+_seatStatusModel.longChildTakeUpCnt))/@(_seatStatusModel.normalCnt+_seatStatusModel.childCnt).floatValue;
+        cancleProportion = normalProportion + (_seatStatusModel.normalTakeUpCnt+_seatStatusModel.childTakeUpCnt-(_seatStatusModel.longNormalTakeUpCnt+_seatStatusModel.longChildTakeUpCnt))/@(_seatStatusModel.normalCnt+_seatStatusModel.childCnt).floatValue;
+        abnormalProportion = cancleProportion+((_seatStatusModel.normalCnt+_seatStatusModel.childCnt)-(_seatStatusModel.normalTakeUpCnt+_seatStatusModel.childTakeUpCnt))/@(_seatStatusModel.normalCnt+_seatStatusModel.childCnt).floatValue;
+
 //        unusedPropertion = cancleProportion +(_seatStatusModel.unusableCnt)/@(_seatStatusModel.normalCnt+_seatStatusModel.childCnt).floatValue;
         //对数据进行动画
         [progressRound animationWithStrokeEnd:normalProportion withProgressType:ProgreesTypeNormal];
-        [progressRound animationWithStrokeEnd:abnormalProportion withProgressType:ProgreesTypeAbnormal];
-        [progressRound animationWithStrokeEnd:cancleProportion withProgressType:ProgreesTypeCancel];
+        [progressRound animationWithStrokeEnd:cancleProportion withProgressType:ProgreesTypeAbnormal];
+        [progressRound animationWithStrokeEnd:abnormalProportion withProgressType:ProgreesTypeCancel];
 //        [progressRound animationWithStrokeEnd:unusedPropertion withProgressType:5];
         //机位
         totalNumLabel.text = @(_seatStatusModel.normalCnt+_seatStatusModel.childCnt).stringValue;
@@ -511,9 +513,9 @@ const NSString *SEATUSED_TABLEVIEW_IDENTIFIER = @"SEATUSED_TABLEVIEW_IDENTIFIER"
 //        inSeatLabel.attributedText = inSeatAttributedString;
 
         longInSeat.text = @(_seatStatusModel.longNormalTakeUpCnt+_seatStatusModel.longChildTakeUpCnt).stringValue;
-        freeSeat.text = @(_seatStatusModel.normalCnt+_seatStatusModel.childCnt-_seatStatusModel.normalTakeUpCnt-_seatStatusModel.childTakeUpCnt).stringValue;
+         night.text = @(_seatStatusModel.normalCnt+_seatStatusModel.childCnt-_seatStatusModel.normalTakeUpCnt-_seatStatusModel.childTakeUpCnt).stringValue;
         disable.text = @(_seatStatusModel.unusableCnt).stringValue;
-        night.text = @(_seatStatusModel.normalTakeUpCnt+_seatStatusModel.childTakeUpCnt).stringValue;
+        freeSeat.text = @(_seatStatusModel.normalTakeUpCnt+_seatStatusModel.childTakeUpCnt).stringValue;
 
 
 

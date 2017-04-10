@@ -19,6 +19,7 @@
 #import <MJRefresh.h>
 #import "SingleMessageViewController.h"
 #import "Constants.h"
+#import "AirlineModel.h"
 #import "ConcernModel.h"
 
 
@@ -179,6 +180,7 @@ static const NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_I
 //                           @"search_region":flightRegion?:@"",
 //                           @"search_model":flightType?:@"",
 //                           @"search_state":flightStatus?:@"",
+                           @"search_airline"   :self.airlineModel.nametw?:@"",
                            @"search_date"       :_flightDate?:@"",
                            @"search_startCity"  :_outCity.cn?:@"",
                            @"search_endCity"    :_arriveCity.cn?:@"",
@@ -208,6 +210,7 @@ static const NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_I
 //                           @"search_region"     :flightRegion?  :@"",
 //                           @"search_model"      :flightType?    :@"",
 //                           @"search_state"      :flightStatus?  :@"",
+                           @"search_airline"   :self.airlineModel.nametw?:@"",
                            @"search_date"       :_flightDate,
                            @"search_startCity"  :_outCity.cn?:@"",
                            @"search_endCity"    :_arriveCity.cn?:@"",

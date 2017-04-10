@@ -769,4 +769,18 @@
  */
 +(void)mobileMonthLogSucess:(void (^)(id))success
                   failure:(void (^)(NSError *))failure;
+
+
+/**
+ 知识库
+
+ @param dic 参数
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)mobileKBListWithDictionary:(NSDictionary *)dic
+                           Sucess:(void (^)(id))success
+                    failure:(void (^)(NSError *))failure;
+
+
 @end

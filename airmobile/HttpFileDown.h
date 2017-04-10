@@ -10,9 +10,33 @@
 
 @interface HttpFileDown : NSObject
 
-- (void)downFileWithHttpPath:(NSString *)httpPath
-Progress:(void (^)(NSProgress *downloadProgress)) downloadProgressBlock
-                 destination:(NSURL * (^)(NSURL *targetPath, NSURLResponse *response))destination
-           completionHandler:(void (^)(NSURLResponse *response, NSURL *filePath, NSError *error))completionHandler;
+
+/**
+ 知识库
+
+ @param httpPath <#httpPath description#>
+ @param downloadProgressBlock <#downloadProgressBlock description#>
+ @param destination <#destination description#>
+ @param completionHandler <#completionHandler description#>
+ */
+- (void)zskDownFileWithHttpPath:(NSString *)httpPath
+                         Progress:(void (^)(NSProgress *downloadProgress)) downloadProgressBlock
+                      destination:(NSURL * (^)(NSURL *targetPath, NSURLResponse *response))destination
+                completionHandler:(void (^)(NSURLResponse *response, NSURL *filePath, NSError *error))completionHandler;
+
+
+
+/**
+ 运行简报
+
+ @param httpPath <#httpPath description#>
+ @param downloadProgressBlock <#downloadProgressBlock description#>
+ @param destination <#destination description#>
+ @param completionHandler <#completionHandler description#>
+ */
+- (void)yxjbDownFileWithHttpPath:(NSString *)httpPath
+                        Progress:(void (^)(NSProgress *downloadProgress)) downloadProgressBlock
+                     destination:(NSURL * (^)(NSURL *targetPath, NSURLResponse *response))destination
+               completionHandler:(void (^)(NSURLResponse *response, NSURL *filePath, NSError *error))completionHandler;
 
 @end

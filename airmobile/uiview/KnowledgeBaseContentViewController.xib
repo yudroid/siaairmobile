@@ -96,7 +96,6 @@
                                     </constraints>
                                 </view>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="V0O-2m-JKN" firstAttribute="top" secondItem="ywh-Jm-Zbc" secondAttribute="bottom" constant="8" id="0vR-hJ-m7D"/>
                                 <constraint firstAttribute="height" constant="603" id="4Pq-rz-rdX"/>

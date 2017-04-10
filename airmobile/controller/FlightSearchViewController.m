@@ -26,6 +26,7 @@
 @implementation FlightSearchViewController{
     UIButton    *airlineButton;
     UILabel     *airlineLabel;
+    UIButton *airlineCancelButton ;
 }
 
 - (void)viewDidLoad {
@@ -69,14 +70,17 @@
 
     airlineLabel =[self AddLabelViewWithFrame:CGRectMake(34, 94+30+80+67 + 60, 100, 20)text:@"航空公司" font:12 isCity:NO];
 
-    airlineButton = [[UIButton alloc]initWithFrame:CGRectMake(34,viewBotton(airlineLabel)+8, kScreenWidth - 34*2, 40)];
+    airlineButton = [[UIButton alloc]initWithFrame:CGRectMake(34,viewBotton(airlineLabel)+8, kScreenWidth - 34*2-50, 40)];
     airlineButton.titleLabel.font = [UIFont systemFontOfSize: 18];
     [airlineButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [airlineButton setTitle:@"您可以选择航空公司" forState:UIControlStateNormal];
     [self.view addSubview:airlineButton];
     airlineButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [airlineButton addTarget:self action:@selector(airlineButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-
+    airlineCancelButton = [[UIButton alloc]initWithFrame:CGRectMake(viewTrailing(airlineButton), viewY(airlineButton), 40, 40)];
+    [airlineCancelButton setImage:[UIImage imageNamed:@"airline_clear"] forState:UIControlStateNormal];
+    [airlineCancelButton addTarget:self action:@selector(airlineCancelButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:airlineCancelButton];
 }
 
 -(void)airlineButtonClick:(UIButton *)sender
@@ -84,10 +88,15 @@
     AirlineViewController * airlineVC = [[AirlineViewController alloc]init];
     airlineVC.resetCity = ^(AirlineModel *model){
         self.airlineModel = model;
-
     };
     [self.navigationController pushViewController:airlineVC animated:YES];
     
+}
+-(void)airlineCancelButtonClick:(UIButton *)sender
+{
+    _airlineModel = nil;
+    [airlineButton setTitle:@"您可以选择航空公司" forState:UIControlStateNormal];
+
 }
 
 -(void)setAirlineModel:(AirlineModel *)airlineModel
@@ -114,6 +123,7 @@
             _queryflag = true;
             airlineLabel.hidden = NO;
             airlineButton.hidden = NO;
+            airlineCancelButton.hidden = NO;
             break;
         }
         case 1:
@@ -127,7 +137,7 @@
             _queryflag = false;
             airlineLabel.hidden = YES;
             airlineButton.hidden = YES;
-
+            airlineCancelButton.hidden = YES;
             break;
         }
         default:
@@ -217,8 +227,9 @@
 //        NSInteger day = [[DateUtils convertToString:date format:@"dd"] integerValue];
 //        NSInteger month = [[DateUtils convertToString:date format:@"MM"] integerValue];
 //        _dateLabel.attributedText = [self stringChangeAttributedString:month day:day];
-        _dateLabel.attributedText = [self stringChangeAttributedString:[DateUtils convertToString:date format:@"MM"] day:[DateUtils convertToString:date format:@"dd"]];
         _fltDate = [DateUtils convertToString:date format:@"yyyy-MM-dd"];
+        _dateLabel.attributedText = [self stringChangeAttributedString:[DateUtils convertToString:date format:@"MM"] day:[DateUtils convertToString:date format:@"dd"]];
+
         NSLog(@"当前选中日期%@",_fltDate);
     };
     [self.navigationController pushViewController:calVC animated:true];

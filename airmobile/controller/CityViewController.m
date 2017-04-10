@@ -169,7 +169,15 @@
         for (NSMutableArray * array in _dataArray) {
             for (Airport *airport in array) {
                 if ([airport.cn rangeOfString:[_searchTextF.text uppercaseString]].location!=NSNotFound || [airport.iata rangeOfString:[_searchTextF.text uppercaseString]].location!=NSNotFound) {
-                    [_searchArray addObject:airport];
+                    NSInteger status = 0;
+                    for (Airport *searchAirport in _searchArray) {
+                        if ([airport.cn isEqualToString: searchAirport.cn]||[airport.iata isEqualToString: searchAirport.iata]) {
+                            status = 1;
+                        }
+                    }
+                    if (status == 0) {
+                        [_searchArray addObject:airport];
+                    }
                 }
             }
         }

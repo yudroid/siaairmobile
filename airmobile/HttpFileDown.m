@@ -9,6 +9,13 @@
 #import "HttpFileDown.h"
 #import <AFNetworking.h>
 
+//static NSString* baseUri = @"http://192.168.163.139:8080";
+static NSString* baseUri = @"http://219.134.93.113:8087";
+
+
+static NSString *zsk = @"/acs/dms/KB/download?fileName=";//知识库
+static NSString *yxjb = @"/acs/ath/user/download?fileName=../";//运行简报
+
 @interface HttpFileDown ()
 
 @property (nonatomic, strong) NSURLSessionDownloadTask *downloadTask;
@@ -18,24 +25,22 @@
 @implementation HttpFileDown
 
 
-
-
-- (void)downFileWithHttpPath:(NSString *)httpPath
-Progress:(void (^)(NSProgress *downloadProgress)) downloadProgressBlock
-                 destination:(NSURL * (^)(NSURL *targetPath, NSURLResponse *response))destination
-           completionHandler:(void (^)(NSURLResponse *response, NSURL *filePath, NSError *error))completionHandler
+-(void)downFileWithURL:(NSURL *)url
+                   Progress:(void (^)(NSProgress *))downloadProgressBlock
+                destination:(NSURL *(^)(NSURL *, NSURLResponse *))destination
+          completionHandler:(void (^)(NSURLResponse *, NSURL *, NSError *))completionHandler
 {
 
     //远程地址/acs/ath/user/download?fileName=
-    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",@"http://192.168.163.139:8080",@"/acs/ath/user/download?fileName=../",[httpPath stringByReplacingOccurrencesOfString:@"-" withString:@"/"]]];
-//    NSURL *URL = [NSURL URLWithString:@"https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png"];
-//    //默认配置
-//    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+//    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",baseUri,@"/acs/ath/user/download?fileName=../",[httpPath stringByReplacingOccurrencesOfString:@"-" withString:@"/"]]];
+    //    NSURL *URL = [NSURL URLWithString:@"https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png"];
+    //    //默认配置
+    //    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
 
     //AFN3.0+基于封住URLSession的句柄
-   AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
+    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     //请求
-    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
 
 
     NSLog(@"请求：%@",request);
@@ -59,9 +64,9 @@ Progress:(void (^)(NSProgress *downloadProgress)) downloadProgressBlock
 
         //- block的返回值, 要求返回一个URL, 返回的这个URL就是文件的位置的路径
 
-//        NSString *cachesPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
-//        NSString *path = [cachesPath stringByAppendingPathComponent:response.suggestedFilename];
-//        return [NSURL fileURLWithPath:path];
+        //        NSString *cachesPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+        //        NSString *path = [cachesPath stringByAppendingPathComponent:response.suggestedFilename];
+        //        return [NSURL fileURLWithPath:path];
         return destination(targetPath,response);
 
     } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
@@ -74,6 +79,37 @@ Progress:(void (^)(NSProgress *downloadProgress)) downloadProgressBlock
         completionHandler(response,filePath,error);
     }];
     [_downloadTask resume];
+
+
+}
+
+//知识库
+
+-(void)zskDownFileWithHttpPath:(NSString *)httpPath
+                      Progress:(void (^)(NSProgress *))downloadProgressBlock
+                   destination:(NSURL *(^)(NSURL *, NSURLResponse *))destination
+             completionHandler:(void (^)(NSURLResponse *, NSURL *, NSError *))completionHandler
+{
+    httpPath =  [httpPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",baseUri,zsk,[httpPath stringByReplacingOccurrencesOfString:@"-" withString:@"/"]]];
+    [self downFileWithURL:URL
+                 Progress:downloadProgressBlock
+              destination:destination completionHandler:completionHandler];
+
+}
+
+
+//运行简报下载
+- (void)yxjbDownFileWithHttpPath:(NSString *)httpPath
+                        Progress:(void (^)(NSProgress *downloadProgress)) downloadProgressBlock
+                     destination:(NSURL * (^)(NSURL *targetPath, NSURLResponse *response))destination
+               completionHandler:(void (^)(NSURLResponse *response, NSURL *filePath, NSError *error))completionHandler
+{
+
+    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",baseUri,yxjb,[httpPath stringByReplacingOccurrencesOfString:@"-" withString:@"/"]]];
+    [self downFileWithURL:URL
+                 Progress:downloadProgressBlock
+              destination:destination completionHandler:completionHandler];
 }
 
 

@@ -72,6 +72,7 @@ const NSString *REPORTTABLEIDENTIFIER = @"REPORTTABLEIDENTIFIER";
     KnowledgeBaseContentViewController *knowledgeBaseContentVC = [[KnowledgeBaseContentViewController alloc]initWithNibName:@"KnowledgeBaseContentViewController" bundle:nil];
     knowledgeBaseContentVC.knowledgeBaseModel = model;
     knowledgeBaseContentVC.title = model.title;
+    knowledgeBaseContentVC.type = 2;
     [self.navigationController pushViewController:knowledgeBaseContentVC animated:YES];
 
 }

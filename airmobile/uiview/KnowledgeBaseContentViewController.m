@@ -64,6 +64,7 @@ const NSString *KNOWLEDGEBASECONTENT_TABLECELL_IDENTIFIER = @"KNOWLEDGEBASECONTE
     _summaryLabel.text = _knowledgeBaseModel.memo?:@"";
     _labelLabel.text = _knowledgeBaseModel.typeName?:@"";
     _contentLabel.text = _knowledgeBaseModel.content?:@"";
+
     _knowledgeBaseModel.httpPath = [_knowledgeBaseModel.httpPath stringByReplacingOccurrencesOfString:@"/" withString:@"-"];
     _tableArray = [_knowledgeBaseModel.httpPath componentsSeparatedByString:@","];
     _viewHeight.constant = [self viewHeightSum];
@@ -82,8 +83,9 @@ const NSString *KNOWLEDGEBASECONTENT_TABLECELL_IDENTIFIER = @"KNOWLEDGEBASECONTE
     CGFloat contentHeight = [_contentLabel.text sizeWithWidth:kScreenWidth -16 font:[UIFont fontWithName:@"PingFang SC" size:14]].height;
 
     CGFloat tableHeight = _tableArray.count * 50 ;
+    NSLog(@"%f",titleHeight + summaryHeight +labelHeight + contentHeight + tableHeight + 8*8 +23*3 +1);
 
-    return titleHeight + summaryHeight +labelHeight + contentHeight + tableHeight + 8*8 +23*3;
+    return titleHeight + summaryHeight +labelHeight + contentHeight + tableHeight + 8*8 +23*3 +1+10;
 
 }
 
@@ -154,36 +156,65 @@ const NSString *KNOWLEDGEBASECONTENT_TABLECELL_IDENTIFIER = @"KNOWLEDGEBASECONTE
 
 - (void)downStartWithPath:(NSString *)path1{
 
+    void (^downloadProgressBlock)(NSProgress*) = ^(NSProgress *downloadProgress){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSString *progressString  = [NSString stringWithFormat:@"%.2f",1.0 * downloadProgress.completedUnitCount / downloadProgress.totalUnitCount];
+            self.downloadView.progress = progressString.floatValue;
+        });
+    };
+
+    NSURL *(^destinationBlock)(NSURL *, NSURLResponse *) =
+    ^(NSURL *targetPath, NSURLResponse *response){
+        NSString *cachesPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+        NSString *path = [cachesPath stringByAppendingPathComponent:@"DownFile"];
+        if ( ![FCFileManager existsItemAtPath:path]) {
+            [FCFileManager createDirectoriesForPath:path];
+        }
+        path = [cachesPath stringByAppendingPathComponent:[NSString stringWithFormat:@"DownFile/%@",path1]];
+        return [NSURL fileURLWithPath:path];
+    };
+
+    void (^completionHandlerBlock)(NSURLResponse *, NSURL *, NSError *)=^(NSURLResponse *response, NSURL *filePath, NSError *error){
+        _downStatus = 0;
+        if (error) {
+            NSLog(@"%@",error);
+            _downStatus = 1;
+            [FCFileManager removeItemAtPath:[filePath path]];
+        }
+        self.downloadView.isSuccess = YES;
+        NSString *path = [filePath path];
+        NSLog(@"************文件路径:%@",path);
+        [_tableView reloadData];
+    };
+
     _httpFileDown = [[HttpFileDown alloc]init];
-    [_httpFileDown downFileWithHttpPath:path1
-                               Progress:^(NSProgress *downloadProgress) {
+    if (_type ==1) { //知识库
+        [_httpFileDown zskDownFileWithHttpPath:path1
+    Progress:^(NSProgress *downloadProgress) {
+        downloadProgressBlock(downloadProgress);
 
-                                   dispatch_async(dispatch_get_main_queue(), ^{
-                                       NSString *progressString  = [NSString stringWithFormat:@"%.2f",1.0 * downloadProgress.completedUnitCount / downloadProgress.totalUnitCount];
-                                       self.downloadView.progress = progressString.floatValue;
-                                   });
-                               } destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
+    } destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
 
+        return destinationBlock(targetPath,response);
 
-                                   NSString *cachesPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
-                                   NSString *path = [cachesPath stringByAppendingPathComponent:@"DownFile"];
-                                   if ( ![FCFileManager existsItemAtPath:path]) {
-                                       [FCFileManager createDirectoriesForPath:path];
-                                   }
-                                   path = [cachesPath stringByAppendingPathComponent:[NSString stringWithFormat:@"DownFile/%@",path1]];
-                                   return [NSURL fileURLWithPath:path];
-                               } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
-                                   _downStatus = 0;
-                                   if (error) {
-                                       NSLog(@"%@",error);
-                                       _downStatus = 1;
-                                       [FCFileManager removeItemAtPath:[filePath path]];
-                                   }
-                                   self.downloadView.isSuccess = YES;
-                                   NSString *path = [filePath path];
-                                   NSLog(@"************文件路径:%@",path);
-                                   [_tableView reloadData];
-                               }];
+    } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
+        completionHandlerBlock(response,filePath,error);
+    }];
+    }else if(_type == 2){ //运行简报
+        [_httpFileDown yxjbDownFileWithHttpPath:path1
+                                       Progress:^(NSProgress *downloadProgress) {
+                                           downloadProgressBlock(downloadProgress);
+
+                                       } destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
+
+                                           return destinationBlock(targetPath,response);
+
+                                       } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
+                                           completionHandlerBlock(response,filePath,error);
+                                       }];
+
+    }
+
 
 }
 -(void)animationStart

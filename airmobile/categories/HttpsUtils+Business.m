@@ -75,6 +75,7 @@ NSString * const willCraftSeatTakeUpUrl     = @"/acs/bmap//rs/willCraftSeatTakeU
 NSString * const craftSeatTypeTakeUpSortUrl = @"/acs/bmap/rs/craftSeatTypeTakeUpSort";
 // 功能
 NSString * const dutyTableByDayUrl          = @"/acs/dms/airportScheduling/getDutyBySpeDay";// 员工值班表，按天的
+NSString * const mobileKBList               =@"/acs/dms/KB/mobileKBList";//知识库
 NSString * const phoneRecordUrl             = @"/acs/wacs/user/SelectAllDeptListForIphone";// 通讯录
 // 我的
 NSString * const signInUrl                  = @"/acs/m/signIn";//签到
@@ -1411,5 +1412,14 @@ NSString * const mobileLog                  = @"/acs/dms/log/mobileLog";//获取
         }
     } failure:failure];
 }
-
++(void)mobileKBListWithDictionary:(NSDictionary *)dic
+                           Sucess:(void (^)(id))success
+                          failure:(void (^)(NSError *))failure
+{
+    [HttpsUtils post:mobileKBList params:dic success:^(id responseObj) {
+        if(success){
+            success(responseObj);
+        }
+    } failure:failure];
+}
 @end

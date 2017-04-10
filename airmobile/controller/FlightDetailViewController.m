@@ -49,6 +49,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 
 @property (weak, nonatomic) IBOutlet UILabel *arrDateLabel;//进港航班日期
 @property (weak, nonatomic) IBOutlet UILabel *terminalLabel;//候机楼
+@property (weak, nonatomic) IBOutlet UILabel *arrPreStatus;//前序航班状态
 
 @property (weak, nonatomic) IBOutlet UILabel *arrSeatLabel;//进港机位
 @property (weak, nonatomic) IBOutlet UILabel *arrRegionLabel;//进港属性
@@ -66,10 +67,12 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 @property (weak, nonatomic) IBOutlet UILabel *thisArriveReal;//本站到达 实际
 @property (weak, nonatomic) IBOutlet UILabel *depStateLabel;//出港状态
 @property (weak, nonatomic) IBOutlet UILabel *depAirLineLabel;//出港航线
+@property (weak, nonatomic) IBOutlet UILabel *depModelLabel;
 @property (weak, nonatomic) IBOutlet UILabel *outFNumLabel;//出港航班号
+@property (weak, nonatomic) IBOutlet UILabel *outRegionLabel;//出港属性
 @property (weak, nonatomic) IBOutlet UILabel *depDateLabel;//出港航班日期
 @property (weak, nonatomic) IBOutlet UILabel *depTerminalLabel;//候机楼
-@property (weak, nonatomic) IBOutlet UILabel *depSeatLabel;//出港机型
+@property (weak, nonatomic) IBOutlet UILabel *depSeatLabel;//出港机位
 @property (weak, nonatomic) IBOutlet UILabel *depGateLabel;//出港登机口
 @property (weak, nonatomic) IBOutlet UILabel *checkCounterLabel;//值机柜台
 @property (weak, nonatomic) IBOutlet UILabel *depPersonLabel;//出港人数
@@ -151,6 +154,8 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
     _safeguardTableViewHeight.constant = 103 * tableArray.count +37;
    // [self basicInfo];
     [self loadData];
+
+    [self setFlightType:_flightType];
 
     
 }
@@ -237,11 +242,12 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
     [self setFlightType:_flightType];
     _inFNumLabel.text       = [[flight.fNum componentsSeparatedByString:@"/"] firstObject];
     _arrStateLabel.text     = flight.arrState;
-    _arrAirLineLabel.text   =[NSString stringWithFormat:@"%@-SZX",[[flight.airLine componentsSeparatedByString:@"-SZX"] firstObject]];
+    _arrAirLineLabel.text   =[NSString stringWithFormat:@"%@-深圳",[[flight.airLine componentsSeparatedByString:@"-深圳"] firstObject]];
 
     _arrDateLabel.text      = flight.arrDate;
     _terminalLabel.text     = flight.terminal;
 
+    _arrPreStatus.text      = flight.preorderState;
     _arrSeatLabel.text      = flight.arrSeat;
     _arrRegionLabel.text    = flight.arrRegion;
 
@@ -259,13 +265,15 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 
 
     _depStateLabel.text     = flight.depState;
-    _depAirLineLabel.text   = [NSString stringWithFormat:@"SZX-%@",[[flight.airLine componentsSeparatedByString:@"SZX-"] lastObject]];
+    _depAirLineLabel.text   = [NSString stringWithFormat:@"深圳-%@",[[flight.airLine componentsSeparatedByString:@"深圳-"] lastObject]];
     _outFNumLabel.text      = [[flight.fNum componentsSeparatedByString:@"/"] lastObject];
     _depDateLabel.text      = flight.depDate;
     _depTerminalLabel.text  = flight.terminal;
+    _depModelLabel.text     = flight.model;
     _depSeatLabel.text      = flight.depSeat;
     _depGateLabel.text      = flight.gate;
     _checkCounterLabel.text = flight.checkCounter;
+    _outRegionLabel.text    = flight.depRegion;
     _depPersonLabel.text    = flight.depPerson;
     _removeGearDateLabel.text   =[self timeStringConvert:flight.removeGearDate];
     _thisTakeoffPlanLabel.text  =[self timeStringConvert: flight.thisTakeoffPlan];

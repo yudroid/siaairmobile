@@ -47,7 +47,7 @@
                                @"search_date"       :self.fltDate,
                                @"search_startCity"  :@"",
                                @"search_endCity"    :@"",
-//                                @"search_airline"   :self.airlineModel.nametw?:@"",
+                                @"search_airline"   :self.airlineModel.nametw?:@"",
                                @"start"             :@(0).stringValue,
                                @"length"            :@(20).stringValue};
 
@@ -55,6 +55,7 @@
 
     }else{
         conds =@{@"search_flightNO"   : @"",
+                  @"search_airline"   : @"",
                  @"search_date"       :self.fltDate,
                  @"search_startCity"  :self.outCity.cn?:@"",
                  @"search_endCity"    :self.arriveCity.cn?:@"",

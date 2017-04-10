@@ -12,5 +12,6 @@
 @interface KnowledgeBaseContentViewController : RootViewController
 
 @property (nonatomic, strong) KnowledgeBaseModel *knowledgeBaseModel;
+@property (nonatomic, assign) NSInteger type; ///1为知识库 2为运行简报
 
 @end
