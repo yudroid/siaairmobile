@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,17 +17,32 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="stL-sV-TtX">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="37"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="特殊保障详情" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TSZ-ya-ZKN">
-                            <rect key="frame" x="10" y="0.0" width="72" height="37"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="保障详情" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TSZ-ya-ZKN">
+                            <rect key="frame" x="10" y="0.0" width="48" height="37"/>
                             <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="imb-f8-Uy1">
-                            <rect key="frame" x="335" y="7.5" width="20" height="22"/>
+                            <rect key="frame" x="330" y="5" width="25" height="27"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="25" id="5Dd-i9-PKa"/>
+                                <constraint firstAttribute="height" constant="27" id="ca7-Zg-YpN"/>
+                            </constraints>
                             <state key="normal" image="FlightDetailContract"/>
                             <connections>
                                 <action selector="showAndHidenButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="Pfj-hu-ly1"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eUu-la-lRj">
+                            <rect key="frame" x="74" y="8.5" width="20" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="GUK-XY-EOM"/>
+                                <constraint firstAttribute="width" constant="20" id="ktH-B2-qlj"/>
+                            </constraints>
+                            <state key="normal" image="icon_add"/>
+                            <connections>
+                                <action selector="addButtonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="Jq5-T2-jF5"/>
                             </connections>
                         </button>
                     </subviews>
@@ -36,6 +51,8 @@
                         <constraint firstAttribute="trailing" secondItem="imb-f8-Uy1" secondAttribute="trailing" constant="20" id="2P7-Zo-4Pv"/>
                         <constraint firstItem="TSZ-ya-ZKN" firstAttribute="leading" secondItem="stL-sV-TtX" secondAttribute="leading" constant="10" id="D2A-8d-0dq"/>
                         <constraint firstItem="imb-f8-Uy1" firstAttribute="centerY" secondItem="stL-sV-TtX" secondAttribute="centerY" id="KOZ-bG-O4u"/>
+                        <constraint firstItem="eUu-la-lRj" firstAttribute="leading" secondItem="TSZ-ya-ZKN" secondAttribute="trailing" constant="16" id="aih-ew-vr6"/>
+                        <constraint firstItem="eUu-la-lRj" firstAttribute="centerY" secondItem="stL-sV-TtX" secondAttribute="centerY" id="das-Ok-UwM"/>
                         <constraint firstAttribute="bottom" secondItem="TSZ-ya-ZKN" secondAttribute="bottom" id="gVp-ey-foo"/>
                         <constraint firstAttribute="height" constant="37" id="i0h-Lr-gpr"/>
                         <constraint firstItem="TSZ-ya-ZKN" firstAttribute="top" secondItem="stL-sV-TtX" secondAttribute="top" id="lWU-yh-8rq"/>
@@ -50,6 +67,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="addButton" destination="eUu-la-lRj" id="FIw-o0-ab6"/>
                 <outlet property="titleLabel" destination="TSZ-ya-ZKN" id="EJu-N6-RWs"/>
             </connections>
             <point key="canvasLocation" x="33.5" y="61.5"/>
@@ -57,5 +75,6 @@
     </objects>
     <resources>
         <image name="FlightDetailContract" width="20" height="11"/>
+        <image name="icon_add" width="100" height="100"/>
     </resources>
 </document>

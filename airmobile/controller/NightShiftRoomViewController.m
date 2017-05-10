@@ -80,7 +80,7 @@ static const NSString *NIGHTSHIFTROOM_TABLECELL_IDENTIFIER = @"NIGHTSHIFTROOM_TA
     //用[NSDate date]可以获取系统当前时间
     NSDate *date = _calendarView.selectedDate?:[NSDate date];
     NSString *currentDateStr = [dateFormatter stringFromDate:date];
-    NSLog(@"%@",currentDateStr);
+//    NSLog(@"%@",currentDateStr);
     [self starNetWorking];
 
     __weak typeof(self) weakSelf = self;

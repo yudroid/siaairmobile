@@ -199,7 +199,7 @@ static const NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_I
         startIndex =20;
 
     } failure:^(NSError *error) {
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
         [_tableView.mj_header endRefreshing];
     }];
 }
@@ -231,7 +231,7 @@ static const NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_I
         [_tableView reloadData];
         startIndex +=pagesize;
     } failure:^(NSError *error) {
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
         [_tableView.mj_footer endRefreshing];
     }];
 }
@@ -305,7 +305,7 @@ static const NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_I
     flightDetailVC.flightNo = flight.fNum;
     flightDetailVC.flightId = flight.id;
     flightDetailVC.flightType = flight.flightType;
-    flightDetailVC.isSpecial =  [_dataArray objectAtIndex:indexPath.row].special.boolValue;
+//    flightDetailVC.isSpecial =  [_dataArray objectAtIndex:indexPath.row].special.boolValue;
     [self.navigationController pushViewController:flightDetailVC animated:YES];
 }
 ///左滑动删除

@@ -7,7 +7,7 @@
 //
 
 #import "RootViewController.h"
-#import "OverViewContentView.h"
+#import "OverContentView.h"
 #import "FlightContentView.h"
 #import "PassengerContentView.h"
 #import "ResourceContentView.h"
@@ -26,7 +26,6 @@ typedef enum
 @interface HomePageViewController : HasTabbarRootViewController<TabBarViewDelegate,OverviewContentViewDelegate,FlightContentViewDelegate,PassengerContentViewDelegate,ResourceContentViewDelegate>
 {
     UIImageView *selectedLine;
-    
     UILabel *overviewLabel;// 总览
     UILabel *flightLabel;// 航班
     UILabel *passengerLabel;// 旅客
@@ -40,7 +39,7 @@ typedef enum
     
     UIDatePicker *datePicker;
     
-    OverViewContentView  *overviewContentView; // 总览
+    OverContentView  *overContentView; // 总览
     FlightContentView    *flightContentView; // 航班
     PassengerContentView *passengerContentView; // 旅客
     ResourceOverview  *resourceContentView; // 资源

@@ -7,6 +7,10 @@
 //
 
 #import "FlightDelaysDetailViewController.h"
+#import "HttpsUtils+Business.h"
+#import "UIViewController+Reminder.h"
+#import "SysMessageModel.h"
+#import "PersistenceUtils+Business.h"
 
 @interface FlightDelaysDetailViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
@@ -35,10 +39,50 @@
 -(void)initTitie{
     [self titleViewInitWithHight:64];
     self.titleView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"home_title_bg.png"]];
-    [self titleViewAddTitleText:@"群体事件提醒"];
+    
+
     [self titleViewAddBackBtn];
+
+    if(_type == 1) {
+        [self titleViewAddTitleText:@"重要消息"];
+        UIButton *tagButton = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-16-30, 27, 40, 30)];
+        tagButton.titleLabel.font =  [UIFont fontWithName:@"PingFang SC" size:13];
+        if (_sysMessageModel.status&&([_sysMessageModel.status isEqualToString:@"UNCONFIRM"])) {
+            [tagButton setTitle:@"确认" forState:UIControlStateNormal];
+            [tagButton addTarget: self action:@selector(concernButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+
+        }else if(_sysMessageModel.status &&( [_sysMessageModel.status isEqualToString:@"CONFIRMED"]||[_sysMessageModel.status isEqualToString:@"CONFIRM"])){
+            [tagButton setTitle:@"已确认" forState:UIControlStateNormal];
+        }else{
+            tagButton.hidden = YES;
+        }
+
+        [self.titleView addSubview:tagButton];
+    }else{
+        [self titleViewAddTitleText:@"群体事件提醒"];
+
+    }
+
+
+
 }
 
+
+-(void)concernButtonClick:(UIButton *)sender
+{
+    [self starNetWorking];
+    [HttpsUtils messageSureWithMsgId:@(_sysMessageModel.msgid).stringValue
+                             success:^(id responsed) {
+                                 [self stopNetWorking];
+
+                                 [PersistenceUtils updateMessageSureWithMsgId:@(_sysMessageModel.msgid).stringValue];
+                                 [self showAnimationTitle:@"确认成功"];
+                             } failure:^(NSError *error) {
+                                 [self stopNetWorking];
+                                 [self showAnimationTitle:@"确认失败"];
+                             }];
+
+}
 
 -(void)setContentText:(NSString *)contentText
 {

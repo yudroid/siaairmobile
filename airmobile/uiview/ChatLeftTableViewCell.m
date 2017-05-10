@@ -57,4 +57,5 @@
     _contentHeight.constant = size.height;
     _contentLabel.text = [contentText copy];
 }
+
 @end

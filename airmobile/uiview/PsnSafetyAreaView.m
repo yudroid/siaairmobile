@@ -196,7 +196,7 @@
 
 -(void)loadData:(NSNotification *)notification
 {
-    NSLog(@"%@",notification.name);
+//    NSLog(@"%@",notification.name);
     if ([notification.object isKindOfClass:[NSArray class]]) {
         if ([notification.name isEqualToString:@"GlqFarPsn"]) {
             farArray = notification.object;

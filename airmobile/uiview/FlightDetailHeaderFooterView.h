@@ -12,6 +12,8 @@
 
 -(void)flightDetailHeaderFooterView:(UITableViewHeaderFooterView *)view showAndHiddenButton:(UIButton *)sender;
 
+-(void)flightDetailHeaderFooterView:(UITableViewHeaderFooterView *)view addButtonClick:(UIButton *)sender;
+
 @end
 
 @interface FlightDetailHeaderFooterView : UITableViewHeaderFooterView

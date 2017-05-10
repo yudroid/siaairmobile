@@ -71,7 +71,7 @@
 
     [HttpsUtils airlineListSucess:^(id response) {
 
-        NSLog(@"");
+//        NSLog(@"");
         if ([[response objectForKey:@"data"] isKindOfClass:[NSArray class]]) {
             NSArray *array = [[response objectForKey:@"data"] DictionaryToModel:[AirlineModel class]];
             for (AirlineModel *model in array) {

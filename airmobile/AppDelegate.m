@@ -104,7 +104,7 @@
     // 程序将展示，开起个别远程service
     [self reLogin];
     if(_userInfoModel != nil) {
-        NSLog(@"%s",__func__);
+//        NSLog(@"%s",__func__);
         _loginNum = 0;
 //        [[MessageService sharedMessageService] startService];
 
@@ -130,7 +130,7 @@
 {
     // 必须要监听--应用程序在后台的时候进行的跳转
     if (application.applicationState == UIApplicationStateInactive) {
-        NSLog(@"进行界面的跳转");
+//        NSLog(@"进行界面的跳转");
         // 如果在上面的通知方法中设置了一些，可以在这里打印额外信息的内容，就做到监听，也就可以根据额外信息，做出相应的判断
         FlightDelaysViewController *flightDelaysVC = [[FlightDelaysViewController alloc]initWithNibName:@"FlightDelaysViewController"
                                                                                                  bundle:nil];
@@ -180,6 +180,9 @@
     NSString* pwdKey = @"taocares_pwd";
     NSString *username=[DefaultHelper getStringForKey:userKey];
     NSString *pwd=[DefaultHelper getStringForKey:pwdKey];
+    if (![userKey isKindOfClass:[NSString class]] || ![pwd isKindOfClass:[NSString class]] ) {
+        return;
+    }
     [HttpsUtils loginUser:username pwd:pwd deviceInfo:@"" success:^(UserInfoModel *user){
 
         [[HomePageService sharedHomePageService] startService];

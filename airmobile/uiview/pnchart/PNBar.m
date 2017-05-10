@@ -39,7 +39,7 @@
         [barView.layer addSublayer:_chartLine];
         
         self.barRadius = 2.0;
-        NSLog(@"self frame:%@",NSStringFromCGRect(frame));
+//        NSLog(@"self frame:%@",NSStringFromCGRect(frame));
     }
     return self;
 }

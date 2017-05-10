@@ -8,7 +8,20 @@
 
 #import "FlightDetailHeaderFooterView.h"
 
+@interface FlightDetailHeaderFooterView ()
+@property (weak, nonatomic) IBOutlet UIButton *addButton;
+
+@end
+
 @implementation FlightDetailHeaderFooterView
+
+-(void)awakeFromNib
+{
+    [super awakeFromNib];
+    if (![CommonFunction hasFunction:FL_ALLDISPATCH]) {
+        _addButton.hidden = YES;
+    }
+}
 
 
 - (IBAction)showAndHidenButtonClick:(UIButton *)sender {
@@ -28,6 +41,12 @@
     }
     if ([_delegate respondsToSelector:@selector(flightDetailHeaderFooterView:showAndHiddenButton:)]) {
         [_delegate flightDetailHeaderFooterView:self showAndHiddenButton:sender];
+    }
+}
+- (IBAction)addButtonClick:(id)sender {
+
+    if ([_delegate respondsToSelector:@selector(flightDetailHeaderFooterView:addButtonClick:)]) {
+        [_delegate flightDetailHeaderFooterView:self addButtonClick:sender];
     }
 }
 

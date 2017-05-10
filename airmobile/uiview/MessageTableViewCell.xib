@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="74"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash.png" translatesAutoresizingMaskIntoConstraints="NO" id="alu-o4-xZU">
@@ -26,13 +26,13 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今天的天气真好啊 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ksp-Qk-rOM">
-                        <rect key="frame" x="59" y="38" width="83.5" height="14"/>
+                        <rect key="frame" x="63" y="43" width="83.5" height="14"/>
                         <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="10"/>
                         <color key="textColor" red="0.75294117647058822" green="0.75294117647058822" blue="0.75294117647058822" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9-29" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="47C-0n-Z7v">
-                        <rect key="frame" x="254" y="31" width="58" height="14"/>
+                        <rect key="frame" x="254" y="20.5" width="58" height="14"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="58" id="9rq-Vt-Azh"/>
                         </constraints>
@@ -46,15 +46,28 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ka0-Va-k2F">
+                        <rect key="frame" x="292" y="38.5" width="20" height="12"/>
+                        <color key="backgroundColor" red="1" green="0.0" blue="0.19766298534913318" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="mXc-yf-xU2"/>
+                            <constraint firstAttribute="height" constant="12" id="zdZ-eo-QQ4"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="ksp-Qk-rOM" firstAttribute="bottom" secondItem="alu-o4-xZU" secondAttribute="bottom" constant="-5" id="I00-8o-c86"/>
-                    <constraint firstItem="47C-0n-Z7v" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Lxe-sE-rxk"/>
+                    <constraint firstItem="ksp-Qk-rOM" firstAttribute="bottom" secondItem="alu-o4-xZU" secondAttribute="bottom" id="I00-8o-c86"/>
+                    <constraint firstItem="47C-0n-Z7v" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="-10" id="Lxe-sE-rxk"/>
                     <constraint firstItem="pmR-d5-dZx" firstAttribute="leading" secondItem="alu-o4-xZU" secondAttribute="trailing" constant="8" id="UpY-5E-MfW"/>
+                    <constraint firstItem="ka0-Va-k2F" firstAttribute="top" secondItem="47C-0n-Z7v" secondAttribute="bottom" constant="4" id="euA-Sp-Gvy"/>
                     <constraint firstItem="pmR-d5-dZx" firstAttribute="top" secondItem="alu-o4-xZU" secondAttribute="top" id="g87-bz-CPR"/>
                     <constraint firstItem="alu-o4-xZU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="iwK-bc-KeB"/>
                     <constraint firstItem="alu-o4-xZU" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="mls-sm-ily"/>
-                    <constraint firstItem="ksp-Qk-rOM" firstAttribute="leading" secondItem="alu-o4-xZU" secondAttribute="trailing" constant="8" id="rFM-z4-9lb"/>
+                    <constraint firstItem="ksp-Qk-rOM" firstAttribute="leading" secondItem="alu-o4-xZU" secondAttribute="trailing" constant="12" id="rFM-z4-9lb"/>
+                    <constraint firstAttribute="trailing" secondItem="ka0-Va-k2F" secondAttribute="trailing" constant="8" id="smJ-09-ehI"/>
                     <constraint firstItem="47C-0n-Z7v" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="tMv-ur-Rrp"/>
                 </constraints>
             </tableViewCellContentView>
@@ -64,6 +77,7 @@
                 <outlet property="messageLabel" destination="ksp-Qk-rOM" id="UKx-IZ-MU2"/>
                 <outlet property="nameLabel" destination="pmR-d5-dZx" id="7rF-h0-Jnf"/>
                 <outlet property="timeLable" destination="47C-0n-Z7v" id="0Kv-W2-fSx"/>
+                <outlet property="unReadLabel" destination="ka0-Va-k2F" id="C0L-c7-hzg"/>
             </connections>
             <point key="canvasLocation" x="-29" y="6.5"/>
         </tableViewCell>

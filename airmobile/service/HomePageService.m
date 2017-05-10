@@ -15,6 +15,7 @@
 #import "AppDelegate.h"
 #import "VersionModel.h"
 #import "UIViewController+Reminder.h"
+#import "VersionCheck.h"
 
 
 
@@ -43,7 +44,7 @@ singleton_implementation(HomePageService);
     if(seatModel    == nil){
         seatModel       = [SeatStatusModel new];
     }
-    NSLog(@"%s",__func__);
+//    NSLog(@"%s",__func__);
     [super startService:^{
         [self cacheHomePageData];
     }];
@@ -51,7 +52,7 @@ singleton_implementation(HomePageService);
 
 -(void)cacheHomePageData
 {
-    NSLog(@"%s",__func__);
+//    NSLog(@"%s",__func__);
     AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     if (appdelegate.userInfoModel && appdelegate.userInfoModel.id != 0) {
 
@@ -84,6 +85,16 @@ singleton_implementation(HomePageService);
         [[NSNotificationCenter defaultCenter] postNotificationName:@"SummaryInfo"
                                                             object:summaryModel];
     } failure:nil];
+
+    //昨日放行正常率
+
+    [HttpsUtils getYesterdayNormalRatioSuccess:^(NSNumber *responesObj) {
+        summaryModel.yesterdayReleaseRatio = responesObj.floatValue;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"YesterdayNormalRatio"
+                                                            object:summaryModel];
+    } failure:^(id error) {
+
+    }];
     
     // 航班近10天放行正常率
 
@@ -100,12 +111,30 @@ singleton_implementation(HomePageService);
                                                             object:summaryModel.yearReleased];
     } failure:nil];
 
+    //去年12月的放行率
+    [HttpsUtils getlastYearFltFMRWithSuccess:^(id responesObj) {
+        [summaryModel updateLastYearReleased:responesObj];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"lastYearFltFMR"
+                                                            object:summaryModel.lastYearReleased];
+    } failure:nil];
+
+    [HttpsUtils getFltFWRWithSuccess:^(id responesObj) {
+        [summaryModel updateweekReleased:responesObj];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"FltFWR"
+                                                            object:summaryModel.weekReleased];
+    } failure:nil];
+
     // 航班放行正常率阈值
     [HttpsUtils releaseRatioThresholdSuccess:^(id responesObj) {
         [summaryModel updateReleaseRatioThreshold:responesObj];
 
     } failure:nil ];
 
+    //80%阈值线
+    [HttpsUtils getThresholdReleaseDatio2Success:^(id responesObj) {
+        [summaryModel updatereleaseRatioThreshold2:responesObj];
+
+    } failure:nil];
 
     
     // 航班延误指标 /fltLD
@@ -348,37 +377,12 @@ singleton_implementation(HomePageService);
     if(appdelegate.userInfoModel.version.length>0){
         return ;
     }
-    [HttpsUtils versionCheckSuccess:^(id response) {
 
-            NSArray * data = [response objectForKey:@"data"];
-            VersionModel *version = [[VersionModel alloc]initWithDictionary:[data lastObject]];
-            NSString *app_Version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-            AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-            appdelegate.userInfoModel.version = version.appVersion;
-            if (version.appVersion.floatValue > app_Version.floatValue) {
-                UINavigationController *appRootVC = (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;
-                UIViewController *viewController = [appRootVC.viewControllers lastObject];
-                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"发现新版本" message:@"是否更新？" preferredStyle:UIAlertControllerStyleAlert];
-                [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
-                [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){
-                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@%@",@"itms-services://?action=download-manifest&url=https://www.pgyer.com/app/plist/",version.appKey,@"&password=",@"123456"]]];
+    UINavigationController *appRootVC = (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;
+    UIViewController *viewController = [appRootVC.viewControllers lastObject];
+    [VersionCheck versionCheckWithViewController:viewController isNewVersion:nil httpFailuer:nil];
 
-                }]];
-
-                [viewController presentViewController:alertController animated:YES completion:nil];
-
-
-                
-            }else{
-                
-            }
-
-    } failure:^(id error) {
-
-    }];
 }
 
--(void)dealloc{
-    NSLog(@"111");
-}
+
 @end

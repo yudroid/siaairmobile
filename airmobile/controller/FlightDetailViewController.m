@@ -20,6 +20,12 @@
 #import "ConcernModel.h"
 #import "DateUtils.h"
 #import "FlightDetailHeaderFooterView.h"
+#import "UserInfoModel.h"
+#import "TimePickerView.h"
+#import "SafeguardTypeViewController.h"
+#import "AppDelegate.h"
+#import "DispatchModel.h"
+#import "NSString+Size.h"
 
 static const NSString *FLIGHTDETAIL_TABLECELL_IDENTIFIER = @"FLIGHTDETAIL_TABLECELL_IDENTIFIER";
 static const NSString *FLIGHTDETAIL_TABLEHEADER_IDENTIFIER = @"FLIGHTDETAIL_TABLEHEADER_IDENTIFIER";
@@ -34,14 +40,15 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
                                         UICollectionViewDataSource,
                                         UICollectionViewDelegateFlowLayout,
                                         FlightDetailHeaderFooterViewDelegate,
-                                        FlightDetailSpecialTableViewCellDelegate>
+                                        FlightDetailSpecialTableViewCellDelegate,
+                                        TimePickerViewDelegate>
 
-@property (weak, nonatomic) IBOutlet    UITableView         *safeguardTableView;//特殊保障 tableview
+@property (weak, nonatomic) IBOutlet    UITableView         *tableView;//特殊保障 tableview
 @property (weak, nonatomic) IBOutlet    UICollectionView    *AirlineCollectionView;
 
 @property (nonatomic, copy) NSArray     *airLineCollectionArray;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *safeguardTableViewHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeight;
 @property (weak, nonatomic) IBOutlet UIView *airlineView;
 @property (weak, nonatomic) IBOutlet UILabel *inFNumLabel;//进港航班号
 @property (weak, nonatomic) IBOutlet UILabel *arrStateLabel;//进港状态
@@ -90,8 +97,9 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *airlineViewHeight;
 
 @property (weak, nonatomic) IBOutlet UIView *arrFlightDetailView;
-
 @property (weak, nonatomic) IBOutlet UIView *depFlightDetailView;
+
+@property (nonatomic, assign) NSInteger selectedNormalReportIndex;//普通上报下标
 
 
 @end
@@ -99,8 +107,8 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 @implementation FlightDetailViewController
 {
     FlightDetailModel *flight;
-    NSMutableArray<SafeguardModel *> *dispatches;
-    NSMutableArray<SpecialModel *> *specicals;
+//    NSMutableArray<SafeguardModel *> *dispatches;
+//    NSMutableArray<SpecialModel *> *specicals;
     NSArray *tableArray;
 
 //    NSString *DispatchType;
@@ -110,8 +118,8 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
     [super viewDidLoad];
 
     flight = [[FlightDetailModel alloc]init];
-    specicals = [NSMutableArray array];
-    dispatches = [NSMutableArray array];
+//    specicals = [NSMutableArray array];
+//    dispatches = [NSMutableArray array];
 
     
     //titleView订制
@@ -137,9 +145,9 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
     self.titleView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"home_title_bg.png"]];
 
     // 航班特殊保障详情相关
-    _safeguardTableView.dataSource      = self;
-    _safeguardTableView.delegate        = self;
-    _safeguardTableView.allowsSelection = NO;
+    _tableView.dataSource      = self;
+    _tableView.delegate        = self;
+    _tableView.allowsSelection = NO;
     
     _AirlineCollectionView.delegate     = self;
     _AirlineCollectionView.dataSource   = self;
@@ -151,7 +159,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 
 //    [_tableView registerNib:[UINib nibWithNibName:@"FlightDetailHeaderFooterView" bundle:nil] forCellReuseIdentifier:(NSString *)FLIGHTDETAIL_TABLEHEADER_IDENTIFIER];
 
-    _safeguardTableViewHeight.constant = 103 * tableArray.count +37;
+    _tableViewHeight.constant = 103 * tableArray.count +37;
    // [self basicInfo];
     [self loadData];
 
@@ -159,8 +167,14 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 
     
 }
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self updateDispatchTableViewData];
+
+}
 -(void)viewDidAppear:(BOOL)animated{
-    [_safeguardTableView reloadData];
+    [_tableView reloadData];
 }
 
 
@@ -193,22 +207,23 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
     }
 }
 
--(void)updateSpecialsTableView
+-(void)updateTableView
 {
     if (![CommonFunction hasFunction:FL_SPETIAL]) {
         return;
     }
-    NSMutableArray *mutableArray = [NSMutableArray array];
-    for (id model in specicals) {
-        [mutableArray addObject:model];
-    }
-    for (id model in dispatches) {
-        [mutableArray addObject:model];
-    }
-    tableArray = [mutableArray copy];
-    _safeguardTableViewHeight.constant = 103 * (tableArray.count) +37;
+//    NSMutableArray *mutableArray = [NSMutableArray array];
+//    for (id model in specicals) {
+//        [mutableArray addObject:model];
+//    }
+//    for (id model in dispatches) {
+//        [mutableArray addObject:model];
+//    }
+//    tableArray = [mutableArray copy];
 
-    [_safeguardTableView reloadData];
+    _tableViewHeight.constant = [self tableCellAllHeight] +37;
+
+    [_tableView reloadData];
 
 }
 
@@ -240,6 +255,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 {
 
     [self setFlightType:_flightType];
+    [self titleViewAddTitleText:flight.fNum];
     _inFNumLabel.text       = [[flight.fNum componentsSeparatedByString:@"/"] firstObject];
     _arrStateLabel.text     = flight.arrState;
     _arrAirLineLabel.text   =[NSString stringWithFormat:@"%@-深圳",[[flight.airLine componentsSeparatedByString:@"-深圳"] firstObject]];
@@ -323,7 +339,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 103;
+    return [self tabelCellHeightWithIndex:indexPath.row];
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -338,9 +354,8 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-    id model = tableArray[indexPath.row];
-    if ([model isKindOfClass:[SafeguardModel class]]) {
+    DispatchModel *model = tableArray[indexPath.row];
+    if (model.key == 0) {
         FlightDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)FLIGHTDETAIL_TABLECELL_IDENTIFIER];
         if (cell==nil) {
             cell = [[NSBundle mainBundle] loadNibNamed:@"FlightDetailTableViewCell"
@@ -348,14 +363,14 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
                                                options:nil][0];
         }
 
-        cell.safeguardModel = model;
+        cell.dispatchModel = model;
         cell.indexRow = indexPath.row;
-        if (indexPath.row == 0) {
-            cell.type = FlightDetailTableViewCellTypeTypeFirst;
-        }
-        if (indexPath.row ==specicals.count-1 ) {
-            cell.type = FlightDetailTableViewCellTypeTypeLast;
-        }
+//        if (indexPath.row == 0) {
+//            cell.type = FlightDetailTableViewCellTypeTypeFirst;
+//        }
+//        if (indexPath.row ==specicals.count-1 ) {
+//            cell.type = FlightDetailTableViewCellTypeTypeLast;
+//        }
         cell.delegate = self;
         return  cell;
 
@@ -365,8 +380,9 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
         if (!cell) {
             cell = [[NSBundle mainBundle]loadNibNamed:@"FlightDetailSpecialTableViewCell" owner:nil options:nil][0];
         }
+        cell.indexRow = indexPath.row;
         cell.delegate = self;
-        cell.specialModel = model;
+        cell.dispatchModel = model;
         return cell;
     }
 
@@ -394,13 +410,94 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 
 -(void)flightDetailTableViewCellnormalButtonClick:(UIButton *)sender
 {
+    
     if ([CommonFunction hasFunction:FL_NORMAL_REPORTABN]) {
 //       [HttpsUtils http]
 
-        //正常上报接口
+        TimePickerView *timePickView = [[NSBundle mainBundle] loadNibNamed:@"TimePickerView" owner:nil options:nil][0];
+        timePickView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
+        timePickView.delegate = self;
+        [self.view addSubview:timePickView];
+        _selectedNormalReportIndex = sender.tag;
+
     }
 
 }
+
+-(void)timePickerViewDidSelectDate:(NSDate *)date
+{
+//    NSLog(@"%@",date);
+
+    DispatchModel *dispatchModel = tableArray[_selectedNormalReportIndex];
+
+    NSString *flag ;
+    if (dispatchModel.normalTime && dispatchModel.normalTime.length > 0) {
+        flag = @"1";
+    }else{
+        flag = @"0";
+    }
+
+    //正常上报接口
+    [self starNetWorking];
+    if (dispatchModel.key == 0) {
+        AppDelegate *appdelete = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        [HttpsUtils guaranteeNormalTimeWithUserId:@(appdelete.userInfoModel.id).stringValue
+                                       normalTime:[DateUtils convertToString:date format:@"HH:mi"]
+                                         flightId:@(dispatchModel.fid).stringValue
+                                       dispatchId:@(dispatchModel.id).stringValue
+                                             flag:flag
+                                          success:^(id response) {
+                                              [self stopNetWorking];
+                                              [self showAnimationTitle:@"上报成功"];
+                                              [self updateDispatchTableViewData];
+
+                                          }failure:^(NSError *error) {
+                                              [self stopNetWorking];
+                                              [self showAnimationTitle:@"上报失败"];
+                                              
+                                          }];
+
+
+    }else{
+        //特殊正常上报
+        AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        [HttpsUtils saveDispatchNormal:(int)flight.id
+                            dispatchId:(int)dispatchModel.id
+                                userId:(int)delegate.userInfoModel.id
+                                  date:[DateUtils convertToString:date format:@"HH:mi"]
+                               success:^(id responseObj) {
+                                   [self showAnimationTitle:@"上报成功"];
+                                   [self updateDispatchTableViewData];
+
+                               } failure:^(NSError *error) {
+                                   [self showAnimationTitle:@"上报失败"];
+                                   
+                               }];
+    }
+
+
+
+
+}
+
+-(void)updateDispatchTableViewData
+{
+    //重新加载列表
+    AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [HttpsUtils queryAllDispatchWithFlightId:@(_flightId).stringValue
+                                      userId:@(appdelegate.userInfoModel.id).stringValue
+                                     success:^(NSArray *response) {
+
+                                         tableArray =[self permissionFilter: [response DictionaryToModel:[DispatchModel class]]];
+                                         [self updateTableView];
+                                     } failure:^(id error) {
+                                         [self showAnimationTitle:@"更新失败"];
+
+                                     }];
+
+}
+
+
 
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -446,6 +543,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
         abnormalityReportVC.title = @"特殊上报";
         abnormalityReportVC.specialModel = tableArray[sender.tag];
         abnormalityReportVC.isSpecial = YES;
+        abnormalityReportVC.flightId = @(_flightId).stringValue;
         [self.navigationController pushViewController:abnormalityReportVC
                                              animated:YES];
 
@@ -455,25 +553,13 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 -(void)flightDetailSpecialTableViewCellNormalButtonClick:(UIButton *)sender
 {
     if ([CommonFunction hasFunction:FL_SPETIAL_REPORTNOR]) {
-        AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-        [HttpsUtils saveDispatchNormal:(int)flight.id
-                            dispatchId:specicals[sender.tag].id
-                                userId:(int)delegate.userInfoModel.id
-                               success:^(id responseObj) {
-                                   [self showAnimationTitle:@"上报成功"];
-                                   if (responseObj && [responseObj isKindOfClass:[NSString class]]) {
-                                       specicals[sender.tag].normalTime = responseObj;
-                                       specicals[sender.tag].tag = 1;
-                                       [_safeguardTableView reloadData];
-                                   }
-                               } failure:^(NSError *error) {
-                                   [self showAnimationTitle:@"上报失败"];
-                                   
-                               }];
 
+        TimePickerView *timePickView = [[NSBundle mainBundle] loadNibNamed:@"TimePickerView" owner:nil options:nil][0];
+        timePickView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
+        timePickView.delegate = self;
+        [self.view addSubview:timePickView];
+        _selectedNormalReportIndex = sender.tag;
     }
-
-
 
 }
 
@@ -484,16 +570,22 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 {
     [UIView animateWithDuration:0.3 animations:^{
             if (sender.tag == 1) {
-                _safeguardTableViewHeight.constant = 37;
+                _tableViewHeight.constant  = 37;
                 [self.view layoutIfNeeded];
 
             }else{
-                _safeguardTableViewHeight.constant = 37+ tableArray.count *103;
+                _tableViewHeight.constant = 37+ [self tableCellAllHeight];;
                 [self.view layoutIfNeeded];
             }
 
     }];
 
+}
+
+-(void)flightDetailHeaderFooterView:(UITableViewHeaderFooterView *)view addButtonClick:(UIButton *)sender
+{
+    SafeguardTypeViewController *safeguardTypeVC = [[SafeguardTypeViewController alloc]initWithNibName:@"SafeguardTypeViewController" bundle:nil];
+    [self.navigationController pushViewController:safeguardTypeVC animated:YES];
 }
 
 -(void)loadData
@@ -504,47 +596,100 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
     } failure:nil];
 
 
-    //普通保障环节
-    if([CommonFunction hasFunction:FL_NORMAL]){
-        [HttpsUtils getDispatchDetail:_flightId success:^(id responseObj) {
-            [dispatches removeAllObjects];
-            if([flight isNull:responseObj]){
-                return;
-            }
 
-            for(id item in responseObj){
-                [dispatches addObject:[[SafeguardModel alloc] initWithDictionary:item]];
-            }
-            [self updateSpecialsTableView];
-        } failure:nil];
-
+    //普通环节和特殊保障环节都没有权限
+    if(![CommonFunction hasFunction:FL_NORMAL]&&![CommonFunction hasFunction:FL_SPETIAL]){
+        return ;
     }
+
+//    [self updateDispatchTableViewData];
+
 
 
     //特殊保障环节
 
-    if([CommonFunction hasFunction:FL_SPETIAL]&&_isSpecial){
-        [HttpsUtils getSpecialDetail:_flightId success:^(id responseObj) {
-            [specicals removeAllObjects];
-            if([flight isNull:responseObj]){
-                return;
-            }
-            AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+//    if([CommonFunction hasFunction:FL_SPETIAL]&&_isSpecial){
+//        [HttpsUtils getSpecialDetail:_flightId success:^(id responseObj) {
+//            [specicals removeAllObjects];
+//            if([flight isNull:responseObj]){
+//                return;
+//            }
+//            AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+//
+//            NSLog(@"%@",appDelegate.userInfoModel.deptName);
+//            for(id item in responseObj){
+//                SpecialModel *model = [[SpecialModel alloc] initWithDictionary:item];
+//
+//                if ([model.safeguardDepart isEqualToString:appDelegate.userInfoModel.deptName]||
+//                    [CommonFunction hasFunction:FL_ALLDISPATCH]) {//自己部门或者有检查权限
+//                    [specicals addObject:model];
+//                }
+//                
+//            }
+//            [self updateSpecialsTableView];
+//        } failure:nil];
 
-            NSLog(@"%@",appDelegate.userInfoModel.deptName);
-            for(id item in responseObj){
-                SpecialModel *model = [[SpecialModel alloc] initWithDictionary:item];
+//    }
+}
 
-                if ([model.safeguardDepart isEqualToString:appDelegate.userInfoModel.deptName]||
-                    [CommonFunction hasFunction:FL_ALLDISPATCH]) {//自己部门或者有检查权限
-                    [specicals addObject:model];
-                }
-                
+//权限过滤
+-(NSArray *)permissionFilter:(NSArray *)array
+{
+    if ([CommonFunction hasFunction:FL_NORMAL]&&[CommonFunction hasFunction:FL_SPETIAL]) {
+        return array;
+    }else if ([CommonFunction hasFunction:FL_NORMAL]){
+        NSMutableArray *mutableArray = [NSMutableArray array];
+        for (DispatchModel *model in array) {
+            if (model.key == 0) {
+                [mutableArray addObject:model];
             }
-            [self updateSpecialsTableView];
-        } failure:nil];
+        }
+        return [mutableArray copy];
+    }else if ([CommonFunction hasFunction:FL_SPETIAL]){
+        NSMutableArray *mutableArray = [NSMutableArray array];
+        for (DispatchModel *model in array) {
+            if (model.key == 1) {
+                [mutableArray addObject:model];
+            }
+        }
+        return [mutableArray copy];
+
+    }else{
+        return [NSArray array];
+    }
+}
+
+-(CGFloat)tabelCellHeightWithIndex:(NSInteger )row
+{
+    DispatchModel *model = tableArray[row];
+    CGFloat height = 0;
+    if (model.key == 0) {
+        model.status = model.status?:@"";
+        NSString *name = [NSString stringWithFormat:@"%@%@%@",model.safeName,model.status,model.isAD?@"进":@"出"];
+
+        CGFloat peopleHeight = 0;
+        if (model.dispatchPeople&&model.dispatchPeople.length>0) {
+           peopleHeight =[model.dispatchPeople sizeWithWidth:kScreenWidth-165 font:[UIFont fontWithName:@"PingFang SC" size:12]].height;
+        }else{
+            peopleHeight = 21;
+        }
+
+        height = 72 + peopleHeight + [name sizeWithWidth:kScreenWidth-150 font:[UIFont fontWithName:@"PingFang SC" size:15]].height;
+        return height;
+    }else{
+        height = 75 +[model.safeName sizeWithWidth:kScreenWidth-165 font:[UIFont fontWithName:@"PingFang SC" size:12]].height;
+        return height;
 
     }
+}
+
+-(CGFloat)tableCellAllHeight
+{
+    CGFloat height = 0;
+    for (int i = 0; i<tableArray.count; i++) {
+        height +=[self tabelCellHeightWithIndex:i];
+    }
+    return height;
 }
 
 @end

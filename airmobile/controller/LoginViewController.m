@@ -22,7 +22,7 @@
 #import "LoadingView.h"
 #import "PersistenceUtils+Business.h"
 #import "UIViewController+Reminder.h"
-#import "FlightViewController.h"
+#import "TabFlightSearchViewController.h"
 #import "MessageViewController.h"
 #import "FunctionViewController.h"
 #import "UserInfoViewController.h"
@@ -280,8 +280,8 @@
 {
     NSString* userName = _accountTF.text;
     NSString* password = _passwordTF.text;
-    NSLog(@"%s  %@  %@",__func__,userName,password);
-    
+//    NSLog(@"%s  %@  %@",__func__,userName,password);
+
     if ([StringUtils isNullOrWhiteSpace:userName]) {
         [self toast:@"用户名不能为空"];
         return;
@@ -312,7 +312,7 @@
         switch (user.flag) {
             case 1:
             {
-                NSLog(@"%s",__func__);
+//                NSLog(@"%s",__func__);
                 [HttpsUtils setUserName:userName];
                 [HttpsUtils setPassword:password];
                 NSString* userKey = @"taocares_userName";
@@ -332,6 +332,8 @@
                 [[KyAirportService sharedKyAirportService] cacheAirport];
 
 //                //delegate.userInfoModel.functions = @"0000000,20000000,30000000,30500000,40000000,50000000";
+                //加载用户信息
+                [HttpsUtils loadAllUsers];
 
                 if (![[NSUserDefaults standardUserDefaults] boolForKey:@"NotFirst"]) {
                     LoadingView *loadingView = [[NSBundle mainBundle]loadNibNamed:@"LoadingView" owner:nil options:nil][0];
@@ -341,7 +343,7 @@
                     __block NSInteger eventTag = 0;
                     __block NSInteger dicTag = 0;
 
-                    [HttpsUtils loadAllUsers];
+
                     
                     [HttpsUtils loadEventsProgress:^(float rate) {
 
@@ -354,6 +356,10 @@
                         if (dicTag == 1 && eventTag == 1) {
                              [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NotFirst"];
                             [ThreadUtils dispatchMain:^{
+
+                                NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults] ;
+
+                                [userDefaults setBool:YES forKey:@"sysChatInfoList"];
                                 [self loadViewController];
 
                             }];
@@ -453,7 +459,7 @@
         }
         
     }failure:^(NSError* error){
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
         [ThreadUtils dispatchMain:^{
             _loginBtn.enabled = YES;
             [self.view hideToastActivity];
@@ -462,7 +468,6 @@
         }];
         return;
     }];
-    
 }
 
 /**
@@ -481,10 +486,7 @@
         [UIView setAnimationDuration:[[sender.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey]doubleValue]];
         _bgView.transform=CGAffineTransformMakeTranslation(0, y);
         [UIView commitAnimations];
-        
     }
-    
-    
 }
 
 
@@ -518,7 +520,7 @@
     if ([CommonFunction hasFunction:OV]) {
         viewController = [[HomePageViewController alloc] init];
     }else if([CommonFunction hasFunction:FL]){
-        viewController = [[FlightViewController alloc]init];
+        viewController =[[TabFlightSearchViewController alloc] init];;
     }else if([CommonFunction hasFunction:MSG]){
         if([CommonFunction hasFunction:MSG_WORNING] && ![CommonFunction hasFunction:MSG_FLIGHT] && ![CommonFunction hasFunction:MSG_DIALOG]){
             SingleMessageViewController *message = [[SingleMessageViewController alloc] init];

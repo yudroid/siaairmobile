@@ -33,9 +33,7 @@
 {
     self = [super init];
     if (self) {
-
         self.flightArray = flighthours;
-
     }
     return self;
 }

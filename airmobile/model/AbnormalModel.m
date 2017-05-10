@@ -12,5 +12,19 @@
 
 
 
+-(void)setPathList:(NSString *)pathList
+{
+    if ([pathList isKindOfClass:[NSString class]]&&pathList.length > 0&&[pathList characterAtIndex:0]==','  ) {
+        NSMutableString *mutableString = [NSMutableString stringWithString:pathList];
+        [mutableString deleteCharactersInRange:NSMakeRange(0, 1)];
+        _pathList = [mutableString copy];
+
+    }else{
+        _pathList = @"";
+    }
+
+}
+
+
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class SpecialModel;
+@class DispatchModel;
 
 @protocol  FlightDetailSpecialTableViewCellDelegate <NSObject>
 
@@ -19,7 +19,7 @@
 @interface FlightDetailSpecialTableViewCell : UITableViewCell
 
 @property (nonatomic,weak) id<FlightDetailSpecialTableViewCellDelegate> delegate;
-@property (nonatomic, strong) SpecialModel *specialModel;
+@property (nonatomic, strong) DispatchModel *dispatchModel;
 @property (nonatomic, assign) NSInteger indexRow;
 
 @end

@@ -65,7 +65,7 @@ const NSString *KNOWLEDGEBASECONTENT_TABLECELL_IDENTIFIER = @"KNOWLEDGEBASECONTE
     _labelLabel.text = _knowledgeBaseModel.typeName?:@"";
     _contentLabel.text = _knowledgeBaseModel.content?:@"";
 
-    _knowledgeBaseModel.httpPath = [_knowledgeBaseModel.httpPath stringByReplacingOccurrencesOfString:@"/" withString:@"-"];
+    _knowledgeBaseModel.httpPath = [_knowledgeBaseModel.httpPath stringByReplacingOccurrencesOfString:@"/" withString:@"--"];
     _tableArray = [_knowledgeBaseModel.httpPath componentsSeparatedByString:@","];
     _viewHeight.constant = [self viewHeightSum];
 
@@ -83,7 +83,7 @@ const NSString *KNOWLEDGEBASECONTENT_TABLECELL_IDENTIFIER = @"KNOWLEDGEBASECONTE
     CGFloat contentHeight = [_contentLabel.text sizeWithWidth:kScreenWidth -16 font:[UIFont fontWithName:@"PingFang SC" size:14]].height;
 
     CGFloat tableHeight = _tableArray.count * 50 ;
-    NSLog(@"%f",titleHeight + summaryHeight +labelHeight + contentHeight + tableHeight + 8*8 +23*3 +1);
+//    NSLog(@"%f",titleHeight + summaryHeight +labelHeight + contentHeight + tableHeight + 8*8 +23*3 +1);
 
     return titleHeight + summaryHeight +labelHeight + contentHeight + tableHeight + 8*8 +23*3 +1+10;
 
@@ -177,13 +177,13 @@ const NSString *KNOWLEDGEBASECONTENT_TABLECELL_IDENTIFIER = @"KNOWLEDGEBASECONTE
     void (^completionHandlerBlock)(NSURLResponse *, NSURL *, NSError *)=^(NSURLResponse *response, NSURL *filePath, NSError *error){
         _downStatus = 0;
         if (error) {
-            NSLog(@"%@",error);
+//            NSLog(@"%@",error);
             _downStatus = 1;
             [FCFileManager removeItemAtPath:[filePath path]];
         }
         self.downloadView.isSuccess = YES;
         NSString *path = [filePath path];
-        NSLog(@"************文件路径:%@",path);
+//        NSLog(@"************文件路径:%@",path);
         [_tableView reloadData];
     };
 
@@ -212,10 +212,7 @@ const NSString *KNOWLEDGEBASECONTENT_TABLECELL_IDENTIFIER = @"KNOWLEDGEBASECONTE
                                        } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
                                            completionHandlerBlock(response,filePath,error);
                                        }];
-
     }
-
-
 }
 -(void)animationStart
 {
@@ -234,8 +231,6 @@ const NSString *KNOWLEDGEBASECONTENT_TABLECELL_IDENTIFIER = @"KNOWLEDGEBASECONTE
     }else{
         [self showAnimationTitle:@"下载成功"];
     }
-
-
 }
 
 #pragma mark - UIDocumentInteractionController 代理方法

@@ -21,12 +21,11 @@
 #import "PassengerTopViewController.h"
 #import "SeatUsedViewController.h"
 #import "HomePageService.h"
-
 #import "ResourceOverview.h"
-
 #import "SingleMessageViewController.h"
 #import "HttpsUtils+Business.h"
 #import "AppDelegate.h"
+#import "WillGoFlightViewController.h"
 
 
 
@@ -46,9 +45,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-    [HttpsUtils sysChatInfoList:(int)(appDelegate.userInfoModel.id)];
+
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults] ;
+    if ([userDefaults objectForKey:@"sysChatInfoList"]) {
+        AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+        [HttpsUtils sysChatInfoList:(int)(appDelegate.userInfoModel.id)];
+        [userDefaults setBool:NO forKey:@"sysChatInfoList"];
+    }
     
     self.view.backgroundColor = [UIColor whiteColor]; // 全局背景颜色
     [self initInchData];
@@ -61,8 +64,8 @@
                 aboveSubview:self.view];
     [self initPageTitle];
 
-    homePageType = HomePageTypeOverview;//设置当前页面为整体概览
-    [self showOverviewContentView];//根据显示类型显示页面
+//    homePageType = HomePageTypeOverview;//设置当前页面为整体概览
+//    [self showOverviewContentView];//根据显示类型显示页面
 
     
 }
@@ -135,6 +138,7 @@
         [titleLabelView addSubview:button];
 
 
+
     }
     _titleLabelArray = [labelArray copy];
     if (_titleLabelArray.count>0) {
@@ -147,6 +151,9 @@
         selectedLine.image  = [UIImage imageNamed:@"SelectedLine"];
         [titleLabelView addSubview:selectedLine];
     }
+    UIButton *button = [[UIButton alloc]init];
+    button.tag = 0;
+    [self titleButtonClickedWithSender:button];
 }
 
 #pragma mark 切换首页中各子页面
@@ -157,6 +164,9 @@
  */
 -(void) titleButtonClickedWithSender:(UIButton *)sender
 {
+    if (_titleLabelArray.count==0) {
+        return;
+    }
     for (UILabel *label in _titleLabelArray) {
         label.textColor = [CommonFunction colorFromHex:0XbFFFFFFF];
     }
@@ -164,6 +174,7 @@
     [self removeAllView];
 
     selectedLine.center     = CGPointMake(kScreenWidth/(_titleLabelArray.count*2) *(sender.tag*2+1), 74);
+
     ((UILabel *)_titleLabelArray[sender.tag]).textColor = [CommonFunction colorFromHex:0XFFFFFFFF];
 
     NSString *title = ((UILabel *)_titleLabelArray[sender.tag]).text;
@@ -171,7 +182,7 @@
 
     if ([title isEqualToString:@"总体"]) {
         homePageType = HomePageTypeOverview;
-        [self showOverviewContentView];
+        [self showOverContentView];
     }else if([title isEqualToString:@"航班"]){
         homePageType = HomePageTypeFlight;
         [self showFlightContentView];
@@ -185,26 +196,28 @@
 }
 
 
-
 /**
  显示整体情况视图
  */
--(void)showOverviewContentView
+-(void)showOverContentView
 {
-    if (overviewContentView !=nil)
+    if (overContentView !=nil)
     {
         return;
     }
-    else
-    {
+    else{
+        overContentView = [[NSBundle mainBundle] loadNibNamed:@"OverContentView" owner:nil options:nil][0];
         
-        overviewContentView = [[OverViewContentView alloc]initWithFrame: CGRectMake(0,
-                                                                                    self.titleView.frame.size.height,
-                                                                                    kScreenWidth,
-                                                                                    kScreenHeight-viewHeight(self.titleView)-viewHeight(self.tabBarView))
+//        overContentView = [[OverContentView alloc]initWithFrame: CGRectMake(0,
+//                                                                                    self.titleView.frame.size.height,
+//                                                                                    kScreenWidth,
+//                                                                                    kScreenHeight-viewHeight(self.titleView)-viewHeight(self.tabBarView))
+//
+//                                                               delegate:self];
 
-                                                               delegate:self];
-        [self.view addSubview:overviewContentView];
+        overContentView.frame = CGRectMake(0,self.titleView.frame.size.height,kScreenWidth,kScreenHeight-viewHeight(self.titleView)-viewHeight(self.tabBarView));
+        overContentView.delegate = self;
+        [self.view addSubview:overContentView];
     }
 }
 
@@ -273,8 +286,8 @@
  */
 -(void)removeAllView
 {
-    [overviewContentView removeFromSuperview];
-    overviewContentView = nil;
+    [overContentView removeFromSuperview];
+    overContentView = nil;
     
     [passengerContentView removeFromSuperview];
     passengerContentView = nil;
@@ -323,6 +336,12 @@
     AlertIndicateViewController *alert = [[AlertIndicateViewController alloc] initWithDalayTagart:[HomePageService sharedHomePageService].summaryModel.delayTagart];
     [self.navigationController pushViewController:alert
                                          animated:YES];
+}
+//即将放行航班
+-(void)showQueueView{
+    WillGoFlightViewController *willGoFlightVC = [[WillGoFlightViewController alloc]initWithNibName:@"WillGoFlightViewController" bundle:nil];
+    [self.navigationController pushViewController:willGoFlightVC animated:YES];
+
 }
 #pragma mark - 航班汇总页跳转方法
 

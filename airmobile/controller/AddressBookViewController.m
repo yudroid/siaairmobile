@@ -169,21 +169,4 @@ viewForHeaderInSection:(NSInteger)section
 }
 
 
-//-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-//{
-//    NSLog(@"%ld",(long)buttonIndex);
-//    void (^block)(NSInteger) = objc_getAssociatedObject(alertView, ALERTVIEW_BLOCK);
-//    block(buttonIndex);
-//}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end

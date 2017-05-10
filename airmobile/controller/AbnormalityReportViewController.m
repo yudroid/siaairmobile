@@ -126,6 +126,10 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
     _iphoneButton.photoDidFinished = ^(UIImage *image){
         NSData *imgData = UIImageJPEGRepresentation(image, 0.5);
         image = [UIImage imageWithData:imgData];
+        if (_collectionArray.count>=6) {
+            [self showAnimationTitle:@"您最多可以选择6张"];
+            return ;
+        }
         [_collectionArray addObject:image];
         [_photoCollectionView reloadData];
     };
@@ -133,7 +137,8 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 
     [self loadAbnsRecord];
 
-    [_timeButton setTitle:[DateUtils convertToString:[NSDate date] format:@"HH:mm"] forState:UIControlStateNormal];
+
+    [_timeButton setTitle:[DateUtils convertToString:[DateUtils getNow] format:@"HH:mm"] forState:UIControlStateNormal];
 
 }
 
@@ -149,6 +154,7 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 
     [self.tableView reloadData];
     _collectionArray = [NSMutableArray arrayWithArray:[abnormalModel.pathList componentsSeparatedByString:@","]];
+    [_collectionArray removeObject:@""];
     [_photoCollectionView reloadData];
     
 }
@@ -378,14 +384,14 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
     NSDictionary * dic = [[PersistenceUtils findBasisInfoEventWithEventId:(int)model.event] lastObject];
     BasisInfoEventModel *eventModel = [[BasisInfoEventModel alloc]initWithDictionary:dic];
     CGSize size1 = [eventModel.event sizeWithWidth:kScreenWidth - 32 font:[UIFont fontWithName:@"PingFang SC" size:15]];
-    CGSize size2 = [eventModel.content sizeWithWidth:kScreenWidth - 32 font:[UIFont fontWithName:@"PingFang SC" size:12]];
+    CGSize size2 = [model.memo sizeWithWidth:kScreenWidth - 32 font:[UIFont fontWithName:@"PingFang SC" size:12]];
     return size1.height+size2.height + 24;
 }
 
 #pragma mark - TimePickerViewDelegate
 -(void)timePickerViewDidSelectDate:(NSDate *)date
 {
-    NSLog(@"%@",date);
+//    NSLog(@"%@",date);
 
     [_timeButton setTitle:[DateUtils convertToString:date format:@"hh:mm"] forState:UIControlStateNormal];
 }
@@ -424,15 +430,15 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
                             if ([response isKindOfClass:[NSArray class]]) {
                                 //将字段数组转为对象数组
                                 self.abnormalityHistoryArray = [response DictionaryToModel:[AbnormalModel class]];
-                                AbnormalModel *model = [[AbnormalModel alloc]init];
-                                model.event = 90;
-                                model.memo = @"12321";
-                                model.userID = 123;
-                                model.flightID = 2341432;
-                                model.safeguardID = 7;
-                                model.arriveTime = @"20:20";
-                                model.pathList = @"1490862737568/abnormalImage.jpg,1490862737671/abnormalImage.jpg,1490862737869/abnormalImage.jpg";
-                                self.abnormalityHistoryArray =@[model];
+//                                AbnormalModel *model = [[AbnormalModel alloc]init];
+//                                model.event = 90;
+//                                model.memo = @"12321";
+//                                model.userID = 123;
+//                                model.flightID = 2341432;
+//                                model.safeguardID = 7;
+//                                model.arriveTime = @"20:20";
+//                                model.pathList = @"1490862737568/abnormalImage.jpg,1490862737671/abnormalImage.jpg,1490862737869/abnormalImage.jpg";
+//                                self.abnormalityHistoryArray =@[model];
                             }
                             [self.abnormalityHistoryTableView reloadData];
                         }failure:^(NSError *error) {
@@ -471,13 +477,18 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 
 -(void)sendAbnsReported
 {
+    if (!_event) {
+        [self showAnimationTitle:@"请选择事项标准"];
+        return;
+    }
     AppDelegate *appdelete = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [HttpsUtils saveDispatchAbnStart:self.isSpecial?(int)_flightId.integerValue:(int)_safefuardModel.fid
                           dispatchId:self.isSpecial? _specialModel.id:(int)_safefuardModel.id
                               userId:(int)appdelete.userInfoModel.id
                              eventId:self.event.basisid
                                 memo:self.requireTextView.text
-                                flag:self.isSpecial
+                                flag:self.isSpecial?@"true":@"false"
+                           arrveTime:_timeButton.titleLabel.text
                              imgPath:[self.imageFilePath componentsJoinedByString:@","]
                              success:^(id response) {
                                  [self stopNetWorking];
@@ -486,13 +497,12 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
                                      return ;
                                  }
                                  [self showAnimationTitle:@"上报成功"];
-
                              }
                              failure:^(NSError *error) {
                                  [self stopNetWorking];
                                  [self showAnimationTitle:@"上报失败"];
                              }];
-    NSLog(@"图片路径----：%@",[self.imageFilePath componentsJoinedByString:@","]);
+//    NSLog(@"图片路径----：%@",[self.imageFilePath componentsJoinedByString:@","]);
 }
 
 @end

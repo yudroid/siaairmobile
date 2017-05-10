@@ -39,4 +39,19 @@
                      destination:(NSURL * (^)(NSURL *targetPath, NSURLResponse *response))destination
                completionHandler:(void (^)(NSURLResponse *response, NSURL *filePath, NSError *error))completionHandler;
 
+
+
+/**
+ 聊天
+
+ @param httpPath <#httpPath description#>
+ @param downloadProgressBlock <#downloadProgressBlock description#>
+ @param destination <#destination description#>
+ @param completionHandler <#completionHandler description#>
+ */
+-(void)chatDownFileWithHttpPath:(NSString *)httpPath
+                       Progress:(void (^)(NSProgress *downloadProgress)) downloadProgressBlock
+                    destination:(NSURL * (^)(NSURL *targetPath, NSURLResponse *response))destination
+              completionHandler:(void (^)(NSURLResponse *response, NSURL *filePath, NSError *error))completionHandler;
+
 @end

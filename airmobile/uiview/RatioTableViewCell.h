@@ -14,4 +14,8 @@
 -(instancetype) initWithStyle: (UITableViewCellStyle)   style
               reuseIdentifier: (NSString *)             identifier
                         ratio: (ReleasedRatioModel *)   ratio;
+-(instancetype) initWithStyle: (UITableViewCellStyle)   style
+              reuseIdentifier: (NSString *)             identifier
+                    thisRatio: (ReleasedRatioModel *)   ratio1
+                lastthisRatio: (ReleasedRatioModel *)   ratio2;
 @end

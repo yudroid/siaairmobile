@@ -294,7 +294,7 @@
 -(void)initTitle
 {
     [self titleViewInitWithHight:65];
-    [self titleViewAddTitleText:@"延误指标"];
+    [self titleViewAddTitleText:@"延误KPI"];
     
     UIView *titleLabelView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 65)];
     self.titleView .backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"home_title_bg.png"]];
@@ -345,6 +345,9 @@
 
             [lineChart setXLabels:[self getFlightHourXLabels]];
 
+        lineChart.yFixedValueMax = [self maxValue]*1000;
+        lineChart.yFixedValueMin = -([self maxValue]*1000*0.05);
+
             // Line Chart #2
             NSArray * dataArray = [self getFlightHourYLabels];
             PNLineChartData *data = [PNLineChartData new];
@@ -365,6 +368,8 @@
         thresholdImageView.center = CGPointMake(lineChart.center.x,
                                                 viewBotton(downlineImageView)- [HomePageService sharedHomePageService].summaryModel.delayTagart.executeRateThreshold*1000/lineChart.yValueMax *(viewHeight(lineChart)-(viewBotton(lineChart)-viewBotton(downlineImageView))));
         thresholdLabel.text = [NSString stringWithFormat:@"%.0f",[HomePageService sharedHomePageService].summaryModel.delayTagart.executeRateThreshold*100];
+        thresholdLabel.frame = CGRectMake(viewTrailing(thresholdImageView)-100, viewBotton(thresholdImageView),100, 20);
+
             
 
         
@@ -389,11 +394,11 @@
     NSInteger currentHour = [CommonFunction currentHour];
     CGFloat value = 0;
     for(FlightHourModel *model in _flightLargeDelayModel.hourExecuteRateList){
-        if([model.hour isEqualToString:@(currentHour-1).stringValue]){
+        if(model.hour.integerValue == @(currentHour-1).integerValue){
             value = model.ratio *100;
         }
     }
-    return [NSString stringWithFormat:@"%ld点:%ld%%",currentHour-1,(NSInteger)value];
+    return [NSString stringWithFormat:@"%ld点:%.1f%%",currentHour-1,value];
     
 }
 

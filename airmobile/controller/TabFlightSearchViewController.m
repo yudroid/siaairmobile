@@ -38,7 +38,7 @@
  *  @brief 查询按钮进行查询操作
  */
 - (void)seekButtonClick{
-    NSLog(@"%s",__func__);
+//    NSLog(@"%s",__func__);
 //    FlightViewController *flightVC = [[FlightViewController alloc]init];
 
     NSDictionary *conds;
@@ -61,11 +61,7 @@
                  @"search_endCity"    :self.arriveCity.cn?:@"",
                  @"start"             :@(0).stringValue,
                  @"length"            :@(20).stringValue};
-//        flightVC.outCity = self.outCity;
-//        flightVC.arriveCity = self.arriveCity;
     }
-//    flightVC.flightDate = self.fltDate;
-//    [self.navigationController pushViewController:flightVC animated:YES];
     [self loadMoreNetwork:conds];
 }
 
@@ -95,7 +91,7 @@
 
         }
     } failure:^(NSError *error) {
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
         [self stopNetWorking];
         [self showAnimationTitle:@"网络加载失败"];
     }];
@@ -108,7 +104,7 @@
     flightDetailVC.flightNo = flight.fNum;
     flightDetailVC.flightId = flight.id;
     flightDetailVC.flightType = flight.flightType;
-    flightDetailVC.isSpecial =  flight.special.boolValue;
+//    flightDetailVC.isSpecial =  flight.special.boolValue;
     [self.navigationController pushViewController:flightDetailVC animated:YES];
 
 }

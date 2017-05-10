@@ -272,7 +272,7 @@ forHeaderFooterViewReuseIdentifier:(NSString *)CONTACTPERSON_TABLECELLHRADER_IDE
 #pragma mark -searchBarDelegate
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    NSLog(@"search -text %@",searchText);
+//    NSLog(@"search -text %@",searchText);
 }
 -(void)initTableData
 {

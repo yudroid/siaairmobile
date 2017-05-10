@@ -59,7 +59,7 @@ static const NSString *ADDRESSBOOK_TABLECELL_IDENTIFIER         = @"ADDRESSBOOK_
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     //用[NSDate date]可以获取系统当前时间
     NSString *currentDateStr = [dateFormatter stringFromDate:[NSDate date]];
-    NSLog(@"%@",currentDateStr);
+//    NSLog(@"%@",currentDateStr);
 
     [self starNetWorking];
     [HttpsUtils getDutyTableByDay:currentDateStr success:^(NSArray *responseObj) {

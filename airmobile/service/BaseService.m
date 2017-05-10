@@ -51,7 +51,7 @@ typedef void  (^TimeBlock)(void);
 //    })];
 
 //    timer = [NSTimer scheduledTimerWithTimeInterval:30 invocation: repeats:YES]
-    _timer = [NSTimer scheduledTimerWithTimeInterval:300 target:self selector:@selector(timerFounction) userInfo:nil repeats:YES];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(timerFounction) userInfo:nil repeats:YES];
 
     timeblock = callBack;
 
@@ -66,7 +66,7 @@ typedef void  (^TimeBlock)(void);
 }
 
 -(void)dealloc{
-    NSLog(@"111");
+//    NSLog(@"111");
 }
 
 @end

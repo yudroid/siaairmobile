@@ -48,7 +48,7 @@ static const NSString *FLGHTDELAYS_TABLECELL_IDENTIFIER = @"FLGHTDELAYS_TABLECEL
     _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self
                                                                 refreshingAction:@selector(loadMoreNetwork)];
     
-    [self refreshData];
+
 }
 
 -(void)initTitle
@@ -64,7 +64,10 @@ static const NSString *FLGHTDELAYS_TABLECELL_IDENTIFIER = @"FLGHTDELAYS_TABLECEL
 
 }
 
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self refreshData];
+}
 
 #pragma mark - UITableViewDelegate UITableViewDataSource
 
@@ -93,6 +96,11 @@ static const NSString *FLGHTDELAYS_TABLECELL_IDENTIFIER = @"FLGHTDELAYS_TABLECEL
     cell.authorLabel.text = [NSString stringWithFormat:@"%@", model.createtime];
     cell.titleLabel.text = model.title;
     cell.read = (![model.readtime isEqualToString:@"<null>"]);
+     if([_type isEqualToString:@"FLIGHT"]){
+         cell.read = (![model.readtime isEqualToString:@"<null>"]);
+     }else{
+         cell.status = model.status;
+     }
     return  cell;
 }
 
@@ -106,6 +114,12 @@ static const NSString *FLGHTDELAYS_TABLECELL_IDENTIFIER = @"FLGHTDELAYS_TABLECEL
     [self.tabBarView setHasNewMessage:[PersistenceUtils unReadCount]];
     
     FlightDelaysDetailViewController *flightDelaysDetailVC = [[FlightDelaysDetailViewController alloc]initWithNibName:@"FlightDelaysDetailViewController" bundle:nil];
+    if(![_type isEqualToString:@"FLIGHT"]){
+        flightDelaysDetailVC.type = 1;
+    }else{
+        flightDelaysDetailVC.type = 0;
+    }
+    flightDelaysDetailVC.sysMessageModel = model;
     flightDelaysDetailVC.titleText = model.title;
     flightDelaysDetailVC.timeLabel.text = model.createtime;
     flightDelaysDetailVC.contentText = model.content;

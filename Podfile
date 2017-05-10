@@ -4,10 +4,6 @@
 platform :ios, '9.0'
 
 target 'airmobile' do
-  # Uncomment this line if you're using Swift or would like to use dynamic frameworks
-  # use_frameworks!
-
-  # Pods for airmobile
   pod 'AFNetworking', '~> 3.0'
   pod 'Toast', '~> 3.0'
   pod 'KSCrash', '~>1.1.1'

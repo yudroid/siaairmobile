@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class SafeguardModel;
-@class SpecialModel;
+@class DispatchModel;
 
 typedef NS_ENUM(NSUInteger, FlightDetailTableViewCellType) {
     FlightDetailTableViewCellTypeTypeDefault,
@@ -26,8 +25,8 @@ typedef NS_ENUM(NSUInteger, FlightDetailTableViewCellType) {
 @interface FlightDetailTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIButton *unusualButton;
-@property (nonatomic ,assign) FlightDetailTableViewCellType type;
-@property (nonatomic, strong)SafeguardModel *safeguardModel;
+//@property (nonatomic ,assign) FlightDetailTableViewCellType type;
+@property (nonatomic, strong)DispatchModel *dispatchModel;
 @property (nonatomic, assign) NSInteger indexRow;
 //@property (nonatomic, strong)SpecialModel *specialModel;
 

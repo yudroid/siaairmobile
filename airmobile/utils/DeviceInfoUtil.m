@@ -166,7 +166,7 @@
 + (double)lengthFitIp6andIp5WithLength:(double)length
 {
     if([DeviceInfoUtil IphoneVersions] == 5){
-        NSLog(@"------------iphone5-----------------");
+//        NSLog(@"------------iphone5-----------------");
         return length *[DeviceInfoUtil ip6Facto5];
     }
     return length;

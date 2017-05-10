@@ -14,6 +14,12 @@
 {
     if (self = [super init]) {
         if ([dictionary isKindOfClass:[NSDictionary class]]) {
+//            NSArray *allKeys = [dictionary allKeys];
+//            for (NSString *key in allKeys) {
+//                if ([[dictionary objectForKey:key] isKindOfClass:[NSNull class]]) {
+//
+//                }
+//            }
             [self setValuesForKeysWithDictionary:dictionary];
         }
     }

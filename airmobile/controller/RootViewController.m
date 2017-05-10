@@ -44,18 +44,27 @@
 
 - (void)titleViewAddTitleText:(NSString *)titleText
 {
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
-                                                                    20,
-                                                                    kScreenWidth,
-                                                                    44)];
-    titleLabel.text = titleText;
-    titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.font = [UIFont systemFontOfSize:17];
-    titleLabel.textColor = [CommonFunction colorFromHex:0XFFFFFFFF];
-    titleLabel.backgroundColor = [UIColor clearColor];
-    [self.titleView addSubview:titleLabel];
-}
+    NSInteger tag = 10101;
 
+    UILabel *titleLabel = [self.titleView viewWithTag:tag];
+    if (titleLabel == nil) {
+        titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(40,
+                                                               20,
+                                                               kScreenWidth-80,
+                                                               44)];
+        titleLabel.tag = tag;
+
+        titleLabel.textAlignment = NSTextAlignmentCenter;
+        titleLabel.font = [UIFont systemFontOfSize:17];
+        titleLabel.textColor = [CommonFunction colorFromHex:0XFFFFFFFF];
+        titleLabel.backgroundColor = [UIColor clearColor];
+        [self.titleView addSubview:titleLabel];
+
+    }
+    titleLabel.text = titleText;
+
+
+}
 - (UIButton *)titleViewAddBackBtn
 {
     UIButton *backBtn = [[UIButton alloc]initWithFrame:CGRectMake(0,

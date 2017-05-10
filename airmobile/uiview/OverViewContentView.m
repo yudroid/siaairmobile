@@ -30,6 +30,7 @@
     UILabel *currentStatus;     //小面积延误
     RoundProgressView   *progressRound; //圆
     UILabel *lowTimelabel;
+    UILabel *yesterDayLabel;    //昨日放行正常率
 }
 
 
@@ -221,6 +222,13 @@
                                      [ratioView contentHeight]);
         [self addSubview:ratioView];
 
+        yesterDayLabel = [[UILabel alloc]initWithFrame:CGRectMake(viewX(ratioView), viewBotton(ratioView), viewWidth(ratioView), 20)];
+//        yesterDayLabel.backgroundColor = [UIColor redColor];
+        yesterDayLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:12];
+        yesterDayLabel.adjustsFontSizeToFitWidth = YES;
+        yesterDayLabel.text = [NSString stringWithFormat:@"昨日%.1f%%",summaryModel.yesterdayReleaseRatio*100];
+        [self addSubview:yesterDayLabel];
+
         UIButton *ratioButton = [[UIButton alloc] initWithFrame:ratioView.frame];
         [ratioButton addTarget:self
                         action:@selector(showRatioView:)
@@ -283,25 +291,32 @@
 
         [lowView addSubview:lowTimelabel];
 
+
+        NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[summaryModel.aovTxt dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
         _noticeTextView                  = [[UITextView alloc] initWithFrame:CGRectMake(viewTrailing(lowTimelabel),
                                                                                        5,
-                                                                                       viewWidth(lowView)-156,
+                                                                                       viewWidth(lowView)-126,
                                                                                        viewHeight(lowView)-10)];
-        _noticeTextView.text             = summaryModel.aovTxt;
+        _noticeTextView.attributedText   = attrStr;
         _noticeTextView.textAlignment    = NSTextAlignmentCenter;
         _noticeTextView.font             = [UIFont systemFontOfSize:12];
         _noticeTextView.editable         = NO;
+//        _noticeTextView.backgroundColor = [UIColor redColor];
         [lowView addSubview:_noticeTextView];
 
-        UIImageView *lowImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
-        lowImageView.image = [UIImage imageNamed:@"Completed"];
-        lowImageView.center = CGPointMake(viewTrailing(_noticeTextView)+75/2, viewHeight(lowView)/2);
-        [lowView addSubview:lowImageView];
+//        UIImageView *lowImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+//        lowImageView.image = [UIImage imageNamed:@"Completed"];
+//        lowImageView.center = CGPointMake(viewTrailing(_noticeTextView)+75/2, viewHeight(lowView)/2);
+//        [lowView addSubview:lowImageView];
     }
     //添加刷新通知
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(loadData:)
                                                  name:@"SummaryInfo"
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(loadYesterdayData:)
+                                                 name:@"YesterdayNormalRatio"
                                                object:nil];
     return self;
 }
@@ -310,6 +325,9 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:@"SummaryInfo"
+                                                  object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:@"YesterdayNormalRatio"
                                                   object:nil];
 }
 
@@ -358,6 +376,12 @@
     return nil;
 }
 
+-(void)loadYesterdayData:(NSNotification *)notification
+{
+    SummaryModel *summaryModel = [HomePageService sharedHomePageService].summaryModel;
+    yesterDayLabel.text = [NSString stringWithFormat:@"昨日 %.1f%%",summaryModel.yesterdayReleaseRatio*100];
+}
+
 -(void) loadData:(NSNotification *)notification
 {
     SummaryModel *summaryModel = notification.object;
@@ -386,7 +410,6 @@
     [progressRound animationWithStrokeEnd:normalProportion
                          withProgressType:ProgreesTypeNormal];
 
-
     planView.bigLabel.text   = [NSString stringWithFormat:@"%d",  summaryModel.unfinishedCnt];      // 未执行
     finishView.bigLabel.text = [NSString stringWithFormat:@"%d",  summaryModel.finishedCnt];        //已经执行
     ratioView.bigLabel.text  = [NSString stringWithFormat:@"%.1f",[summaryModel.releaseRatio floatValue] *100];     //放行率
@@ -404,8 +427,8 @@
         currentStatus.textColor = [CommonFunction colorFromHex:0xff12d865];
     }
     lowTimelabel.text = summaryModel.flightDate;
-
-    _noticeTextView.text         = summaryModel.aovTxt;
+    NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[summaryModel.aovTxt dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+    _noticeTextView.attributedText     = attrStr;
 
 }
 

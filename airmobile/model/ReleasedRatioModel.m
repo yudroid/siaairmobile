@@ -20,4 +20,11 @@
     return self;
 }
 
+
+-(void)setHour:(NSString *)hour
+{
+    _hour = hour;
+    _time = hour;
+}
+
 @end

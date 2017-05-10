@@ -98,9 +98,17 @@
 
  @param chatId 聊天记录本地id
  */
-+(void)updateUnReadCountAndTime:(int)count chatid:(int)chatId;
++(void)updateUnReadCountAndTime:(int)count chatid:(int)chatId describe:(NSString *)describe;
 
 
+
+
+/**
+ 设置未读消息为0
+
+ @param chatid <#chatid description#>
+ */
++(void)updateRemoveUnReadCountWithChatid:(int)chatid;
 /**
  插入聊天消息到数据表中
 
@@ -236,4 +244,12 @@
 
 //清空消息
 +(void)delectMessage;
+
+
+/**
+ 消息确认
+
+ @param Msgid <#Msgid description#>
+ */
++(void)updateMessageSureWithMsgId:(NSString *)Msgid;
 @end

@@ -16,12 +16,14 @@
 #import "AddressBookViewController.h"
 #import "TodayDutyViewController.h"
 #import "DutyModel.h"
+#import "WillGoFlightViewController.h"
 #import "ProductionTargetViewController.h"
 #import "SingleMessageViewController.h"
 #import "WeatherAirportController.h"
 #import "OperationSituationViewController.h"
 #import "ReportViewController.h"
 #import "KnowledgeBaseViewController.h"
+#import "ContingencyAddressBookViewController.h"
 
 //#import <UMESDKKit/AirportFuctionWebViewController.h>
 #import <UMESDKKit/UMESDKApi.h>
@@ -84,7 +86,7 @@ static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDEN
 
     NSMutableArray *mutableArray = [NSMutableArray array];
     if ([CommonFunction hasFunction:FUNC_ADDRESS]) {
-        [mutableArray addObject:@{@"name":@"通讯录",@"image":@"AddressBook"}];
+        [mutableArray addObject:@{@"name":@"应急通讯录",@"image":@"AddressBook"}];
     }
     if ([CommonFunction hasFunction:FUNC_DUTYTABLE]) {
         [mutableArray addObject:@{@"name":@"值班表",@"image":@"WatchBill"}];
@@ -109,6 +111,8 @@ static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDEN
     }
     if([CommonFunction hasFunction:FUNC_YXJB]){
         [mutableArray addObject:@{@"name":@"运行简报",@"image":@"site_around"}];
+    }if ([CommonFunction hasFunction:FUNC_JJFXHB]) {
+        [mutableArray addObject:@{@"name":@"即将放行航班",@"image":@"site_around"}];
     }
     _tableArray = [mutableArray copy];
 
@@ -150,10 +154,11 @@ static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDEN
         NightShiftRoomViewController *nightShiftRoomVC = [[NightShiftRoomViewController alloc] initWithNibName:@"NightShiftRoomViewController" bundle:nil];
         [self.navigationController pushViewController:nightShiftRoomVC
                                              animated:YES];
-    }else if ([name isEqualToString:@"通讯录"]){
-        AddressBookViewController *addressBookVC = [[AddressBookViewController alloc] initWithNibName:@"AddressBookViewController"
-                                                                                               bundle:nil];
-        [self.navigationController pushViewController:addressBookVC
+    }else if ([name isEqualToString:@"应急通讯录"]){
+//        AddressBookViewController *addressBookVC = [[AddressBookViewController alloc] initWithNibName:@"AddressBookViewController"
+//                                                                                               bundle:nil];
+        ContingencyAddressBookViewController *contingencyAddressBookVC = [[ContingencyAddressBookViewController alloc]initWithNibName:@"ContingencyAddressBookViewController" bundle:nil];
+        [self.navigationController pushViewController:contingencyAddressBookVC
                                              animated:YES];
     }else if ([name isEqualToString:@"当日值班表"]){
         TodayDutyViewController *todayDutyVC = [[TodayDutyViewController alloc] initWithNibName:@"TodayDutyViewController"
@@ -198,12 +203,15 @@ static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDEN
     }else if([name isEqualToString:@"运行简报"]){
         ReportViewController *reportVC = [[ReportViewController alloc]initWithNibName:@"ReportViewController" bundle:nil];
         [self.navigationController pushViewController:reportVC animated:YES];
+    }else if([name isEqualToString:@"即将放行航班"]){
+        WillGoFlightViewController *willGoFlightVC = [[WillGoFlightViewController alloc]initWithNibName:@"WillGoFlightViewController" bundle:nil];
+        [self.navigationController pushViewController:willGoFlightVC animated:YES];
     }
 }
 
 
 -(void)callBackWithResponse:(UMEBaseResponse *) response{
-    NSLog(@"back ----%@",response);
+//    NSLog(@"back ----%@",response);
 }
 
 

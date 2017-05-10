@@ -9,12 +9,13 @@
 #import "HttpFileDown.h"
 #import <AFNetworking.h>
 
-//static NSString* baseUri = @"http://192.168.163.139:8080";
+//static NSString* baseUri = @"http://192.168.163.132:8080";
 static NSString* baseUri = @"http://219.134.93.113:8087";
 
 
 static NSString *zsk = @"/acs/dms/KB/download?fileName=";//知识库
 static NSString *yxjb = @"/acs/ath/user/download?fileName=../";//运行简报
+static NSString *chat = @"/acs/um/download?file=";//聊天
 
 @interface HttpFileDown ()
 
@@ -43,7 +44,7 @@ static NSString *yxjb = @"/acs/ath/user/download?fileName=../";//运行简报
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
 
 
-    NSLog(@"请求：%@",request);
+//    NSLog(@"请求：%@",request);
     //下载Task操作
     _downloadTask = [manager downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
         downloadProgressBlock(downloadProgress);
@@ -79,8 +80,6 @@ static NSString *yxjb = @"/acs/ath/user/download?fileName=../";//运行简报
         completionHandler(response,filePath,error);
     }];
     [_downloadTask resume];
-
-
 }
 
 //知识库
@@ -91,7 +90,7 @@ static NSString *yxjb = @"/acs/ath/user/download?fileName=../";//运行简报
              completionHandler:(void (^)(NSURLResponse *, NSURL *, NSError *))completionHandler
 {
     httpPath =  [httpPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",baseUri,zsk,[httpPath stringByReplacingOccurrencesOfString:@"-" withString:@"/"]]];
+    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",baseUri,zsk,[httpPath stringByReplacingOccurrencesOfString:@"--" withString:@"/"]]];
     [self downFileWithURL:URL
                  Progress:downloadProgressBlock
               destination:destination completionHandler:completionHandler];
@@ -106,11 +105,24 @@ static NSString *yxjb = @"/acs/ath/user/download?fileName=../";//运行简报
                completionHandler:(void (^)(NSURLResponse *response, NSURL *filePath, NSError *error))completionHandler
 {
 
-    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",baseUri,yxjb,[httpPath stringByReplacingOccurrencesOfString:@"-" withString:@"/"]]];
+    httpPath =  [httpPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",baseUri,yxjb,[httpPath stringByReplacingOccurrencesOfString:@"--" withString:@"/"]]];
     [self downFileWithURL:URL
                  Progress:downloadProgressBlock
               destination:destination completionHandler:completionHandler];
 }
 
+-(void)chatDownFileWithHttpPath:(NSString *)httpPath
+                       Progress:(void (^)(NSProgress *downloadProgress)) downloadProgressBlock
+                    destination:(NSURL * (^)(NSURL *targetPath, NSURLResponse *response))destination
+              completionHandler:(void (^)(NSURLResponse *response, NSURL *filePath, NSError *error))completionHandler
+{
+    httpPath =  [httpPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@&fileName=%@",baseUri,chat,httpPath,[[httpPath componentsSeparatedByString:@"/"]lastObject]]];
+    [self downFileWithURL:URL
+                 Progress:downloadProgressBlock
+              destination:destination completionHandler:completionHandler];
+
+}
 
 @end

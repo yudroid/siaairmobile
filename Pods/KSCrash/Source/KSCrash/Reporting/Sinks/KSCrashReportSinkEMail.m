@@ -321,7 +321,7 @@
     for(NSData* reportData in reports)
     {
         NSString* report = [[NSString alloc] initWithData:[reportData gunzippedWithError:nil] encoding:NSUTF8StringEncoding];
-        NSLog(@"Report\n%@", report);
+//        NSLog(@"Report\n%@", report);
     }
     kscrash_i_callCompletion(onCompletion, reports, NO,
                              [NSError errorWithDomain:[[self class] description]

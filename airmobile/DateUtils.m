@@ -24,7 +24,7 @@
     NSTimeZone *timeZone=[NSTimeZone timeZoneWithAbbreviation:@"UTC"];;
     [formatter setTimeZone:timeZone];
     formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
-    NSLog(@"%@",[formatter stringFromDate:date]);
+//    NSLog(@"%@",[formatter stringFromDate:date]);
     return [formatter stringFromDate:date];
 }
 

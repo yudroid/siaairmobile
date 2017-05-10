@@ -273,6 +273,7 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
         }
          cell.headImageView.image = [UIImage imageNamed:@"MessageHeader"];
         cell.nameLabel.text = [dic objectForKey:@"name"];
+        cell.unRead = [[dic objectForKey:@"unread"] integerValue];
         cell.messageLabel.text = [dic objectForKey:@"describe"];
         cell.timeLable.text = [[dic objectForKey:@"time"] stringByReplacingOccurrencesOfString:@" "
                                                                                     withString:@"\n"];
@@ -286,7 +287,6 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if(indexPath.row == 0){
         [self showFlightEventView];
-
     }else if(indexPath.row ==1){
         [self showCommendMsgView];
     }else{
@@ -372,7 +372,7 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    NSLog(@"%s",__func__);
+//    NSLog(@"%s",__func__);
     [MessageService sharedMessageService].chatListDelegate = self;
     [self loadChatList:0 num:1000];
 }

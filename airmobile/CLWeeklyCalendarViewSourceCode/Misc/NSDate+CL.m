@@ -49,7 +49,7 @@
     //获取当前设备语言
     NSArray *appLanguages = [[NSUserDefaults standardUserDefaults] objectForKey:@"AppleLanguages"];
     NSString *languageName = [appLanguages objectAtIndex:0];
-    NSLog(@"%@",languageName);
+//    NSLog(@"%@",languageName);
     NSString *weekShortString = [shortDayOfWeekFormatter stringFromDate:self];
     if ([languageName containsString:@"zh"]) {
         weekShortString = [self ENWeekShortStringToCN:weekShortString];

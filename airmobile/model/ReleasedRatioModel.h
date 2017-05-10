@@ -12,6 +12,7 @@
 @interface ReleasedRatioModel : RootModel
 
 @property(nonatomic,copy) NSString *time;
+@property(nonatomic,copy) NSString *hour;
 @property(nonatomic,assign) CGFloat ratio;
 @property(nonatomic,assign) int realCount;
 @property(nonatomic,assign) int planCount;

@@ -221,7 +221,7 @@
  *  @brief 日期点击事件
  */
 - (void)chooseDateButtonClick{
-    NSLog(@"%s",__func__);
+//    NSLog(@"%s",__func__);
     CalendarViewController *calVC = [[CalendarViewController alloc]init];
     calVC.resetDate = ^(NSDate *date){
 //        NSInteger day = [[DateUtils convertToString:date format:@"dd"] integerValue];
@@ -230,7 +230,7 @@
         _fltDate = [DateUtils convertToString:date format:@"yyyy-MM-dd"];
         _dateLabel.attributedText = [self stringChangeAttributedString:[DateUtils convertToString:date format:@"MM"] day:[DateUtils convertToString:date format:@"dd"]];
 
-        NSLog(@"当前选中日期%@",_fltDate);
+//        NSLog(@"当前选中日期%@",_fltDate);
     };
     [self.navigationController pushViewController:calVC animated:true];
 }
@@ -251,7 +251,7 @@
  *  @brief 查询按钮进行查询操作
  */
 - (void)seekButtonClick{
-    NSLog(@"%s",__func__);
+//    NSLog(@"%s",__func__);
 //    FlightConcernListViewController *flightConcernDetailVC = [[FlightConcernListViewController alloc]init];
 //    flightConcernDetailVC.date = _fltDate;
 //    if(_segmentedControl.selectedSegmentIndex == 0){
@@ -302,7 +302,7 @@
         }else{
             self.outCity = airport;
         }
-        NSLog(@"起飞航站：%@ 到达航站:%@",self.outCity.cn,self.arriveCity.cn);
+//        NSLog(@"起飞航站：%@ 到达航站:%@",self.outCity.cn,self.arriveCity.cn);
     };
     [self.navigationController pushViewController:cityVC animated:YES];
 

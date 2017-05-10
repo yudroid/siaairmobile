@@ -103,7 +103,7 @@
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     NSInteger page = scrollView.contentOffset.x/kScreenWidth;
-    NSLog(@"%ld",(long)page);
+//    NSLog(@"%ld",(long)page);
     [pageControl setCurrentPage:page];
     if (page == 0)
     {

@@ -10,7 +10,7 @@
 #import "TenDayRatioView.h"
 #import "EightMonthRatioView.h"
 @class ReleasedRatioModel;
-
+@class WeekRatioView;
 
 @interface ReleasedRatioViewController : RootViewController
 {
@@ -18,7 +18,7 @@
     UIView *eightMonthImageView;
     TenDayRatioView *tenDayRatioView;
     EightMonthRatioView *eightMonthRatioView;
-    
+    WeekRatioView *weekRatioView;
 }
 
 @end

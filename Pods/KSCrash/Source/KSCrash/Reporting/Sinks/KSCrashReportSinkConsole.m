@@ -51,7 +51,7 @@
     int i = 0;
     for(NSString* report in reports)
     {
-        NSLog(@"Report %d:\n%@", ++i, report);
+//        NSLog(@"Report %d:\n%@", ++i, report);
     }
 
     kscrash_i_callCompletion(onCompletion, reports, YES, nil);

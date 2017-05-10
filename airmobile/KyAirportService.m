@@ -36,7 +36,7 @@ singleton_implementation(KyAirportService);
             [PersistenceUtils executeInsertBatch:sqlArray];
         }];
     } failure:^(NSError *error) {
-        NSLog(@"%@",error.localizedFailureReason);
+//        NSLog(@"%@",error.localizedFailureReason);
     }];
 }
 -(void)cacheAirportSucess:(void (^)())ssuccess failure:(void (^)())ffailure{
@@ -62,7 +62,7 @@ singleton_implementation(KyAirportService);
 
         }];
     } failure:^(NSError *error) {
-        NSLog(@"%@",error.localizedFailureReason);
+//        NSLog(@"%@",error.localizedFailureReason);
         [ThreadUtils dispatchMain:^{
             ffailure();
         }];
@@ -96,7 +96,7 @@ singleton_implementation(KyAirportService);
             [airport setValuesForKeysWithDictionary:dic];
         }
         @catch (NSException *exception) {
-            NSLog(@"%@",exception);
+//            NSLog(@"%@",exception);
         }
         @finally {
             

@@ -41,9 +41,9 @@
     _nameLabel.text = model.event;
     CGSize size = [model.event sizeWithWidth:kScreenWidth - 32 font:[UIFont fontWithName:@"PingFang SC" size:15]];
     _nameLabelHeight.constant = size.height;
-    size = [model.content sizeWithWidth:kScreenWidth - 32 font:[UIFont fontWithName:@"PingFang SC" size:12]];
-    _contentLabelHeight.constant = size.height;
-    _contentLabel.text = model.content;
+//    size = [model.content sizeWithWidth:kScreenWidth - 32 font:[UIFont fontWithName:@"PingFang SC" size:12]];
+//    _contentLabelHeight.constant = size.height;
+    _contentLabel.text = abnormalModel.memo;
 }
 
 @end

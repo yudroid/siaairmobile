@@ -154,6 +154,13 @@
         index ++;
     }
 }
+-(void)updateLastYearReleased:(NSArray *)data
+{
+    if (![data isKindOfClass:[NSArray class]]) {
+        return;
+    }
+    _lastYearReleased = [data DictionaryToModel:[ReleasedRatioModel class]];
+}
 
 -(void)updateReleaseRatioThreshold:(NSString *)data
 {
@@ -167,19 +174,57 @@
 {
     if([self isNull:data])
         return;
-    _flightDate     =   [data objectForKey:@"flightDate"];
-    _userName       =   [data objectForKey:@"userName"];
-    _allCnt         =   [[data objectForKey:@"allCnt"] intValue];
-    _finishedCnt    =   [[data objectForKey:@"finishedCnt"] intValue];
-    _unfinishedCnt  =   [[data objectForKey:@"unfinishedCnt"] intValue];
-    _releaseRatio   =   [data objectForKey:@"releaseRatio"];
-    _warning        =   [data objectForKey:@"warning"];
+
+    _planTotal=((NSNumber *)[data objectForKey:@"planTotal"]).integerValue;
+    _planIn=((NSNumber *)[data objectForKey:@"planIn"]).integerValue;//计划进港总数
+    _planOut=((NSNumber *)[data objectForKey:@"planOut"]).integerValue;//计划出港总数
+    //进港
+    _inFinished=((NSNumber *)[data objectForKey:@"inFinished"]).integerValue;//进港已执行数
+    _inNoFinished=((NSNumber *)[data objectForKey:@"inNoFinished"]).integerValue;//进港未执行数
+    _inCancel=((NSNumber *)[data objectForKey:@"inCancel"]).integerValue;//进港取消数
+    _inFinishedDelay=((NSNumber *)[data objectForKey:@"inFinishedDelay"]).integerValue;//进港已执行延误数
+    _inNoFinishedDelay=((NSNumber *)[data objectForKey:@"inNoFinishedDelay"]).integerValue;//进港未执行延误数
+    _inDelay=((NSNumber *)[data objectForKey:@"inDelay"]).integerValue;//进港延误数
+    //出港
+    _outFinished=((NSNumber *)[data objectForKey:@"outFinished"]).integerValue;//出港已执行数
+    _outNoFinished=((NSNumber *)[data objectForKey:@"outNoFinished"]).integerValue;//出港未执行数
+    _outCancel=((NSNumber *)[data objectForKey:@"outCancel"]).integerValue;//出港取消数
+    _outFinishedDelay=((NSNumber *)[data objectForKey:@"outFinishedDelay"]).integerValue;//出港已执行延误数
+    _outNoFinishedDelay=((NSNumber *)[data objectForKey:@"outNoFinishedDelay"]).integerValue;//出港未执行延误数
+    _outDelay=((NSNumber *)[data objectForKey:@"outDelay"]).integerValue;//出港延误数
+//
+    _flightDate=[data objectForKey:@"flightDate"];//当天日期 年月日 格式为2016-09-08
+    _leaderUserName=[data objectForKey:@"leaderUserName"];//值班领导名称
+    _userName=[data objectForKey:@"userName"];//运行总监名称
+    _allCnt=((NSNumber *)[data objectForKey:@"allCnt"]).integerValue; //当天所有航班数
+    _finishedCnt=((NSNumber *)[data objectForKey:@"finishedCnt"]).integerValue;//已执行航班数
+    _unfinishedCnt=((NSNumber *)[data objectForKey:@"unfinishedCnt"]).integerValue;//未执行航班数
+    _releaseRatio=[data objectForKey:@"releaseRatio"];//放行正常率
+    _warning=[data objectForKey:@"warning"];//航班正常性判定，分正常、蓝色IV级（小面积）、黄色Ⅲ级(一般)、橙色Ⅱ级(重大)、红色 Ⅰ级(严重)
+    _releaseSpeed=((NSNumber *)[data objectForKey:@"releaseSpeed"]).floatValue;//出港放行速率
+    _inSpeed=((NSNumber *)[data objectForKey:@"inSpeed"]).floatValue;//进港放行速率
+    _yesterdayReleaseRatio=((NSNumber *)[data objectForKey:@"yesterdayReleaseRatio"]).floatValue;//昨日放行正常率
+    _nowMonthAvgRatio=((NSNumber *)[data objectForKey:@"nowMonthAvgRatio"]).floatValue;//本月放行正常率
+
+
     if ([[data objectForKey:@"aovTxt"] isKindOfClass:[NSNull class]]) {
         _aovTxt     =   @"";
     }else{
         _aovTxt     =   [data objectForKey:@"aovTxt"];
     }
 
+}
+-(void)updateweekReleased:(NSArray *)data
+{
+    if (![data isKindOfClass:[NSArray class]]) {
+        return;
+    }
+    _weekReleased = [data DictionaryToModel:[ReleasedRatioModel class]];
+}
+
+-(void)updatereleaseRatioThreshold2:(NSDictionary *)data
+{
+    _releaseRatioThreshold2 = ((NSNumber *)[data objectForKey:@"min"]).floatValue;
 }
 
 -(void)updateFlightDelayTarget:(NSDictionary *)data

@@ -14,4 +14,6 @@
 
 @property (nonatomic, assign) BOOL read;
 
+@property (nonatomic, strong) NSString *status;//0 为航班事件消息  1为重要消息
+
 @end

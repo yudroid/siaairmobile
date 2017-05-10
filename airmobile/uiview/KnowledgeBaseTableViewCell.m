@@ -37,7 +37,7 @@
 {
     _knowledgeBaseModel = knowledgeBaseModel;
     _titleLabel.text = knowledgeBaseModel.title?:@"";
-    _contentLabel.text = knowledgeBaseModel.memo?:@"";
+    _contentLabel.text = knowledgeBaseModel.typeName?:@" ";
     _userNameLabel.text = knowledgeBaseModel.userName?:@"";
     _timeLabel.text = knowledgeBaseModel.CreateTime?:@"";
     if (knowledgeBaseModel.httpPath.length > 0) {

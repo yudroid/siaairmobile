@@ -32,25 +32,32 @@ NSString * const synChatInfoListUrl         = @"/acs/um/sl";// 同步用户消�
 NSString * const synGroupChatInfoListUrl    = @"/acs/wm/chatlst";// 同步工作组列表
 NSString * const getUserChatListUrl         = @"/acs/um/cr";// 获取用户消息
 NSString * const getGroupChatListUrl        = @"/acs/wm/lst";// 获取工作组消息
+NSString * const messageSure                 = @"/acs/am/sure";// 获取工作组消息
 //NSString * const 
 NSString * const userlistUrl                = @"/acs/wacs/user/SelectAllDeptListForIphone";
 NSString * const groupSaveUrl               = @"/acs/wacs/group/save";
 NSString * const flightListUrl              = @"/acs/m/flightList2";// 航班列表
 NSString * const flightDetailUrl            = @"/acs/m/flightDetailTwo";// 航班详情列表
-NSString * const dispatchDetailsUrl         = @"/acs/wacs/flightDetail/queryFlightDispatchDetailForIphone";// 航班保障环节列表
-NSString * const specialDetailsUrl          = @"/acs/wacs/MobileSpecial/queryMobileSpecialList";// 特殊保障列表
+//NSString * const dispatchDetailsUrl         = @"/acs/wacs/flightDetail/queryFlightDispatchDetailForIphone";// 航班保障环节列表
+//NSString * const specialDetailsUrl          = @"/acs/wacs/MobileSpecial/queryMobileSpecialList";// 特殊保障列表
 NSString * const dispatchAbnsUrl            = @"/acs/m/getExceptionByFlightDispatchId";//获取异常历史列表
 NSString * const saveDispatchAbnStart       = @"/acs/wacs/MobileSpecial/MobileSaveSpecialABNDispatch";//上报开始(航班ID/环节ID/用户ID/事件ID/要求/是否是特殊航班);
 NSString * const saveDispatchAbnEnd         = @"/acs/wacs/MobileSpecial/MobileUpdateSpecialABNDispatchCompelete";//上报结束(异常ID/用户ID);
+NSString * const queryDispatchType          = @"/acs/wacs/MobileSpecial/queryDispatchType";
 NSString * const saveDispatchNormal         = @"/acs/wacs/MobileSpecial/MobileSaveSpecialNormalDispatch";//特殊保障上报正常(航班id/环节ID/用户ID),返回结果是时间（时：分）
+NSString * const guaranteeNormalTime        = @"/acs/wacs/MobileSpecial/UpdateMobileGuaranteeNormalTime";
+NSString * const queryAllDispatch           = @"/acs/wacs/MobileSpecial/queryAllDispatch";//宝藏环节列表
+NSString * const updateDispatchType         = @"/acs/wacs/MobileSpecial/updateDispatchType";
 // 首页
-NSString * const ovSummaryUrl               = @"/acs/ov/summary";
+NSString * const ovSummaryUrl               = @"/acs/ov/homeInfo";
 NSString * const ovFltFDRTHreshold          = @"/acs/ov/fltFDRThreshold";
 NSString * const ovFltFMRTHreshold          = @"/acs/ov/fltFMRThreshold";
 NSString * const ovFltFDRlUrl               = @"/acs/ov/fltFDR";
 NSString * const ovFltFMRUrl                = @"/acs/ov/fltFMR";
 NSString * const ovFltLDUrl                 = @"/acs/ov/fltLD";
+NSString * const FltFWR                     = @"/acs/ov/FltFWR";
 NSString * const ovFltreleaseRatioThreshold = @"/acs/ov/releaseRatioThreshold";//获取放行正常率阈值
+NSString * const thresholdReleaseDatio2 = @"/acs/ov/threshold/THRESHOLD_RELEASE_RATIO2";
 NSString * const fltDepFltTarget            = @"/acs/bmap/flt/depFltTarget";//航班-出港小时分布阈值
 NSString * const arrFltTarget               = @"/acs/bmap/flt/arrFltTarget";
 NSString * const planArrFltPerHourUrl       = @"/acs/bmap/flt/arrFltPerHour";
@@ -73,10 +80,14 @@ NSString * const peakPnsDaysUrl             = @"/acs/bmap/psn/peakPnsDays";
 NSString * const craftSeatTakeUpInfoUrl     = @"/acs/bmap/rs/craftSeatTakeUpInfo";
 NSString * const willCraftSeatTakeUpUrl     = @"/acs/bmap//rs/willCraftSeatTakeUp";
 NSString * const craftSeatTypeTakeUpSortUrl = @"/acs/bmap/rs/craftSeatTypeTakeUpSort";
+NSString * const YesterdayNormalRatio       = @"/acs/m/getYesterdayNormalRatio";//昨日放行正常率
+NSString * const lastYearFltFMR             = @"/acs/ov/lastYearFltFMR";
 // 功能
 NSString * const dutyTableByDayUrl          = @"/acs/dms/airportScheduling/getDutyBySpeDay";// 员工值班表，按天的
+NSString * const queryMobileEmergency       = @"/acs/m/queryMobileEmergency";//应急通讯录
 NSString * const mobileKBList               =@"/acs/dms/KB/mobileKBList";//知识库
 NSString * const phoneRecordUrl             = @"/acs/wacs/user/SelectAllDeptListForIphone";// 通讯录
+NSString * const flyoutList                 = @"/acs/wacs/flyout/list";
 // 我的
 NSString * const signInUrl                  = @"/acs/m/signIn";//签到
 NSString * const signOutUrl                 = @"/acs/m/signOut";//签退
@@ -126,7 +137,7 @@ NSString * const mobileLog                  = @"/acs/dms/log/mobileLog";//获取
  */
 + (void) addLog:(NSString*) logs type:(NSString*) logType{
     
-     NSLog(@"%@",logs);
+//     NSLog(@"%@",logs);
 //    @try {
 //        if ([StringUtils isNullOrEmpty:logs]) {
 //            return;
@@ -342,16 +353,45 @@ NSString * const mobileLog                  = @"/acs/dms/log/mobileLog";//获取
     } failure:nil];
 }
 
+//重要消息确认
++(void)messageSureWithMsgId:(NSString *)msgId
+                   success:(void(^)(id))success
+                   failure:(void (^)(NSError *))failue
+{
+    NSString *temp = [NSString stringWithFormat:@"%@/%@",messageSure,msgId];
+    [HttpsUtils getString:temp params:nil success:^(id responseObj) {
+        success(responseObj);
+    } failure:nil];
+}
 #pragma mark 航班 列表查询 航班明细 保障环节列表 重点保障环节列表 环节异常记录列表 报告正常 报告异常开始结束
 
 +(void)queryFlightList:(NSDictionary *)conditions success:(void(^)(id))success failure:(void (^)(NSError *))failue
 {
-
     [HttpsUtils post:flightListUrl params:conditions success:^(id responseObj) {
         if(success){
             success(responseObj);
         }
     } failure:failue];
+}
+
++(void)guaranteeNormalTimeWithUserId:(NSString *)userId
+                          normalTime:(NSString *)normalTime
+                            flightId:(NSString *)flightId
+                          dispatchId:(NSString *)dispatchId
+                                flag:(NSString *)flag
+                             success:(void (^)(id))success failure:(void (^)(NSError *))failue
+{
+//    @"user":@(appdelete.userInfoModel.id),
+//    @"normalTime":@"",
+//    @"flightId":@(safefuardModel.fid),
+//    @"@":@(safefuardModel.id)
+     NSString *temp = [NSString stringWithFormat:@"%@?user=%@&normalTime=%@&flightId=%@&dispatchId=%@&flag=%@",guaranteeNormalTime,userId,normalTime,flightId,dispatchId,flag];
+    [HttpsUtils get:temp params:nil success:^(id responseObj) {
+        if(success){
+            success(responseObj);
+        }
+    } failure:failue];
+
 }
 
 +(void)getFlightDetail:(int)flightId success:(void (^)(id))success failure:(void (^)(id))failure
@@ -364,20 +404,32 @@ NSString * const mobileLog                  = @"/acs/dms/log/mobileLog";//获取
     } failure:failure];
 }
 
-+(void)getDispatchDetail:(int)flightId success:(void (^)(id))success failure:(void (^)(id))failure
-{
-//    NSString *temp = [NSString stringWithFormat:@"%@?flightId=%i",dispatchDetailsUrl,flightId];
-    NSString *temp = [NSString stringWithFormat:@"%@/%i",dispatchDetailsUrl,flightId];
-    [HttpsUtils get:temp params:nil success:^(id responseObj) {
-        if(success){
-            success(responseObj);
-        }
-    } failure:failure];
-}
+//+(void)getDispatchDetail:(int)flightId success:(void (^)(id))success failure:(void (^)(id))failure
+//{
+////    NSString *temp = [NSString stringWithFormat:@"%@?flightId=%i",dispatchDetailsUrl,flightId];
+//    NSString *temp = [NSString stringWithFormat:@"%@/%i",dispatchDetailsUrl,flightId];
+//    [HttpsUtils get:temp params:nil success:^(id responseObj) {
+//        if(success){
+//            success(responseObj);
+//        }
+//    } failure:failure];
+//}
 
-+(void)getSpecialDetail:(int)flightId success:(void (^)(id))success failure:(void (^)(id))failure
+//+(void)getSpecialDetail:(int)flightId success:(void (^)(id))success failure:(void (^)(id))failure
+//{
+//    NSString *temp = [NSString stringWithFormat:@"%@/%i",specialDetailsUrl,flightId];
+//    [HttpsUtils get:temp params:nil success:^(id responseObj) {
+//        if(success){
+//            success(responseObj);
+//        }
+//    } failure:failure];
+//}
+
++(void)queryAllDispatchWithFlightId:(NSString *)flightId
+                             userId:(NSString *)userId
+                            success:(void (^)(id))success failure:(void (^)(id))failure
 {
-    NSString *temp = [NSString stringWithFormat:@"%@/%i",specialDetailsUrl,flightId];
+    NSString *temp = [NSString stringWithFormat:@"%@?flightId=%@&user=%@",queryAllDispatch,flightId,userId];
     [HttpsUtils get:temp params:nil success:^(id responseObj) {
         if(success){
             success(responseObj);
@@ -410,9 +462,13 @@ NSString * const mobileLog                  = @"/acs/dms/log/mobileLog";//获取
  @param success <#success description#>
  @param failure <#failure description#>
  */
-+(void)saveDispatchNormal:(int)flightId dispatchId:(int)dispatchId userId:(int)userId success:(void (^)(id))success failure:(void (^)(id))failure
++(void)saveDispatchNormal:(int)flightId
+               dispatchId:(int)dispatchId
+                   userId:(int)userId
+                     date:(NSString *)date
+                  success:(void (^)(id))success failure:(void (^)(id))failure
 {
-    NSString *temp = [NSString stringWithFormat:@"%@/%i/%i/%i",saveDispatchNormal,flightId,dispatchId,userId];
+    NSString *temp = [NSString stringWithFormat:@"%@?userID=%i&normalTime=%@&flightId=%i&&dispatchId=%i",saveDispatchNormal,userId,date,flightId,dispatchId];
     [HttpsUtils getString:temp params:nil success:^(id responseObj) {
         if(success){
             success(responseObj);
@@ -433,14 +489,24 @@ NSString * const mobileLog                  = @"/acs/dms/log/mobileLog";//获取
  @param success <#success description#>
  @param failure <#failure description#>
  */
-+(void)saveDispatchAbnStart:(int)flightId dispatchId:(int)dispatchId userId:(int)userId eventId:(int)eventId memo:(NSString *)memo flag:(int)flag imgPath:(NSString *)imgPath success:(void (^)(id))success failure:(void (^)(id))failure
++(void)saveDispatchAbnStart:(int)flightId
+                 dispatchId:(int)dispatchId
+                     userId:(int)userId
+                    eventId:(int)eventId
+                       memo:(NSString *)memo
+                       flag:(NSString *)flag
+                  arrveTime:(NSString *)arrveTime
+                    imgPath:(NSString *)imgPath
+                    success:(void (^)(id))success
+                    failure:(void (^)(id))failure
 {
     NSDictionary *dic = @{@"flightId":@(flightId),
                           @"dispatchId":@(dispatchId),
                           @"userId":@(userId),
                           @"eventId":@(eventId),
                           @"memo":memo,
-                          @"flag":@(flag),
+                          @"arriveTime":arrveTime,
+                          @"flag":flag,
                           @"imagePath":imgPath};
 
     [HttpsUtils postString:saveDispatchAbnStart params:dic
@@ -468,6 +534,8 @@ NSString * const mobileLog                  = @"/acs/dms/log/mobileLog";//获取
         }
     } failure:failure];
 }
+
+
 
 #pragma mark 首页摘要信息、小时分布、放行正常率、航延关键指标
 /**
@@ -504,7 +572,15 @@ NSString * const mobileLog                  = @"/acs/dms/log/mobileLog";//获取
                   } failure:failure];
 }
 
-
++(void)getThresholdReleaseDatio2Success:(void (^)(id))success failure:(void (^)(id))failure
+{
+    [HttpsUtils get:thresholdReleaseDatio2 params:nil
+                  success:^(id responseObj) {
+                      if(success){
+                          success(responseObj);
+                      }
+                  } failure:failure];
+}
 
 
 /**
@@ -587,6 +663,31 @@ NSString * const mobileLog                  = @"/acs/dms/log/mobileLog";//获取
 
 
 /**
+ 去年12月放行率
+
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)getlastYearFltFMRWithSuccess:(void (^)(id))success failure:(void (^)(id))failure
+{
+    [HttpsUtils get:lastYearFltFMR params:nil success:^(id responseObj) {
+        if(success){
+            success(responseObj);
+        }
+    } failure:failure];
+}
+
++(void)getFltFWRWithSuccess:(void (^)(id))success failure:(void (^)(id))failure
+{
+    [HttpsUtils get:FltFWR params:nil success:^(id responseObj) {
+        if(success){
+            success(responseObj);
+        }
+    } failure:failure];
+
+}
+
+/**
  计划进港航班小时分布 /flt/planArrFltPerHour
  
  @param date <#date description#>
@@ -650,6 +751,22 @@ NSString * const mobileLog                  = @"/acs/dms/log/mobileLog";//获取
             success(responseObj);
         }
     } failure:failure];
+}
+
++(void)getYesterdayNormalRatioSuccess:(void (^)(id))success failure:(void (^)(id))failure
+{
+//    [HttpsUtils get:YesterdayNormalRatio params:nil success:^(id responseObj) {
+//        if(success){
+//            success(responseObj);
+//        }
+//    } failure:failure];
+
+    [HttpsUtils getString:YesterdayNormalRatio params:nil success:^(id responseObj) {
+        if(success){
+            success(responseObj);
+        }
+    } failure:failure];
+
 }
 
 #pragma mark 首页航班汇总、异常原因分类、延误时长、小时分布
@@ -987,6 +1104,22 @@ NSString * const mobileLog                  = @"/acs/dms/log/mobileLog";//获取
     } failure:failure];
 }
 
+
+/**
+ 即将起飞航班
+
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)getflyoutList:(void (^)(id))success failure:(void (^)(id))failure
+{
+    [HttpsUtils get:flyoutList params:nil success:^(id responseObj) {
+        if(success){
+            success(responseObj);
+        }
+    } failure:failure];
+}
+
 #pragma mark -生产指标
 
 /**
@@ -1250,10 +1383,6 @@ NSString * const mobileLog                  = @"/acs/dms/log/mobileLog";//获取
 }
 
 
-
-
-
-
 /**
  加载基础数据
  
@@ -1421,5 +1550,51 @@ NSString * const mobileLog                  = @"/acs/dms/log/mobileLog";//获取
             success(responseObj);
         }
     } failure:failure];
+}
+
++(void)queryDispatchTypeWithUserid:(NSString *)userid
+                            Sucess:(void (^)(id))success
+                           failure:(void (^)(NSError *))failure
+{
+    NSString *temp = [NSString stringWithFormat:@"%@?user=%@",queryDispatchType,userid];
+    [HttpsUtils get:temp params:nil success:^(id responseObj) {
+        if (success) {
+            success(responseObj);
+        }
+    } failure:failure];
+}
+
++(void)updateDispatchTypeWithDispathId:(NSString *)dispatchId
+                           flagSpecial:(NSString *)flagSpecial
+                               flagSee:(NSString *)flagSee
+                                Sucess:(void (^)(id))success
+                               failure:(void (^)(NSError *))failure
+{
+    NSString *temp = [NSString stringWithFormat:@"%@?dispatchId=%@&&flagSpecial=%@&&flagSee=%@",updateDispatchType,dispatchId,flagSpecial,flagSee];
+//    [HttpsUtils get:temp params:nil success:^(id responseObj) {
+//        if (success) {
+//            success(responseObj);
+//        }
+//    } failure:failure];
+
+    [HttpsUtils getString:temp params:nil success:^(id responseObj) {
+        if (success) {
+            success(responseObj);
+        }
+    } failure:failure];
+
+}
+
++(void)queryMobileEmergencySucess:(void (^)(id))success
+                          failure:(void (^)(NSError *))failure
+{
+
+    [HttpsUtils get:queryMobileEmergency params:nil
+             success:^(id responseObj) {
+                 if (success) {
+                     success(responseObj);
+                 }
+             } failure:failure];
+
 }
 @end

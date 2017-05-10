@@ -130,20 +130,20 @@ singleton_implementation(FunctionService);
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
     attributes:(NSDictionary *)attributeDict
 {
-    NSLog(@"发现节点");
+//    NSLog(@"发现节点");
 }
 
 /* 当解析器找到开始标记和结束标记之间的字符时，调用这个方法解析当前节点的所有字符 */
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
-    NSLog(@"正在解析节点内容");
+//    NSLog(@"正在解析节点内容");
     tempString = string;
 }
 
 /* 当解析器对象遇到xml的结束标记时，调用这个方法完成解析该节点 */
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
-    NSLog(@"解析节点结束");
+//    NSLog(@"解析节点结束");
     if([elementName isEqualToString:@"version"])
     {
         appVersion.version = tempString;
@@ -167,7 +167,7 @@ singleton_implementation(FunctionService);
 
 /* 解析xml出错的处理方法 */
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
-    NSLog(@"解析xml出错:%@", parseError);
+//    NSLog(@"解析xml出错:%@", parseError);
 }
 
 /* 解析xml文件结束 */

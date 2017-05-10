@@ -152,7 +152,7 @@ static NSString * tableIdentifier = @"OPERATIONSITUATIONTABLECELL";
     //进港速率
     [HttpsUtils fltArrFltTargetSuccess:^(id responesObj) {
 
-        NSLog(@"%@",responesObj);
+//        NSLog(@"%@",responesObj);
 //        _tableArray[indexPath.row][@"key"]
         NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:_tableValueArray];
 
@@ -167,7 +167,7 @@ static NSString * tableIdentifier = @"OPERATIONSITUATIONTABLECELL";
         _tableValueArray = [mutableArray copy];
         [_tableView reloadData];
     } failure:^(id error) {
-        NSLog(@"");
+//        NSLog(@"");
     }];
     //出港速率
     [HttpsUtils fltDepFltTargetSuccess:^(id responesObj) {
@@ -184,7 +184,7 @@ static NSString * tableIdentifier = @"OPERATIONSITUATIONTABLECELL";
 
     //获取航班信息
     [HttpsUtils getFlightStatusInfo:nil success:^(id responesObj) {
-        NSLog(@"%@",responesObj);
+//        NSLog(@"%@",responesObj);
         NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:_tableValueArray];
         if ([responesObj isKindOfClass:[NSDictionary class]]) {
             mutableArray[2]=[NSString stringWithFormat:@"%ld%@",((NSNumber *)[responesObj objectForKey:@"outDelay"]).longValue+((NSNumber *)[responesObj objectForKey:@"inDelay"]).longValue,@"架"];

@@ -32,8 +32,8 @@
 //static NSString* baseUri = @"http://192.168.163.132:8080";
 
 
-//static NSString* baseUri = @"http://219.134.93.113:8087";
 static NSString* baseUri = @"http://219.134.93.113:8087";
+//static NSString* baseUri = @"http://219.134.93.113:8087";
 
 //static NSString* baseUri = @"http://219.134.93.113:8087";
 //static NSString* baseUri = @"http://219.134.93.113:8087";

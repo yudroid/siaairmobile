@@ -152,6 +152,19 @@
  */
 +(void)getUserChatMsgListFrom:(int)userId to:(int)chatId localId:(int)localId;
 
+
+
+/**
+ 重要消息确认
+
+ @param msgId <#msgId description#>
+ @param success <#success description#>
+ @param failue <#failue description#>
+ */
++(void)messageSureWithMsgId:(NSString *)msgId
+                    success:(void(^)(id))success
+                    failure:(void (^)(NSError *))failue;
+
 #pragma mark 航班列表 航班详情 航班保障详情 航班特殊详情
 
 /**
@@ -163,6 +176,20 @@
  */
 +(void)queryFlightList:(NSDictionary *)conditions success:(void(^)(id))success failure:(void (^)(NSError *))failue;
 
+
+/**
+ 正常上报
+
+ @param  参数字典
+ @param success <#success description#>
+ @param failue <#failue description#>
+ */
++(void)guaranteeNormalTimeWithUserId:(NSString *)userId
+                          normalTime:(NSString *)normalTime
+                            flightId:(NSString *)flightId
+                          dispatchId:(NSString *)dispatchId
+                                flag:(NSString *)flag
+                             success:(void (^)(id))success failure:(void (^)(NSError *))failue;
 
 /**
  获取航班的详细信息
@@ -180,7 +207,7 @@
  @param success <#success description#>
  @param failure <#failure description#>
  */
-+(void)getDispatchDetail:(int)flightId success:(void (^)(id))success failure:(void (^)(id))failure;
+//+(void)getDispatchDetail:(int)flightId success:(void (^)(id))success failure:(void (^)(id))failure;
 
 /**
  航班特殊保障环节的详情
@@ -189,8 +216,19 @@
  @param success <#success description#>
  @param failure <#failure description#>
  */
-+(void)getSpecialDetail:(int)flightId success:(void (^)(id))success failure:(void (^)(id))failure;
+//+(void)getSpecialDetail:(int)flightId success:(void (^)(id))success failure:(void (^)(id))failure;
 
+
+/**
+ 获取保障环节
+
+ @param flightId <#flightId description#>
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)queryAllDispatchWithFlightId:(NSString *)flightId
+                             userId:(NSString *)userId
+                            success:(void (^)(id))success failure:(void (^)(id))failure;
 
 /**
  获取保障环节的异常上班记录
@@ -209,7 +247,8 @@
  @param success <#success description#>
  @param failure <#failure description#>
  */
-+(void)saveDispatchNormal:(int)flightId dispatchId:(int)dispatchId userId:(int)userId success:(void (^)(id))success failure:(void (^)(id))failure;
++(void)saveDispatchNormal:(int)flightId dispatchId:(int)dispatchId
+                   userId:(int)userId date:(NSString *)date success:(void (^)(id))success failure:(void (^)(id))failure;
 
 /**
  航班特殊保障环节的详情
@@ -224,8 +263,16 @@
  @param success <#success description#>
  @param failure <#failure description#>
  */
-+(void)saveDispatchAbnStart:(int)flightId dispatchId:(int)dispatchId userId:(int)userId eventId:(int)eventId memo:(NSString *)memo
-                       flag:(int)flag imgPath:(NSString *)imgPath success:(void (^)(id))success failure:(void (^)(id))failure;
++(void)saveDispatchAbnStart:(int)flightId
+                 dispatchId:(int)dispatchId
+                     userId:(int)userId
+                    eventId:(int)eventId
+                       memo:(NSString *)memo
+                       flag:(NSString *)flag
+                  arrveTime:(NSString *)arrveTime
+                    imgPath:(NSString *)imgPath
+                    success:(void (^)(id))success
+                    failure:(void (^)(id))failure;
 
 /**
  航班特殊保障环节的详情
@@ -367,6 +414,13 @@
 
 
 /**
+ 80%的阈值线
+
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)getThresholdReleaseDatio2Success:(void (^)(id))success failure:(void (^)(id))failure;
+/**
  航班近10天放行正常率  /ov/fltFDR
 
  @param date <#date description#>
@@ -404,6 +458,23 @@
 +(void)getFlightDelayTarget:(NSString *)date success:(void (^)(id))success failure:(void (^)(id))failure;
 
 
+
+/**
+ 去年12月放行率
+
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)getlastYearFltFMRWithSuccess:(void (^)(id))success failure:(void (^)(id))failure;
+
+
+/**
+ 本周放行正常率
+
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)getFltFWRWithSuccess:(void (^)(id))success failure:(void (^)(id))failure;
 /**
  计划进港航班小时分布 /flt/planArrFltPerHour
 
@@ -442,6 +513,15 @@
  @param failure <#failure description#>
  */
 +(void)getRealDepHours:(NSString *)date success:(void (^)(id))success failure:(void (^)(id))failure;
+
+
+/**
+ 昨日放行正常率
+
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)getYesterdayNormalRatioSuccess:(void (^)(id))success failure:(void (^)(id))failure;
 
 #pragma mark 首页航班汇总、异常原因分类、延误时长、小时分布
 
@@ -781,6 +861,54 @@
 +(void)mobileKBListWithDictionary:(NSDictionary *)dic
                            Sucess:(void (^)(id))success
                     failure:(void (^)(NSError *))failure;
+
+
+/**
+ 获取保障类型
+
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)queryDispatchTypeWithUserid:(NSString *)userid
+                            Sucess:(void (^)(id))success
+                           failure:(void (^)(NSError *))failure;
+
+
+
+/**
+ 修改保障类型
+
+ @param dispatchId <#dispatchId description#>
+ @param flagSpecial <#flagSpecial description#>
+ @param flagSee <#flagSee description#>
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)updateDispatchTypeWithDispathId:(NSString *)dispatchId
+                           flagSpecial:(NSString *)flagSpecial
+                               flagSee:(NSString *)flagSee
+                                Sucess:(void (^)(id))success
+                               failure:(void (^)(NSError *))failure;
+
+
+
+/**
+ 应急通讯录
+
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)queryMobileEmergencySucess:(void (^)(id))success
+                          failure:(void (^)(NSError *))failure;
+
+
+/**
+ 即将放行航班
+
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)getflyoutList:(void (^)(id))success failure:(void (^)(id))failure;
 
 
 @end

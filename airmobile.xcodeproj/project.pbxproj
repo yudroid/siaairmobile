@@ -117,6 +117,11 @@
 		F7003E4D1DDC38540056F3DA /* TakePhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7003E4B1DDC38540056F3DA /* TakePhotoCollectionViewCell.m */; };
 		F7003E4E1DDC38540056F3DA /* TakePhotoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7003E4C1DDC38540056F3DA /* TakePhotoCollectionViewCell.xib */; };
 		F70149B31E8F9464006EF393 /* MYHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F70149B21E8F9464006EF393 /* MYHTTPSessionManager.m */; };
+		F70149B61E9B5812006EF393 /* VersionCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = F70149B51E9B5812006EF393 /* VersionCheck.m */; };
+		F70149BA1E9CAA67006EF393 /* SafeguardTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F70149B81E9CAA67006EF393 /* SafeguardTypeViewController.m */; };
+		F70149BB1E9CAA67006EF393 /* SafeguardTypeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F70149B91E9CAA67006EF393 /* SafeguardTypeViewController.xib */; };
+		F70149BF1E9CAD5E006EF393 /* SateguardTypeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F70149BD1E9CAD5E006EF393 /* SateguardTypeTableViewCell.m */; };
+		F70149C01E9CAD5E006EF393 /* SateguardTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F70149BE1E9CAD5E006EF393 /* SateguardTypeTableViewCell.xib */; };
 		F70893E11DD2EC1B00135540 /* FlightDelaysViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F70893DF1DD2EC1B00135540 /* FlightDelaysViewController.m */; };
 		F70893E21DD2EC1B00135540 /* FlightDelaysViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F70893E01DD2EC1B00135540 /* FlightDelaysViewController.xib */; };
 		F70893E61DD2ECAD00135540 /* FlightDelaysDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F70893E41DD2ECAD00135540 /* FlightDelaysDetailViewController.m */; };
@@ -139,6 +144,21 @@
 		F71387C21E8E3FC400F126AD /* DownFileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F71387C11E8E3FC400F126AD /* DownFileView.xib */; };
 		F71387C81E8E43E400F126AD /* JSAnimationService.m in Sources */ = {isa = PBXBuildFile; fileRef = F71387C51E8E43E400F126AD /* JSAnimationService.m */; };
 		F71387C91E8E43E400F126AD /* JSDownloadView.m in Sources */ = {isa = PBXBuildFile; fileRef = F71387C71E8E43E400F126AD /* JSDownloadView.m */; };
+		F71469871EA4E52200AFF1E2 /* WeekRatioView.m in Sources */ = {isa = PBXBuildFile; fileRef = F71469861EA4E52200AFF1E2 /* WeekRatioView.m */; };
+		F714698C1EA5AC6300AFF1E2 /* WillGoFlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F714698A1EA5AC6300AFF1E2 /* WillGoFlightViewController.m */; };
+		F714698D1EA5AC6300AFF1E2 /* WillGoFlightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F714698B1EA5AC6300AFF1E2 /* WillGoFlightViewController.xib */; };
+		F71469901EA5B59000AFF1E2 /* WillGoFlightModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F714698F1EA5B59000AFF1E2 /* WillGoFlightModel.m */; };
+		F71469941EA5B96A00AFF1E2 /* WillGoFlightTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F71469921EA5B96A00AFF1E2 /* WillGoFlightTableViewCell.m */; };
+		F71469951EA5B96A00AFF1E2 /* WillGoFlightTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F71469931EA5B96A00AFF1E2 /* WillGoFlightTableViewCell.xib */; };
+		F71469981EA9958E00AFF1E2 /* OverContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F71469971EA9958E00AFF1E2 /* OverContentView.m */; };
+		F714699A1EA9959E00AFF1E2 /* OverContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F71469991EA9959E00AFF1E2 /* OverContentView.xib */; };
+		F714699D1EB07A4600AFF1E2 /* ChatLeftImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F714699C1EB07A4500AFF1E2 /* ChatLeftImageTableViewCell.m */; };
+		F71469A31EB07B2800AFF1E2 /* ChatLeftFileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F71469A21EB07B2800AFF1E2 /* ChatLeftFileTableViewCell.m */; };
+		F71469A91EB07BBA00AFF1E2 /* ChatRightFileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F71469A81EB07BBA00AFF1E2 /* ChatRightFileTableViewCell.m */; };
+		F71469AC1EB07CA300AFF1E2 /* ChatRightImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F71469AB1EB07CA300AFF1E2 /* ChatRightImageTableViewCell.m */; };
+		F71469AF1EB1BD6500AFF1E2 /* ZYShowPictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = F71469AE1EB1BD6500AFF1E2 /* ZYShowPictureView.m */; };
+		F71469B21EB1D4F800AFF1E2 /* JLPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = F71469B11EB1D4F800AFF1E2 /* JLPhotoBrowser.m */; };
+		F71469B51EB1D51500AFF1E2 /* JLPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = F71469B41EB1D51500AFF1E2 /* JLPhoto.m */; };
 		F714CAF41E0BACD1008D9B83 /* PNMixLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = F714CAF31E0BACD1008D9B83 /* PNMixLineChart.m */; };
 		F723C2C11E30AEF20008D202 /* UIButton+PhotoChoose.m in Sources */ = {isa = PBXBuildFile; fileRef = F723C2C01E30AEF20008D202 /* UIButton+PhotoChoose.m */; };
 		F723C2C41E30B1570008D202 /* UIControl+SelfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F723C2C31E30B1570008D202 /* UIControl+SelfViewController.m */; };
@@ -187,6 +207,8 @@
 		F74902C01DC878C0005B193D /* SummaryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902BF1DC878C0005B193D /* SummaryModel.m */; };
 		F74902C31DC879C2005B193D /* SafeguardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902C21DC879C2005B193D /* SafeguardModel.m */; };
 		F74902DB1DC881E9005B193D /* CraftseatCntModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902DA1DC881E9005B193D /* CraftseatCntModel.m */; };
+		F74E1EC91EC19B5D00FD9843 /* ReportTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F74E1EC71EC19B5D00FD9843 /* ReportTableViewCell.m */; };
+		F74E1ECA1EC19B5D00FD9843 /* ReportTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F74E1EC81EC19B5D00FD9843 /* ReportTableViewCell.xib */; };
 		F752C63E1E8B47C700F8BD84 /* TimePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F752C63D1E8B47C700F8BD84 /* TimePickerView.m */; };
 		F752C6401E8B47D700F8BD84 /* TimePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F752C63F1E8B47D700F8BD84 /* TimePickerView.xib */; };
 		F758C9911DC360BD00556120 /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F758C9901DC360BD00556120 /* HomePageViewController.m */; };
@@ -234,6 +256,12 @@
 		F774970A1E0773EA00B5773C /* DAYUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F77496FD1E0773EA00B5773C /* DAYUtils.m */; };
 		F779B9AD1E36F8F4002E362D /* XRWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F779B9AC1E36F8F4002E362D /* XRWaterfallLayout.m */; };
 		F779B9B01E371B91002E362D /* NSString+Size.m in Sources */ = {isa = PBXBuildFile; fileRef = F779B9AF1E371B91002E362D /* NSString+Size.m */; };
+		F77A7C441E9CC1CB0044D891 /* SateguardTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F77A7C431E9CC1CB0044D891 /* SateguardTypeModel.m */; };
+		F77A7C471E9CCBDE0044D891 /* TypeGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F77A7C461E9CCBDE0044D891 /* TypeGroupModel.m */; };
+		F77A7C4A1E9DF1D70044D891 /* DispatchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F77A7C491E9DF1D70044D891 /* DispatchModel.m */; };
+		F77A7C4E1E9F4E7B0044D891 /* ContingencyAddressBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F77A7C4C1E9F4E7B0044D891 /* ContingencyAddressBookViewController.m */; };
+		F77A7C4F1E9F4E7B0044D891 /* ContingencyAddressBookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F77A7C4D1E9F4E7B0044D891 /* ContingencyAddressBookViewController.xib */; };
+		F77A7C521E9F54900044D891 /* ContingencyAddressBookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F77A7C511E9F54900044D891 /* ContingencyAddressBookModel.m */; };
 		F78B13B01DF47938000A6833 /* ModifyPwd.xib in Resources */ = {isa = PBXBuildFile; fileRef = F78B13AD1DF47937000A6833 /* ModifyPwd.xib */; };
 		F78B13B11DF47938000A6833 /* ModifyPwdView.m in Sources */ = {isa = PBXBuildFile; fileRef = F78B13AF1DF47938000A6833 /* ModifyPwdView.m */; };
 		F78B13B41DF47946000A6833 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = F78B13B31DF47946000A6833 /* UIImage+ImageEffects.m */; };
@@ -562,6 +590,14 @@
 		F7003E4C1DDC38540056F3DA /* TakePhotoCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TakePhotoCollectionViewCell.xib; sourceTree = "<group>"; };
 		F70149B11E8F9464006EF393 /* MYHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYHTTPSessionManager.h; sourceTree = "<group>"; };
 		F70149B21E8F9464006EF393 /* MYHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYHTTPSessionManager.m; sourceTree = "<group>"; };
+		F70149B41E9B5812006EF393 /* VersionCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersionCheck.h; sourceTree = "<group>"; };
+		F70149B51E9B5812006EF393 /* VersionCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VersionCheck.m; sourceTree = "<group>"; };
+		F70149B71E9CAA67006EF393 /* SafeguardTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafeguardTypeViewController.h; sourceTree = "<group>"; };
+		F70149B81E9CAA67006EF393 /* SafeguardTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SafeguardTypeViewController.m; sourceTree = "<group>"; };
+		F70149B91E9CAA67006EF393 /* SafeguardTypeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SafeguardTypeViewController.xib; sourceTree = "<group>"; };
+		F70149BC1E9CAD5E006EF393 /* SateguardTypeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SateguardTypeTableViewCell.h; sourceTree = "<group>"; };
+		F70149BD1E9CAD5E006EF393 /* SateguardTypeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SateguardTypeTableViewCell.m; sourceTree = "<group>"; };
+		F70149BE1E9CAD5E006EF393 /* SateguardTypeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SateguardTypeTableViewCell.xib; sourceTree = "<group>"; };
 		F70893DE1DD2EC1B00135540 /* FlightDelaysViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightDelaysViewController.h; sourceTree = "<group>"; };
 		F70893DF1DD2EC1B00135540 /* FlightDelaysViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightDelaysViewController.m; sourceTree = "<group>"; };
 		F70893E01DD2EC1B00135540 /* FlightDelaysViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlightDelaysViewController.xib; sourceTree = "<group>"; };
@@ -597,6 +633,33 @@
 		F71387C51E8E43E400F126AD /* JSAnimationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSAnimationService.m; sourceTree = "<group>"; };
 		F71387C61E8E43E400F126AD /* JSDownloadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSDownloadView.h; sourceTree = "<group>"; };
 		F71387C71E8E43E400F126AD /* JSDownloadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSDownloadView.m; sourceTree = "<group>"; };
+		F71469851EA4E52200AFF1E2 /* WeekRatioView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekRatioView.h; sourceTree = "<group>"; };
+		F71469861EA4E52200AFF1E2 /* WeekRatioView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekRatioView.m; sourceTree = "<group>"; };
+		F71469891EA5AC6300AFF1E2 /* WillGoFlightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WillGoFlightViewController.h; sourceTree = "<group>"; };
+		F714698A1EA5AC6300AFF1E2 /* WillGoFlightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WillGoFlightViewController.m; sourceTree = "<group>"; };
+		F714698B1EA5AC6300AFF1E2 /* WillGoFlightViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WillGoFlightViewController.xib; sourceTree = "<group>"; };
+		F714698E1EA5B59000AFF1E2 /* WillGoFlightModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WillGoFlightModel.h; sourceTree = "<group>"; };
+		F714698F1EA5B59000AFF1E2 /* WillGoFlightModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WillGoFlightModel.m; sourceTree = "<group>"; };
+		F71469911EA5B96A00AFF1E2 /* WillGoFlightTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WillGoFlightTableViewCell.h; sourceTree = "<group>"; };
+		F71469921EA5B96A00AFF1E2 /* WillGoFlightTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WillGoFlightTableViewCell.m; sourceTree = "<group>"; };
+		F71469931EA5B96A00AFF1E2 /* WillGoFlightTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WillGoFlightTableViewCell.xib; sourceTree = "<group>"; };
+		F71469961EA9958E00AFF1E2 /* OverContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverContentView.h; sourceTree = "<group>"; };
+		F71469971EA9958E00AFF1E2 /* OverContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverContentView.m; sourceTree = "<group>"; };
+		F71469991EA9959E00AFF1E2 /* OverContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverContentView.xib; sourceTree = "<group>"; };
+		F714699B1EB07A4500AFF1E2 /* ChatLeftImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatLeftImageTableViewCell.h; sourceTree = "<group>"; };
+		F714699C1EB07A4500AFF1E2 /* ChatLeftImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatLeftImageTableViewCell.m; sourceTree = "<group>"; };
+		F71469A11EB07B2800AFF1E2 /* ChatLeftFileTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatLeftFileTableViewCell.h; sourceTree = "<group>"; };
+		F71469A21EB07B2800AFF1E2 /* ChatLeftFileTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatLeftFileTableViewCell.m; sourceTree = "<group>"; };
+		F71469A71EB07BBA00AFF1E2 /* ChatRightFileTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatRightFileTableViewCell.h; sourceTree = "<group>"; };
+		F71469A81EB07BBA00AFF1E2 /* ChatRightFileTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatRightFileTableViewCell.m; sourceTree = "<group>"; };
+		F71469AA1EB07CA300AFF1E2 /* ChatRightImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatRightImageTableViewCell.h; sourceTree = "<group>"; };
+		F71469AB1EB07CA300AFF1E2 /* ChatRightImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatRightImageTableViewCell.m; sourceTree = "<group>"; };
+		F71469AD1EB1BD6500AFF1E2 /* ZYShowPictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYShowPictureView.h; sourceTree = "<group>"; };
+		F71469AE1EB1BD6500AFF1E2 /* ZYShowPictureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYShowPictureView.m; sourceTree = "<group>"; };
+		F71469B01EB1D4F800AFF1E2 /* JLPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLPhotoBrowser.h; sourceTree = "<group>"; };
+		F71469B11EB1D4F800AFF1E2 /* JLPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLPhotoBrowser.m; sourceTree = "<group>"; };
+		F71469B31EB1D51500AFF1E2 /* JLPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLPhoto.h; sourceTree = "<group>"; };
+		F71469B41EB1D51500AFF1E2 /* JLPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLPhoto.m; sourceTree = "<group>"; };
 		F714CAF21E0BACD1008D9B83 /* PNMixLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNMixLineChart.h; sourceTree = "<group>"; };
 		F714CAF31E0BACD1008D9B83 /* PNMixLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNMixLineChart.m; sourceTree = "<group>"; };
 		F723C2BF1E30AEF20008D202 /* UIButton+PhotoChoose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+PhotoChoose.h"; sourceTree = "<group>"; };
@@ -690,6 +753,9 @@
 		F74902C21DC879C2005B193D /* SafeguardModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SafeguardModel.m; sourceTree = "<group>"; };
 		F74902D91DC881E9005B193D /* CraftseatCntModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CraftseatCntModel.h; sourceTree = "<group>"; };
 		F74902DA1DC881E9005B193D /* CraftseatCntModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CraftseatCntModel.m; sourceTree = "<group>"; };
+		F74E1EC61EC19B5D00FD9843 /* ReportTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportTableViewCell.h; sourceTree = "<group>"; };
+		F74E1EC71EC19B5D00FD9843 /* ReportTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportTableViewCell.m; sourceTree = "<group>"; };
+		F74E1EC81EC19B5D00FD9843 /* ReportTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReportTableViewCell.xib; sourceTree = "<group>"; };
 		F752C63C1E8B47C700F8BD84 /* TimePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePickerView.h; sourceTree = "<group>"; };
 		F752C63D1E8B47C700F8BD84 /* TimePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimePickerView.m; sourceTree = "<group>"; };
 		F752C63F1E8B47D700F8BD84 /* TimePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimePickerView.xib; sourceTree = "<group>"; };
@@ -764,6 +830,17 @@
 		F779B9AC1E36F8F4002E362D /* XRWaterfallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XRWaterfallLayout.m; sourceTree = "<group>"; };
 		F779B9AE1E371B91002E362D /* NSString+Size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Size.h"; sourceTree = "<group>"; };
 		F779B9AF1E371B91002E362D /* NSString+Size.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Size.m"; sourceTree = "<group>"; };
+		F77A7C421E9CC1CB0044D891 /* SateguardTypeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SateguardTypeModel.h; sourceTree = "<group>"; };
+		F77A7C431E9CC1CB0044D891 /* SateguardTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SateguardTypeModel.m; sourceTree = "<group>"; };
+		F77A7C451E9CCBDE0044D891 /* TypeGroupModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeGroupModel.h; sourceTree = "<group>"; };
+		F77A7C461E9CCBDE0044D891 /* TypeGroupModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypeGroupModel.m; sourceTree = "<group>"; };
+		F77A7C481E9DF1D70044D891 /* DispatchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DispatchModel.h; sourceTree = "<group>"; };
+		F77A7C491E9DF1D70044D891 /* DispatchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DispatchModel.m; sourceTree = "<group>"; };
+		F77A7C4B1E9F4E7A0044D891 /* ContingencyAddressBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContingencyAddressBookViewController.h; sourceTree = "<group>"; };
+		F77A7C4C1E9F4E7B0044D891 /* ContingencyAddressBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContingencyAddressBookViewController.m; sourceTree = "<group>"; };
+		F77A7C4D1E9F4E7B0044D891 /* ContingencyAddressBookViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContingencyAddressBookViewController.xib; sourceTree = "<group>"; };
+		F77A7C501E9F54900044D891 /* ContingencyAddressBookModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContingencyAddressBookModel.h; sourceTree = "<group>"; };
+		F77A7C511E9F54900044D891 /* ContingencyAddressBookModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContingencyAddressBookModel.m; sourceTree = "<group>"; };
 		F78B13AD1DF47937000A6833 /* ModifyPwd.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ModifyPwd.xib; sourceTree = "<group>"; };
 		F78B13AE1DF47937000A6833 /* ModifyPwdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyPwdView.h; sourceTree = "<group>"; };
 		F78B13AF1DF47938000A6833 /* ModifyPwdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyPwdView.m; sourceTree = "<group>"; };
@@ -1162,6 +1239,8 @@
 				84ADE6D41DCC7B9300F58A46 /* PersistenceUtils.m */,
 				8471FBC91E055BEC0037F9F5 /* Constants.h */,
 				8471FBCA1E055BEC0037F9F5 /* Constants.m */,
+				F70149B41E9B5812006EF393 /* VersionCheck.h */,
+				F70149B51E9B5812006EF393 /* VersionCheck.m */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -1309,6 +1388,16 @@
 				F76D4B231E891D9100599DD0 /* AirlineModel.m */,
 				F71387AE1E8E020C00F126AD /* KnowledgeBaseModel.h */,
 				F71387AF1E8E020C00F126AD /* KnowledgeBaseModel.m */,
+				F77A7C421E9CC1CB0044D891 /* SateguardTypeModel.h */,
+				F77A7C431E9CC1CB0044D891 /* SateguardTypeModel.m */,
+				F77A7C451E9CCBDE0044D891 /* TypeGroupModel.h */,
+				F77A7C461E9CCBDE0044D891 /* TypeGroupModel.m */,
+				F77A7C481E9DF1D70044D891 /* DispatchModel.h */,
+				F77A7C491E9DF1D70044D891 /* DispatchModel.m */,
+				F77A7C501E9F54900044D891 /* ContingencyAddressBookModel.h */,
+				F77A7C511E9F54900044D891 /* ContingencyAddressBookModel.m */,
+				F714698E1EA5B59000AFF1E2 /* WillGoFlightModel.h */,
+				F714698F1EA5B59000AFF1E2 /* WillGoFlightModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1493,6 +1582,12 @@
 				F7EEEF191DB396E0004AF0AE /* FlightDetailViewController.h */,
 				F7EEEF1A1DB396E0004AF0AE /* FlightDetailViewController.m */,
 				F7EEEF1B1DB396E0004AF0AE /* FlightDetailViewController.xib */,
+				F70149B71E9CAA67006EF393 /* SafeguardTypeViewController.h */,
+				F70149B81E9CAA67006EF393 /* SafeguardTypeViewController.m */,
+				F70149B91E9CAA67006EF393 /* SafeguardTypeViewController.xib */,
+				F70149BC1E9CAD5E006EF393 /* SateguardTypeTableViewCell.h */,
+				F70149BD1E9CAD5E006EF393 /* SateguardTypeTableViewCell.m */,
+				F70149BE1E9CAD5E006EF393 /* SateguardTypeTableViewCell.xib */,
 			);
 			name = "航班详情";
 			sourceTree = "<group>";
@@ -1744,6 +1839,9 @@
 				F792518F1DB858D9006AA119 /* AddressBookViewController.h */,
 				F79251901DB858D9006AA119 /* AddressBookViewController.m */,
 				F79251911DB858D9006AA119 /* AddressBookViewController.xib */,
+				F77A7C4B1E9F4E7A0044D891 /* ContingencyAddressBookViewController.h */,
+				F77A7C4C1E9F4E7B0044D891 /* ContingencyAddressBookViewController.m */,
+				F77A7C4D1E9F4E7B0044D891 /* ContingencyAddressBookViewController.xib */,
 			);
 			name = "通讯录";
 			sourceTree = "<group>";
@@ -1780,6 +1878,9 @@
 		F71387A71E8DFF5700F126AD /* 运行简报 */ = {
 			isa = PBXGroup;
 			children = (
+				F74E1EC61EC19B5D00FD9843 /* ReportTableViewCell.h */,
+				F74E1EC71EC19B5D00FD9843 /* ReportTableViewCell.m */,
+				F74E1EC81EC19B5D00FD9843 /* ReportTableViewCell.xib */,
 			);
 			name = "运行简报";
 			sourceTree = "<group>";
@@ -1810,6 +1911,62 @@
 			);
 			name = JSDownloadView;
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		F71469881EA5AB2200AFF1E2 /* 即将放行航班 */ = {
+			isa = PBXGroup;
+			children = (
+				F71469891EA5AC6300AFF1E2 /* WillGoFlightViewController.h */,
+				F714698A1EA5AC6300AFF1E2 /* WillGoFlightViewController.m */,
+				F714698B1EA5AC6300AFF1E2 /* WillGoFlightViewController.xib */,
+				F71469911EA5B96A00AFF1E2 /* WillGoFlightTableViewCell.h */,
+				F71469921EA5B96A00AFF1E2 /* WillGoFlightTableViewCell.m */,
+				F71469931EA5B96A00AFF1E2 /* WillGoFlightTableViewCell.xib */,
+			);
+			name = "即将放行航班";
+			sourceTree = "<group>";
+		};
+		F714699E1EB07A6000AFF1E2 /* 聊天Cell */ = {
+			isa = PBXGroup;
+			children = (
+				F71469B31EB1D51500AFF1E2 /* JLPhoto.h */,
+				F71469B41EB1D51500AFF1E2 /* JLPhoto.m */,
+				F71469B01EB1D4F800AFF1E2 /* JLPhotoBrowser.h */,
+				F71469B11EB1D4F800AFF1E2 /* JLPhotoBrowser.m */,
+				F71469AD1EB1BD6500AFF1E2 /* ZYShowPictureView.h */,
+				F71469AE1EB1BD6500AFF1E2 /* ZYShowPictureView.m */,
+				F71469A01EB07A8D00AFF1E2 /* 右 */,
+				F714699F1EB07A7F00AFF1E2 /* 左 */,
+			);
+			name = "聊天Cell";
+			sourceTree = "<group>";
+		};
+		F714699F1EB07A7F00AFF1E2 /* 左 */ = {
+			isa = PBXGroup;
+			children = (
+				F79251601DB63A10006AA119 /* ChatLeftTableViewCell.h */,
+				F79251611DB63A10006AA119 /* ChatLeftTableViewCell.m */,
+				F79251621DB63A10006AA119 /* ChatLeftTableViewCell.xib */,
+				F714699B1EB07A4500AFF1E2 /* ChatLeftImageTableViewCell.h */,
+				F714699C1EB07A4500AFF1E2 /* ChatLeftImageTableViewCell.m */,
+				F71469A11EB07B2800AFF1E2 /* ChatLeftFileTableViewCell.h */,
+				F71469A21EB07B2800AFF1E2 /* ChatLeftFileTableViewCell.m */,
+			);
+			name = "左";
+			sourceTree = "<group>";
+		};
+		F71469A01EB07A8D00AFF1E2 /* 右 */ = {
+			isa = PBXGroup;
+			children = (
+				F79251651DB63BB7006AA119 /* ChatRightTableViewCell.h */,
+				F79251661DB63BB7006AA119 /* ChatRightTableViewCell.m */,
+				F79251671DB63BB7006AA119 /* ChatRightTableViewCell.xib */,
+				F71469A71EB07BBA00AFF1E2 /* ChatRightFileTableViewCell.h */,
+				F71469A81EB07BBA00AFF1E2 /* ChatRightFileTableViewCell.m */,
+				F71469AA1EB07CA300AFF1E2 /* ChatRightImageTableViewCell.h */,
+				F71469AB1EB07CA300AFF1E2 /* ChatRightImageTableViewCell.m */,
+			);
+			name = "右";
 			sourceTree = "<group>";
 		};
 		F73DBB6E1E2DB7690085C000 /* CLWeeklyCalendarViewSourceCode */ = {
@@ -1931,6 +2088,7 @@
 				F71082711E1F2EE700EB0EDD /* 生产指标 */,
 				F76910D21E8CCD2E004945E7 /* 知识库 */,
 				F76910D31E8CCD36004945E7 /* 运行简报 */,
+				F71469881EA5AB2200AFF1E2 /* 即将放行航班 */,
 			);
 			name = "功能";
 			sourceTree = "<group>";
@@ -2087,6 +2245,7 @@
 		F792513C1DB5EE01006AA119 /* 消息 */ = {
 			isa = PBXGroup;
 			children = (
+				F714699E1EB07A6000AFF1E2 /* 聊天Cell */,
 				F792514C1DB60BD0006AA119 /* MessageTableViewCell.h */,
 				F792514D1DB60BD0006AA119 /* MessageTableViewCell.m */,
 				F792514E1DB60BD0006AA119 /* MessageTableViewCell.xib */,
@@ -2099,12 +2258,6 @@
 				F70893FA1DD5952F00135540 /* ContactPersonTableViewHeaderView.h */,
 				F70893FB1DD5952F00135540 /* ContactPersonTableViewHeaderView.m */,
 				F70893FD1DD5955200135540 /* ContactPersonTableViewHeaderView.xib */,
-				F79251601DB63A10006AA119 /* ChatLeftTableViewCell.h */,
-				F79251611DB63A10006AA119 /* ChatLeftTableViewCell.m */,
-				F79251621DB63A10006AA119 /* ChatLeftTableViewCell.xib */,
-				F79251651DB63BB7006AA119 /* ChatRightTableViewCell.h */,
-				F79251661DB63BB7006AA119 /* ChatRightTableViewCell.m */,
-				F79251671DB63BB7006AA119 /* ChatRightTableViewCell.xib */,
 				F792516A1DB63D62006AA119 /* ChatTimeTableViewCell.h */,
 				F792516B1DB63D62006AA119 /* ChatTimeTableViewCell.m */,
 				F792516C1DB63D62006AA119 /* ChatTimeTableViewCell.xib */,
@@ -2345,6 +2498,9 @@
 			children = (
 				F7A2A05A1DB8D0EE0023F228 /* OverViewContentView.h */,
 				F7A2A05B1DB8D0EE0023F228 /* OverViewContentView.m */,
+				F71469961EA9958E00AFF1E2 /* OverContentView.h */,
+				F71469971EA9958E00AFF1E2 /* OverContentView.m */,
+				F71469991EA9959E00AFF1E2 /* OverContentView.xib */,
 				F70893F01DD492AD00135540 /* TagView.h */,
 				F70893F11DD492AD00135540 /* TagView.m */,
 				F70893F31DD492BD00135540 /* TagView.xib */,
@@ -2379,6 +2535,8 @@
 				84183A271DBE150E00D7DD86 /* EightMonthRatioView.m */,
 				84183A2C1DBF65D400D7DD86 /* RatioTableViewCell.h */,
 				84183A2D1DBF65D400D7DD86 /* RatioTableViewCell.m */,
+				F71469851EA4E52200AFF1E2 /* WeekRatioView.h */,
+				F71469861EA4E52200AFF1E2 /* WeekRatioView.m */,
 			);
 			name = "放行正常率";
 			sourceTree = "<group>";
@@ -2626,12 +2784,14 @@
 				F70893EC1DD2F66700135540 /* FlightDelaysTableViewCell.xib in Resources */,
 				8450555C1DACF65200400EBF /* login_btn@3x.png in Resources */,
 				F71387C21E8E3FC400F126AD /* DownFileView.xib in Resources */,
+				F70149C01E9CAD5E006EF393 /* SateguardTypeTableViewCell.xib in Resources */,
 				F70893E21DD2EC1B00135540 /* FlightDelaysViewController.xib in Resources */,
 				8450556C1DACF65200400EBF /* splash@2x.png in Resources */,
 				F7EEEC5F1E00396C000D3056 /* TodayDutyViewController.xib in Resources */,
 				F792515A1DB61D9C006AA119 /* ContactPersonTableViewCell.xib in Resources */,
 				F77497041E0773EA00B5773C /* prev@2x.png in Resources */,
 				845055711DACF65200400EBF /* splash_2@3x.png in Resources */,
+				F77A7C4F1E9F4E7B0044D891 /* ContingencyAddressBookViewController.xib in Resources */,
 				F792516E1DB63D62006AA119 /* ChatTimeTableViewCell.xib in Resources */,
 				F7EEEF221DB3A580004AF0AE /* FlightDetailTableViewCell.xib in Resources */,
 				F7D38D801DE6CE9A001110AF /* ImageViewCollectionViewCell.xib in Resources */,
@@ -2644,7 +2804,9 @@
 				F758C9C11DC4390A00556120 /* AbnormalityReportHistoryTableViewCell.xib in Resources */,
 				F79251551DB610D6006AA119 /* FixedMessageTableViewCell.xib in Resources */,
 				F76D4B211E8909F600599DD0 /* AirlineViewController.xib in Resources */,
+				F70149BB1E9CAA67006EF393 /* SafeguardTypeViewController.xib in Resources */,
 				F7003E4E1DDC38540056F3DA /* TakePhotoCollectionViewCell.xib in Resources */,
+				F714698D1EA5AC6300AFF1E2 /* WillGoFlightViewController.xib in Resources */,
 				8450555F1DACF65200400EBF /* login_icon_invisible@2x.png in Resources */,
 				F74289D81E01118200AC00D4 /* loading.gif in Resources */,
 				F78B13B01DF47938000A6833 /* ModifyPwd.xib in Resources */,
@@ -2666,6 +2828,7 @@
 				845055641DACF65200400EBF /* login_input_field@3x.png in Resources */,
 				F7D47FF11DFEC7400050B293 /* PsnSafetyContentViewTableViewCell.xib in Resources */,
 				8450556F1DACF65200400EBF /* splash_1@3x.png in Resources */,
+				F714699A1EA9959E00AFF1E2 /* OverContentView.xib in Resources */,
 				845055721DACF65200400EBF /* splash_3@2x.png in Resources */,
 				845055691DACF65200400EBF /* logo_flight@2x.png in Resources */,
 				8450555B1DACF65200400EBF /* login_btn@2x.png in Resources */,
@@ -2693,6 +2856,7 @@
 				F70893E71DD2ECAD00135540 /* FlightDelaysDetailViewController.xib in Resources */,
 				845055671DACF65200400EBF /* login_visible@2x.png in Resources */,
 				F70893FE1DD5955200135540 /* ContactPersonTableViewHeaderView.xib in Resources */,
+				F74E1ECA1EC19B5D00FD9843 /* ReportTableViewCell.xib in Resources */,
 				F7A25D191DBDA67A00F36C32 /* ContactPersonViewController.xib in Resources */,
 				845055611DACF65200400EBF /* login_icon_lock@2x.png in Resources */,
 				F79251931DB858D9006AA119 /* AddressBookViewController.xib in Resources */,
@@ -2706,6 +2870,7 @@
 				8450555E1DACF65200400EBF /* login_btn_pre@3x.png in Resources */,
 				F76D4AD51E80BFF200599DD0 /* OperationSituationViewController.xib in Resources */,
 				F76910D81E8CCDAC004945E7 /* KnowledgeBaseViewController.xib in Resources */,
+				F71469951EA5B96A00AFF1E2 /* WillGoFlightTableViewCell.xib in Resources */,
 				F74289D11E00DFCA00AC00D4 /* loadingPage@3x.jpg in Resources */,
 				F76D4ADA1E80C75B00599DD0 /* OperationSituationTableViewCell.xib in Resources */,
 				F7EAE1A31DB4BCC60060626F /* FlightDetailSpecialTableViewCell.xib in Resources */,
@@ -2884,12 +3049,15 @@
 				840D15DD1DC1D6E0005FA910 /* PsnHourTableViewCell.m in Sources */,
 				F758C9921DC362E700556120 /* PassengerTopModel.m in Sources */,
 				F749029F1DC865D1005B193D /* FlightModel.m in Sources */,
+				F71469981EA9958E00AFF1E2 /* OverContentView.m in Sources */,
 				843F4CFB1DACCF2500D73D56 /* ThreadUtils.m in Sources */,
 				F74289FC1E04D7CA00AC00D4 /* SimpleFlight.m in Sources */,
 				F79251591DB61D9C006AA119 /* ContactPersonTableViewCell.m in Sources */,
 				840D15E31DC20C4F005FA910 /* PsnSafetyAreaView.m in Sources */,
+				F77A7C4E1E9F4E7B0044D891 /* ContingencyAddressBookViewController.m in Sources */,
 				840D15E61DC2E99A005FA910 /* PassengerAreaModel.m in Sources */,
 				F73DBB7F1E2DB7690085C000 /* DailyCalendarView.m in Sources */,
+				F70149BF1E9CAD5E006EF393 /* SateguardTypeTableViewCell.m in Sources */,
 				F7A25D811DBE277500F36C32 /* SJPreviewPhotoController.m in Sources */,
 				F74902A81DC867F0005B193D /* FlightStusModel.m in Sources */,
 				F7A25D891DBE277500F36C32 /* SJPhotoAlbumCell.m in Sources */,
@@ -2898,6 +3066,7 @@
 				F7A25D7E1DBE277500F36C32 /* SJPhotoAlbumsController.m in Sources */,
 				F70893E61DD2ECAD00135540 /* FlightDelaysDetailViewController.m in Sources */,
 				F758C9911DC360BD00556120 /* HomePageViewController.m in Sources */,
+				F71469B51EB1D51500AFF1E2 /* JLPhoto.m in Sources */,
 				F76D4AD91E80C75B00599DD0 /* OperationSituationTableViewCell.m in Sources */,
 				F74289D41E00E7A200AC00D4 /* LinkPageView.m in Sources */,
 				84183A051DBDB6DF00D7DD86 /* PNBar.m in Sources */,
@@ -2938,21 +3107,27 @@
 				84183A251DBE14A800D7DD86 /* TenDayRatioView.m in Sources */,
 				F76D4B041E82639100599DD0 /* PNLineChartExtendDataItem.m in Sources */,
 				F74289EB1E04D60300AC00D4 /* MonthlyProgressRound.m in Sources */,
+				F71469A31EB07B2800AFF1E2 /* ChatLeftFileTableViewCell.m in Sources */,
+				F70149BA1E9CAA67006EF393 /* SafeguardTypeViewController.m in Sources */,
 				84183A1F1DBDDEA300D7DD86 /* SecurityPsnViewController.m in Sources */,
 				F7F093C11E14DC3E0099E167 /* FunctionShowViewController.m in Sources */,
 				F71387BD1E8E3D3700F126AD /* HttpFileDown.m in Sources */,
 				84183A121DBDDD3B00D7DD86 /* ReleasedRatioViewController.m in Sources */,
+				F70149B61E9B5812006EF393 /* VersionCheck.m in Sources */,
 				F7A25D7F1DBE277500F36C32 /* SJPhotoPickerNavController.m in Sources */,
 				F7A25D8C1DBE277500F36C32 /* SJPhotoPickerToolBar.m in Sources */,
 				F7A25D0B1DB9E71A00F36C32 /* RoundProgressView.m in Sources */,
+				F77A7C471E9CCBDE0044D891 /* TypeGroupModel.m in Sources */,
 				841839F81DBCC10200D7DD86 /* PNLineChart.m in Sources */,
 				F7EEEF1C1DB396E0004AF0AE /* FlightDetailViewController.m in Sources */,
 				F7EAE1961DB4776C0060626F /* AbnormalityReportViewController.m in Sources */,
 				F7D38D7F1DE6CE9A001110AF /* ImageViewCollectionViewCell.m in Sources */,
 				F74289FB1E04D7CA00AC00D4 /* YearKpi.m in Sources */,
 				F71387C81E8E43E400F126AD /* JSAnimationService.m in Sources */,
+				F71469901EA5B59000AFF1E2 /* WillGoFlightModel.m in Sources */,
 				F779B9AD1E36F8F4002E362D /* XRWaterfallLayout.m in Sources */,
 				840D15CE1DC0B709005FA910 /* AreaDelayTimeView.m in Sources */,
+				F71469871EA4E52200AFF1E2 /* WeekRatioView.m in Sources */,
 				F74902C31DC879C2005B193D /* SafeguardModel.m in Sources */,
 				F7003E4D1DDC38540056F3DA /* TakePhotoCollectionViewCell.m in Sources */,
 				F764BBFC1E07C91D00CE252F /* WeatherAirportController.m in Sources */,
@@ -2979,6 +3154,7 @@
 				840D15E01DC20C2D005FA910 /* PsnSafetyHourView.m in Sources */,
 				840D15D41DC0C3E8005FA910 /* AbnReasonModel.m in Sources */,
 				F74289FA1E04D7CA00AC00D4 /* MonthKpi.m in Sources */,
+				F714698C1EA5AC6300AFF1E2 /* WillGoFlightViewController.m in Sources */,
 				F7428A041E04DAC900AC00D4 /* Airport.m in Sources */,
 				F7D47FF01DFEC7400050B293 /* PsnSafetyContentViewTableViewCell.m in Sources */,
 				840D15ED1DC2FC67005FA910 /* PassengerTopViewController.m in Sources */,
@@ -2986,15 +3162,19 @@
 				F7653E261E66A99D007EA571 /* ConcernModel.m in Sources */,
 				840A4D111DD85DE200C39A79 /* PassengerModel.m in Sources */,
 				F7680B191E0A6069000B8C0D /* VersionModel.m in Sources */,
+				F74E1EC91EC19B5D00FD9843 /* ReportTableViewCell.m in Sources */,
 				84183A091DBDDBD600D7DD86 /* FlightHourViewController.m in Sources */,
 				F73DBB8D1E2F08E80085C000 /* FlightSearchViewController.m in Sources */,
 				F78B13B81DF47B4C000A6833 /* MessageFilterViewController.m in Sources */,
+				F71469A91EB07BBA00AFF1E2 /* ChatRightFileTableViewCell.m in Sources */,
+				F77A7C521E9F54900044D891 /* ContingencyAddressBookModel.m in Sources */,
 				F71387C91E8E43E400F126AD /* JSDownloadView.m in Sources */,
 				F70893EB1DD2F66700135540 /* FlightDelaysTableViewCell.m in Sources */,
 				F79251371DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.m in Sources */,
 				F7A25D051DB9E6C900F36C32 /* PsnSafetyContentView.m in Sources */,
 				F7A2A0631DB8D0EE0023F228 /* OverViewContentView.m in Sources */,
 				84183A2E1DBF65D400D7DD86 /* RatioTableViewCell.m in Sources */,
+				F71469B21EB1D4F800AFF1E2 /* JLPhotoBrowser.m in Sources */,
 				F7E7050A1E6E818A009C795F /* UserManageSoundTableViewCell.m in Sources */,
 				F76D4AE41E80FD3100599DD0 /* OperationSituationView.m in Sources */,
 				F7A25D8B1DBE277500F36C32 /* SJPhotoPickerRaidoButton.m in Sources */,
@@ -3020,12 +3200,14 @@
 				84919D761DC9FD7B00C6F5DE /* MessageService.m in Sources */,
 				F79251881DB781AB006AA119 /* NightShiftRoomViewController.m in Sources */,
 				841839F11DBCB87600D7DD86 /* PNPieChartDataItem.m in Sources */,
+				F71469AF1EB1BD6500AFF1E2 /* ZYShowPictureView.m in Sources */,
 				F774970A1E0773EA00B5773C /* DAYUtils.m in Sources */,
 				F73DBB801E2DB7690085C000 /* DayTitleLabel.m in Sources */,
 				84183A311DBF8E6700D7DD86 /* FlightHourModel.m in Sources */,
 				F78B13C41DF51056000A6833 /* MessageFilterTableViewCell.m in Sources */,
 				F7F057171DF9730C006BCD67 /* SpecialModel.m in Sources */,
 				F76910D71E8CCDAB004945E7 /* KnowledgeBaseViewController.m in Sources */,
+				F77A7C441E9CC1CB0044D891 /* SateguardTypeModel.m in Sources */,
 				F77497071E0773EA00B5773C /* DAYComponentView.m in Sources */,
 				8471FBCB1E055BEC0037F9F5 /* Constants.m in Sources */,
 				F7003E481DDC30CE0056F3DA /* OptionCollectionViewCell.m in Sources */,
@@ -3042,10 +3224,13 @@
 				F78B13B11DF47938000A6833 /* ModifyPwdView.m in Sources */,
 				840D15CB1DC0B6DB005FA910 /* AbnormalReasonView.m in Sources */,
 				F7A25D8D1DBE277500F36C32 /* SJPickPhotoCell.m in Sources */,
+				F71469941EA5B96A00AFF1E2 /* WillGoFlightTableViewCell.m in Sources */,
 				F70893F21DD492AD00135540 /* TagView.m in Sources */,
 				F79251921DB858D9006AA119 /* AddressBookViewController.m in Sources */,
 				F76910DC1E8CCDF6004945E7 /* ReportViewController.m in Sources */,
+				F77A7C4A1E9DF1D70044D891 /* DispatchModel.m in Sources */,
 				F77497081E0773EA00B5773C /* DAYIndicatorView.m in Sources */,
+				F714699D1EB07A4600AFF1E2 /* ChatLeftImageTableViewCell.m in Sources */,
 				84BA54ED1DA256940037198F /* airmobile.xcdatamodeld in Sources */,
 				F7428A011E04DA9200AC00D4 /* GlobalHelper.m in Sources */,
 				F73DBB991E2F0A360085C000 /* CalendarViewController.m in Sources */,
@@ -3061,6 +3246,7 @@
 				84BA54E11DA256940037198F /* main.m in Sources */,
 				F74902A51DC86735005B193D /* FlightLargeDelayModel.m in Sources */,
 				F7A2A0561DB8D0590023F228 /* RootViewController.m in Sources */,
+				F71469AC1EB07CA300AFF1E2 /* ChatRightImageTableViewCell.m in Sources */,
 				F74902AB1DC868AC005B193D /* DutyModel.m in Sources */,
 				F792514A1DB608E6006AA119 /* ContactPersonViewController.m in Sources */,
 				F7A25D081DB9E6EE00F36C32 /* ProgreesBarView.m in Sources */,

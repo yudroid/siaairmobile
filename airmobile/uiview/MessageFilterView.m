@@ -132,7 +132,7 @@ static const NSString *MESSAGEFILTERVIEW_TABLECELL_IDENTIFIER = @"MESSAGEFILTERV
 }
 
 - (IBAction)backgroundClick:(id)sender {
-    NSLog(@"点击");
+//    NSLog(@"点击");
 }
 
 

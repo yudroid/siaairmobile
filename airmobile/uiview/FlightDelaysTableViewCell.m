@@ -61,4 +61,19 @@
     }
 }
 
+-(void)setStatus:(NSString *)status
+{
+    _status = status;
+    if (status&&([status isEqualToString:@"UNCONFIRM"])) {
+        _readTagLabel.text = @"未确认";
+        _readTagImageView.image = [UIImage imageNamed:@"ReadTagRed"];
+    }else if(status &&( [status isEqualToString:@"CONFIRMED"]||[status isEqualToString:@"CONFIRM"])){
+        _readTagLabel.text = @"已确认";
+        _readTagImageView.image = [UIImage imageNamed:@"ReadTagGrey"];
+    }else{
+        _readTagLabel.hidden = YES;
+        _readTagImageView.hidden = YES;
+    }
+}
+
 @end

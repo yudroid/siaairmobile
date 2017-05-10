@@ -14,7 +14,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *messageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLable;
-
+@property (weak, nonatomic) IBOutlet UILabel *unReadLabel;
+@property (nonatomic, assign) NSInteger unRead;//是否新消息
 @end
 
 

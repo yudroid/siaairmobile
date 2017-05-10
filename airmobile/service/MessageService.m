@@ -34,12 +34,11 @@
 //#define wssysurl2   @"ws://192.168.163.132:8088/acs/websocketmsg/2/alertmsg"
 //#define wsabnurl2   @"ws://192.168.163.132:8088/acs/websocketmsg/2/abnevent"//异常事件消息
 
-
 #define wsuserurl1  @"ws://219.134.93.113:8087/acs/websocketmsg/1/usermsg"
 #define wsgroupurl1 @"ws://219.134.93.113:8087/acs/websocketmsg/1/workgroupmsg"
 #define wssysurl1   @"ws://219.134.93.113:8087/acs/websocketmsg/1/alertmsg"
 #define wsabnurl1   @"ws://219.134.93.113:8087/acs/websocketmsg/1/abnevent"//异常事件消息
-//
+////
 //#define wsuserurl2  @"ws://219.134.93.113:8087/acs/websocketmsg/2/usermsg"
 //#define wsgroupurl2 @"ws://219.134.93.113:8087/acs/websocketmsg/2/workgroupmsg"
 //#define wssysurl2   @"ws://219.134.93.113:8087/acs/websocketmsg/2/alertmsg"
@@ -57,10 +56,10 @@
     SRWebSocket *sysWebSocket1;
     SRWebSocket *abnWebSocket1;
 
-    SRWebSocket *userWebSocket2;
-    SRWebSocket *groupWebSocket2;
-    SRWebSocket *sysWebSocket2;
-    SRWebSocket *abnWebSocket2;
+//    SRWebSocket *userWebSocket2;
+//    SRWebSocket *groupWebSocket2;
+//    SRWebSocket *sysWebSocket2;
+//    SRWebSocket *abnWebSocket2;
 
     long _clientId;
     long _userId;
@@ -170,11 +169,11 @@ singleton_implementation(MessageService);
     [sysWebSocket1 close];
     [abnWebSocket1 close];
 
-    [userWebSocket2 close];
-    [groupWebSocket2 close];
-    [sysWebSocket2 close];
-    [abnWebSocket2 close];
-    
+//    [userWebSocket2 close];
+//    [groupWebSocket2 close];
+//    [sysWebSocket2 close];
+//    [abnWebSocket2 close];
+//    
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message
@@ -183,8 +182,8 @@ singleton_implementation(MessageService);
     // groupmessage --- "{"content":"Yang also","createTime":"2016-04-10 15:40:20","sendUserId":65,"sendUserName":"杨泉林","workgroupId":619,"workgroupTitle":"成员: admin 张宇","workgroupUserIds":"1,66"}"
     // sysmessage --- "toDept toDeptIds"
     
-//    NSLog(@"Received \"%@\"", message);
-    
+    NSLog(@"Received \"%@\"", message);
+
     NSString *urlString = [webSocket.url absoluteString];
     NSData *jsonData = [message dataUsingEncoding:NSUTF8StringEncoding];
     NSError *err;
@@ -213,7 +212,9 @@ singleton_implementation(MessageService);
         [msgDict setValue:[NSNumber numberWithLong:fromId]  forKey:@"userid"];
         [msgDict setValue:[NSNumber numberWithLong:0]       forKey:@"type"];
         [msgDict setValue:[dic objectForKey:@"createTime"]       forKey:@"createTime"];
-        
+        [msgDict setValue:[dic objectForKey:@"flag"] forKey:@"flag"];
+    
+
         [PersistenceUtils insertNewChatMessage:msgDict
                                         needid:YES
                                        success:^{
@@ -249,34 +250,8 @@ singleton_implementation(MessageService);
         if(![[dic allKeys] containsObject:@"createTime"] || ![[dic allKeys] containsObject:@"type"]){
             return;
         }
+        if (![[dic objectForKey:@"type"] containsString:@"FLIGHT"]) {
 
-
-
-        if([[dic objectForKey:@"type"] containsString:@"FTSS"]){
-            NSString *msgContent  = [dic objectForKey:@"content"];
-            for (NSDictionary *dic in [ConcernModel allConcernModel]) {
-                if ([msgContent containsString:dic[@"key"]]) {
-
-                    //声音提示
-                    [self voice];
-
-                    //消息存储
-                    NSMutableDictionary *msgDict = [self toMessageDic:dic];
-                    [PersistenceUtils insertNewSysMessage:msgDict];
-                    NSString *type = [dic objectForKey:@"type"];
-                    if(_curTabBarView != nil && type!=nil && ![type containsString:@"FLIGHT"]){
-                        [_curTabBarView setHasNewMessage:YES];
-                    }
-
-                    //发送本地通知
-                    [UILocalNotification sendFlightChangeNotificationWithContent:msgContent];
-                    UIApplicationState state = [UIApplication sharedApplication].applicationState;
-                    if(state == UIApplicationStateBackground){
-
-                    }
-                }
-            }
-        }else{
             NSMutableDictionary *msgDict = [self toMessageDic:dic];
             [PersistenceUtils insertNewSysMessage:msgDict];
             NSString *type = [dic objectForKey:@"type"];
@@ -284,8 +259,49 @@ singleton_implementation(MessageService);
                 [_curTabBarView setHasNewMessage:YES];
             }
 
+        }else{
+
+
+            if([[dic objectForKey:@"type"] containsString:@"FTSS"]){
+                NSString *msgContent  = [dic objectForKey:@"content"];
+                for (NSDictionary *dic in [ConcernModel allConcernModel]) {
+                    if ([msgContent containsString:dic[@"key"]]) {
+
+                        //声音提示
+                        [self voice];
+
+                        //消息存储
+                        NSMutableDictionary *msgDict = [self toMessageDic:dic];
+                        [PersistenceUtils insertNewSysMessage:msgDict];
+                        NSString *type = [dic objectForKey:@"type"];
+                        if(_curTabBarView != nil && type!=nil && ![type containsString:@"FLIGHT"]){
+                            [_curTabBarView setHasNewMessage:YES];
+                        }
+
+                        //发送本地通知
+                        [UILocalNotification sendFlightChangeNotificationWithContent:msgContent];
+                        UIApplicationState state = [UIApplication sharedApplication].applicationState;
+                        if(state == UIApplicationStateBackground){
+
+                        }
+                    }
+                }
+            }else{
+                NSMutableDictionary *msgDict = [self toMessageDic:dic];
+                [PersistenceUtils insertNewSysMessage:msgDict];
+                NSString *type = [dic objectForKey:@"type"];
+                if(_curTabBarView != nil && type!=nil && ![type containsString:@"FLIGHT"]){
+                    [_curTabBarView setHasNewMessage:YES];
+                }
+                
+                
+            }
 
         }
+
+
+
+
 
         //处理航班关注
         if([[dic objectForKey:@"type"] containsString:@"FTSS"]){

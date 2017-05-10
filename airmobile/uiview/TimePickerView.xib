@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1421" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -22,14 +22,14 @@
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="atC-lI-KWn">
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="1"/>
-                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="IGP-i1-GJ3"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1MR-eH-ntw">
                                     <rect key="frame" x="149" y="-0.5" width="1" height="50"/>
-                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="1" id="Db5-GO-mfZ"/>
                                     </constraints>
@@ -73,7 +73,7 @@
                             <date key="date" timeIntervalSinceReferenceDate="512444926.75976801">
                                 <!--2017-03-29 01:48:46 +0000-->
                             </date>
-                            <locale key="locale" localeIdentifier="zh"/>
+                            <locale key="locale" localeIdentifier="zh-Hans"/>
                         </datePicker>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -96,6 +96,7 @@
                 <constraint firstItem="95i-oS-HuB" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="sd6-3h-XIk"/>
             </constraints>
             <connections>
+                <outlet property="backgroundView" destination="95i-oS-HuB" id="5DV-Dc-pEf"/>
                 <outlet property="timePicker" destination="dFg-Cb-YRG" id="oh0-qb-PoC"/>
             </connections>
             <point key="canvasLocation" x="24.5" y="51.5"/>

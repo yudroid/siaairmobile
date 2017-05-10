@@ -189,7 +189,7 @@ static const NSString *UPLOADPHOTO_COLLECTIONCELL_IDENTIFIER = @"UPLOADPHOTO_COL
 
      } failureBlock:^(NSError *error)
      {
-         NSLog(@"error:%@",error.localizedDescription);
+//         NSLog(@"error:%@",error.localizedDescription);
      }];
 #pragma clang diagnostic pop
 }

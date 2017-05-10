@@ -18,6 +18,8 @@
 @property (nonatomic, copy) NSString *titleText;
 @property (nonatomic ,copy) NSString *contentText;
 
-@property (nonatomic ,copy) SysMessageModel *sysMessageModel;
+@property (nonatomic ,strong) SysMessageModel *sysMessageModel;
+
+@property (nonatomic, assign) NSInteger type;//0 航班事件消息 1 重要消息
 
 @end

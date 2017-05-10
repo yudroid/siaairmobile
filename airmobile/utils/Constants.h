@@ -54,6 +54,7 @@ extern const long FUNC_ZBHX;
 extern const long FUNC_HBGZ;
 extern const long FUNC_ZSK;//知识库
 extern const long FUNC_YXJB;//运行简报
+extern const long FUNC_JJFXHB;
 
 extern const long SET;
 extern const long SET_MSGFILTER;

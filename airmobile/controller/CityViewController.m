@@ -281,7 +281,7 @@
     }else{
         airport = _searchArray[indexPath.row];
     }
-    NSLog(@"当前选中的机场为cn:%@ iata:%@", airport.cn, airport.iata);
+//    NSLog(@"当前选中的机场为cn:%@ iata:%@", airport.cn, airport.iata);
     self.resetCity(airport);
     [self.navigationController popViewControllerAnimated:true];
 }
