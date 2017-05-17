@@ -209,6 +209,7 @@
 		F74902DB1DC881E9005B193D /* CraftseatCntModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74902DA1DC881E9005B193D /* CraftseatCntModel.m */; };
 		F74E1EC91EC19B5D00FD9843 /* ReportTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F74E1EC71EC19B5D00FD9843 /* ReportTableViewCell.m */; };
 		F74E1ECA1EC19B5D00FD9843 /* ReportTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F74E1EC81EC19B5D00FD9843 /* ReportTableViewCell.xib */; };
+		F74E1ECE1EC40D6100FD9843 /* KnowledgeBaseTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74E1ECD1EC40D6100FD9843 /* KnowledgeBaseTypeModel.m */; };
 		F752C63E1E8B47C700F8BD84 /* TimePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F752C63D1E8B47C700F8BD84 /* TimePickerView.m */; };
 		F752C6401E8B47D700F8BD84 /* TimePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F752C63F1E8B47D700F8BD84 /* TimePickerView.xib */; };
 		F758C9911DC360BD00556120 /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F758C9901DC360BD00556120 /* HomePageViewController.m */; };
@@ -756,6 +757,8 @@
 		F74E1EC61EC19B5D00FD9843 /* ReportTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportTableViewCell.h; sourceTree = "<group>"; };
 		F74E1EC71EC19B5D00FD9843 /* ReportTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportTableViewCell.m; sourceTree = "<group>"; };
 		F74E1EC81EC19B5D00FD9843 /* ReportTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReportTableViewCell.xib; sourceTree = "<group>"; };
+		F74E1ECC1EC40D6100FD9843 /* KnowledgeBaseTypeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KnowledgeBaseTypeModel.h; sourceTree = "<group>"; };
+		F74E1ECD1EC40D6100FD9843 /* KnowledgeBaseTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KnowledgeBaseTypeModel.m; sourceTree = "<group>"; };
 		F752C63C1E8B47C700F8BD84 /* TimePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePickerView.h; sourceTree = "<group>"; };
 		F752C63D1E8B47C700F8BD84 /* TimePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimePickerView.m; sourceTree = "<group>"; };
 		F752C63F1E8B47D700F8BD84 /* TimePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimePickerView.xib; sourceTree = "<group>"; };
@@ -1398,6 +1401,8 @@
 				F77A7C511E9F54900044D891 /* ContingencyAddressBookModel.m */,
 				F714698E1EA5B59000AFF1E2 /* WillGoFlightModel.h */,
 				F714698F1EA5B59000AFF1E2 /* WillGoFlightModel.m */,
+				F74E1ECC1EC40D6100FD9843 /* KnowledgeBaseTypeModel.h */,
+				F74E1ECD1EC40D6100FD9843 /* KnowledgeBaseTypeModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -3137,6 +3142,7 @@
 				F7EEEF211DB3A580004AF0AE /* FlightDetailTableViewCell.m in Sources */,
 				84183A001DBCC17A00D7DD86 /* PNChartLabel.m in Sources */,
 				F7A2A0621DB8D0EE0023F228 /* FlightContentView.m in Sources */,
+				F74E1ECE1EC40D6100FD9843 /* KnowledgeBaseTypeModel.m in Sources */,
 				F73DBB871E2DBE470085C000 /* NSDate+Extension.m in Sources */,
 				F73DBB901E2F09A90085C000 /* CityViewController.m in Sources */,
 				F7EE87861DB371CA006473F5 /* FlightFilterTableViewCell.m in Sources */,

@@ -87,7 +87,7 @@ static NSString * tableIdentifier = @"OPERATIONSITUATIONTABLECELL";
     //正常 、延误
     [HttpsUtils getSummaryInfo:nil success:^(id responesObj) {
         if ([responesObj isKindOfClass:[NSDictionary class]]) {
-            NSString *status = [responesObj objectForKey:@"warning"];
+            NSString *status = [responesObj objectForKey:@"aocSubmitWarning"];
             WaterWareStatus wStatus ;
             if([status containsString:@"红色"]){
                 wStatus = waterWareStatusDYW;

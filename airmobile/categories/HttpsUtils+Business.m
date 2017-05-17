@@ -85,7 +85,8 @@ NSString * const lastYearFltFMR             = @"/acs/ov/lastYearFltFMR";
 // 功能
 NSString * const dutyTableByDayUrl          = @"/acs/dms/airportScheduling/getDutyBySpeDay";// 员工值班表，按天的
 NSString * const queryMobileEmergency       = @"/acs/m/queryMobileEmergency";//应急通讯录
-NSString * const mobileKBList               =@"/acs/dms/KB/mobileKBList";//知识库
+NSString * const mobileKBList               = @"/acs/dms/KB/mobileKBList";//知识库
+NSString * const searchEQType               = @"/acs/cfg/dict/search?search_EQ_type=know_type";//获取全部类别
 NSString * const phoneRecordUrl             = @"/acs/wacs/user/SelectAllDeptListForIphone";// 通讯录
 NSString * const flyoutList                 = @"/acs/wacs/flyout/list";
 // 我的
@@ -1595,6 +1596,15 @@ NSString * const mobileLog                  = @"/acs/dms/log/mobileLog";//获取
                      success(responseObj);
                  }
              } failure:failure];
+}
 
++(void)searchEQType:(void (^)(id))success failure:(void (^)(id))failure
+{
+    [HttpsUtils get:searchEQType params:nil success:^(id responseObj) {
+
+        if (responseObj) {
+            success(responseObj);
+        }
+    } failure:failure];
 }
 @end

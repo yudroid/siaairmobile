@@ -82,7 +82,7 @@
                                                                       100,
                                                                       11)
                                                       text:@"前一年同期"
-                                                      font:13
+                                                      font:12
                                              textAlignment:NSTextAlignmentLeft
                                               colorFromHex:0xB5FEFEFE];
         [topBgView addSubview:planLabel];
@@ -97,7 +97,7 @@
         UILabel *realLabel = [CommonFunction addLabelFrame:CGRectMake(viewTrailing(realImageView)+2,
                                                                       viewY(planLabel) , 100, 11)
                                                       text:@"最近12月"
-                                                      font:13
+                                                      font:12
                                              textAlignment:NSTextAlignmentLeft
                                               colorFromHex:0xB5FEFEFE];
         [topBgView addSubview:realLabel];

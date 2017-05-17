@@ -69,7 +69,7 @@
         ratioNum = [CommonFunction addLabelFrame:CGRectMake(topBgView.frame.size.width-150,
                                                                      10,
                                                                      130,
-                                                                     18)
+                                                                     20)
                                                      text:[NSString stringWithFormat:@"%ld预测",flightHourModel.planDepCount+flightHourModel.planArrCount]
                                                      font:20
                                             textAlignment:NSTextAlignmentRight colorFromHex:0xFFFFFFFF];
@@ -98,7 +98,7 @@
                                                                       100,
                                                                       11)
                                                       text:@"人数"
-                                                      font:27/2
+                                                      font:25/2
                                              textAlignment:NSTextAlignmentLeft
                                               colorFromHex:0xB5FFFFFF];
         [topBgView addSubview:planLabel];
@@ -310,7 +310,12 @@
             flightHourModel =hourArray[index];
 
         }
-        ratioNum.text = [NSString stringWithFormat:@"%ld预测",flightHourModel.planDepCount+flightHourModel.planArrCount];
+
+        NSMutableAttributedString *valueAttributedString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%ld预测",flightHourModel.planDepCount+flightHourModel.planArrCount]];
+        [valueAttributedString addAttribute:NSFontAttributeName
+                                      value:[UIFont fontWithName:@"PingFangSC-Regular" size:13]
+                                      range:[ratioNum.text rangeOfString:@"预测"]];
+        ratioNum.attributedText = valueAttributedString;
     }
 
 }

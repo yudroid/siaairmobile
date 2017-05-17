@@ -273,7 +273,7 @@
         UILabel *depOutLabel = [CommonFunction addLabelFrame:CGRectMake(0,
                                                                         viewBotton(arrInNum)+px_px_2_2_3(20,30, 60),
                                                                         viewWidth(arrRoundProgress),
-                                                                        15) text:@"出港航班"
+                                                                        17) text:@"出港航班"
                                                         font:18
                                                textAlignment:(NSTextAlignmentCenter)
                                                 colorFromHex:0xFF00b0d8];
@@ -375,7 +375,7 @@
         UILabel *totalLabel = [CommonFunction addLabelFrame:CGRectMake(viewX(totalNum),
                                                                        viewBotton(totalNum)+6,
                                                                        100,
-                                                                       12)
+                                                                       14)
                                                        text:@"航班总数"
                                                        font:20
                                               textAlignment:NSTextAlignmentCenter
@@ -407,7 +407,7 @@
         UILabel *arrLabel = [CommonFunction addLabelFrame:CGRectMake(viewX(arrNum),
                                                                      viewBotton(arrNum)+6,
                                                                      100,
-                                                                     12)
+                                                                     14)
                                                      text:@"进港航班"
                                                      font:20
                                             textAlignment:NSTextAlignmentCenter
@@ -440,7 +440,7 @@
         UILabel *depLabel = [CommonFunction addLabelFrame:CGRectMake(viewX(depNum),
                                                                      viewBotton(depNum)+ 6,
                                                                      100,
-                                                                     12)
+                                                                     14)
                                                      text:@"出港航班"
                                                      font:20
                                             textAlignment:NSTextAlignmentCenter

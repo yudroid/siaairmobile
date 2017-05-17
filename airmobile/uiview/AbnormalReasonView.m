@@ -21,11 +21,11 @@
     UILabel *arrInNum;
 }
 
-- (instancetype)initWithFrame:(CGRect)      frame{
+- (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     
     if(self){
-        array                   = [HomePageService sharedHomePageService].flightModel.abnReasons;
+        array = [HomePageService sharedHomePageService].flightModel.abnReasons;
         [self updateShapeArray];
         CGFloat topBgViewWidth  = kScreenWidth-2*px2(22);
         topBgView       = [[UIView alloc] initWithFrame:CGRectMake(10, 0, topBgViewWidth, topBgViewWidth *391/709)];
@@ -45,14 +45,14 @@
         [abnRsnProgress strokeChart];
         abnRsnProgress.legendStyle                  = PNLegendItemStyleStacked;
         abnRsnProgress.legendFont                   = [UIFont fontWithName:@"PingFangSC-Regular" size:10];
-        abnRsnProgress.innerCircleRadius            = viewHeight(abnRsnProgress)/2-40;
+        abnRsnProgress.innerCircleRadius            = viewHeight(abnRsnProgress)/2-30;
         [topBgView addSubview:abnRsnProgress];
 
         
         arrInNum = [CommonFunction addLabelFrame:CGRectMake(0,
-                                                                     (viewY(abnRsnProgress)+viewHeight(abnRsnProgress))/2-35/2-12,
-                                                                     viewWidth(abnRsnProgress),
-                                                                     24)
+                                                         (viewY(abnRsnProgress)+viewHeight(abnRsnProgress))/2-35/2-12,
+                                                         viewWidth(abnRsnProgress),
+                                                         24)
                                                      text:@([self sum]).stringValue
                                                      font:32 textAlignment:(NSTextAlignmentCenter)
                                              colorFromHex:0xFF129cc4];
@@ -131,7 +131,7 @@
 
 -(void) updateShapeArray
 {
-    NSDictionary *colorDic = @{@"天气"  :[CommonFunction colorFromHex:0xFFFFB6C1] ,
+    NSDictionary *colorDic = @{@"天气"     :[CommonFunction colorFromHex:0xFFFFB6C1] ,
                                @"军事活动"  :[CommonFunction colorFromHex:0xFFADD8E6] ,
                                @"航空公司"  :[CommonFunction colorFromHex:0xFF87CEFA] ,
                                @"空管"     :[CommonFunction colorFromHex:0xFFFFA07A] ,
@@ -161,15 +161,11 @@
     array =[HomePageService sharedHomePageService].flightModel.abnReasons;
     if(array &&[array isKindOfClass:[NSArray class]]&& array.count != 0 )
     {
-
-            arrInNum.text = @([self sum]).stringValue;
-
-            [flightHourTableView reloadData];
-
-            [self updateShapeArray];
+        arrInNum.text = @([self sum]).stringValue;
+        [flightHourTableView reloadData];
+        [self updateShapeArray];
         [abnRsnProgress updateChartData:shapeArray];
-            [abnRsnProgress strokeChart];
-
-        }
+        [abnRsnProgress strokeChart];
+    }
 }
 @end

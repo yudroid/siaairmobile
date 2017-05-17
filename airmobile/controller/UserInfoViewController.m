@@ -305,12 +305,11 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
 //        [self showAnimationTitle:@"正在进行版本检测"];
 
         NSString *message = @"态势\n"
-        "（1）总体界面重做\n"
-        "（2）增加本周放行率\n"
-        "（3）增加去年近12月放行率\n"
-        "（4）放行正常率增加80%阈值线\n"
-       " 功能\n"
-        "（1）增加即将放行航班";
+        "样式布局修改\n"
+        "当前运营情况字段修改\n"
+        "功能\n"
+        "知识库添加条件筛选和文本搜索\n"
+        "运行简报修改查看方式";
 
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"当前为最新版本" message:message preferredStyle:UIAlertControllerStyleAlert];
         NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];

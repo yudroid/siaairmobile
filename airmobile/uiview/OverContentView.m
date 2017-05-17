@@ -155,14 +155,14 @@
     _arrSpeedLabel.text = [NSString stringWithFormat:@"%.1f分钟/架",summaryModel.inSpeed];
     _depSpeedLabel.text = [NSString stringWithFormat:@"%.1f分钟/架",summaryModel.releaseSpeed];
 
-    _optionalStatusLabel.text = summaryModel.warning;
-    if([summaryModel.warning containsString:@"红色"]){
+    _optionalStatusLabel.text = summaryModel.aocSubmitWarning;
+    if([summaryModel.aocSubmitWarning containsString:@"红色"]){
         _optionalStatusLabel.textColor = [CommonFunction colorFromHex:0xfff30f0f];
-    }else if([summaryModel.warning containsString:@"橙色"]){
+    }else if([summaryModel.aocSubmitWarning containsString:@"橙色"]){
         _optionalStatusLabel.textColor = [CommonFunction colorFromHex:0xffff8f22];
-    }else if([summaryModel.warning containsString:@"黄色"]){
+    }else if([summaryModel.aocSubmitWarning containsString:@"黄色"]){
         _optionalStatusLabel.textColor = [CommonFunction colorFromHex:0xfffcf02d];
-    }else if([summaryModel.warning containsString:@"蓝色"]){
+    }else if([summaryModel.aocSubmitWarning containsString:@"蓝色"]){
         _optionalStatusLabel.textColor = [CommonFunction colorFromHex:0xfff0266c];
     }else{
         _optionalStatusLabel.textColor = [CommonFunction colorFromHex:0xff12d865];

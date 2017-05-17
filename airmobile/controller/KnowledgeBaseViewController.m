@@ -17,6 +17,7 @@ const NSString *KNOWLEDGEBASEIDENTIFIER = @"KNOWLEDGEBASEIDENTIFIER";
 #import "KnowledgeBaseTableViewCell.h"
 #import "KnowledgeBaseContentViewController.h"
 #import "FlightFilterView.h"
+#import "KnowledgeBaseTypeModel.h"
 
 @interface KnowledgeBaseViewController ()<UITextFieldDelegate,FlightFilterViewDelegate>
 
@@ -25,6 +26,7 @@ const NSString *KNOWLEDGEBASEIDENTIFIER = @"KNOWLEDGEBASEIDENTIFIER";
 @property (nonatomic, copy) NSArray *tableArray;
 @property (nonatomic, strong) UIView *searBar;
 @property (nonatomic, strong) UITextField *searContentTextField;
+@property (nonatomic, strong) KnowledgeBaseTypeModel *knowledgeBaseTypeModel;
 
 @end
 
@@ -57,6 +59,8 @@ const NSString *KNOWLEDGEBASEIDENTIFIER = @"KNOWLEDGEBASEIDENTIFIER";
     filterView.alpha = 0;
     filterView.delegate = self;
     [self.view addSubview:filterView];
+
+    
 }
 
 -(void)initTitleView
@@ -133,9 +137,13 @@ const NSString *KNOWLEDGEBASEIDENTIFIER = @"KNOWLEDGEBASEIDENTIFIER";
 -(void)updateNetwork
 {
     _startIndex = 0;
+    NSString *kbType = _knowledgeBaseTypeModel.id?@(_knowledgeBaseTypeModel.id).stringValue:@"";
     NSDictionary *conds =@{
                            @"start":@(_startIndex).stringValue,
-                           @"length":@(pageSize).stringValue};
+                           @"length":@(pageSize).stringValue,
+                           @"kbType":kbType,
+                           @"search_name":_searContentTextField.text?:@""
+                           };
 
 
 //    [HttpsUtils mobileKBListWithDictionary:conds Success:^(id responseObj) {
@@ -197,9 +205,7 @@ const NSString *KNOWLEDGEBASEIDENTIFIER = @"KNOWLEDGEBASEIDENTIFIER";
 -(void)searchBarSearchButtonClick:(UIButton *)sender
 {
     [self.view endEditing:YES];
-
 }
-
 
 -(void)moreNetwork
 {
@@ -221,7 +227,6 @@ const NSString *KNOWLEDGEBASEIDENTIFIER = @"KNOWLEDGEBASEIDENTIFIER";
 //        NSLog(@"%@",error);
         [_tableView.mj_header endRefreshing];
     }];
-
 }
 
 
@@ -256,5 +261,26 @@ const NSString *KNOWLEDGEBASEIDENTIFIER = @"KNOWLEDGEBASEIDENTIFIER";
     knowledgeBaseContentVC.type = 1;
     [self.navigationController pushViewController:knowledgeBaseContentVC animated:YES];
 
+}
+
+#pragma mark - FlightFilterViewDelegate
+-(void)flightFilterView:(FlightFilterView *)view knowledgeBaseType:(KnowledgeBaseTypeModel *)model
+{
+    _knowledgeBaseTypeModel = model;
+    [_tableView.mj_header beginRefreshing];
+}
+
+-(void)flightFilterView:(FlightFilterView *)view filghtFilterCleanButton:(UIButton *)button
+{
+    _knowledgeBaseTypeModel = nil;
+}
+
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+
+    [self.view resignFirstResponder];
+    [_tableView.mj_header beginRefreshing];
+    return YES;
 }
 @end

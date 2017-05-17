@@ -32,5 +32,7 @@
 
 //判断是否为ios10以上版本
 +(BOOL) iOSVersion10;
-    
+
+//当前机型的尺寸
++(CGFloat)deviceSize;
 @end

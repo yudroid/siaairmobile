@@ -64,7 +64,7 @@
         UILabel *planLabel = [CommonFunction addLabelFrame:CGRectMake(viewTrailing(planImageView)+9,
                                                                       viewY(planImageView), 100, 11)
                                                       text:@"近机位"
-                                                      font:27/2
+                                                      font:25/2
                                              textAlignment:NSTextAlignmentLeft
                                               colorFromHex:0xB5FFFFFF];
         [topBgView addSubview:planLabel];
@@ -81,7 +81,7 @@
                                                                       50,
                                                                       11)
                                                       text:@"远机位"
-                                                      font:27/2
+                                                      font:25/2
                                              textAlignment:NSTextAlignmentLeft
                                               colorFromHex:0xB5FFFFFF];
         [topBgView addSubview:realLabel];
@@ -116,6 +116,12 @@
         barChart.yMinValue = 0;
         barChart.showXLabel = YES;
         barChart.showYLabel = NO;
+        if ([CommonFunction deviceSize] == 4.0) {
+            barChart.labelFont = [UIFont systemFontOfSize:8];
+        }else{
+            barChart.labelFont = [UIFont systemFontOfSize:10];
+        }
+
         barChart.barWidth = 12;
         barChart.backgroundColor = [UIColor clearColor];
         

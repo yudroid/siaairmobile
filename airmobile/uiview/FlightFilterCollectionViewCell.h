@@ -11,7 +11,7 @@
 
 @interface FlightFilterCollectionViewCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet FilghtFilterButton *contentButton;
-
+@property (nonatomic, strong) KnowledgeBaseTypeModel *knowledgeBaseTypeModel;
 @property (nonatomic ,assign) BOOL isSelected;
 
 @end

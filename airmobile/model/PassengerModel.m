@@ -114,7 +114,7 @@
                 break;
                 
             case 2:
-                model.depCount =        [[item objectForKey:@"count"] intValue];
+                model.depCount =    [[item objectForKey:@"count"] intValue];
                 break;
                 
             case 3:

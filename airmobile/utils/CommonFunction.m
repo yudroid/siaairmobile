@@ -255,4 +255,15 @@
     return [dateComponent hour];
 }
 
++(CGFloat)deviceSize
+{
+    if (kScreenWidth==320) {
+        return 4;
+    }else if (kScreenWidth == 414){
+        return 5.5;
+    }else{
+        return 4.7;
+    }
+}
+
 @end

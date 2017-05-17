@@ -193,21 +193,20 @@
 {
     NSInteger max = 0;
 
+    if(_lineArray.count>=2){
         for (FlightHourModel *model in _lineArray[0]) {
             if (model.count>max) {
                 max = model.count;
             }
 
         }
+        for (FlightHourModel *model in _lineArray[1]) {
+            if (model.count>max) {
+                max = model.count;
+            }
 
-
-    for (FlightHourModel *model in _lineArray[1]) {
-        if (model.count>max) {
-            max = model.count;
         }
-
     }
-
     return max==0?1:max;
 }
 

@@ -18,7 +18,7 @@
 #import "FlightDelaysViewController.h"
 #import "LoginViewController.h"
 #import <PushKit/PushKit.h>
-
+#import "UILocalNotification+Business.h"
 
 @interface AppDelegate ()<PKPushRegistryDelegate>
 
@@ -125,11 +125,22 @@
     [[MessageService sharedMessageService] stopService];
 
 }
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings{
+    [application registerForRemoteNotifications];//必须先实现这个方法，才会走下面的方法
+}
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
+    NSLog(@"%@",[[[[deviceToken description] stringByReplacingOccurrencesOfString: @"<" withString: @""]                  stringByReplacingOccurrencesOfString: @">" withString: @""]                 stringByReplacingOccurrencesOfString: @" " withString: @""]);
 
+    NSString *token = [NSString stringWithFormat:@"%@", deviceToken];
+    //获取终端设备标识，这个标识需要通过接口发送到服务器端，服务器端推送消息到APNS时需要知道终端的标识，APNS通过注册的终端标识找到终端设备
+    NSLog(@"%@",token);
+}
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
     // 必须要监听--应用程序在后台的时候进行的跳转
     if (application.applicationState == UIApplicationStateInactive) {
+        //发送本地通知
+        [UILocalNotification sendFlightChangeNotificationWithContent:@"消息"];
 //        NSLog(@"进行界面的跳转");
         // 如果在上面的通知方法中设置了一些，可以在这里打印额外信息的内容，就做到监听，也就可以根据额外信息，做出相应的判断
         FlightDelaysViewController *flightDelaysVC = [[FlightDelaysViewController alloc]initWithNibName:@"FlightDelaysViewController"
@@ -173,6 +184,8 @@
 //                                                            object:nil];
 //
 //    }
+    //发送本地通知
+    [UILocalNotification sendFlightChangeNotificationWithContent:@"消息"];
 }
 
 -(void)reLogin{

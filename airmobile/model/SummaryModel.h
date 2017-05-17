@@ -40,6 +40,7 @@
 @property (nonatomic, assign) NSInteger unfinishedCnt;//未执行航班数
 @property (nonatomic, strong) NSString* releaseRatio;//放行正常率
 @property (nonatomic, strong) NSString* warning;//航班正常性判定，分正常、蓝色IV级（小面积）、黄色Ⅲ级(一般)、橙色Ⅱ级(重大)、红色 Ⅰ级(严重)
+@property (nonatomic, strong) NSString* aocSubmitWarning;
 @property (nonatomic, strong) NSString* aovTxt;//aov输入的自由文本
 @property (nonatomic, assign) CGFloat releaseSpeed;//出港放行速率
 @property (nonatomic, assign) CGFloat  inSpeed;//进港放行速率

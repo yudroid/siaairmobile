@@ -161,7 +161,6 @@ singleton_implementation(HomePageService);
                                                             object:summaryModel.delayTagart];
     } failure:nil];
 
-
     [HttpsUtils getFlightYearSuccess:^(id responesObj) {
         if([responesObj isKindOfClass:[NSString class]]){
             summaryModel.month = responesObj;
@@ -173,11 +172,11 @@ singleton_implementation(HomePageService);
                                                             object:summaryModel.delayTagart];
     } failure:nil];
     //    // 实际进港航班小时分布 /flt/realArrFltPerHour
-//    [HttpsUtils getRealArrHours:nil success:^(id responesObj) {
-//        [summaryModel updateFlightHourModel:responesObj flag:2];
-//        [[NSNotificationCenter defaultCenter] postNotificationName:@"RealArrHours" object:summaryModel.flightHours];
-//    } failure:nil];
-//    
+    //    [HttpsUtils getRealArrHours:nil success:^(id responesObj) {
+    //        [summaryModel updateFlightHourModel:responesObj flag:2];
+    //        [[NSNotificationCenter defaultCenter] postNotificationName:@"RealArrHours" object:summaryModel.flightHours];
+    //    } failure:nil];
+    //    
     // 计划出港航班小时分布 /flt/depFltPerHour
     [HttpsUtils getPlanDepHours:nil success:^(id responesObj) {
         [summaryModel updateFlightHourModel:responesObj flag:2];
@@ -302,7 +301,8 @@ singleton_implementation(HomePageService);
         [psnModel updateGlqFarPsn:responseObj];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"GlqFarPsn"
                                                             object:psnModel.psnFarAreas];
-    } failure:nil];    //高峰旅客日排名
+    } failure:nil];
+    //高峰旅客日排名
     [HttpsUtils getPeakPnsDays:nil success:^(id responseObj) {
         [psnModel updatePeakPnsDays:responseObj];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"PeakPnsDays"

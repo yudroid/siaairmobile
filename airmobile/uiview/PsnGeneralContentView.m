@@ -248,7 +248,7 @@
         UILabel *arrLabel = [CommonFunction addLabelFrame:CGRectMake(viewTrailing(arrImageView)+16,
                                                                      viewY(arrImageView),
                                                                      150,
-                                                                     viewHeight(arrImageView))
+                                                                     viewHeight(arrImageView)+2)
                                                      text:@"进港(计划/实际)"
                                                      font:18
                                             textAlignment:NSTextAlignmentLeft
@@ -287,7 +287,7 @@
         UILabel *depLabel = [CommonFunction addLabelFrame:CGRectMake(viewTrailing(depImageView)+16,
                                                                      viewY(depImageView),
                                                                      150,
-                                                                     viewHeight(depImageView))
+                                                                     viewHeight(depImageView)+2)
                                                      text:@"出港(计划/实际)"
                                                      font:18
                                             textAlignment:NSTextAlignmentLeft

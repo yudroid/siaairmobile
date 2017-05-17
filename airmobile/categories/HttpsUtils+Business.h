@@ -180,7 +180,7 @@
 /**
  正常上报
 
- @param  参数字典
+
  @param success <#success description#>
  @param failue <#failue description#>
  */
@@ -910,5 +910,13 @@
  */
 +(void)getflyoutList:(void (^)(id))success failure:(void (^)(id))failure;
 
+
+/**
+ 获取全部类别
+
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)searchEQType:(void (^)(id))success failure:(void (^)(id))failure;
 
 @end
