@@ -376,7 +376,7 @@
                                                                        viewBotton(totalNum)+6,
                                                                        100,
                                                                        14)
-                                                       text:@"航班总数"
+                                                       text:@"进出港总数"
                                                        font:20
                                               textAlignment:NSTextAlignmentCenter
                                                colorFromHex:0xFF8B8C8C];
@@ -408,7 +408,7 @@
                                                                      viewBotton(arrNum)+6,
                                                                      100,
                                                                      14)
-                                                     text:@"进港航班"
+                                                     text:@"进港数"
                                                      font:20
                                             textAlignment:NSTextAlignmentCenter
                                              colorFromHex:0xFF8B8C8C];
@@ -441,7 +441,7 @@
                                                                      viewBotton(depNum)+ 6,
                                                                      100,
                                                                      14)
-                                                     text:@"出港航班"
+                                                     text:@"出港数"
                                                      font:20
                                             textAlignment:NSTextAlignmentCenter
                                              colorFromHex:0xFF8B8C8C];
@@ -501,7 +501,7 @@
 
         [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.arrDoneNormal
                                                           color:[CommonFunction colorFromHex:0xFF00B0D8]
-                                                    description:[NSString stringWithFormat:@"%@:%d",@"已执行",_flightStusModel.arrDoneNormal]]];
+                                                    description:[NSString stringWithFormat:@"%@ %d",@"已执行",_flightStusModel.arrDoneNormal]]];
 
         if (_flightStusModel.arrPlanNormal>0) {
             [array addObject: [PNPieChartDataItem dataItemWithValue:interval
@@ -509,14 +509,14 @@
         }
         [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.arrPlanNormal
                                                           color:[CommonFunction colorFromHex:0xFFC8C8C8]
-                                                    description:[NSString stringWithFormat:@"%@:%d",@"未执行",_flightStusModel.arrPlanNormal]]];
+                                                    description:[NSString stringWithFormat:@"%@ %d",@"未执行",_flightStusModel.arrPlanNormal]]];
         if(_flightStusModel.arrDelay>0){
             [array addObject: [PNPieChartDataItem dataItemWithValue:interval
                                                           color:[UIColor clearColor]]];
         }
         [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.arrDelay
                                                           color:[CommonFunction colorFromHex:0xFFFFCD21]
-                                                    description:[NSString stringWithFormat:@"%@:%d",@"延   误",_flightStusModel.arrDelay]]];
+                                                    description:[NSString stringWithFormat:@"%@ %d",@"延   误",_flightStusModel.arrDelay]]];
 
         if (_flightStusModel.arrCancel>0) {
             [array addObject: [PNPieChartDataItem dataItemWithValue:interval
@@ -525,7 +525,7 @@
 
         [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.arrCancel
                                                           color:[CommonFunction colorFromHex:0xFFFF4D62]
-                                                    description:[NSString stringWithFormat:@"%@:%d",@"取   消",_flightStusModel.arrCancel]]];
+                                                    description:[NSString stringWithFormat:@"%@ %d",@"取   消",_flightStusModel.arrCancel]]];
 
 
     }else{
@@ -541,7 +541,7 @@
 
         [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.depDoneNormal
                                                           color:[CommonFunction colorFromHex:0xFF00B0D8]
-                                                    description:[NSString stringWithFormat:@"%@:%d",@"已执行",_flightStusModel.depDoneNormal]]];
+                                                    description:[NSString stringWithFormat:@"%@ %d",@"已执行",_flightStusModel.depDoneNormal]]];
 
         if (_flightStusModel.depPlanNormal>0) {
             [array addObject: [PNPieChartDataItem dataItemWithValue:interval
@@ -549,7 +549,7 @@
         }
         [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.depPlanNormal
                                                           color:[CommonFunction colorFromHex:0xFFC8C8C8]
-                                                    description:[NSString stringWithFormat:@"%@:%d",@"未执行",_flightStusModel.depPlanNormal]]];
+                                                    description:[NSString stringWithFormat:@"%@ %d",@"未执行",_flightStusModel.depPlanNormal]]];
 
         if (_flightStusModel.depDelay>0) {
             [array addObject: [PNPieChartDataItem dataItemWithValue:interval
@@ -558,7 +558,7 @@
 
         [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.depDelay
                                                           color:[CommonFunction colorFromHex:0xFFFFCD21]
-                                                    description:[NSString stringWithFormat:@"%@:%d",@"延   误",_flightStusModel.depDelay]]];
+                                                    description:[NSString stringWithFormat:@"%@ %d",@"延   误",_flightStusModel.depDelay]]];
 
         if (_flightStusModel.depCancel>0) {
             [array addObject: [PNPieChartDataItem dataItemWithValue:interval
@@ -566,7 +566,7 @@
         }
         [array addObject: [PNPieChartDataItem dataItemWithValue:_flightStusModel.depCancel
                                                           color:[CommonFunction colorFromHex:0xFFFF4D62]
-                                                    description:[NSString stringWithFormat:@"%@:%d",@"取   消",_flightStusModel.depCancel]]];
+                                                    description:[NSString stringWithFormat:@"%@ %d",@"取   消",_flightStusModel.depCancel]]];
 
 
     }

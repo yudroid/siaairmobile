@@ -45,8 +45,16 @@
 
         [topBgView.layer setMasksToBounds:YES];// 隐藏边界
 
+        NSString *monthString = [HomePageService sharedHomePageService].summaryModel.month;
+        if (monthString &&[monthString isKindOfClass:[NSString class]]&& ![monthString isEqualToString:@""]) {
+
+            monthString = [NSString stringWithFormat:@"最近%@个月",[HomePageService sharedHomePageService].summaryModel.month];
+        }else{
+            monthString = [NSString stringWithFormat:@"最近%lu个月",(unsigned long)[HomePageService sharedHomePageService].summaryModel.yearReleased.count];
+        }
+
         UILabel *passengerTtitle    = [[UILabel alloc] initWithFrame:CGRectMake(16, 8, viewWidth(topBgView)-100, 13)];
-        passengerTtitle.text        = @"平均放行正常率";
+        passengerTtitle.text        = monthString;
         passengerTtitle.font        = [UIFont fontWithName:@"PingFangSC-Regular" size:27/2];
         passengerTtitle.textColor   = [UIColor whiteColor];
         [topBgView addSubview:passengerTtitle];
@@ -92,7 +100,7 @@
                                                                                   viewY(planImageView)-3,
                                                                                   5,
                                                                                   14)];
-        realImageView.image = [UIImage imageNamed:@"FlightHourChartTag2"];
+        realImageView.image = [UIImage imageNamed:@"FlightHourChartTag4"];
         [topBgView addSubview:realImageView];
         UILabel *realLabel = [CommonFunction addLabelFrame:CGRectMake(viewTrailing(realImageView)+2,
                                                                       viewY(planLabel) , 100, 11)
@@ -211,7 +219,7 @@
         PNLineChartData *data   = [PNLineChartData new];
         data.dataTitle          = @"航班";
         data.color              = [UIColor whiteColor];
-        data.alpha              = 0.5f;
+        data.alpha              = 1.f;
         //        data.inflexionPointWidth= 2.0f;
         data.itemCount          = dataArray.count;
         data.inflexionPointStyle= PNLineChartPointStyleCircle;
@@ -254,9 +262,9 @@
         NSInteger num = [self getXLabels].count;
         for (NSInteger i = 0; i<num; i++) {
             if (i<NSIntegerMax) {
-                [colors addObject:[CommonFunction colorFromHex:0xff6AF9DF]];
+                [colors addObject:[CommonFunction colorFromHex:0x55FFFFFF]];
             }else{
-                [colors addObject:[CommonFunction colorFromHex:0xffB0C4DE]];
+                [colors addObject:[CommonFunction colorFromHex:0x55FFFFFF]];
             }
         }
         barChart.strokeColors = [colors copy];
@@ -444,7 +452,8 @@
     PNLineChartData *data   = [PNLineChartData new];
     data.dataTitle          = @"航班";
     data.color              = [UIColor whiteColor];
-    data.alpha              = 0.5f;
+    data.alpha              = 1.f;
+
     //        data.inflexionPointWidth= 2.0f;
     data.itemCount          = dataArray.count;
     data.inflexionPointStyle= PNLineChartPointStyleCircle;

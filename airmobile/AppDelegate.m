@@ -20,6 +20,7 @@
 #import <PushKit/PushKit.h>
 #import "UILocalNotification+Business.h"
 
+
 @interface AppDelegate ()<PKPushRegistryDelegate>
 
 @property (nonatomic, assign) NSInteger loginNum;
@@ -28,6 +29,11 @@
 @end
 
 @implementation AppDelegate
+{
+    UIBackgroundTaskIdentifier taskId;
+    NSInteger count;
+   
+}
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -75,6 +81,8 @@
         [application registerUserNotificationSettings:settings];
     }
 
+    
+
     return YES;
 }
 
@@ -91,9 +99,9 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-
     
 }
+
 
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -107,7 +115,6 @@
 //        NSLog(@"%s",__func__);
         _loginNum = 0;
 //        [[MessageService sharedMessageService] startService];
-
     }
 
 }
@@ -129,11 +136,16 @@
     [application registerForRemoteNotifications];//必须先实现这个方法，才会走下面的方法
 }
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
-    NSLog(@"%@",[[[[deviceToken description] stringByReplacingOccurrencesOfString: @"<" withString: @""]                  stringByReplacingOccurrencesOfString: @">" withString: @""]                 stringByReplacingOccurrencesOfString: @" " withString: @""]);
 
-    NSString *token = [NSString stringWithFormat:@"%@", deviceToken];
-    //获取终端设备标识，这个标识需要通过接口发送到服务器端，服务器端推送消息到APNS时需要知道终端的标识，APNS通过注册的终端标识找到终端设备
-    NSLog(@"%@",token);
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if(![defaults objectForKey:@"token"]){
+        NSString *token = [NSString stringWithFormat:@"%@", deviceToken];
+        //获取终端设备标识，这个标识需要通过接口发送到服务器端，服务器端推送消息到APNS时需要知道终端的标识，APNS通过注册的终端标识找到终端设备
+
+        [defaults setObject:token forKey:@"token"];
+        NSLog(@"%@",token);
+    }
+
 }
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
@@ -185,8 +197,16 @@
 //
 //    }
     //发送本地通知
-    [UILocalNotification sendFlightChangeNotificationWithContent:@"消息"];
+    int x = arc4random() % 2;
+    if(x==0){
+        [UILocalNotification sendFlightChangeNotificationWithContent:@"消息"];
+    }else{
+        [UILocalNotification sendFlightChangeNotificationWithContent:@"新消息"];
+    }
+
 }
+
+
 
 -(void)reLogin{
     NSString* userKey = @"taocares_userName";
@@ -210,10 +230,8 @@
             nv.navigationBarHidden= YES;
             self.window.rootViewController = nv;
             [self.window makeKeyWindow];
-
         }
     }];
-
 }
 
 @end

@@ -44,4 +44,9 @@
 @property(nonatomic,copy) NSString *afterArriveExp;//下站到达 预计
 @property(nonatomic,copy) NSString *afterArriveReal;//下站到达 实际
 
+@property(nonatomic,copy) NSString *arrInnerState;//进港异常状态
+@property(nonatomic,copy) NSString *depInnerState;//出港异常状态
+
+
+
 @end

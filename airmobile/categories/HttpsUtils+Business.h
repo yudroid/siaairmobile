@@ -165,6 +165,18 @@
                     success:(void(^)(id))success
                     failure:(void (^)(NSError *))failue;
 
+
+/**
+ 发送消息token到服务器
+
+ @param token <#token description#>
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)postToken:(NSDictionary *)token
+         success:(void(^)(id))success
+         failure:(void (^)(NSError *))failure;
+
 #pragma mark 航班列表 航班详情 航班保障详情 航班特殊详情
 
 /**
@@ -918,5 +930,14 @@
  @param failure <#failure description#>
  */
 +(void)searchEQType:(void (^)(id))success failure:(void (^)(id))failure;
+
+/**
+年度运行情况
+
+@param success <#success description#>
+@param failure <#failure description#>
+*/
++(void)queryYearOperationSituationWithSuccess:(void (^)(id))success
+                                      failure:(void (^)(NSError *))failure;
 
 @end

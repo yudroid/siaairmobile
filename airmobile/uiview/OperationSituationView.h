@@ -12,6 +12,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *planLabel;
 @property (weak, nonatomic) IBOutlet UILabel *realLabel;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
+@property (weak, nonatomic) IBOutlet UILabel *planNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *realNameLabel;
 
 
 -(void)reDraw:(NSArray *)array;

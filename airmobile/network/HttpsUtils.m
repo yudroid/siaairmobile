@@ -9,16 +9,17 @@
 #import "HttpsUtils.h"
 #import "AFNetworking.h"
 #import "StringUtils.h"
-
+#import "AFAppDotNetAPIClient.h"
+#import "AFAppDotNetUpdateFileClient.h"
 // 生产网络IP地址
 
 //static NSString* baseUri = @"http://192.168.163.132:8080";
 //static NSString* baseUri = @"http://192.168.163.139:8080";
 //static NSString* baseUri = @"http://192.168.163.181:8080";
 
-//static NSString* baseUri = @"http://192.168.163.72:8080";
+static NSString* baseUri = @"http://192.168.163.111:8080";
 //static NSString* baseUri = @"http://192.168.163.63:8080";
-static NSString* baseUri = @"http://219.134.93.113:8087";
+//static NSString* baseUri = @"http://219.134.93.113:8087";
 //static NSString* baseUri = @"http://192.168.163.69:80";
 //static NSString* baseUri = @"http://219.134.93.113:8087";
 
@@ -61,11 +62,13 @@ static NSTimeInterval timeInterval = 10;
       params:(id)                   formData
      success:(void (^) (id))        success
      failure:(void (^) (NSError*))  failure  {
-    
-    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
+
+    AFAppDotNetAPIClient *manager = [AFAppDotNetAPIClient sharedClient];
+//    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     //使用
     //manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    ((AFJSONResponseSerializer *)manager.responseSerializer).removesKeysWithNullValues = YES;
     
     //请求超时时间
     [manager.requestSerializer setTimeoutInterval: timeInterval];
@@ -78,8 +81,7 @@ static NSTimeInterval timeInterval = 10;
     
     //加上 https ssl验证
     [manager setSecurityPolicy:[self customSecurityPolicy]];
-    
-    
+
     //构建url
     NSURL* url = [NSURL URLWithString:baseUri];
     
@@ -126,13 +128,18 @@ static NSTimeInterval timeInterval = 10;
  *  @param success     success回调
  *  @param failure     failure回调
  */
-+(void) get:(NSString*) segment params:(NSDictionary*) requestData success:(void (^) (id)) success failure:(void (^) (NSError*)) failure {
-    
-    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
-    
-    manager.requestSerializer  = [AFJSONRequestSerializer serializer];
++(void) get:(NSString*) segment
+     params:(NSDictionary*) requestData
+    success:(void (^) (id)) success
+    failure:(void (^) (NSError*)) failure {
+
+    AFAppDotNetAPIClient *manager = [AFAppDotNetAPIClient sharedClient];
+//    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
+
+//    manager.requestSerializer  = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    
+    ((AFJSONResponseSerializer *)manager.responseSerializer).removesKeysWithNullValues = YES;
+
     //请求超时时间
     [manager.requestSerializer setTimeoutInterval: timeInterval];
     
@@ -187,15 +194,18 @@ static NSTimeInterval timeInterval = 10;
  *  @param success     success回调
  *  @param failure     failure回调
  */
-+(void) get:(NSString*) segment params:(NSDictionary*) requestData
++(void) get:(NSString*) segment
+     params:(NSDictionary*) requestData
    progress:(void (^)(float progress))progress
-    success:(void (^) (id)) success failure:(void (^) (NSError*)) failure {
+    success:(void (^) (id)) success
+    failure:(void (^) (NSError*)) failure {
 
-    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
+    AFAppDotNetAPIClient *manager = [AFAppDotNetAPIClient sharedClient];
+//    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
 
-    manager.requestSerializer  = [AFJSONRequestSerializer serializer];
+//    manager.requestSerializer  = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-
+    ((AFJSONResponseSerializer *)manager.responseSerializer).removesKeysWithNullValues = YES;
     //请求超时时间
     [manager.requestSerializer setTimeoutInterval: timeInterval];
 
@@ -257,21 +267,9 @@ static NSTimeInterval timeInterval = 10;
             params:(NSDictionary*)          formData
            success:(void (^) (id))          success
            failure:(void (^) (NSError*))    failure  {
-    
-    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
-    //使用
-    //manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    
-    //请求超时时间
-    [manager.requestSerializer setTimeoutInterval: timeInterval];
-    
-    //设置请求编码格式
-    [manager.requestSerializer setStringEncoding:NSUTF8StringEncoding];
-    
-    //设置响应编码格式
-    [manager.responseSerializer setStringEncoding:NSUTF8StringEncoding];
-    
+
+    AFAppDotNetAPIClient *manager = [AFAppDotNetAPIClient sharedClientString];
+
     //加上 https ssl验证
     [manager setSecurityPolicy:[self customSecurityPolicy]];
     
@@ -293,9 +291,12 @@ static NSTimeInterval timeInterval = 10;
        parameters:formData
          progress:nil
           success:^(NSURLSessionTask* task, id responseObject){
-            NSString *result = [[NSString alloc] initWithData:responseObject
-                                                     encoding:NSUTF8StringEncoding];
-//            NSLog(@"success ----  %@",result);
+              NSString *result = @"";
+              if ([responseObject isKindOfClass:[NSData class]]) {
+                  result = [[NSString alloc] initWithData:responseObject
+                                                 encoding:NSUTF8StringEncoding];
+              }
+//            NSLog(@"success ----      %@",result);
             if(success){
                 //回调
                 success(result);
@@ -306,7 +307,6 @@ static NSTimeInterval timeInterval = 10;
                 failure(error);
             }
     }];
-    
 }
 
 
@@ -322,24 +322,11 @@ static NSTimeInterval timeInterval = 10;
            params:(NSDictionary*)           requestData
           success:(void (^) (id))           success
           failure:(void (^) (NSError*))     failure {
-    
-    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
-    
-    //manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    
-    //请求超时时间
-    [manager.requestSerializer setTimeoutInterval: timeInterval];
-    
-    //设置请求编码格式
-    [manager.requestSerializer setStringEncoding:NSUTF8StringEncoding];
-    
-    //设置响应编码格式
-    [manager.responseSerializer setStringEncoding:NSUTF8StringEncoding];
-    
+
+    AFAppDotNetAPIClient *manager = [AFAppDotNetAPIClient sharedClientString];
+
     //加上 https ssl验证
     [manager setSecurityPolicy:[self customSecurityPolicy]];
-    
     
     //构建url
     NSURL* url = [NSURL URLWithString:baseUri];
@@ -357,8 +344,11 @@ static NSTimeInterval timeInterval = 10;
     [manager GET:absoluteUrl parameters:requestData
         progress:nil
          success:^(NSURLSessionTask* task, id responseObject){
-            NSString *result = [[NSString alloc] initWithData:responseObject
-                                                     encoding:NSUTF8StringEncoding];
+             NSString *result = @"";
+             if([responseObject isKindOfClass:[NSData class]]){
+                 result = [[NSString alloc] initWithData:responseObject
+                                                          encoding:NSUTF8StringEncoding];
+             }
 //            NSLog(@"success ----  %@",result);
             if(success){
                 //回调
@@ -392,7 +382,7 @@ static NSTimeInterval timeInterval = 10;
     
     //manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.responseSerializer = [AFXMLParserResponseSerializer serializer];
-    
+
     //请求超时时间
     [manager.requestSerializer setTimeoutInterval: timeInterval];
     
@@ -504,7 +494,8 @@ static NSTimeInterval timeInterval = 10;
      failure:(void (^) (NSError*))  failure
 {
 
-    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
+
+    AFAppDotNetUpdateFileClient *manager = [AFAppDotNetUpdateFileClient sharedClient];
 
     //构建url
     NSURL* url = [NSURL URLWithString:baseUri];
@@ -580,7 +571,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
      success:(void (^) (id))        success
      failure:(void (^) (NSError*))  failure  {
 
-    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
+    AFAppDotNetAPIClient *manager = [AFAppDotNetAPIClient sharedClient];
     //使用
     //manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];

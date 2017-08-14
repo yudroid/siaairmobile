@@ -118,7 +118,7 @@
     UIButton *searchImgV = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 32, 32)];
     [searchImgV setImage:[UIImage imageNamed:@"search"] forState:(UIControlStateNormal)];
     _searchTextF.leftView = searchImgV;
-    _searchTextF.placeholder = @"搜索城市名,三字码";
+    _searchTextF.placeholder = @"搜索航空公司,二字码";
     _searchTextF.leftViewMode = UITextFieldViewModeAlways;
     _searchTextF.font = [UIFont systemFontOfSize:14];
     _searchTextF.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -203,7 +203,7 @@
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth - 30, 28)];
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, kScreenWidth - 30, 28)];
     if (section == 0) {
-        label.text = [NSString stringWithFormat:@"%@城市",_sectionArray[section]];
+        label.text = [NSString stringWithFormat:@"%@",_sectionArray[section]];
     }else{
         label.text = _sectionArray[section];
 
@@ -288,10 +288,8 @@
     //titleView订制
     [self titleViewInitWithHight:64];
     self.titleView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"home_title_bg.png"]];
+    [self titleViewAddTitleText:@"选择航空公司"];
     [self titleViewAddBackBtn];
-
-
-
 }
 
 

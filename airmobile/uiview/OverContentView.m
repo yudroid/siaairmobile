@@ -12,6 +12,8 @@
 #import "SummaryModel.h"
 #import "HomePageService.h"
 #import "NSString+Size.h"
+#import "RoundProgressView.h"
+
 
 @implementation OverContentView
 {
@@ -21,6 +23,8 @@
     __weak IBOutlet UIView *roundView;
     UIView *arrLegend ;
     __weak IBOutlet NSLayoutConstraint *textViewHeight;
+    __weak IBOutlet UIView *todayView;
+    RoundProgressView *todayRoundView;
 }
 
 
@@ -49,6 +53,30 @@
     [roundView addSubview:roundProgress];
 
 
+    //圆圈
+
+    todayRoundView = [[RoundProgressView alloc] initWithCenter:todayView.center
+                                                        radius:todayView.frame.size.height/2
+                                                   aboveColos:@[(__bridge id)[CommonFunction colorFromHex:0XFF00aedd].CGColor,
+                                                                (__bridge id)[CommonFunction colorFromHex:0XFF00d6a0].CGColor ]
+                                                   belowColos:@[(__bridge id)[CommonFunction colorFromHex:0X00FF9F38].CGColor,
+                                                                (__bridge id)[CommonFunction colorFromHex:0X00FFCD21].CGColor ]
+                                                        start:270
+                                                          end:271
+                                                    clockwise:NO];
+
+
+
+
+
+
+
+    //对数据进行动画
+    [todayRoundView animationWithStrokeEnd:0.0 withProgressType:ProgreesTypeNormal];
+    [todayRoundView animationWithStrokeEnd:0.0 withProgressType:ProgreesTypeAbnormal];
+    [todayRoundView animationWithStrokeEnd:0.0 withProgressType:ProgreesTypeCancel];
+
+    [todayView addSubview:todayRoundView];
 
 //    _tadayRatioView.color = [CommonFunction colorFromHex:0XFF05CA6E];
 //    _tadayRatioView.progress = 0.5;
@@ -78,11 +106,9 @@
                                    arrLegend.frame.size.height)];
     [_chartView addSubview:arrLegend];
 
-    _queueQueryButton.layer.cornerRadius = 15;
+//    _queueQueryButton.layer.cornerRadius = 15;
     _normalRatioButton.layer.cornerRadius = 15;
-
     [self updateData];
-
     //添加刷新通知
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(updateData)
@@ -113,7 +139,7 @@
         }
         [array addObject: [PNPieChartDataItem dataItemWithValue:finished
                                                           color:[CommonFunction colorFromHex:0xFF00B0D8]
-                                                    description:[NSString stringWithFormat:@"%@:%ld",@"已执行",finished]]];
+                                                    description:[NSString stringWithFormat:@"%@ %ld",@"已执行",finished]]];
         if (notFinished>0) {
             [array addObject: [PNPieChartDataItem dataItemWithValue:interval
                                                               color:[UIColor clearColor]]];
@@ -121,7 +147,7 @@
 
         [array addObject: [PNPieChartDataItem dataItemWithValue:notFinished
                                                           color:[CommonFunction colorFromHex:0xFFC8C8C8]
-                                                    description:[NSString stringWithFormat:@"%@:%ld",@"未执行",notFinished]]];
+                                                    description:[NSString stringWithFormat:@"%@ %ld",@"未执行",notFinished]]];
 
     if (delay>0) {
         [array addObject: [PNPieChartDataItem dataItemWithValue:interval
@@ -129,7 +155,7 @@
     }
     [array addObject: [PNPieChartDataItem dataItemWithValue:delay
                                                       color:[CommonFunction colorFromHex:0xFFFFCD21]
-                                                description:[NSString stringWithFormat:@"%@:%ld",@"延   误",delay]]];
+                                                description:[NSString stringWithFormat:@"%@ %ld",@"延   误",delay]]];
         if (cancel>0) {
             [array addObject: [PNPieChartDataItem dataItemWithValue:interval
                                                               color:[UIColor clearColor]]];
@@ -137,10 +163,7 @@
 
         [array addObject: [PNPieChartDataItem dataItemWithValue:cancel
                                                           color:[CommonFunction colorFromHex:0xFFFF4D62]
-                                                    description:[NSString stringWithFormat:@"%@:%ld",@"取   消",cancel]]];
-
-
-
+                                                    description:[NSString stringWithFormat:@"%@ %ld",@"取   消",cancel]]];
     return [array copy];
 
 }
@@ -152,8 +175,8 @@
     _timeLabel.text = summaryModel.flightDate;
     _leaderUserNameLabel.text = summaryModel.leaderUserName;
     _directorLabel.text = summaryModel.userName;
-    _arrSpeedLabel.text = [NSString stringWithFormat:@"%.1f分钟/架",summaryModel.inSpeed];
-    _depSpeedLabel.text = [NSString stringWithFormat:@"%.1f分钟/架",summaryModel.releaseSpeed];
+    _arrSpeedLabel.text = [NSString stringWithFormat:@"%.1f分/架",summaryModel.inSpeed];
+    _depSpeedLabel.text = [NSString stringWithFormat:@"%.1f分/架",summaryModel.releaseSpeed];
 
     _optionalStatusLabel.text = summaryModel.aocSubmitWarning;
     if([summaryModel.aocSubmitWarning containsString:@"红色"]){
@@ -168,14 +191,17 @@
         _optionalStatusLabel.textColor = [CommonFunction colorFromHex:0xff12d865];
     }
 
-    _todayRatioLabel.text =[NSString stringWithFormat:@"%.1f",summaryModel.releaseRatio.floatValue*100]?:@"0";
-    _monthRatioLabel.text = [NSString stringWithFormat:@"%.1f", summaryModel.nowMonthAvgRatio*100];
-    _yesterdayReleaseRatioLabel.text = [NSString stringWithFormat:@"%.1f", summaryModel.yesterdayReleaseRatio*100];
+    _todayRatioLabel.text =[NSString stringWithFormat:@"%.1f%%",summaryModel.releaseRatio.floatValue*100]?:@"0";
+
+    [todayRoundView animationWithStrokeEnd:summaryModel.releaseRatio.floatValue withProgressType:ProgreesTypeNormal];
+
+    _monthRatioLabel.text = [NSString stringWithFormat:@"%.1f%%", summaryModel.nowMonthAvgRatio*100];
+    _yesterdayReleaseRatioLabel.text = [NSString stringWithFormat:@"%.1f%%", summaryModel.yesterdayReleaseRatio*100];
 //    _tadayRatioView.progress = summaryModel.releaseRatio.floatValue;
 //    _monthRatioView.progress = summaryModel.nowMonthAvgRatio;
 //    NSLog(@"%lf  %lf",_tadayRatioView.progress,_monthRatioView.progress);
-    NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[summaryModel.aovTxt dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
-    _noticeTextView.attributedText     = attrStr;
+    NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[[summaryModel.aovTxt dataUsingEncoding:NSUnicodeStringEncoding] copy] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+    _noticeTextView.attributedText     = [attrStr copy];
     NSArray *roundArray = [self updateShapeArray];
 
     [roundProgress updateChartData:roundArray];
@@ -219,6 +245,12 @@
 - (IBAction)OperationStatusButtonClick:(id)sender {
     if([CommonFunction hasFunction:OV_WHOLE_STATUS]){
         [_delegate showWorningIndicatorView];
+    }
+}
+//年度运行情况
+- (IBAction)yearOperationStatusButtonClick:(id)sender {
+    if ([CommonFunction hasFunction:FUNC_NDYXQK]) {
+        [_delegate showOperationStatusView];
     }
 }
 

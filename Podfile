@@ -19,7 +19,9 @@ target 'airmobile' do
   pod 'JTCalendar'
   pod 'Bugly'
   pod 'FCFileManager'
+  pod 'CocoaAsyncSocket'
   
+
   target 'airmobileTests' do
     inherit! :search_paths
     # Pods for testing

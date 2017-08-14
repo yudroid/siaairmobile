@@ -59,8 +59,14 @@ static const NSInteger  noFindViewTag = 1000;
 
 - (void)starNetWorking
 {
+    [self starNetWorkingWithY:0];
+}
+
+
+- (void)starNetWorkingWithY:(CGFloat)y
+{
     CGSize size = [UIScreen mainScreen].bounds.size;
-    UIView *activityBackgroundView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+    UIView *activityBackgroundView = [[UIView alloc]initWithFrame:CGRectMake(0, y, size.width, size.height-y)];
     activityBackgroundView.backgroundColor = [UIColor grayColor];
     activityBackgroundView.alpha = 0;
     activityBackgroundView.tag = 554;
@@ -106,24 +112,23 @@ static const NSInteger  noFindViewTag = 1000;
 
 }
 
-
-- (void)starNetWorkingWithString:(NSString *)string
+-(UIView *)starNetWorkingWithString:(NSString *)string Y:(CGFloat)y
 {
     CGSize size = [UIScreen mainScreen].bounds.size;
-    
+
     //view
-    UIView *activityBackgroundView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+    UIView *activityBackgroundView = [[UIView alloc]initWithFrame:CGRectMake(0, y, size.width, size.height-y)];
     activityBackgroundView.backgroundColor = [UIColor grayColor];
     activityBackgroundView.alpha = 0;
     activityBackgroundView.tag = 554;
     [self.view addSubview:activityBackgroundView];
-    
+
     //activity
     UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake((size.width-50)/2, (size.height-50)/2, 50, 50)];
     activity.tag = 555;
     activity.alpha = 0;
     [self.view addSubview:activity];
-    
+
     //label
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, size.height/2+25, size.width, 50)];
     label.textAlignment = NSTextAlignmentCenter;
@@ -133,13 +138,20 @@ static const NSInteger  noFindViewTag = 1000;
     label.alpha = 0;
     label.tag = 556;
     [self.view addSubview:label];
-    
+
     [activity startAnimating];
     [UIView animateWithDuration:0.618 animations:^{
         activityBackgroundView.alpha = 0.8;
         activity.alpha = 1;
         label.alpha = 1;
     }];
+    return activityBackgroundView;
+}
+
+
+- (void)starNetWorkingWithString:(NSString *)string
+{
+    [self starNetWorkingWithString:string Y:0];
 }
 
 

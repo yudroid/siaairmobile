@@ -39,6 +39,7 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
     UITextField *textfield;
     NSArray<NSDictionary *> *array;
     NSMutableArray<NSDictionary *> *filterArray;
+    NSArray<NSDictionary *> *oraleArray;
     UITextField *searchTextField;
     int userId;
 }
@@ -205,7 +206,7 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 
 -(void)filterDialogList:(id)sender
 {
-    if(array==nil || [array count]<5)
+    if(array==nil )
         return;
     NSString *search = searchTextField.text;
     [filterArray removeAllObjects];
@@ -271,7 +272,7 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
         if(dic == nil){
             return nil;
         }
-         cell.headImageView.image = [UIImage imageNamed:@"MessageHeader"];
+        cell.headImageView.image = [UIImage imageNamed:@"MessageHeader"];
         cell.nameLabel.text = [dic objectForKey:@"name"];
         cell.unRead = [[dic objectForKey:@"unread"] integerValue];
         cell.messageLabel.text = [dic objectForKey:@"describe"];
@@ -322,7 +323,6 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     [self.view endEditing:YES];
-
 }
 
 

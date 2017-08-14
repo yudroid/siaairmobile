@@ -304,7 +304,6 @@
             [self.view hideToastActivity];
             
         }];
-        
         /*
          返回 1 登录成功  2 登录失败，用户名\密码为空 3登录失败，用户名或密码输入错误 4 用户被禁用 5已在其他设备登录，登录失败 6 账号已过期 7 MAC地址不匹配
          */
@@ -322,6 +321,14 @@
                 [DefaultHelper setString:password forKey:pwdKey];
                 AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
                 delegate.userInfoModel = user;
+
+                //发送token
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                [HttpsUtils postToken:@{@"token":[defaults objectForKey:@"token"]?:@"",@"userid":@(user.id).stringValue?:@""} success:^(id responsed) {
+
+                } failure:^(NSError * error) {
+
+                }];
 
                 
                 [[HomePageService sharedHomePageService] startService];
@@ -361,14 +368,12 @@
 
                                 [userDefaults setBool:YES forKey:@"sysChatInfoList"];
                                 [self loadViewController];
-
                             }];
                         }
                     } failure:^(NSError *error) {
                         [self showAnimationTitle:@"数据加载失败"];
                         loadingView.hidden = YES;
                         [loadingView removeFromSuperview];
-
                     }];
 
                     [HttpsUtils loadDictDatasProgress:^(float rate) {
@@ -378,31 +383,23 @@
                         for(NSDictionary *dic in response){
                             [PersistenceUtils insertBasisInfoDictionaryWithDictionary:dic];
                         }
-
                         dicTag = 1;
 
                         if (dicTag == 1 && eventTag == 1) {
                              [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NotFirst"];
                             [ThreadUtils dispatchMain:^{
                                 [self loadViewController];
-
                             }];
                         }
-                        
                     } failure:^(NSError *error) {
                         [self showAnimationTitle:@"数据加载失败"];
                         loadingView.hidden = YES;
                         [loadingView removeFromSuperview];
-                        
                     }];
-                    
-                    
-
                 }else{
                     [ThreadUtils dispatchMain:^{
                         [self loadViewController];
                     }];
-
                 }
 
                 BOOL isFirstTime = [StringUtils isNullOrWhiteSpace:[DefaultHelper getStringForKey:@"SIAAIRMOBILE.LOGINFIRSTTIME"]];

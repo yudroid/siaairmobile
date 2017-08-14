@@ -35,7 +35,7 @@
     self = [super initWithFrame:frame];
     if(self){
 
-        hourArray = [HomePageService sharedHomePageService].psnModel.psnHours ;
+        hourArray = [self handleArray] ;
 
         CGFloat topBgViewWidth = kScreenWidth-2*px2(22);
         UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(10,
@@ -70,20 +70,20 @@
                                                                      10,
                                                                      130,
                                                                      20)
-                                                     text:[NSString stringWithFormat:@"%ld预测",flightHourModel.planDepCount+flightHourModel.planArrCount]
+                                                     text:[NSString stringWithFormat:@"%ld",flightHourModel.planDepCount+flightHourModel.planArrCount]
                                                      font:20
                                             textAlignment:NSTextAlignmentRight colorFromHex:0xFFFFFFFF];
         ratioNum.font = [UIFont fontWithName:@"PingFang SC"
                                         size:px2(48)];
 
-        NSMutableAttributedString *valueAttributedString = [[NSMutableAttributedString alloc]initWithString:ratioNum.text];
-        [valueAttributedString addAttribute:NSFontAttributeName
-                                      value:[UIFont fontWithName:@"PingFangSC-Regular" size:13]
-                                      range:[ratioNum.text rangeOfString:@"预测"]];
-
-
-        //        valueLable1.backgroundColor = [UIColor redColor];
-        ratioNum.attributedText = valueAttributedString;
+//        NSMutableAttributedString *valueAttributedString = [[NSMutableAttributedString alloc]initWithString:ratioNum.text];
+//        [valueAttributedString addAttribute:NSFontAttributeName
+//                                      value:[UIFont fontWithName:@"PingFangSC-Regular" size:13]
+//                                      range:[ratioNum.text rangeOfString:@"预测"]];
+//
+//
+//        //        valueLable1.backgroundColor = [UIColor redColor];
+//        ratioNum.attributedText = valueAttributedString;
 
         [topBgView addSubview:ratioNum];
 
@@ -126,15 +126,12 @@
                                                                   topBgView.frame.size.width-40,
                                                                   topBgView.frame.size.height-(5+23+15+2)-5)];
         lineChart.backgroundColor   = [UIColor clearColor];
-        lineChart.skipXPoints       = 1;
         lineChart.showCoordinateAxis= NO;
         lineChart.showGenYLabels    = NO;
         lineChart.yFixedValueMax    = [self chartMaxValue];
         lineChart.yFixedValueMin    = -([self chartMaxValue]*0.05);
         [lineChart setXLabels:[self getFlightHourXLabels]];
         lineChart.changeNum = [CommonFunction currentHour];
-        // added an examle to show how yGridLines can be enabled
-        // the color is set to clearColor so that the demo remains the same
         lineChart.yGridLinesColor   = [UIColor yellowColor];
         // Line Chart #2
         NSArray * dataArray         = [self getFlightHourYLabels];
@@ -142,19 +139,18 @@
         data.dataTitle              = @"航班";
         data.color                  = [UIColor whiteColor];
         data.alpha                  = 0.5f;
-//        data.inflexionPointWidth    = 2.0f;
         data.itemCount              = dataArray.count;
         data.inflexionPointStyle    = PNLineChartPointStyleCircle;
         data.getData = ^(NSUInteger index) {
             CGFloat yValue = [dataArray[index] floatValue];
             return [PNLineChartDataItem dataItemWithY:yValue];
         };
-        
         lineChart.chartData = @[data];
         
         [lineChart strokeChart];
         [topBgView addSubview:lineChart];
-        
+
+
         UILabel *zoreLabel  = [[UILabel alloc]initWithFrame:CGRectMake(viewWidth(topBgView)-6-px2(31),
                                                                       topBgView.frame.size.height-(10+13+12+2)-5,
                                                                       topBgView.frame.size.width-40,
@@ -173,9 +169,9 @@
         
         //小时分布表格
         flightHourTableView = [[UITableView alloc]initWithFrame:CGRectMake(0,
-                                                                                        viewBotton(topBgView)+5,
-                                                                                        kScreenWidth,
-                                                                                        kScreenHeight-65-viewBotton(topBgView)-5-37)];
+                                                                            viewBotton(topBgView)+5,
+                                                                            kScreenWidth,
+                                                                            kScreenHeight-65-viewBotton(topBgView)-5-37)];
         flightHourTableView.delegate        = self;
         flightHourTableView.dataSource      = self;
         flightHourTableView.backgroundColor = [UIColor whiteColor];
@@ -187,7 +183,6 @@
                                                  selector:@selector(loadData:)
                                                      name:@"SafetyPsnHours"
                                                    object:nil];
-        
     }
     return self;
 }
@@ -229,7 +224,6 @@
         }else{
             [arr addObject:@""];
         }
-
     }
     return arr;
 }
@@ -279,7 +273,7 @@
 -(void)loadData:(NSNotification *)notification
 {
     if ([notification.object isKindOfClass:[NSArray class]]) {
-        hourArray = [HomePageService sharedHomePageService].psnModel.psnHours ;
+        hourArray =[self handleArray] ;
 
         [flightHourTableView reloadData];
         lineChart.yFixedValueMax    = [self chartMaxValue];
@@ -311,15 +305,26 @@
 
         }
 
-        NSMutableAttributedString *valueAttributedString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%ld预测",flightHourModel.planDepCount+flightHourModel.planArrCount]];
-        [valueAttributedString addAttribute:NSFontAttributeName
-                                      value:[UIFont fontWithName:@"PingFangSC-Regular" size:13]
-                                      range:[ratioNum.text rangeOfString:@"预测"]];
-        ratioNum.attributedText = valueAttributedString;
+//        NSMutableAttributedString *valueAttributedString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%ld预测",flightHourModel.planDepCount+flightHourModel.planArrCount]];
+//        [valueAttributedString addAttribute:NSFontAttributeName
+//                                      value:[UIFont fontWithName:@"PingFangSC-Regular" size:13]
+//                                      range:[ratioNum.text rangeOfString:@"预测"]];
+        NSString *s = [NSString stringWithFormat:@"%ld",flightHourModel.planDepCount+flightHourModel.planArrCount];
+        ratioNum.text = s;
     }
-
 }
 
-
-
+-(NSArray *)handleArray
+{
+    NSArray *array = [HomePageService sharedHomePageService].psnModel.psnHours;
+    NSMutableArray *tableArray = [NSMutableArray array];
+    NSInteger index = [CommonFunction currentHour];
+    if (index+1>=[array count]) {
+        index = [array count]-1;
+    }
+    for (int i = 0 ; i<index+1; i++) {
+        [tableArray addObject:array[i]];
+    }
+    return [tableArray copy];
+}
 @end

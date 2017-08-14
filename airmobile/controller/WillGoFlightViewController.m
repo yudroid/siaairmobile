@@ -64,6 +64,11 @@ const NSString *WILLGOFLIGHT_TABLECELL_IDENTIFIER = @"WILLGOFLIGHT_TABLECELL_IDE
     WillGoFlightModel *model = _tableArray[indexPath.row];
     cell.index = indexPath.row+1;
     cell.willGoFlightModel = model;
+    if (indexPath.row%2==0) {
+        cell.backgroundColor = [CommonFunction colorFromHex:0xFFFFFFFF];
+    }else{
+        cell.backgroundColor = [CommonFunction colorFromHex:0xFFF0F7FA];
+    }
     return cell;
 }
 

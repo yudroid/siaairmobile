@@ -21,8 +21,8 @@
     UILabel     *tenDayLabel;
     UILabel     *eightMonthLabel;
     UIView      *segmentedView;
-    UIView *tenDayImageView;
-    UIView *eightMonthImageView;
+    UIView      *tenDayImageView;
+    UIView      *eightMonthImageView;
     ResourceContentView *tenDayRatioView;
     ResourceContentView *eightMonthRatioView;
 

@@ -159,9 +159,9 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     if ([CommonFunction hasFunction:SET_USERMANAGE]) {
         [mutableArray addObject:@{@"name":@"用户管理",@"image":@"UserManager"}];
     }
-    if ([CommonFunction hasFunction:SET_MSGFILTER]) {
-        [mutableArray addObject:@{@"name":@"消息过滤",@"image":@"AccessControl"}];
-    }
+//    if ([CommonFunction hasFunction:SET_MSGFILTER]) {
+//        [mutableArray addObject:@{@"name":@"消息过滤",@"image":@"AccessControl"}];
+//    }
     if ([CommonFunction hasFunction:SET_VERSION]) {
         [mutableArray addObject:@{@"name":@"版本检测",@"image":@"VersionCheck"}];
     }
@@ -225,7 +225,7 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [self starNetWorking];
     [HttpsUtils logOut:(int)appdelegate.userInfoModel.id
-               success:^(NSNumber *response) {
+               success:^(NSDictionary *response) {
                    [self stopNetWorking];
                    LoginViewController *homepage = [[LoginViewController alloc] init];
                    UINavigationController *nv = [[UINavigationController alloc]initWithRootViewController:homepage];
@@ -278,7 +278,7 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     cell.iconImageView.image = [UIImage imageNamed:imageString];
     if ([name isEqualToString:@"版本检测"]) {
         NSString *app_Version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-        cell.secondLabel.text = [NSString stringWithFormat:@"%@(%@)",@"当前版本",app_Version];
+        cell.secondLabel.text = [NSString stringWithFormat:@"%@ v%@",@"当前版本",app_Version];
         AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 
         if(appdelegate.userInfoModel.version.floatValue >app_Version.floatValue)
@@ -304,12 +304,8 @@ static const NSString *USERINFO_TABLECELL_IDENTIFIER = @"USERINFO_TABLECELL_IDEN
     }else if ([name isEqualToString:@"版本检测"]){
 //        [self showAnimationTitle:@"正在进行版本检测"];
 
-        NSString *message = @"态势\n"
-        "样式布局修改\n"
-        "当前运营情况字段修改\n"
-        "功能\n"
-        "知识库添加条件筛选和文本搜索\n"
-        "运行简报修改查看方式";
+        NSString *message = @""
+        "1.功能界面新增年度运行情况\n";
 
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"当前为最新版本" message:message preferredStyle:UIAlertControllerStyleAlert];
         NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];

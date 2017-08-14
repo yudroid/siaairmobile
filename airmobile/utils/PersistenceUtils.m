@@ -202,8 +202,9 @@
         }
     }
     @finally{
-        sqlite3_close(database);
+        
     }
+    sqlite3_close(database);
 }
 
 /**

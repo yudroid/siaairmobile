@@ -13,10 +13,12 @@
 -(void)showAnimationTitle:(NSString *)title;
 
 - (void)starNetWorking;
+- (void)starNetWorkingWithY:(CGFloat)y;
 
 -(void)stopNetWorking;
 
 - (void)starNetWorkingWithString:(NSString *)string;
+-(UIView *)starNetWorkingWithString:(NSString *)string Y:(CGFloat)y;
 -(void)updateNetWorkingWithString:(NSString *)string;
 /**
  *  添加网络请求无内容视图

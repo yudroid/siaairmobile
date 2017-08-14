@@ -70,11 +70,15 @@
     }else{
         _regionLabel.textColor = [CommonFunction colorFromHex:0xFFf46970] ;
     }
-    _craftSeatLabel.text = [NSString stringWithFormat:@"%@%@",flight.seat,flight.seatRange];
-    if ([flight.seatRange isEqualToString:@"(近)"]) {
-        _craftSeatLabel.textColor = [CommonFunction colorFromHex:0xFF17b9e8] ;
+    if(flight.seat!=nil){
+        _craftSeatLabel.text = [NSString stringWithFormat:@"%@%@",flight.seat,flight.seatRange];
+        if ([flight.seatRange isEqualToString:@"(近)"]) {
+            _craftSeatLabel.textColor = [CommonFunction colorFromHex:0xFF17b9e8] ;
+        }else{
+            _craftSeatLabel.textColor = [CommonFunction colorFromHex:0xFF4484f6] ;
+        }
     }else{
-        _craftSeatLabel.textColor = [CommonFunction colorFromHex:0xFF4484f6] ;
+        _craftSeatLabel.text = [NSString stringWithFormat:@""];
     }
 
     //航空公司logo

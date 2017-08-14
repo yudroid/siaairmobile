@@ -14,7 +14,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NND-cw-5xk">
@@ -27,7 +27,6 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="9lR-UI-164" firstAttribute="leading" secondItem="NND-cw-5xk" secondAttribute="leading" id="Lmp-nh-DSB"/>
                             <constraint firstAttribute="trailing" secondItem="9lR-UI-164" secondAttribute="trailing" id="URd-w5-gIv"/>
@@ -45,7 +44,6 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="rUg-3l-4QV" firstAttribute="leading" secondItem="Xuk-qD-Rzg" secondAttribute="leading" id="BFy-BO-Cso"/>
                             <constraint firstItem="rUg-3l-4QV" firstAttribute="top" secondItem="Xuk-qD-Rzg" secondAttribute="top" id="OlG-3J-cVX"/>
@@ -73,7 +71,6 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ziM-Zz-mWZ" firstAttribute="leading" secondItem="4Z3-Vy-R1q" secondAttribute="trailing" constant="4" id="B6C-vD-ndo"/>
                             <constraint firstItem="4Z3-Vy-R1q" firstAttribute="centerY" secondItem="pmb-iZ-Pv3" secondAttribute="centerY" id="KkK-Om-FRt"/>
@@ -97,6 +94,7 @@
                     <constraint firstAttribute="trailing" secondItem="pmb-iZ-Pv3" secondAttribute="trailing" id="uuJ-fa-s7y"/>
                 </constraints>
             </tableViewCellContentView>
+            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
                 <outlet property="colorView" destination="4Z3-Vy-R1q" id="bdW-8Z-XqO"/>
                 <outlet property="flightNoLabel" destination="rUg-3l-4QV" id="pfU-h5-3RO"/>

@@ -28,7 +28,7 @@
     if ([DeviceInfoUtil isPlus]) {
         [self adjustPLUS];
     }
-    _contentLabel.adjustsFontForContentSizeCategory = YES;
+//    _contentLabel.adjustsFontForContentSizeCategory = YES;
 
 }
 

@@ -120,8 +120,18 @@
                   range:[name rangeOfString:dispatchModel.isAD==1?@"进":@"出"]];
     _nameLabel.attributedText = aname;
     _peopleLabel.text = dispatchModel.dispatchPeople;
+
+    NSDictionary *timeDic = [dispatchModel startTimeAndEndTimeAndType];
+    if ([[timeDic objectForKey:@"type"] isEqualToString:@"planTime"]) {
+        _timeLabel.textColor = [CommonFunction colorFromHex:0xffff7c36];
+    }
     _timeLabel.text = [NSString stringWithFormat:@"%@",[dispatchModel startTimeAndEndTime]];
-    _lastTimeLabel.text = [NSString stringWithFormat:@"上次上报时间:%@",dispatchModel.normalTime?:@"无"];
+    
+    if(dispatchModel.normalTime){
+        _lastTimeLabel.text = [NSString stringWithFormat:@"上次上报时间:%@",dispatchModel.normalTime?:@"无"];
+    }else{
+        _lastTimeLabel.text = @"无正常上报";
+    }
 }
 
 

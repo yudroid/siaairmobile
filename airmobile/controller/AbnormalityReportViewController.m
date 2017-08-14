@@ -31,6 +31,7 @@
 #import "UIViewController+Reminder.h"
 #import "DateUtils.h"
 #import "NSString+Size.h"
+#import "AFAppDotNetUpdateFileClient.h"
 static const NSString *ABNORMALITYREPORT_TABLECELL_IDENTIFIER =@"ABNORMALITYREPORT_TABLECELL_IDENTIFIER";
 static const NSString *ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER = @"ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER";
 static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER";
@@ -59,6 +60,7 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 @property (nonatomic, copy)          NSArray        *abnormalityHistoryArray;
 @property (nonatomic ,strong)        NSMutableArray *collectionArray;
 @property (nonatomic, copy)          NSArray        *imageFilePath;
+
 
 
 
@@ -141,6 +143,21 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
     [_timeButton setTitle:[DateUtils convertToString:[DateUtils getNow] format:@"HH:mm"] forState:UIControlStateNormal];
 
 }
+-(void)addNetworkingCancel:(UIView *)view
+{
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, viewHeight(view)-100, viewWidth(view), 60)];
+    [button setTitle:@"取消" forState:UIControlStateNormal];
+    [view addSubview:button];
+    [button addTarget:self action:@selector(networkingCancelButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
+}
+-(void)networkingCancelButtonEvent:(UIButton *)sender
+{
+    NSArray *array = [AFAppDotNetUpdateFileClient sharedClient].tasks;
+    for (NSURLSessionDataTask *task in array) {
+        [task cancel];
+    }
+    [self stopNetWorking];
+}
 
 -(void)setEventAbnormalModel:(AbnormalModel *)abnormalModel
 {
@@ -218,7 +235,7 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 - (IBAction)saveButtonClick:(id)sender {
 
     if (_requireTextView.text.length == 0) {
-        [self showAnimationTitle:@"请填写要求"];
+        [self showAnimationTitle:@"请填写事件描述"];
         return;
     }
     _nImageArray = [NSMutableArray array];
@@ -234,7 +251,8 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
     if (_nImageArray.count>0) {
         int  index = 0;
         NSMutableArray *filePathArray = [NSMutableArray arrayWithArray:imagePath];
-        [self starNetWorkingWithString:@""];
+        UIView *view = [self starNetWorkingWithString:@"" Y:64];
+        [self addNetworkingCancel:view];
         [self uploadImageIndex:index filePathArray:filePathArray failure:^(id error) {
             [self stopNetWorking];
             [self showAnimationTitle:@"上传失败"];
@@ -422,7 +440,7 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 
 -(void)loadAbnsRecord
 {
-    [self starNetWorking];
+    [self starNetWorkingWithY:64];
     [HttpsUtils getDispatchAbns:self.isSpecial? _specialModel.id:(int)_safefuardModel.id
                            type:1
                         success:^(NSArray *response) {
@@ -448,8 +466,6 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 
 }
 
-
-
 -(void)uploadImageIndex:(int)index filePathArray:(NSMutableArray *)filePathArray failure:(void (^)(id))failure
 {
 
@@ -464,7 +480,9 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
                 self.imageFilePath = [blockFilePathArray copy];
             }
             newIndex++;
-            [self uploadImageIndex:newIndex filePathArray:(NSMutableArray *)blockFilePathArray failure:failure];
+            [self uploadImageIndex:newIndex
+                     filePathArray:(NSMutableArray *)blockFilePathArray
+                           failure:failure];
         } failure:^(id error) {
             [self stopNetWorking];
             failure(error);
@@ -477,10 +495,6 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 
 -(void)sendAbnsReported
 {
-    if (!_event) {
-        [self showAnimationTitle:@"请选择事项标准"];
-        return;
-    }
     AppDelegate *appdelete = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [HttpsUtils saveDispatchAbnStart:self.isSpecial?(int)_flightId.integerValue:(int)_safefuardModel.fid
                           dispatchId:self.isSpecial? _specialModel.id:(int)_safefuardModel.id

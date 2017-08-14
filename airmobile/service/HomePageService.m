@@ -18,8 +18,8 @@
 #import "VersionCheck.h"
 
 
-
 @implementation HomePageService
+
 
 
 singleton_implementation(HomePageService);
@@ -371,17 +371,20 @@ singleton_implementation(HomePageService);
 
 -(void)getVersion
 {
-
     AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 
     if(appdelegate.userInfoModel.version.length>0){
         return ;
     }
-
     UINavigationController *appRootVC = (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;
-    UIViewController *viewController = [appRootVC.viewControllers lastObject];
+    if(appRootVC==nil){
+        return;
+    }
+    UIViewController *viewController = [appRootVC.viewControllers?:@[] lastObject];
+    if (viewController == nil) {
+        return;
+    }
     [VersionCheck versionCheckWithViewController:viewController isNewVersion:nil httpFailuer:nil];
-
 }
 
 

@@ -55,6 +55,7 @@ const long FUNC_ZBHX                    = 40700000;//周边航线
 const long FUNC_ZSK                     = 40800000;//知识库
 const long FUNC_YXJB                    = 40900000;//运行简报
 const long FUNC_JJFXHB                  = 41000000;//即将放行航班
+const long FUNC_NDYXQK                  = 41100000;//年度运行情况
 
 const long SET                          = 50000000;//设置
 const long SET_MSGFILTER                = 50100000; //消息过滤

@@ -267,6 +267,7 @@
 -(void)initTitle
 {
     [self titleViewInitWithHight:65];
+    
     [self titleViewAddTitleText:@"放行正常率"];
 
     UIView *titleLabelView = [[UIView alloc] initWithFrame:CGRectMake(0,

@@ -92,6 +92,30 @@
                 [self addSubview:homePageBtn];
                 index ++;
             }
+
+
+            BOOL hasNewMessage = [PersistenceUtils unReadCount]>0;
+            //            BOOL hasNewMessage = NO;
+
+            TabBarIteam *message    = [[TabBarIteam alloc] initWithCenter:CGPointMake(kScreenWidth*(1+(index-1)*2)/funtionNum, 49/2)];
+            message.image           = [UIImage imageNamed:@"icon_message"];
+            message.text            = @"消息";
+            newMessage = [CommonFunction imageView:@"newMessage" frame:CGRectMake(0, 0, 7, 7)];
+            newMessage.center = CGPointMake(kScreenWidth*(1+(index-1)*2)/funtionNum+18, 49/2-18);
+            newMessage.hidden = !hasNewMessage;
+            UIButton *messageBtn    = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 49, 49)];
+            messageBtn.center       = CGPointMake(kScreenWidth*(1+(index-1)*2)/funtionNum, 49/2);
+            messageBtn.tag          = 2;
+            [messageBtn addTarget:self
+                           action:@selector(iteamBtnClickedWithSender:)
+                 forControlEvents:UIControlEventTouchUpInside];
+            if([CommonFunction hasFunction:MSG]){
+                [self addSubview:message];
+                [self addSubview:newMessage];
+                [self addSubview:messageBtn];
+                index++;
+            }
+
             
             
             
@@ -111,27 +135,6 @@
             }
            
             
-            BOOL hasNewMessage = [PersistenceUtils unReadCount]>0;
-//            BOOL hasNewMessage = NO;
-            
-            TabBarIteam *message    = [[TabBarIteam alloc] initWithCenter:CGPointMake(kScreenWidth*(1+(index-1)*2)/funtionNum, 49/2)];
-            message.image           = [UIImage imageNamed:@"icon_message"];
-            message.text            = @"消息";
-            newMessage = [CommonFunction imageView:@"newMessage" frame:CGRectMake(0, 0, 7, 7)];
-            newMessage.center = CGPointMake(kScreenWidth*(1+(index-1)*2)/funtionNum+18, 49/2-18);
-            newMessage.hidden = !hasNewMessage;
-            UIButton *messageBtn    = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 49, 49)];
-            messageBtn.center       = CGPointMake(kScreenWidth*(1+(index-1)*2)/funtionNum, 49/2);
-            messageBtn.tag          = 2;
-            [messageBtn addTarget:self
-                           action:@selector(iteamBtnClickedWithSender:)
-                 forControlEvents:UIControlEventTouchUpInside];
-            if([CommonFunction hasFunction:MSG]){
-                [self addSubview:message];
-                [self addSubview:newMessage];
-                [self addSubview:messageBtn];
-                index++;
-            }
 
             
             TabBarIteam *function   = [[TabBarIteam alloc] initWithCenter:CGPointMake(kScreenWidth*(1+(index-1)*2)/funtionNum, 49/2)];

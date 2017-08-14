@@ -42,25 +42,60 @@
 //    FlightViewController *flightVC = [[FlightViewController alloc]init];
 
     NSDictionary *conds;
-    if(self.queryflag){
-        conds =@{@"search_flightNO"   : [self.flightNumberTextF.text uppercaseString]?:@"",
-                               @"search_date"       :self.fltDate,
-                               @"search_startCity"  :@"",
-                               @"search_endCity"    :@"",
-                                @"search_airline"   :self.airlineModel.nametw?:@"",
-                               @"start"             :@(0).stringValue,
-                               @"length"            :@(20).stringValue};
+    switch (self.queryflag) {
+        case FlightSearchTypeFlightNo:{
+            conds =@{@"search_flightNO"   : [self.flightNumberTextF.text uppercaseString]?:@"",
+                   @"search_date"       :self.fltDate,
+                   @"search_startCity"  :@"",
+                   @"search_endCity"    :@"",
+                   @"search_seat"       :@"",
+                   @"search_fltRegNo"   :@"",
+                   @"search_airline"    :self.airlineModel.nametw?:@"",
+                   @"start"             :@(0).stringValue,
+                   @"length"            :@(20).stringValue};
+            break;
+        }
+        case FlightSearchTypeCity:{
+            conds =@{@"search_flightNO"   :@"",
+                     @"search_airline"    :@"",
+                     @"search_seat"       :@"",
+                     @"search_fltRegNo"   :@"",
+                     @"search_date"       :self.fltDate,
+                     @"search_startCity"  :self.outCity.cn?:@"",
+                     @"search_endCity"    :self.arriveCity.cn?:@"",
+                     @"start"             :@(0).stringValue,
+                     @"length"            :@(20).stringValue};
+            break;
+        }
+        case FlightSearchTypePlaneNo:{
+            conds =@{@"search_flightNO"   : [self.flightNumberTextF.text uppercaseString]?:@"",
+                     @"search_date"       :self.fltDate,
+                     @"search_startCity"  :@"",
+                     @"search_endCity"    :@"",
+                     @"search_seat"       :@"",
+                     @"search_fltRegNo"   :[self.flightNumberTextF.text uppercaseString]?:@"",
+                     @"search_airline"    :self.airlineModel.nametw?:@"",
+                     @"start"             :@(0).stringValue,
+                     @"length"            :@(20).stringValue};
+            break;
 
-//        flightVC.flightNo = [self.flightNumberTextF.text uppercaseString];
+        }
+        case FlightSearchTypeSeat:{
+            conds =@{@"search_flightNO"   :@"",
+                     @"search_date"       :self.fltDate,
+                     @"search_startCity"  :@"",
+                     @"search_endCity"    :@"",
+                     @"search_seat"       :[self.flightNumberTextF.text uppercaseString]?:@"",
+                     @"search_fltRegNo"   :@"",
+                     @"search_airline"    :self.airlineModel.nametw?:@"",
+                     @"start"             :@(0).stringValue,
+                     @"length"            :@(20).stringValue};
+            break;
 
-    }else{
-        conds =@{@"search_flightNO"   : @"",
-                  @"search_airline"   : @"",
-                 @"search_date"       :self.fltDate,
-                 @"search_startCity"  :self.outCity.cn?:@"",
-                 @"search_endCity"    :self.arriveCity.cn?:@"",
-                 @"start"             :@(0).stringValue,
-                 @"length"            :@(20).stringValue};
+        }
+        default:{
+
+        }
     }
     [self loadMoreNetwork:conds];
 }

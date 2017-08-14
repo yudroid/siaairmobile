@@ -24,6 +24,7 @@
 #import "ReportViewController.h"
 #import "KnowledgeBaseViewController.h"
 #import "ContingencyAddressBookViewController.h"
+#import "YearOperationStatusViewController.h"
 
 //#import <UMESDKKit/AirportFuctionWebViewController.h>
 #import <UMESDKKit/UMESDKApi.h>
@@ -85,34 +86,37 @@ static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDEN
 //                   ];
 
     NSMutableArray *mutableArray = [NSMutableArray array];
-    if ([CommonFunction hasFunction:FUNC_ADDRESS]) {
-        [mutableArray addObject:@{@"name":@"应急通讯录",@"image":@"AddressBook"}];
-    }
+
     if ([CommonFunction hasFunction:FUNC_DUTYTABLE]) {
         [mutableArray addObject:@{@"name":@"值班表",@"image":@"WatchBill"}];
     }
     if ([CommonFunction hasFunction:FUNC_TODAYDUTY]) {
         [mutableArray addObject:@{@"name":@"当日值班表",@"image":@"TodayDuty"}];
     }
-    if ([CommonFunction hasFunction:FUNC_TARGET]) {
-        [mutableArray addObject:@{@"name":@"生产指标",@"image":@"site_icon2_value"}];
+    if ([CommonFunction hasFunction:FUNC_ADDRESS]) {
+        [mutableArray addObject:@{@"name":@"应急通讯录",@"image":@"AddressBook"}];
     }
+//    if ([CommonFunction hasFunction:FUNC_TARGET]) {
+//        [mutableArray addObject:@{@"name":@"生产指标",@"image":@"site_icon2_value"}];
+//    }
     if ([CommonFunction hasFunction:FUNC_YYQK]) {
-        [mutableArray addObject: @{@"name":@"运营情况",@"image":@"site_airport"}];
+        [mutableArray addObject: @{@"name":@"运营情况",@"image":@"icon_menu_run"}];
     }
     if ([CommonFunction hasFunction:FUNC_TQXX]) {
         [mutableArray addObject:@{@"name":@"天气信息",@"image":@"site_weather"}];
     }
     if ([CommonFunction hasFunction:FUNC_ZBHX]) {
-        [mutableArray addObject:@{@"name":@"主要航线",@"image":@"site_around"}];
+        [mutableArray addObject:@{@"name":@"主要航线",@"image":@"icon_menu_airline"}];
     }
     if ([CommonFunction hasFunction:FUNC_ZSK]){
-        [mutableArray addObject:@{@"name":@"知识库",@"image":@"site_around"}];
+        [mutableArray addObject:@{@"name":@"知识库",@"image":@"icon_knowledge"}];
     }
     if([CommonFunction hasFunction:FUNC_YXJB]){
-        [mutableArray addObject:@{@"name":@"运行简报",@"image":@"site_around"}];
+        [mutableArray addObject:@{@"name":@"运行简报",@"image":@"icon_report"}];
     }if ([CommonFunction hasFunction:FUNC_JJFXHB]) {
-        [mutableArray addObject:@{@"name":@"即将放行航班",@"image":@"site_around"}];
+        [mutableArray addObject:@{@"name":@"即将放行航班",@"image":@"icon_release_queue"}];
+    }if ([CommonFunction hasFunction:FUNC_NDYXQK]) {
+        [mutableArray addObject:@{@"name":@"年度运行情况",@"image":@"icon_release_queue"}];
     }
     _tableArray = [mutableArray copy];
 
@@ -206,6 +210,9 @@ static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDEN
     }else if([name isEqualToString:@"即将放行航班"]){
         WillGoFlightViewController *willGoFlightVC = [[WillGoFlightViewController alloc]initWithNibName:@"WillGoFlightViewController" bundle:nil];
         [self.navigationController pushViewController:willGoFlightVC animated:YES];
+    }else if([name isEqualToString:@"年度运行情况"]){
+        YearOperationStatusViewController *yearOperationStatusVC = [[YearOperationStatusViewController alloc]initWithNibName:@"YearOperationStatusViewController" bundle:nil];
+        [self.navigationController pushViewController:yearOperationStatusVC animated:YES];
     }
 }
 

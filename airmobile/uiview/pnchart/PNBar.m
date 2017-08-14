@@ -10,6 +10,7 @@
 #import "PNColor.h"
 #import <CoreText/CoreText.h>
 
+const CGFloat fontSize = 10;
 @interface PNBar ()
 
 @property (nonatomic) float copyGrade;
@@ -177,13 +178,14 @@
     CGFloat topSpace = self.bounds.size.height * (1-self.grade);
     CGFloat textWidth = self.bounds.size.width;
   
-    [_chartLine addSublayer:self.textLayer];
-    [self.textLayer setFontSize:18.0];
+    [self.layer addSublayer:self.textLayer];
+
+    [self.textLayer setFontSize:fontSize];
   
     [self.textLayer setString:[[NSString alloc]initWithFormat:@"%0.f",grade*self.maxDivisor]];
   
     CGSize size = CGSizeMake(320,2000); //设置一个行高上限
-    NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:18.0]};
+    NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:fontSize]};
     size = [self.textLayer.string boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
     float verticalY ;
   
@@ -194,7 +196,7 @@
       verticalY = topSpace +  (textheigt-size.height)/2.0;
     }
   
-    [self.textLayer setFrame:CGRectMake((textWidth-size.width)/2.0,verticalY, size.width,size.height)];
+    [self.textLayer setFrame:CGRectMake((textWidth-size.width)/2.0,topSpace-15, size.width,size.height)];
     self.textLayer.contentsScale = [UIScreen mainScreen].scale;
 
 }
@@ -212,7 +214,7 @@
     [self.textLayer setString:[[NSString alloc]initWithFormat:@"- %1.f",_grade*self.maxDivisor]];
     
     CGSize size = CGSizeMake(320,2000); //设置一个行高上限
-    NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:18.0]};
+    NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:fontSize]};
     size = [self.textLayer.string boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
     CGRect frame = self.textLayer.frame;
     frame.origin.x = (self.bounds.size.width - size.width)/2.0;

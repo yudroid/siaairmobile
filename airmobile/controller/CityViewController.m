@@ -293,7 +293,7 @@
     [self titleViewAddBackBtn];
 
 
-    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc]initWithItems:@[@"国内城市",@"国际/港澳台"]];
+    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc]initWithItems:@[@"国内城市",@"国际"]];
     segmentedControl.frame = CGRectMake(70,20+6, (kScreenWidth - 70 * 2), 31);
     segmentedControl.tintColor = [UIColor whiteColor];
     segmentedControl.selectedSegmentIndex = 0;

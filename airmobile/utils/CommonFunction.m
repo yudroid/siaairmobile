@@ -252,7 +252,7 @@
     NSCalendarUnitMinute |  //分钟
     NSCalendarUnitSecond;  // 秒
     NSDateComponents *dateComponent = [calendar components:unitFlags fromDate:[NSDate date]];
-    return [dateComponent hour];
+    return [dateComponent hour]?:24;
 }
 
 +(CGFloat)deviceSize

@@ -27,7 +27,7 @@
 
 
         //判断是进港 出港 还是关联航班
-        if([self.mInCity isKindOfClass:[NSNull class]]||[self.mInCity isEqualToString:@""]){
+        if(self.mInCity == nil||[self.mInCity isKindOfClass:[NSNull class]]||[self.mInCity isEqualToString:@""]){
             self.flightType = FlightTypeOut;
         }else if (!self.mOutCity||[self.mOutCity isEqualToString:@""]){
             self.flightType = FlightTypeIn;

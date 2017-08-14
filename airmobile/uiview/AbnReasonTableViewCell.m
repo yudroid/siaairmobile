@@ -31,18 +31,18 @@
                                                                      0,
                                                                      kScreenWidth/2-px2(32),
                                                                      viewHeight(self.contentView))
-                                                     text:[NSString stringWithFormat:@"%i架次,%.1f%%",(int)abnReason.count,abnReason.count/@(sum==0?1:sum).floatValue*100]
+                                                     text:[NSString stringWithFormat:@"%.1f%%",abnReason.count/@(sum==0?1:sum).floatValue*100]
                                                      font:px_px_2_3(24, 40)
                                             textAlignment:(NSTextAlignmentRight)
                                              colorFromHex:0xFF1B1B1B];
 
-        NSInteger location = [self location:numLabel.text];
-        NSMutableAttributedString *numAttributedString = [[NSMutableAttributedString alloc]initWithString:numLabel.text];
-        [numAttributedString addAttribute:NSForegroundColorAttributeName value:[CommonFunction colorFromHex:0xFFFF7c36]
-                                    range:NSMakeRange(0, location)];
-        [numAttributedString addAttribute:NSForegroundColorAttributeName value:[CommonFunction colorFromHex:0xFF17b9e8]
-                                    range:NSMakeRange(location+1, numAttributedString.length-location-1)];
-        numLabel.attributedText = numAttributedString;
+//        NSInteger location = [self location:numLabel.text];
+//        NSMutableAttributedString *numAttributedString = [[NSMutableAttributedString alloc]initWithString:numLabel.text];
+//        [numAttributedString addAttribute:NSForegroundColorAttributeName value:[CommonFunction colorFromHex:0xFFFF7c36]
+//                                    range:NSMakeRange(0, location)];
+//        [numAttributedString addAttribute:NSForegroundColorAttributeName value:[CommonFunction colorFromHex:0xFF17b9e8]
+//                                    range:NSMakeRange(location+1, numAttributedString.length-location-1)];
+//        numLabel.attributedText = numAttributedString;
         [self.contentView addSubview:numLabel];
 
         UIView *lineView        = [[UIView alloc]initWithFrame:CGRectMake(px2(32), viewHeight(self)-0.5, kScreenWidth-2*px2(32), 0.5 )];

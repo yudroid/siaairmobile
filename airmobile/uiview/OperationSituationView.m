@@ -183,9 +183,10 @@
     _lineChart.chartData = @[data,data2];
     [_lineChart strokeChart];
 
-    NSNumber *planNum = [arrArray objectAtIndex:[CommonFunction currentHour]-1];
+    NSInteger index = [CommonFunction currentHour] - 1;
+    NSNumber *planNum = [arrArray objectAtIndex:index==-1?arrArray.count-1:index];
     _planLabel.text = [NSString stringWithFormat:@"%ld架",planNum.integerValue];
-    NSNumber *realNum = [depArray objectAtIndex:[CommonFunction currentHour]-1];
+    NSNumber *realNum = [depArray objectAtIndex:index==-1?arrArray.count-1:index];
     _realLabel.text = [NSString stringWithFormat:@"%ld架",realNum.integerValue];
 }
 
@@ -198,13 +199,11 @@
             if (model.count>max) {
                 max = model.count;
             }
-
         }
         for (FlightHourModel *model in _lineArray[1]) {
             if (model.count>max) {
                 max = model.count;
             }
-
         }
     }
     return max==0?1:max;

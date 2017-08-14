@@ -63,22 +63,22 @@
                                                                                (kScreenWidth-2*px2(32))/2,
                                                                                viewHeight(self.contentView))];
         NSString *yc = @"";
-        if(flightHour.hour.integerValue>=[CommonFunction currentHour]){
-            yc = @"预测";
-        }
+//        if(flightHour.hour.integerValue>=[CommonFunction currentHour]){
+//            yc = @"预测";
+//        }
         countLabel.text             =[NSString stringWithFormat:@"%@ %d", yc,(int)flightHour.planDepCount+(int)flightHour.planArrCount];
         countLabel.font             = [UIFont fontWithName:@"PingFang SC" size:px2(36)];
         countLabel.textAlignment    = NSTextAlignmentRight;
         [self.contentView addSubview:countLabel];
 
-        NSMutableAttributedString *valueAttributedString = [[NSMutableAttributedString alloc]initWithString:countLabel.text];
-        [valueAttributedString addAttribute:NSFontAttributeName
-                                       value:[UIFont fontWithName:@"PingFangSC-Regular" size:11]
-                                       range:[countLabel.text rangeOfString:@"预测"]];
-
-
-        //        valueLable1.backgroundColor = [UIColor redColor];
-        countLabel.attributedText = valueAttributedString;
+//        NSMutableAttributedString *valueAttributedString = [[NSMutableAttributedString alloc]initWithString:countLabel.text];
+//        [valueAttributedString addAttribute:NSFontAttributeName
+//                                       value:[UIFont fontWithName:@"PingFangSC-Regular" size:11]
+//                                       range:[countLabel.text rangeOfString:@"预测"]];
+//
+//
+//        //        valueLable1.backgroundColor = [UIColor redColor];
+//        countLabel.attributedText = valueAttributedString;
     
 
 
@@ -108,7 +108,7 @@
                                           colorFromHex:0xFF000000]];
 
         if(type == ArrFlightHour){
-            [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth-8-50-30-5-50-30,
+            [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth-8-50-30,
                                                                       (viewHeight(self)-8)/2+3,
                                                                       30,
                                                                       8)
@@ -122,7 +122,7 @@
             }else{
                 title = @"实际进";
             }
-            [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth-8-50-30,
+            [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth-8-50-30-5-50-30,
                                                                       (viewHeight(self)-8)/2+3,
                                                                       30,
                                                                       8)
@@ -130,18 +130,18 @@
                                                       font:17/2
                                              textAlignment:(NSTextAlignmentRight)
                                               colorFromHex:0xFF000000]];
-            [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth-8-50-30-50, 0, 50, viewHeight(self))
+            [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth-8-50, 0, 50, viewHeight(self))
                                                       text:[NSString stringWithFormat:@"%i",(int)flightHour.planArrCount]
                                                       font:px2(35)
                                              textAlignment:(NSTextAlignmentLeft)
                                               colorFromHex:0xFF000000]];
-            [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth-8-50, 0, 50, viewHeight(self))
+            [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth-8-50-30-50, 0, 50, viewHeight(self))
                                                       text:[NSString stringWithFormat:@"%i",(int)flightHour.arrCount]
                                                       font:px2(35)
                                              textAlignment:(NSTextAlignmentLeft)
                                               colorFromHex:0xFF000000]];
         }else{
-            [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth-8-50-30-5-50-30,
+            [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth-8-50-30,
                                                                       (viewHeight(self)-8)/2+3, 30, 8)
                                                       text:@"计划出"
                                                       font:17/2
@@ -153,7 +153,7 @@
             }else{
                 title = @"实际出";
             }
-            [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth-8-50-30,
+            [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth-8-50-30-5-50-30,
                                                                       (viewHeight(self)-8)/2+3,
                                                                       30,
                                                                       8)
@@ -161,12 +161,12 @@
                                                       font:17/2
                                              textAlignment:(NSTextAlignmentRight)
                                               colorFromHex:0xFF000000]];
-            [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth-8-50-30-5-50, 0, 50, viewHeight(self))
+            [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth-8-50, 0, 50, viewHeight(self))
                                                       text:[NSString stringWithFormat:@"%i",(int)flightHour.planDepCount]
                                                       font:px2(35)
                                              textAlignment:(NSTextAlignmentLeft)
                                               colorFromHex:0xFF000000]];
-            [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth-8-50, 0, 50, viewHeight(self))
+            [self addSubview:[CommonFunction addLabelFrame:CGRectMake(kScreenWidth-8-50-30-5-50, 0, 50, viewHeight(self))
                                                       text:[NSString stringWithFormat:@"%i",(int)flightHour.depCount]
                                                       font:px2(35)
                                              textAlignment:(NSTextAlignmentLeft)

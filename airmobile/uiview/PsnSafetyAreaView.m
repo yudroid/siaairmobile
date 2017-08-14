@@ -40,7 +40,7 @@
                                                                                              0,
                                                                                              viewWidth(topBgView),
                                                                                              viewHeight(topBgView))];
-        topBgBackgroundImageView.image = [UIImage imageNamed:@"FlightHourChartBlackground"];
+        topBgBackgroundImageView.image = [UIImage imageNamed:@"PsnGeneralChartBackground"];
         [topBgView addSubview:topBgBackgroundImageView];
 
 
@@ -48,7 +48,7 @@
                                                                              8,
                                                                              viewWidth(topBgView)-100,
                                                                              13)];
-        passengerTtitle.text = @"隔离区旅客区域分布";
+        passengerTtitle.text = @"隔离区内旅客区域分布";
         passengerTtitle.font = [UIFont fontWithName:@"PingFangSC-Regular"
                                                size:27/2];
         passengerTtitle.textColor = [UIColor whiteColor];

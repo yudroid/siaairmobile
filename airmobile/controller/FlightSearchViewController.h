@@ -10,6 +10,12 @@
 #import "HasTabbarRootViewController.h"
 @class AirlineModel;
 
+typedef enum : NSUInteger {
+    FlightSearchTypeFlightNo,   //航班号
+    FlightSearchTypeCity,       //城市名
+    FlightSearchTypePlaneNo,    //机号
+    FlightSearchTypeSeat        //机位
+} FlightSearchType;
 @interface FlightSearchViewController : HasTabbarRootViewController
 
 @property (nonatomic, strong) UIButton      *seekButton;
@@ -26,6 +32,6 @@
 @property (nonatomic, strong) AirlineModel *airlineModel;
 //查询条件
 @property (nonatomic, copy) NSString *fltDate;
-@property (nonatomic, assign) BOOL queryflag;// YES 按照航班号查询 NO按照航站查询
+@property (nonatomic, assign) FlightSearchType queryflag;
 
 @end

@@ -26,6 +26,7 @@
 #import "HttpsUtils+Business.h"
 #import "AppDelegate.h"
 #import "WillGoFlightViewController.h"
+#import "YearOperationStatusViewController.h"
 
 
 
@@ -341,7 +342,12 @@
 -(void)showQueueView{
     WillGoFlightViewController *willGoFlightVC = [[WillGoFlightViewController alloc]initWithNibName:@"WillGoFlightViewController" bundle:nil];
     [self.navigationController pushViewController:willGoFlightVC animated:YES];
-
+}
+//年度运行情况
+-(void)showOperationStatusView
+{
+    YearOperationStatusViewController *yearOperationVC = [[YearOperationStatusViewController alloc] initWithNibName:@"YearOperationStatusViewController" bundle:nil];
+    [self.navigationController pushViewController:yearOperationVC animated:YES];
 }
 #pragma mark - 航班汇总页跳转方法
 

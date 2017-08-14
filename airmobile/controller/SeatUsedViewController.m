@@ -70,7 +70,7 @@ const NSString *SEATUSED_TABLEVIEW_IDENTIFIER = @"SEATUSED_TABLEVIEW_IDENTIFIER"
                                                                              end:30.0f
                                                                        clockwise:YES];
 
-    
+//    progressRound.backgroundColor = [UIColor redColor];
 
 
     //对数据进行动画
@@ -121,27 +121,27 @@ const NSString *SEATUSED_TABLEVIEW_IDENTIFIER = @"SEATUSED_TABLEVIEW_IDENTIFIER"
 //    nightNumLabel.font = [UIFont systemFontOfSize:15];
 //    [self.view addSubview:nightNumLabel];
 
-    UILabel *minLabel = [[UILabel alloc]initWithFrame:CGRectMake(viewX(progressRound)+16,
-                                                                 viewBotton(progressRound)-30,
-                                                                 11,
-                                                                 11)];
-    minLabel.text = @"0";
-    minLabel.font = [UIFont fontWithName:@"PingFangSC-Regular"
-                                    size:13];
-    [self.view addSubview:minLabel];
+//    UILabel *minLabel = [[UILabel alloc]initWithFrame:CGRectMake(viewX(progressRound)+16,
+//                                                                 viewBotton(progressRound)-30,
+//                                                                 11,
+//                                                                 11)];
+//    minLabel.text = @"0";
+//    minLabel.font = [UIFont fontWithName:@"PingFangSC-Regular"
+//                                    size:13];
+//    [self.view addSubview:minLabel];
+//
+//
+//    UILabel *maxLabel = [[UILabel alloc]initWithFrame:CGRectMake(viewTrailing(progressRound)-25,
+//                                                                 viewY(minLabel),
+//                                                                 30,
+//                                                                 11)];
+//    maxLabel.text = @"100";
+//    maxLabel.font = [UIFont fontWithName:@"PingFangSC-Regular"
+//                                    size:13];
+//    [self.view addSubview:maxLabel];
 
 
-    UILabel *maxLabel = [[UILabel alloc]initWithFrame:CGRectMake(viewTrailing(progressRound)-25,
-                                                                 viewY(minLabel),
-                                                                 30,
-                                                                 11)];
-    maxLabel.text = @"100";
-    maxLabel.font = [UIFont fontWithName:@"PingFangSC-Regular"
-                                    size:13];
-    [self.view addSubview:maxLabel];
-
-
-    CGFloat y = viewBotton( maxLabel)+px_px_2_3(60, 100);
+    CGFloat y = viewBotton(progressRound);
     CGFloat width = (kScreenWidth-32)/4;
 
     CGSize maxSize = CGSizeMake(100, 100);
@@ -162,7 +162,7 @@ const NSString *SEATUSED_TABLEVIEW_IDENTIFIER = @"SEATUSED_TABLEVIEW_IDENTIFIER"
     longInSeatImageView.layer.masksToBounds = YES;
     [longInSeatView addSubview:longInSeatImageView];
 
-    UILabel *longInSeatLabel= [[UILabel alloc] initWithFrame:CGRectMake(14, 0, width-14, 12)];//长期占用
+    UILabel *longInSeatLabel= [[UILabel alloc] initWithFrame:CGRectMake(14, 0, width-14, 14)];//长期占用
     longInSeatLabel.text = @"长期占用";
     longInSeatLabel.font =  [UIFont fontWithName:@"PingFangSC-Regular"
                                             size:13];
@@ -199,7 +199,7 @@ const NSString *SEATUSED_TABLEVIEW_IDENTIFIER = @"SEATUSED_TABLEVIEW_IDENTIFIER"
     freeSeatImageView.layer.masksToBounds = YES;
     [freeSeatView addSubview:freeSeatImageView];
 
-    UILabel *freeSeatLabel= [[UILabel alloc] initWithFrame:CGRectMake(14, 0, width-14, 12)];// 不可用
+    UILabel *freeSeatLabel= [[UILabel alloc] initWithFrame:CGRectMake(14, 0, width-14, 14)];// 不可用
     freeSeatLabel.text = @"当前占用";
     freeSeatLabel.font =  [UIFont fontWithName:@"PingFangSC-Regular"
                                           size:13];
@@ -240,7 +240,7 @@ const NSString *SEATUSED_TABLEVIEW_IDENTIFIER = @"SEATUSED_TABLEVIEW_IDENTIFIER"
     nightImageView.layer.masksToBounds = YES;
     [nightView addSubview:nightImageView];
 
-    UILabel *nightLabel= [[UILabel alloc] initWithFrame:CGRectMake(14, 0, width-14, 12)];// 不可用
+    UILabel *nightLabel= [[UILabel alloc] initWithFrame:CGRectMake(14, 0, width-14, 14)];// 不可用
     nightLabel.text = @"空余机位";
     nightLabel.font =  [UIFont fontWithName:@"PingFangSC-Regular"
                                        size:13];
@@ -278,7 +278,7 @@ const NSString *SEATUSED_TABLEVIEW_IDENTIFIER = @"SEATUSED_TABLEVIEW_IDENTIFIER"
     [disAbleView addSubview:disAbleImageView];
 
 
-    UILabel *disAbleLabel= [[UILabel alloc] initWithFrame:CGRectMake(14, 0, width-14, 12)];// 不可用
+    UILabel *disAbleLabel= [[UILabel alloc] initWithFrame:CGRectMake(14, 0, width-14, 14)];// 不可用
     disAbleLabel.text = @"不可用";
     disAbleLabel.font =  [UIFont fontWithName:@"PingFangSC-Regular" size:13];
     exportSize = [disAbleLabel sizeThatFits:maxSize];

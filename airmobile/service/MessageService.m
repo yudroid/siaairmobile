@@ -258,10 +258,7 @@ singleton_implementation(MessageService);
             if(_curTabBarView != nil && type!=nil && ![type containsString:@"FLIGHT"]){
                 [_curTabBarView setHasNewMessage:YES];
             }
-
         }else{
-
-
             if([[dic objectForKey:@"type"] containsString:@"FTSS"]){
                 NSString *msgContent  = [dic objectForKey:@"content"];
                 for (NSDictionary *dic in [ConcernModel allConcernModel]) {
@@ -293,12 +290,8 @@ singleton_implementation(MessageService);
                 if(_curTabBarView != nil && type!=nil && ![type containsString:@"FLIGHT"]){
                     [_curTabBarView setHasNewMessage:YES];
                 }
-                
-                
             }
-
         }
-
 
 
 
@@ -321,9 +314,7 @@ singleton_implementation(MessageService);
                             }
 
                         }
-
                     }
-
                 }
             }
         }

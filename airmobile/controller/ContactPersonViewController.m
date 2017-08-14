@@ -277,9 +277,13 @@ forHeaderFooterViewReuseIdentifier:(NSString *)CONTACTPERSON_TABLECELLHRADER_IDE
 -(void)initTableData
 {
     array = [PersistenceUtils loadUserListGroupByDept];
+    array = [array sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSInteger x1 = ((DeptInfoModel *)obj1).sort;
+        NSInteger x2 = ((DeptInfoModel *)obj2).sort;
+        return  x1>x2;
+    }];
     [filterArray removeAllObjects];
     [filterArray addObjectsFromArray:array];
-    
     for (int i = 0; i<array.count; i++) {
         // 初始时都是折叠状态（bool不能直接放在数组里）
         [_resultArry addObject:[NSNumber numberWithBool:NO]];

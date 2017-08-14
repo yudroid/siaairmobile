@@ -29,4 +29,5 @@
 @property (nonatomic, assign) NSInteger dispatchId;
 //"id":82066127,"fid":4451698,"safeName":"值机","isAD":1,"state":0,"normalTime":null,"safeguardDepart":null,"startTime":null,"endTime":"2017-01-22 09:27:00","status":null,"dispatchPeople":null,"tip":null,"realStartTime":null,"realEndTime":null,"key":0,"reportId":null,"dispatchId":0
 -(NSString *)startTimeAndEndTime;
+-(NSDictionary *)startTimeAndEndTimeAndType;
 @end

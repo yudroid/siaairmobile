@@ -26,7 +26,7 @@
         UILabel *numLabel = [CommonFunction addLabelFrame:CGRectMake(kScreenWidth/2, 0,
                                                                      kScreenWidth/2-13,
                                                                      viewHeight(self.contentView))
-                                                     text:[NSString stringWithFormat:@"%imin,%i架",delayTime.time,delayTime.count]
+                                                     text:[NSString stringWithFormat:@"%imin/%i架",delayTime.time,delayTime.count]
                                                      font:12 textAlignment:(NSTextAlignmentRight)
                                              colorFromHex:0xFF1B1B1B];
         NSMutableAttributedString *numAttributedString = [[NSMutableAttributedString alloc]initWithString:numLabel.text];
@@ -56,7 +56,7 @@
 -(NSInteger)location:(NSString *)string
 {
     NSRange range;
-    range = [string rangeOfString:@","];
+    range = [string rangeOfString:@"/"];
     if (range.location!=NSNotFound) {
         return range.location;
     }else{

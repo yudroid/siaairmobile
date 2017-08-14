@@ -148,7 +148,7 @@
 -(void) initTitle
 {
     [self titleViewInitWithHight:65];
-    [self titleViewAddTitleText:@"航班异常分析"];
+    [self titleViewAddTitleText:@"异常航班"];
     
     UIView *titleLabelView = [[UIView alloc] initWithFrame:CGRectMake(0,
                                                                       0,

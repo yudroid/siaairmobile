@@ -75,13 +75,13 @@ const NSString *REPORTTABLEIDENTIFIER = @"REPORTTABLEIDENTIFIER";
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
-    KnowledgeBaseModel *model = _tableArray[indexPath.row];
-    KnowledgeBaseContentViewController *knowledgeBaseContentVC = [[KnowledgeBaseContentViewController alloc]initWithNibName:@"KnowledgeBaseContentViewController" bundle:nil];
-    knowledgeBaseContentVC.knowledgeBaseModel = model;
-    knowledgeBaseContentVC.title = model.title;
-    [self.navigationController pushViewController:knowledgeBaseContentVC animated:YES];
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//
+//    KnowledgeBaseModel *model = _tableArray[indexPath.row];
+//    KnowledgeBaseContentViewController *knowledgeBaseContentVC = [[KnowledgeBaseContentViewController alloc]initWithNibName:@"KnowledgeBaseContentViewController" bundle:nil];
+//    knowledgeBaseContentVC.knowledgeBaseModel = model;
+//    knowledgeBaseContentVC.title = model.title;
+//    [self.navigationController pushViewController:knowledgeBaseContentVC animated:YES];
 }
 
 - (IBAction)segementValueChanged:(UISegmentedControl *)sender {

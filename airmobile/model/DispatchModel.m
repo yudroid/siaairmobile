@@ -15,22 +15,31 @@
 -(NSString *)startTimeAndEndTime
 {
     NSString *start = @"";
+    NSString *end = @"";
     if (_realStartTime && ![_realStartTime isEqualToString:@""]) {
         start = _realStartTime;
+        end = _realEndTime;
+
     }else{
         start = _startTime;
-    }
-
-    NSString *end = @"";
-    if (_realEndTime && ![_realEndTime isEqualToString:@""]) {
-        end = _realEndTime;
-    }else{
         end = _endTime;
     }
+
     start =[DateUtils convertToString:[DateUtils convertToDate:start format:@"yyyy-MM-dd HH:mm"]  format:@"HH:mm"] ?:@"";
     end =[DateUtils convertToString:[DateUtils convertToDate:end format:@"yyyy-MM-dd HH:mm"]  format:@"HH:mm"]?:@"" ;
     return [NSString stringWithFormat:@"%@-%@",start,end];
 }
+-(NSDictionary *)startTimeAndEndTimeAndType
+{
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    if (_realStartTime && ![_realStartTime isEqualToString:@""]) {
+        [dic setObject:@"realTime" forKey:@"type"];
+    }else{
+        [dic setObject:@"planTime" forKey:@"type"];
+    }
 
+    [dic setObject:[self startTimeAndEndTime] forKey:@"time"];
+    return [dic copy];
+}
 
 @end

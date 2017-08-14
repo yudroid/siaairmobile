@@ -28,6 +28,8 @@
 //即将放行航班
 -(void) showQueueView;
 
+//年度运行情况
+-(void)showOperationStatusView;
 @end
 
 @interface OverContentView : UIView

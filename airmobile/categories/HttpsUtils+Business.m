@@ -22,6 +22,7 @@ static NSString* __userName = @"";
  */
 static NSString* __password = @"";
 
+
 NSString * const loginUrl                   = @"/acs/login/mobile";
 NSString * const userMsgSendUrl             = @"/acs/um/m";// 发送用户消息
 NSString * const groupMsgSendUrl            = @"/acs/wm/m";// 发送工作组消息
@@ -48,6 +49,9 @@ NSString * const saveDispatchNormal         = @"/acs/wacs/MobileSpecial/MobileSa
 NSString * const guaranteeNormalTime        = @"/acs/wacs/MobileSpecial/UpdateMobileGuaranteeNormalTime";
 NSString * const queryAllDispatch           = @"/acs/wacs/MobileSpecial/queryAllDispatch";//宝藏环节列表
 NSString * const updateDispatchType         = @"/acs/wacs/MobileSpecial/updateDispatchType";
+
+
+NSString * const postToken                   = @"/acs/utc/t";//获取token用于推动消息
 // 首页
 NSString * const ovSummaryUrl               = @"/acs/ov/homeInfo";
 NSString * const ovFltFDRTHreshold          = @"/acs/ov/fltFDRThreshold";
@@ -89,6 +93,7 @@ NSString * const mobileKBList               = @"/acs/dms/KB/mobileKBList";//知�
 NSString * const searchEQType               = @"/acs/cfg/dict/search?search_EQ_type=know_type";//获取全部类别
 NSString * const phoneRecordUrl             = @"/acs/wacs/user/SelectAllDeptListForIphone";// 通讯录
 NSString * const flyoutList                 = @"/acs/wacs/flyout/list";
+NSString * const queryYearOperationSituation= @"/acs/m/queryYearOperationSituation";//全年运行统计
 // 我的
 NSString * const signInUrl                  = @"/acs/m/signIn";//签到
 NSString * const signOutUrl                 = @"/acs/m/signOut";//签退
@@ -119,7 +124,11 @@ NSString * const mobileLog                  = @"/acs/dms/log/mobileLog";//获取
  *  @param success  success description
  *  @param failure  failure description
  */
-+(void) loginUser:(NSString*) userName pwd: (NSString*) pwd deviceInfo:(NSString*) deviceInfo success:(void (^) (id)) success failure:(void (^) (NSError*)) failure{
++(void) loginUser:(NSString*) userName
+              pwd:(NSString*) pwd
+       deviceInfo:(NSString*) deviceInfo
+          success:(void (^) (id)) success
+          failure:(void (^) (NSError*)) failure{
     NSDictionary *params = [NSDictionary dictionaryWithObjects:@[userName,pwd] forKeys:@[@"username",@"password"]];
     
     [HttpsUtils post:loginUrl params:params success:^(id responseObj) {
@@ -304,6 +313,26 @@ NSString * const mobileLog                  = @"/acs/dms/log/mobileLog";//获取
             [PersistenceUtils syncSysMessages:responseObj];
         }];
     } failure:failure];
+}
+
+
+/**
+ 发送消息token到服务器
+
+ @param token <#token description#>
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)postToken:(NSDictionary *)token
+         success:(void(^)(id))success
+         failure:(void (^)(NSError *))failure
+{
+    [HttpsUtils post:postToken params:token success:^(id responseObj) {
+        if(success){
+            success(responseObj);
+        }
+    } failure:failure];
+
 }
 
 
@@ -767,7 +796,6 @@ NSString * const mobileLog                  = @"/acs/dms/log/mobileLog";//获取
             success(responseObj);
         }
     } failure:failure];
-
 }
 
 #pragma mark 首页航班汇总、异常原因分类、延误时长、小时分布
@@ -1319,7 +1347,7 @@ NSString * const mobileLog                  = @"/acs/dms/log/mobileLog";//获取
  */
 +(void)logOut:(int)userId success:(void (^)(id))success failure:(void (^)(id))failure
 {
-    [HttpsUtils getString:loginUrl params:nil
+    [HttpsUtils get:loginUrl params:nil
                   success:^(id responseObj) {
                       if(success){
                           success(responseObj);
@@ -1563,6 +1591,15 @@ NSString * const mobileLog                  = @"/acs/dms/log/mobileLog";//获取
             success(responseObj);
         }
     } failure:failure];
+}
+
++(void)queryYearOperationSituationWithSuccess:(void (^)(id))success
+                                      failure:(void (^)(NSError *))failure
+{
+    [HttpsUtils post:queryYearOperationSituation params:nil
+             success:^(id responseObj) {
+                 success(responseObj);
+             } failure:failure];
 }
 
 +(void)updateDispatchTypeWithDispathId:(NSString *)dispatchId

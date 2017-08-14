@@ -257,7 +257,7 @@
                                                                    viewBotton(lineImageView2)+px_px_2_3(42, 63),
                                                                    kScreenWidth-160,
                                                                    viewHeight(noFlightImageView))
-                                                   text:@"无航班起降累积时间"
+                                                   text:@"无起降航班min"
                                                    font:px_px_2_2_3(20, 30, 40)
                                           textAlignment:(NSTextAlignmentLeft)
                                            colorFromHex:0xFF000000]];
@@ -266,7 +266,7 @@
                                                                      viewY(noFlightImageView),
                                                                      80,
                                                                      viewHeight(noFlightImageView))
-                                                     text:[NSString stringWithFormat:@"%d min",_flightLargeDelayModel.noTakeoffAndLanding]
+                                                     text:[NSString stringWithFormat:@"%d",_flightLargeDelayModel.noTakeoffAndLanding]
                                                      font:px_px_2_2_3(25, 36, 48)
                                             textAlignment:(NSTextAlignmentRight)
                                              colorFromHex:0xFF000000];
@@ -341,7 +341,7 @@
             peopleLabel.text        = @(_flightLargeDelayModel.glqPassenCnt).stringValue;
             //        todayLabel.text         = [NSString stringWithFormat:@"当前 %@",[CommonFunction dateFormat:nil format:@"hh:mi"]];
             arrRatioLabel.text      = [NSString stringWithFormat:@"%ld%%",(long)@(_flightLargeDelayModel.delayOneHourRatio*100.0).integerValue];
-            addTimeLabel.text       = [NSString stringWithFormat:@"%d min",_flightLargeDelayModel.noTakeoffAndLanding];
+            addTimeLabel.text       = [NSString stringWithFormat:@"%d",_flightLargeDelayModel.noTakeoffAndLanding];
 
             [lineChart setXLabels:[self getFlightHourXLabels]];
 
@@ -380,13 +380,11 @@
 {
     CGFloat max = 0.0;
     for(FlightHourModel *model in _flightLargeDelayModel.hourExecuteRateList){
-
         if (model.ratio >max) {
             max = model.ratio;
         }
     }
     return max == 0?1:max;
-
 }
 
 -(NSString *)currentTimeAndValue

@@ -354,7 +354,7 @@ const NSString *RESOURCECONTENT_TABLECELL_IDENTIFIER = @"RESOURCECONTENT_TABLECE
         CGSize exportSize       = [disable sizeThatFits:maxSize];
         disable.frame           = CGRectMake(kScreenWidth/2-30-exportSize.width, viewY(disable), exportSize.width, 30);
         //百分比
-        percentLabel.text       = [NSString stringWithFormat:@"%ld%%",(long)@((_seatStatusModel.normalTakeUpCnt+_seatStatusModel.parentTakeUpCnt)/@(_seatStatusModel.normalCnt + _seatStatusModel.parentTakeUpCnt).floatValue*100).integerValue];
+        percentLabel.text       = [NSString stringWithFormat:@"%ld%%",(long)@((_seatStatusModel.normalTakeUpCnt+_seatStatusModel.parentTakeUpCnt)/@(_seatStatusModel.normalCnt + _seatStatusModel.parentCnt).floatValue*100).integerValue];
         //剩余
         longInSeat.text             = @(_seatStatusModel.normalCnt + _seatStatusModel.parentCnt-(_seatStatusModel.normalTakeUpCnt+_seatStatusModel.parentTakeUpCnt)).stringValue;
         exportSize                  = [longInSeat sizeThatFits:maxSize];
@@ -402,15 +402,15 @@ const NSString *RESOURCECONTENT_TABLECELL_IDENTIFIER = @"RESOURCECONTENT_TABLECE
     [progressRound animationWithStrokeEnd:cancleProportion withProgressType:ProgreesTypeCancel];
     CGSize maxSize          = CGSizeMake(100, 100);
     CGSize exportSize       = [disable sizeThatFits:maxSize];
-    exportSize          = [disAbleLabel sizeThatFits:maxSize];
-    disAbleLabel.frame  = CGRectMake((viewX(disable)+viewTrailing(disable))/2-exportSize.width/2+3, viewY(disAbleLabel), exportSize.width, 12);
+    exportSize              = [disAbleLabel sizeThatFits:maxSize];
+    disAbleLabel.frame      = CGRectMake((viewX(disable)+viewTrailing(disable))/2-exportSize.width/2+3, viewY(disAbleLabel), exportSize.width, 12);
     disableImageView.frame          = CGRectMake(viewX(disAbleLabel)-6, viewY(disAbleLabel)+3, 6, 6);
     exportSize = [longInSeatLabel sizeThatFits:maxSize];
     longInSeatLabel.frame           = CGRectMake((viewX(longInSeat)+viewTrailing(longInSeat))/2-exportSize.width/2+3,
                                                  viewY(longInSeatLabel),
                                                  exportSize.width,
                                                  12);
-    longInSeatImageView.frame           = CGRectMake(viewX(longInSeatLabel)-6, viewY(longInSeatLabel)+3, 6, 6);
+    longInSeatImageView.frame       = CGRectMake(viewX(longInSeatLabel)-6, viewY(longInSeatLabel)+3, 6, 6);
 
 }
 

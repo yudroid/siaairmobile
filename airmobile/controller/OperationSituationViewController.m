@@ -59,6 +59,8 @@ static NSString * tableIdentifier = @"OPERATIONSITUATIONTABLECELL";
     _inLineView.frame = inFrame;
     [_brokenLineContentView addSubview:_inLineView];
     _outLineView = [[NSBundle mainBundle]loadNibNamed:@"OperationSituationView" owner:nil options:nil][0];
+    _outLineView.planNameLabel.text = @"当前计划出港";
+    _outLineView.realNameLabel.text = @"当前实际出港";
     CGRect outFrame = _outLineView.frame;
     outFrame.size.width = kScreenWidth;
     outFrame.origin.x = kScreenWidth;

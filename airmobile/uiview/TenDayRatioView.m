@@ -42,12 +42,20 @@
         topBgBackgroundImageView.image          = [UIImage imageNamed:@"TenDayRatioChartBackground"];
         [topBgView addSubview:topBgBackgroundImageView];
 
+
+        NSString *dayString = [HomePageService sharedHomePageService].summaryModel.dayNum;
+        if (dayString &&[dayString isKindOfClass:[NSString class]]&& ![dayString isEqualToString:@""]) {
+            dayString = [NSString stringWithFormat:@"最近%@天",[HomePageService sharedHomePageService].summaryModel.dayNum];
+        }else{
+            dayString = [NSString stringWithFormat:@"最近%lu天",(unsigned long)[HomePageService sharedHomePageService].summaryModel.tenDayReleased.count];
+        }
+
         
         UILabel *passengerTtitle = [[UILabel alloc] initWithFrame:CGRectMake(16,
                                                                              8,
                                                                              viewWidth(topBgView)-100,
                                                                              13)];
-        passengerTtitle.text = @"平均放行正常率";
+        passengerTtitle.text = dayString;
         passengerTtitle.font = [UIFont fontWithName:@"PingFangSC-Regular" size:27/2];
         passengerTtitle.textColor = [UIColor whiteColor];
         [topBgView addSubview:passengerTtitle];

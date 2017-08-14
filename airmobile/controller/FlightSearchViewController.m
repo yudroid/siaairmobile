@@ -56,7 +56,7 @@
 //创建按航班号查询还是城市查询View
 - (void)createClassView{
 
-    NSArray *segmentedArray = @[@"按航班号",@"按城市名"];
+    NSArray *segmentedArray = @[@"按航班号",@"按城市名",@"按机号",@"按机位"];
     //初始化UISegmentedControl
     _segmentedControl = [[UISegmentedControl alloc]initWithItems:segmentedArray];
     _segmentedControl.frame = CGRectMake(34, 30 + 64, kScreenWidth - 34 *  2, 31);
@@ -73,7 +73,7 @@
     airlineButton = [[UIButton alloc]initWithFrame:CGRectMake(34,viewBotton(airlineLabel)+8, kScreenWidth - 34*2-50, 40)];
     airlineButton.titleLabel.font = [UIFont systemFontOfSize: 18];
     [airlineButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [airlineButton setTitle:@"您可以选择航空公司" forState:UIControlStateNormal];
+    [airlineButton setTitle:@"请选择航空公司" forState:UIControlStateNormal];
     [self.view addSubview:airlineButton];
     airlineButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [airlineButton addTarget:self action:@selector(airlineButtonClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -95,7 +95,7 @@
 -(void)airlineCancelButtonClick:(UIButton *)sender
 {
     _airlineModel = nil;
-    [airlineButton setTitle:@"您可以选择航空公司" forState:UIControlStateNormal];
+    [airlineButton setTitle:@"请选择航空公司" forState:UIControlStateNormal];
 
 }
 
@@ -119,8 +119,9 @@
         case 0:
         {
             _outCityLabel.text = @"航班号";
+            _flightNumberTextF.placeholder = @"请输入航班号";
             _flightNumberTextF.hidden = NO;
-            _queryflag = true;
+            _queryflag = FlightSearchTypeFlightNo;
             airlineLabel.hidden = NO;
             airlineButton.hidden = NO;
             airlineCancelButton.hidden = NO;
@@ -134,10 +135,42 @@
             _arriveCityLabel.hidden = NO;
             _arriveCityButton.hidden = NO;
             _flightImg.hidden = NO;
-            _queryflag = false;
+            _queryflag = FlightSearchTypeCity;
             airlineLabel.hidden = YES;
             airlineButton.hidden = YES;
             airlineCancelButton.hidden = YES;
+            break;
+        }
+        case 2:
+        {
+            _outCityLabel.hidden = NO;
+            _outCityLabel.text = @"机号";
+            _outCityButton.hidden = YES;
+            _arriveCityLabel.hidden = YES;
+            _arriveCityButton.hidden = YES;
+            _flightImg.hidden = YES;
+            _queryflag = FlightSearchTypePlaneNo;
+            airlineLabel.hidden = YES;
+            airlineButton.hidden = YES;
+            airlineCancelButton.hidden = YES;
+            _flightNumberTextF.hidden = NO;
+            _flightNumberTextF.placeholder = @"请输入机号";
+            break;
+        }
+        case 3:
+        {
+            _outCityLabel.hidden = NO;
+            _outCityLabel.text = @"机位";
+            _outCityButton.hidden = YES;
+            _arriveCityLabel.hidden = YES;
+            _arriveCityButton.hidden = YES;
+            _flightImg.hidden = YES;
+            _queryflag = FlightSearchTypeSeat;
+            airlineLabel.hidden = YES;
+            airlineButton.hidden = YES;
+            airlineCancelButton.hidden = YES;
+            _flightNumberTextF.hidden = NO;
+            _flightNumberTextF.placeholder = @"请输入机位";
             break;
         }
         default:
@@ -152,7 +185,7 @@
     
     _flightNumberTextF = [[UITextField alloc]initWithFrame:CGRectMake(34, 94+31+35+5, kScreenWidth - 34*2, 40)];
     _flightNumberTextF.font = [UIFont systemFontOfSize: 18];
-    _flightNumberTextF.placeholder = @"可直接输入3-4位数字";
+    _flightNumberTextF.placeholder = @"请输入航班号";
     _flightNumberTextF.delegate = self;
     _flightNumberTextF.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
     [self.view addSubview:_flightNumberTextF];
@@ -162,9 +195,9 @@
 
     [self AddLineViewFrame:CGRectMake(34, 94+31+81, kScreenWidth - 34*2, 1)];
 
-    _flightImg = [[UIButton alloc]initWithFrame:CGRectMake((kScreenWidth - 34-30+4)/2, 94+31+35+5, 60, 45)];
+    _flightImg = [[UIButton alloc]initWithFrame:CGRectMake((kScreenWidth - 34-30+4)/2, 94+31+35+5, 45, 45)];
     //小飞机图
-    [_flightImg setImage:[UIImage imageNamed:@"logo_flight"] forState:(UIControlStateNormal)];
+    [_flightImg setImage:[UIImage imageNamed:@"flight_arrow"] forState:(UIControlStateNormal)];
     _flightImg.backgroundColor = [UIColor whiteColor];
     _flightImg.hidden = YES;
     [_flightImg addTarget:self action:@selector(flightImgButtonClick) forControlEvents:(UIControlEventTouchUpInside)];
@@ -173,10 +206,14 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
+
+    if([string isEqualToString:@""]){
+        return YES;
+    }
     NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:ALPHANUM] invertedSet];
     NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
     BOOL canChange = [string isEqualToString:filtered];
-    return _flightNumberTextF.text.length>6?NO: canChange;
+    return _flightNumberTextF.text.length>8?NO: canChange;
 }
 
 /**

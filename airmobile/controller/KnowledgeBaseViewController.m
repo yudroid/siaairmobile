@@ -278,7 +278,6 @@ const NSString *KNOWLEDGEBASEIDENTIFIER = @"KNOWLEDGEBASEIDENTIFIER";
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-
     [self.view resignFirstResponder];
     [_tableView.mj_header beginRefreshing];
     return YES;

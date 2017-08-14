@@ -31,6 +31,9 @@
 {
     __weak typeof(viewController) weakVC = viewController;
     [HttpsUtils versionCheckSuccess:^(id response) {
+        if (![response isKindOfClass:[NSDictionary class]]) {
+            return ;
+        }
         NSArray * data = [response objectForKey:@"data"];
         VersionModel *version = [[VersionModel alloc]initWithDictionary:[data lastObject]];
         NSString *app_Version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];

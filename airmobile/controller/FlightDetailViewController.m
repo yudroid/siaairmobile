@@ -57,6 +57,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 @property (weak, nonatomic) IBOutlet UILabel *arrDateLabel;//进港航班日期
 @property (weak, nonatomic) IBOutlet UILabel *terminalLabel;//候机楼
 @property (weak, nonatomic) IBOutlet UILabel *arrPreStatus;//前序航班状态
+@property (weak, nonatomic) IBOutlet UILabel *arrEnjoyFlightLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *arrSeatLabel;//进港机位
 @property (weak, nonatomic) IBOutlet UILabel *arrRegionLabel;//进港属性
@@ -72,6 +73,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 @property (weak, nonatomic) IBOutlet UILabel *thisArrivePlanLabel;//本站到达 计划
 @property (weak, nonatomic) IBOutlet UILabel *thisArriveExpLabel;//本站到达 预计
 @property (weak, nonatomic) IBOutlet UILabel *thisArriveReal;//本站到达 实际
+@property (weak, nonatomic) IBOutlet UILabel *depEnjoyFlightLabel;
 @property (weak, nonatomic) IBOutlet UILabel *depStateLabel;//出港状态
 @property (weak, nonatomic) IBOutlet UILabel *depAirLineLabel;//出港航线
 @property (weak, nonatomic) IBOutlet UILabel *depModelLabel;
@@ -100,6 +102,8 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 @property (weak, nonatomic) IBOutlet UIView *depFlightDetailView;
 
 @property (nonatomic, assign) NSInteger selectedNormalReportIndex;//普通上报下标
+@property (weak, nonatomic) IBOutlet UILabel *arrInnerStateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *depInnerStateLabel;
 
 
 @end
@@ -126,15 +130,15 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
     [self titleViewInitWithHight:64];
     [self titleViewAddTitleText:_flightNo];
     [self titleViewAddBackBtn];
-    UIButton *tagButton = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-16-30, 27, 40, 30)];
-    tagButton.titleLabel.font =  [UIFont fontWithName:@"PingFang SC" size:13];
+    UIButton *tagButton = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-16-50, 27, 50, 30)];
+    tagButton.titleLabel.font =  [UIFont fontWithName:@"PingFang SC" size:12];
     if (![ConcernModel isconcern:self.flightNo]) {
 //        [tagButton setImage:[UIImage imageNamed:@"Concern1"] forState:UIControlStateNormal];
         [tagButton setTitle:@"关注" forState:UIControlStateNormal];
         tagButton.tag = 1;
     }else{
 //        [tagButton setImage:[UIImage imageNamed:@"Concern2"] forState:UIControlStateNormal];
-        [tagButton setTitle:@"已关注" forState:UIControlStateNormal];
+        [tagButton setTitle:@"取消关注" forState:UIControlStateNormal];
         tagButton.tag = 2;
     }
 
@@ -185,7 +189,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
         [UIView animateWithDuration:0.2 animations:^{
             sender.transform =  CGAffineTransformMakeScale(0.5, 0.5);
 //            [sender setImage:[UIImage imageNamed:@"Concern2"] forState:UIControlStateNormal];
-            [sender setTitle:@"已关注" forState:UIControlStateNormal];
+            [sender setTitle:@"取消关注" forState:UIControlStateNormal];
             sender.tag = 2;
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:0.2 animations:^{
@@ -266,6 +270,8 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
     _arrPreStatus.text      = flight.preorderState;
     _arrSeatLabel.text      = flight.arrSeat;
     _arrRegionLabel.text    = flight.arrRegion;
+    _arrInnerStateLabel.text= flight.arrInnerState;
+
 
     _arrModelLabel.text     = flight.model;
     _arrBaggageLabel.text   = flight.baggage;
@@ -288,6 +294,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
     _depModelLabel.text     = flight.model;
     _depSeatLabel.text      = flight.depSeat;
     _depGateLabel.text      = flight.gate;
+    _depInnerStateLabel.text= flight.depInnerState;
     _checkCounterLabel.text = flight.checkCounter;
     _outRegionLabel.text    = flight.depRegion;
     _depPersonLabel.text    = flight.depPerson;
