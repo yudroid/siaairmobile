@@ -26,7 +26,17 @@ singleton_implementation(KyAirportService);
         Airport *airport = nil;
         for(NSDictionary *item in responseObj){
             airport = [[Airport alloc] initCn:[item objectForKey:@"cn"] iata:[item objectForKey:@"iata"] region:[item objectForKey:@"region"] first:@""];
-            airport.first = [StringUtils firstCharactor:[airport.cn substringToIndex:1]];
+            NSString *firstCN = [airport.cn substringToIndex:1];
+            if ([firstCN isEqualToString:@"长"]) {
+                airport.first = @"C";
+            }else if ([firstCN isEqualToString:@"沈"]){
+                airport.first = @"S";
+            }else if ([firstCN isEqualToString:@"重"]){
+                airport.first = @"C";
+            }else{
+                airport.first = [StringUtils firstCharactor:firstCN];
+            }
+
             [array addObject:airport];
             //创建sql语句
             [sqlArray addObject:[NSString stringWithFormat:sql,airport.cn,airport.iata,airport.region,airport.first]];
@@ -48,7 +58,16 @@ singleton_implementation(KyAirportService);
         Airport *airport = nil;
         for(NSDictionary *item in responseObj){
             airport = [[Airport alloc] initCn:[item objectForKey:@"cn"] iata:[item objectForKey:@"iata"] region:[item objectForKey:@"region"] first:@""];
-            airport.first = [StringUtils firstCharactor:[airport.cn substringToIndex:1]];
+            NSString *firstCN = [airport.cn substringFromIndex:0];
+            if ([firstCN isEqualToString:@"长"]) {
+                airport.first = @"C";
+            }else if ([firstCN isEqualToString:@"沈"]){
+                airport.first = @"S";
+            }else if ([firstCN isEqualToString:@"重"]){
+                airport.first = @"C";
+            }else{
+                airport.first = [StringUtils firstCharactor:firstCN];
+            }
             [array addObject:airport];
             //创建sql语句
             [sqlArray addObject:[NSString stringWithFormat:sql,airport.cn,airport.iata,airport.region,airport.first]];

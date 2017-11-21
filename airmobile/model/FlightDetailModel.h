@@ -46,7 +46,8 @@
 
 @property(nonatomic,copy) NSString *arrInnerState;//进港异常状态
 @property(nonatomic,copy) NSString *depInnerState;//出港异常状态
-
+@property(nonatomic,copy) NSString *afShareNum;//进港共享航班号
+@property(nonatomic,copy) NSString *dfShareNum;//出港共享航班号
 
 
 @end

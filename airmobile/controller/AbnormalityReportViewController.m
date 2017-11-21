@@ -22,7 +22,7 @@
 #import "BasisInfoDictionaryModel.h"
 #import "BasisInfoEventModel.h"
 #import "UIButton+PhotoChoose.h"
-#import <FlyImage.h>
+#import "FlyImage.h"
 #import "PersistenceUtils+Business.h"
 #import "SpecialModel.h"
 #import "SafeguardModel.h"

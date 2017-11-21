@@ -13,7 +13,7 @@
 #import "HttpsUtils+Business.h"
 #import "HttpsUtils.h"
 #import "AppDelegate.h"
-#import <FlyImage.h>
+#import "FlyImage.h"
 #import "ConcernModel.h"
 #import "UserManageSoundTableViewCell.h"
 #import "PersistenceUtils+Business.h"
@@ -58,7 +58,7 @@ static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TA
     [_tableView registerNib:[UINib nibWithNibName:@"UserManagermentTableViewCell" bundle:nil] forCellReuseIdentifier:(NSString *)USERMANAGEMENT_TABLECELL_IDENTIFIER];
 
     AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    [_headImageView setIconURL:[HttpsUtils imageDownloadURLWithString:appdelegate.userInfoModel.imagePath]];
+    [self setheadImag:_headImageView pathName:appdelegate.userInfoModel.imagePath];
 
 }
 - (IBAction)messageClearButtonClick:(id)sender {
@@ -222,9 +222,10 @@ static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TA
                 AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
                 appdelegate.userInfoModel.imagePath = imageName;
 
-                [_headImageView setIconURL:[HttpsUtils imageDownloadURLWithString:imageName]];
+                [self setheadImag:_headImageView pathName:imageName];
+
                 _headImageView.backgroundColor = [UIColor redColor];
-               
+           
                 [self stopNetWorking];
 
             } failure:^(id error) {
@@ -280,6 +281,14 @@ static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TA
                   } failure:^(NSError *error) {
                       [self showAnimationTitle:@"修改失败"];
                   }];
+}
+
+-(void) setheadImag:(UIImageView *)imageView pathName:(NSString *)name{
+    if (name == nil || name.length==0) {
+        return ;
+    }else{
+        [imageView setIconURL:[HttpsUtils imageDownloadURLWithString:name]];
+    }
 }
 
 @end

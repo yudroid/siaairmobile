@@ -18,6 +18,8 @@
 @property (nonatomic, copy) NSString        *flightNo;
 @property (nonatomic, copy) NSString        *flightDate;
 @property (nonatomic, strong)AirlineModel    *airlineModel;
+@property (nonatomic, copy) NSString        *planeNo;//机号
+@property (nonatomic, copy) NSString        *seat;//机位
 @property (nonatomic, copy) NSArray<FlightModel *>  *dataArray;
 
 @end

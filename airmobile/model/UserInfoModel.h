@@ -21,7 +21,7 @@
 @property (nonatomic ,copy)   NSString    *name;
 @property (nonatomic ,copy)   NSString    *password;
 @property (nonatomic ,copy)   NSString    *phone;
-@property (nonatomic ,copy)   NSString    *post;
+@property (nonatomic ,assign) long long    post;
 @property (nonatomic ,copy)   NSString    *rule;
 @property (nonatomic ,copy)   NSString    *seat;
 @property (nonatomic ,copy)   NSString    *signStatus; // “” “未签到” "已签到" “已签退”

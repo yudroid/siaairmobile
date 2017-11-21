@@ -71,7 +71,8 @@
         _regionLabel.textColor = [CommonFunction colorFromHex:0xFFf46970] ;
     }
     if(flight.seat!=nil){
-        _craftSeatLabel.text = [NSString stringWithFormat:@"%@%@",flight.seat,flight.seatRange];
+//        [flight.seatRange isEqualToString:@""];
+        _craftSeatLabel.text = [NSString stringWithFormat:@"%@%@",flight.seat,flight.seatRange?:@""];
         if ([flight.seatRange isEqualToString:@"(近)"]) {
             _craftSeatLabel.textColor = [CommonFunction colorFromHex:0xFF17b9e8] ;
         }else{

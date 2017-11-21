@@ -46,7 +46,6 @@
                 <outlet property="depSeatLabel" destination="shm-7v-dfh" id="dGz-Eu-4zu"/>
                 <outlet property="depStateLabel" destination="YK8-hk-Itf" id="HUJ-Y2-EKY"/>
                 <outlet property="depTerminalLabel" destination="7pr-OR-mcG" id="sOF-fQ-4Zy"/>
-                <outlet property="enjoyFlightLabel" destination="TXh-lN-PhM" id="1ts-ej-jfe"/>
                 <outlet property="flightDetailViewHeight" destination="n4J-aQ-fZx" id="3Zl-Hc-Ggq"/>
                 <outlet property="inFNumLabel" destination="gFl-n5-X3N" id="vV9-XO-BHH"/>
                 <outlet property="outFNumLabel" destination="df0-V5-04W" id="jJK-FT-7vi"/>
@@ -84,10 +83,10 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="936"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SQF-Da-rm4">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="700"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="770"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S3B-AG-2ZM">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="380"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="410"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xS9-7Y-dkL">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
@@ -760,7 +759,7 @@
                                                 <constraint firstItem="kHq-6t-VFm" firstAttribute="leading" secondItem="7xN-gH-KIP" secondAttribute="trailing" constant="10" id="mkJ-iO-yxK"/>
                                                 <constraint firstItem="Mj8-cC-NNq" firstAttribute="top" secondItem="1nv-UC-Ygo" secondAttribute="bottom" constant="5" id="nIy-bl-NKe"/>
                                                 <constraint firstItem="k2R-fk-Bt4" firstAttribute="top" secondItem="1nv-UC-Ygo" secondAttribute="bottom" constant="30" id="nNu-O0-Ci7"/>
-                                                <constraint firstAttribute="height" constant="380" id="nQR-Y8-Ylg"/>
+                                                <constraint firstAttribute="height" constant="410" id="nQR-Y8-Ylg"/>
                                                 <constraint firstItem="xuw-5b-hdm" firstAttribute="leading" secondItem="A0J-74-yMq" secondAttribute="trailing" id="nVM-qq-bc9"/>
                                                 <constraint firstItem="vw6-d6-XdL" firstAttribute="bottom" secondItem="ZoG-Zu-aW9" secondAttribute="bottom" id="npe-lq-tnq"/>
                                                 <constraint firstItem="W8i-t5-jju" firstAttribute="top" secondItem="gFl-n5-X3N" secondAttribute="top" id="npr-Kr-Xoq"/>
@@ -794,7 +793,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t6I-x4-Y7v">
-                                            <rect key="frame" x="0.0" y="380" width="320" height="330"/>
+                                            <rect key="frame" x="0.0" y="410" width="320" height="360"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jpy-7y-3tr">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="0.0"/>
@@ -1458,14 +1457,14 @@
                                                 <constraint firstAttribute="trailing" secondItem="7sK-cq-nAq" secondAttribute="trailing" id="ysk-Vo-zAI"/>
                                                 <constraint firstItem="1Tc-yd-G7Y" firstAttribute="top" secondItem="t4B-0l-YB7" secondAttribute="bottom" id="zVP-LK-4rq"/>
                                                 <constraint firstItem="vJJ-xR-eBk" firstAttribute="leading" secondItem="t6I-x4-Y7v" secondAttribute="leading" constant="10" id="zX1-Cm-xRC"/>
-                                                <constraint firstAttribute="height" constant="330" id="zjl-dF-kg9"/>
+                                                <constraint firstAttribute="height" constant="360" id="zjl-dF-kg9"/>
                                             </constraints>
                                         </view>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="t6I-x4-Y7v" secondAttribute="trailing" id="O6s-Am-G16"/>
-                                        <constraint firstAttribute="height" constant="700" id="n4J-aQ-fZx"/>
+                                        <constraint firstAttribute="height" constant="770" id="n4J-aQ-fZx"/>
                                         <constraint firstAttribute="trailing" secondItem="S3B-AG-2ZM" secondAttribute="trailing" id="s7d-HQ-Stn"/>
                                         <constraint firstItem="S3B-AG-2ZM" firstAttribute="leading" secondItem="SQF-Da-rm4" secondAttribute="leading" id="s7j-ab-WMf"/>
                                         <constraint firstItem="t6I-x4-Y7v" firstAttribute="top" secondItem="S3B-AG-2ZM" secondAttribute="bottom" id="sCx-uv-VMa"/>
@@ -1474,7 +1473,7 @@
                                     </constraints>
                                 </view>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QBr-5b-hfX">
-                                    <rect key="frame" x="0.0" y="716" width="320" height="36"/>
+                                    <rect key="frame" x="0.0" y="770" width="320" height="36"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="36" id="04n-Md-4XM"/>
@@ -1483,9 +1482,9 @@
                             </subviews>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="QBr-5b-hfX" secondAttribute="bottom" id="2ik-16-ljG"/>
-                                <constraint firstItem="QBr-5b-hfX" firstAttribute="top" secondItem="SQF-Da-rm4" secondAttribute="bottom" constant="16" id="8Ul-6X-EUj"/>
                                 <constraint firstItem="QBr-5b-hfX" firstAttribute="centerX" secondItem="W2h-Dq-HHd" secondAttribute="centerX" id="9Lk-le-pSU"/>
                                 <constraint firstAttribute="trailing" secondItem="QBr-5b-hfX" secondAttribute="trailing" id="JXI-NU-qG4"/>
+                                <constraint firstItem="QBr-5b-hfX" firstAttribute="top" secondItem="SQF-Da-rm4" secondAttribute="bottom" id="ij8-We-A2V"/>
                                 <constraint firstAttribute="trailing" secondItem="SQF-Da-rm4" secondAttribute="trailing" id="kol-Ry-EY9"/>
                                 <constraint firstItem="SQF-Da-rm4" firstAttribute="top" secondItem="W2h-Dq-HHd" secondAttribute="top" id="t51-nR-p47"/>
                                 <constraint firstItem="SQF-Da-rm4" firstAttribute="leading" secondItem="W2h-Dq-HHd" secondAttribute="leading" id="ySp-3E-jRa"/>

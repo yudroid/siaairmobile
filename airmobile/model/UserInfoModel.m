@@ -10,15 +10,7 @@
 
 @implementation UserInfoModel
 
--(instancetype)initWithDictionary:(NSDictionary *)dictionary
-{
-    self = [super init];
-    if (self) {
 
-        [self setValuesForKeysWithDictionary:dictionary];
-    }
-    return self;
-}
 -(void)setNilValueForKey:(NSString *)key{
     if ([key isEqualToString:@"id"]) {
         _id = 0;

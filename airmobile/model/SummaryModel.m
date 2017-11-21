@@ -192,7 +192,7 @@
     _outFinishedDelay   =((NSNumber *)[data objectForKey:@"outFinishedDelay"]).integerValue;//出港已执行延误数
     _outNoFinishedDelay =((NSNumber *)[data objectForKey:@"outNoFinishedDelay"]).integerValue;//出港未执行延误数
     _outDelay           =((NSNumber *)[data objectForKey:@"outDelay"]).integerValue;//出港延误数
-//
+
     _flightDate         =[data objectForKey:@"flightDate"];//当天日期 年月日 格式为2016-09-08
     _leaderUserName     =[data objectForKey:@"leaderUserName"];//值班领导名称
     _userName           =[data objectForKey:@"userName"];//运行总监名称

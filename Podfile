@@ -15,7 +15,6 @@ target 'airmobile' do
   pod 'WJPhotoPicker', '~> 1.1.7'
 #  pod 'Daysquare', :git => 'https://github.com/unixzii/Daysquare.git'
   pod 'FLAnimatedImage', '~> 1.0'
-  pod 'FlyImage', '~>1.0'
   pod 'JTCalendar'
   pod 'Bugly'
   pod 'FCFileManager'

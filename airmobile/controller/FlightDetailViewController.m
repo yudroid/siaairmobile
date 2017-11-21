@@ -125,7 +125,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 //    specicals = [NSMutableArray array];
 //    dispatches = [NSMutableArray array];
 
-    
+    _checkCounterLabel.adjustsFontSizeToFitWidth = YES;
     //titleView订制
     [self titleViewInitWithHight:64];
     [self titleViewAddTitleText:_flightNo];
@@ -240,12 +240,12 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
             _depFlightDetailView.hidden = YES;
             _airlineViewHeight.constant = 0;
             _airlineView.hidden = YES;
-            _arrFlightDetailViewHeight.constant = 330;
-            _flightDetailViewHeight.constant = 330;
+            _arrFlightDetailViewHeight.constant = 361;
+            _flightDetailViewHeight.constant = 360;
             break;
         case FlightTypeOut:
             _arrFlightDetailViewHeight.constant = 0;
-            _flightDetailViewHeight.constant = 330;
+            _flightDetailViewHeight.constant = 361;
             _arrFlightDetailView.hidden = YES;
             break;
         case FlightTypeInOut:
@@ -277,6 +277,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
     _arrBaggageLabel.text   = flight.baggage;
     _preorderNumLabel.text  = flight.preorderNum;
     _arrPersonLabel.text    = flight.arrPerson;
+    _arrEnjoyFlightLabel.text = flight.afShareNum;
 
     _aboveTakeoffPlanLabel.text     =[self timeStringConvert: flight.aboveTakeoffPlan];
     _aboveTakeoffExpLabel.text      =[self timeStringConvert: flight.aboveTakeoffExp];
@@ -298,6 +299,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
     _checkCounterLabel.text = flight.checkCounter;
     _outRegionLabel.text    = flight.depRegion;
     _depPersonLabel.text    = flight.depPerson;
+    _depEnjoyFlightLabel.text = flight.dfShareNum;
     _removeGearDateLabel.text   =[self timeStringConvert:flight.removeGearDate];
     _thisTakeoffPlanLabel.text  =[self timeStringConvert: flight.thisTakeoffPlan];
     _thisTakeoffExpLabel.text   =[self timeStringConvert: flight.thisTakeoffExp];

@@ -32,7 +32,6 @@
 {
     UIBackgroundTaskIdentifier taskId;
     NSInteger count;
-   
 }
 
 
@@ -80,9 +79,6 @@
         UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
         [application registerUserNotificationSettings:settings];
     }
-
-    
-
     return YES;
 }
 
@@ -138,14 +134,11 @@
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if(![defaults objectForKey:@"token"]){
-        NSString *token = [NSString stringWithFormat:@"%@", deviceToken];
-        //获取终端设备标识，这个标识需要通过接口发送到服务器端，服务器端推送消息到APNS时需要知道终端的标识，APNS通过注册的终端标识找到终端设备
 
-        [defaults setObject:token forKey:@"token"];
-        NSLog(@"%@",token);
-    }
-
+    NSString *token = [NSString stringWithFormat:@"%@", deviceToken];
+    //获取终端设备标识，这个标识需要通过接口发送到服务器端，服务器端推送消息到APNS时需要知道终端的标识，APNS通过注册的终端标识找到终端设备Z
+    [defaults setObject:token forKey:@"token"];
+    NSLog(@"%@",token);
 }
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
@@ -168,6 +161,7 @@
     NSString *str = [NSString stringWithFormat:@"%@",credentials.token];
     _tokenStr = [[[str stringByReplacingOccurrencesOfString:@"<" withString:@""]
                   stringByReplacingOccurrencesOfString:@">" withString:@""] stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
 }
 
 - (void)pushRegistry:(PKPushRegistry *)registry didReceiveIncomingPushWithPayload:(PKPushPayload *)payload forType:(NSString *)type {

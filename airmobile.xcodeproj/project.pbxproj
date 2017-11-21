@@ -133,7 +133,10 @@
 		F70893F41DD492BD00135540 /* TagView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F70893F31DD492BD00135540 /* TagView.xib */; };
 		F70893FC1DD5952F00135540 /* ContactPersonTableViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F70893FB1DD5952F00135540 /* ContactPersonTableViewHeaderView.m */; };
 		F70893FE1DD5955200135540 /* ContactPersonTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F70893FD1DD5955200135540 /* ContactPersonTableViewHeaderView.xib */; };
+		F70BC2C51FBFE08100A26E6F /* TokenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F70BC2C31FBFE08100A26E6F /* TokenViewController.m */; };
+		F70BC2C61FBFE08100A26E6F /* TokenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F70BC2C41FBFE08100A26E6F /* TokenViewController.xib */; };
 		F70D62F81F3BF6EC00BEA1F9 /* AFAppDotNetUpdateFileClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F70D62F71F3BF6EC00BEA1F9 /* AFAppDotNetUpdateFileClient.m */; };
+		F70D62FF1F58E81C00BEA1F9 /* NSDictionary+StringForKey.m in Sources */ = {isa = PBXBuildFile; fileRef = F70D62FE1F58E81C00BEA1F9 /* NSDictionary+StringForKey.m */; };
 		F7100D841F1EF5B700089B51 /* YearOperationStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7100D821F1EF5B700089B51 /* YearOperationStatusViewController.m */; };
 		F7100D851F1EF5B700089B51 /* YearOperationStatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F7100D831F1EF5B700089B51 /* YearOperationStatusViewController.xib */; };
 		F710D8A71F21D46C00AE6D1E /* YearOperationStatusTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F710D8A51F21D46C00AE6D1E /* YearOperationStatusTableViewCell.m */; };
@@ -236,6 +239,7 @@
 		F76910D81E8CCDAC004945E7 /* KnowledgeBaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F76910D61E8CCDAB004945E7 /* KnowledgeBaseViewController.xib */; };
 		F76910DC1E8CCDF6004945E7 /* ReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F76910DA1E8CCDF6004945E7 /* ReportViewController.m */; };
 		F76910DD1E8CCDF6004945E7 /* ReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F76910DB1E8CCDF6004945E7 /* ReportViewController.xib */; };
+		F76A8CDA1FB19E8900B36507 /* NullSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = F76A8CD91FB19E8900B36507 /* NullSafe.m */; };
 		F76D4ACC1E78132B00599DD0 /* UMESDKKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F76D4ACB1E78132B00599DD0 /* UMESDKKit.framework */; };
 		F76D4ACF1E80B91B00599DD0 /* UILocalNotification+Business.m in Sources */ = {isa = PBXBuildFile; fileRef = F76D4ACE1E80B91B00599DD0 /* UILocalNotification+Business.m */; };
 		F76D4AD41E80BFF200599DD0 /* OperationSituationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F76D4AD21E80BFF200599DD0 /* OperationSituationViewController.m */; };
@@ -303,6 +307,7 @@
 		F77E9B271F203DB100A4E11A /* ZFRadarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = F77E9B031F203DB100A4E11A /* ZFRadarChart.m */; };
 		F77E9B281F203DB100A4E11A /* ZFWave.m in Sources */ = {isa = PBXBuildFile; fileRef = F77E9B061F203DB100A4E11A /* ZFWave.m */; };
 		F77E9B291F203DB100A4E11A /* ZFWaveChart.m in Sources */ = {isa = PBXBuildFile; fileRef = F77E9B081F203DB100A4E11A /* ZFWaveChart.m */; };
+		F78401691FC3B3FA0083372E /* PushMessageService.m in Sources */ = {isa = PBXBuildFile; fileRef = F78401681FC3B3F90083372E /* PushMessageService.m */; };
 		F78B13B01DF47938000A6833 /* ModifyPwd.xib in Resources */ = {isa = PBXBuildFile; fileRef = F78B13AD1DF47937000A6833 /* ModifyPwd.xib */; };
 		F78B13B11DF47938000A6833 /* ModifyPwdView.m in Sources */ = {isa = PBXBuildFile; fileRef = F78B13AF1DF47938000A6833 /* ModifyPwdView.m */; };
 		F78B13B41DF47946000A6833 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = F78B13B31DF47946000A6833 /* UIImage+ImageEffects.m */; };
@@ -384,6 +389,41 @@
 		F7A2A0641DB8D0EE0023F228 /* PassengerContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A05D1DB8D0EE0023F228 /* PassengerContentView.m */; };
 		F7A2A0651DB8D0EE0023F228 /* ResourceContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A05F1DB8D0EE0023F228 /* ResourceContentView.m */; };
 		F7A2A0661DB8D0EE0023F228 /* TabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A2A0611DB8D0EE0023F228 /* TabBarView.m */; };
+		F7B862171FBA8A10005D96A8 /* ca.cer in Resources */ = {isa = PBXBuildFile; fileRef = F7B862151FBA8894005D96A8 /* ca.cer */; };
+		F7B862401FBA8DB8005D96A8 /* CALayer+FlyImageIconCache.h in Sources */ = {isa = PBXBuildFile; fileRef = F7B8621D1FBA8BA5005D96A8 /* CALayer+FlyImageIconCache.h */; };
+		F7B862411FBA8DB8005D96A8 /* FlyImageIconRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B8621E1FBA8BA5005D96A8 /* FlyImageIconRenderer.m */; };
+		F7B862421FBA8DB8005D96A8 /* UIImageView+FlyImageCache.h in Sources */ = {isa = PBXBuildFile; fileRef = F7B8621F1FBA8BA5005D96A8 /* UIImageView+FlyImageCache.h */; };
+		F7B862431FBA8DB8005D96A8 /* UIImageView+FlyImageIconCache.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B862201FBA8BA5005D96A8 /* UIImageView+FlyImageIconCache.m */; };
+		F7B862441FBA8DB8005D96A8 /* FlyImageRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B862211FBA8BA5005D96A8 /* FlyImageRenderer.m */; };
+		F7B862451FBA8DB8005D96A8 /* CALayer+FlyImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B862221FBA8BA5005D96A8 /* CALayer+FlyImageCache.m */; };
+		F7B862461FBA8DB8005D96A8 /* FlyImageCacheUIProtocol.h in Sources */ = {isa = PBXBuildFile; fileRef = F7B862231FBA8BA5005D96A8 /* FlyImageCacheUIProtocol.h */; };
+		F7B862471FBA8DB8005D96A8 /* UIImageView+FlyImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B862241FBA8BA5005D96A8 /* UIImageView+FlyImageCache.m */; };
+		F7B862481FBA8DB8005D96A8 /* FlyImageIconRenderer.h in Sources */ = {isa = PBXBuildFile; fileRef = F7B862251FBA8BA5005D96A8 /* FlyImageIconRenderer.h */; };
+		F7B862491FBA8DB8005D96A8 /* CALayer+FlyImageIconCache.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B862261FBA8BA5005D96A8 /* CALayer+FlyImageIconCache.m */; };
+		F7B8624A1FBA8DB8005D96A8 /* CALayer+FlyImageCache.h in Sources */ = {isa = PBXBuildFile; fileRef = F7B862271FBA8BA5005D96A8 /* CALayer+FlyImageCache.h */; };
+		F7B8624B1FBA8DB8005D96A8 /* FlyImageRenderer.h in Sources */ = {isa = PBXBuildFile; fileRef = F7B862281FBA8BA5005D96A8 /* FlyImageRenderer.h */; };
+		F7B8624C1FBA8DB8005D96A8 /* FlyImageIconCacheUIProtocol.h in Sources */ = {isa = PBXBuildFile; fileRef = F7B862291FBA8BA5005D96A8 /* FlyImageIconCacheUIProtocol.h */; };
+		F7B8624D1FBA8DB8005D96A8 /* UIImageView+FlyImageIconCache.h in Sources */ = {isa = PBXBuildFile; fileRef = F7B8622A1FBA8BA5005D96A8 /* UIImageView+FlyImageIconCache.h */; };
+		F7B8624E1FBA8DB8005D96A8 /* FlyImageDataFile.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B8622C1FBA8BA5005D96A8 /* FlyImageDataFile.m */; };
+		F7B8624F1FBA8DB8005D96A8 /* FlyImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B8622D1FBA8BA5005D96A8 /* FlyImageCache.m */; };
+		F7B862501FBA8DB8005D96A8 /* FlyImageIconCache.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B8622E1FBA8BA5005D96A8 /* FlyImageIconCache.m */; };
+		F7B862511FBA8DB8005D96A8 /* FlyImageDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B8622F1FBA8BA5005D96A8 /* FlyImageDecoder.m */; };
+		F7B862521FBA8DB8005D96A8 /* FlyImageDownloader.h in Sources */ = {isa = PBXBuildFile; fileRef = F7B862301FBA8BA5005D96A8 /* FlyImageDownloader.h */; };
+		F7B862531FBA8DB8005D96A8 /* FlyImageEncoder.h in Sources */ = {isa = PBXBuildFile; fileRef = F7B862311FBA8BA5005D96A8 /* FlyImageEncoder.h */; };
+		F7B862541FBA8DB8005D96A8 /* FlyImageRetrieveOperation.h in Sources */ = {isa = PBXBuildFile; fileRef = F7B862321FBA8BA5005D96A8 /* FlyImageRetrieveOperation.h */; };
+		F7B862551FBA8DB8005D96A8 /* FlyImageDataFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B862331FBA8BA5005D96A8 /* FlyImageDataFileManager.m */; };
+		F7B862561FBA8DB8005D96A8 /* FlyImageUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B862341FBA8BA5005D96A8 /* FlyImageUtils.m */; };
+		F7B862571FBA8DB8005D96A8 /* FlyImageDataFile.h in Sources */ = {isa = PBXBuildFile; fileRef = F7B862351FBA8BA5005D96A8 /* FlyImageDataFile.h */; };
+		F7B862581FBA8DB8005D96A8 /* FlyImageCacheProtocol.h in Sources */ = {isa = PBXBuildFile; fileRef = F7B862361FBA8BA5005D96A8 /* FlyImageCacheProtocol.h */; };
+		F7B862591FBA8DB8005D96A8 /* FlyImageDecoder.h in Sources */ = {isa = PBXBuildFile; fileRef = F7B862371FBA8BA5005D96A8 /* FlyImageDecoder.h */; };
+		F7B8625A1FBA8DB8005D96A8 /* FlyImageCache.h in Sources */ = {isa = PBXBuildFile; fileRef = F7B862381FBA8BA5005D96A8 /* FlyImageCache.h */; };
+		F7B8625B1FBA8DB8005D96A8 /* FlyImageIconCache.h in Sources */ = {isa = PBXBuildFile; fileRef = F7B862391FBA8BA5005D96A8 /* FlyImageIconCache.h */; };
+		F7B8625C1FBA8DB8005D96A8 /* FlyImageEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B8623A1FBA8BA5005D96A8 /* FlyImageEncoder.m */; };
+		F7B8625D1FBA8DB8005D96A8 /* FlyImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B8623B1FBA8BA5005D96A8 /* FlyImageDownloader.m */; };
+		F7B8625E1FBA8DB8005D96A8 /* FlyImageUtils.h in Sources */ = {isa = PBXBuildFile; fileRef = F7B8623C1FBA8BA5005D96A8 /* FlyImageUtils.h */; };
+		F7B8625F1FBA8DB8005D96A8 /* FlyImageDataFileManager.h in Sources */ = {isa = PBXBuildFile; fileRef = F7B8623D1FBA8BA5005D96A8 /* FlyImageDataFileManager.h */; };
+		F7B862601FBA8DB8005D96A8 /* FlyImageRetrieveOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B8623E1FBA8BA5005D96A8 /* FlyImageRetrieveOperation.m */; };
+		F7B862611FBA8DB8005D96A8 /* FlyImage.h in Sources */ = {isa = PBXBuildFile; fileRef = F7B8623F1FBA8BA5005D96A8 /* FlyImage.h */; };
 		F7C6A0931E28658B00C12649 /* UMESDKBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F7C6A0921E28658B00C12649 /* UMESDKBundle.bundle */; };
 		F7C6A09D1E28C67E00C12649 /* UMESDKKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7C6A09C1E28C67E00C12649 /* UMESDKKit.framework */; };
 		F7D38D701DE3D1D4001110AF /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D38D6F1DE3D1D4001110AF /* LoadingView.m */; };
@@ -657,8 +697,13 @@
 		F70893FA1DD5952F00135540 /* ContactPersonTableViewHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactPersonTableViewHeaderView.h; sourceTree = "<group>"; };
 		F70893FB1DD5952F00135540 /* ContactPersonTableViewHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactPersonTableViewHeaderView.m; sourceTree = "<group>"; };
 		F70893FD1DD5955200135540 /* ContactPersonTableViewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactPersonTableViewHeaderView.xib; sourceTree = "<group>"; };
+		F70BC2C21FBFE08100A26E6F /* TokenViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TokenViewController.h; sourceTree = "<group>"; };
+		F70BC2C31FBFE08100A26E6F /* TokenViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TokenViewController.m; sourceTree = "<group>"; };
+		F70BC2C41FBFE08100A26E6F /* TokenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TokenViewController.xib; sourceTree = "<group>"; };
 		F70D62F61F3BF6EC00BEA1F9 /* AFAppDotNetUpdateFileClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFAppDotNetUpdateFileClient.h; sourceTree = "<group>"; };
 		F70D62F71F3BF6EC00BEA1F9 /* AFAppDotNetUpdateFileClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFAppDotNetUpdateFileClient.m; sourceTree = "<group>"; };
+		F70D62FD1F58E81C00BEA1F9 /* NSDictionary+StringForKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+StringForKey.h"; sourceTree = "<group>"; };
+		F70D62FE1F58E81C00BEA1F9 /* NSDictionary+StringForKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+StringForKey.m"; sourceTree = "<group>"; };
 		F7100D811F1EF5B700089B51 /* YearOperationStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YearOperationStatusViewController.h; sourceTree = "<group>"; };
 		F7100D821F1EF5B700089B51 /* YearOperationStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YearOperationStatusViewController.m; sourceTree = "<group>"; };
 		F7100D831F1EF5B700089B51 /* YearOperationStatusViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YearOperationStatusViewController.xib; sourceTree = "<group>"; };
@@ -839,6 +884,7 @@
 		F76910D91E8CCDF6004945E7 /* ReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportViewController.h; sourceTree = "<group>"; };
 		F76910DA1E8CCDF6004945E7 /* ReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportViewController.m; sourceTree = "<group>"; };
 		F76910DB1E8CCDF6004945E7 /* ReportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReportViewController.xib; sourceTree = "<group>"; };
+		F76A8CD91FB19E8900B36507 /* NullSafe.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NullSafe.m; sourceTree = "<group>"; };
 		F76D4ACB1E78132B00599DD0 /* UMESDKKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMESDKKit.framework; sourceTree = "<group>"; };
 		F76D4ACD1E80B91B00599DD0 /* UILocalNotification+Business.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILocalNotification+Business.h"; sourceTree = "<group>"; };
 		F76D4ACE1E80B91B00599DD0 /* UILocalNotification+Business.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILocalNotification+Business.m"; sourceTree = "<group>"; };
@@ -964,6 +1010,8 @@
 		F77E9B061F203DB100A4E11A /* ZFWave.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFWave.m; sourceTree = "<group>"; };
 		F77E9B071F203DB100A4E11A /* ZFWaveChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFWaveChart.h; sourceTree = "<group>"; };
 		F77E9B081F203DB100A4E11A /* ZFWaveChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFWaveChart.m; sourceTree = "<group>"; };
+		F78401671FC3B3F90083372E /* PushMessageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PushMessageService.h; sourceTree = "<group>"; };
+		F78401681FC3B3F90083372E /* PushMessageService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PushMessageService.m; sourceTree = "<group>"; };
 		F78B13AD1DF47937000A6833 /* ModifyPwd.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ModifyPwd.xib; sourceTree = "<group>"; };
 		F78B13AE1DF47937000A6833 /* ModifyPwdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyPwdView.h; sourceTree = "<group>"; };
 		F78B13AF1DF47938000A6833 /* ModifyPwdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyPwdView.m; sourceTree = "<group>"; };
@@ -1101,6 +1149,45 @@
 		F7A2A05F1DB8D0EE0023F228 /* ResourceContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceContentView.m; sourceTree = "<group>"; };
 		F7A2A0601DB8D0EE0023F228 /* TabBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarView.h; sourceTree = "<group>"; };
 		F7A2A0611DB8D0EE0023F228 /* TabBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarView.m; sourceTree = "<group>"; };
+		F7B861A51FB98278005D96A8 /* ca.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ca.p12; sourceTree = "<group>"; };
+		F7B862151FBA8894005D96A8 /* ca.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = ca.cer; sourceTree = "<group>"; };
+		F7B862161FBA8917005D96A8 /* ca.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = ca.cer; sourceTree = "<group>"; };
+		F7B862191FBA8BA5005D96A8 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		F7B8621A1FBA8BA5005D96A8 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		F7B8621D1FBA8BA5005D96A8 /* CALayer+FlyImageIconCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+FlyImageIconCache.h"; sourceTree = "<group>"; };
+		F7B8621E1FBA8BA5005D96A8 /* FlyImageIconRenderer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlyImageIconRenderer.m; sourceTree = "<group>"; };
+		F7B8621F1FBA8BA5005D96A8 /* UIImageView+FlyImageCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+FlyImageCache.h"; sourceTree = "<group>"; };
+		F7B862201FBA8BA5005D96A8 /* UIImageView+FlyImageIconCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+FlyImageIconCache.m"; sourceTree = "<group>"; };
+		F7B862211FBA8BA5005D96A8 /* FlyImageRenderer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlyImageRenderer.m; sourceTree = "<group>"; };
+		F7B862221FBA8BA5005D96A8 /* CALayer+FlyImageCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+FlyImageCache.m"; sourceTree = "<group>"; };
+		F7B862231FBA8BA5005D96A8 /* FlyImageCacheUIProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlyImageCacheUIProtocol.h; sourceTree = "<group>"; };
+		F7B862241FBA8BA5005D96A8 /* UIImageView+FlyImageCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+FlyImageCache.m"; sourceTree = "<group>"; };
+		F7B862251FBA8BA5005D96A8 /* FlyImageIconRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlyImageIconRenderer.h; sourceTree = "<group>"; };
+		F7B862261FBA8BA5005D96A8 /* CALayer+FlyImageIconCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+FlyImageIconCache.m"; sourceTree = "<group>"; };
+		F7B862271FBA8BA5005D96A8 /* CALayer+FlyImageCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+FlyImageCache.h"; sourceTree = "<group>"; };
+		F7B862281FBA8BA5005D96A8 /* FlyImageRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlyImageRenderer.h; sourceTree = "<group>"; };
+		F7B862291FBA8BA5005D96A8 /* FlyImageIconCacheUIProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlyImageIconCacheUIProtocol.h; sourceTree = "<group>"; };
+		F7B8622A1FBA8BA5005D96A8 /* UIImageView+FlyImageIconCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+FlyImageIconCache.h"; sourceTree = "<group>"; };
+		F7B8622C1FBA8BA5005D96A8 /* FlyImageDataFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlyImageDataFile.m; sourceTree = "<group>"; };
+		F7B8622D1FBA8BA5005D96A8 /* FlyImageCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlyImageCache.m; sourceTree = "<group>"; };
+		F7B8622E1FBA8BA5005D96A8 /* FlyImageIconCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlyImageIconCache.m; sourceTree = "<group>"; };
+		F7B8622F1FBA8BA5005D96A8 /* FlyImageDecoder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlyImageDecoder.m; sourceTree = "<group>"; };
+		F7B862301FBA8BA5005D96A8 /* FlyImageDownloader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlyImageDownloader.h; sourceTree = "<group>"; };
+		F7B862311FBA8BA5005D96A8 /* FlyImageEncoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlyImageEncoder.h; sourceTree = "<group>"; };
+		F7B862321FBA8BA5005D96A8 /* FlyImageRetrieveOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlyImageRetrieveOperation.h; sourceTree = "<group>"; };
+		F7B862331FBA8BA5005D96A8 /* FlyImageDataFileManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlyImageDataFileManager.m; sourceTree = "<group>"; };
+		F7B862341FBA8BA5005D96A8 /* FlyImageUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlyImageUtils.m; sourceTree = "<group>"; };
+		F7B862351FBA8BA5005D96A8 /* FlyImageDataFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlyImageDataFile.h; sourceTree = "<group>"; };
+		F7B862361FBA8BA5005D96A8 /* FlyImageCacheProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlyImageCacheProtocol.h; sourceTree = "<group>"; };
+		F7B862371FBA8BA5005D96A8 /* FlyImageDecoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlyImageDecoder.h; sourceTree = "<group>"; };
+		F7B862381FBA8BA5005D96A8 /* FlyImageCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlyImageCache.h; sourceTree = "<group>"; };
+		F7B862391FBA8BA5005D96A8 /* FlyImageIconCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlyImageIconCache.h; sourceTree = "<group>"; };
+		F7B8623A1FBA8BA5005D96A8 /* FlyImageEncoder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlyImageEncoder.m; sourceTree = "<group>"; };
+		F7B8623B1FBA8BA5005D96A8 /* FlyImageDownloader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlyImageDownloader.m; sourceTree = "<group>"; };
+		F7B8623C1FBA8BA5005D96A8 /* FlyImageUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlyImageUtils.h; sourceTree = "<group>"; };
+		F7B8623D1FBA8BA5005D96A8 /* FlyImageDataFileManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlyImageDataFileManager.h; sourceTree = "<group>"; };
+		F7B8623E1FBA8BA5005D96A8 /* FlyImageRetrieveOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlyImageRetrieveOperation.m; sourceTree = "<group>"; };
+		F7B8623F1FBA8BA5005D96A8 /* FlyImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlyImage.h; sourceTree = "<group>"; };
 		F7C6A0921E28658B00C12649 /* UMESDKBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UMESDKBundle.bundle; sourceTree = "<group>"; };
 		F7C6A09C1E28C67E00C12649 /* UMESDKKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMESDKKit.framework; sourceTree = "<group>"; };
 		F7D38D6E1DE3D1D4001110AF /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
@@ -1346,6 +1433,7 @@
 		846F1D891DA89E1500C8920B /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				F76A8CD91FB19E8900B36507 /* NullSafe.m */,
 				F7428A091E04DECE00AC00D4 /* DateUtils.h */,
 				F7428A0A1E04DECE00AC00D4 /* DateUtils.m */,
 				846F1D931DA8F8F700C8920B /* DeviceInfoUtil.h */,
@@ -1402,6 +1490,7 @@
 		846F1D8C1DA89E3500C8920B /* categories */ = {
 			isa = PBXGroup;
 			children = (
+				F7B862151FBA8894005D96A8 /* ca.cer */,
 				F74716B01E25C33600551515 /* UINavigationController+FDFullscreenPopGesture.h */,
 				F74716B11E25C33600551515 /* UINavigationController+FDFullscreenPopGesture.m */,
 				F79251391DB5CBDA006AA119 /* UIViewController+Reminder.h */,
@@ -1424,6 +1513,8 @@
 				F779B9AF1E371B91002E362D /* NSString+Size.m */,
 				F76D4ACD1E80B91B00599DD0 /* UILocalNotification+Business.h */,
 				F76D4ACE1E80B91B00599DD0 /* UILocalNotification+Business.m */,
+				F70D62FD1F58E81C00BEA1F9 /* NSDictionary+StringForKey.h */,
+				F70D62FE1F58E81C00BEA1F9 /* NSDictionary+StringForKey.m */,
 			);
 			name = categories;
 			sourceTree = "<group>";
@@ -1532,6 +1623,7 @@
 		846F1D8F1DA89E5900C8920B /* network */ = {
 			isa = PBXGroup;
 			children = (
+				F7B862161FBA8917005D96A8 /* ca.cer */,
 				843F4CF31DACC70F00D73D56 /* HttpsUtils.h */,
 				843F4CF41DACC70F00D73D56 /* HttpsUtils.m */,
 				F70149B11E8F9464006EF393 /* MYHTTPSessionManager.h */,
@@ -1553,6 +1645,8 @@
 				84919D751DC9FD7B00C6F5DE /* MessageService.m */,
 				84919D771DC9FDFA00C6F5DE /* BaseService.h */,
 				84919D781DC9FDFA00C6F5DE /* BaseService.m */,
+				F78401671FC3B3F90083372E /* PushMessageService.h */,
+				F78401681FC3B3F90083372E /* PushMessageService.m */,
 				F74289EC1E04D77800AC00D4 /* FunctionService.h */,
 				F74289ED1E04D77800AC00D4 /* FunctionService.m */,
 				F73DBB9D1E2F474B0085C000 /* KyAirportService.h */,
@@ -1597,6 +1691,7 @@
 		84BA54DE1DA256940037198F /* airmobile */ = {
 			isa = PBXGroup;
 			children = (
+				F7B861A51FB98278005D96A8 /* ca.p12 */,
 				F7007F491ED6DC3C00D6014B /* airmobile.entitlements */,
 				846F1D8C1DA89E3500C8920B /* categories */,
 				846F1D8B1DA89E2F00C8920B /* controller */,
@@ -1653,6 +1748,16 @@
 				F74289DC1E04D4BD00AC00D4 /* 生产指标 */,
 			);
 			name = "功能";
+			sourceTree = "<group>";
+		};
+		F70BC2C11FBFE00800A26E6F /* token */ = {
+			isa = PBXGroup;
+			children = (
+				F70BC2C21FBFE08100A26E6F /* TokenViewController.h */,
+				F70BC2C31FBFE08100A26E6F /* TokenViewController.m */,
+				F70BC2C41FBFE08100A26E6F /* TokenViewController.xib */,
+			);
+			name = token;
 			sourceTree = "<group>";
 		};
 		F7100D801F1EF52800089B51 /* 年度运行情况 */ = {
@@ -2234,6 +2339,7 @@
 				F76910D31E8CCD36004945E7 /* 运行简报 */,
 				F71469881EA5AB2200AFF1E2 /* 即将放行航班 */,
 				F7100D801F1EF52800089B51 /* 年度运行情况 */,
+				F70BC2C11FBFE00800A26E6F /* token */,
 			);
 			name = "功能";
 			sourceTree = "<group>";
@@ -2639,6 +2745,7 @@
 		F7A25D561DBE274D00F36C32 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				F7B862181FBA8BA5005D96A8 /* FlyImage */,
 				841839E71DBCB87600D7DD86 /* pnchart */,
 				F77E9AB61F203DB100A4E11A /* ZFChart */,
 				F71387C31E8E43E400F126AD /* JSDownloadView */,
@@ -2734,6 +2841,73 @@
 				F7A25D7D1DBE277500F36C32 /* SJPreviewPhotoCell.m */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		F7B862181FBA8BA5005D96A8 /* FlyImage */ = {
+			isa = PBXGroup;
+			children = (
+				F7B862191FBA8BA5005D96A8 /* LICENSE */,
+				F7B8621A1FBA8BA5005D96A8 /* README.md */,
+				F7B8621B1FBA8BA5005D96A8 /* FlyImage */,
+			);
+			path = FlyImage;
+			sourceTree = SOURCE_ROOT;
+		};
+		F7B8621B1FBA8BA5005D96A8 /* FlyImage */ = {
+			isa = PBXGroup;
+			children = (
+				F7B8621C1FBA8BA5005D96A8 /* UI */,
+				F7B8622B1FBA8BA5005D96A8 /* Core */,
+				F7B8623F1FBA8BA5005D96A8 /* FlyImage.h */,
+			);
+			path = FlyImage;
+			sourceTree = "<group>";
+		};
+		F7B8621C1FBA8BA5005D96A8 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				F7B8621D1FBA8BA5005D96A8 /* CALayer+FlyImageIconCache.h */,
+				F7B8621E1FBA8BA5005D96A8 /* FlyImageIconRenderer.m */,
+				F7B8621F1FBA8BA5005D96A8 /* UIImageView+FlyImageCache.h */,
+				F7B862201FBA8BA5005D96A8 /* UIImageView+FlyImageIconCache.m */,
+				F7B862211FBA8BA5005D96A8 /* FlyImageRenderer.m */,
+				F7B862221FBA8BA5005D96A8 /* CALayer+FlyImageCache.m */,
+				F7B862231FBA8BA5005D96A8 /* FlyImageCacheUIProtocol.h */,
+				F7B862241FBA8BA5005D96A8 /* UIImageView+FlyImageCache.m */,
+				F7B862251FBA8BA5005D96A8 /* FlyImageIconRenderer.h */,
+				F7B862261FBA8BA5005D96A8 /* CALayer+FlyImageIconCache.m */,
+				F7B862271FBA8BA5005D96A8 /* CALayer+FlyImageCache.h */,
+				F7B862281FBA8BA5005D96A8 /* FlyImageRenderer.h */,
+				F7B862291FBA8BA5005D96A8 /* FlyImageIconCacheUIProtocol.h */,
+				F7B8622A1FBA8BA5005D96A8 /* UIImageView+FlyImageIconCache.h */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		F7B8622B1FBA8BA5005D96A8 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				F7B8622C1FBA8BA5005D96A8 /* FlyImageDataFile.m */,
+				F7B8622D1FBA8BA5005D96A8 /* FlyImageCache.m */,
+				F7B8622E1FBA8BA5005D96A8 /* FlyImageIconCache.m */,
+				F7B8622F1FBA8BA5005D96A8 /* FlyImageDecoder.m */,
+				F7B862301FBA8BA5005D96A8 /* FlyImageDownloader.h */,
+				F7B862311FBA8BA5005D96A8 /* FlyImageEncoder.h */,
+				F7B862321FBA8BA5005D96A8 /* FlyImageRetrieveOperation.h */,
+				F7B862331FBA8BA5005D96A8 /* FlyImageDataFileManager.m */,
+				F7B862341FBA8BA5005D96A8 /* FlyImageUtils.m */,
+				F7B862351FBA8BA5005D96A8 /* FlyImageDataFile.h */,
+				F7B862361FBA8BA5005D96A8 /* FlyImageCacheProtocol.h */,
+				F7B862371FBA8BA5005D96A8 /* FlyImageDecoder.h */,
+				F7B862381FBA8BA5005D96A8 /* FlyImageCache.h */,
+				F7B862391FBA8BA5005D96A8 /* FlyImageIconCache.h */,
+				F7B8623A1FBA8BA5005D96A8 /* FlyImageEncoder.m */,
+				F7B8623B1FBA8BA5005D96A8 /* FlyImageDownloader.m */,
+				F7B8623C1FBA8BA5005D96A8 /* FlyImageUtils.h */,
+				F7B8623D1FBA8BA5005D96A8 /* FlyImageDataFileManager.h */,
+				F7B8623E1FBA8BA5005D96A8 /* FlyImageRetrieveOperation.m */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 		F7C61F551E1DEEDC009C1391 /* 总体 */ = {
@@ -3095,6 +3269,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7B862171FBA8A10005D96A8 /* ca.cer in Resources */,
 				F7EEEF1D1DB396E0004AF0AE /* FlightDetailViewController.xib in Resources */,
 				F7A25D881DBE277500F36C32 /* photopicker_back@3x.png in Resources */,
 				8450556A1DACF65200400EBF /* logo_flight@3x.png in Resources */,
@@ -3106,6 +3281,7 @@
 				F70893F41DD492BD00135540 /* TagView.xib in Resources */,
 				F7100D851F1EF5B700089B51 /* YearOperationStatusViewController.xib in Resources */,
 				845055681DACF65200400EBF /* login_visible@3x.png in Resources */,
+				F70BC2C61FBFE08100A26E6F /* TokenViewController.xib in Resources */,
 				845055571DACF65200400EBF /* login_accounts@2x.png in Resources */,
 				F710D8A81F21D46C00AE6D1E /* YearOperationStatusTableViewCell.xib in Resources */,
 				840D15E91DC2FBCE005FA910 /* overview_toppsn@2x.png in Resources */,
@@ -3364,6 +3540,40 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7B862401FBA8DB8005D96A8 /* CALayer+FlyImageIconCache.h in Sources */,
+				F7B862411FBA8DB8005D96A8 /* FlyImageIconRenderer.m in Sources */,
+				F7B862421FBA8DB8005D96A8 /* UIImageView+FlyImageCache.h in Sources */,
+				F7B862431FBA8DB8005D96A8 /* UIImageView+FlyImageIconCache.m in Sources */,
+				F7B862441FBA8DB8005D96A8 /* FlyImageRenderer.m in Sources */,
+				F7B862451FBA8DB8005D96A8 /* CALayer+FlyImageCache.m in Sources */,
+				F7B862461FBA8DB8005D96A8 /* FlyImageCacheUIProtocol.h in Sources */,
+				F7B862471FBA8DB8005D96A8 /* UIImageView+FlyImageCache.m in Sources */,
+				F7B862481FBA8DB8005D96A8 /* FlyImageIconRenderer.h in Sources */,
+				F7B862491FBA8DB8005D96A8 /* CALayer+FlyImageIconCache.m in Sources */,
+				F7B8624A1FBA8DB8005D96A8 /* CALayer+FlyImageCache.h in Sources */,
+				F7B8624B1FBA8DB8005D96A8 /* FlyImageRenderer.h in Sources */,
+				F7B8624C1FBA8DB8005D96A8 /* FlyImageIconCacheUIProtocol.h in Sources */,
+				F7B8624D1FBA8DB8005D96A8 /* UIImageView+FlyImageIconCache.h in Sources */,
+				F7B8624E1FBA8DB8005D96A8 /* FlyImageDataFile.m in Sources */,
+				F7B8624F1FBA8DB8005D96A8 /* FlyImageCache.m in Sources */,
+				F7B862501FBA8DB8005D96A8 /* FlyImageIconCache.m in Sources */,
+				F7B862511FBA8DB8005D96A8 /* FlyImageDecoder.m in Sources */,
+				F7B862521FBA8DB8005D96A8 /* FlyImageDownloader.h in Sources */,
+				F7B862531FBA8DB8005D96A8 /* FlyImageEncoder.h in Sources */,
+				F7B862541FBA8DB8005D96A8 /* FlyImageRetrieveOperation.h in Sources */,
+				F7B862551FBA8DB8005D96A8 /* FlyImageDataFileManager.m in Sources */,
+				F7B862561FBA8DB8005D96A8 /* FlyImageUtils.m in Sources */,
+				F7B862571FBA8DB8005D96A8 /* FlyImageDataFile.h in Sources */,
+				F7B862581FBA8DB8005D96A8 /* FlyImageCacheProtocol.h in Sources */,
+				F7B862591FBA8DB8005D96A8 /* FlyImageDecoder.h in Sources */,
+				F7B8625A1FBA8DB8005D96A8 /* FlyImageCache.h in Sources */,
+				F7B8625B1FBA8DB8005D96A8 /* FlyImageIconCache.h in Sources */,
+				F7B8625C1FBA8DB8005D96A8 /* FlyImageEncoder.m in Sources */,
+				F7B8625D1FBA8DB8005D96A8 /* FlyImageDownloader.m in Sources */,
+				F7B8625E1FBA8DB8005D96A8 /* FlyImageUtils.h in Sources */,
+				F7B8625F1FBA8DB8005D96A8 /* FlyImageDataFileManager.h in Sources */,
+				F7B862601FBA8DB8005D96A8 /* FlyImageRetrieveOperation.m in Sources */,
+				F7B862611FBA8DB8005D96A8 /* FlyImage.h in Sources */,
 				F79251631DB63A10006AA119 /* ChatLeftTableViewCell.m in Sources */,
 				F7A25D841DBE277500F36C32 /* SJPhotoModel.m in Sources */,
 				F7A25D8A1DBE277500F36C32 /* SJPhotoPickerNavBar.m in Sources */,
@@ -3511,6 +3721,7 @@
 				840D15D41DC0C3E8005FA910 /* AbnReasonModel.m in Sources */,
 				F74289FA1E04D7CA00AC00D4 /* MonthKpi.m in Sources */,
 				F77E9B0C1F203DB100A4E11A /* UIColor+Zirkfied.m in Sources */,
+				F76A8CDA1FB19E8900B36507 /* NullSafe.m in Sources */,
 				F714698C1EA5AC6300AFF1E2 /* WillGoFlightViewController.m in Sources */,
 				F7428A041E04DAC900AC00D4 /* Airport.m in Sources */,
 				F7D47FF01DFEC7400050B293 /* PsnSafetyContentViewTableViewCell.m in Sources */,
@@ -3574,6 +3785,7 @@
 				F73DBB801E2DB7690085C000 /* DayTitleLabel.m in Sources */,
 				84183A311DBF8E6700D7DD86 /* FlightHourModel.m in Sources */,
 				F78B13C41DF51056000A6833 /* MessageFilterTableViewCell.m in Sources */,
+				F70BC2C51FBFE08100A26E6F /* TokenViewController.m in Sources */,
 				F7F057171DF9730C006BCD67 /* SpecialModel.m in Sources */,
 				F76910D71E8CCDAB004945E7 /* KnowledgeBaseViewController.m in Sources */,
 				F77A7C441E9CC1CB0044D891 /* SateguardTypeModel.m in Sources */,
@@ -3621,6 +3833,7 @@
 				F7A2A0561DB8D0590023F228 /* RootViewController.m in Sources */,
 				F71469AC1EB07CA300AFF1E2 /* ChatRightImageTableViewCell.m in Sources */,
 				F74902AB1DC868AC005B193D /* DutyModel.m in Sources */,
+				F78401691FC3B3FA0083372E /* PushMessageService.m in Sources */,
 				F792514A1DB608E6006AA119 /* ContactPersonViewController.m in Sources */,
 				F7A25D081DB9E6EE00F36C32 /* ProgreesBarView.m in Sources */,
 				F7EE87791DB3285B006473F5 /* FlightFilterView.m in Sources */,
@@ -3634,6 +3847,7 @@
 				F70893E11DD2EC1B00135540 /* FlightDelaysViewController.m in Sources */,
 				F7A2A0651DB8D0EE0023F228 /* ResourceContentView.m in Sources */,
 				F71387AC1E8DFFCF00F126AD /* KnowledgeBaseTableViewCell.m in Sources */,
+				F70D62FF1F58E81C00BEA1F9 /* NSDictionary+StringForKey.m in Sources */,
 				F70D62F81F3BF6EC00BEA1F9 /* AFAppDotNetUpdateFileClient.m in Sources */,
 				F7A25D921DBEF34800F36C32 /* OptionsViewController.m in Sources */,
 				F7D47FE11DFA732C0050B293 /* FlightHourInfoModel.m in Sources */,

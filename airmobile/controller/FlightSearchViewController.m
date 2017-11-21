@@ -34,7 +34,7 @@
     
     self.outCity = [[Airport alloc]initCn:@"深圳" iata:@"SZX" region:@"" first:@""];
     self.arriveCity = [[Airport alloc]initCn:@"北京" iata:@"PEK" region:@"" first:@""];
-    _queryflag = true;
+    _queryflag = FlightSearchTypeFlightNo;
     
     //创建按航班号查询还是城市查询View
     [self createClassView];

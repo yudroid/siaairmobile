@@ -12,7 +12,7 @@
 #import "UserInfoModel.h"
 #import "PersistenceUtils+Business.h"
 #import "ThreadUtils.h"
-
+#import "RootModel.h"
 /**
  *  保存用户名
  */
@@ -51,7 +51,7 @@ NSString * const queryAllDispatch           = @"/acs/wacs/MobileSpecial/queryAll
 NSString * const updateDispatchType         = @"/acs/wacs/MobileSpecial/updateDispatchType";
 
 
-NSString * const postToken                   = @"/acs/utc/t";//获取token用于推动消息
+NSString * const postToken                   = @"/shixun/background/getUrl";//获取token用于推动消息
 // 首页
 NSString * const ovSummaryUrl               = @"/acs/ov/homeInfo";
 NSString * const ovFltFDRTHreshold          = @"/acs/ov/fltFDRThreshold";

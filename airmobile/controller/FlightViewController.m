@@ -61,7 +61,7 @@ static const NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_I
     [super viewDidLoad];
 
     // 优先加载数据，存在网络延迟，认为会在视图加载完成后返回结果
-    startIndex = 1;
+    startIndex = 20;
     pagesize = 20;
     //dataArray = [NSMutableArray array];
 
@@ -180,6 +180,8 @@ static const NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_I
 //                           @"search_region":flightRegion?:@"",
 //                           @"search_model":flightType?:@"",
 //                           @"search_state":flightStatus?:@"",
+                           @"search_fltRegNo"   :self.planeNo?:@"",
+                           @"search_seat"       :self.seat?:@"",
                            @"search_airline"   :self.airlineModel.nametw?:@"",
                            @"search_date"       :_flightDate?:@"",
                            @"search_startCity"  :_outCity.cn?:@"",
@@ -210,7 +212,9 @@ static const NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_I
 //                           @"search_region"     :flightRegion?  :@"",
 //                           @"search_model"      :flightType?    :@"",
 //                           @"search_state"      :flightStatus?  :@"",
-                           @"search_airline"   :self.airlineModel.nametw?:@"",
+                           @"search_fltRegNo"   :self.planeNo?:@"",
+                           @"search_seat"       :self.seat?:@"",
+                           @"search_airline"    :self.airlineModel.nametw?:@"",
                            @"search_date"       :_flightDate,
                            @"search_startCity"  :_outCity.cn?:@"",
                            @"search_endCity"    :_arriveCity.cn?:@"",
@@ -299,8 +303,7 @@ static const NSString * TABLEVIEWCELL_IDETIFIER = @"FLIGHTFILTER_TABLEVIEWCELL_I
         return;
     }
 
-    FlightDetailViewController *flightDetailVC = [[FlightDetailViewController alloc]initWithNibName:@"FlightDetailViewController"
-                                                                                             bundle:nil];
+    FlightDetailViewController *flightDetailVC = [[FlightDetailViewController alloc]initWithNibName:@"FlightDetailViewController"  bundle:nil];
     FlightModel *flight = [_dataArray objectAtIndex:indexPath.row];
     flightDetailVC.flightNo = flight.fNum;
     flightDetailVC.flightId = flight.id;

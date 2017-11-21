@@ -34,9 +34,9 @@
 //#define wssysurl2   @"ws://192.168.163.132:8088/acs/websocketmsg/2/alertmsg"
 //#define wsabnurl2   @"ws://192.168.163.132:8088/acs/websocketmsg/2/abnevent"//异常事件消息
 
-#define wsuserurl1  @"ws://219.134.93.113:8087/acs/websocketmsg/1/usermsg"
-#define wsgroupurl1 @"ws://219.134.93.113:8087/acs/websocketmsg/1/workgroupmsg"
-#define wssysurl1   @"ws://219.134.93.113:8087/acs/websocketmsg/1/alertmsg"
+#define wsuserurl1  @"ws://219.134.93.113:8087/acs/websocketmsg/1/usermsg"//用户消息
+#define wsgroupurl1 @"ws://219.134.93.113:8087/acs/websocketmsg/1/workgroupmsg"//群组消息
+#define wssysurl1   @"ws://219.134.93.113:8087/acs/websocketmsg/1/alertmsg"//变更消息
 #define wsabnurl1   @"ws://219.134.93.113:8087/acs/websocketmsg/1/abnevent"//异常事件消息
 ////
 //#define wsuserurl2  @"ws://219.134.93.113:8087/acs/websocketmsg/2/usermsg"

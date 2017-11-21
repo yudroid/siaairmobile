@@ -7,7 +7,7 @@
 //
 
 #import "ImageViewCollectionViewCell.h"
-#import <FlyImage.h>
+#import "FlyImage.h"
 #import "HttpsUtils+Business.h"
 
 @implementation ImageViewCollectionViewCell

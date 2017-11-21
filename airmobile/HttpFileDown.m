@@ -9,9 +9,9 @@
 #import "HttpFileDown.h"
 #import <AFNetworking.h>
 
-//static NSString* baseUri = @"http://192.168.163.43:8080";
+//static NSString* baseUri = @"http://192.168.163.66:8080";
 //static NSString* baseUri = @"http://192.168.163.132:8080";
-static NSString* baseUri = @"http://219.134.93.113:8087";
+static NSString* baseUri = @"https://219.134.93.113:8086";
 
 
 static NSString *zsk = @"/acs/dms/KB/download?fileName=";//知识库

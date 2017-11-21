@@ -173,8 +173,8 @@
     SummaryModel *summaryModel = [HomePageService sharedHomePageService].summaryModel;
     _planNumLabel.text = @(summaryModel.planTotal).stringValue;
     _timeLabel.text = summaryModel.flightDate;
-    _leaderUserNameLabel.text = summaryModel.leaderUserName;
-    _directorLabel.text = summaryModel.userName;
+    _leaderUserNameLabel.text = summaryModel.leaderUserName?:@"";
+    _directorLabel.text = summaryModel.userName?:@"";
     _arrSpeedLabel.text = [NSString stringWithFormat:@"%.1f分/架",summaryModel.inSpeed];
     _depSpeedLabel.text = [NSString stringWithFormat:@"%.1f分/架",summaryModel.releaseSpeed];
 
@@ -200,7 +200,7 @@
 //    _tadayRatioView.progress = summaryModel.releaseRatio.floatValue;
 //    _monthRatioView.progress = summaryModel.nowMonthAvgRatio;
 //    NSLog(@"%lf  %lf",_tadayRatioView.progress,_monthRatioView.progress);
-    NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[[summaryModel.aovTxt dataUsingEncoding:NSUnicodeStringEncoding] copy] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+    NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[[summaryModel.aovTxt?:@"" dataUsingEncoding:NSUnicodeStringEncoding] copy] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
     _noticeTextView.attributedText     = [attrStr copy];
     NSArray *roundArray = [self updateShapeArray];
 

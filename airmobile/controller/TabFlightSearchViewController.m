@@ -68,7 +68,7 @@
             break;
         }
         case FlightSearchTypePlaneNo:{
-            conds =@{@"search_flightNO"   : [self.flightNumberTextF.text uppercaseString]?:@"",
+            conds =@{@"search_flightNO"   :@"",
                      @"search_date"       :self.fltDate,
                      @"search_startCity"  :@"",
                      @"search_endCity"    :@"",
@@ -146,12 +146,16 @@
 -(void)pushflightListViewControllerWithFlightModel:(NSArray *)array
 {
     FlightViewController *flightVC = [[FlightViewController alloc]init];
-    if(self.queryflag){
+    if(self.queryflag==FlightSearchTypeFlightNo){
         flightVC.flightNo = [self.flightNumberTextF.text uppercaseString];
-    }else{
-
+        flightVC.airlineModel = self.airlineModel;
+    }else if(self.queryflag == FlightSearchTypeCity){
         flightVC.outCity = self.outCity;
         flightVC.arriveCity = self.arriveCity;
+    }else if(self.queryflag == FlightSearchTypePlaneNo){
+        flightVC.planeNo = [self.flightNumberTextF.text uppercaseString]?:@"";
+    }else if (self.queryflag == FlightSearchTypeSeat){
+        flightVC.seat = [self.flightNumberTextF.text uppercaseString]?:@"";
     }
     flightVC.flightDate = self.fltDate;
     flightVC.dataArray = array;
