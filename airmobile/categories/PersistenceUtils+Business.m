@@ -10,7 +10,7 @@
 #import "HttpsUtils+Business.h"
 #import "AppDelegate.h"
 #import "ConcernModel.h"
-
+#import "ThreadUtils.h"
 @implementation PersistenceUtils (Business)
 
 /**
@@ -320,7 +320,7 @@
     NSString *querySql = @"select * from ChatInfo t where t.chatid=%i and t.type=%i and t.userid=%i";
     NSArray *result = [self executeQuery:[NSString stringWithFormat:querySql,chatId,type,[self getLocalUserId]]];
     if(result==nil || [result count]==0){
-        NSString *insertChatSql = @"INSERT INTO ChatInfo VALUES (?, %i, '%@', %i, %i, CURRENT_TIMESTAMP, 1, %@, null);";
+        NSString *insertChatSql = @"INSERT INTO ChatInfo VALUES (?, %i, '%@', %i, %i, CURRENT_TIMESTAMP, 1, '%@', null);";
         [self executeNoQuery:[NSString stringWithFormat:insertChatSql,chatId,name,type,[self getLocalUserId],describe]];
         result = [self executeQuery:[NSString stringWithFormat:querySql,chatId,type,[self getLocalUserId]]];
     }else{

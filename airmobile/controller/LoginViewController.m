@@ -311,6 +311,10 @@
         switch (user.flag) {
             case 1:
             {
+
+                if(![[DefaultHelper getStringForKey:@"taocares_userName"] isEqualToString:userName]){
+                    [DefaultHelper setBool:YES forKey:@"TokenUpdate"];
+                }
 //                NSLog(@"%s",__func__);
                 [HttpsUtils setUserName:userName];
                 [HttpsUtils setPassword:password];
@@ -319,21 +323,27 @@
                 //保存用户名和密码
                 [DefaultHelper setString:userName forKey:userKey];
                 [DefaultHelper setString:password forKey:pwdKey];
+
+
+
                 AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
                 delegate.userInfoModel = user;
 
                 //发送token
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                [HttpsUtils postToken:@{@"token":[defaults objectForKey:@"token"]?:@"",@"userid":@(user.id).stringValue?:@""} success:^(id responsed) {
+                if ([defaults boolForKey:@"TokenUpdate"]) {
+                    [HttpsUtils postToken:@{@"token":[defaults objectForKey:@"token"]?:@"",@"userid":@(user.id).stringValue?:@""} success:^(id responsed) {
+                        [defaults setBool:NO forKey:@"TokenUpdate"];
+                    } failure:^(NSError * error) {
 
-                } failure:^(NSError * error) {
+                    }];
+                }
 
-                }];
 
                 
                 [[HomePageService sharedHomePageService] startService];
-                [[MessageService sharedMessageService] setUserId:(int)user.id];
-                [[MessageService sharedMessageService] startService];
+//                [[MessageService sharedMessageService] setUserId:(int)user.id];
+//                [[MessageService sharedMessageService] startService];
                 [HttpsUtils getAlertMsgListSuccess:nil failure:nil];// 同步最近的异常消息
                 // 加载城市数据
                 [[KyAirportService sharedKyAirportService] cacheAirport];

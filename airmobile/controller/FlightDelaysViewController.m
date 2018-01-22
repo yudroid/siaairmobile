@@ -94,7 +94,7 @@ static const NSString *FLGHTDELAYS_TABLECELL_IDENTIFIER = @"FLGHTDELAYS_TABLECEL
     SysMessageModel *model = [[SysMessageModel alloc] initWithDictionary:[data objectAtIndex:indexPath.row]];
     
     cell.authorLabel.text = [NSString stringWithFormat:@"%@", model.createtime];
-    cell.titleLabel.text = model.title;
+    cell.titleLabel.text = [model.title isEqualToString:@"(null)"]?@" ":model.title;
     cell.read = (![model.readtime isEqualToString:@"<null>"]);
      if([_type isEqualToString:@"FLIGHT"]){
          cell.read = (![model.readtime isEqualToString:@"<null>"]);

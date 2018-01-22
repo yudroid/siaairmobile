@@ -31,18 +31,16 @@
 //static NSString* baseUri = @"http://192.168.163.152:8080";
 
 //static NSString* baseUri = @"http://192.168.163.132:8080";
-
-
 //static NSString* baseUri = @"http://219.134.93.113:8087";
 //static NSString* baseUri = @"http://219.134.93.113:8087";
 
 //static NSString* baseUri = @"http://10.26.18.75:8080";
 //static NSString* baseUri = @"http://219.134.93.113:8087";
 //static NSString* baseUri = @"https://219.134.93.113:8086";
-static NSString* baseUri = @"http://10.26.51.41:8080";
+//static NSString* baseUri = @"http://10.26.51.41:8080";
 
 //static NSString* baseUri = @"http://192.168.163.69:80";
-//static NSString* baseUri = @"http://219.134.93.113:8087";
+static NSString* baseUri = @"http://219.134.93.113:8087";
 
 
 /**
@@ -91,7 +89,7 @@ static NSTimeInterval timeInterval = 10;
         url = [NSURL URLWithString:segment relativeToURL: [NSURL URLWithString:baseUri]];
     }
 
-//    NSString* absoluteUrl = [StringUtils trim:[url absoluteString]];
+    //    NSString* absoluteUrl = [StringUtils trim:[url absoluteString]];
 
     //absoluteUrl = [NSString stringWithFormat:@"%@?uid=%@",absoluteUrl,[GuidUtils GuidString]];
     //    if ([absoluteUrl length]>0 &&[StringUtils equals:[absoluteUrl substringFromIndex:([absoluteUrl length]-1)] To:@"/" ByIgnoreCase:YES]) {
@@ -100,7 +98,7 @@ static NSTimeInterval timeInterval = 10;
     //    else if ([absoluteUrl length]>0){
     //        absoluteUrl = [NSString stringWithFormat:@"%@/%@",absoluteUrl,[GuidUtils GuidString]];
     //    }
-//    NSLog(@"Post调用地址 %@",absoluteUrl);
+    //    NSLog(@"Post调用地址 %@",absoluteUrl);
     //注：该方法是异步调用的
     [manager POST:[url absoluteString]
        parameters:formData
@@ -274,8 +272,7 @@ static NSTimeInterval timeInterval = 10;
 
     //加上 https ssl验证
     [manager setSecurityPolicy:[self customSecurityPolicy]];
-    
-    
+
     //构建url
     NSURL* url = [NSURL URLWithString:baseUri];
     

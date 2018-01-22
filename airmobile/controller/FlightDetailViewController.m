@@ -26,11 +26,17 @@
 #import "AppDelegate.h"
 #import "DispatchModel.h"
 #import "NSString+Size.h"
+#import "FlightDetailOrderTableViewCell.h"
+#import "NormalReportView.h"
 
 static const NSString *FLIGHTDETAIL_TABLECELL_IDENTIFIER = @"FLIGHTDETAIL_TABLECELL_IDENTIFIER";
+static const NSString *FLIGHTDETAIL_ORDERTABLECELL_IDENTIFIER = @"FLIGHTDETAIL_ORDERTABLECELL_IDENTIFIER";
 static const NSString *FLIGHTDETAIL_TABLEHEADER_IDENTIFIER = @"FLIGHTDETAIL_TABLEHEADER_IDENTIFIER";
 static const NSString *FLIGHTDETAIL_SAFEGUARDTABLECELL_IDENTIFIER = @"FLIGHTDETAIL_SAFEGUARDTABLECELL_IDENTIFIER";
 static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER";
+
+
+static const CGFloat ORDERCELLHEIGHT = 75.0;//保障环节中其他保障环节cell的高度
 
 
 @interface FlightDetailViewController ()<UITableViewDataSource,
@@ -41,7 +47,8 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
                                         UICollectionViewDelegateFlowLayout,
                                         FlightDetailHeaderFooterViewDelegate,
                                         FlightDetailSpecialTableViewCellDelegate,
-                                        TimePickerViewDelegate>
+                                        TimePickerViewDelegate,
+                                        FlightDetailOrderTableViewCellDelegate>
 
 @property (weak, nonatomic) IBOutlet    UITableView         *tableView;//特殊保障 tableview
 @property (weak, nonatomic) IBOutlet    UICollectionView    *AirlineCollectionView;
@@ -163,7 +170,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 
 //    [_tableView registerNib:[UINib nibWithNibName:@"FlightDetailHeaderFooterView" bundle:nil] forCellReuseIdentifier:(NSString *)FLIGHTDETAIL_TABLEHEADER_IDENTIFIER];
 
-    _tableViewHeight.constant = 103 * tableArray.count +37;
+    _tableViewHeight.constant = 103 * tableArray.count +37+ORDERCELLHEIGHT;
    // [self basicInfo];
     [self loadData];
 
@@ -225,7 +232,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 //    }
 //    tableArray = [mutableArray copy];
 
-    _tableViewHeight.constant = [self tableCellAllHeight] +37;
+    _tableViewHeight.constant = [self tableCellAllHeight] +37+ORDERCELLHEIGHT;
 
     [_tableView reloadData];
 
@@ -339,7 +346,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-        return tableArray.count;
+        return tableArray.count+1;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -363,6 +370,18 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+
+    //最后一行其他环节
+    if(indexPath.row == tableArray.count){
+        FlightDetailOrderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)FLIGHTDETAIL_ORDERTABLECELL_IDENTIFIER];
+        if (cell == nil) {
+            cell = [[NSBundle mainBundle]loadNibNamed:@"FlightDetailOrderTableViewCell" owner:nil options:nil][0];
+        }
+        cell.delegate = self;
+        return cell;
+    }
+
+
     DispatchModel *model = tableArray[indexPath.row];
     if (model.key == 0) {
         FlightDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)FLIGHTDETAIL_TABLECELL_IDENTIFIER];
@@ -374,12 +393,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 
         cell.dispatchModel = model;
         cell.indexRow = indexPath.row;
-//        if (indexPath.row == 0) {
-//            cell.type = FlightDetailTableViewCellTypeTypeFirst;
-//        }
-//        if (indexPath.row ==specicals.count-1 ) {
-//            cell.type = FlightDetailTableViewCellTypeTypeLast;
-//        }
+
         cell.delegate = self;
         return  cell;
 
@@ -420,7 +434,7 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 -(void)flightDetailTableViewCellnormalButtonClick:(UIButton *)sender
 {
     
-    if ([CommonFunction hasFunction:FL_NORMAL_REPORTABN]) {
+    if ([CommonFunction hasFunction:FL_NORMAL_REPORTNOR]) {
 //       [HttpsUtils http]
 
         TimePickerView *timePickView = [[NSBundle mainBundle] loadNibNamed:@"TimePickerView" owner:nil options:nil][0];
@@ -430,8 +444,8 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
         _selectedNormalReportIndex = sender.tag;
 
     }
-
 }
+
 
 -(void)timePickerViewDidSelectDate:(NSDate *)date
 {
@@ -572,6 +586,32 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 
 }
 
+-(void)flightDetailOrderTableViewCellAbnormalButtonClick:(UIButton *)sender
+{
+    if ([CommonFunction hasFunction:FL_SPETIAL_REPROTABN]) {
+        AbnormalityReportViewController *abnormalityReportVC=[[AbnormalityReportViewController alloc]initWithNibName:@"AbnormalityReportViewController" bundle:nil];
+        abnormalityReportVC.title = @"特殊上报";
+//        abnormalityReportVC.specialModel = tableArray[sender.tag];
+//        abnormalityReportVC.isSpecial = YES;
+        abnormalityReportVC.flightId = @(_flightId).stringValue;
+        abnormalityReportVC.reportType = ReportTypeOrder;
+        [self.navigationController pushViewController:abnormalityReportVC
+                                             animated:YES];
+
+    }
+
+}
+-(void)flightDetailOrderTableViewCellNormalButtonClick:(UIButton *)sender
+{
+    if ([CommonFunction hasFunction:FL_SPETIAL_REPORTNOR]) {
+        NormalReportView *timePickView = [[NSBundle mainBundle] loadNibNamed:@"NormalReportView" owner:nil options:nil][0];
+        timePickView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
+        timePickView.delegate = self;
+        [self.view addSubview:timePickView];
+    }
+
+}
+
 
 #pragma mark - FlightDetailHeaderFooterViewDelegate
 -(void)flightDetailHeaderFooterView:(UITableViewHeaderFooterView *)view
@@ -670,6 +710,9 @@ static const NSString * FLIGHTDETAIL_AIRLINECOLLECTION_IDENTIFIER = @"FLIGHTDETA
 
 -(CGFloat)tabelCellHeightWithIndex:(NSInteger )row
 {
+    if (row >= tableArray.count) {
+        return ORDERCELLHEIGHT;
+    }
     DispatchModel *model = tableArray[row];
     CGFloat height = 0;
     if (model.key == 0) {

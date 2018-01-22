@@ -10,6 +10,7 @@
 
 @implementation FlightDetailOrderTableViewCell
 
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
@@ -19,6 +20,20 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+- (IBAction)normalReportButtonClick:(id)sender {
+
+    if([_delegate respondsToSelector:@selector(flightDetailOrderTableViewCellNormalButtonClick:)]){
+        [_delegate flightDetailOrderTableViewCellNormalButtonClick:sender];
+    }
+
+
+}
+- (IBAction)abnormalReportButtonClick:(id)sender {
+    if([_delegate respondsToSelector:@selector(flightDetailOrderTableViewCellAbnormalButtonClick:)]){
+        [_delegate flightDetailOrderTableViewCellAbnormalButtonClick:sender];
+    }
+    
 }
 
 @end

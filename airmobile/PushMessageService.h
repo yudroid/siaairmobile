@@ -8,12 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "BaseService.h"
+#import "ChatViewController.h"
+#import "MessageViewController.h"
+@class TabBarView;
 
-@interface PushMessageService :BaseSevice
+@interface PushMessageService :BaseService
 
 singleton_interface(PushMessageService);
 
-//-(void)startService;
 
 -(void)resetDialogParam:(long)clientId
                  userId:(long)userId
@@ -24,6 +26,6 @@ singleton_interface(PushMessageService);
 @property (nonatomic,weak) id<MessageViewDelegate> chatListDelegate;
 @property (nonatomic,strong) TabBarView *curTabBarView;
 
--(void)setUserId:(int)userId;
+- (void)didReceiveMessage:(id)message;
 
 @end

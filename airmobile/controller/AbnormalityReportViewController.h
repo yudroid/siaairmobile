@@ -18,6 +18,12 @@
 //    ReportStateStarted,
 //    ReportStateCompleted
 //};
+typedef NS_ENUM(NSUInteger,ReportType) {
+    ReportTypeCommon,//普通上报
+    ReportTypeOrder//其他环节上报
+};
+
+
 
 @interface AbnormalityReportViewController : RootViewController
 
@@ -34,6 +40,10 @@
 //特殊保障需要的参数
 @property (nonatomic, strong) NSString *flightId;//航班id
 @property (nonatomic, strong) SpecialModel *specialModel;
+
+
+//区别其他环节上报，其他环节上报需要显示其他环节选择cell
+@property (nonatomic, assign) ReportType reportType;
 
 -(void)setEventAbnormalModel:(AbnormalModel *)abnormalModel;
 

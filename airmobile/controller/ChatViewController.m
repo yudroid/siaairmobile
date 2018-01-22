@@ -1,10 +1,4 @@
-//
-//  ChatViewController.m
-//  airmobile
-//
-//  Created by xuesong on 16/10/18.
-//  Copyright © 2016年 杨泉林. All rights reserved.
-//
+
 
 #import "ChatViewController.h"
 #import "ChatLeftTableViewCell.h"
@@ -13,7 +7,7 @@
 #import "ChatTimeTableViewCell.h"
 #import "HttpsUtils+Business.h"
 #import "AppDelegate.h"
-#import "MessageService.h"
+#import "PushMessageService.h"
 #import "PersistenceUtils+Business.h"
 #import "ContactPersonViewController.h"
 #import "ChatLeftFileTableViewCell.h"
@@ -71,8 +65,7 @@ static const NSString *CHAT_LEFTFILETABLECELL_IDENTIFIER = @"CHAT_LEFTFILETABLEC
     
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     user = delegate.userInfoModel;
-    
-    [[MessageService sharedMessageService] resetDialogParam:user.id userId:user.id toId:_chatId type:_chatTypeId];
+
     _chatArray = [[NSMutableArray alloc] init];
 
     [self initChatMsgData];
@@ -90,7 +83,7 @@ static const NSString *CHAT_LEFTFILETABLECELL_IDENTIFIER = @"CHAT_LEFTFILETABLEC
     [self.view addGestureRecognizer:tap];
 
     
-    [MessageService sharedMessageService].chatDelegate = self;
+    [PushMessageService sharedPushMessageService].chatDelegate = self;
     if(_tableView.contentSize.height -_tableView.bounds.size.height>0){
         [_tableView setContentOffset:CGPointMake(0, _tableView.contentSize.height -_tableView.bounds.size.height+100) animated:YES];
     }
@@ -323,7 +316,9 @@ static const NSString *CHAT_LEFTFILETABLECELL_IDENTIFIER = @"CHAT_LEFTFILETABLEC
                                                      content:_msgTextView.text
                                                       fromId:user.id
                                                         toId:_chatId
-                                                        type:_chatTypeId status:0];
+                                                        type:_chatTypeId
+                                                      status:0
+                                                        flag:@""];
 
 
         if(_chatTypeId==0){
@@ -346,7 +341,7 @@ static const NSString *CHAT_LEFTFILETABLECELL_IDENTIFIER = @"CHAT_LEFTFILETABLEC
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [MessageService sharedMessageService].chatDelegate = nil;
+    [PushMessageService sharedPushMessageService].chatDelegate = nil;
     [self.view endEditing:YES];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [PersistenceUtils updateRemoveUnReadCountWithChatid:(int)_localChatId];
@@ -401,12 +396,22 @@ static const NSString *CHAT_LEFTFILETABLECELL_IDENTIFIER = @"CHAT_LEFTFILETABLEC
                                                                         start:lastId]];
     }
     if(_tableView!=nil){
-        [_tableView reloadData];
-        if(self.tableView.contentSize.height -self.tableView.bounds.size.height>0){
-            [self.tableView setContentOffset:CGPointMake(0,
-                                                         self.tableView.contentSize.height -self.tableView.bounds.size.height)
-                                    animated:YES];
-        }
+
+        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+
+            [_chatArray sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+                return [[obj1 objectForKey:@"time"] compare:[obj2 objectForKey:@"time"]];
+            }];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [_tableView reloadData];
+                if(self.tableView.contentSize.height -self.tableView.bounds.size.height>0){
+                    [self.tableView setContentOffset:CGPointMake(0,
+                                                                 self.tableView.contentSize.height -self.tableView.bounds.size.height)
+                                            animated:YES];
+                }
+            });
+        });
+
     }
 }
 

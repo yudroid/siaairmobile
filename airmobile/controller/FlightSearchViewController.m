@@ -187,6 +187,7 @@
     _flightNumberTextF.font = [UIFont systemFontOfSize: 18];
     _flightNumberTextF.placeholder = @"请输入航班号";
     _flightNumberTextF.delegate = self;
+//    _flightNumberTextF.text = [DefaultHelper getStringForKey:@"token"];
     _flightNumberTextF.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
     [self.view addSubview:_flightNumberTextF];
     

@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+
+@protocol  FlightDetailOrderTableViewCellDelegate <NSObject>
+
+-(void)flightDetailOrderTableViewCellNormalButtonClick:(UIButton *)sender;
+-(void)flightDetailOrderTableViewCellAbnormalButtonClick:(UIButton *)sender;
+
+@end
+
 @interface FlightDetailOrderTableViewCell : UITableViewCell
+
+@property (nonatomic,weak) id<FlightDetailOrderTableViewCellDelegate> delegate;
 
 @end

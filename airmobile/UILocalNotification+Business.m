@@ -18,7 +18,7 @@
 
     // 2.设置本地通知的内容
     // 2.1.设置通知发出的时间
-    localNote.fireDate = [NSDate dateWithTimeIntervalSinceNow:3.0];
+    localNote.fireDate = [NSDate dateWithTimeIntervalSinceNow:0.1];
     // 2.2.设置通知的内容
     localNote.alertBody =content;
     // 2.3.设置滑块的文字（锁屏状态下：滑动来“解锁”）

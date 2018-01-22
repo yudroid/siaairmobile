@@ -20,7 +20,7 @@
 #import "PersistenceUtils+Business.h"
 #import "FlightDelaysViewController.h"
 #import "AppDelegate.h"
-#import "MessageService.h"
+#import "PushMessageService.h"
 #import "HttpsUtils+Business.h"
 
 static const NSString *MESSAGE_TABLECELL_IDENTIFIER = @"MESSAGE_TABLECELL_IDENTIFIER";
@@ -373,13 +373,13 @@ static const NSString *MESSAGE_FIXTABLECELL_IDENTIFIER = @"MESSAGE_FIXTABLECELL_
 {
     [super viewWillAppear:animated];
 //    NSLog(@"%s",__func__);
-    [MessageService sharedMessageService].chatListDelegate = self;
+    [PushMessageService sharedPushMessageService].chatListDelegate = self;
     [self loadChatList:0 num:1000];
 }
 
 -(void) viewWillDisappear:(BOOL)animated
 {
-    [MessageService sharedMessageService].chatListDelegate = nil;
+    [PushMessageService sharedPushMessageService].chatListDelegate = nil;
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField

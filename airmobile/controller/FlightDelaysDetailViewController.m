@@ -29,8 +29,8 @@
     [self initTitie];
     _textFieldWidth.constant = kScreenWidth-62;
 
-    _titleLabel.text = _titleText;
-    _contentLabel.text = _contentText;
+    _titleLabel.text = [_titleText isEqualToString:@"(null)"]?@" ":_titleText;
+    _contentLabel.text = [_contentText isEqualToString:@"(null)"]?@" ":_contentText;
     if ([DeviceInfoUtil isPlus]) {
         [self adjustPLUS];
     }
@@ -39,7 +39,6 @@
 -(void)initTitie{
     [self titleViewInitWithHight:64];
     self.titleView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"home_title_bg.png"]];
-    
 
     [self titleViewAddBackBtn];
 

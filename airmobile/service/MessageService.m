@@ -76,10 +76,10 @@ singleton_implementation(MessageService);
 
 -(void)startService
 {
-    [self regiestWebSocket];
-    [super startService:^{
-        [self refreshMessage];
-    }];
+//    [self regiestWebSocket];
+//    [super startService:^{
+//        [self refreshMessage];
+//    }];
 }
 
 -(void)resetDialogParam:(long)clientId

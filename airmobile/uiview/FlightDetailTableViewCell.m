@@ -22,7 +22,7 @@
 //@property (weak, nonatomic) IBOutlet UIView *statusBackView;
 //@property (weak, nonatomic) IBOutlet UIView *tagView;
 @property (weak, nonatomic) IBOutlet UIButton *nomalButton;
-
+@property (weak, nonatomic) IBOutlet UIButton *unusualButton;
 @end
 
 @implementation FlightDetailTableViewCell
@@ -132,8 +132,12 @@
     }else{
         _lastTimeLabel.text = @"无正常上报";
     }
+
+    if (![CommonFunction hasFunction:FL_NORMAL_REPORTABN]) {
+        _unusualButton.hidden = YES;
+    }
+    if (![CommonFunction hasFunction:FL_NORMAL_REPORTNOR]) {
+        _nomalButton.hidden = YES;
+    }
 }
-
-
-
 @end

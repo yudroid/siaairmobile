@@ -16,6 +16,7 @@
 #import "VersionModel.h"
 #import "UIViewController+Reminder.h"
 #import "VersionCheck.h"
+#import "ThreadUtils.h"
 
 
 @implementation HomePageService
@@ -45,27 +46,30 @@ singleton_implementation(HomePageService);
         seatModel       = [SeatStatusModel new];
     }
 //    NSLog(@"%s",__func__);
-    [super startService:^{
-        [self cacheHomePageData];
-    }];
+
+    AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    if (appdelegate.userInfoModel && appdelegate.userInfoModel.id != 0) {
+        [super startService:^{
+            [self cacheHomePageData];
+        }];
+    }
 }
 
 -(void)cacheHomePageData
 {
 //    NSLog(@"%s",__func__);
-    AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    if (appdelegate.userInfoModel && appdelegate.userInfoModel.id != 0) {
+    [self cacheSummaryData];
+    [self cacheFlightData];
+    [self cachePassengerData];
+    [self cacheSeatUsedData];
 
-        [self cacheSummaryData];
-        [self cacheFlightData];
-        [self cachePassengerData];
-        [self cacheSeatUsedData];
-
-        //获取用户签到状态
-        [self getUserSignStatus];
-        //获取版本信息
+    //获取用户签到状态
+    [self getUserSignStatus];
+    //获取版本信息
+    [ThreadUtils dispatchMain:^{
         [self getVersion];
-    }
+    }];
+
 
 }
 
@@ -346,27 +350,31 @@ singleton_implementation(HomePageService);
 }
 
 #pragma mark - 获取用户签到信息
-
 -(void)getUserSignStatus
 {
+    [ThreadUtils dispatchMain:^{
+        AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 
-    AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        if(appdelegate.userInfoModel.signStatus.length>0){
+            return ;
+        }
+        [ThreadUtils dispatch:^{
+            [HttpsUtils isSigned:(int)appdelegate.userInfoModel.id
+                         success:^(NSNumber *response) {
+                             if (response.integerValue == 3) {
+                                 appdelegate.userInfoModel.signStatus =  @"未签到" ;
+                             }else if(response.integerValue == 2){
+                                 appdelegate.userInfoModel.signStatus =  @"已签到" ;
+                             }else{
+                                 appdelegate.userInfoModel.signStatus =  @"已签退" ;
+                             }
+                         }
+                         failure:^(NSError *error) {
+                                       }];
+        }];
+    }];
 
-    if(appdelegate.userInfoModel.signStatus.length>0){
-        return ;
-    }
-    [HttpsUtils isSigned:(int)appdelegate.userInfoModel.id
-                 success:^(NSNumber *response) {
-                     if (response.integerValue == 3) {
-                         appdelegate.userInfoModel.signStatus =  @"未签到" ;
-                     }else if(response.integerValue == 2){
-                         appdelegate.userInfoModel.signStatus =  @"已签到" ;
-                     }else{
-                         appdelegate.userInfoModel.signStatus =  @"已签退" ;
-                     }
-                 }
-                 failure:^(NSError *error) {
-                 }];
+
 }
 
 -(void)getVersion

@@ -48,7 +48,7 @@
     [super viewDidLoad];
 
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults] ;
-    if ([userDefaults objectForKey:@"sysChatInfoList"]) {
+    if ([userDefaults boolForKey:@"sysChatInfoList"]) {
         AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
         [HttpsUtils sysChatInfoList:(int)(appDelegate.userInfoModel.id)];
         [userDefaults setBool:NO forKey:@"sysChatInfoList"];

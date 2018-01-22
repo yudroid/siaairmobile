@@ -267,6 +267,11 @@ static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TA
         return;
     }
 
+    if (![self checkPassword:_modifyPwdView.newpwdLabel.text]) {
+        [self showAnimationTitle:@"请输入6位以上的字母与数字组合"];
+        return;
+    }
+
     AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [HttpsUtils updatePwd:appdelegate.userInfoModel.jobNumber
                       pwd:_modifyPwdView.originalLabel.text
@@ -290,5 +295,15 @@ static const NSString *USERMANAGEMENT_TABLECELL_IDENTIFIER = @"USERMANAGEMENT_TA
         [imageView setIconURL:[HttpsUtils imageDownloadURLWithString:name]];
     }
 }
+
+- (BOOL)checkPassword:(NSString *) password
+{
+    NSString *pattern = @"^(?![0-9]+$)(?![a-zA-Z]+$)[a-zA-Z0-9]{6,18}";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", pattern];
+    BOOL isMatch = [pred evaluateWithObject:password];
+    return isMatch;
+
+}
+
 
 @end

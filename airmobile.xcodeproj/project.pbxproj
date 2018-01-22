@@ -348,6 +348,10 @@
 		F79251931DB858D9006AA119 /* AddressBookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F79251911DB858D9006AA119 /* AddressBookViewController.xib */; };
 		F79251971DB85D78006AA119 /* AddressBookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F79251951DB85D78006AA119 /* AddressBookTableViewCell.m */; };
 		F79251981DB85D78006AA119 /* AddressBookTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F79251961DB85D78006AA119 /* AddressBookTableViewCell.xib */; };
+		F79ADC312011BE2A000A21BC /* FlightDetailOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F79ADC2F2011BE2A000A21BC /* FlightDetailOrderTableViewCell.m */; };
+		F79ADC322011BE2A000A21BC /* FlightDetailOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F79ADC302011BE2A000A21BC /* FlightDetailOrderTableViewCell.xib */; };
+		F79ADC352011E2FA000A21BC /* NormalReportView.m in Sources */ = {isa = PBXBuildFile; fileRef = F79ADC342011E2FA000A21BC /* NormalReportView.m */; };
+		F79ADC372011E30F000A21BC /* NormalReportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F79ADC362011E30F000A21BC /* NormalReportView.xib */; };
 		F79C2EF81E456E8600556CAA /* YDWaveLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F79C2EF71E456E8600556CAA /* YDWaveLoadingView.m */; };
 		F7A25D021DB9E6C000F36C32 /* PsnGeneralContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D011DB9E6C000F36C32 /* PsnGeneralContentView.m */; };
 		F7A25D051DB9E6C900F36C32 /* PsnSafetyContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D041DB9E6C900F36C32 /* PsnSafetyContentView.m */; };
@@ -1074,6 +1078,12 @@
 		F79251941DB85D78006AA119 /* AddressBookTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookTableViewCell.h; sourceTree = "<group>"; };
 		F79251951DB85D78006AA119 /* AddressBookTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookTableViewCell.m; sourceTree = "<group>"; };
 		F79251961DB85D78006AA119 /* AddressBookTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressBookTableViewCell.xib; sourceTree = "<group>"; };
+		F79ADC2E2011BE2A000A21BC /* FlightDetailOrderTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlightDetailOrderTableViewCell.h; sourceTree = "<group>"; };
+		F79ADC2F2011BE2A000A21BC /* FlightDetailOrderTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlightDetailOrderTableViewCell.m; sourceTree = "<group>"; };
+		F79ADC302011BE2A000A21BC /* FlightDetailOrderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlightDetailOrderTableViewCell.xib; sourceTree = "<group>"; };
+		F79ADC332011E2FA000A21BC /* NormalReportView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NormalReportView.h; sourceTree = "<group>"; };
+		F79ADC342011E2FA000A21BC /* NormalReportView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NormalReportView.m; sourceTree = "<group>"; };
+		F79ADC362011E30F000A21BC /* NormalReportView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NormalReportView.xib; sourceTree = "<group>"; };
 		F79C2EF61E456E8600556CAA /* YDWaveLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDWaveLoadingView.h; sourceTree = "<group>"; };
 		F79C2EF71E456E8600556CAA /* YDWaveLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDWaveLoadingView.m; sourceTree = "<group>"; };
 		F7A25D001DB9E6C000F36C32 /* PsnGeneralContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PsnGeneralContentView.h; sourceTree = "<group>"; };
@@ -3124,6 +3134,9 @@
 				F7EAE19F1DB4BCC60060626F /* FlightDetailSpecialTableViewCell.h */,
 				F7EAE1A01DB4BCC60060626F /* FlightDetailSpecialTableViewCell.m */,
 				F7EAE1A11DB4BCC60060626F /* FlightDetailSpecialTableViewCell.xib */,
+				F79ADC2E2011BE2A000A21BC /* FlightDetailOrderTableViewCell.h */,
+				F79ADC2F2011BE2A000A21BC /* FlightDetailOrderTableViewCell.m */,
+				F79ADC302011BE2A000A21BC /* FlightDetailOrderTableViewCell.xib */,
 				F79251341DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.h */,
 				F79251351DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.m */,
 				F79251361DB5B6D9006AA119 /* FlightDetailAirLineCollectionViewCell.xib */,
@@ -3141,6 +3154,9 @@
 				F752C63C1E8B47C700F8BD84 /* TimePickerView.h */,
 				F752C63D1E8B47C700F8BD84 /* TimePickerView.m */,
 				F752C63F1E8B47D700F8BD84 /* TimePickerView.xib */,
+				F79ADC332011E2FA000A21BC /* NormalReportView.h */,
+				F79ADC342011E2FA000A21BC /* NormalReportView.m */,
+				F79ADC362011E30F000A21BC /* NormalReportView.xib */,
 			);
 			name = "详情";
 			sourceTree = "<group>";
@@ -3299,6 +3315,7 @@
 				F70149C01E9CAD5E006EF393 /* SateguardTypeTableViewCell.xib in Resources */,
 				F70893E21DD2EC1B00135540 /* FlightDelaysViewController.xib in Resources */,
 				8450556C1DACF65200400EBF /* splash@2x.png in Resources */,
+				F79ADC322011BE2A000A21BC /* FlightDetailOrderTableViewCell.xib in Resources */,
 				F7EEEC5F1E00396C000D3056 /* TodayDutyViewController.xib in Resources */,
 				F792515A1DB61D9C006AA119 /* ContactPersonTableViewCell.xib in Resources */,
 				F77497041E0773EA00B5773C /* prev@2x.png in Resources */,
@@ -3393,6 +3410,7 @@
 				F7EE87811DB3635F006473F5 /* FlightFilterView.xib in Resources */,
 				F71387AD1E8DFFCF00F126AD /* KnowledgeBaseTableViewCell.xib in Resources */,
 				845055581DACF65200400EBF /* login_accounts@3x.png in Resources */,
+				F79ADC372011E30F000A21BC /* NormalReportView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3607,9 +3625,11 @@
 				F77A7C4E1E9F4E7B0044D891 /* ContingencyAddressBookViewController.m in Sources */,
 				840D15E61DC2E99A005FA910 /* PassengerAreaModel.m in Sources */,
 				F73DBB7F1E2DB7690085C000 /* DailyCalendarView.m in Sources */,
+				F79ADC352011E2FA000A21BC /* NormalReportView.m in Sources */,
 				F70149BF1E9CAD5E006EF393 /* SateguardTypeTableViewCell.m in Sources */,
 				F7A25D811DBE277500F36C32 /* SJPreviewPhotoController.m in Sources */,
 				F74902A81DC867F0005B193D /* FlightStusModel.m in Sources */,
+				F79ADC312011BE2A000A21BC /* FlightDetailOrderTableViewCell.m in Sources */,
 				F77E9B291F203DB100A4E11A /* ZFWaveChart.m in Sources */,
 				F7A25D891DBE277500F36C32 /* SJPhotoAlbumCell.m in Sources */,
 				F7EAE1A21DB4BCC60060626F /* FlightDetailSpecialTableViewCell.m in Sources */,

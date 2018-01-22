@@ -24,7 +24,7 @@ typedef NS_ENUM(NSUInteger, FlightDetailTableViewCellType) {
 
 @interface FlightDetailTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIButton *unusualButton;
+
 //@property (nonatomic ,assign) FlightDetailTableViewCellType type;
 @property (nonatomic, strong)DispatchModel *dispatchModel;
 @property (nonatomic, assign) NSInteger indexRow;

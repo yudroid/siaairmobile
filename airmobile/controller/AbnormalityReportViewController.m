@@ -51,20 +51,16 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 //约束
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *abnormalityHistoryViewHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewBottom;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeight;
 
 //自定义变量
-@property (nonatomic, copy) NSArray *tableViewArray;
-@property (nonatomic, strong) AbnormalModel *abnormalModel ;
+@property (nonatomic, copy)          NSArray *tableViewArray;
+@property (nonatomic, strong)        AbnormalModel *abnormalModel ;
 @property (weak, nonatomic) IBOutlet UIButton *timeButton;
-@property (nonatomic, strong) NSMutableArray *nImageArray;//上报历史后添加的新图片
+@property (nonatomic, strong)        NSMutableArray *nImageArray;//上报历史后添加的新图片
 @property (nonatomic, copy)          NSArray        *abnormalityHistoryArray;
 @property (nonatomic ,strong)        NSMutableArray *collectionArray;
 @property (nonatomic, copy)          NSArray        *imageFilePath;
-
-
-
-
-
 
 @end
 
@@ -86,7 +82,12 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
     _tableView.scrollEnabled = NO;
     [_tableView registerNib:[UINib nibWithNibName:@"AbnormalityReportTableViewCell" bundle:nil]
      forCellReuseIdentifier:(NSString *)ABNORMALITYREPORT_TABLECELL_IDENTIFIER];
-    _tableViewArray = @[@"监察类型",@"保障类型",@"事项标准"];
+    if (self.reportType == ReportTypeOrder) {
+        _tableViewArray = @[@"监察类型",@"保障类型",@"事项标准",@"环节名称"];
+        _tableViewHeight.constant = 232;
+    }else if (self.reportType == ReportTypeCommon){
+        _tableViewArray = @[@"监察类型",@"保障类型",@"事项标准"];
+    }
 
     _abnormalityHistoryTableView.delegate = self;
     _abnormalityHistoryTableView.dataSource = self;
@@ -173,7 +174,6 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
     _collectionArray = [NSMutableArray arrayWithArray:[abnormalModel.pathList componentsSeparatedByString:@","]];
     [_collectionArray removeObject:@""];
     [_photoCollectionView reloadData];
-    
 }
 
 
@@ -299,6 +299,8 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
             cell.valueLabel.text = _event.event;
         }else if ([name isEqualToString:@"保障类型"]){
             cell.valueLabel.text = _ensureType.content;
+        }else if([name isEqualToString:@"环节名称"]){
+            cell.valueLabel.text = @"";
         }
         return  cell;
     }else{

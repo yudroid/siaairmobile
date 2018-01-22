@@ -21,13 +21,15 @@
 @property (nonatomic,copy)      NSString    *receiveTime;
 @property (nonatomic,copy)      NSString    *content;
 @property (nonatomic,copy)      NSString    *createTime;
+@property (nonatomic,copy)      NSString    *flag;
 
 -(instancetype) initWithId:(long)       rid
                    content:(NSString *) content
                     fromId:(long)       fromId
                       toId:(long)       toId
                       type:(int)        type
-                    status:(int)        status;
+                    status:(int)        status
+                      flag:(NSString *) flag;
 -(NSDictionary *) toUserMsgNSDictionary;
 -(NSDictionary *) toGroupMsgNSDictionary;
 

@@ -8,7 +8,7 @@
 
 #import "TabBarView.h"
 #import "PersistenceUtils+Business.h"
-#import "MessageService.h"
+#import "PushMessageService.h"
 
 @implementation TabBarIteam
     
@@ -255,7 +255,7 @@
                     break;
                 }
             }
-            [MessageService sharedMessageService].curTabBarView = self;
+            [PushMessageService sharedPushMessageService].curTabBarView = self;
         }
         
         return self;

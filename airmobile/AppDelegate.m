@@ -1,4 +1,4 @@
-//
+
 //  AppDelegate.m
 //  airmobile
 //
@@ -19,12 +19,12 @@
 #import "LoginViewController.h"
 #import <PushKit/PushKit.h>
 #import "UILocalNotification+Business.h"
+#import "PushMessageService.h"
 
 
 @interface AppDelegate ()<PKPushRegistryDelegate>
 
 @property (nonatomic, assign) NSInteger loginNum;
-@property (nonatomic, copy)  NSString *tokenStr;
 
 @end
 
@@ -125,7 +125,7 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
     [[HomePageService sharedHomePageService] stopService];
-    [[MessageService sharedMessageService] stopService];
+//    [[MessageService sharedMessageService] stopService];
 
 }
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings{
@@ -133,12 +133,7 @@
 }
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
 
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-    NSString *token = [NSString stringWithFormat:@"%@", deviceToken];
-    //获取终端设备标识，这个标识需要通过接口发送到服务器端，服务器端推送消息到APNS时需要知道终端的标识，APNS通过注册的终端标识找到终端设备Z
-    [defaults setObject:token forKey:@"token"];
-    NSLog(@"%@",token);
 }
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
@@ -159,44 +154,25 @@
 //这个代理方法是获取了设备的唯tokenStr，是要给服务器的
 - (void)pushRegistry:(PKPushRegistry *)registry didUpdatePushCredentials:(PKPushCredentials *)credentials forType:(NSString *)type{
     NSString *str = [NSString stringWithFormat:@"%@",credentials.token];
-    _tokenStr = [[[str stringByReplacingOccurrencesOfString:@"<" withString:@""]
+    NSString *tokenStr = [[[str stringByReplacingOccurrencesOfString:@"<" withString:@""]
                   stringByReplacingOccurrencesOfString:@">" withString:@""] stringByReplacingOccurrencesOfString:@" " withString:@""];
-    
+
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if (![[defaults stringForKey:@"token"] isEqualToString:tokenStr] ) {
+        [defaults setObject:tokenStr forKey:@"token"];
+        [defaults setBool:YES forKey:@"TokenUpdate"];
+    }
 }
 
 - (void)pushRegistry:(PKPushRegistry *)registry didReceiveIncomingPushWithPayload:(PKPushPayload *)payload forType:(NSString *)type {
 
-//    NSDictionary *dic = [self jsonToDictionary:[[payload.dictionaryPayload objectForKey:@"aps"] objectForKey:@"alert"]];
-//    if ([[dic objectForKey:@"cmd"] isEqualToString:@"precall"]) {
-//        UIUserNotificationType theType = [UIApplication sharedApplication].currentUserNotificationSettings.types;
-//        if (theType == UIUserNotificationTypeNone)
-//        {
-//            UIUserNotificationSettings *userNotifySetting = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert categories:nil];
-//            [[UIApplication sharedApplication] registerUserNotificationSettings:userNotifySetting];
-//        }
-//        UILocalNotification *backgroudMsg = [[UILocalNotification alloc] init];
-//        if (backgroudMsg) {
-//            backgroudMsg.timeZone = [NSTimeZone defaultTimeZone];
-//            backgroudMsg.alertBody = @"门口机来电";
-//            backgroudMsg.alertAction = @"查看";
-//            //设置通知的相关信息，这个很重要，可以添加一些标记性内容，方便以后区分和获取通知的信息
-//            NSDictionary *infoDic = [NSDictionary dictionaryWithObject:@"name" forKey:@"key"];;
-//            backgroudMsg.userInfo = infoDic;
-//            [[UIApplication sharedApplication] presentLocalNotificationNow:backgroudMsg];
-//
-//        }
-//    }else if ([[dic objectForKey:@"cmd"] isEqualToString:@"precancel"]){
-//        [[NSNotificationCenter defaultCenter] postNotificationName:@"precancel"
-//                                                            object:nil];
-//
-//    }
+
+    NSDictionary *apsDictionary = [payload.dictionaryPayload objectForKey:@"aps"];
+
+    NSString *message = [apsDictionary objectForKey:@"alert"];
+
     //发送本地通知
-    int x = arc4random() % 2;
-    if(x==0){
-        [UILocalNotification sendFlightChangeNotificationWithContent:@"消息"];
-    }else{
-        [UILocalNotification sendFlightChangeNotificationWithContent:@"新消息"];
-    }
+    [[PushMessageService sharedPushMessageService] didReceiveMessage:message];
 
 }
 
@@ -210,10 +186,8 @@
     if (![userKey isKindOfClass:[NSString class]] || ![pwd isKindOfClass:[NSString class]] ) {
         return;
     }
-    [HttpsUtils loginUser:username pwd:pwd deviceInfo:@"" success:^(UserInfoModel *user){
-
+    [HttpsUtils loginUser:username pwd:pwd deviceInfo:@"" success:^(UserInfoModel *user){  
         [[HomePageService sharedHomePageService] startService];
-
     }failure:^(NSError* error){
         _loginNum ++;
         if (_loginNum <=3) {

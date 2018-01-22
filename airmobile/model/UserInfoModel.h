@@ -30,6 +30,5 @@
 
 @property (nonatomic ,copy)   NSString    *version;//版本号
 
--(instancetype)initWithDictionary:(NSDictionary *)dictionary ;
 
 @end

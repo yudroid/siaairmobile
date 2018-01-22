@@ -16,6 +16,7 @@
                       toId:(long)       toId
                       type:(int)        type
                     status:(int)        status
+                      flag:(NSString *) flag
 {
     self = [super init];
     if(self){
@@ -25,6 +26,7 @@
         _type           = type;
         _handleStatus   = status;
         _content        = content;
+        _flag           = flag;
     }
     return self;
 }
@@ -38,6 +40,7 @@
     [dic setObject:[NSNumber numberWithLong:_toId]      forKey:@"toId"];
     [dic setObject:[NSNumber numberWithInt:_handleStatus] forKey:@"handleStatus"];
     [dic setObject:[NSNumber numberWithInt:_type]       forKey:@"type"];
+    [dic setObject:_flag                                forKey:@"flag"];
     if(_content !=nil){
         [dic setObject:_content forKey:@"content"];
     }
@@ -51,6 +54,7 @@
     [dic setObject:[NSNumber numberWithLong:_id]        forKey:@"id"];
     [dic setObject:[NSNumber numberWithLong:_fromId]    forKey:@"sendUserId"];
     [dic setObject:[NSNumber numberWithLong:_toId]      forKey:@"workgroupId"];
+    [dic setObject:_flag                                forKey:@"flag"];
     if(_content !=nil){
         [dic setObject:_content forKey:@"content"];
     }

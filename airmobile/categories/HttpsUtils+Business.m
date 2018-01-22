@@ -34,7 +34,7 @@ NSString * const synGroupChatInfoListUrl    = @"/acs/wm/chatlst";// 同步工作
 NSString * const getUserChatListUrl         = @"/acs/um/cr";// 获取用户消息
 NSString * const getGroupChatListUrl        = @"/acs/wm/lst";// 获取工作组消息
 NSString * const messageSure                 = @"/acs/am/sure";// 获取工作组消息
-//NSString * const 
+//NSString * const
 NSString * const userlistUrl                = @"/acs/wacs/user/SelectAllDeptListForIphone";
 NSString * const groupSaveUrl               = @"/acs/wacs/group/save";
 NSString * const flightListUrl              = @"/acs/m/flightList2";// 航班列表
@@ -50,8 +50,8 @@ NSString * const guaranteeNormalTime        = @"/acs/wacs/MobileSpecial/UpdateMo
 NSString * const queryAllDispatch           = @"/acs/wacs/MobileSpecial/queryAllDispatch";//宝藏环节列表
 NSString * const updateDispatchType         = @"/acs/wacs/MobileSpecial/updateDispatchType";
 
+NSString * const postToken                   = @"/acs/um/getUserUrl";//获取token用于推动消息
 
-NSString * const postToken                   = @"/shixun/background/getUrl";//获取token用于推动消息
 // 首页
 NSString * const ovSummaryUrl               = @"/acs/ov/homeInfo";
 NSString * const ovFltFDRTHreshold          = @"/acs/ov/fltFDRThreshold";
@@ -327,7 +327,7 @@ NSString * const mobileLog                  = @"/acs/dms/log/mobileLog";//获取
          success:(void(^)(id))success
          failure:(void (^)(NSError *))failure
 {
-    [HttpsUtils post:postToken params:token success:^(id responseObj) {
+    [HttpsUtils get:postToken params:token success:^(id responseObj) {
         if(success){
             success(responseObj);
         }

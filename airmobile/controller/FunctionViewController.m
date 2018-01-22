@@ -25,7 +25,6 @@
 #import "KnowledgeBaseViewController.h"
 #import "ContingencyAddressBookViewController.h"
 #import "YearOperationStatusViewController.h"
-#import "TokenViewController.h"
 //#import <UMESDKKit/AirportFuctionWebViewController.h>
 #import <UMESDKKit/UMESDKApi.h>
 
@@ -118,7 +117,6 @@ static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDEN
     }if ([CommonFunction hasFunction:FUNC_NDYXQK]) {
         [mutableArray addObject:@{@"name":@"年度运行情况",@"image":@"icon_release_queue"}];
     }
-    [mutableArray addObject:@{@"name":@"token",@"image":@"icon_release_queue"}];
     _tableArray = [mutableArray copy];
 
     [self.view addSubview:_tableView];
@@ -214,9 +212,6 @@ static const NSString *FUNCTION_TABLECELL_IDENTIFIER = @"FUNCTION_TABLECELL_IDEN
     }else if([name isEqualToString:@"年度运行情况"]){
         YearOperationStatusViewController *yearOperationStatusVC = [[YearOperationStatusViewController alloc]initWithNibName:@"YearOperationStatusViewController" bundle:nil];
         [self.navigationController pushViewController:yearOperationStatusVC animated:YES];
-    }else if([name isEqualToString:@"token"]){
-        TokenViewController *tokenVC = [[TokenViewController alloc]initWithNibName:@"TokenViewController" bundle:nil];
-        [self.navigationController pushViewController:tokenVC animated:YES];
     }
 
 }
