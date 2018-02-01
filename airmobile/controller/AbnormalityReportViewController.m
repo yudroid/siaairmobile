@@ -32,11 +32,13 @@
 #import "DateUtils.h"
 #import "NSString+Size.h"
 #import "AFAppDotNetUpdateFileClient.h"
+#import "OrderOptionsViewController.h"
+
 static const NSString *ABNORMALITYREPORT_TABLECELL_IDENTIFIER =@"ABNORMALITYREPORT_TABLECELL_IDENTIFIER";
 static const NSString *ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER = @"ABNORMALITYREPORT_COLLECTIONCELL_IDENTIFIER";
 static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER";
 
-@interface AbnormalityReportViewController ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UITextViewDelegate,OptionsViewControllerDelegate,UICollectionViewDelegateFlowLayout,TimePickerViewDelegate>
+@interface AbnormalityReportViewController ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UITextViewDelegate,OptionsViewControllerDelegate,UICollectionViewDelegateFlowLayout,TimePickerViewDelegate,OrderOptionsViewControllerDelegate>
 
 //控件
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -61,6 +63,7 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 @property (nonatomic, copy)          NSArray        *abnormalityHistoryArray;
 @property (nonatomic ,strong)        NSMutableArray *collectionArray;
 @property (nonatomic, copy)          NSArray        *imageFilePath;
+@property (nonatomic, copy)          NSDictionary   *orderDic;
 
 @end
 
@@ -261,10 +264,14 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 //        [self starNetWorking];
         [self sendAbnsReported];
     }
-
-
 }
 
+
+-(void)OrderOptionsDidSelectReports:(NSDictionary *)reportsDic
+{
+    _orderDic  = reportsDic;
+    [_tableView reloadData];
+}
 
 #pragma mark - UITableViewDelegate UITableViewDataSource
 
@@ -300,7 +307,11 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
         }else if ([name isEqualToString:@"保障类型"]){
             cell.valueLabel.text = _ensureType.content;
         }else if([name isEqualToString:@"环节名称"]){
-            cell.valueLabel.text = @"";
+            if(_orderDic!=nil){
+                cell.valueLabel.text = _orderDic[@"name"];
+            }else{
+                cell.valueLabel.text = @"";
+            }
         }
         return  cell;
     }else{
@@ -339,8 +350,10 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
         optionsVC.ensureType = _ensureType.id;
     }else if ([name isEqualToString:@"保障类型"]){
         optionsVC = [[OptionsViewController alloc]initWithOptionType:OptionsTypeEventLevel];
-    }else{
-        optionsVC = [[OptionsViewController alloc]init];
+    }else if([name isEqualToString:@"环节名称"]){
+        OrderOptionsViewController *orderOptionsVC = [[OrderOptionsViewController alloc]initWithNibName:@"OrderOptionsViewController" bundle:nil];
+        orderOptionsVC.delegate = self;
+        [self.navigationController pushViewController:orderOptionsVC animated:YES];
     }
      optionsVC.delegate = self;
     [self.navigationController pushViewController:optionsVC animated:YES];
@@ -498,26 +511,57 @@ static const NSString *ABNORMALITYREPORT_HISTORYTABLECELL_IDENTIFIER = @"ABNORMA
 -(void)sendAbnsReported
 {
     AppDelegate *appdelete = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    [HttpsUtils saveDispatchAbnStart:self.isSpecial?(int)_flightId.integerValue:(int)_safefuardModel.fid
-                          dispatchId:self.isSpecial? _specialModel.id:(int)_safefuardModel.id
-                              userId:(int)appdelete.userInfoModel.id
-                             eventId:self.event.basisid
-                                memo:self.requireTextView.text
-                                flag:self.isSpecial?@"true":@"false"
-                           arrveTime:_timeButton.titleLabel.text
-                             imgPath:[self.imageFilePath componentsJoinedByString:@","]
-                             success:^(id response) {
-                                 [self stopNetWorking];
-                                 if([response isEqualToString:@"0"]){
-                                     [self showAnimationTitle:@"上报失败"];
-                                     return ;
+
+    if (self.reportType == ReportTypeOrder) {
+        if (_orderDic == nil ) {
+            [self showAnimationTitle:@"请选择一个环节"];
+            return;
+        }
+        [HttpsUtils saveOtherABNDispatchAbn:_flightId.intValue
+                                 dispatchId:_orderDic[@"id"]?((NSNumber *)_orderDic[@"id"]).intValue:0
+                               dispatchName:_orderDic[@"name"]?:@""
+                                     userId:(int)appdelete.userInfoModel.id
+                                    eventId:self.event.basisid
+                                       memo:self.requireTextView.text
+                                  arrveTime:_timeButton.titleLabel.text
+                                    imgPath:[self.imageFilePath componentsJoinedByString:@","]
+                                    success:^(id response) {
+                                        [self stopNetWorking];
+                                        if([response isEqualToString:@"0"]){
+                                            [self showAnimationTitle:@"上报失败"];
+                                            return;
+                                        }
+                                        [self showAnimationTitle:@"上报成功"];
+                                    }
+                                    failure:^(NSError *error) {
+                                        [self stopNetWorking];
+                                        [self showAnimationTitle:@"上报失败"];
+                                    }];
+
+    }else{
+        [HttpsUtils saveDispatchAbnStart:self.isSpecial?(int)_flightId.integerValue:(int)_safefuardModel.fid
+                              dispatchId:self.isSpecial? _specialModel.id:(int)_safefuardModel.id
+                                  userId:(int)appdelete.userInfoModel.id
+                                 eventId:self.event.basisid
+                                    memo:self.requireTextView.text
+                                    flag:self.isSpecial?@"true":@"false"
+                               arrveTime:_timeButton.titleLabel.text
+                                 imgPath:[self.imageFilePath componentsJoinedByString:@","]
+                                 success:^(id response) {
+                                     [self stopNetWorking];
+                                     if([response isEqualToString:@"0"]){
+                                         [self showAnimationTitle:@"上报失败"];
+                                         return ;
+                                     }
+                                     [self showAnimationTitle:@"上报成功"];
                                  }
-                                 [self showAnimationTitle:@"上报成功"];
-                             }
-                             failure:^(NSError *error) {
-                                 [self stopNetWorking];
-                                 [self showAnimationTitle:@"上报失败"];
-                             }];
+                                 failure:^(NSError *error) {
+                                     [self stopNetWorking];
+                                     [self showAnimationTitle:@"上报失败"];
+                                 }];
+
+    }
+
 //    NSLog(@"图片路径----：%@",[self.imageFilePath componentsJoinedByString:@","]);
 }
 

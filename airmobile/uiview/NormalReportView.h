@@ -8,14 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol TimePickerViewDelegate <NSObject>
+@protocol NormalReportViewDelegate <NSObject>
 
--(void)timePickerViewDidSelectDate:(NSDate *)date;
+-(void)normalReportViewDidSelectDate:(NSDate *)date reports:(NSArray *)reportsArray ;
 
 @end
 
-@interface NormalReportView : UIView
+@interface NormalReportView : UIView<UITableViewDelegate,UITableViewDataSource>
 
-@property (nonatomic, strong) id<TimePickerViewDelegate> delegate;
+@property (nonatomic, strong) id<NormalReportViewDelegate> delegate;
 
 @end

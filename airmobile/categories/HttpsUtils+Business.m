@@ -39,17 +39,23 @@ NSString * const userlistUrl                = @"/acs/wacs/user/SelectAllDeptList
 NSString * const groupSaveUrl               = @"/acs/wacs/group/save";
 NSString * const flightListUrl              = @"/acs/m/flightList2";// 航班列表
 NSString * const flightDetailUrl            = @"/acs/m/flightDetailTwo";// 航班详情列表
-//NSString * const dispatchDetailsUrl         = @"/acs/wacs/flightDetail/queryFlightDispatchDetailForIphone";// 航班保障环节列表
+//NSString * const dispatchDetailsUrl         = @"/acs/wfaacs/flightDetail/queryFlightDispatchDetailForIphone";// 航班保障环节列表
 //NSString * const specialDetailsUrl          = @"/acs/wacs/MobileSpecial/queryMobileSpecialList";// 特殊保障列表
 NSString * const dispatchAbnsUrl            = @"/acs/m/getExceptionByFlightDispatchId";//获取异常历史列表
 NSString * const saveDispatchAbnStart       = @"/acs/wacs/MobileSpecial/MobileSaveSpecialABNDispatch";//上报开始(航班ID/环节ID/用户ID/事件ID/要求/是否是特殊航班);
+
+NSString * const saveOtherABNDispatchAbn       = @"/acs/wacs/MobileSpecial/MobileSaveOtherABNDispatch";//其他环节 异常上报
 NSString * const saveDispatchAbnEnd         = @"/acs/wacs/MobileSpecial/MobileUpdateSpecialABNDispatchCompelete";//上报结束(异常ID/用户ID);
+
 NSString * const queryDispatchType          = @"/acs/wacs/MobileSpecial/queryDispatchType";
 NSString * const saveDispatchNormal         = @"/acs/wacs/MobileSpecial/MobileSaveSpecialNormalDispatch";//特殊保障上报正常(航班id/环节ID/用户ID),返回结果是时间（时：分）
+NSString * const saveOtherNormalDispatch         = @"/acs/wacs/MobileSpecial/MobileSaveOtherNormalDispatch";
+
 NSString * const guaranteeNormalTime        = @"/acs/wacs/MobileSpecial/UpdateMobileGuaranteeNormalTime";
 NSString * const queryAllDispatch           = @"/acs/wacs/MobileSpecial/queryAllDispatch";//宝藏环节列表
 NSString * const updateDispatchType         = @"/acs/wacs/MobileSpecial/updateDispatchType";
 
+NSString * const queryNarmolDispatchBaseList =  @"/acs/wacs/MobileSpecial/queryNarmolDispatchBaseList";
 NSString * const postToken                   = @"/acs/um/getUserUrl";//获取token用于推动消息
 
 // 首页
@@ -94,6 +100,7 @@ NSString * const searchEQType               = @"/acs/cfg/dict/search?search_EQ_t
 NSString * const phoneRecordUrl             = @"/acs/wacs/user/SelectAllDeptListForIphone";// 通讯录
 NSString * const flyoutList                 = @"/acs/wacs/flyout/list";
 NSString * const queryYearOperationSituation= @"/acs/m/queryYearOperationSituation";//全年运行统计
+
 // 我的
 NSString * const signInUrl                  = @"/acs/m/signIn";//签到
 NSString * const signOutUrl                 = @"/acs/m/signOut";//签退
@@ -486,7 +493,7 @@ NSString * const mobileLog                  = @"/acs/dms/log/mobileLog";//获取
 }
 
 /**
- 航班特殊保障环节的详情 /MobileSaveSpecialNormalDispatch/{flightId}/{dispatchId}/{userID}
+ 正常上报特殊保障环节
  
  @param flightId <#flightId description#>
  @param success <#success description#>
@@ -499,6 +506,24 @@ NSString * const mobileLog                  = @"/acs/dms/log/mobileLog";//获取
                   success:(void (^)(id))success failure:(void (^)(id))failure
 {
     NSString *temp = [NSString stringWithFormat:@"%@?userID=%i&normalTime=%@&flightId=%i&&dispatchId=%i",saveDispatchNormal,userId,date,flightId,dispatchId];
+    [HttpsUtils getString:temp params:nil success:^(id responseObj) {
+        if(success){
+            success(responseObj);
+        }
+    } failure:failure];
+}
+
+/**
+ 正常上报 其他保障环节
+ */
++(void)saveOrderDispatchNormal:(int)flightId
+                   dispatchIds:(NSString *)dispatchIds
+                 dispatchNames:(NSString *)dispatchNames
+                        userId:(int)userId
+                          date:(NSString *)date
+                  success:(void (^)(id))success failure:(void (^)(id))failure
+{
+    NSString *temp = [NSString stringWithFormat:@"%@?userID=%i&normalTime=%@&flightId=%i&&dispatchId=%@&dispatchName=%@",saveOtherNormalDispatch,userId,date,flightId,dispatchIds,dispatchNames];
     [HttpsUtils getString:temp params:nil success:^(id responseObj) {
         if(success){
             success(responseObj);
@@ -540,6 +565,38 @@ NSString * const mobileLog                  = @"/acs/dms/log/mobileLog";//获取
                           @"imagePath":imgPath};
 
     [HttpsUtils postString:saveDispatchAbnStart params:dic
+                   success:^(id responseObj) {
+                       if(success){
+                           success(responseObj);
+                       }
+                   } failure:failure];
+}
+
+/**
+ 航班特殊保障环节的详情
+ */
++(void)saveOtherABNDispatchAbn:(int)flightId
+                 dispatchId:(int)dispatchId
+               dispatchName:(NSString *)dispatchName
+                     userId:(int)userId
+                    eventId:(int)eventId
+                       memo:(NSString *)memo
+                  arrveTime:(NSString *)arrveTime
+                    imgPath:(NSString *)imgPath
+                    success:(void (^)(id))success
+                    failure:(void (^)(id))failure
+{
+    NSDictionary *dic = @{@"flightId":@(flightId),
+                          @"dispatchId":@(dispatchId),
+                          @"dispatchName":dispatchName,
+                          @"userId":@(userId),
+                          @"eventId":@(eventId),
+                          @"memo":memo,
+                          @"arriveTime":arrveTime,
+                          @"dispatchId":dispatchName,
+                          @"imagePath":imgPath};
+
+    [HttpsUtils postString:saveOtherABNDispatchAbn params:dic
                    success:^(id responseObj) {
                        if(success){
                            success(responseObj);
@@ -1609,18 +1666,26 @@ NSString * const mobileLog                  = @"/acs/dms/log/mobileLog";//获取
                                failure:(void (^)(NSError *))failure
 {
     NSString *temp = [NSString stringWithFormat:@"%@?dispatchId=%@&&flagSpecial=%@&&flagSee=%@",updateDispatchType,dispatchId,flagSpecial,flagSee];
-//    [HttpsUtils get:temp params:nil success:^(id responseObj) {
-//        if (success) {
-//            success(responseObj);
-//        }
-//    } failure:failure];
-
     [HttpsUtils getString:temp params:nil success:^(id responseObj) {
         if (success) {
             success(responseObj);
         }
     } failure:failure];
 
+}
+
+
+
++(void)queryNarmolDispatchBaseListSucess:(void (^)(id))success
+                          failure:(void (^)(NSError *))failure
+{
+
+    [HttpsUtils get:queryNarmolDispatchBaseList params:nil
+            success:^(id responseObj) {
+                if (success) {
+                    success(responseObj);
+                }
+            } failure:failure];
 }
 
 +(void)queryMobileEmergencySucess:(void (^)(id))success

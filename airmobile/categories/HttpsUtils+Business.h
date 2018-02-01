@@ -262,6 +262,17 @@
 +(void)saveDispatchNormal:(int)flightId dispatchId:(int)dispatchId
                    userId:(int)userId date:(NSString *)date success:(void (^)(id))success failure:(void (^)(id))failure;
 
+
+/**
+ 正常上报 其他保障环节
+ */
++(void)saveOrderDispatchNormal:(int)flightId
+                   dispatchIds:(NSString *)dispatchIds
+                 dispatchNames:(NSString *)dispatchNames
+                        userId:(int)userId
+                          date:(NSString *)date
+                       success:(void (^)(id))success failure:(void (^)(id))failure;
+
 /**
  航班特殊保障环节的详情
 
@@ -285,6 +296,18 @@
                     imgPath:(NSString *)imgPath
                     success:(void (^)(id))success
                     failure:(void (^)(id))failure;
+
+
++(void)saveOtherABNDispatchAbn:(int)flightId
+                    dispatchId:(int)dispatchId
+                  dispatchName:(NSString *)dispatchName
+                        userId:(int)userId
+                       eventId:(int)eventId
+                          memo:(NSString *)memo
+                     arrveTime:(NSString *)arrveTime
+                       imgPath:(NSString *)imgPath
+                       success:(void (^)(id))success
+                       failure:(void (^)(id))failure;
 
 /**
  航班特殊保障环节的详情
@@ -939,5 +962,15 @@
 */
 +(void)queryYearOperationSituationWithSuccess:(void (^)(id))success
                                       failure:(void (^)(NSError *))failure;
+
+
+/**
+ 查询其他保障环节列表
+
+ @param success <#success description#>
+ @param failure <#failure description#>
+ */
++(void)queryNarmolDispatchBaseListSucess:(void (^)(id))success
+                                 failure:(void (^)(NSError *))failure;
 
 @end

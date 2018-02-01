@@ -54,7 +54,6 @@
 {
     self  = [super init];
     if (self) {
-
         [self setValuesForKeysWithDictionary:dictionary];
     }
     return self;

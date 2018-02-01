@@ -9,7 +9,8 @@
 #import "HttpFileDown.h"
 #import <AFNetworking.h>
 
-//static NSString* baseUri = @"http://192.168.163.66:8080";
+//static NSString* baseUri = @"http://192.168.163.44:8080";
+
 //static NSString* baseUri = @"http://192.168.163.132:8080";
 static NSString* baseUri = @"https://219.134.93.113:8086";
 

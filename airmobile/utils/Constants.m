@@ -34,6 +34,7 @@ const long FL_SPETIAL_REPROTABN         = 20101020;//上报异常
 const long FL_NORMAL                    = 20102000;//普通环节
 const long FL_NORMAL_REPORTNOR          = 20102010;//上报正常
 const long FL_NORMAL_REPORTABN          = 20102020;//上报异常
+const long FL_OTHER_REPORTABN           = 20102021;//其他环节上报
 const long FL_ALLDISPATCH               = 20103000;//监察权限
 
 const long MSG                          = 30000000;//消息

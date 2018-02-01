@@ -14,7 +14,7 @@
 // 生产网络IP地址
 
 //static NSString* baseUri = @"http://192.168.163.132:8080";
-//static NSString* baseUri = @"http://192.168.163.139:8080";
+//static NSString* baseUri = @"http://192.168.163.132:8080";
 //static NSString* baseUri = @"http://192.168.163.181:8080";
 
 //static NSString* baseUri = @"http://192.168.163.44:8080";
@@ -331,7 +331,10 @@ static NSTimeInterval timeInterval = 10;
     NSURL* url = [NSURL URLWithString:baseUri];
     
     if (![StringUtils isNullOrWhiteSpace:segment]) {
-        url = [NSURL URLWithString:segment relativeToURL: [NSURL URLWithString:baseUri]];
+//        url = [NSURL URLWithString:segment relativeToURL: [NSURL URLWithString:baseUri]];
+        NSString *urlString = [NSString stringWithFormat:@"%@%@",baseUri,segment];
+        NSString* encodedString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        url = [NSURL URLWithString:encodedString];
     }
     
     NSString* absoluteUrl = [StringUtils trim:[url absoluteString]];

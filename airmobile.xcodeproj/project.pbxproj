@@ -352,6 +352,10 @@
 		F79ADC322011BE2A000A21BC /* FlightDetailOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F79ADC302011BE2A000A21BC /* FlightDetailOrderTableViewCell.xib */; };
 		F79ADC352011E2FA000A21BC /* NormalReportView.m in Sources */ = {isa = PBXBuildFile; fileRef = F79ADC342011E2FA000A21BC /* NormalReportView.m */; };
 		F79ADC372011E30F000A21BC /* NormalReportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F79ADC362011E30F000A21BC /* NormalReportView.xib */; };
+		F79ADC3B2016D5F1000A21BC /* NormalReportTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F79ADC392016D5F1000A21BC /* NormalReportTableViewCell.m */; };
+		F79ADC3C2016D5F1000A21BC /* NormalReportTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F79ADC3A2016D5F1000A21BC /* NormalReportTableViewCell.xib */; };
+		F79ADC4020171F99000A21BC /* OrderOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F79ADC3E20171F99000A21BC /* OrderOptionsViewController.m */; };
+		F79ADC4120171F99000A21BC /* OrderOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F79ADC3F20171F99000A21BC /* OrderOptionsViewController.xib */; };
 		F79C2EF81E456E8600556CAA /* YDWaveLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F79C2EF71E456E8600556CAA /* YDWaveLoadingView.m */; };
 		F7A25D021DB9E6C000F36C32 /* PsnGeneralContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D011DB9E6C000F36C32 /* PsnGeneralContentView.m */; };
 		F7A25D051DB9E6C900F36C32 /* PsnSafetyContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A25D041DB9E6C900F36C32 /* PsnSafetyContentView.m */; };
@@ -1084,6 +1088,12 @@
 		F79ADC332011E2FA000A21BC /* NormalReportView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NormalReportView.h; sourceTree = "<group>"; };
 		F79ADC342011E2FA000A21BC /* NormalReportView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NormalReportView.m; sourceTree = "<group>"; };
 		F79ADC362011E30F000A21BC /* NormalReportView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NormalReportView.xib; sourceTree = "<group>"; };
+		F79ADC382016D5F1000A21BC /* NormalReportTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NormalReportTableViewCell.h; sourceTree = "<group>"; };
+		F79ADC392016D5F1000A21BC /* NormalReportTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NormalReportTableViewCell.m; sourceTree = "<group>"; };
+		F79ADC3A2016D5F1000A21BC /* NormalReportTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NormalReportTableViewCell.xib; sourceTree = "<group>"; };
+		F79ADC3D20171F99000A21BC /* OrderOptionsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderOptionsViewController.h; sourceTree = "<group>"; };
+		F79ADC3E20171F99000A21BC /* OrderOptionsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderOptionsViewController.m; sourceTree = "<group>"; };
+		F79ADC3F20171F99000A21BC /* OrderOptionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderOptionsViewController.xib; sourceTree = "<group>"; };
 		F79C2EF61E456E8600556CAA /* YDWaveLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDWaveLoadingView.h; sourceTree = "<group>"; };
 		F79C2EF71E456E8600556CAA /* YDWaveLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDWaveLoadingView.m; sourceTree = "<group>"; };
 		F7A25D001DB9E6C000F36C32 /* PsnGeneralContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PsnGeneralContentView.h; sourceTree = "<group>"; };
@@ -1860,6 +1870,9 @@
 				F7A25D8F1DBEF34800F36C32 /* OptionsViewController.h */,
 				F7A25D901DBEF34800F36C32 /* OptionsViewController.m */,
 				F7A25D911DBEF34800F36C32 /* OptionsViewController.xib */,
+				F79ADC3D20171F99000A21BC /* OrderOptionsViewController.h */,
+				F79ADC3E20171F99000A21BC /* OrderOptionsViewController.m */,
+				F79ADC3F20171F99000A21BC /* OrderOptionsViewController.xib */,
 			);
 			name = "异常上报";
 			sourceTree = "<group>";
@@ -3157,6 +3170,9 @@
 				F79ADC332011E2FA000A21BC /* NormalReportView.h */,
 				F79ADC342011E2FA000A21BC /* NormalReportView.m */,
 				F79ADC362011E30F000A21BC /* NormalReportView.xib */,
+				F79ADC382016D5F1000A21BC /* NormalReportTableViewCell.h */,
+				F79ADC392016D5F1000A21BC /* NormalReportTableViewCell.m */,
+				F79ADC3A2016D5F1000A21BC /* NormalReportTableViewCell.xib */,
 			);
 			name = "详情";
 			sourceTree = "<group>";
@@ -3339,6 +3355,7 @@
 				8450555F1DACF65200400EBF /* login_icon_invisible@2x.png in Resources */,
 				F74289D81E01118200AC00D4 /* loading.gif in Resources */,
 				F78B13B01DF47938000A6833 /* ModifyPwd.xib in Resources */,
+				F79ADC4120171F99000A21BC /* OrderOptionsViewController.xib in Resources */,
 				84BA54EF1DA256940037198F /* Assets.xcassets in Resources */,
 				8473A5241DB4DAE800A8DCE2 /* calendar.png in Resources */,
 				F7EE87871DB371CA006473F5 /* FlightFilterTableViewCell.xib in Resources */,
@@ -3380,6 +3397,7 @@
 				F77497011E0773EA00B5773C /* next@2x.png in Resources */,
 				F77497051E0773EA00B5773C /* prev@3x.png in Resources */,
 				845055701DACF65200400EBF /* splash_2@2x.png in Resources */,
+				F79ADC3C2016D5F1000A21BC /* NormalReportTableViewCell.xib in Resources */,
 				845055651DACF65200400EBF /* login_logo@2x.png in Resources */,
 				8450556E1DACF65200400EBF /* splash_1@2x.png in Resources */,
 				F70893E71DD2ECAD00135540 /* FlightDelaysDetailViewController.xib in Resources */,
@@ -3740,6 +3758,7 @@
 				840D15E01DC20C2D005FA910 /* PsnSafetyHourView.m in Sources */,
 				840D15D41DC0C3E8005FA910 /* AbnReasonModel.m in Sources */,
 				F74289FA1E04D7CA00AC00D4 /* MonthKpi.m in Sources */,
+				F79ADC4020171F99000A21BC /* OrderOptionsViewController.m in Sources */,
 				F77E9B0C1F203DB100A4E11A /* UIColor+Zirkfied.m in Sources */,
 				F76A8CDA1FB19E8900B36507 /* NullSafe.m in Sources */,
 				F714698C1EA5AC6300AFF1E2 /* WillGoFlightViewController.m in Sources */,
@@ -3779,6 +3798,7 @@
 				F7A2A0661DB8D0EE0023F228 /* TabBarView.m in Sources */,
 				F7A25D801DBE277500F36C32 /* SJPickPhotoController.m in Sources */,
 				F78B13B41DF47946000A6833 /* UIImage+ImageEffects.m in Sources */,
+				F79ADC3B2016D5F1000A21BC /* NormalReportTableViewCell.m in Sources */,
 				F7428A0B1E04DECE00AC00D4 /* DateUtils.m in Sources */,
 				F7A2A0541DB8D0590023F228 /* LoginViewController.m in Sources */,
 				F723C2C11E30AEF20008D202 /* UIButton+PhotoChoose.m in Sources */,

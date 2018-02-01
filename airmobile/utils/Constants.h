@@ -34,6 +34,7 @@ extern const long FL_SPETIAL_REPROTABN;
 extern const long FL_NORMAL;
 extern const long FL_NORMAL_REPORTNOR;
 extern const long FL_NORMAL_REPORTABN;
+extern const long FL_OTHER_REPORTABN;
 extern const long FL_ALLDISPATCH;
 
 extern const long MSG;

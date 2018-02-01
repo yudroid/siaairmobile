@@ -48,7 +48,8 @@ static const CGFloat ORDERCELLHEIGHT = 75.0;//保障环节中其他保障环节c
                                         FlightDetailHeaderFooterViewDelegate,
                                         FlightDetailSpecialTableViewCellDelegate,
                                         TimePickerViewDelegate,
-                                        FlightDetailOrderTableViewCellDelegate>
+                                        FlightDetailOrderTableViewCellDelegate,
+                                        NormalReportViewDelegate>
 
 @property (weak, nonatomic) IBOutlet    UITableView         *tableView;//特殊保障 tableview
 @property (weak, nonatomic) IBOutlet    UICollectionView    *AirlineCollectionView;
@@ -346,7 +347,10 @@ static const CGFloat ORDERCELLHEIGHT = 75.0;//保障环节中其他保障环节c
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if ([CommonFunction hasFunction:FL_OTHER_REPORTABN]) {
         return tableArray.count+1;
+    }
+    return tableArray.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -371,16 +375,19 @@ static const CGFloat ORDERCELLHEIGHT = 75.0;//保障环节中其他保障环节c
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    //最后一行其他环节
-    if(indexPath.row == tableArray.count){
-        FlightDetailOrderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)FLIGHTDETAIL_ORDERTABLECELL_IDENTIFIER];
-        if (cell == nil) {
-            cell = [[NSBundle mainBundle]loadNibNamed:@"FlightDetailOrderTableViewCell" owner:nil options:nil][0];
-        }
-        cell.delegate = self;
-        return cell;
-    }
 
+
+    //最后一行其他环节
+    if ([CommonFunction hasFunction:FL_OTHER_REPORTABN]) {
+        if(indexPath.row == tableArray.count){
+            FlightDetailOrderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:(NSString *)FLIGHTDETAIL_ORDERTABLECELL_IDENTIFIER];
+            if (cell == nil) {
+                cell = [[NSBundle mainBundle]loadNibNamed:@"FlightDetailOrderTableViewCell" owner:nil options:nil][0];
+            }
+            cell.delegate = self;
+            return cell;
+        }
+    }
 
     DispatchModel *model = tableArray[indexPath.row];
     if (model.key == 0) {
@@ -497,11 +504,54 @@ static const CGFloat ORDERCELLHEIGHT = 75.0;//保障环节中其他保障环节c
                                    
                                }];
     }
+}
+
+-(void)normalReportViewDidSelectDate:(NSDate *)date reports:(NSArray *)reportsArray
+{
+
+    if(reportsArray == nil || reportsArray.count == 0){
+        [self showAnimationTitle:@"请至少选择一个上报环节"];
+        return;
+    }
+    NSString *dispatchIds;
+    NSString *dispatchNames;
+    for (NSDictionary *dic in reportsArray) {
+        if (dispatchIds==nil) {
+            dispatchIds = [NSString stringWithFormat:@"%@",dic[@"id"]];
+        }else{
+            dispatchIds = [NSString stringWithFormat:@"%@,%@",dispatchIds,dic[@"id"]];
+        }
+        if (dispatchNames==nil) {
+            dispatchNames = [NSString stringWithFormat:@"%@",dic[@"name"]];
+        }else{
+            dispatchNames = [NSString stringWithFormat:@"%@,%@",dispatchNames,dic[@"name"]];
+        }
+
+    }
+    
+    
+    AppDelegate *delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [HttpsUtils saveOrderDispatchNormal:(int)_flightId
+                            dispatchIds:dispatchIds?:@""
+                          dispatchNames:dispatchNames?:@""
+                                 userId:(int)delegate.userInfoModel.id
+                                   date:[DateUtils convertToString:date format:@"HH:mi"]
+                           success:^(id responseObj) {
+                               if ([responseObj isKindOfClass:[NSString class]] && [responseObj isEqualToString:@"true"]) {
+                                   [self showAnimationTitle:@"上报成功"];
+                                   [self updateDispatchTableViewData];
+                               }else{
+                                   [self showAnimationTitle:@"上报失败"];
+                               }
 
 
+                           } failure:^(NSError *error) {
+                               [self showAnimationTitle:@"上报失败"];
 
+                           }];
 
 }
+
 
 -(void)updateDispatchTableViewData
 {
@@ -588,7 +638,7 @@ static const CGFloat ORDERCELLHEIGHT = 75.0;//保障环节中其他保障环节c
 
 -(void)flightDetailOrderTableViewCellAbnormalButtonClick:(UIButton *)sender
 {
-    if ([CommonFunction hasFunction:FL_SPETIAL_REPROTABN]) {
+    if ([CommonFunction hasFunction:FL_OTHER_REPORTABN]) {
         AbnormalityReportViewController *abnormalityReportVC=[[AbnormalityReportViewController alloc]initWithNibName:@"AbnormalityReportViewController" bundle:nil];
         abnormalityReportVC.title = @"特殊上报";
 //        abnormalityReportVC.specialModel = tableArray[sender.tag];
@@ -603,7 +653,7 @@ static const CGFloat ORDERCELLHEIGHT = 75.0;//保障环节中其他保障环节c
 }
 -(void)flightDetailOrderTableViewCellNormalButtonClick:(UIButton *)sender
 {
-    if ([CommonFunction hasFunction:FL_SPETIAL_REPORTNOR]) {
+    if ([CommonFunction hasFunction:FL_OTHER_REPORTABN]) {
         NormalReportView *timePickView = [[NSBundle mainBundle] loadNibNamed:@"NormalReportView" owner:nil options:nil][0];
         timePickView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
         timePickView.delegate = self;
